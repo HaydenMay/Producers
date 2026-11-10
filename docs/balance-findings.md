@@ -1,5 +1,7 @@
 # Balance findings (from executed runs)
 
+> Gate 2 results. Gate 2.5 follow-ups (staff cap, legs, Prestige scope, self-funding, first-film economy) are in `docs/gate-2-5-findings.md`.
+
 > Every number below comes from harness runs in `reports/`. All inputs are **provisional** (see `docs/assumptions-register.md`). Findings are evidence for the designer, **not** design changes. Nothing here has been applied to the game design or to `config/baseline.json`.
 
 **Runs used:** baseline config `5355fe52`, ruleset `v9.61-movie-kernel-0.1`, movies only.

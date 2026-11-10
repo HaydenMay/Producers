@@ -13,8 +13,8 @@ import { releaseWeek, decayFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { RULESET_VERSION, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
 
-export const FEATURES_MODELLED = ["movies", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "theme research + staff pitches"];
-export const FEATURES_NOT_MODELLED = ["limited series", "TV series/seasons/renewals/hiatus/announcements", "streaming service/subscribers", "eras beyond a gentle quality bar", "studio upgrades/format unlock gates", "genre unlocks", "late-game concurrency"];
+export const FEATURES_MODELLED = ["movies", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "theme research + staff pitches"];
+export const FEATURES_NOT_MODELLED = ["limited series", "TV series/seasons/renewals/hiatus/announcements", "streaming service/subscribers", "eras beyond a gentle quality bar", "studio upgrades other than staff capacity; format unlock gates", "genre unlocks", "late-game concurrency"];
 
 export function createStudio(seed: number, cfg: Config): StudioState {
   const state: StudioState = {

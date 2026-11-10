@@ -33,14 +33,35 @@ Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = ha
 | A23 | Studio ads | $12K → +0.30 awareness, decays 12%/week, consumed by the next release. | LOCKED: temporary, fading, next release only. | — |
 | A24 | Self-funding | Requires non-negative cash ≥ base cost; reach 0.22 (vs. distributors 0.30–1.00). | LOCKED "small reach before streaming"; size Open. | Drives the DEAD_STRATEGY flag (F3). |
 
+## Gate 2.5 assumptions (optional fields; baseline defaults reproduce Gate 2 exactly)
+
+| # | Area | Assumption | Baseline default | Candidate (`config/candidate.json`) | Notes |
+|---|---|---|---|---|---|
+| G1 | Staff capacity | `staffCapacity.ladder` = max employees per capacity level; the engine refuses hires above it (choices, `applyDecision`, `hireStaff`). Everyone employed works on the one production. | `[999]` (effectively uncapped) | `[4, 6, 8]` with 2 starting staff | RECOMMENDATION pending approval (A). |
+| G2 | Studio upgrades | `upgrade_studio` is an explicit legal action when cash ≥ `upgradeCosts[i]` and Prestige ≥ `upgradePrestige[i]`; paid from spendable cash, ledger kind `upgrade`. | none | $250K / $750K; Prestige 200 / 1,000 | TEST ASSUMPTION; refit after the Prestige scale is chosen. |
+| G3 | Agent hiring | `agents.legacyHeuristicStaffCaps: true` keeps Gate 2's agent limits (balanced 4, quality-first 5). `false` = hire up to the engine cap when cash is above the strategy's hire threshold (balanced $140K, quality-first/repeat-farmer $110K, experimenter/franchise-builder $160K); at cap, buy an upgrade when cash > cost + buffer (quality-first $100K, balanced $150K, experimenter/franchise-builder $200K). | `true` | `false` | Strategy behavior, not a game rule. |
+| G4 | Legs model | `audience.legsModel`: `geometric` (A12) or `diffusion`. | `geometric` | `diffusion` | RECOMMENDATION (B). |
+| G5 | Diffusion | Pool = reach cap. Opening as A11; aware = pool − opening. Weeks 2–3: newly aware = unaware × 0.12 × max(0, (critic−5)/5). Later: newly aware = min(unaware, 2.0 × max(0, (audience−5)/5) × last week's viewers). Interest decay 0.12 + 0.35 × max(0, −q) (cap 0.95). Watch rate 0.30 × (1 + 0.25 × q) (clamp 0.02–0.95), where q = (critic − 5)/5 in weeks 2–3 and (audience − 5)/5 after. Cumulative viewers ≤ reach cap; same 14-week / 400-viewer end rule. | n/a | as listed | TEST ASSUMPTION. The word-of-mouth neutral point (score 5) decides whether mediocre films gain legs. |
+| G6 | Feedback truth | Weekly popups use actual viewers ÷ last week and say up/down/flat accordingly; "still climbing" fires at most once; invariant `FEEDBACK_UNTRUE`. | on (both models) | on | Implemented. |
+| G7 | Prestige scope | Milestones may carry `scope: release / ip / career`; `repeatScope` = `perRelease / perIP / career / explicit` (explicit requires a scope on every milestone). | `perIP` | `explicit` hybrid | RECOMMENDATION: hybrid (C). |
+| G8 | Prestige kinds | New kinds `ipLifetimeGross`, `ipLifetimeViewers` (summed over an IP's releases). Unknown kinds throw. | unused | IP gross $1M +100, $5M +150; IP viewers 500K +150; first Hall of Fame (career) +100 | TEST ASSUMPTION amounts. |
+| G9 | Self-fund agent | `selective-self-funder`: self-funds when `Ĝ × selfFundReach > advance + (1 − royalty) × Ĝ × offer reach`, Ĝ = its own average gross per unit reach; needs cash ≥ base + $80K. Visible info only. | — | — | Policy. |
+| G10 | Adversary | `repeat-farmer`: after any release averages ≥ 7.5, makes the cheapest sequels of its best IP. | — | — | Policy, used to probe Prestige scopes. |
+| G11 | Diagnostics fit | `PRESTIGE_TOO_FAST` threshold 400/yr was fit to the per-IP scale; it fires under per-release and hybrid. | 400/yr | 400/yr | OPEN: refit once the Prestige scale is chosen. |
+| G12 | Memory | Experiments keep slim release records (`slimRelease`) and drop per-release data after each batch; summaries are unaffected. | — | — | Harness only. |
+| G13 | Debug | `debug.injectBug` deliberately breaks one rule so tests can prove the invariants catch it. | `"none"` | `"none"` | Test-only. |
+
 ## Not modelled (deliberately absent, not guessed)
 
-Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming (subscribers, churn, Originals, platform build), eras beyond the quality bar, studio upgrades and format unlock gates, genre unlocks, late-game concurrency, Star bio lines, budget tiers (shelved in the design).
+Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming (subscribers, churn, Originals, platform build), eras beyond the quality bar, studio upgrades other than the Gate 2.5 staff-capacity ladder, format unlock gates, genre unlocks, late-game concurrency, Star bio lines, budget tiers (shelved in the design).
 
 ## Full parameter listing (`config/baseline.json`)
 
+Regenerated for Gate 2.5. Candidate overrides are in `config/candidate.json`.
+
 | Path | Value |
 |---|---|
+| `_label` | "baseline \u2014 PROVISIONAL TESTING VALUES. Simulation assumptions, NOT design locks." |
 | `name` | "baseline" |
 | `start.cash` | 40000 |
 | `start.staff[0].name` | "Sam" |
@@ -114,6 +135,7 @@ Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming
 | `studioGenre.xpPerRelease` | 1 |
 | `studioGenre.levelThresholds` | [1, 3, 6, 10, 15] |
 | `studioGenre.qualityBonusPerLevel` | 0.03 |
+| `studioGenre._awardTiming` | "WORKING ASSUMPTION: genre XP awarded on production completion" |
 | `scoring.audienceWeights.plot` | 0.15 |
 | `scoring.audienceWeights.writing` | 0.15 |
 | `scoring.audienceWeights.filming` | 0.35 |
@@ -197,6 +219,15 @@ Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming
 | `audience.backlashRate` | 0.35 |
 | `audience.spinoffFanShare` | 0.5 |
 | `audience.fanDecayPerYear` | 0.1 |
+| `audience.legsModel` | "geometric" |
+| `audience.diffusion._label` | "WORKING ASSUMPTION (Gate 2.5 candidate): finite awareness diffusion. Used only when legsModel = 'diffusion'." |
+| `audience.diffusion.openWatchShare` | 0.3 |
+| `audience.diffusion.watchRate` | 0.3 |
+| `audience.diffusion.watchRateQualityWeight` | 0.25 |
+| `audience.diffusion.criticBuzzRate` | 0.12 |
+| `audience.diffusion.womPerViewer` | 2.0 |
+| `audience.diffusion.interestDecay` | 0.12 |
+| `audience.diffusion.badInterestDecay` | 0.35 |
 | `distribution.roster[0].id` | "wolf" |
 | `distribution.roster[0].name` | "Wolf Pictures" |
 | `distribution.roster[0].reach` | 0.6 |
@@ -259,6 +290,7 @@ Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming
 | `distribution.offerJitter` | 0.08 |
 | `distribution.selfFundReach` | 0.22 |
 | `prestige.repeatScope` | "perIP" |
+| `prestige._repeatScopeNote` | "WORKING ASSUMPTION (Open in v9.61): each milestone pays once per IP. Options: perRelease \\| perIP \\| career" |
 | `prestige.milestones[0].id` | "meters_all_70" |
 | `prestige.milestones[0].kind` | "allMeters" |
 | `prestige.milestones[0].threshold` | 70 |
@@ -291,3 +323,10 @@ Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming
 | `research.themeCost` | 25000 |
 | `time.weeksPerYear` | 52 |
 | `debug.injectBug` | "none" |
+| `debug._note` | "TEST-ONLY regression injection: none \\| advanceAsRevenue \\| fameIntoScore. Must be 'none' for real runs." |
+| `staffCapacity._label` | "EXPERIMENTAL (Gate 2.5). Studio-wide max employees; NOT a per-project crew cap. Baseline keeps the historical uncapped behavior for comparison." |
+| `staffCapacity.ladder` | [999] |
+| `staffCapacity.upgradeCosts` | [] |
+| `staffCapacity.upgradePrestige` | [] |
+| `agents._label` | "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire)." |
+| `agents.legacyHeuristicStaffCaps` | true |

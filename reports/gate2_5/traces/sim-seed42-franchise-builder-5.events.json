@@ -1,0 +1,665 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 42) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): wolf $73,000 @ 33%; starlight $38,000 @ 8%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Dead Shadow (Action + Sports, new) with wolf advance $73,000 @ 33%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 2,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Dead Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Jo Vale for $29,239.22.",
+  "data": {
+   "starId": "star5",
+   "price": 29239.22
+  }
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Dead Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Action level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Dead Shadow released: Audience 5.08 / Critics 4.44 (avg 4.76). Opening pool 114,103, opening 34,231.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (new): starlight $49,000 @ 8%; wolf $91,000 @ 31%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Broken Shadow (Horror + Superheroes, new) with wolf advance $91,000 @ 31%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Dead Shadow opens to 34,231 viewers.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 0,
+   "now": 34231,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 18,
+  "type": "feedback",
+  "message": "Harsh reviews are scaring off audiences for Dead Shadow.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 34231,
+   "now": 19583,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 22,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 23,
+  "type": "milestone",
+  "message": "Broken Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 23,
+  "type": "cast",
+  "message": "Cast Dee Lind for $8,808.55.",
+  "data": {
+   "starId": "star11",
+   "price": 8808.55
+  }
+ },
+ {
+  "week": 25,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 27,
+  "type": "ip_fans",
+  "message": "Dead Shadow fans: 0 → 0 (avg score 4.76, 85,030 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 27,
+  "type": "star_career",
+  "message": "Jo Vale: Fame 36.0 → 35.6, relationship -0.50 (worked together (+); project hurt their career: Fame fell (-)).",
+  "data": {
+   "starId": "star5",
+   "fameDelta": -0.43,
+   "relDelta": -0.5,
+   "grow": 6
+  }
+ },
+ {
+  "week": 27,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 77% of its $73,000 advance on Dead Shadow and reviews were poor. Trust 2.50 → 2.26.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.77,
+   "step": -0.24
+  }
+ },
+ {
+  "week": 27,
+  "type": "run_end",
+  "message": "Dead Shadow run ended after 11 weeks: 85,030 viewers, gross $170,060, studio take $113,940.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 29,
+  "type": "milestone",
+  "message": "Broken Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 29,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 29,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 32,
+  "type": "surplus",
+  "message": "Broken Shadow: kept $2,191 of unused advance.",
+  "data": {
+   "projectId": "proj10",
+   "surplus": 2191.45
+  }
+ },
+ {
+  "week": 32,
+  "type": "genre_level",
+  "message": "Studio Horror level 0 → 1."
+ },
+ {
+  "week": 32,
+  "type": "release",
+  "message": "Broken Shadow released: Audience 5.05 / Critics 6.63 (avg 5.84). Opening pool 197,450, opening 59,235.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 32,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): starlight $57,000 @ 8%; wolf $104,000 @ 31%."
+ },
+ {
+  "week": 32,
+  "type": "project_start",
+  "message": "Started Iron Edge (Action + Superheroes, new) with wolf advance $104,000 @ 31%.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 33,
+  "type": "feedback",
+  "message": "Broken Shadow opens to 59,235 viewers.",
+  "data": {
+   "releaseId": "rel16",
+   "prev": 0,
+   "now": 59235,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 39,
+  "type": "milestone",
+  "message": "Iron Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 39,
+  "type": "cast",
+  "message": "Cast Jo Vale for $28,778.38.",
+  "data": {
+   "starId": "star5",
+   "price": 28778.38
+  }
+ },
+ {
+  "week": 40,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 44,
+  "type": "ip_fans",
+  "message": "Broken Shadow fans: 0 → 2,157 (avg score 5.84, 160,468 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 44,
+  "type": "star_career",
+  "message": "Dee Lind: Fame 13.0 → 15.2, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star11",
+   "fameDelta": 2.17,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 44,
+  "type": "trust",
+  "message": "Wolf Pictures earned 109% of its advance back on Broken Shadow. Trust 2.36 → 2.46.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.09,
+   "step": 0.1
+  }
+ },
+ {
+  "week": 44,
+  "type": "run_end",
+  "message": "Broken Shadow run ended after 12 weeks: 160,468 viewers, gross $320,936, studio take $221,446.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 45,
+  "type": "milestone",
+  "message": "Iron Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 45,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 45,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 48,
+  "type": "release",
+  "message": "Iron Edge released: Audience 5.97 / Critics 6.94 (avg 6.46). Opening pool 205,879, opening 61,764.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 48,
+  "type": "hire",
+  "message": "Hired Dee Fox (plot 21, writing 32, filming 32, editing 22)."
+ },
+ {
+  "week": 48,
+  "type": "hire",
+  "message": "Hired Fin Lowe (plot 35, writing 30, filming 26, editing 30)."
+ },
+ {
+  "week": 48,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): wolf $113,000 @ 31%; starlight $57,000 @ 8%."
+ },
+ {
+  "week": 48,
+  "type": "project_start",
+  "message": "Started Midnight Pulse (Action + Superheroes, new) with wolf advance $113,000 @ 31%.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 49,
+  "type": "feedback",
+  "message": "Iron Edge opens to 61,764 viewers.",
+  "data": {
+   "releaseId": "rel24",
+   "prev": 0,
+   "now": 61764,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 49,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 55,
+  "type": "milestone",
+  "message": "Midnight Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 55,
+  "type": "cast",
+  "message": "Cast Mo Lind for $89,738.33.",
+  "data": {
+   "starId": "star32",
+   "price": 89738.33
+  }
+ },
+ {
+  "week": 60,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 61,
+  "type": "milestone",
+  "message": "Midnight Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 61,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 62,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 63,
+  "type": "ip_fans",
+  "message": "Iron Edge fans: 0 → 4,541 (avg score 6.46, 194,405 viewers).",
+  "data": {
+   "ipId": "ip17"
+  }
+ },
+ {
+  "week": 63,
+  "type": "star_career",
+  "message": "Jo Vale: Fame 35.6 → 39.7, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star5",
+   "fameDelta": 4.12,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 63,
+  "type": "trust",
+  "message": "Wolf Pictures earned 116% of its advance back on Iron Edge. Trust 2.50 → 2.72.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.16,
+   "step": 0.22
+  }
+ },
+ {
+  "week": 63,
+  "type": "run_end",
+  "message": "Iron Edge run ended after 15 weeks: 194,405 viewers, gross $388,810, studio take $268,279.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 64,
+  "type": "genre_level",
+  "message": "Studio Action level 1 → 2."
+ },
+ {
+  "week": 64,
+  "type": "release",
+  "message": "Midnight Pulse released: Audience 6.98 / Critics 7.38 (avg 7.18). Opening pool 203,542, opening 61,063.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Dee Fox: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Dee Fox: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (sequel): wolf $91,000 @ 31%; starlight $49,000 @ 8%."
+ },
+ {
+  "week": 64,
+  "type": "project_start",
+  "message": "Started Iron Edge 2 (Action + Superheroes, sequel) with wolf advance $91,000 @ 31%.",
+  "data": {
+   "projectId": "proj35"
+  }
+ },
+ {
+  "week": 65,
+  "type": "feedback",
+  "message": "Midnight Pulse opens to 61,063 viewers.",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 0,
+   "now": 61063,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 66,
+  "type": "feedback",
+  "message": "Critics love Midnight Pulse, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 61063,
+   "now": 43250,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 71,
+  "type": "milestone",
+  "message": "Iron Edge 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj35"
+  }
+ },
+ {
+  "week": 71,
+  "type": "cast",
+  "message": "Cast Jo Vale for $32,908.92.",
+  "data": {
+   "starId": "star5",
+   "price": 32908.92
+  }
+ },
+ {
+  "week": 77,
+  "type": "milestone",
+  "message": "Iron Edge 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj35"
+  }
+ },
+ {
+  "week": 77,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 79,
+  "type": "ip_fans",
+  "message": "Midnight Pulse fans: 0 → 8,887 (avg score 7.18, 254,790 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 79,
+  "type": "star_career",
+  "message": "Mo Lind: Fame 79.0 → 85.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star32",
+   "fameDelta": 6.86,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 79,
+  "type": "trust",
+  "message": "Wolf Pictures earned 140% of its advance back on Midnight Pulse with strong reviews. Trust 2.70 → 3.16.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.4,
+   "step": 0.46
+  }
+ },
+ {
+  "week": 79,
+  "type": "run_end",
+  "message": "Midnight Pulse run ended after 15 weeks: 254,790 viewers, gross $509,580, studio take $351,610.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 79,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 80,
+  "type": "release",
+  "message": "Iron Edge 2 released: Audience 7.12 / Critics 7.55 (avg 7.34). Opening pool 189,532, opening 56,860.",
+  "data": {
+   "releaseId": "rel41"
+  }
+ },
+ {
+  "week": 81,
+  "type": "feedback",
+  "message": "Iron Edge 2 opens to 56,860 viewers.",
+  "data": {
+   "releaseId": "rel41",
+   "prev": 0,
+   "now": 56860,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 81,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 82,
+  "type": "feedback",
+  "message": "Critics love Iron Edge 2, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel41",
+   "prev": 56860,
+   "now": 41033,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 84,
+  "type": "feedback",
+  "message": "Word of mouth on Iron Edge 2 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel41",
+   "prev": 25672,
+   "now": 21888,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 85,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 85,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 89,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 91,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 95,
+  "type": "ip_fans",
+  "message": "Iron Edge fans: 4,271 → 13,781 (avg score 7.34, 254,009 viewers).",
+  "data": {
+   "ipId": "ip17"
+  }
+ },
+ {
+  "week": 95,
+  "type": "star_career",
+  "message": "Jo Vale: Fame 39.7 → 47.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star5",
+   "fameDelta": 7.36,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 95,
+  "type": "trust",
+  "message": "Wolf Pictures earned 173% of its advance back on Iron Edge 2 with strong reviews. Trust 3.14 → 3.82.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.73,
+   "step": 0.68
+  }
+ },
+ {
+  "week": 95,
+  "type": "run_end",
+  "message": "Iron Edge 2 run ended after 15 weeks: 254,009 viewers, gross $508,018, studio take $350,532.",
+  "data": {
+   "releaseId": "rel41"
+  }
+ }
+]

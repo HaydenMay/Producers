@@ -1,0 +1,632 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 42) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Zombies (new): wolf $71,000 @ 33%; starlight $41,000 @ 8%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Dead Shadow (Comedy + Zombies, new) with wolf advance $71,000 @ 33%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 2,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Dead Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Gus Park for $2,263.5.",
+  "data": {
+   "starId": "star7",
+   "price": 2263.5
+  }
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Dead Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 16,
+  "type": "surplus",
+  "message": "Dead Shadow: kept $8,737 of unused advance.",
+  "data": {
+   "projectId": "proj2",
+   "surplus": 8736.5
+  }
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Comedy level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Dead Shadow released: Audience 4.91 / Critics 5.05 (avg 4.98). Opening pool 71,887, opening 21,566.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (new): starlight $46,000 @ 8%; wolf $77,000 @ 32%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Broken Shadow (Comedy + Spies, new) with wolf advance $77,000 @ 32%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Dead Shadow opens to 21,566 viewers.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 0,
+   "now": 21566,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 22,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 23,
+  "type": "milestone",
+  "message": "Broken Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 23,
+  "type": "cast",
+  "message": "Cast Gus Park for $2,263.5.",
+  "data": {
+   "starId": "star7",
+   "price": 2263.5
+  }
+ },
+ {
+  "week": 25,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 26,
+  "type": "ip_fans",
+  "message": "Dead Shadow fans: 0 → 0 (avg score 4.98, 55,548 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 26,
+  "type": "star_career",
+  "message": "Gus Park: Fame 1.0 → 1.0, relationship -0.50 (worked together (+); project hurt their career: Fame fell (-)).",
+  "data": {
+   "starId": "star7",
+   "fameDelta": -0.03,
+   "relDelta": -0.5,
+   "grow": 4
+  }
+ },
+ {
+  "week": 26,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 52% of its $71,000 advance on Dead Shadow and reviews were poor. Trust 2.50 → 2.14.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.52,
+   "step": -0.36
+  }
+ },
+ {
+  "week": 26,
+  "type": "run_end",
+  "message": "Dead Shadow run ended after 10 weeks: 55,548 viewers, gross $111,096, studio take $74,434.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 29,
+  "type": "milestone",
+  "message": "Broken Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 29,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 29,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 32,
+  "type": "surplus",
+  "message": "Broken Shadow: kept $14,737 of unused advance.",
+  "data": {
+   "projectId": "proj10",
+   "surplus": 14736.5
+  }
+ },
+ {
+  "week": 32,
+  "type": "release",
+  "message": "Broken Shadow released: Audience 6.02 / Critics 5.83 (avg 5.93). Opening pool 71,856, opening 21,557.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 32,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (new): starlight $48,000 @ 8%; wolf $78,000 @ 32%."
+ },
+ {
+  "week": 32,
+  "type": "project_start",
+  "message": "Started Iron Edge (Comedy + Spies, new) with wolf advance $78,000 @ 32%.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 33,
+  "type": "feedback",
+  "message": "Broken Shadow opens to 21,557 viewers.",
+  "data": {
+   "releaseId": "rel16",
+   "prev": 0,
+   "now": 21557,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 39,
+  "type": "milestone",
+  "message": "Iron Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 39,
+  "type": "cast",
+  "message": "Cast Gus Park for $2,253.7.",
+  "data": {
+   "starId": "star7",
+   "price": 2253.7
+  }
+ },
+ {
+  "week": 40,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 45,
+  "type": "milestone",
+  "message": "Iron Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 45,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 45,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 46,
+  "type": "ip_fans",
+  "message": "Broken Shadow fans: 0 → 1,086 (avg score 5.93, 72,963 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 46,
+  "type": "star_career",
+  "message": "Gus Park: Fame 1.0 → 2.5, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 2.",
+  "data": {
+   "starId": "star7",
+   "fameDelta": 1.52,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 46,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 61% of its $77,000 advance on Broken Shadow. Trust 2.26 → 2.08.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.61,
+   "step": -0.18
+  }
+ },
+ {
+  "week": 46,
+  "type": "run_end",
+  "message": "Broken Shadow run ended after 14 weeks: 72,963 viewers, gross $145,926, studio take $99,230.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 48,
+  "type": "surplus",
+  "message": "Iron Edge: kept $15,746 of unused advance.",
+  "data": {
+   "projectId": "proj18",
+   "surplus": 15746.3
+  }
+ },
+ {
+  "week": 48,
+  "type": "genre_level",
+  "message": "Studio Comedy level 1 → 2."
+ },
+ {
+  "week": 48,
+  "type": "release",
+  "message": "Iron Edge released: Audience 5.84 / Critics 5.66 (avg 5.75). Opening pool 73,383, opening 22,015.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 48,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (new): wolf $81,000 @ 32%; starlight $48,000 @ 8%."
+ },
+ {
+  "week": 48,
+  "type": "project_start",
+  "message": "Started Red Shadow (Comedy + Spies, new) with wolf advance $81,000 @ 32%.",
+  "data": {
+   "projectId": "proj26"
+  }
+ },
+ {
+  "week": 49,
+  "type": "feedback",
+  "message": "Iron Edge opens to 22,015 viewers.",
+  "data": {
+   "releaseId": "rel24",
+   "prev": 0,
+   "now": 22015,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 49,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 55,
+  "type": "milestone",
+  "message": "Red Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj26"
+  }
+ },
+ {
+  "week": 55,
+  "type": "cast",
+  "message": "Cast Gus Park for $2,781.8.",
+  "data": {
+   "starId": "star7",
+   "price": 2781.8
+  }
+ },
+ {
+  "week": 60,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 61,
+  "type": "ip_fans",
+  "message": "Iron Edge fans: 0 → 839 (avg score 5.75, 69,909 viewers).",
+  "data": {
+   "ipId": "ip17"
+  }
+ },
+ {
+  "week": 61,
+  "type": "star_career",
+  "message": "Gus Park: Fame 2.5 → 3.7, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star7",
+   "fameDelta": 1.19,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 61,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 57% of its $78,000 advance on Iron Edge. Trust 2.17 → 1.95.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.57,
+   "step": -0.22
+  }
+ },
+ {
+  "week": 61,
+  "type": "run_end",
+  "message": "Iron Edge run ended after 13 weeks: 69,909 viewers, gross $139,818, studio take $95,076.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 61,
+  "type": "milestone",
+  "message": "Red Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj26"
+  }
+ },
+ {
+  "week": 61,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 62,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 64,
+  "type": "surplus",
+  "message": "Red Shadow: kept $18,218 of unused advance.",
+  "data": {
+   "projectId": "proj26",
+   "surplus": 18218.2
+  }
+ },
+ {
+  "week": 64,
+  "type": "release",
+  "message": "Red Shadow released: Audience 5.74 / Critics 5.58 (avg 5.66). Opening pool 74,568, opening 22,370.",
+  "data": {
+   "releaseId": "rel32"
+  }
+ },
+ {
+  "week": 64,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Superheroes (new): wolf $67,000 @ 33%; starlight $43,000 @ 8%."
+ },
+ {
+  "week": 64,
+  "type": "project_start",
+  "message": "Started Hollow Run (Comedy + Superheroes, new) with wolf advance $67,000 @ 33%.",
+  "data": {
+   "projectId": "proj34"
+  }
+ },
+ {
+  "week": 65,
+  "type": "feedback",
+  "message": "Red Shadow opens to 22,370 viewers.",
+  "data": {
+   "releaseId": "rel32",
+   "prev": 0,
+   "now": 22370,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 71,
+  "type": "milestone",
+  "message": "Hollow Run hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj34"
+  }
+ },
+ {
+  "week": 71,
+  "type": "cast",
+  "message": "Cast Gus Park for $3,150.08.",
+  "data": {
+   "starId": "star7",
+   "price": 3150.08
+  }
+ },
+ {
+  "week": 76,
+  "type": "ip_fans",
+  "message": "Red Shadow fans: 0 → 725 (avg score 5.66, 68,629 viewers).",
+  "data": {
+   "ipId": "ip25"
+  }
+ },
+ {
+  "week": 76,
+  "type": "star_career",
+  "message": "Gus Park: Fame 3.7 → 4.7, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 3.",
+  "data": {
+   "starId": "star7",
+   "fameDelta": 1.04,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 76,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 54% of its $81,000 advance on Red Shadow. Trust 2.04 → 1.79.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.54,
+   "step": -0.25
+  }
+ },
+ {
+  "week": 76,
+  "type": "run_end",
+  "message": "Red Shadow run ended after 12 weeks: 68,629 viewers, gross $137,258, studio take $93,335.",
+  "data": {
+   "releaseId": "rel32"
+  }
+ },
+ {
+  "week": 77,
+  "type": "milestone",
+  "message": "Hollow Run hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj34"
+  }
+ },
+ {
+  "week": 77,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 79,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 80,
+  "type": "surplus",
+  "message": "Hollow Run: kept $3,850 of unused advance.",
+  "data": {
+   "projectId": "proj34",
+   "surplus": 3849.92
+  }
+ },
+ {
+  "week": 80,
+  "type": "release",
+  "message": "Hollow Run released: Audience 6.48 / Critics 5.09 (avg 5.79). Opening pool 91,242, opening 27,373.",
+  "data": {
+   "releaseId": "rel40"
+  }
+ },
+ {
+  "week": 81,
+  "type": "feedback",
+  "message": "Hollow Run opens to 27,373 viewers.",
+  "data": {
+   "releaseId": "rel40",
+   "prev": 0,
+   "now": 27373,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 81,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 85,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 85,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 89,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 91,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 95,
+  "type": "ip_fans",
+  "message": "Hollow Run fans: 0 → 1,189 (avg score 5.79, 94,094 viewers).",
+  "data": {
+   "ipId": "ip33"
+  }
+ },
+ {
+  "week": 95,
+  "type": "star_career",
+  "message": "Gus Park: Fame 4.7 → 6.2, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star7",
+   "fameDelta": 1.52,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 95,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 93% of its $67,000 advance on Hollow Run. Trust 1.90 → 1.89.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.93,
+   "step": -0.01
+  }
+ },
+ {
+  "week": 95,
+  "type": "run_end",
+  "message": "Hollow Run run ended after 15 weeks: 94,094 viewers, gross $188,188, studio take $126,086.",
+  "data": {
+   "releaseId": "rel40"
+  }
+ }
+]

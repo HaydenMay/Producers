@@ -40,7 +40,7 @@ export function runBatch(seedStart: number, seedCount: number, strategies: strin
     metrics,
     summary: summarize(metrics),
     trends: Object.fromEntries(strategies.map((s) => [s, scoreTrend(metrics, s)])),
-    flags: diagnose(metrics, releases),
+    flags: diagnose(metrics, releases, undefined, cfg),
     violations,
     releases,
   };

@@ -76,7 +76,7 @@ export interface Flag {
 
 const med = (xs: number[]) => quantile(xs, 0.5);
 
-export function diagnose(metrics: CareerMetrics[], releasesByCareer: { seed: number; strategy: string; releases: Release[] }[], th: Thresholds = DEFAULT_THRESHOLDS): Flag[] {
+export function diagnose(metrics: CareerMetrics[], releasesByCareer: { seed: number; strategy: string; releases: Release[] }[], th: Thresholds = DEFAULT_THRESHOLDS, cfg?: Config): Flag[] {
   const flags: Flag[] = [];
   const strategies = [...new Set(metrics.map((m) => m.strategy))];
   const by = (s: string) => metrics.filter((m) => m.strategy === s);
@@ -155,7 +155,7 @@ export function diagnose(metrics: CareerMetrics[], releasesByCareer: { seed: num
   flags.push({
     flag: "UNSUPPORTED_RULE_ASSUMPTION",
     fired: true,
-    why: "INFO: results depend on WORKING ASSUMPTIONS (see docs/assumptions-register.md): prestige repeatScope=perIP, trust formula, offer/heat formula, saturating awareness + geometric legs, genre XP on completion, staff-pitch rule, all numeric values.",
+    why: `INFO: results depend on WORKING ASSUMPTIONS (see docs/assumptions-register.md): prestige repeatScope=${cfg?.prestige.repeatScope ?? "?"}, staff capacity ladder=${cfg ? JSON.stringify(cfg.staffCapacity.ladder) : "?"}, trust formula, offer/heat formula, saturating awareness + ${cfg?.audience.legsModel ?? "?"} legs, genre XP on completion, staff-pitch rule, all numeric values.`,
   });
   return flags;
 }

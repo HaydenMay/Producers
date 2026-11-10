@@ -16,6 +16,27 @@ A headless, deterministic simulation and balance tool for the **Entertainment St
 **Tests:** 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
+## Gate 2.5 additions (movie system iteration, pending designer approval)
+
+- **Studio-wide employee capacity** (`staffCapacity`): the engine refuses hires above `maxStaff` (choices, `applyDecision` and `hireStaff` all enforce it). Every employed staff member still works on the one production. Upgrades are an explicit legal action, `upgrade_studio`, with cost + Prestige test triggers. The baseline keeps the historical uncapped behavior; `config/candidate.json` uses **2 / 4 → 6 → 8**.
+- **Weekly legs model** (`audience.legsModel`): `geometric` (Gate 2, baseline) or `diffusion` (candidate: finite awareness diffusion where critic buzz and audience word of mouth can grow weekly viewers, capped by reach). Feedback popups now state the actual direction, and an invariant checks it.
+- **Prestige scopes:** each milestone may carry `scope: release | ip | career`; global `repeatScope` = `perRelease | perIP | career | explicit`. New kinds: `ipLifetimeGross`, `ipLifetimeViewers`.
+- **New policies:** `selective-self-funder` (self-funds only when its visible estimate favors it), `repeat-farmer` (adversarial Prestige farming). Opt in with `--strategies`.
+- **Docs:** results in `docs/gate-2-5-findings.md`; approvals and open items in `docs/gate-2-5-open-decisions.md`; new assumptions G1–G13 in `docs/assumptions-register.md`.
+- **Reports:** `reports/gate2_5/` (`00_pre_change/` = the untouched Gate 2 baseline, A/B/C/COMBINED experiments, legs worked cases, self-fund regret incl. `selffund_fine/`, early economy, five-film candidate traces in `traces/`).
+- **Memory:** experiments keep slim release records, so a 1,000-seed × 9-strategy × 3-length run (54,000 careers) fits in normal Node memory (~9 min).
+- **New commands:**
+
+```bash
+npm run experiment -- --spec config/experiments/A_staff_capacity.json --out reports/gate2_5   # paired multi-variant experiment
+npm run experiment -- --spec config/experiments/COMBINED.json --out reports/gate2_5
+npm run legs -- --out reports/gate2_5                       # 5 controlled weekly-legs cases, both models
+npm run selffund -- --config config/candidate.json --seeds 200 --productions 10 --reaches 0.22,0.35,0.5,0.7 --out reports/gate2_5
+npm run selffund -- --config config/candidate.json --seeds 100 --reaches 0.55,0.6,0.65 --out reports/gate2_5/selffund_fine
+npm run early -- --config config/candidate.json --out reports/gate2_5   # first-film economics scenarios
+npm run sim -- --config config/candidate.json --seed 42 --strategy balanced --productions 5
+```
+
 ## Prerequisites
 
 - Node.js 20+ (tested on 22.23) and npm 10+
@@ -25,7 +46,7 @@ A headless, deterministic simulation and balance tool for the **Entertainment St
 
 ```bash
 npm install
-npm test                      # 36 tests
+npm test                      # 50 tests
 npm run typecheck
 
 # one seeded career → reports/sim-seed42-balanced-5.md (+ .decisions.json, .events.json)

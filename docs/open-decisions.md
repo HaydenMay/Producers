@@ -1,4 +1,6 @@
-# Open decisions
+# Open decisions (Gate 2)
+
+> **Gate 2.5 update:** rows 1–4 (team-size scaling, Prestige scope, self-fund reach, starting economy) now have evidence and proposals in `docs/gate-2-5-open-decisions.md`. Model limitation 3 is partly addressed: a staff-capacity upgrade ladder exists as an optional rule. The rest of this page is unchanged.
 
 Ranked by how much each one blocks reliable balancing. "Design ambiguity" = v9.61 doesn't decide it. "Model limitation" = the harness doesn't simulate it yet.
 
