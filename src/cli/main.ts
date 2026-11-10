@@ -59,10 +59,11 @@ function main() {
       const seed = Number(one(a, "seed", "42"));
       const strat = one(a, "strategy", "balanced");
       const productions = Number(one(a, "productions", "5"));
-      const r = runCareer(seed, strat, cfg, { productions, drain: one(a, "drain", "true") !== "false" });
+      const years = a.years ? Number(one(a, "years", "10")) : undefined;
+      const r = runCareer(seed, strat, cfg, { productions, years, drain: one(a, "drain", "true") !== "false" });
       const v = checkInvariants(r, cfg);
       const md = careerReport(r.state, cfg, strat, r.decisions.length);
-      const base = `sim-seed${seed}-${strat}-${productions}`;
+      const base = `sim-seed${seed}-${strat}-${years !== undefined ? `y${years}` : productions}`;
       const p1 = out(dir, `${base}.md`, md);
       out(dir, `${base}.decisions.json`, JSON.stringify({ seed, strategy: strat, configHash: configHash(cfg), decisions: r.decisions }, null, 0));
       out(dir, `${base}.events.json`, JSON.stringify(r.state.events, null, 1));
@@ -76,9 +77,10 @@ function main() {
       const seeds = Number(one(a, "seeds", "100"));
       const start = Number(one(a, "seed-start", "1"));
       const productions = Number(one(a, "productions", "20"));
+      const years = a.years ? Number(one(a, "years", "10")) : undefined;
       const strategies = one(a, "strategies", STRATEGY_IDS.join(",")).split(",");
-      const b = runBatch(start, seeds, strategies, cfg, { productions, drain: true }, one(a, "releases-csv", "false") === "true" ? "full" : true);
-      const base = `batch-${cfg.name.replace(/[^a-z0-9]+/gi, "_")}-s${seeds}-p${productions}`;
+      const b = runBatch(start, seeds, strategies, cfg, { productions, years, drain: true }, one(a, "releases-csv", "false") === "true" ? "full" : true);
+      const base = `batch-${cfg.name.replace(/[^a-z0-9]+/gi, "_")}-s${seeds}-${years !== undefined ? `y${years}` : `p${productions}`}`;
       out(dir, `${base}.md`, batchReport(b, cfg));
       out(dir, `${base}.careers.csv`, metricsCsv(b.metrics));
       out(dir, `${base}.great.csv`, greatCsv(b.great));
@@ -112,6 +114,10 @@ function main() {
       for (const v of spec.variants) if (typeof v.overrides === "string") v.overrides = JSON.parse(readFileSync(String(v.overrides).replace(/^@/, ""), "utf8"));
       if (a.seeds) spec.seeds = Number(one(a, "seeds", "100"));
       if (a.productions) spec.productions = one(a, "productions", "20").split(",").map(Number);
+      if (a.years) {
+        spec.years = one(a, "years", "10").split(",").map(Number);
+        if (!a.productions) spec.productions = [];
+      }
       const name = specPath.replace(/^.*\//, "").replace(/\.json$/, "");
       const res = runExperiment(spec, cfg);
       const p = out(dir, `${name}.md`, experimentReport(res, `Experiment: ${name}`));

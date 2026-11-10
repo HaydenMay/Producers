@@ -45,11 +45,12 @@ function qualifies(m: Milestone, rel: Release, state: StudioState): boolean {
     case "lifetimeGross":
       return rel.grossTotal >= m.threshold; // gross only: advances/surplus are never revenue
     case "lifetimeViewers":
-      return rel.totalViewers >= m.threshold;
+      return (rel.uniqueViewers ?? rel.totalViewers) >= m.threshold; // distinct people: extra episodes never multiply this
+
     case "ipLifetimeGross":
       return state.releases.filter((r) => r.ipId === rel.ipId).reduce((a, r) => a + r.grossTotal, 0) >= m.threshold;
     case "ipLifetimeViewers":
-      return state.releases.filter((r) => r.ipId === rel.ipId).reduce((a, r) => a + r.totalViewers, 0) >= m.threshold;
+      return state.releases.filter((r) => r.ipId === rel.ipId).reduce((a, r) => a + (r.uniqueViewers ?? r.totalViewers), 0) >= m.threshold;
     default:
       throw new Error(`Unknown milestone kind ${m.kind}`);
   }

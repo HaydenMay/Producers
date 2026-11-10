@@ -50,6 +50,7 @@ export function checkInvariants(r: CareerResult, cfg: Config): Violation[] {
     psum += d?.amount ?? 0;
   }
   if (psum !== s.prestige) v("PRESTIGE_SUM_MISMATCH", `awards sum ${psum} vs Prestige ${s.prestige}`);
+  checkGate3(s, cfg, v);
   // feedback popups must describe what actually happened
   const UP = ["tuning in", "climbing", "holding on", "finding a few"];
   const DOWN = ["easing off", "winding down", "dropping fast", "scaring off"];
@@ -77,8 +78,65 @@ function checkRelease(rel: Release, s: StudioState, cfg: Config, v: (rule: strin
   if (Math.abs(re.audience - rel.audience) > 0.011 || Math.abs(re.critic - rel.critic) > 0.011) v("SCORE_NOT_CAUSAL", `${rel.title}: stored A${rel.audience}/C${rel.critic} vs recomputed A${re.audience}/C${re.critic}`);
   if (Math.abs(avgScore(rel.audience, rel.critic) - rel.avgScore) > 0.011) v("AVG_MISMATCH", rel.title);
   if (!rel.active && rel.weekly.length && rel.weekly.at(-1)!.viewers !== 0) v("RUN_NOT_TERMINATED", rel.title);
-  if (rel.weekly.length > cfg.audience.maxRunWeeks + 2) v("RUN_TOO_LONG", `${rel.title}: ${rel.weekly.length} weeks`);
-  if (rel.totalViewers > rel.reachCap) v("REACH_EXCEEDED", `${rel.title}: ${rel.totalViewers} viewers > reach cap ${rel.reachCap}`);
+  const episodic = rel.episodes !== undefined && !(rel.format === "limited_series" && cfg.limitedSeries.pacing === "declining");
+  const tail = rel.format === "tv" ? cfg.tv.tailWeeks : cfg.limitedSeries.tailWeeks;
+  const maxWeeks = episodic ? rel.episodes! + tail + 1 : cfg.audience.maxRunWeeks + 2;
+  if (rel.weekly.length > maxWeeks) v("RUN_TOO_LONG", `${rel.title}: ${rel.weekly.length} weeks`);
+  const distinct = episodic ? rel.uniqueViewers ?? 0 : rel.totalViewers;
+  if (distinct > rel.reachCap) v("REACH_EXCEEDED", `${rel.title}: ${distinct} distinct viewers > reach cap ${rel.reachCap}`);
+}
+
+/** Gate 3 invariants: formats, episodes, catalog, Originals, streaming money, engineer, negative assertions. */
+function checkGate3(s: StudioState, cfg: Config, v: (rule: string, d: string) => void) {
+  const REVIEW = new Set(["allMeters", "audience", "critic", "hallOfFame"]);
+  const reviewIds = new Set((cfg.prestige.milestones as { id: string; kind: string }[]).filter((m) => REVIEW.has(m.kind)).map((m) => m.id));
+  const relById = new Map(s.releases.map((r) => [r.id, r]));
+  for (const rel of s.releases) {
+    // weekly episodes: each episode exactly once, consecutive weeks, in order
+    if (rel.episodes !== undefined && rel.weekly.some((w) => w.episode !== undefined)) {
+      const eps = rel.weekly.filter((w) => w.episode !== undefined);
+      const nums = eps.map((w) => w.episode!);
+      if (new Set(nums).size !== nums.length) v("TV_EPISODE_DUPLICATE", `${rel.title}: episode aired twice`);
+      if (nums.some((n, i) => n !== i + 1)) v("TV_EPISODE_ORDER", `${rel.title}: episodes ${nums.join(",")}`);
+      if (eps.some((w, i) => i > 0 && w.week !== eps[i - 1].week + 1)) v("TV_EPISODE_SKIPPED_WEEK", rel.title);
+      if (!rel.active && nums.length !== rel.episodes) v("TV_EPISODES_MISSING", `${rel.title}: ${nums.length}/${rel.episodes} aired`);
+    }
+    if (rel.route === "original" && (rel.grossTotal !== 0 || rel.distributorTake !== 0 || rel.studioTake !== 0 || rel.distributorId)) v("ORIGINAL_EARNS_TRADITIONAL", rel.title);
+    if (rel.format === "limited_series" && s.releases.filter((r) => r.ipId === rel.ipId).length > 1) v("LIMITED_SERIES_RENEWED", rel.title);
+    if (rel.format === "tv") {
+      const first = s.releases.find((r) => r.ipId === rel.ipId)!;
+      if (first.genre !== rel.genre) v("TV_GENRE_CHANGED", `${rel.title}: ${first.genre} → ${rel.genre}`);
+    }
+  }
+  // review/craft Prestige only in a season's own release week, never per episode
+  for (const e of s.events.filter((x) => x.type === "prestige")) {
+    const d = e.data as { milestone?: string; releaseId?: string };
+    const rel = d.releaseId ? relById.get(d.releaseId) : undefined;
+    if (rel && reviewIds.has(d.milestone ?? "") && e.week !== rel.releaseWeek) v("TV_PRESTIGE_PER_EPISODE", `${e.message} at week ${e.week}, release week ${rel.releaseWeek}`);
+  }
+  // one advance per project (no multi-distributor stacking)
+  const adv = s.ledger.filter((l) => l.kind === "advance_received").map((l) => l.projectId);
+  if (new Set(adv).size !== adv.length) v("MULTI_DISTRIBUTOR_STACKING", "a project received two advances");
+  // streaming: catalog entries unique, only finished titles, one subscription income line per week, no NaN/negative
+  const p = s.platform;
+  if (p) {
+    const ids = p.catalog.map((c) => c.releaseId);
+    if (new Set(ids).size !== ids.length) v("CATALOG_DOUBLE_COUNT", "a title joined the catalog twice");
+    for (const c of p.catalog) {
+      const r = relById.get(c.releaseId);
+      if (!r || (r.runEndWeek !== undefined && c.joinWeek < r.runEndWeek) || (r.active && true)) v("CATALOG_BEFORE_RUN_END", `${r?.title ?? c.releaseId} joined at week ${c.joinWeek}`);
+    }
+    const subWeeks = s.ledger.filter((l) => l.kind === "subscriptions").map((l) => l.week);
+    if (new Set(subWeeks).size !== subWeeks.length) v("SUBSCRIPTIONS_DOUBLE_PAID", "two subscription incomes in one week");
+    for (const w of p.weekly) if (!Number.isFinite(w.subs) || w.subs < 0 || w.subs > cfg.streaming.reachableMarket || !Number.isFinite(w.gross)) v("SUBSCRIBERS_INVALID", JSON.stringify(w));
+    if (p.status === "live" && (p.launchWeek ?? 0) - p.buildStartWeek > cfg.streaming.buildWeeks + 1) v("ENGINEER_STUCK", `build took ${(p.launchWeek ?? 0) - p.buildStartWeek} weeks`);
+    if (p.status === "building" && s.week - p.buildStartWeek > cfg.streaming.buildWeeks + 1) v("ENGINEER_STUCK", `still building after ${s.week - p.buildStartWeek} weeks`);
+    // catalog alone never acquires: weeks with no Original viewers and no catalog join have zero acquisition
+    for (const w of p.weekly) if (w.acquired > 0 && Object.keys(w.sources).length === 0) v("PASSIVE_ACQUISITION", `week ${w.week}: +${w.acquired} with no source`);
+  }
+  // negative assertions on state shape
+  if ("fans" in (s as unknown as Record<string, unknown>)) v("GLOBAL_FAN_STAT", "studio-level fans field exists");
+  for (const st of s.staff) if ("genreXp" in (st as unknown as Record<string, unknown>)) v("STAFF_GENRE_XP", st.name);
 }
 
 function round(x: number) {

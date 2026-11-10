@@ -1,0 +1,91 @@
+{
+  "name": "gate3_mixed",
+  "_label": "Gate 3 mixed-format TEST config = config/candidate.json (Gate 2.5 candidate: ladder 4-6-8, diffusion legs, hybrid Prestige) + limited series + TV + streaming enabled. Gate 2.6 expectation curves stay OFF. Not an approved balance config.",
+  "agents": {
+    "legacyHeuristicStaffCaps": false
+  },
+  "staffCapacity": {
+    "ladder": [
+      4,
+      6,
+      8
+    ],
+    "upgradeCosts": [
+      250000,
+      750000
+    ],
+    "upgradePrestige": [
+      200,
+      1000
+    ]
+  },
+  "audience": {
+    "legsModel": "diffusion"
+  },
+  "prestige": {
+    "repeatScope": "explicit",
+    "milestones": [
+      {
+        "id": "meters_all_70",
+        "kind": "allMeters",
+        "threshold": 70,
+        "amount": 50,
+        "scope": "release"
+      },
+      {
+        "id": "audience_7_5",
+        "kind": "audience",
+        "threshold": 7.5,
+        "amount": 75,
+        "scope": "release"
+      },
+      {
+        "id": "critic_8_5",
+        "kind": "critic",
+        "threshold": 8.5,
+        "amount": 85,
+        "scope": "release"
+      },
+      {
+        "id": "hall_of_fame",
+        "kind": "hallOfFame",
+        "threshold": 9.0,
+        "amount": 200,
+        "scope": "release"
+      },
+      {
+        "id": "first_hall_of_fame",
+        "kind": "hallOfFame",
+        "threshold": 9.0,
+        "amount": 100,
+        "scope": "career"
+      },
+      {
+        "id": "ip_gross_1m",
+        "kind": "ipLifetimeGross",
+        "threshold": 1000000,
+        "amount": 100,
+        "scope": "ip"
+      },
+      {
+        "id": "ip_gross_5m",
+        "kind": "ipLifetimeGross",
+        "threshold": 5000000,
+        "amount": 150,
+        "scope": "ip"
+      },
+      {
+        "id": "ip_viewers_500k",
+        "kind": "ipLifetimeViewers",
+        "threshold": 500000,
+        "amount": 150,
+        "scope": "ip"
+      }
+    ]
+  },
+  "formats": {
+    "limitedSeries": true,
+    "tv": true,
+    "streaming": true
+  }
+}

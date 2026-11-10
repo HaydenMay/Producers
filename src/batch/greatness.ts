@@ -3,6 +3,7 @@
 import type { Config } from "../core/config";
 import type { Release, StudioState } from "../core/types";
 import { quantile } from "./metrics";
+import { fmtKey } from "./gate3metrics";
 
 /** One released film, compact. `index` is the 1-based release order within its career. */
 export interface FilmRef {
@@ -21,6 +22,9 @@ export interface FilmRef {
   meters: Release["meters"];
   criticGeneration: number;
   audienceEra: number;
+  /** Gate 3: movie | limited_series | tv (one season) | x/original */
+  format: string;
+  seasonNumber?: number;
 }
 
 export const WINDOWS: { name: string; lo: number; hi: number }[] = [
@@ -56,6 +60,8 @@ export function filmRefs(seed: number, strategy: string, releases: Release[], cf
     meters: r.meters,
     criticGeneration: r.criticGeneration ?? 0,
     audienceEra: r.audienceEra ?? 0,
+    format: fmtKey(r),
+    ...(r.seasonNumber ? { seasonNumber: r.seasonNumber } : {}),
   }));
 }
 
@@ -88,7 +94,7 @@ const q4 = (xs: number[]) => (xs.length ? { p10: +quantile(xs, 0.1).toFixed(2), 
 export interface GreatRow {
   strategy: string;
   slice: string; // window name, year band, or critic generation
-  sliceKind: "window" | "year" | "generation";
+  sliceKind: "window" | "year" | "generation" | "format";
   films: number;
   careers: number; // careers with at least one film in this slice
   avgAudience: number;
@@ -100,6 +106,10 @@ export interface GreatRow {
   aud9: Pct; // Audience >= 9.0
   crit9: Pct; // Critic >= 9.0
   avg8: Pct; // average >= 8.0 (continuity with Gate 2.5)
+  perfect10: Pct; // average exactly 10.00
+  hiBands: { "8.5": number; "9.0": number; "9.5": number; "10": number };
+  /** HoF titles whose true (unrounded) mean is below 9.0: promoted by 2-decimal rounding (current boundary rule, reported separately) */
+  hofRounding: number;
   hofPerCareer: { p10: number; p50: number; p90: number; p99: number } | null;
   zeroHofCareers: Pct;
   hofIpsPerCareer: { p10: number; p50: number; p90: number; p99: number } | null; // distinct IPs with >=1 HoF title
@@ -133,6 +143,9 @@ function rowFor(strategy: string, slice: string, sliceKind: GreatRow["sliceKind"
     aud9: pct(films.filter((f) => f.audience >= 9).length, n),
     crit9: pct(films.filter((f) => f.critic >= 9).length, n),
     avg8: pct(films.filter((f) => f.avg >= 8).length, n),
+    perfect10: pct(films.filter((f) => f.avg >= 10).length, n),
+    hiBands: { "8.5": films.filter((f) => f.avg >= 8.5).length, "9.0": films.filter((f) => f.avg >= 9).length, "9.5": films.filter((f) => f.avg >= 9.5).length, "10": films.filter((f) => f.avg >= 10).length },
+    hofRounding: films.filter((f) => f.hallOfFame && (f.audience + f.critic) / 2 < 9).length,
     hofPerCareer: q4(hofCounts),
     zeroHofCareers: pct(hofCounts.filter((x) => x === 0).length, nonEmpty.length),
     hofIpsPerCareer: q4(hofIps),
@@ -158,6 +171,8 @@ export function greatness(careers: { seed: number; strategy: string; films: Film
       const by = cs.map((c) => c.films.filter((f) => f.year >= y.lo && f.year < y.hi));
       if (by.some((x) => x.length)) rows.push(rowFor(s, y.name, "year", by, cfg.scoring.hofThreshold));
     }
+    const formats = [...new Set(cs.flatMap((c) => c.films.map((f) => f.format)))].sort();
+    if (formats.length > 1 || (formats[0] && formats[0] !== "movie")) for (const fk of formats) rows.push(rowFor(s, fk, "format", cs.map((c) => c.films.filter((f) => f.format === fk)), cfg.scoring.hofThreshold));
     const gens = [...new Set(cs.flatMap((c) => c.films.map((f) => f.criticGeneration)))].sort((a, b) => a - b);
     if (gens.length > 1) for (const g of gens) rows.push(rowFor(s, `gen${g}`, "generation", cs.map((c) => c.films.filter((f) => f.criticGeneration === g)), cfg.scoring.hofThreshold));
   }
@@ -289,7 +304,7 @@ export function progressRows(ps: CareerProgress[], cfg: Config, prestigeTooFastP
 const p = (x: Pct) => `${x.n} (${x.pct.toFixed(1)}%)`;
 export function filmLabel(f: FilmRef | null): string {
   if (!f) return "—";
-  return `${f.avg.toFixed(2)} "${f.title}" (A${f.audience}/C${f.critic}; ${f.strategy} seed ${f.seed} #${f.index}, yr ${f.year.toFixed(1)}, critic gen ${f.criticGeneration})`;
+  return `${f.avg.toFixed(2)} "${f.title}" (${f.format && f.format !== "movie" ? `${f.format}, ` : ""}A${f.audience}/C${f.critic}; ${f.strategy} seed ${f.seed} #${f.index}, yr ${f.year.toFixed(1)}, critic gen ${f.criticGeneration})`;
 }
 
 /** Compact Markdown table: one row per strategy for the chosen slices. */

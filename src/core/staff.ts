@@ -18,6 +18,7 @@ export function staffWorkWeek(state: StudioState, project: Project, cfg: Config,
   const phase = phaseOf(project.progress);
   const emph = cfg.production.phaseEmphasis[phase] as Record<Meter, number>;
   for (const s of state.staff) {
+    if (s.assignment) continue; // special-role rule: an engineer building streaming is OFF the production
     const variance = 1 + range(state.rng, "work", -cfg.production.workVariance, cfg.production.workVariance);
     for (const m of METERS) {
       const pts = s.stats[m] * emph[m] * cfg.production.workRate * variance * (1 + genreBonus);
@@ -56,7 +57,9 @@ export function hireStaff(state: StudioState, cfg: Config): Staff {
   const [lo, hi] = cfg.staffGrowth.hireStatRange;
   const stats = {} as Record<Meter, number>;
   for (const m of METERS) stats[m] = int(state.rng, "staff", lo, hi);
-  const s: Staff = { id: newId(state, "staff"), name: randomName(state), stats, totalXp: 0, wage: cfg.staffGrowth.hireWage };
+  let id = newId(state, "staff");
+  if (state.staff.some((x) => x.id === id)) id = `emp${state.counters.nextId}`; // Gate 3 fix: never collide with starting staff ids (only triggers on a collision)
+  const s: Staff = { id, name: randomName(state), stats, totalXp: 0, wage: cfg.staffGrowth.hireWage };
   ledger(state, { kind: "hire", amount: -cfg.staffGrowth.hireCost, note: s.name });
   state.staff.push(s);
   emit(state, "hire", `Hired ${s.name} (${METERS.map((m) => `${m} ${stats[m]}`).join(", ")}).`);

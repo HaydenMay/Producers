@@ -481,5 +481,150 @@
       "toughnessPerEra": 0.02,
       "maxToughness": 0.06
     }
+  },
+  "formats": {
+    "_label": "Gate 3. LOCKED direction: movies + limited series first, TV via a studio upgrade (money + Prestige), streaming later. All false = the Gate 2.6 movie-only kernel, byte-identical.",
+    "limitedSeries": false,
+    "tv": false,
+    "streaming": false
+  },
+  "limitedSeries": {
+    "_label": "TEST ASSUMPTIONS. Self-contained, NON-renewable series: fixed episode package, weekly airing + short tail.",
+    "availableAfterProductions": 1,
+    "episodes": 6,
+    "baseCost": 90000,
+    "durationWeeks": 18,
+    "pacing": "weekly",
+    "grossPerEpisodeViewer": 0.57,
+    "tailWeeks": 3,
+    "tailShare": 0.4,
+    "decliningGrossPerViewer": 2.4
+  },
+  "tv": {
+    "_label": "TEST ASSUMPTIONS for renewable TV (one IP, separately produced seasons). LOCKED: renewal by season average (4.0 renewable, 9.0 HoF), episode caps by studio Prestige (not show history), genre locked, twist changes theme, hiatus affects anticipation only, announcement = show-specific fading hype.",
+    "unlock": {
+      "prestige": 300,
+      "cost": 150000
+    },
+    "setupCost": 15000,
+    "perEpisodeCost": 15000,
+    "durationBaseWeeks": 6,
+    "weeksPerEpisode": 2.0,
+    "orderSizes": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "episodeCaps": [
+      {
+        "maxEpisodes": 5,
+        "prestige": 0
+      },
+      {
+        "maxEpisodes": 10,
+        "prestige": 600
+      },
+      {
+        "maxEpisodes": 15,
+        "prestige": 1800
+      },
+      {
+        "maxEpisodes": 20,
+        "prestige": 3500
+      }
+    ],
+    "renewalThreshold": 4.0,
+    "renewalInclusive": true,
+    "grossPerEpisodeViewer": 0.32,
+    "episodeModel": {
+      "premiereShare": 0.5,
+      "baseRetention": 0.88,
+      "retentionWeight": 0.3,
+      "retentionMin": 0.5,
+      "retentionMax": 1.0,
+      "criticWeeks": 2,
+      "buzzRate": 0.06,
+      "womPerViewer": 0.35,
+      "interestDecay": 0.15,
+      "watchRate": 0.25,
+      "watchRateQualityWeight": 0.25
+    },
+    "tailWeeks": 2,
+    "tailShare": 0.35,
+    "fatigue": {
+      "perSeason": 0.012,
+      "exponent": 1.6,
+      "max": 0.35,
+      "qualitySlow": 0.4
+    },
+    "twist": {
+      "goodGradeMin": 0.5,
+      "badGradeMax": -0.5,
+      "goodFatigueReset": 2,
+      "badFanLoss": 0.25
+    },
+    "hiatus": {
+      "graceWeeks": 78,
+      "penaltyPerYear": 0.35,
+      "minMult": 0.4
+    },
+    "announce": {
+      "cost": 15000,
+      "boost": 0.35,
+      "decayPerWeek": 0.04
+    },
+    "contract": {
+      "_label": "OPEN designer decision. A = every season is a new pitch (fixed offers). B = continuing partner: same distributor + royalty; per-season advance = baseCost x clamp(baseCover + roiWeight x (lastRoi-1), minCover, maxCover) x trust factor.",
+      "variant": "A",
+      "B": {
+        "baseCover": 0.9,
+        "roiWeight": 0.3,
+        "minCover": 0.5,
+        "maxCover": 1.4
+      }
+    }
+  },
+  "streaming": {
+    "_label": "TEST ASSUMPTIONS for the studio streaming service (one aggregate subscriber business; no per-title payouts).",
+    "unlock": {
+      "prestige": 2500,
+      "minCatalog": 8
+    },
+    "engineer": {
+      "hireCost": 25000,
+      "wage": 1500,
+      "statRange": [
+        18,
+        35
+      ]
+    },
+    "buildCost": 600000,
+    "buildWeeks": 30,
+    "reachableMarket": 120000,
+    "feePerSubWeek": 0.5,
+    "opex": {
+      "fixedPerWeek": 8000,
+      "perSubPerWeek": 0.15
+    },
+    "originalReach": 0.55,
+    "originalConversion": 0.35,
+    "catalogJoinConversion": 0.04,
+    "launchPerAppeal": 1500,
+    "launchMax": 15000,
+    "churn": {
+      "basePerWeek": 0.03,
+      "retentionMax": 0.65,
+      "catalogScale": 6.0,
+      "hofEvergreen": 2.5,
+      "freshnessHalfLifeWeeks": 104,
+      "evergreenFloor": 0.35,
+      "diversityPerGenre": 0.02,
+      "diversityMax": 0.1,
+      "quietGraceWeeks": 26,
+      "quietPenaltyPer26Weeks": 0.5,
+      "quietMax": 2.0
+    },
+    "originalTvPacing": "weekly"
   }
 }

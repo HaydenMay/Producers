@@ -91,7 +91,7 @@ describe("scores depend on production quality and era only", () => {
   });
 });
 
-const film = (o: Partial<FilmRef>): FilmRef => ({ seed: 1, strategy: "s", index: 1, title: "t", ipId: "ip1", ipRelation: "new", week: 0, year: 0, audience: 8, critic: 8, avg: 8, hallOfFame: false, meters, criticGeneration: 0, audienceEra: 0, ...o });
+const film = (o: Partial<FilmRef>): FilmRef => ({ seed: 1, strategy: "s", index: 1, title: "t", ipId: "ip1", ipRelation: "new", week: 0, year: 0, audience: 8, critic: 8, avg: 8, hallOfFame: false, meters, criticGeneration: 0, audienceEra: 0, format: "movie", ...o }) as FilmRef;
 
 describe("great-film metrics", () => {
   const cfg = baselineConfig();

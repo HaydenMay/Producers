@@ -1,6 +1,7 @@
 // Human-readable Markdown + CSV/JSON output. Every report states ruleset, config hash, seeds, strategies,
 // and modelled features, and labels numbers as provisional.
 import { greatTable, progressTable, WINDOWS, filmLabel, bestOf, filmRefs } from "./greatness";
+import { g3FormatTable, g3TradeoffTable } from "./gate3metrics";
 import type { Config } from "../core/config";
 import { configHash } from "../core/config";
 import { FEATURES_MODELLED, FEATURES_NOT_MODELLED } from "../core/simulation";
@@ -34,7 +35,13 @@ export function releaseTrace(rel: Release, state: StudioState): string {
   const lines: string[] = [];
   lines.push(`### ${rel.title} — ${rel.genre} + ${rel.theme} (${rel.ipRelation})`);
   lines.push("");
-  lines.push(`Released week ${rel.releaseWeek} (year ${(rel.releaseWeek / 52).toFixed(1)}) · Distributor: ${dist} · Star: ${star ? `${star.name} (L${star.level}, Fame ${star.fame.toFixed(0)})` : "none"} · IP: ${state.ips[rel.ipId]?.name ?? rel.ipId}`);
+  lines.push(`Released week ${rel.releaseWeek} (year ${(rel.releaseWeek / 52).toFixed(1)}) · Distributor: ${rel.route === "original" ? "Streaming Original (self-funded, no box office)" : dist} · Star: ${star ? `${star.name} (L${star.level}, Fame ${star.fame.toFixed(0)})` : "none"} · IP: ${state.ips[rel.ipId]?.name ?? rel.ipId}`);
+  if (rel.format) {
+    const tv = rel.trace.tv as { showFatigue?: { fatigue: number; base: number; slow: number } | null; twist?: string | null; twistTheme?: string | null; hiatus?: { gapWeeks: number; mult: number } | null; anticipationUsed?: number; fatigueSeasons?: number } | undefined;
+    lines.push(`Format: **${rel.format}${rel.seasonNumber ? ` season ${rel.seasonNumber}` : ""}**, ${rel.episodes} episodes (one per week) · ${rel.uniqueViewers?.toLocaleString() ?? "—"} distinct viewers, ${rel.totalViewers.toLocaleString()} viewer-episodes${rel.format === "tv" ? ` · renewal: average ${rel.avgScore} ${rel.avgScore >= 4 ? "≥" : "<"} 4.0 → ${rel.avgScore >= 4 ? "renewable" : "cannot renew"}` : " · self-contained: never renews"}`);
+    if (tv) lines.push(`TV: show-age fatigue ${tv.showFatigue ? `${(tv.showFatigue.fatigue * 100).toFixed(1)}% (base ${(tv.showFatigue.base * 100).toFixed(1)}%, quality slows by ${(tv.showFatigue.slow * 100).toFixed(0)}%)` : "none"} · twist ${tv.twistTheme ? `${tv.twistTheme} → ${tv.twist}` : "none"} · hiatus ${tv.hiatus ? `${tv.hiatus.gapWeeks} weeks since the last season aired → anticipation ×${tv.hiatus.mult}` : "n/a"} · announcement anticipation used ${(tv.anticipationUsed ?? 0).toFixed(2)}`);
+  }
+  if (rel.inCatalog) lines.push(`Joined the streaming catalog after its run (retention value only; no new payouts).`);
   lines.push("");
   lines.push("**Financial waterfall** [LOCKED rules; amounts provisional]");
   lines.push("");
@@ -154,6 +161,11 @@ export function batchReport(b: BatchResult, cfg: Config): string {
   out.push("## Great films (Hall of Fame, 9+, best films)", "");
   out.push("Hall of Fame = average of Audience and Critic ≥ 9.0 (`scoring.hofThreshold`). `≥9` inclusive, `>9` strict. Percentages show the film count they are out of. Full detail: `.great.csv`.", "");
   out.push(greatTable(b.great, wins, pres), "");
+  if (b.g3.some((g) => Object.keys(g.formatShare).some((k) => k !== "movie") || g.tvUnlockedShare > 0)) {
+    out.push("## Gate 3: formats, TV and streaming", "");
+    out.push(g3TradeoffTable(b.g3), "", g3FormatTable(b.g3), "");
+    out.push("Provisional flags:", "", ...b.g3Flags.map((f) => `- ${f.fired ? "**" + f.flag + "**" : f.flag}: ${f.why}`), "");
+  }
   out.push("## Prestige progression", "");
   out.push(progressTable(b.progress), "");
   return out.join("\n");

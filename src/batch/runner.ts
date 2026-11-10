@@ -6,6 +6,8 @@ import { STRATEGIES, type AgentCtx } from "../agents/strategies";
 
 export interface CareerOptions {
   productions: number;
+  /** Gate 3: stop at this in-game horizon (years) instead of a production count (productions is then ignored) */
+  years?: number;
   maxWeeks?: number;
   drain?: boolean; // keep simulating until the last release's run ends
 }
@@ -24,15 +26,15 @@ export function runCareer(seed: number, strategyId: string, cfg: Config, opts: C
   const state = createStudio(seed, cfg);
   const rng = makeAgentRng(seed, strategyId);
   const decisions: Decision[] = [];
-  const maxWeeks = opts.maxWeeks ?? opts.productions * 40 + 104;
+  const maxWeeks = opts.years !== undefined ? Math.round(opts.years * cfg.time.weeksPerYear) : opts.maxWeeks ?? opts.productions * 40 + 104;
   const ctx: AgentCtx = { reinvestsThisStop: 0 };
   let stoppedReason = "productions reached";
   while (true) {
     if (state.week >= maxWeeks) {
-      stoppedReason = "maxWeeks";
+      stoppedReason = opts.years !== undefined ? "horizon" : "maxWeeks";
       break;
     }
-    const done = state.counters.productionsCompleted >= opts.productions && !state.project && !state.pendingOffers;
+    const done = opts.years === undefined && state.counters.productionsCompleted >= opts.productions && !state.project && !state.pendingOffers;
     if (done) {
       const anyActive = state.releases.some((r) => r.active);
       if (!opts.drain || !anyActive) break;
@@ -41,9 +43,9 @@ export function runCareer(seed: number, strategyId: string, cfg: Config, opts: C
       continue;
     }
     const ch = getChoices(state, cfg);
-    let d: Decision;
-    if (ch.phase === "production") d = { type: "wait" };
-    else d = strat.decide(state, cfg, ch, rng, ctx);
+    // Every phase goes to the strategy: pre-Gate-3 strategies always wait during production (unchanged behavior);
+    // Gate 3 strategies may announce a season or start the streaming build in the background.
+    const d: Decision = strat.decide(state, cfg, ch, rng, ctx);
     if (d.type === "hire" || d.type === "train" || d.type === "studio_ads" || d.type === "research_theme") ctx.reinvestsThisStop += 1;
     else ctx.reinvestsThisStop = 0;
     applyDecision(state, cfg, d);

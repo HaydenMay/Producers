@@ -3,6 +3,7 @@
 // None of these change scores. WORKING ASSUMPTION: saturating awareness, geometric weekly retention.
 import type { Config } from "./config";
 import { emit, round2 } from "./events";
+import { formatOf, isEpisodic } from "./formats";
 import type { Release, StudioState, TrendStage } from "./types";
 
 export interface OpeningInputs {
@@ -12,6 +13,10 @@ export interface OpeningInputs {
   starFame: number;
   trend: TrendStage;
   ipFans: number;
+  /** Gate 3 TV: fading show-specific anticipation from a season announcement (already hiatus-adjusted) */
+  anticipation?: number;
+  /** Gate 3 TV: hiatus multiplier on the anticipation carried by the show's fans (1 = no effect) */
+  fanAnticipationMult?: number;
 }
 
 export function openingTrace(inp: OpeningInputs, cfg: Config) {
@@ -22,7 +27,8 @@ export function openingTrace(inp: OpeningInputs, cfg: Config) {
     studioBuzz: inp.studioBuzz,
     starFame: a.fameAwareness * (inp.starFame / 100),
     trend: (a.trendAwareness as Record<string, number>)[inp.trend] ?? 0,
-    ipFans: a.fanAwareness * (inp.ipFans / cfg.world.marketSize),
+    ipFans: a.fanAwareness * (inp.ipFans / cfg.world.marketSize) * (inp.fanAnticipationMult ?? 1),
+    ...(inp.anticipation !== undefined ? { announcement: inp.anticipation } : {}),
   };
   const exponent = Object.values(parts).reduce((x, y) => x + y, 0);
   const awareness = 1 - Math.exp(-exponent);
@@ -36,16 +42,28 @@ export function openingTrace(inp: OpeningInputs, cfg: Config) {
 export function releaseWeek(state: StudioState, cfg: Config, rel: Release): { gross: number; studio: number; distributor: number } {
   const a = cfg.audience;
   const prev = rel.lastViewers;
-  const step = a.legsModel === "diffusion" ? diffusionStep(cfg, rel) : geometricStep(cfg, rel);
-  let viewers = step.viewers;
-  // finite unique audience: cumulative viewers can never exceed the distributor's reach cap
-  viewers = Math.max(0, Math.min(viewers, rel.reachCap - rel.totalViewers));
-  if (rel.weekIndex >= a.maxRunWeeks || (rel.weekIndex > 0 && viewers < a.minWeeklyViewers)) viewers = 0;
-  const gross = round2(viewers * cfg.world.grossPerViewer);
+  const episodic = isEpisodic(rel) && !(formatOf(rel) === "limited_series" && cfg.limitedSeries.pacing === "declining");
+  let viewers: number;
+  let step: { viewers: number; driver: string; episode?: number };
+  if (episodic) {
+    step = episodicStep(cfg, rel);
+    viewers = Math.max(0, step.viewers);
+  } else {
+    step = a.legsModel === "diffusion" ? diffusionStep(cfg, rel) : geometricStep(cfg, rel);
+    viewers = step.viewers;
+    // finite unique audience: cumulative viewers can never exceed the distributor's reach cap
+    viewers = Math.max(0, Math.min(viewers, rel.reachCap - rel.totalViewers));
+    if (rel.weekIndex >= a.maxRunWeeks || (rel.weekIndex > 0 && viewers < a.minWeeklyViewers)) viewers = 0;
+    if (rel.uniqueViewers !== undefined) {
+      rel.uniqueViewers += viewers;
+      rel.trace.newSamplersThisWeek = viewers;
+    }
+  }
+  const gross = round2(viewers * grossPerViewer(cfg, rel));
   const distributor = round2(gross * rel.royalty);
   const studio = round2(gross - distributor);
   const retention = rel.weekIndex === 0 || prev === 0 ? 1 : round2(viewers / prev);
-  rel.weekly.push({ week: state.week, viewers, gross, studio, distributor, retention, driver: step.driver });
+  rel.weekly.push({ week: state.week, viewers, gross, studio, distributor, retention, driver: step.driver, ...(step.episode !== undefined ? { episode: step.episode } : {}) });
   rel.lastViewers = viewers;
   rel.totalViewers += viewers;
   rel.grossTotal = round2(rel.grossTotal + gross);
@@ -53,8 +71,75 @@ export function releaseWeek(state: StudioState, cfg: Config, rel: Release): { gr
   rel.studioTake = round2(rel.studioTake + studio);
   rel.weekIndex += 1;
   feedbackEvent(state, rel, prev, viewers);
-  if (viewers === 0) rel.active = false;
+  if (episodic) {
+    if (step.episode !== undefined) rel.episodesAired = step.episode;
+    if (rel.weekIndex >= (rel.episodes ?? 0) + episodicTail(cfg, rel).weeks + 1) rel.active = false; // finite: episodes + short tail
+  } else if (viewers === 0) rel.active = false;
   return { gross, studio, distributor };
+}
+
+/** Money per viewer by format and route. Streaming Originals earn NO traditional revenue (subscribers only). */
+export function grossPerViewer(cfg: Config, rel: Release): number {
+  if (rel.route === "original") return 0;
+  const f = formatOf(rel);
+  if (f === "tv") return cfg.tv.grossPerEpisodeViewer;
+  if (f === "limited_series") return cfg.limitedSeries.pacing === "declining" ? cfg.limitedSeries.decliningGrossPerViewer : cfg.limitedSeries.grossPerEpisodeViewer;
+  return cfg.world.grossPerViewer;
+}
+
+function episodicTail(cfg: Config, rel: Release): { weeks: number; share: number } {
+  return formatOf(rel) === "tv" ? { weeks: cfg.tv.tailWeeks, share: cfg.tv.tailShare } : { weeks: cfg.limitedSeries.tailWeeks, share: cfg.limitedSeries.tailShare };
+}
+
+/**
+ * TEST ASSUMPTION (Gate 3): weekly episode audiences. One episode airs per week; weekly audience =
+ * returning viewers (retention from critic early / Audience later) + newly drawn-in people (critic buzz
+ * early, word of mouth later) who have never sampled the show. Distinct samplers never exceed the reach
+ * cap. After the last episode a short catch-up tail decays to zero; the run always ends.
+ */
+function episodicStep(cfg: Config, rel: Release): { viewers: number; driver: string; episode?: number } {
+  const e = cfg.tv.episodeModel;
+  const n = rel.episodes ?? 1;
+  const k = rel.weekIndex;
+  const tail = episodicTail(cfg, rel);
+  rel.uniqueViewers ??= 0;
+  if (k === 0) {
+    const pool = rel.trace.pool as number;
+    // premiere: a larger share of the aware pool tunes in to episode 1 than to a movie's opening week
+    const v = Math.min(Math.round(pool * e.premiereShare), rel.reachCap);
+    rel.openingViewers = v;
+    rel.aware = Math.max(0, pool - v);
+    rel.uniqueViewers = v;
+    rel.trace.newSamplersThisWeek = v;
+    return { viewers: v, driver: `episode 1 premiere`, episode: 1 };
+  }
+  if (k < n) {
+    const early = k <= e.criticWeeks;
+    const qC = (rel.critic - 5) / 5;
+    const qA = (rel.audience - 5) / 5;
+    const q = early ? qC : qA;
+    const retention = Math.max(e.retentionMin, Math.min(e.retentionMax, e.baseRetention + e.retentionWeight * q));
+    const retained = rel.lastViewers * retention;
+    const aware = rel.aware ?? 0;
+    const unaware = Math.max(0, rel.reachCap - rel.uniqueViewers - aware);
+    const newlyAware = early ? unaware * e.buzzRate * Math.max(0, qC) : Math.min(unaware, e.womPerViewer * Math.max(0, qA) * rel.lastViewers);
+    const decay = Math.min(0.95, e.interestDecay + cfg.audience.diffusion.badInterestDecay * Math.max(0, -q));
+    const pool = aware * (1 - decay) + newlyAware;
+    const watch = Math.max(0.02, Math.min(0.95, e.watchRate * (1 + e.watchRateQualityWeight * q)));
+    const fresh = Math.min(Math.round(pool * watch), Math.max(0, rel.reachCap - rel.uniqueViewers));
+    rel.aware = Math.max(0, pool - fresh);
+    rel.uniqueViewers += fresh;
+    rel.trace.newSamplersThisWeek = fresh;
+    const v = Math.round(retained + fresh);
+    return { viewers: v, driver: `episode ${k + 1}: ${Math.round(retention * 100)}% kept (${early ? `critic ${rel.critic}` : `audience ${rel.audience}`}), +${fresh.toLocaleString()} new`, episode: k + 1 };
+  }
+  rel.trace.newSamplersThisWeek = 0;
+  const t = k - n + 1;
+  if (t <= tail.weeks) {
+    const lastEp = rel.weekly[n - 1]?.viewers ?? 0;
+    return { viewers: Math.round(lastEp * Math.pow(tail.share, t)), driver: `catch-up viewing (tail week ${t}/${tail.weeks})` };
+  }
+  return { viewers: 0, driver: "run ended" };
 }
 
 /** Legacy (Gate 2) model: geometric weekly retention, critic early / audience later. Strong films always decline. */
@@ -127,7 +212,8 @@ export function updateIpFans(state: StudioState, cfg: Config, rel: Release): Rec
   const before = ip.fans;
   const quality = (rel.avgScore - 5) / 5;
   let delta = 0;
-  if (quality >= 0) delta = rel.totalViewers * cfg.audience.fanConversion * quality;
+  const exposure = rel.uniqueViewers ?? rel.totalViewers; // TV/limited: distinct people, not viewer-episodes
+  if (quality >= 0) delta = exposure * cfg.audience.fanConversion * quality;
   else {
     delta = -before * cfg.audience.backlashRate * -quality; // existing fans leave
     delta -= 0; // no negative fans from nothing

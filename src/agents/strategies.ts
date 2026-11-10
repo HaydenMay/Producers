@@ -13,28 +13,31 @@ export interface Strategy {
 }
 export interface AgentCtx {
   reinvestsThisStop: number;
+  /** Gate 3 agents: alternation memory (visible own history) */
+  lastFormat?: string;
 }
 
-const TREND_VALUE: Record<string, number> = { none: 0, rising: 0.4, hot: 0.8, saturated: -0.3, cooled: 0 };
+export const TREND_VALUE: Record<string, number> = { none: 0, rising: 0.4, hot: 0.8, saturated: -0.3, cooled: 0 };
 
-function knownValue(state: StudioState, genre: string, theme: string): number | null {
+export function knownValue(state: StudioState, genre: string, theme: string): number | null {
   const k = state.comboBook[comboKey(genre, theme)];
   if (!k) return null;
   return (GRADE_VALUE[k.audience] + GRADE_VALUE[k.critic]) / 2;
 }
 
-function planScore(state: StudioState, p: PlanDecision, explore: number): number {
+export function planScore(state: StudioState, p: PlanDecision, explore: number): number {
   const kv = knownValue(state, p.genre, p.theme);
   const trend = TREND_VALUE[state.trends[p.theme]?.stage ?? "none"];
   const repeats = state.comboHistory[comboKey(p.genre, p.theme)] ?? 0;
   return (kv ?? explore) + trend - 0.35 * repeats;
 }
 
+/** Movie-only "new" plans. Pre-Gate-3 strategies stay movie studios (identical behavior in movie-only configs). */
 function newPlans(choices: Choices): PlanDecision[] {
-  return choices.options.filter((o): o is PlanDecision => o.type === "plan" && o.ipRelation === "new");
+  return choices.options.filter((o): o is PlanDecision => o.type === "plan" && o.ipRelation === "new" && !o.format);
 }
 
-function bestBy<T>(arr: T[], f: (x: T) => number, rng: () => number): T {
+export function bestBy<T>(arr: T[], f: (x: T) => number, rng: () => number): T {
   let best = arr[0];
   let bv = -Infinity;
   for (const x of arr) {
@@ -47,7 +50,7 @@ function bestBy<T>(arr: T[], f: (x: T) => number, rng: () => number): T {
   return best;
 }
 
-function offerDecision(choices: Choices, pick: (o: Offer) => number, rng: () => number, allowSelf: boolean, selfValue?: number): Decision {
+export function offerDecision(choices: Choices, pick: (o: Offer) => number, rng: () => number, allowSelf: boolean, selfValue?: number): Decision {
   const offers = choices.offers ?? [];
   const selfAllowed = allowSelf && choices.options.some((o) => o.type === "choose_offer" && o.distributorId === null);
   const best = bestBy(offers, pick, rng);
@@ -55,11 +58,11 @@ function offerDecision(choices: Choices, pick: (o: Offer) => number, rng: () => 
   return { type: "choose_offer", distributorId: best.distributorId };
 }
 
-function affordableCards(choices: Choices): StarCard[] {
+export function affordableCards(choices: Choices): StarCard[] {
   return (choices.auditionCards ?? []).filter((c) => c.affordable);
 }
 
-function campaign(choices: Choices, prefs: string[]): Decision {
+export function campaign(choices: Choices, prefs: string[]): Decision {
   for (const id of prefs) {
     const c = choices.campaigns?.find((x) => x.id === id);
     if (c?.affordable) return { type: "market", campaign: id };
@@ -67,7 +70,7 @@ function campaign(choices: Choices, prefs: string[]): Decision {
   return { type: "market", campaign: "none" };
 }
 
-interface ReinvestRules {
+export interface ReinvestRules {
   hireAbove?: number;
   /** Pre-Gate-2.5 strategy heuristic cutoff, used only when cfg.agents.legacyHeuristicStaffCaps is true. */
   legacyMaxStaff?: number;
@@ -80,7 +83,7 @@ interface ReinvestRules {
   researchAbove?: number;
 }
 
-function reinvest(state: StudioState, cfg: Config, choices: Choices, ctx: AgentCtx, rules: ReinvestRules): Decision | null {
+export function reinvest(state: StudioState, cfg: Config, choices: Choices, ctx: AgentCtx, rules: ReinvestRules): Decision | null {
   if (ctx.reinvestsThisStop >= 2) return null;
   const has = (t: string) => choices.options.some((o) => o.type === t);
   const legacy = cfg.agents.legacyHeuristicStaffCaps;
@@ -103,13 +106,13 @@ function reinvest(state: StudioState, cfg: Config, choices: Choices, ctx: AgentC
   return null;
 }
 
-function upgradeCost(state: StudioState, cfg: Config): number {
+export function upgradeCost(state: StudioState, cfg: Config): number {
   return cfg.staffCapacity.upgradeCosts[state.capacityLevel] ?? Infinity;
 }
 
-const G = 220000; // agents' rough expectation of a full-reach run's gross (visible heuristic, not hidden info)
+export const G = 220000; // agents' rough expectation of a full-reach run's gross (visible heuristic, not hidden info)
 
-function balancedStar(state: StudioState, cfg: Config, choices: Choices, rng: () => number): Decision {
+export function balancedStar(state: StudioState, cfg: Config, choices: Choices, rng: () => number): Decision {
   const genre = state.project!.genre;
   const c = bestBy(affordableCards(choices), (c) => starFit(state.stars[c.starId], genre, cfg) + 0.3 * state.stars[c.starId].fame - c.price / 1500, rng);
   return { type: "cast", starId: c.starId };
@@ -357,6 +360,9 @@ function franchiseSequel(state: StudioState, ch: Choices, minAvg: number): Decis
   }
   return best;
 }
+
+import { registerGate3Strategies } from "./gate3";
+registerGate3Strategies(STRATEGIES);
 
 /** The original seven policies (default batch set). Extra Gate 2.5 policies are opt-in via --strategies. */
 export const STRATEGY_IDS = ["balanced", "quality-first", "cheap-duds", "famous-star", "self-funder", "experimenter", "franchise-builder"];

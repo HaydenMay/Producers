@@ -1,15 +1,17 @@
 // Plain, serializable simulation types. No classes, no functions in state.
 // Ruleset: Entertainment Studio Tycoon design v9.61 (movie kernel only).
 
-export const RULESET_VERSION = "v9.61-movie-kernel-0.1";
+export const RULESET_VERSION = "v9.61-gate3-0.1"; // movie kernel unchanged; formats/streaming are config-gated
 
 export type Meter = "plot" | "writing" | "filming" | "editing";
 export const METERS: Meter[] = ["plot", "writing", "filming", "editing"];
 
 export type Grade = "A" | "B" | "C" | "D" | "F";
 export type TrendStage = "none" | "rising" | "hot" | "saturated" | "cooled";
-export type IpRelation = "new" | "sequel" | "reboot" | "spinoff";
-export type Format = "movie"; // limited series / TV / streaming: NOT MODELLED yet (Gate 3)
+export type IpRelation = "new" | "sequel" | "reboot" | "spinoff" | "season";
+/** Gate 3: "tv" = one season of a renewable show. A missing format field means "movie" (old replays stay valid). */
+export type Format = "movie" | "limited_series" | "tv";
+export type ReleaseRoute = "traditional" | "original";
 
 export interface RngState {
   // one 32-bit state per named stream
@@ -22,6 +24,10 @@ export interface Staff {
   stats: Record<Meter, number>; // 0..100, fractional
   totalXp: number;
   wage: number; // $/week
+  /** Gate 3 special job. Software Engineers build the streaming service. */
+  role?: "software_engineer";
+  /** while set, this employee is OFF the active production (special-role rule) */
+  assignment?: { kind: "streaming_build"; sinceWeek: number; untilWeek: number } | null;
 }
 
 export interface Star {
@@ -73,6 +79,20 @@ export interface IpLine {
   fans: number;
   titles: string[];
   establishedStarId?: string; // lead of the most recent entry
+  /** Gate 3: the format this IP was created as. Missing = movie. */
+  format?: Format;
+  /** TV: current theme pairing (changes only through an approved theme twist; genre never changes) */
+  showTheme?: string;
+  /** TV: seasons counted toward show-age fatigue (a good twist lowers it) */
+  fatigueSeasons?: number;
+  /** TV: temporary, fading show-specific anticipation from a season announcement */
+  anticipation?: number;
+  /** TV: season number already announced (one announcement per upcoming season) */
+  announcedSeason?: number;
+  /** TV contract variant B: continuing partner for the next season */
+  partner?: { distributorId: string; royalty: number; lastAdvance: number; lastRoi: number } | null;
+  /** week the IP's most recent season finished airing (hiatus clock); never reset by announcements */
+  lastAiredWeek?: number;
 }
 
 export interface ComboKnowledge {
@@ -107,6 +127,11 @@ export interface Project {
   meterPoints: Record<Meter, number>;
   starPoints: number;
   pendingDecision: "casting" | "marketing" | null;
+  /** Gate 3 */
+  episodes?: number;
+  seasonNumber?: number;
+  twistTheme?: string;
+  route?: ReleaseRoute;
   auditionCards: StarCard[];
   casted: boolean;
   marketed: boolean;
@@ -147,8 +172,19 @@ export interface Release {
   starFee: number;
   campaignCost: number;
   cashOverrun: number;
-  weekly: { week: number; viewers: number; gross: number; studio: number; distributor: number; retention: number; driver: string }[];
+  weekly: { week: number; viewers: number; gross: number; studio: number; distributor: number; retention: number; driver: string; episode?: number }[];
   trace: Record<string, unknown>;
+  /** Gate 3 (missing = movie / traditional) */
+  format?: Format;
+  route?: ReleaseRoute;
+  episodes?: number;
+  seasonNumber?: number;
+  episodesAired?: number;
+  /** distinct people who sampled the title (TV/limited weekly audiences repeat; movies: = totalViewers) */
+  uniqueViewers?: number;
+  /** week the commercial run (or Original debut window) ended */
+  runEndWeek?: number;
+  inCatalog?: boolean;
 }
 
 export interface LedgerEntry {
@@ -169,7 +205,12 @@ export interface LedgerEntry {
     | "train"
     | "studio_ads"
     | "research"
-    | "upgrade";
+    | "upgrade"
+    | "format_unlock"
+    | "announce"
+    | "platform_build"
+    | "subscriptions"
+    | "platform_opex";
   amount: number; // + into studio cash, - out of studio cash. advance_* entries track the project reserve.
   projectId?: string;
   note?: string;
@@ -214,6 +255,9 @@ export interface StudioState {
   ledger: LedgerEntry[];
   events: SimEvent[];
   counters: { nextId: number; negativeCashWeeks: number; productionsStarted: number; productionsCompleted: number; cancellations: number };
+  /** Gate 3 (optional so pre-Gate-3 states/replays stay valid) */
+  tvUnlocked?: boolean;
+  platform?: PlatformState | null;
   world: { comboGrades: Record<string, { audience: Grade; critic: Grade }> };
 }
 
@@ -223,11 +267,31 @@ export interface PlanDecision {
   theme: string;
   ipRelation: IpRelation;
   parentIpId?: string;
+  /** Gate 3: omitted = movie (keeps old decision logs byte-compatible) */
+  format?: Format;
+  episodes?: number;
+  /** TV renewal only: approved theme twist (genre stays) */
+  twistTheme?: string;
+}
+
+/** Gate 3B: one aggregate streaming business. Never per-title payouts. */
+export interface PlatformState {
+  status: "building" | "live";
+  buildStartWeek: number;
+  launchWeek: number | null;
+  engineerId: string;
+  buildCost: number;
+  subscribers: number;
+  catalog: { releaseId: string; joinWeek: number }[]; // each release at most once
+  lastFreshWeek: number; // last week a new title debuted or joined the catalog
+  restlessWarned: boolean;
+  totals: { gross: number; opex: number; acquired: number; churned: number };
+  weekly: { week: number; subs: number; acquired: number; churned: number; gross: number; opex: number; retention: number; sources: Record<string, number> }[];
 }
 
 export type Decision =
   | PlanDecision
-  | { type: "choose_offer"; distributorId: string | null } // null = self-fund
+  | { type: "choose_offer"; distributorId: string | null; original?: boolean } // null = self-fund; original = Streaming Original (self-funded)
   | { type: "cast"; starId: string }
   | { type: "market"; campaign: string }
   | { type: "cancel" }
@@ -236,6 +300,10 @@ export type Decision =
   | { type: "studio_ads" }
   | { type: "upgrade_studio" }
   | { type: "research_theme"; theme: string }
+  | { type: "unlock_tv" }
+  | { type: "announce_season"; ipId: string }
+  | { type: "hire_engineer" }
+  | { type: "build_streaming" }
   | { type: "wait" };
 
 export type Phase = "planning" | "pitch" | "production" | "casting" | "marketing";

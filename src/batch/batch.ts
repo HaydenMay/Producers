@@ -5,6 +5,7 @@ import { RULESET_VERSION, type Release } from "../core/types";
 import { careerMetrics, summarize, scoreTrend, type CareerMetrics } from "./metrics";
 import { checkInvariants, diagnose, type Flag, type Violation } from "./diagnostics";
 import { runCareer, type CareerOptions } from "./runner";
+import { careerG3, g3Flags, g3Rows, type CareerG3, type G3Flag, type G3Row } from "./gate3metrics";
 import { bestOf, careerProgress, filmRefs, greatness, progressRows, type CareerProgress, type FilmRef, type GreatRow, type ProgressRow } from "./greatness";
 
 export interface BatchResult {
@@ -22,6 +23,10 @@ export interface BatchResult {
   progressCareers: CareerProgress[];
   /** each career's best combined-rated film (deterministic tie-break) */
   careerBest: FilmRef[];
+  /** Gate 3: per-career format/TV/streaming metrics, per-strategy summary and provisional flags */
+  g3Careers: CareerG3[];
+  g3: G3Row[];
+  g3Flags: G3Flag[];
 }
 
 /** Slim release record: enough for diagnostics, far less memory than full releases (weekly arrays, traces, cards). */
@@ -36,6 +41,7 @@ export function runBatch(seedStart: number, seedCount: number, strategies: strin
   const releases: BatchResult["releases"] = [];
   const films: { seed: number; strategy: string; films: FilmRef[] }[] = [];
   const progressCareers: CareerProgress[] = [];
+  const g3Careers: CareerG3[] = [];
   for (let seed = seedStart; seed < seedStart + seedCount; seed++) {
     for (const strat of strategies) {
       const r = runCareer(seed, strat, cfg, opts);
@@ -43,6 +49,7 @@ export function runBatch(seedStart: number, seedCount: number, strategies: strin
       violations.push(...checkInvariants(r, cfg));
       films.push({ seed, strategy: strat, films: filmRefs(seed, strat, r.state.releases, cfg) });
       progressCareers.push(careerProgress(seed, strat, r.state, cfg));
+      g3Careers.push(careerG3(seed, strat, r.state, cfg));
       if (keepReleases) releases.push({ seed, strategy: strat, releases: keepReleases === "full" ? r.state.releases : r.state.releases.map(slimRelease) });
     }
   }
@@ -59,6 +66,9 @@ export function runBatch(seedStart: number, seedCount: number, strategies: strin
     progress: progressRows(progressCareers, cfg),
     progressCareers,
     careerBest: films.map((c) => bestOf(c.films)).filter((f): f is FilmRef => f !== null),
+    g3Careers,
+    g3: g3Rows(g3Careers),
+    g3Flags: g3Flags(g3Careers, cfg),
   };
 }
 

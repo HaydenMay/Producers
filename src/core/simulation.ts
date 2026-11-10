@@ -9,13 +9,15 @@ import { canHire, hireStaff, payroll, trainStaff } from "./staff";
 import { generateOffers, driftTrust } from "./distribution";
 import { generateWorld, researchTheme, updateTrends } from "./progression";
 import { campaignOptions, canSelfFund, castStar, chooseCampaign, finalizeRelease, productionWeek, startProject } from "./production";
+import { allowedOrders, cheapestBaseCost, formatOf, limitedSeriesAvailable, partnerAdvance, planBaseCost, renewalStatus, tvAvailable } from "./formats";
+import { buildStreaming, canBuildStreaming, canHireEngineer, decayAnticipation, hireEngineer, streamingWeek } from "./streaming";
 import { releaseWeek, decayFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { audienceEraAt, criticGenerationAt, expectationsAt } from "./scoring";
 import { RULESET_VERSION, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
 
-export const FEATURES_MODELLED = ["movies", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "theme research + staff pitches"];
-export const FEATURES_NOT_MODELLED = ["limited series", "TV series/seasons/renewals/hiatus/announcements", "streaming service/subscribers", "eras beyond a gentle quality bar", "studio upgrades other than staff capacity; format unlock gates", "genre unlocks", "late-game concurrency"];
+export const FEATURES_MODELLED = ["movies", "limited series (config-gated)", "renewable TV seasons: orders, renewal, fatigue, twist, hiatus, announcements, contract variants A/B (config-gated)", "studio streaming service: engineer build, aggregate subscribers, catalog, Originals (config-gated)", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "theme research + staff pitches"];
+export const FEATURES_NOT_MODELLED = ["soap operas (shelved)", "named critics (Gate 2.6 proxy only)", "eras beyond a gentle quality bar", "studio upgrades other than staff capacity + TV unlock", "genre unlocks", "late-game concurrency", "TV spinoffs/reboots, Final Season announcements, other show shake-ups", "binge drops", "platform upgrades", "challenge modes"];
 
 export function createStudio(seed: number, cfg: Config): StudioState {
   const state: StudioState = {
@@ -45,6 +47,8 @@ export function createStudio(seed: number, cfg: Config): StudioState {
     maxStaff: cfg.staffCapacity.ladder[0],
     capacityLevel: 0,
     upgrades: [],
+    ...(cfg.formats.tv ? { tvUnlocked: false } : {}),
+    ...(cfg.formats.streaming ? { platform: null } : {}),
     rng: initRng(seed),
     ledger: [],
     events: [],
@@ -57,21 +61,55 @@ export function createStudio(seed: number, cfg: Config): StudioState {
   return state;
 }
 
-function planOptions(state: StudioState): PlanDecision[] {
+function planOptions(state: StudioState, cfg: Config): PlanDecision[] {
   const out: PlanDecision[] = [];
   for (const genre of state.unlockedGenres) {
     for (const theme of state.unlockedThemes) {
       out.push({ type: "plan", genre, theme, ipRelation: "new" });
     }
   }
-  // continuations: sequel/reboot keep genre+theme of the IP's last entry; spinoff keeps genre, any theme
+  // continuations: sequel/reboot keep genre+theme of the IP's last entry; spinoff keeps genre, any theme (movie IPs)
   for (const ipId of Object.keys(state.ips).sort()) {
     const ip = state.ips[ipId];
+    if (formatOf(ip) !== "movie") continue;
     const last = state.releases.filter((r) => r.ipId === ipId).at(-1);
     if (!last) continue;
     out.push({ type: "plan", genre: last.genre, theme: last.theme, ipRelation: "sequel", parentIpId: ipId });
     out.push({ type: "plan", genre: last.genre, theme: last.theme, ipRelation: "reboot", parentIpId: ipId });
     for (const theme of state.unlockedThemes) out.push({ type: "plan", genre: last.genre, theme, ipRelation: "spinoff", parentIpId: ip.id });
+  }
+  // Gate 3 formats (only when enabled; movie-only configs produce exactly the list above)
+  if (limitedSeriesAvailable(state, cfg)) {
+    for (const genre of state.unlockedGenres) for (const theme of state.unlockedThemes) out.push({ type: "plan", format: "limited_series", genre, theme, ipRelation: "new" });
+  }
+  if (tvAvailable(state, cfg)) {
+    const orders = allowedOrders(state, cfg);
+    for (const episodes of orders) for (const genre of state.unlockedGenres) for (const theme of state.unlockedThemes) out.push({ type: "plan", format: "tv", episodes, genre, theme, ipRelation: "new" });
+    for (const ipId of Object.keys(state.ips).sort()) {
+      const ip = state.ips[ipId];
+      if (formatOf(ip) !== "tv" || !renewalStatus(state, cfg, ip).eligible) continue;
+      const last = state.releases.filter((r) => r.ipId === ipId).at(-1)!;
+      const theme = ip.showTheme ?? last.theme;
+      for (const episodes of orders) {
+        out.push({ type: "plan", format: "tv", episodes, genre: last.genre, theme, ipRelation: "season", parentIpId: ipId });
+        for (const t of state.unlockedThemes) if (t !== theme) out.push({ type: "plan", format: "tv", episodes, genre: last.genre, theme: t, ipRelation: "season", parentIpId: ipId, twistTheme: t });
+      }
+    }
+  }
+  return out;
+}
+
+/** Season announcements: one per upcoming season of a renewable show; usable while another production runs. */
+function announceOptions(state: StudioState, cfg: Config): Decision[] {
+  if (!tvAvailable(state, cfg) || spendableCash(state) < cfg.tv.announce.cost || state.cash < 0) return [];
+  const out: Decision[] = [];
+  for (const ipId of Object.keys(state.ips).sort()) {
+    const ip = state.ips[ipId];
+    if (formatOf(ip) !== "tv" || !renewalStatus(state, cfg, ip).eligible) continue;
+    const next = state.releases.filter((r) => r.ipId === ipId).length + 1;
+    if (ip.announcedSeason === next) continue; // already announced: no spamming
+    if (state.project?.ipId === ipId) continue; // that season is already in production
+    out.push({ type: "announce_season", ipId });
   }
   return out;
 }
@@ -86,6 +124,11 @@ function reinvestOptions(state: StudioState, cfg: Config): Decision[] {
   if (cash >= cfg.staffGrowth.trainCost) for (const s of state.staff) out.push({ type: "train", staffId: s.id });
   if (cash >= cfg.marketing.studioAdsCost) out.push({ type: "studio_ads" });
   if (cash >= cfg.research.themeCost) for (const t of cfg.world.themes) if (!state.unlockedThemes.includes(t)) out.push({ type: "research_theme", theme: t });
+  // Gate 3 studio expansions (config-gated). TV = a studio upgrade at money + Prestige (LOCKED direction).
+  if (cfg.formats.tv && !state.tvUnlocked && state.prestige >= cfg.tv.unlock.prestige && cash >= cfg.tv.unlock.cost) out.push({ type: "unlock_tv" });
+  out.push(...announceOptions(state, cfg));
+  if (canHireEngineer(state, cfg)) out.push({ type: "hire_engineer" });
+  if (canBuildStreaming(state, cfg)) out.push({ type: "build_streaming" });
   return out;
 }
 
@@ -108,17 +151,21 @@ export function getChoices(state: StudioState, cfg: Config): Choices {
     return { ...base, phase: "marketing", campaigns: camps, options: camps.filter((c) => c.affordable).map((c) => ({ type: "market", campaign: c.id })) };
   }
   if (p) {
-    const opts: Decision[] = [{ type: "wait" }, ...reinvestOptions(state, cfg).filter((d) => d.type !== "hire")];
+    const opts: Decision[] = [{ type: "wait" }, ...reinvestOptions(state, cfg).filter((d) => d.type !== "hire" && d.type !== "hire_engineer")];
     const cc = canCancel(state);
     if (cc) opts.push({ type: "cancel" });
     return { ...base, phase: "production", options: opts, canCancel: cc };
   }
   if (state.pendingOffers) {
     const opts: Decision[] = state.pendingOffers.map((o) => ({ type: "choose_offer", distributorId: o.distributorId }));
-    if (canSelfFund(state, cfg)) opts.push({ type: "choose_offer", distributorId: null });
+    const baseCost = planBaseCost(cfg, state.pendingPlan!);
+    if (canSelfFund(state, cfg, baseCost)) {
+      opts.push({ type: "choose_offer", distributorId: null });
+      if (state.platform?.status === "live") opts.push({ type: "choose_offer", distributorId: null, original: true });
+    }
     return { ...base, phase: "pitch", offers: state.pendingOffers, options: opts };
   }
-  return { ...base, phase: "planning", options: [...planOptions(state), ...reinvestOptions(state, cfg), { type: "wait" }] };
+  return { ...base, phase: "planning", options: [...planOptions(state, cfg), ...reinvestOptions(state, cfg), { type: "wait" }] };
 }
 
 function sameDecision(a: Decision, b: Decision): boolean {
@@ -134,13 +181,13 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
     case "plan": {
       state.pendingPlan = d;
       const ipId = d.ipRelation === "new" ? null : d.parentIpId ?? null;
-      state.pendingOffers = generateOffers(state, cfg, d, ipId, cfg.production.movie.baseCost);
+      state.pendingOffers = pitchOffers(state, cfg, d, ipId);
       emit(state, "pitch", `Pitch meeting for ${d.genre} + ${d.theme} (${d.ipRelation}): ${state.pendingOffers.map((o) => `${o.distributorId} $${o.advance.toLocaleString()} @ ${(o.royalty * 100).toFixed(0)}%`).join("; ")}.`);
       return;
     }
     case "choose_offer": {
       const offer = d.distributorId === null ? null : state.pendingOffers!.find((o) => o.distributorId === d.distributorId)!;
-      startProject(state, cfg, state.pendingPlan!, offer);
+      startProject(state, cfg, state.pendingPlan!, offer, d.original ? "original" : "traditional");
       state.pendingOffers = null;
       state.pendingPlan = null;
       return;
@@ -179,6 +226,26 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
       return;
     case "research_theme":
       return researchTheme(state, cfg, d.theme);
+    case "unlock_tv":
+      ledger(state, { kind: "format_unlock", amount: -cfg.tv.unlock.cost, note: "TV series" });
+      state.tvUnlocked = true;
+      emit(state, "unlock", `Studio upgrade: TV series unlocked (Prestige ${state.prestige}, cost $${cfg.tv.unlock.cost.toLocaleString()}). Season orders up to ${allowedOrders(state, cfg).at(-1)} episodes at this Prestige.`);
+      return;
+    case "announce_season": {
+      const ip = state.ips[d.ipId];
+      const next = state.releases.filter((r) => r.ipId === d.ipId).length + 1;
+      ledger(state, { kind: "announce", amount: -cfg.tv.announce.cost, note: `${ip.name} season ${next}` });
+      ip.anticipation = (ip.anticipation ?? 0) + cfg.tv.announce.boost;
+      ip.announcedSeason = next;
+      emit(state, "announce", `Announced ${ip.name} season ${next}: show-specific anticipation ${ip.anticipation.toFixed(2)} (fades ${(cfg.tv.announce.decayPerWeek * 100).toFixed(0)}%/week; does not reset the hiatus clock).`, { ipId: ip.id, season: next });
+      return;
+    }
+    case "hire_engineer":
+      hireEngineer(state, cfg);
+      return;
+    case "build_streaming":
+      buildStreaming(state, cfg);
+      return;
     case "wait":
       advanceWeek(state, cfg);
       return;
@@ -199,9 +266,11 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
     evaluatePrestige(state, cfg, rel, "run");
     if (!rel.active) finalizeRelease(state, cfg, rel);
   }
+  if (cfg.formats.streaming) streamingWeek(state, cfg);
   productionWeek(state, cfg);
   updateTrends(state, cfg);
   state.studioBuzz = Math.max(0, state.studioBuzz * (1 - cfg.marketing.buzzDecayPerWeek));
+  if (cfg.formats.tv) decayAnticipation(state, cfg);
   driftTrust(state, cfg);
   decayFans(state, cfg);
   if (state.cash < 0) state.counters.negativeCashWeeks += 1;
@@ -226,6 +295,26 @@ function expectationEvents(state: StudioState, cfg: Config): void {
     const e = expectationsAt(state.week, cfg);
     emit(state, "audience_era", `A new entertainment era: audiences expect a little more (${(e.audienceToughness * 100).toFixed(1)}% above the first era).`, { era: e.audienceEra });
   }
+}
+
+/** Offers for a plan: contract variant B gives a returning TV season its continuing partner; otherwise a normal pitch. */
+function pitchOffers(state: StudioState, cfg: Config, plan: PlanDecision, ipId: string | null) {
+  const baseCost = planBaseCost(cfg, plan);
+  const ip = ipId ? state.ips[ipId] : null;
+  if (plan.ipRelation === "season" && cfg.tv.contract.variant === "B" && ip?.partner) {
+    const d = state.distributors.find((x) => x.id === ip.partner!.distributorId)!;
+    const fam = cfg.world.genres[plan.genre as keyof typeof cfg.world.genres];
+    const fav = d.favoredFamilies.includes(fam) ? 1.1 : 1.0;
+    const advance = partnerAdvance(cfg, baseCost, ip.partner.lastRoi, d.trust);
+    const offers = [{ distributorId: d.id, advance, royalty: ip.partner.royalty, reach: Math.round(d.reach * fav * 100) / 100, lifeline: false, reasons: [`contract B: continuing partner for ${ip.name}`, `advance = base $${baseCost.toLocaleString()} x cover(last ROI ${ip.partner.lastRoi.toFixed(2)}) x trust ${d.trust.toFixed(2)}`, `royalty carried over ${(ip.partner.royalty * 100).toFixed(0)}%`] }];
+    const cheapest = cheapestBaseCost(cfg);
+    if (advance < cheapest) {
+      const l = cfg.distribution.lifeline;
+      offers.push({ distributorId: l.id, advance: Math.ceil((cheapest * l.advanceOverBase) / 1000) * 1000, royalty: l.royalty, reach: l.reach, lifeline: true, reasons: ["lifeline offer: covers the cheapest format's base cost on poor terms"] });
+    }
+    return offers;
+  }
+  return generateOffers(state, cfg, plan, ipId, baseCost);
 }
 
 /** Replay: seed + config + ordered decision log reproduces the exact same state. */

@@ -4,6 +4,7 @@ import { configHash, withOverrides } from "../core/config";
 import { runBatch, type BatchResult } from "./batch";
 import { quantile, type CareerMetrics } from "./metrics";
 import { filmLabel, greatCsv, greatTable, progressTable, WINDOWS, type FilmRef } from "./greatness";
+import { g3FormatTable, g3TradeoffTable } from "./gate3metrics";
 
 export interface ExperimentSpec {
   _label?: string;
@@ -11,6 +12,8 @@ export interface ExperimentSpec {
   seeds: number;
   seedStart?: number;
   productions: number[];
+  /** Gate 3: in-game year horizons (run instead of / in addition to production counts) */
+  years?: number[];
   strategies: string[];
   variants: { name: string; note?: string; overrides: Record<string, unknown> }[];
   metrics?: (keyof CareerMetrics)[];
@@ -39,20 +42,22 @@ export const DEFAULT_EXPERIMENT_METRICS: (keyof CareerMetrics)[] = [
 
 export interface ExperimentResult {
   spec: ExperimentSpec;
-  runs: { variant: string; productions: number; configHash: string; batch: BatchResult }[];
+  runs: { variant: string; productions: number; years?: number; configHash: string; batch: BatchResult }[];
 }
 
 export function runExperiment(spec: ExperimentSpec, base: Config): ExperimentResult {
   const runs: ExperimentResult["runs"] = [];
-  for (const P of spec.productions) {
+  const lengths: { P: number; years?: number }[] = [...spec.productions.map((P) => ({ P })), ...(spec.years ?? []).map((y) => ({ P: 1000 + y, years: y }))];
+  for (const L of lengths) {
     for (const v of spec.variants) {
       const cfg = withOverrides(base, v.overrides);
       cfg.name = v.name;
-      const b = runBatch(spec.seedStart ?? 1, spec.seeds, spec.strategies, cfg, { productions: P, drain: true }, true);
+      const b = runBatch(spec.seedStart ?? 1, spec.seeds, spec.strategies, cfg, L.years !== undefined ? { productions: 0, years: L.years } : { productions: L.P, drain: true }, true);
       b.releases = []; // flags already computed; free memory for large experiments
       for (const m of b.metrics) m.scoresByIndex = []; // trends already computed
       b.progressCareers = []; // summarized in b.progress
-      runs.push({ variant: v.name, productions: P, configHash: configHash(cfg), batch: b });
+      b.g3Careers = []; // summarized in b.g3
+      runs.push({ variant: v.name, productions: L.P, ...(L.years !== undefined ? { years: L.years } : {}), configHash: configHash(cfg), batch: b });
     }
   }
   return { spec, runs };
@@ -81,9 +86,10 @@ export function experimentReport(res: ExperimentResult, title: string): string {
   out.push("", "| Variant | Config hash | Note |\n|---|---|---|");
   for (const v of spec.variants) out.push(`| ${v.name} | ${res.runs.find((r) => r.variant === v.name)?.configHash} | ${v.note ?? ""} \`${JSON.stringify(v.overrides)}\` |`);
   out.push("");
-  for (const P of spec.productions) {
-    out.push(`## ${P}-production careers`, "");
+  for (const P of [...spec.productions, ...(spec.years ?? []).map((y) => 1000 + y)]) {
     const runsP = res.runs.filter((r) => r.productions === P);
+    const yrs = runsP[0]?.years;
+    out.push(yrs !== undefined ? `## ${yrs}-year careers (in-game calendar horizon; productions vary by strategy)` : `## ${P}-production careers`, "");
     const ref = runsP.find((r) => r.variant === spec.reference)!;
     const viol = runsP.reduce((a, r) => a + r.batch.violations.length, 0);
     out.push(`Invariant violations across all variants: **${viol}**.`, "");
@@ -162,6 +168,15 @@ export function experimentReport(res: ExperimentResult, title: string): string {
       if (x) out.push(`| ${s} | ${r.variant} | ${ids.map((id) => x.milestonesPerCareer[id] ?? 0).join(" | ")} | ${(x.prestigeTooFastShare * 100).toFixed(0)}% |`);
     }
     out.push("");
+    if (runsP.some((r) => r.batch.g3.some((g) => g.tvUnlockedShare > 0 || Object.keys(g.formatShare).some((k) => k !== "movie")))) {
+      out.push(`### Gate 3 design trade-offs by strategy`, "", "(a) money · (b) Prestige · (c) time to TV / streaming · (d) successful IPs · (e) Hall of Fame · (f) last-12-month revenue mix · (g) solvency. Medians unless noted; shares are of careers.", "");
+      out.push(runsP.map((r) => g3TradeoffTable(r.batch.g3, r.variant).split("\n").slice(r === runsP[0] ? 0 : 2).join("\n")).join("\n"), "");
+      out.push(`### Formats: share of releases · mean score · HoF % · net per production week; Prestige sources`, "");
+      out.push(runsP.map((r) => g3FormatTable(r.batch.g3, r.variant).split("\n").slice(r === runsP[0] ? 0 : 2).join("\n")).join("\n"), "");
+      out.push(`### Gate 3 provisional flags`, "", `| Variant | Flag | Fired | Evidence |`, `|---|---|---|---|`);
+      for (const r of runsP) for (const f of r.batch.g3Flags) out.push(`| ${r.variant} | ${f.flag} | ${f.fired ? "**yes**" : "no"} | ${f.why} |`);
+      out.push("");
+    }
     out.push(`### Diagnostic flags fired`, "");
     out.push(`| Variant | Fired |\n|---|---|`);
     for (const r of runsP) out.push(`| ${r.variant} | ${r.batch.flags.filter((f) => f.fired && f.flag !== "UNSUPPORTED_RULE_ASSUMPTION").map((f) => f.flag).join(", ") || "none"} |`);
@@ -174,7 +189,7 @@ export function experimentReport(res: ExperimentResult, title: string): string {
 export function experimentJson(res: ExperimentResult) {
   return {
     spec: res.spec,
-    runs: res.runs.map((r) => ({ variant: r.variant, productions: r.productions, configHash: r.configHash, meta: r.batch.meta, summary: r.batch.summary, trends: r.batch.trends, flags: r.batch.flags, violations: r.batch.violations, great: r.batch.great, progress: r.batch.progress })),
+    runs: res.runs.map((r) => ({ variant: r.variant, productions: r.productions, configHash: r.configHash, meta: r.batch.meta, summary: r.batch.summary, trends: r.batch.trends, flags: r.batch.flags, violations: r.batch.violations, great: r.batch.great, progress: r.batch.progress, years: r.years, g3: r.batch.g3, g3Flags: r.batch.g3Flags })),
   };
 }
 

@@ -1,8 +1,11 @@
 // Thin UI over the same core. No game rules here: everything goes through getChoices/applyDecision/advanceWeek.
-import { baselineConfig, configHash, setPath, type Config } from "../core/config";
+import { baselineConfig, configHash, setPath, withOverrides, type Config } from "../core/config";
+import gate3Overrides from "../../config/gate3.json";
+import { allowedOrders, renewalStatus } from "../core/formats";
+import { streamingRequirements } from "../core/streaming";
 import { advanceWeek, applyDecision, createStudio, getChoices, replay, FEATURES_NOT_MODELLED } from "../core/simulation";
 import type { Decision, PlanDecision, StudioState } from "../core/types";
-import { STRATEGIES, ALL_STRATEGY_IDS as STRATEGY_IDS } from "../agents/strategies";
+import { STRATEGIES, ALL_STRATEGY_IDS as STRATEGY_IDS, type AgentCtx } from "../agents/strategies";
 import { makeAgentRng } from "../core/rng";
 import { runBatch } from "../batch/batch";
 import { filmLabel } from "../batch/greatness";
@@ -10,9 +13,12 @@ import { releaseTrace, metricsCsv } from "../batch/report";
 import type { Dist } from "../batch/metrics";
 
 let cfg: Config = baselineConfig();
+/** the preset the config editor starts from (baseline, or the Gate 3 mixed-format config) */
+let preset: () => Config = baselineConfig;
 let s: StudioState = createStudio(42, cfg);
 let log: Decision[] = [];
 let agentRng = makeAgentRng(42, "ui");
+let agentCtx: AgentCtx = { reinvestsThisStop: 0 };
 const $ = (x: number) => `$${Math.round(x).toLocaleString("en-US")}`;
 const el = (id: string) => document.getElementById(id)!;
 const esc = (t: string) => t.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!);
@@ -40,6 +46,7 @@ function newStudio(seed: number) {
   s = createStudio(seed, cfg);
   log = [];
   agentRng = makeAgentRng(seed, "ui");
+  agentCtx = { reinvestsThisStop: 0 };
   renderCareer();
 }
 
@@ -52,19 +59,29 @@ function planForm(ch: ReturnType<typeof getChoices>): string {
   const trends = Object.entries(s.trends).filter(([, t]) => t.stage !== "none").map(([k, t]) => `${k}: ${t.stage}`).join(", ") || "no active crazes";
   return `<div class="card"><h3>Plan the next production</h3>
     <div class="row">
-      <label>Relation <select id="rel"><option value="new">new IP</option><option value="sequel">sequel</option><option value="reboot">reboot</option><option value="spinoff">spinoff</option></select></label>
+      <label>Format <select id="fmt">${[...new Set(plans.map((p) => p.format ?? "movie"))].map((f) => `<option>${f}</option>`).join("")}</select></label>
+      <label>Episodes <select id="eps"><option value="">—</option>${[...new Set(plans.filter((p) => p.episodes).map((p) => p.episodes))].map((n) => `<option>${n}</option>`).join("")}</select></label>
+      <label>Relation <select id="rel"><option value="new">new IP</option><option value="sequel">sequel</option><option value="reboot">reboot</option><option value="spinoff">spinoff</option><option value="season">next TV season</option></select></label>
+      <label>Twist <select id="twist"><option value="">no twist</option>${s.unlockedThemes.map((t) => `<option>${t}</option>`).join("")}</select></label>
       <label>Parent IP <select id="ip">${ips.map((ip) => `<option value="${ip.id}">${esc(ip.name)} (${ip.fans.toLocaleString()} fans)</option>`).join("") || "<option value=''>—</option>"}</select></label>
       <label>Genre <select id="genre">${genres.map((g) => `<option>${g}</option>`).join("")}</select></label>
       <label>Theme <select id="theme">${themes.map((t) => `<option>${t}</option>`).join("")}</select></label>
       <button class="primary" id="doPlan">Pitch it</button>
     </div>
-    <p class="muted">Combo book: ${esc(book)}<br/>Trends: ${esc(trends)}<br/>Sequels/reboots keep the IP's genre + theme; spinoffs keep the genre.</p></div>`;
+    <p class="muted">Combo book: ${esc(book)}<br/>Trends: ${esc(trends)}<br/>Sequels/reboots keep the IP's genre + theme; spinoffs keep the genre. TV seasons keep the show's genre; a twist changes its theme. Limited series never renew.<br/>${tvLine()}</p></div>`;
+}
+
+function tvLine(): string {
+  if (!cfg.formats.tv) return "TV/streaming disabled in this config (load the Gate 3 config).";
+  const shows = Object.values(s.ips).filter((i) => i.format === "tv").map((i) => `${esc(i.name)}: ${renewalStatus(s, cfg, i).reason}; fans ${i.fans.toLocaleString()}${i.anticipation ? `, anticipation ${i.anticipation.toFixed(2)}` : ""}`);
+  const req = streamingRequirements(s, cfg);
+  return `TV ${s.tvUnlocked ? `unlocked (max order ${allowedOrders(s, cfg).at(-1)} episodes at Prestige ${s.prestige})` : `locked (needs Prestige ${cfg.tv.unlock.prestige} + $${cfg.tv.unlock.cost.toLocaleString()})`} · ${shows.join(" · ") || "no shows"}<br/>Streaming: ${s.platform ? `${s.platform.status}${s.platform.status === "live" ? `, ${s.platform.subscribers.toLocaleString()} subscribers, ${s.platform.catalog.length} catalog titles` : ""}` : `needs Prestige ${req.prestige.have}/${req.prestige.need}, cash ${$(req.cash.have)}/${$(req.cash.need)}, catalog ${req.catalog.have}/${req.catalog.need}, Software Engineer ${req.engineer.ok ? "✓" : "✗"}`}`;
 }
 
 function reinvestButtons(ch: ReturnType<typeof getChoices>): string {
-  const r = ch.options.filter((o) => ["hire", "train", "studio_ads", "research_theme", "upgrade_studio"].includes(o.type));
+  const r = ch.options.filter((o) => REINVEST.includes(o.type));
   if (!r.length) return `<p class="muted">No reinvestment available${s.cash < 0 ? " (cash is negative: no hiring/training/ads/self-funding)" : ""}.</p>`;
-  return `<div class="row">${r.map((o, i) => `<button data-reinvest="${i}">${o.type === "train" ? `train ${s.staff.find((x) => x.id === (o as { staffId: string }).staffId)?.name}` : o.type === "research_theme" ? `research ${(o as { theme: string }).theme}` : o.type === "upgrade_studio" ? `upgrade studio capacity (${s.maxStaff} → ${cfg.staffCapacity.ladder[s.capacityLevel + 1]}, $${((cfg.staffCapacity.upgradeCosts as number[])[s.capacityLevel] ?? 0).toLocaleString()})` : o.type.replace("_", " ")}</button>`).join("")}</div>`;
+  return `<div class="row">${r.map((o, i) => `<button data-reinvest="${i}">${o.type === "train" ? `train ${s.staff.find((x) => x.id === (o as { staffId: string }).staffId)?.name}` : o.type === "research_theme" ? `research ${(o as { theme: string }).theme}` : o.type === "upgrade_studio" ? `upgrade studio capacity (${s.maxStaff} → ${cfg.staffCapacity.ladder[s.capacityLevel + 1]}, $${((cfg.staffCapacity.upgradeCosts as number[])[s.capacityLevel] ?? 0).toLocaleString()})` : o.type === "announce_season" ? `announce next season of ${esc(s.ips[(o as { ipId: string }).ipId].name)} ($${cfg.tv.announce.cost.toLocaleString()})` : o.type === "unlock_tv" ? `unlock TV ($${cfg.tv.unlock.cost.toLocaleString()})` : o.type === "build_streaming" ? `build streaming service ($${cfg.streaming.buildCost.toLocaleString()}, ${cfg.streaming.buildWeeks} wks)` : o.type.replace("_", " ")}</button>`).join("")}</div>`;
 }
 
 function renderCareer() {
@@ -75,7 +92,7 @@ function renderCareer() {
   if (ch.phase === "pitch")
     body = `<div class="card"><h3>Pitch meeting</h3><table><tr><th>Distributor</th><th>Advance</th><th>Royalty</th><th>Reach</th><th>Why</th><th></th></tr>${ch
       .offers!.map((o) => `<tr><td>${o.distributorId}${o.lifeline ? " (lifeline)" : ""}</td><td>${$(o.advance)}</td><td>${(o.royalty * 100).toFixed(0)}%</td><td>${o.reach}</td><td class="muted">${esc(o.reasons.join("; "))}</td><td><button data-offer="${o.distributorId}">Choose</button></td></tr>`)
-      .join("")}</table>${ch.options.some((o) => o.type === "choose_offer" && o.distributorId === null) ? `<button data-offer="__self">Self-fund (pay ${$(cfg.production.movie.baseCost)} base, keep 100%, small reach)</button>` : `<p class="muted">Self-funding unavailable (needs non-negative cash ≥ base cost).</p>`}</div>`;
+      .join("")}</table>${ch.options.some((o) => o.type === "choose_offer" && o.distributorId === null) ? `<button data-offer="__self">Self-fund (pay the base cost, keep 100%, small reach)</button>` : `<p class="muted">Self-funding unavailable (needs non-negative cash ≥ base cost).</p>`}${ch.options.some((o) => o.type === "choose_offer" && (o as { original?: boolean }).original) ? `<button data-offer="__original">Streaming Original (self-funded, no box office; debuts to your subscribers)</button>` : ""}</div>`;
   if (ch.phase === "casting")
     body = `<div class="card"><h3>40%: audition results</h3><p class="muted">Funds: unspent advance ${$(s.project!.unspentAdvance)} + spendable cash ${$(ch.spendableCash)}. Affordability was checked before this list was shown.</p><table><tr><th>Star</th><th>Source</th><th>Level</th><th>Skills (by family)</th><th>Fame</th><th>Rel.</th><th>Price (fame fee + premium − loyalty)</th><th></th></tr>${ch
       .auditionCards!.map((c) => {
@@ -88,6 +105,7 @@ function renderCareer() {
   if (ch.phase === "production") {
     const p = s.project!;
     body = `<div class="card"><h3>In production: ${esc(p.title)} — ${p.progress.toFixed(1)}%</h3><p>Meter points: ${Object.entries(p.meterPoints).map(([k, v]) => `${k} ${v.toFixed(1)}`).join(" · ")} · Star points ${p.starPoints.toFixed(1)} · Unspent advance ${$(p.unspentAdvance)}</p>
+      <div class="row">${reinvestButtons(ch)}</div>
       <div class="row"><button id="wait1">Advance 1 week</button><button class="primary" id="toNext">Advance to next decision</button>${ch.canCancel ? `<button id="cancel">Cancel (repay advance)</button>` : `<span class="muted">Cancel unavailable: can't repay the advance</span>`}</div></div>`;
   }
   const rels = [...s.releases].reverse();
@@ -95,7 +113,7 @@ function renderCareer() {
     <div class="card row">
       <label>Seed <input id="seed" type="number" value="${s.seed}"/></label><button id="newStudio">New studio</button>
       <label>Strategy <select id="strat">${STRATEGY_IDS.map((x) => `<option>${x}</option>`).join("")}</select></label><button id="agent">Let strategy decide once</button><button id="agent20">…until 1 release</button>
-      <button id="dlLog">Download decision log</button>
+      <button id="dlLog">Download decision log</button><button id="g3cfg">Load Gate 3 mixed config</button>
     </div>
     <div class="card"><b>Week ${s.week}</b> (year ${(s.week / 52).toFixed(1)}) · Cash <b>${$(s.cash)}</b> · Prestige <b>${s.prestige}</b> · Staff <b>${s.staff.length} / ${s.maxStaff >= 999 ? "uncapped" : s.maxStaff}</b> · Phase <b>${ch.phase}</b> · Releases ${s.releases.length} (${s.releases.filter((r) => r.active).length} running) · Config ${cfg.name} (${configHash(cfg)})
       <div class="muted">Staff: ${s.staff.map((x) => `${esc(x.name)} [P ${x.stats.plot.toFixed(0)} W ${x.stats.writing.toFixed(0)} F ${x.stats.filming.toFixed(0)} E ${x.stats.editing.toFixed(0)}]`).join(" · ")}<br/>Trust: ${s.distributors.map((d) => `${d.id} ${d.trust.toFixed(2)}`).join(", ")} · Not modelled: ${FEATURES_NOT_MODELLED.join(", ")}</div></div>
@@ -109,7 +127,11 @@ function renderCareer() {
   const agentOnce = () => {
     const c = getChoices(s, cfg);
     const strat = STRATEGIES[(el("strat") as HTMLSelectElement).value];
-    act(c.phase === "production" ? { type: "wait" } : strat.decide(s, cfg, c, agentRng, { reinvestsThisStop: 0 }));
+    const d = strat.decide(s, cfg, c, agentRng, agentCtx);
+    // same bookkeeping as the batch runner, so UI and CLI agents behave identically
+    if (d.type === "hire" || d.type === "train" || d.type === "studio_ads" || d.type === "research_theme") agentCtx.reinvestsThisStop += 1;
+    else agentCtx.reinvestsThisStop = 0;
+    act(d);
   };
   el("agent").onclick = agentOnce;
   el("agent20").onclick = () => {
@@ -117,10 +139,16 @@ function renderCareer() {
     for (let i = 0; i < 800 && s.releases.length < target; i++) agentOnce();
   };
   el("dlLog").onclick = () => download(`decisions-seed${s.seed}.json`, JSON.stringify({ seed: s.seed, configHash: configHash(cfg), decisions: log }));
-  root.querySelectorAll<HTMLButtonElement>("[data-offer]").forEach((b) => (b.onclick = () => act({ type: "choose_offer", distributorId: b.dataset.offer === "__self" ? null : b.dataset.offer! })));
+  el("g3cfg").onclick = () => {
+    preset = () => withOverrides(baselineConfig(), gate3Overrides as Record<string, unknown>);
+    cfg = preset();
+    newStudio(s.seed);
+    renderConfig();
+  };
+  root.querySelectorAll<HTMLButtonElement>("[data-offer]").forEach((b) => (b.onclick = () => act(b.dataset.offer === "__original" ? { type: "choose_offer", distributorId: null, original: true } : { type: "choose_offer", distributorId: b.dataset.offer === "__self" ? null : b.dataset.offer! })));
   root.querySelectorAll<HTMLButtonElement>("[data-cast]").forEach((b) => (b.onclick = () => act({ type: "cast", starId: b.dataset.cast! })));
   root.querySelectorAll<HTMLButtonElement>("[data-camp]").forEach((b) => (b.onclick = () => act({ type: "market", campaign: b.dataset.camp! })));
-  const reinvest = ch.options.filter((o) => ["hire", "train", "studio_ads", "research_theme", "upgrade_studio"].includes(o.type));
+  const reinvest = ch.options.filter((o) => REINVEST.includes(o.type));
   root.querySelectorAll<HTMLButtonElement>("[data-reinvest]").forEach((b) => (b.onclick = () => act(reinvest[Number(b.dataset.reinvest)])));
   document.getElementById("wait1")?.addEventListener("click", () => act({ type: "wait" }));
   document.getElementById("toNext")?.addEventListener("click", toNextDecision);
@@ -131,11 +159,24 @@ function renderCareer() {
     const plans = ch.options.filter((o): o is PlanDecision => o.type === "plan");
     const genre = (el("genre") as HTMLSelectElement).value;
     const theme = (el("theme") as HTMLSelectElement).value;
-    const match = rel === "new" ? plans.find((p) => p.ipRelation === "new" && p.genre === genre && p.theme === theme) : rel === "spinoff" ? plans.find((p) => p.ipRelation === "spinoff" && p.parentIpId === ipId && p.theme === theme) : plans.find((p) => p.ipRelation === rel && p.parentIpId === ipId);
+    const fmt = (el("fmt") as HTMLSelectElement).value;
+    const eps = Number((el("eps") as HTMLSelectElement).value) || undefined;
+    const twist = (el("twist") as HTMLSelectElement).value || undefined;
+    const okFmt = (p: PlanDecision) => (p.format ?? "movie") === fmt && (fmt !== "tv" || p.episodes === eps);
+    const match =
+      rel === "new"
+        ? plans.find((p) => okFmt(p) && p.ipRelation === "new" && p.genre === genre && p.theme === theme)
+        : rel === "spinoff"
+          ? plans.find((p) => p.ipRelation === "spinoff" && p.parentIpId === ipId && p.theme === theme)
+          : rel === "season"
+            ? plans.find((p) => okFmt(p) && p.ipRelation === "season" && p.parentIpId === ipId && p.twistTheme === twist)
+            : plans.find((p) => p.ipRelation === rel && p.parentIpId === ipId);
     if (!match) return alert("That combination isn't a legal plan right now.");
     act(match);
   });
 }
+
+const REINVEST = ["hire", "train", "studio_ads", "research_theme", "upgrade_studio", "unlock_tv", "announce_season", "hire_engineer", "build_streaming"];
 
 function download(name: string, text: string) {
   const a = document.createElement("a");
@@ -190,6 +231,16 @@ const CURATED: [string, string][] = [
   ["distribution.selfFundReach", "Self-fund reach (pre-streaming)"],
   ["distribution.trustMaxStep", "Max trust change per release"],
   ["marketing.studioAdsBuzz", "Studio ads buzz"],
+  ["tv.unlock.prestige", "TV unlock: Prestige (Gate 3 config)"],
+  ["tv.unlock.cost", "TV unlock: cost"],
+  ["tv.grossPerEpisodeViewer", "TV gross per viewer-episode"],
+  ["tv.renewalThreshold", "TV renewal threshold (season average)"],
+  ["limitedSeries.grossPerEpisodeViewer", "Limited series gross per viewer-episode"],
+  ["streaming.unlock.prestige", "Streaming unlock: Prestige"],
+  ["streaming.unlock.minCatalog", "Streaming unlock: finished catalog titles"],
+  ["streaming.buildCost", "Streaming build cost"],
+  ["streaming.buildWeeks", "Streaming build weeks"],
+  ["streaming.feePerSubWeek", "Subscription fee per subscriber-week"],
 ];
 
 function get(path: string): unknown {
@@ -202,7 +253,7 @@ function renderConfig() {
     <table>${CURATED.map(([p, label]) => `<tr><td>${label}</td><td><code>${p}</code></td><td><input type="number" step="any" data-path="${p}" value="${get(p)}"/></td></tr>`).join("")}</table>
     <div class="row"><button class="primary" id="cApply">Apply</button><button id="cReset">Reset to baseline</button><span class="muted">Current hash ${configHash(cfg)}. Applying starts a new studio.</span></div></div>`;
   el("cApply").onclick = () => {
-    let c = baselineConfig();
+    let c = preset();
     const changed: string[] = [];
     root.querySelectorAll<HTMLInputElement>("[data-path]").forEach((i) => {
       const v = Number(i.value);
@@ -213,12 +264,13 @@ function renderConfig() {
         changed.push(`${p}=${v}`);
       }
     });
-    c.name = changed.length ? `ui:${changed.join(",")}` : "baseline";
+    c.name = changed.length ? `ui:${changed.join(",")}` : preset().name;
     cfg = c;
     newStudio(s.seed);
     renderConfig();
   };
   el("cReset").onclick = () => {
+    preset = baselineConfig;
     cfg = baselineConfig();
     newStudio(s.seed);
     renderConfig();

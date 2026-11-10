@@ -11,7 +11,9 @@ import { openingTrace, updateIpFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { awardGenreXp, genreBonus, genreLevel, maybeStaffPitch } from "./progression";
 import { pick } from "./rng";
-import type { Offer, PlanDecision, Project, Release, StudioState } from "./types";
+import { formatOf, formatSpec, hiatusMultiplier, seasonsOf, showFatigue, twistOutcome } from "./formats";
+import { onRunEnded } from "./streaming";
+import type { Offer, PlanDecision, Project, Release, ReleaseRoute, StudioState } from "./types";
 
 const TITLE_WORDS = ["Frequency", "Night", "Signal", "Protocol", "Run", "Echo", "Legacy", "Rising", "Code", "Storm", "Shadow", "Horizon", "Pulse", "Edge"];
 
@@ -21,27 +23,34 @@ function makeTitle(state: StudioState, plan: PlanDecision): string {
     if (plan.ipRelation === "sequel") return `${ip.name} ${ip.titles.length + 1}`;
     if (plan.ipRelation === "reboot") return `${ip.name} (Reboot)`;
     if (plan.ipRelation === "spinoff") return `${ip.name}: ${pick(state.rng, "names", TITLE_WORDS)}`;
+    if (plan.ipRelation === "season") return `${ip.name}: Season ${seasonsOf(state, ip.id).length + 1}`;
   }
   return `${pick(state.rng, "names", ["Dead", "Last", "Iron", "Silver", "Broken", "Red", "Midnight", "Lost", "Wild", "Hollow"])} ${pick(state.rng, "names", TITLE_WORDS)}`;
 }
 
-export function startProject(state: StudioState, cfg: Config, plan: PlanDecision, offer: Offer | null): Project {
-  const fmt = cfg.production.movie;
+export function startProject(state: StudioState, cfg: Config, plan: PlanDecision, offer: Offer | null, route: ReleaseRoute = "traditional"): Project {
+  const format = formatOf(plan);
+  const fmt = formatSpec(cfg, format, plan.episodes);
   const title = makeTitle(state, plan);
   // IP relationship is an explicit player decision
   let ipId: string;
-  if (plan.ipRelation === "sequel" || plan.ipRelation === "reboot") {
-    if (!plan.parentIpId || !state.ips[plan.parentIpId]) throw new Error("Sequel/reboot needs an existing IP");
+  if (plan.ipRelation === "sequel" || plan.ipRelation === "reboot" || plan.ipRelation === "season") {
+    if (!plan.parentIpId || !state.ips[plan.parentIpId]) throw new Error("Sequel/reboot/season needs an existing IP");
     ipId = plan.parentIpId;
   } else {
     ipId = newId(state, "ip");
     const inherited = plan.ipRelation === "spinoff" && plan.parentIpId ? Math.round(state.ips[plan.parentIpId].fans * cfg.audience.spinoffFanShare) : 0;
-    state.ips[ipId] = { id: ipId, name: title, fans: inherited, titles: [] };
+    state.ips[ipId] = { id: ipId, name: title, fans: inherited, titles: [], ...(format !== "movie" ? { format } : {}), ...(format === "tv" ? { showTheme: plan.theme, fatigueSeasons: 0, partner: null } : {}) };
+  }
+  if (format === "tv") {
+    // contract variant B bookkeeping: a non-lifeline distributor becomes (or stays) the show's partner; walking away ends it
+    const ip = state.ips[ipId];
+    ip.partner = offer && !offer.lifeline ? { distributorId: offer.distributorId, royalty: offer.royalty, lastAdvance: offer.advance, lastRoi: ip.partner?.distributorId === offer.distributorId ? ip.partner.lastRoi : 1 } : null;
   }
   const p: Project = {
     id: newId(state, "proj"),
     title,
-    format: "movie",
+    format,
     genre: plan.genre,
     theme: plan.theme,
     ipRelation: plan.ipRelation,
@@ -55,7 +64,7 @@ export function startProject(state: StudioState, cfg: Config, plan: PlanDecision
     distributorId: offer ? offer.distributorId : null,
     advance: 0,
     royalty: offer ? offer.royalty : 0,
-    reach: offer ? offer.reach : cfg.distribution.selfFundReach,
+    reach: offer ? offer.reach : route === "original" ? cfg.streaming.originalReach : cfg.distribution.selfFundReach,
     unspentAdvance: 0,
     cashOverrun: 0,
     starId: null,
@@ -68,6 +77,10 @@ export function startProject(state: StudioState, cfg: Config, plan: PlanDecision
     auditionCards: [],
     casted: false,
     marketed: false,
+    ...(format !== "movie" ? { episodes: fmt.episodes } : {}),
+    ...(format === "tv" ? { seasonNumber: seasonsOf(state, ipId).length + 1 } : {}),
+    ...(plan.twistTheme ? { twistTheme: plan.twistTheme } : {}),
+    ...(route === "original" ? { route } : {}),
   };
   state.project = p;
   state.counters.productionsStarted += 1;
@@ -76,7 +89,7 @@ export function startProject(state: StudioState, cfg: Config, plan: PlanDecision
     receiveAdvance(state, p, offer.advance, dName);
   }
   payProjectExpense(state, p, p.baseCost, "base_cost", "unavoidable base cost");
-  emit(state, "project_start", `Started ${p.title} (${p.genre} + ${p.theme}, ${p.ipRelation}) with ${offer ? `${offer.distributorId} advance $${offer.advance.toLocaleString()} @ ${(offer.royalty * 100).toFixed(0)}%` : "self-funding"}.`, { projectId: p.id });
+  emit(state, "project_start", `Started ${p.title} (${format !== "movie" ? `${format}${p.episodes ? `, ${p.episodes} episodes` : ""}, ` : ""}${p.genre} + ${p.theme}, ${p.ipRelation}${p.twistTheme ? `, TWIST theme ${p.twistTheme}` : ""}) with ${offer ? `${offer.distributorId} advance $${offer.advance.toLocaleString()} @ ${(offer.royalty * 100).toFixed(0)}%` : route === "original" ? "self-funding as a Streaming Original" : "self-funding"}.`, { projectId: p.id });
   return p;
 }
 
@@ -138,9 +151,11 @@ export function chooseCampaign(state: StudioState, cfg: Config, campaign: string
 
 function fatigueFor(state: StudioState, cfg: Config, p: Project): number {
   const key = comboKey(p.genre, p.theme);
-  const prior = state.comboHistory[key] ?? 0;
+  let prior = state.comboHistory[key] ?? 0;
+  // TV seasons: the show's own earlier seasons count as SHOW-AGE fatigue (below), not combo repetition
+  if (p.ipRelation === "season") prior -= state.releases.filter((r) => r.ipId === p.ipId && r.genre === p.genre && r.theme === p.theme).length;
   const f = cfg.scoring.repetitionFatigue;
-  let fat = (p.ipRelation === "sequel" ? f.sequelPerRepeat : f.newProjectPerRepeat) * prior;
+  let fat = (p.ipRelation === "sequel" ? f.sequelPerRepeat : f.newProjectPerRepeat) * Math.max(0, prior);
   const ipHof = state.releases.some((r) => r.ipId === p.ipId && r.hallOfFame);
   if (ipHof) fat *= f.hallOfFameSoftening;
   return Math.min(f.max, fat);
@@ -151,14 +166,34 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const meters = meterQuality(p, state, cfg);
   const key = comboKey(p.genre, p.theme);
   const grades = state.world.comboGrades[key];
-  const fatigue = fatigueFor(state, cfg, p);
+  const ip = state.ips[p.ipId];
+  // Gate 3 TV: theme twist (genre locked) and show-age fatigue
+  let twist: ReturnType<typeof twistOutcome> | null = null;
+  let show: ReturnType<typeof showFatigue> | null = null;
+  if (formatOf(p) === "tv" && p.ipRelation === "season") {
+    if (p.twistTheme) {
+      twist = twistOutcome(state, cfg, p.genre, p.twistTheme);
+      if (twist === "good") ip.fatigueSeasons = Math.max(0, (ip.fatigueSeasons ?? 0) - cfg.tv.twist.goodFatigueReset);
+      ip.showTheme = p.twistTheme;
+    }
+    show = showFatigue(cfg, ip.fatigueSeasons ?? 0, seasonsOf(state, ip.id).at(-1)?.avgScore ?? null);
+  }
+  const fatigue = Math.min(0.6, fatigueFor(state, cfg, p) + (show?.fatigue ?? 0));
   const saturated = state.trends[p.theme]?.stage === "saturated";
   const sc = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
   const avg = avgScore(sc.audience, sc.critic);
   const star = p.starId ? state.stars[p.starId] : null;
-  const ip = state.ips[p.ipId];
+  const hiatus = formatOf(p) === "tv" && p.ipRelation === "season" ? hiatusMultiplier(state, cfg, ip) : null;
   const op = openingTrace(
-    { reach: p.reach, campaignAwareness: (cfg.marketing.campaigns as Record<string, { awareness: number }>)[p.campaign ?? "none"].awareness, studioBuzz: state.studioBuzz, starFame: star ? star.fame : 0, trend: state.trends[p.theme]?.stage ?? "none", ipFans: ip.fans },
+    {
+      reach: p.reach,
+      campaignAwareness: (cfg.marketing.campaigns as Record<string, { awareness: number }>)[p.campaign ?? "none"].awareness,
+      studioBuzz: state.studioBuzz,
+      starFame: star ? star.fame : 0,
+      trend: state.trends[p.theme]?.stage ?? "none",
+      ipFans: ip.fans,
+      ...(formatOf(p) === "tv" ? { anticipation: round2((ip.anticipation ?? 0) * (hiatus?.mult ?? 1)), fanAnticipationMult: hiatus?.mult ?? 1 } : {}),
+    },
     cfg,
   );
   const surplus = transferSurplus(state, p);
@@ -200,6 +235,9 @@ function completeProject(state: StudioState, cfg: Config): Release {
     starFee: p.starFee,
     campaignCost: p.campaignCost,
     cashOverrun: p.cashOverrun,
+    ...(formatOf(p) !== "movie" ? { format: formatOf(p), episodes: p.episodes, episodesAired: 0, uniqueViewers: 0 } : {}),
+    ...(p.seasonNumber ? { seasonNumber: p.seasonNumber } : {}),
+    ...(p.route === "original" ? { route: "original" as const, uniqueViewers: 0 } : {}),
     weekly: [],
     trace: {
       pool: op.pool,
@@ -209,11 +247,23 @@ function completeProject(state: StudioState, cfg: Config): Release {
       saturated,
       fundsAtCasting: p.auditionCards.length ? "see audition cards" : null,
       auditionCards: p.auditionCards,
+      ...(show || twist || hiatus ? { tv: { showFatigue: show, twist, twistTheme: p.twistTheme ?? null, hiatus, anticipationUsed: ip.anticipation ?? 0, fatigueSeasons: ip.fatigueSeasons } } : {}),
     },
   };
   if (bug === "advanceAsRevenue") rel.grossTotal = round2(rel.grossTotal + p.advance);
   state.releases.push(rel);
   state.studioBuzz = 0; // studio buzz applies to this (the next) release only
+  if (formatOf(p) === "tv") {
+    ip.anticipation = 0; // used by this season's opening
+    ip.fatigueSeasons = (ip.fatigueSeasons ?? 0) + 1;
+    if (twist === "bad") {
+      const before = ip.fans;
+      ip.fans = Math.round(ip.fans * (1 - cfg.tv.twist.badFanLoss));
+      emit(state, "twist", `${ip.name} lost its way with the ${p.twistTheme} twist: fans ${before.toLocaleString()} → ${ip.fans.toLocaleString()}.`, { ipId: ip.id });
+    } else if (twist === "good") emit(state, "twist", `${ip.name} is reborn! The ${p.twistTheme} twist eased show fatigue (genre stays ${p.genre}).`, { ipId: ip.id });
+    else if (twist === "neutral") emit(state, "twist", `${ip.name}'s ${p.twistTheme} twist landed quietly: no fatigue relief, no fan loss.`, { ipId: ip.id });
+  }
+  if (p.route === "original" && state.platform?.status === "live") state.platform.lastFreshWeek = state.week;
   // reveal combo, history, genre xp, IP bookkeeping
   state.comboBook[key] = { audience: grades.audience, critic: grades.critic };
   state.comboHistory[key] = (state.comboHistory[key] ?? 0) + 1;
@@ -228,7 +278,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   emit(
     state,
     "release",
-    `${rel.title} released: Audience ${rel.audience} / Critics ${rel.critic} (avg ${avg}${rel.hallOfFame ? ", HALL OF FAME" : ""}). Opening pool ${op.pool.toLocaleString()}, opening ${op.opening.toLocaleString()}.`,
+    `${rel.title} released: Audience ${rel.audience} / Critics ${rel.critic} (avg ${avg}${rel.hallOfFame ? ", HALL OF FAME" : ""}). Opening pool ${op.pool.toLocaleString()}, opening ${op.opening.toLocaleString()}.${formatOf(p) === "tv" ? ` ${rel.avgScore >= cfg.tv.renewalThreshold ? "Renewable" : "Cannot be renewed"} (season average ${avg}).` : formatOf(p) === "limited_series" ? " Limited series: self-contained, no renewal." : ""}`,
     { releaseId: rel.id },
   );
   state.project = null;
@@ -239,12 +289,19 @@ function completeProject(state: StudioState, cfg: Config): Release {
 
 /** Called when a release's run ends: Star career, distributor trust, IP fans (all causal from realized outcome). */
 export function finalizeRelease(state: StudioState, cfg: Config, rel: Release): void {
+  if (formatOf(rel) !== "movie" || rel.route) rel.runEndWeek = state.week;
+  if (formatOf(rel) === "tv") {
+    const ip = state.ips[rel.ipId];
+    ip.lastAiredWeek = state.week; // hiatus clock (announcements never reset it)
+    if (ip.partner && ip.partner.distributorId === rel.distributorId && rel.advance > 0) ip.partner.lastRoi = round2(rel.distributorTake / rel.advance);
+  }
   rel.trace.ipFans = updateIpFans(state, cfg, rel);
   if (rel.starId) rel.trace.starCareer = applyStarCareer(state, cfg, state.stars[rel.starId], rel);
   rel.trace.trust = updateTrust(state, cfg, rel);
-  emit(state, "run_end", `${rel.title} run ended after ${rel.weekIndex} weeks: ${rel.totalViewers.toLocaleString()} viewers, gross $${Math.round(rel.grossTotal).toLocaleString()}, studio take $${Math.round(rel.studioTake).toLocaleString()}.`, { releaseId: rel.id });
+  emit(state, "run_end", `${rel.title} run ended after ${rel.weekIndex} weeks: ${rel.totalViewers.toLocaleString()} ${rel.episodes ? "viewer-episodes" : "viewers"}${rel.uniqueViewers !== undefined ? ` (${rel.uniqueViewers.toLocaleString()} distinct people)` : ""}, gross $${Math.round(rel.grossTotal).toLocaleString()}, studio take $${Math.round(rel.studioTake).toLocaleString()}.`, { releaseId: rel.id });
+  onRunEnded(state, cfg, rel);
 }
 
-export function canSelfFund(state: StudioState, cfg: Config): boolean {
-  return state.cash >= 0 && spendableCash(state) >= cfg.production.movie.baseCost;
+export function canSelfFund(state: StudioState, cfg: Config, baseCost: number = cfg.production.movie.baseCost): boolean {
+  return state.cash >= 0 && spendableCash(state) >= baseCost;
 }

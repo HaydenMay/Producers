@@ -123,7 +123,8 @@ export function starFit(star: Star, genre: string, cfg: Config): number {
 
 /** After a release finishes: Fame change (causal), skill growth within budget, level, relationship. */
 export function applyStarCareer(state: StudioState, cfg: Config, star: Star, rel: Release): Record<string, number | string> {
-  const exposure = rel.totalViewers / (rel.totalViewers + cfg.stars.fameExposureHalf);
+  const seen = rel.uniqueViewers ?? rel.totalViewers; // TV/limited: distinct people, not viewer-episodes
+  const exposure = seen / (seen + cfg.stars.fameExposureHalf);
   const fameDelta = round2(cfg.stars.fameGainScale * ((rel.avgScore - 5) / 5) * exposure);
   const oldFame = star.fame;
   star.fame = Math.max(0, Math.min(100, round2(star.fame + fameDelta)));
@@ -157,7 +158,7 @@ export function applyStarCareer(state: StudioState, cfg: Config, star: Star, rel
 
 /** LOCKED v9.61: replacing the established lead for a new season / DIRECT SEQUEL lowers relationship. Reboots: Open (not penalized). */
 export function applyRecastPenalty(state: StudioState, cfg: Config, project: Project, chosenStarId: string): void {
-  if (project.ipRelation !== "sequel") return;
+  if (project.ipRelation !== "sequel" && project.ipRelation !== "season") return;
   const ip = state.ips[project.ipId];
   const prev = ip?.establishedStarId;
   if (prev && prev !== chosenStarId && state.stars[prev]) {
