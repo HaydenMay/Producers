@@ -1,0 +1,79 @@
+{
+ "_label": "Gate 2.6 follow-up: the main matrix showed Hall of Fame peaking in years 5-15 (critic generation 1). combo_D front-loads the same 12% critic ceiling (first new generation +8%, then capped at 12%) to target that peak without being harsher late than combo_B. control and combo_B are rerun in a separate process as a reproducibility check (must match the main run exactly). TEST ASSUMPTIONS.",
+ "reference": "control",
+ "seeds": 300,
+ "productions": [
+  5,
+  20,
+  50,
+  100
+ ],
+ "strategies": [
+  "balanced",
+  "quality-first",
+  "franchise-builder",
+  "repeat-farmer",
+  "cheap-duds",
+  "experimenter",
+  "self-funder",
+  "selective-self-funder",
+  "famous-star"
+ ],
+ "scoreIndexes": [
+  1,
+  5,
+  10,
+  20,
+  30,
+  50,
+  75,
+  100
+ ],
+ "variants": [
+  {
+   "name": "control",
+   "note": "Gate 2.5 candidate, current expectation rules (era bar 0.04/yr, cap 1.8; no generations)",
+   "overrides": {}
+  },
+  {
+   "name": "combo_B",
+   "note": "critic_moderate + audience_moderate",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 6,
+      "toughnessPerGeneration": 0.04,
+      "maxToughness": 0.12
+     },
+     "audience": {
+      "enabled": true,
+      "eraYears": 10,
+      "toughnessPerEra": 0.02,
+      "maxToughness": 0.06
+     }
+    }
+   }
+  },
+  {
+   "name": "combo_D",
+   "note": "critics every 6 yrs, +8% first generation, max 12% (front-loaded) + audience_moderate",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 6,
+      "toughnessPerGeneration": 0.08,
+      "maxToughness": 0.12
+     },
+     "audience": {
+      "enabled": true,
+      "eraYears": 10,
+      "toughnessPerEra": 0.02,
+      "maxToughness": 0.06
+     }
+    }
+   }
+  }
+ ]
+}

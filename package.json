@@ -17,7 +17,8 @@
     "experiment": "tsx src/cli/main.ts experiment",
     "legs": "tsx src/cli/main.ts legs",
     "selffund": "tsx src/cli/main.ts selffund",
-    "early": "tsx src/cli/main.ts early"
+    "early": "tsx src/cli/main.ts early",
+    "eras": "tsx src/cli/main.ts eras"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",

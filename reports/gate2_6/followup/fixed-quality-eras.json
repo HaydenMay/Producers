@@ -1,0 +1,2074 @@
+{
+ "solid": {
+  "control": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 68,
+     "writing": 68,
+     "filming": 68,
+     "editing": 68
+    },
+    "audienceRaw": 7.21,
+    "criticRaw": 7.21,
+    "audience": 7.21,
+    "critic": 7.21,
+    "avg": 7.21,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 65.49,
+     "writing": 65.49,
+     "filming": 65.49,
+     "editing": 65.49
+    },
+    "audienceRaw": 6.94,
+    "criticRaw": 6.94,
+    "audience": 6.94,
+    "critic": 6.94,
+    "avg": 6.94,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 63.15,
+     "writing": 63.15,
+     "filming": 63.15,
+     "editing": 63.15
+    },
+    "audienceRaw": 6.69,
+    "criticRaw": 6.69,
+    "audience": 6.69,
+    "critic": 6.69,
+    "avg": 6.69,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 60.98,
+     "writing": 60.98,
+     "filming": 60.98,
+     "editing": 60.98
+    },
+    "audienceRaw": 6.46,
+    "criticRaw": 6.46,
+    "audience": 6.46,
+    "critic": 6.46,
+    "avg": 6.46,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 58.95,
+     "writing": 58.95,
+     "filming": 58.95,
+     "editing": 58.95
+    },
+    "audienceRaw": 6.25,
+    "criticRaw": 6.25,
+    "audience": 6.25,
+    "critic": 6.25,
+    "avg": 6.25,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 57.05,
+     "writing": 57.05,
+     "filming": 57.05,
+     "editing": 57.05
+    },
+    "audienceRaw": 6.05,
+    "criticRaw": 6.05,
+    "audience": 6.05,
+    "critic": 6.05,
+    "avg": 6.05,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 55.27,
+     "writing": 55.27,
+     "filming": 55.27,
+     "editing": 55.27
+    },
+    "audienceRaw": 5.86,
+    "criticRaw": 5.86,
+    "audience": 5.86,
+    "critic": 5.86,
+    "avg": 5.86,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.74,
+    "critic": 5.74,
+    "avg": 5.74,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.74,
+    "critic": 5.74,
+    "avg": 5.74,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.74,
+    "critic": 5.74,
+    "avg": 5.74,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   }
+  ],
+  "combo_B": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 68,
+     "writing": 68,
+     "filming": 68,
+     "editing": 68
+    },
+    "audienceRaw": 7.21,
+    "criticRaw": 7.21,
+    "audience": 7.21,
+    "critic": 7.21,
+    "avg": 7.21,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 65.49,
+     "writing": 65.49,
+     "filming": 65.49,
+     "editing": 65.49
+    },
+    "audienceRaw": 6.94,
+    "criticRaw": 6.94,
+    "audience": 6.94,
+    "critic": 6.94,
+    "avg": 6.94,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 63.15,
+     "writing": 63.15,
+     "filming": 63.15,
+     "editing": 63.15
+    },
+    "audienceRaw": 6.69,
+    "criticRaw": 6.69,
+    "audience": 6.69,
+    "critic": 6.43,
+    "avg": 6.56,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 60.98,
+     "writing": 60.98,
+     "filming": 60.98,
+     "editing": 60.98
+    },
+    "audienceRaw": 6.46,
+    "criticRaw": 6.46,
+    "audience": 6.46,
+    "critic": 6.21,
+    "avg": 6.34,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 58.95,
+     "writing": 58.95,
+     "filming": 58.95,
+     "editing": 58.95
+    },
+    "audienceRaw": 6.25,
+    "criticRaw": 6.25,
+    "audience": 6.12,
+    "critic": 5.75,
+    "avg": 5.94,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 57.05,
+     "writing": 57.05,
+     "filming": 57.05,
+     "editing": 57.05
+    },
+    "audienceRaw": 6.05,
+    "criticRaw": 6.05,
+    "audience": 5.93,
+    "critic": 5.56,
+    "avg": 5.74,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 55.27,
+     "writing": 55.27,
+     "filming": 55.27,
+     "editing": 55.27
+    },
+    "audienceRaw": 5.86,
+    "criticRaw": 5.86,
+    "audience": 5.74,
+    "critic": 5.16,
+    "avg": 5.45,
+    "hof": false,
+    "criticGeneration": 3,
+    "audienceEra": 1
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.51,
+    "critic": 5.05,
+    "avg": 5.28,
+    "hof": false,
+    "criticGeneration": 4,
+    "audienceEra": 2
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.39,
+    "critic": 5.05,
+    "avg": 5.22,
+    "hof": false,
+    "criticGeneration": 5,
+    "audienceEra": 3
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.39,
+    "critic": 5.05,
+    "avg": 5.22,
+    "hof": false,
+    "criticGeneration": 6,
+    "audienceEra": 3
+   }
+  ],
+  "combo_D": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 68,
+     "writing": 68,
+     "filming": 68,
+     "editing": 68
+    },
+    "audienceRaw": 7.21,
+    "criticRaw": 7.21,
+    "audience": 7.21,
+    "critic": 7.21,
+    "avg": 7.21,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 65.49,
+     "writing": 65.49,
+     "filming": 65.49,
+     "editing": 65.49
+    },
+    "audienceRaw": 6.94,
+    "criticRaw": 6.94,
+    "audience": 6.94,
+    "critic": 6.94,
+    "avg": 6.94,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 63.15,
+     "writing": 63.15,
+     "filming": 63.15,
+     "editing": 63.15
+    },
+    "audienceRaw": 6.69,
+    "criticRaw": 6.69,
+    "audience": 6.69,
+    "critic": 6.16,
+    "avg": 6.43,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 60.98,
+     "writing": 60.98,
+     "filming": 60.98,
+     "editing": 60.98
+    },
+    "audienceRaw": 6.46,
+    "criticRaw": 6.46,
+    "audience": 6.46,
+    "critic": 5.95,
+    "avg": 6.21,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 58.95,
+     "writing": 58.95,
+     "filming": 58.95,
+     "editing": 58.95
+    },
+    "audienceRaw": 6.25,
+    "criticRaw": 6.25,
+    "audience": 6.12,
+    "critic": 5.5,
+    "avg": 5.81,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 57.05,
+     "writing": 57.05,
+     "filming": 57.05,
+     "editing": 57.05
+    },
+    "audienceRaw": 6.05,
+    "criticRaw": 6.05,
+    "audience": 5.93,
+    "critic": 5.32,
+    "avg": 5.63,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 55.27,
+     "writing": 55.27,
+     "filming": 55.27,
+     "editing": 55.27
+    },
+    "audienceRaw": 5.86,
+    "criticRaw": 5.86,
+    "audience": 5.74,
+    "critic": 5.16,
+    "avg": 5.45,
+    "hof": false,
+    "criticGeneration": 3,
+    "audienceEra": 1
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.51,
+    "critic": 5.05,
+    "avg": 5.28,
+    "hof": false,
+    "criticGeneration": 4,
+    "audienceEra": 2
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.39,
+    "critic": 5.05,
+    "avg": 5.22,
+    "hof": false,
+    "criticGeneration": 5,
+    "audienceEra": 3
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 54.14,
+     "writing": 54.14,
+     "filming": 54.14,
+     "editing": 54.14
+    },
+    "audienceRaw": 5.74,
+    "criticRaw": 5.74,
+    "audience": 5.39,
+    "critic": 5.05,
+    "avg": 5.22,
+    "hof": false,
+    "criticGeneration": 6,
+    "audienceEra": 3
+   }
+  ]
+ },
+ "strong8": {
+  "control": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 77,
+     "writing": 77,
+     "filming": 77,
+     "editing": 77
+    },
+    "audienceRaw": 8.16,
+    "criticRaw": 8.16,
+    "audience": 8.16,
+    "critic": 8.16,
+    "avg": 8.16,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 74.93,
+     "writing": 74.93,
+     "filming": 74.93,
+     "editing": 74.93
+    },
+    "audienceRaw": 7.94,
+    "criticRaw": 7.94,
+    "audience": 7.94,
+    "critic": 7.94,
+    "avg": 7.94,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 72.97,
+     "writing": 72.97,
+     "filming": 72.97,
+     "editing": 72.97
+    },
+    "audienceRaw": 7.73,
+    "criticRaw": 7.73,
+    "audience": 7.73,
+    "critic": 7.73,
+    "avg": 7.73,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 71.11,
+     "writing": 71.11,
+     "filming": 71.11,
+     "editing": 71.11
+    },
+    "audienceRaw": 7.54,
+    "criticRaw": 7.54,
+    "audience": 7.54,
+    "critic": 7.54,
+    "avg": 7.54,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 69.34,
+     "writing": 69.34,
+     "filming": 69.34,
+     "editing": 69.34
+    },
+    "audienceRaw": 7.35,
+    "criticRaw": 7.35,
+    "audience": 7.35,
+    "critic": 7.35,
+    "avg": 7.35,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 67.66,
+     "writing": 67.66,
+     "filming": 67.66,
+     "editing": 67.66
+    },
+    "audienceRaw": 7.17,
+    "criticRaw": 7.17,
+    "audience": 7.17,
+    "critic": 7.17,
+    "avg": 7.17,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 66.06,
+     "writing": 66.06,
+     "filming": 66.06,
+     "editing": 66.06
+    },
+    "audienceRaw": 7,
+    "criticRaw": 7,
+    "audience": 7,
+    "critic": 7,
+    "avg": 7,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.89,
+    "critic": 6.89,
+    "avg": 6.89,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.89,
+    "critic": 6.89,
+    "avg": 6.89,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.89,
+    "critic": 6.89,
+    "avg": 6.89,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   }
+  ],
+  "combo_B": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 77,
+     "writing": 77,
+     "filming": 77,
+     "editing": 77
+    },
+    "audienceRaw": 8.16,
+    "criticRaw": 8.16,
+    "audience": 8.16,
+    "critic": 8.16,
+    "avg": 8.16,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 74.93,
+     "writing": 74.93,
+     "filming": 74.93,
+     "editing": 74.93
+    },
+    "audienceRaw": 7.94,
+    "criticRaw": 7.94,
+    "audience": 7.94,
+    "critic": 7.94,
+    "avg": 7.94,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 72.97,
+     "writing": 72.97,
+     "filming": 72.97,
+     "editing": 72.97
+    },
+    "audienceRaw": 7.73,
+    "criticRaw": 7.73,
+    "audience": 7.73,
+    "critic": 7.43,
+    "avg": 7.58,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 71.11,
+     "writing": 71.11,
+     "filming": 71.11,
+     "editing": 71.11
+    },
+    "audienceRaw": 7.54,
+    "criticRaw": 7.54,
+    "audience": 7.54,
+    "critic": 7.24,
+    "avg": 7.39,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 69.34,
+     "writing": 69.34,
+     "filming": 69.34,
+     "editing": 69.34
+    },
+    "audienceRaw": 7.35,
+    "criticRaw": 7.35,
+    "audience": 7.2,
+    "critic": 6.76,
+    "avg": 6.98,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 67.66,
+     "writing": 67.66,
+     "filming": 67.66,
+     "editing": 67.66
+    },
+    "audienceRaw": 7.17,
+    "criticRaw": 7.17,
+    "audience": 7.03,
+    "critic": 6.6,
+    "avg": 6.82,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 66.06,
+     "writing": 66.06,
+     "filming": 66.06,
+     "editing": 66.06
+    },
+    "audienceRaw": 7,
+    "criticRaw": 7,
+    "audience": 6.86,
+    "critic": 6.16,
+    "avg": 6.51,
+    "hof": false,
+    "criticGeneration": 3,
+    "audienceEra": 1
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.62,
+    "critic": 6.07,
+    "avg": 6.35,
+    "hof": false,
+    "criticGeneration": 4,
+    "audienceEra": 2
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.48,
+    "critic": 6.07,
+    "avg": 6.28,
+    "hof": false,
+    "criticGeneration": 5,
+    "audienceEra": 3
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.48,
+    "critic": 6.07,
+    "avg": 6.28,
+    "hof": false,
+    "criticGeneration": 6,
+    "audienceEra": 3
+   }
+  ],
+  "combo_D": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 77,
+     "writing": 77,
+     "filming": 77,
+     "editing": 77
+    },
+    "audienceRaw": 8.16,
+    "criticRaw": 8.16,
+    "audience": 8.16,
+    "critic": 8.16,
+    "avg": 8.16,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 74.93,
+     "writing": 74.93,
+     "filming": 74.93,
+     "editing": 74.93
+    },
+    "audienceRaw": 7.94,
+    "criticRaw": 7.94,
+    "audience": 7.94,
+    "critic": 7.94,
+    "avg": 7.94,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 72.97,
+     "writing": 72.97,
+     "filming": 72.97,
+     "editing": 72.97
+    },
+    "audienceRaw": 7.73,
+    "criticRaw": 7.73,
+    "audience": 7.73,
+    "critic": 7.12,
+    "avg": 7.43,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 71.11,
+     "writing": 71.11,
+     "filming": 71.11,
+     "editing": 71.11
+    },
+    "audienceRaw": 7.54,
+    "criticRaw": 7.54,
+    "audience": 7.54,
+    "critic": 6.93,
+    "avg": 7.24,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 69.34,
+     "writing": 69.34,
+     "filming": 69.34,
+     "editing": 69.34
+    },
+    "audienceRaw": 7.35,
+    "criticRaw": 7.35,
+    "audience": 7.2,
+    "critic": 6.47,
+    "avg": 6.84,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 67.66,
+     "writing": 67.66,
+     "filming": 67.66,
+     "editing": 67.66
+    },
+    "audienceRaw": 7.17,
+    "criticRaw": 7.17,
+    "audience": 7.03,
+    "critic": 6.31,
+    "avg": 6.67,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 66.06,
+     "writing": 66.06,
+     "filming": 66.06,
+     "editing": 66.06
+    },
+    "audienceRaw": 7,
+    "criticRaw": 7,
+    "audience": 6.86,
+    "critic": 6.16,
+    "avg": 6.51,
+    "hof": false,
+    "criticGeneration": 3,
+    "audienceEra": 1
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.62,
+    "critic": 6.07,
+    "avg": 6.35,
+    "hof": false,
+    "criticGeneration": 4,
+    "audienceEra": 2
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.48,
+    "critic": 6.07,
+    "avg": 6.28,
+    "hof": false,
+    "criticGeneration": 5,
+    "audienceEra": 3
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 65.03,
+     "writing": 65.03,
+     "filming": 65.03,
+     "editing": 65.03
+    },
+    "audienceRaw": 6.89,
+    "criticRaw": 6.89,
+    "audience": 6.48,
+    "critic": 6.07,
+    "avg": 6.28,
+    "hof": false,
+    "criticGeneration": 6,
+    "audienceEra": 3
+   }
+  ]
+ },
+ "excellent": {
+  "control": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 88,
+     "writing": 88,
+     "filming": 88,
+     "editing": 88
+    },
+    "audienceRaw": 9.33,
+    "criticRaw": 9.33,
+    "audience": 9.33,
+    "critic": 9.33,
+    "avg": 9.33,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 86.75,
+     "writing": 86.75,
+     "filming": 86.75,
+     "editing": 86.75
+    },
+    "audienceRaw": 9.2,
+    "criticRaw": 9.2,
+    "audience": 9.2,
+    "critic": 9.2,
+    "avg": 9.2,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 85.54,
+     "writing": 85.54,
+     "filming": 85.54,
+     "editing": 85.54
+    },
+    "audienceRaw": 9.07,
+    "criticRaw": 9.07,
+    "audience": 9.07,
+    "critic": 9.07,
+    "avg": 9.07,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 84.36,
+     "writing": 84.36,
+     "filming": 84.36,
+     "editing": 84.36
+    },
+    "audienceRaw": 8.94,
+    "criticRaw": 8.94,
+    "audience": 8.94,
+    "critic": 8.94,
+    "avg": 8.94,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 83.21,
+     "writing": 83.21,
+     "filming": 83.21,
+     "editing": 83.21
+    },
+    "audienceRaw": 8.82,
+    "criticRaw": 8.82,
+    "audience": 8.82,
+    "critic": 8.82,
+    "avg": 8.82,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 82.09,
+     "writing": 82.09,
+     "filming": 82.09,
+     "editing": 82.09
+    },
+    "audienceRaw": 8.7,
+    "criticRaw": 8.7,
+    "audience": 8.7,
+    "critic": 8.7,
+    "avg": 8.7,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 81,
+     "writing": 81,
+     "filming": 81,
+     "editing": 81
+    },
+    "audienceRaw": 8.59,
+    "criticRaw": 8.59,
+    "audience": 8.59,
+    "critic": 8.59,
+    "avg": 8.59,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8.51,
+    "critic": 8.51,
+    "avg": 8.51,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8.51,
+    "critic": 8.51,
+    "avg": 8.51,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8.51,
+    "critic": 8.51,
+    "avg": 8.51,
+    "hof": false,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   }
+  ],
+  "combo_B": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 88,
+     "writing": 88,
+     "filming": 88,
+     "editing": 88
+    },
+    "audienceRaw": 9.33,
+    "criticRaw": 9.33,
+    "audience": 9.33,
+    "critic": 9.33,
+    "avg": 9.33,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 86.75,
+     "writing": 86.75,
+     "filming": 86.75,
+     "editing": 86.75
+    },
+    "audienceRaw": 9.2,
+    "criticRaw": 9.2,
+    "audience": 9.2,
+    "critic": 9.2,
+    "avg": 9.2,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 85.54,
+     "writing": 85.54,
+     "filming": 85.54,
+     "editing": 85.54
+    },
+    "audienceRaw": 9.07,
+    "criticRaw": 9.07,
+    "audience": 9.07,
+    "critic": 8.7,
+    "avg": 8.89,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 84.36,
+     "writing": 84.36,
+     "filming": 84.36,
+     "editing": 84.36
+    },
+    "audienceRaw": 8.94,
+    "criticRaw": 8.94,
+    "audience": 8.94,
+    "critic": 8.58,
+    "avg": 8.76,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 83.21,
+     "writing": 83.21,
+     "filming": 83.21,
+     "editing": 83.21
+    },
+    "audienceRaw": 8.82,
+    "criticRaw": 8.82,
+    "audience": 8.64,
+    "critic": 8.11,
+    "avg": 8.38,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 82.09,
+     "writing": 82.09,
+     "filming": 82.09,
+     "editing": 82.09
+    },
+    "audienceRaw": 8.7,
+    "criticRaw": 8.7,
+    "audience": 8.53,
+    "critic": 8.01,
+    "avg": 8.27,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 81,
+     "writing": 81,
+     "filming": 81,
+     "editing": 81
+    },
+    "audienceRaw": 8.59,
+    "criticRaw": 8.59,
+    "audience": 8.41,
+    "critic": 7.56,
+    "avg": 7.99,
+    "hof": false,
+    "criticGeneration": 3,
+    "audienceEra": 1
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8.17,
+    "critic": 7.49,
+    "avg": 7.83,
+    "hof": false,
+    "criticGeneration": 4,
+    "audienceEra": 2
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8,
+    "critic": 7.49,
+    "avg": 7.75,
+    "hof": false,
+    "criticGeneration": 5,
+    "audienceEra": 3
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8,
+    "critic": 7.49,
+    "avg": 7.75,
+    "hof": false,
+    "criticGeneration": 6,
+    "audienceEra": 3
+   }
+  ],
+  "combo_D": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 88,
+     "writing": 88,
+     "filming": 88,
+     "editing": 88
+    },
+    "audienceRaw": 9.33,
+    "criticRaw": 9.33,
+    "audience": 9.33,
+    "critic": 9.33,
+    "avg": 9.33,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 86.75,
+     "writing": 86.75,
+     "filming": 86.75,
+     "editing": 86.75
+    },
+    "audienceRaw": 9.2,
+    "criticRaw": 9.2,
+    "audience": 9.2,
+    "critic": 9.2,
+    "avg": 9.2,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 85.54,
+     "writing": 85.54,
+     "filming": 85.54,
+     "editing": 85.54
+    },
+    "audienceRaw": 9.07,
+    "criticRaw": 9.07,
+    "audience": 9.07,
+    "critic": 8.34,
+    "avg": 8.71,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 84.36,
+     "writing": 84.36,
+     "filming": 84.36,
+     "editing": 84.36
+    },
+    "audienceRaw": 8.94,
+    "criticRaw": 8.94,
+    "audience": 8.94,
+    "critic": 8.23,
+    "avg": 8.59,
+    "hof": false,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 83.21,
+     "writing": 83.21,
+     "filming": 83.21,
+     "editing": 83.21
+    },
+    "audienceRaw": 8.82,
+    "criticRaw": 8.82,
+    "audience": 8.64,
+    "critic": 7.76,
+    "avg": 8.2,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 82.09,
+     "writing": 82.09,
+     "filming": 82.09,
+     "editing": 82.09
+    },
+    "audienceRaw": 8.7,
+    "criticRaw": 8.7,
+    "audience": 8.53,
+    "critic": 7.66,
+    "avg": 8.09,
+    "hof": false,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 81,
+     "writing": 81,
+     "filming": 81,
+     "editing": 81
+    },
+    "audienceRaw": 8.59,
+    "criticRaw": 8.59,
+    "audience": 8.41,
+    "critic": 7.56,
+    "avg": 7.99,
+    "hof": false,
+    "criticGeneration": 3,
+    "audienceEra": 1
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8.17,
+    "critic": 7.49,
+    "avg": 7.83,
+    "hof": false,
+    "criticGeneration": 4,
+    "audienceEra": 2
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8,
+    "critic": 7.49,
+    "avg": 7.75,
+    "hof": false,
+    "criticGeneration": 5,
+    "audienceEra": 3
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 80.29,
+     "writing": 80.29,
+     "filming": 80.29,
+     "editing": 80.29
+    },
+    "audienceRaw": 8.51,
+    "criticRaw": 8.51,
+    "audience": 8,
+    "critic": 7.49,
+    "avg": 7.75,
+    "hof": false,
+    "criticGeneration": 6,
+    "audienceEra": 3
+   }
+  ]
+ },
+ "masterpiece": {
+  "control": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 95,
+     "writing": 95,
+     "filming": 95,
+     "editing": 95
+    },
+    "audienceRaw": 10.93,
+    "criticRaw": 10.93,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 94.43,
+     "writing": 94.43,
+     "filming": 94.43,
+     "editing": 94.43
+    },
+    "audienceRaw": 10.86,
+    "criticRaw": 10.86,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 93.87,
+     "writing": 93.87,
+     "filming": 93.87,
+     "editing": 93.87
+    },
+    "audienceRaw": 10.8,
+    "criticRaw": 10.8,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 93.32,
+     "writing": 93.32,
+     "filming": 93.32,
+     "editing": 93.32
+    },
+    "audienceRaw": 10.73,
+    "criticRaw": 10.73,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 92.77,
+     "writing": 92.77,
+     "filming": 92.77,
+     "editing": 92.77
+    },
+    "audienceRaw": 10.67,
+    "criticRaw": 10.67,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 92.23,
+     "writing": 92.23,
+     "filming": 92.23,
+     "editing": 92.23
+    },
+    "audienceRaw": 10.61,
+    "criticRaw": 10.61,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 91.7,
+     "writing": 91.7,
+     "filming": 91.7,
+     "editing": 91.7
+    },
+    "audienceRaw": 10.55,
+    "criticRaw": 10.55,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   }
+  ],
+  "combo_B": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 95,
+     "writing": 95,
+     "filming": 95,
+     "editing": 95
+    },
+    "audienceRaw": 10.93,
+    "criticRaw": 10.93,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 94.43,
+     "writing": 94.43,
+     "filming": 94.43,
+     "editing": 94.43
+    },
+    "audienceRaw": 10.86,
+    "criticRaw": 10.86,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 93.87,
+     "writing": 93.87,
+     "filming": 93.87,
+     "editing": 93.87
+    },
+    "audienceRaw": 10.8,
+    "criticRaw": 10.8,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 93.32,
+     "writing": 93.32,
+     "filming": 93.32,
+     "editing": 93.32
+    },
+    "audienceRaw": 10.73,
+    "criticRaw": 10.73,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 92.77,
+     "writing": 92.77,
+     "filming": 92.77,
+     "editing": 92.77
+    },
+    "audienceRaw": 10.67,
+    "criticRaw": 10.67,
+    "audience": 10,
+    "critic": 9.82,
+    "avg": 9.91,
+    "hof": true,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 92.23,
+     "writing": 92.23,
+     "filming": 92.23,
+     "editing": 92.23
+    },
+    "audienceRaw": 10.61,
+    "criticRaw": 10.61,
+    "audience": 10,
+    "critic": 9.76,
+    "avg": 9.88,
+    "hof": true,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 91.7,
+     "writing": 91.7,
+     "filming": 91.7,
+     "editing": 91.7
+    },
+    "audienceRaw": 10.55,
+    "criticRaw": 10.55,
+    "audience": 10,
+    "critic": 9.28,
+    "avg": 9.64,
+    "hof": true,
+    "criticGeneration": 3,
+    "audienceEra": 1
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 10,
+    "critic": 9.24,
+    "avg": 9.62,
+    "hof": true,
+    "criticGeneration": 4,
+    "audienceEra": 2
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 9.87,
+    "critic": 9.24,
+    "avg": 9.56,
+    "hof": true,
+    "criticGeneration": 5,
+    "audienceEra": 3
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 9.87,
+    "critic": 9.24,
+    "avg": 9.56,
+    "hof": true,
+    "criticGeneration": 6,
+    "audienceEra": 3
+   }
+  ],
+  "combo_D": [
+   {
+    "year": 0,
+    "meters": {
+     "plot": 95,
+     "writing": 95,
+     "filming": 95,
+     "editing": 95
+    },
+    "audienceRaw": 10.93,
+    "criticRaw": 10.93,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 3,
+    "meters": {
+     "plot": 94.43,
+     "writing": 94.43,
+     "filming": 94.43,
+     "editing": 94.43
+    },
+    "audienceRaw": 10.86,
+    "criticRaw": 10.86,
+    "audience": 10,
+    "critic": 10,
+    "avg": 10,
+    "hof": true,
+    "criticGeneration": 0,
+    "audienceEra": 0
+   },
+   {
+    "year": 6,
+    "meters": {
+     "plot": 93.87,
+     "writing": 93.87,
+     "filming": 93.87,
+     "editing": 93.87
+    },
+    "audienceRaw": 10.8,
+    "criticRaw": 10.8,
+    "audience": 10,
+    "critic": 9.93,
+    "avg": 9.97,
+    "hof": true,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 9,
+    "meters": {
+     "plot": 93.32,
+     "writing": 93.32,
+     "filming": 93.32,
+     "editing": 93.32
+    },
+    "audienceRaw": 10.73,
+    "criticRaw": 10.73,
+    "audience": 10,
+    "critic": 9.87,
+    "avg": 9.93,
+    "hof": true,
+    "criticGeneration": 1,
+    "audienceEra": 0
+   },
+   {
+    "year": 12,
+    "meters": {
+     "plot": 92.77,
+     "writing": 92.77,
+     "filming": 92.77,
+     "editing": 92.77
+    },
+    "audienceRaw": 10.67,
+    "criticRaw": 10.67,
+    "audience": 10,
+    "critic": 9.39,
+    "avg": 9.7,
+    "hof": true,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 15,
+    "meters": {
+     "plot": 92.23,
+     "writing": 92.23,
+     "filming": 92.23,
+     "editing": 92.23
+    },
+    "audienceRaw": 10.61,
+    "criticRaw": 10.61,
+    "audience": 10,
+    "critic": 9.33,
+    "avg": 9.66,
+    "hof": true,
+    "criticGeneration": 2,
+    "audienceEra": 1
+   },
+   {
+    "year": 18,
+    "meters": {
+     "plot": 91.7,
+     "writing": 91.7,
+     "filming": 91.7,
+     "editing": 91.7
+    },
+    "audienceRaw": 10.55,
+    "criticRaw": 10.55,
+    "audience": 10,
+    "critic": 9.28,
+    "avg": 9.64,
+    "hof": true,
+    "criticGeneration": 3,
+    "audienceEra": 1
+   },
+   {
+    "year": 24,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 10,
+    "critic": 9.24,
+    "avg": 9.62,
+    "hof": true,
+    "criticGeneration": 4,
+    "audienceEra": 2
+   },
+   {
+    "year": 30,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 9.87,
+    "critic": 9.24,
+    "avg": 9.56,
+    "hof": true,
+    "criticGeneration": 5,
+    "audienceEra": 3
+   },
+   {
+    "year": 36,
+    "meters": {
+     "plot": 91.35,
+     "writing": 91.35,
+     "filming": 91.35,
+     "editing": 91.35
+    },
+    "audienceRaw": 10.51,
+    "criticRaw": 10.51,
+    "audience": 9.87,
+    "critic": 9.24,
+    "avg": 9.56,
+    "hof": true,
+    "criticGeneration": 6,
+    "audienceEra": 3
+   }
+  ]
+ }
+}

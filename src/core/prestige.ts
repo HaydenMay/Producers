@@ -67,7 +67,7 @@ export function evaluatePrestige(state: StudioState, cfg: Config, rel: Release, 
     state.prestigeAwards.push(id);
     state.prestige += m.amount;
     out.push({ id, amount: m.amount });
-    emit(state, "prestige", `Prestige +${m.amount}: ${m.id} (${rel.title}).`, { awardId: id, releaseId: rel.id });
+    emit(state, "prestige", `Prestige +${m.amount}: ${m.id} (${rel.title}).`, { awardId: id, releaseId: rel.id, milestone: m.id, amount: m.amount });
   }
   return out;
 }

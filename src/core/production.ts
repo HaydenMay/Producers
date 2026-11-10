@@ -6,7 +6,7 @@ import { payProjectExpense, projectFunds, receiveAdvance, transferSurplus, spend
 import { staffWorkWeek, phaseOf } from "./staff";
 import { applyRecastPenalty, applyStarCareer, buildAuditions, starFit } from "./stars";
 import { comboKey, updateTrust } from "./distribution";
-import { avgScore, computeScores, isHallOfFame, meterQuality, eraBar } from "./scoring";
+import { avgScore, computeScores, isHallOfFame, meterQuality, eraBar, expectationsAt } from "./scoring";
 import { openingTrace, updateIpFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { awardGenreXp, genreBonus, genreLevel, maybeStaffPitch } from "./progression";
@@ -153,7 +153,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const grades = state.world.comboGrades[key];
   const fatigue = fatigueFor(state, cfg, p);
   const saturated = state.trends[p.theme]?.stage === "saturated";
-  const sc = computeScores(meters, grades, fatigue, saturated, cfg);
+  const sc = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
   const avg = avgScore(sc.audience, sc.critic);
   const star = p.starId ? state.stars[p.starId] : null;
   const ip = state.ips[p.ipId];
@@ -184,6 +184,8 @@ function completeProject(state: StudioState, cfg: Config): Release {
     critic: sc.critic,
     avgScore: avg,
     hallOfFame: isHallOfFame(avg, cfg),
+    criticGeneration: sc.expectations.criticGeneration,
+    audienceEra: sc.expectations.audienceEra,
     openingViewers: op.opening,
     weekIndex: 0,
     lastViewers: 0,

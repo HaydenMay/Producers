@@ -51,13 +51,28 @@ Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = ha
 | G12 | Memory | Experiments keep slim release records (`slimRelease`) and drop per-release data after each batch; summaries are unaffected. | — | — | Harness only. |
 | G13 | Debug | `debug.injectBug` deliberately breaks one rule so tests can prove the invariants catch it. | `"none"` | `"none"` | Test-only. |
 
+## Gate 2.6 assumptions (critic generations, audience eras, great-film metrics)
+
+All Gate 2.6 numbers are **TEST ASSUMPTIONS**. With `expectations.critics.enabled` and `expectations.audience.enabled` false (the baseline and the Gate 2.5 candidate), results are byte-identical to Gate 2.5.
+
+| # | Area | Assumption | Baseline default | Tested values (`config/experiments/G26_expectations.json`) | Notes |
+|---|---|---|---|---|---|
+| G14 | Critic generations | **HARNESS PROXY** for named critics retiring. Generation g = floor(in-game year / `generationYears`); toughness = min(`maxToughness`, `toughnessPerGeneration` × g). Calendar time, not film count. Retirements are announced `announceWeeksAhead` weeks early (event `critics`). | disabled (6 y, 4%, max 12%, announce 26 wk) | mild 8 y / 3% / 9%; moderate 6 y / 4% / 12%; strong 5 y / 5% / 20% | Not the named-critic character system. When that exists, its aggregate effect should match the chosen curve. |
+| G15 | Audience eras | Era e = floor(year / `eraYears`); toughness = min(max, `toughnessPerEra` × e). Applied to the Audience score only. | disabled (10 y, 2%, max 6%) | mild 12 y / 1.5% / 4.5%; moderate 10 y / 2% / 6%; strong 8 y / 3% / 9% | Kept gentler than critics in every combined variant. |
+| G16 | Where expectations apply | After combo grade, weak-meter penalty, repetition fatigue and critic saturation; before the 0–10 clamp. `method: scale` = score × (1 − t); `subtract` = score − 10t. Applied once at release; the result is stored on the release and never recomputed. | `scale` | `scale` everywhere, plus one `subtract` comparison | Saturation (critic ×0.9) stays a separate, theme-specific effect. |
+| G17 | Existing era bar (A9) | Unchanged: meter normalization × (1 + 0.04/yr), cap 1.8 (reached at year 20). It raises the bar for **both** sides equally. | 0.04/yr | held constant; attribution-only references at 0 and 0.08/yr | Audit finding: there was no separate, gentler audience curve before Gate 2.6. |
+| G18 | Hall of Fame rule | `avgScore = round2((Audience + Critic)/2) ≥ 9.0`, each side already rounded to 2 decimals. | — | — | DISCREPANCY FLAGGED, not changed: rounding promotes a true mean of 8.995 to 9.00 (about 1.3% of HoF titles in a 6,000-film probe; `scripts/probe-hof-boundary.ts`). |
+| G19 | Great-film metrics | Windows by release index 1–5 / 6–20 / 21–50 / 51–100 / all; in-game year bands; critic generations. `≥9` inclusive and `>9` strict, for the average and separately for Audience and Critic. HoF counts releases; distinct HoF IPs are reported separately. Best film tie-break: higher average → higher Critic → higher Audience → lower seed → lower release index → strategy name. | — | — | Permanent report fields (batch, experiment, career, web). |
+| G20 | Progression metrics | Cash and Prestige rebuilt week by week from the ledger and Prestige events. For each upgrade: when the Prestige gate was first met, when it was bought, and weeks with enough cash but not enough Prestige ("cash-rich, Prestige-locked"). | — | — | New invariants: `UPGRADE_BELOW_PRESTIGE_GATE`, `UPGRADE_UNPAID`, `STAFF_OVER_CAPACITY`, `PRESTIGE_INVALID_MILESTONE`, `PRESTIGE_SUM_MISMATCH`, `EXPECTATION_MISMATCH`. |
+| G21 | `PRESTIGE_TOO_FAST` | Still 400 Prestige/yr. **OUTDATED**: fit to Gate 2 per-IP totals; under hybrid Prestige it fires for most quality careers. Reported, not used as a verdict. | 400/yr | — | Refit once the designer chooses a Prestige pace. |
+
 ## Not modelled (deliberately absent, not guessed)
 
-Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming (subscribers, churn, Originals, platform build), eras beyond the quality bar, studio upgrades other than the Gate 2.5 staff-capacity ladder, format unlock gates, genre unlocks, late-game concurrency, Star bio lines, budget tiers (shelved in the design).
+Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming (subscribers, churn, Originals, platform build), eras beyond the quality bar (Gate 2.6 adds only a calendar proxy for critic generations / audience eras; no era news, theme waves or named critics), studio upgrades other than the Gate 2.5 staff-capacity ladder, format unlock gates, genre unlocks, late-game concurrency, Star bio lines, budget tiers (shelved in the design).
 
 ## Full parameter listing (`config/baseline.json`)
 
-Regenerated for Gate 2.5. Candidate overrides are in `config/candidate.json`.
+Regenerated for Gate 2.6. Candidate overrides are in `config/candidate.json`; expectation variants are in `config/experiments/G26_expectations.json`.
 
 | Path | Value |
 |---|---|
@@ -330,3 +345,14 @@ Regenerated for Gate 2.5. Candidate overrides are in `config/candidate.json`.
 | `staffCapacity.upgradePrestige` | [] |
 | `agents._label` | "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire)." |
 | `agents.legacyHeuristicStaffCaps` | true |
+| `expectations._label` | "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS." |
+| `expectations.method` | "scale" |
+| `expectations.critics.enabled` | false |
+| `expectations.critics.generationYears` | 6 |
+| `expectations.critics.toughnessPerGeneration` | 0.04 |
+| `expectations.critics.maxToughness` | 0.12 |
+| `expectations.critics.announceWeeksAhead` | 26 |
+| `expectations.audience.enabled` | false |
+| `expectations.audience.eraYears` | 10 |
+| `expectations.audience.toughnessPerEra` | 0.02 |
+| `expectations.audience.maxToughness` | 0.06 |

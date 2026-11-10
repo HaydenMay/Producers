@@ -2,7 +2,7 @@
 import thresholdsJson from "../../config/diagnostics.json";
 import type { Config } from "../core/config";
 import { CASH_KINDS } from "../core/events";
-import { computeScores, avgScore } from "../core/scoring";
+import { computeScores, avgScore, expectationsAt, type Expectations } from "../core/scoring";
 import { budgetFor, skillTotal } from "../core/stars";
 import type { Release, StudioState } from "../core/types";
 import type { CareerMetrics } from "./metrics";
@@ -34,6 +34,22 @@ export function checkInvariants(r: CareerResult, cfg: Config): Violation[] {
   }
   if (new Set(s.prestigeAwards).size !== s.prestigeAwards.length) v("PRESTIGE_DOUBLE_AWARD", "duplicate award id");
   for (const rel of s.releases) checkRelease(rel, s, cfg, v);
+  // studio-wide capacity and Prestige-gated upgrades (cash alone can never buy growth)
+  if (s.staff.length > s.maxStaff) v("STAFF_OVER_CAPACITY", `${s.staff.length} staff > capacity ${s.maxStaff}`);
+  const gates = cfg.staffCapacity.upgradePrestige as number[];
+  s.upgrades.forEach((u, i) => {
+    if (u.prestigeAtUpgrade < (gates[i] ?? Infinity)) v("UPGRADE_BELOW_PRESTIGE_GATE", `upgrade ${i + 1} at Prestige ${u.prestigeAtUpgrade} < gate ${gates[i]}`);
+  });
+  if (s.ledger.filter((l) => l.kind === "upgrade").length !== s.upgrades.length) v("UPGRADE_UNPAID", "upgrade count differs from upgrade ledger entries");
+  // Prestige only from configured milestones; never passive accrual
+  const ids = new Set((cfg.prestige.milestones as { id: string }[]).map((m) => m.id));
+  let psum = 0;
+  for (const e of s.events.filter((x) => x.type === "prestige")) {
+    const d = e.data as { milestone?: string; amount?: number } | undefined;
+    if (!d?.milestone || !ids.has(d.milestone)) v("PRESTIGE_INVALID_MILESTONE", e.message);
+    psum += d?.amount ?? 0;
+  }
+  if (psum !== s.prestige) v("PRESTIGE_SUM_MISMATCH", `awards sum ${psum} vs Prestige ${s.prestige}`);
   // feedback popups must describe what actually happened
   const UP = ["tuning in", "climbing", "holding on", "finding a few"];
   const DOWN = ["easing off", "winding down", "dropping fast", "scaring off"];
@@ -54,7 +70,10 @@ function checkRelease(rel: Release, s: StudioState, cfg: Config, v: (rule: strin
   if (Math.abs(weeklyGross - rel.grossTotal) > 0.05) v("GROSS_NOT_FROM_SALES", `${rel.title}: gross ${rel.grossTotal} vs weekly sales ${weeklyGross.toFixed(2)} (advance counted as revenue?)`);
   // scores must be reproducible from the recorded production state (no independent rolls, no Fame/marketing leak)
   const q = rel.trace.quality as { score: { meters: Release["meters"]; comboAudience: string; comboCritic: string; fatigueMult: number; saturationMult: number } };
-  const re = computeScores(q.score.meters, { audience: q.score.comboAudience as never, critic: q.score.comboCritic as never }, round(1 - q.score.fatigueMult), q.score.saturationMult < 1, cfg);
+  const re = computeScores(q.score.meters, { audience: q.score.comboAudience as never, critic: q.score.comboCritic as never }, round(1 - q.score.fatigueMult), q.score.saturationMult < 1, cfg, (q.score as { expectations?: Expectations }).expectations);
+  const stored = (q.score as { expectations?: Expectations }).expectations;
+  if (stored && JSON.stringify(stored) !== JSON.stringify(expectationsAt(rel.releaseWeek, cfg))) v("EXPECTATION_MISMATCH", `${rel.title}: stored critic gen ${stored.criticGeneration} / audience era ${stored.audienceEra} differ from the calendar schedule at week ${rel.releaseWeek}`);
+  if ((rel.criticGeneration ?? 0) !== (stored?.criticGeneration ?? 0)) v("EXPECTATION_MISMATCH", `${rel.title}: release critic generation field disagrees with its score trace`);
   if (Math.abs(re.audience - rel.audience) > 0.011 || Math.abs(re.critic - rel.critic) > 0.011) v("SCORE_NOT_CAUSAL", `${rel.title}: stored A${rel.audience}/C${rel.critic} vs recomputed A${re.audience}/C${re.critic}`);
   if (Math.abs(avgScore(rel.audience, rel.critic) - rel.avgScore) > 0.011) v("AVG_MISMATCH", rel.title);
   if (!rel.active && rel.weekly.length && rel.weekly.at(-1)!.viewers !== 0) v("RUN_NOT_TERMINATED", rel.title);

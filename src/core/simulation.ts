@@ -11,6 +11,7 @@ import { generateWorld, researchTheme, updateTrends } from "./progression";
 import { campaignOptions, canSelfFund, castStar, chooseCampaign, finalizeRelease, productionWeek, startProject } from "./production";
 import { releaseWeek, decayFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
+import { audienceEraAt, criticGenerationAt, expectationsAt } from "./scoring";
 import { RULESET_VERSION, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
 
 export const FEATURES_MODELLED = ["movies", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "theme research + staff pitches"];
@@ -189,6 +190,7 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
   if (p?.pendingDecision) throw new Error(`Cannot advance: ${p.pendingDecision} decision pending`);
   if (state.pendingOffers) throw new Error("Cannot advance: choose an offer first");
   state.week += 1;
+  expectationEvents(state, cfg);
   payroll(state, cfg);
   for (const rel of state.releases) {
     if (!rel.active) continue;
@@ -203,6 +205,27 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
   driftTrust(state, cfg);
   decayFans(state, cfg);
   if (state.cash < 0) state.counters.negativeCashWeeks += 1;
+}
+
+/** Gate 2.6 proxy: announce critic retirements ahead of time, then the turnover; announce audience eras. Text only. */
+function expectationEvents(state: StudioState, cfg: Config): void {
+  const c = cfg.expectations.critics;
+  if (c.enabled) {
+    const w = state.week;
+    const ahead = c.announceWeeksAhead;
+    if (ahead > 0 && criticGenerationAt(w + ahead, cfg) > criticGenerationAt(w + ahead - 1, cfg)) {
+      const e = expectationsAt(w + ahead, cfg);
+      emit(state, "critics", `Veteran critics are retiring in about ${ahead} weeks. The next generation is known to be harder to impress (critic standard ${(e.criticToughness * 100).toFixed(1)}% tougher than the first generation).`, { generation: e.criticGeneration, week: w + ahead, announce: true });
+    }
+    if (criticGenerationAt(w, cfg) > criticGenerationAt(w - 1, cfg)) {
+      const e = expectationsAt(w, cfg);
+      emit(state, "critics", `A new generation of critics (generation ${e.criticGeneration}; the original critics were generation 0) now reviews releases: standards ${(e.criticToughness * 100).toFixed(1)}% tougher than the first generation. Published reviews do not change.`, { generation: e.criticGeneration });
+    }
+  }
+  if (cfg.expectations.audience.enabled && audienceEraAt(state.week, cfg) > audienceEraAt(state.week - 1, cfg)) {
+    const e = expectationsAt(state.week, cfg);
+    emit(state, "audience_era", `A new entertainment era: audiences expect a little more (${(e.audienceToughness * 100).toFixed(1)}% above the first era).`, { era: e.audienceEra });
+  }
 }
 
 /** Replay: seed + config + ordered decision log reproduces the exact same state. */

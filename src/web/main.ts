@@ -5,6 +5,7 @@ import type { Decision, PlanDecision, StudioState } from "../core/types";
 import { STRATEGIES, ALL_STRATEGY_IDS as STRATEGY_IDS } from "../agents/strategies";
 import { makeAgentRng } from "../core/rng";
 import { runBatch } from "../batch/batch";
+import { filmLabel } from "../batch/greatness";
 import { releaseTrace, metricsCsv } from "../batch/report";
 import type { Dist } from "../batch/metrics";
 
@@ -154,6 +155,10 @@ function renderBatch() {
     const keys = ["endCash", "prestige", "meanAudience", "meanCritic", "shareLate8plus", "surplusKept", "negativeCashWeeks", "meanTrustEnd"];
     el("bOut").innerHTML = `<div class="card"><b>${b.meta.careers} careers · ${b.meta.runtimeMs} ms · config ${b.meta.config} (${b.meta.configHash}) · invariant violations: ${b.violations.length}</b>
       <table><tr><th>Strategy</th>${keys.map((k) => `<th>${k} (median)</th>`).join("")}</tr>${Object.entries(b.summary).map(([st, row]) => `<tr><td>${st}</td>${keys.map((k) => `<td>${(row[k] as Dist).median}</td>`).join("")}</tr>`).join("")}</table></div>
+      <div class="card"><h3>Great films (whole career)</h3><p class="muted">Hall of Fame = average of Audience and Critic ≥ 9.0. Counts with % of films.</p><table><tr><th>Strategy</th><th>Films</th><th>HoF</th><th>Avg ≥9</th><th>Avg &gt;9</th><th>Aud ≥9</th><th>Crit ≥9</th><th>Careers with 0 HoF</th><th>Best/career p50</th><th>Best film</th></tr>${b.great
+        .filter((g) => g.slice === "all")
+        .map((g) => `<tr><td>${g.strategy}</td><td>${g.films}</td><td>${g.hof.n} (${g.hof.pct}%)</td><td>${g.avg9inc.n} (${g.avg9inc.pct}%)</td><td>${g.avg9strict.n} (${g.avg9strict.pct}%)</td><td>${g.aud9.n} (${g.aud9.pct}%)</td><td>${g.crit9.n} (${g.crit9.pct}%)</td><td>${g.zeroHofCareers.pct}%</td><td>${g.bestPerCareer?.p50 ?? "—"}</td><td>${esc(filmLabel(g.best))}</td></tr>`)
+        .join("")}</table></div>
       <div class="card"><h3>Flags</h3><table>${b.flags.map((f) => `<tr><td class="${f.fired ? "fired" : ""}">${f.flag}</td><td>${f.fired ? "FIRED" : "ok"}</td><td>${esc(f.why)}</td></tr>`).join("")}</table></div>
       <div class="card"><h3>Avg score by production index</h3><pre>${Object.entries(b.trends).map(([k, t]) => `${k.padEnd(18)} ${t.map((x) => x.toFixed(1)).join(" ")}`).join("\n")}</pre>
       <button id="bDl">Download careers CSV</button> <button id="bDlJ">Download summary JSON</button></div>`;
@@ -168,6 +173,9 @@ const CURATED: [string, string][] = [
   ["production.movie.baseCost", "Movie base cost"],
   ["production.movie.durationWeeks", "Movie duration (weeks)"],
   ["production.eraBarPerYear", "Era quality bar growth / year"],
+  ["expectations.critics.generationYears", "Critic generation length, years (Gate 2.6 proxy, when enabled)"],
+  ["expectations.critics.toughnessPerGeneration", "Critic toughness per generation (when enabled)"],
+  ["expectations.audience.toughnessPerEra", "Audience expectation per era (when enabled)"],
   ["staffGrowth.statGainPerWeek", "Staff stat growth / week"],
   ["staffGrowth.hireCost", "Hire cost"],
   ["studioGenre.qualityBonusPerLevel", "Studio genre bonus / level"],

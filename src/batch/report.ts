@@ -1,5 +1,6 @@
 // Human-readable Markdown + CSV/JSON output. Every report states ruleset, config hash, seeds, strategies,
 // and modelled features, and labels numbers as provisional.
+import { greatTable, progressTable, WINDOWS, filmLabel, bestOf, filmRefs } from "./greatness";
 import type { Config } from "../core/config";
 import { configHash } from "../core/config";
 import { FEATURES_MODELLED, FEATURES_NOT_MODELLED } from "../core/simulation";
@@ -55,6 +56,8 @@ export function releaseTrace(rel: Release, state: StudioState): string {
   lines.push(`Inputs: staff points ${JSON.stringify(q.meterPoints)}, Star filming points ${q.starPoints} (Star family fit ${q.starFit}), studio ${rel.genre} level ${q.genreLevel} (+${((q.genreBonus as number) * 100).toFixed(0)}%), era bar x${q.eraBar}`);
   lines.push(`Base scores: Audience ${sc.audienceBase} / Critic ${sc.criticBase}${sc.weakMeters.length ? ` · weak meter: ${sc.weakMeters.map((w) => `${w.meter} (−${w.audiencePenalty} aud / −${w.criticPenalty} crit)`).join(", ")}` : " · no weak meter"}`);
   lines.push(`Combo grades: Audience ${sc.comboAudience} (x${sc.comboAudienceMult}) / Critic ${sc.comboCritic} (x${sc.comboCriticMult}) · repetition fatigue x${sc.fatigueMult} · critic saturation x${sc.saturationMult}`);
+  const ex = (sc as { expectations?: { method: string; criticGeneration: number; criticToughness: number; audienceEra: number; audienceToughness: number }; audienceRaw?: number; criticRaw?: number });
+  if (ex.expectations) lines.push(`Before expectations (after combo, weakness, fatigue, saturation; pre-clamp): Audience ${ex.audienceRaw} / Critic ${ex.criticRaw} · critic generation ${ex.expectations.criticGeneration} (−${(ex.expectations.criticToughness * 100).toFixed(1)}%, ${ex.expectations.method}) · audience era ${ex.expectations.audienceEra} (−${(ex.expectations.audienceToughness * 100).toFixed(1)}%) · then clamp 0–10 (generation/era 0 = the ones active at game start)`);
   lines.push(`**Final: Audience ${rel.audience} / Critic ${rel.critic} → avg ${rel.avgScore}${rel.hallOfFame ? " (HALL OF FAME)" : ""}**`);
   lines.push("");
   lines.push("**Opening & viewership trace** [marketing/Fame/reach affect viewers only]");
@@ -88,6 +91,13 @@ export function careerReport(state: StudioState, cfg: Config, strategy: string, 
   out.push(`- IP fans: ${Object.values(state.ips).map((i) => `${i.name} ${i.fans.toLocaleString()}`).join("; ")}`);
   out.push(`- Distributor trust: ${state.distributors.map((d) => `${d.id} ${d.trust.toFixed(2)}`).join(", ")}`);
   out.push(`- Stars hired: ${state.hiredStarIds.map((id) => { const s = state.stars[id]; return `${s.name} (L${s.level}, Fame ${s.fame.toFixed(0)}, rel ${s.relationship.toFixed(2)})`; }).join("; ")}`);
+  {
+    const films = filmRefs(state.seed, strategy, state.releases, cfg);
+    const n = films.length;
+    const c = (f: (x: (typeof films)[number]) => boolean) => `${films.filter(f).length}/${n}`;
+    out.push(`- Great films: Hall of Fame ${c((f) => f.hallOfFame)} · avg ≥9.0 ${c((f) => f.avg >= 9)} · avg >9.0 ${c((f) => f.avg > 9)} · Audience ≥9 ${c((f) => f.audience >= 9)} · Critic ≥9 ${c((f) => f.critic >= 9)} · 8+ ${c((f) => f.avg >= 8)}`);
+    out.push(`- Best film: ${filmLabel(bestOf(films))} · best Audience: ${filmLabel(bestOf(films, "audience"))} · best Critic: ${filmLabel(bestOf(films, "critic"))}`);
+  }
   out.push("");
   out.push("## Releases (full causal trace)", "");
   for (const rel of state.releases) out.push(releaseTrace(rel, state));
@@ -139,6 +149,13 @@ export function batchReport(b: BatchResult, cfg: Config): string {
   out.push("## Average review score by production index (mean across seeds)", "");
   for (const [s, t] of Object.entries(b.trends)) out.push(`- ${s}: ${t.map((x) => x.toFixed(1)).join(" → ")}`);
   out.push("");
+  const wins = WINDOWS.filter((w) => w.lo <= b.meta.productions).map((w) => w.name);
+  const pres = Object.fromEntries(Object.entries(b.summary).map(([s, row]) => [s, (row.prestige as Dist).median]));
+  out.push("## Great films (Hall of Fame, 9+, best films)", "");
+  out.push("Hall of Fame = average of Audience and Critic ≥ 9.0 (`scoring.hofThreshold`). `≥9` inclusive, `>9` strict. Percentages show the film count they are out of. Full detail: `.great.csv`.", "");
+  out.push(greatTable(b.great, wins, pres), "");
+  out.push("## Prestige progression", "");
+  out.push(progressTable(b.progress), "");
   return out.join("\n");
 }
 

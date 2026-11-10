@@ -1,9 +1,53 @@
 // Scores are FUNCTIONS of production state — never rolled. LOCKED: Audience leans Filming+Editing, Critics
 // lean Plot+Writing; combo grades multiply (separate audience/critic); weak meter penalizes the matching
-// side; critic saturation; rising era bar (applied in meter normalization). Marketing/Fame never enter.
+// side; critic saturation; rising era bar (applied in meter normalization); optional Gate 2.6 critic
+// generations / audience eras (applied after combo, before clamp). Marketing/Fame/sales never enter.
 import type { Config } from "./config";
 import { round2 } from "./events";
 import { METERS, type Grade, type Meter, type Project, type StudioState } from "./types";
+
+/**
+ * Gate 2.6 HARNESS PROXY for critic generations + audience eras. Deterministic, calendar time only
+ * (in-game week, not film number). Generation g = floor(year / generationYears); toughness = min(max, perStep x g).
+ * Applied at release time; published scores are stored on the release and never recomputed.
+ */
+export interface Expectations {
+  method: "scale" | "subtract";
+  criticGeneration: number;
+  criticToughness: number;
+  audienceEra: number;
+  audienceToughness: number;
+}
+
+export const NO_EXPECTATIONS: Expectations = { method: "scale", criticGeneration: 0, criticToughness: 0, audienceEra: 0, audienceToughness: 0 };
+
+export function criticGenerationAt(week: number, cfg: Config): number {
+  const c = cfg.expectations.critics;
+  if (!c.enabled) return 0;
+  return Math.max(0, Math.floor(week / cfg.time.weeksPerYear / c.generationYears));
+}
+export function audienceEraAt(week: number, cfg: Config): number {
+  const a = cfg.expectations.audience;
+  if (!a.enabled) return 0;
+  return Math.max(0, Math.floor(week / cfg.time.weeksPerYear / a.eraYears));
+}
+export function expectationsAt(week: number, cfg: Config): Expectations {
+  const e = cfg.expectations;
+  const g = criticGenerationAt(week, cfg);
+  const ae = audienceEraAt(week, cfg);
+  return {
+    method: e.method as Expectations["method"],
+    criticGeneration: g,
+    criticToughness: Math.round(Math.min(e.critics.maxToughness, e.critics.toughnessPerGeneration * g) * 1000) / 1000,
+    audienceEra: ae,
+    audienceToughness: Math.round(Math.min(e.audience.maxToughness, e.audience.toughnessPerEra * ae) * 1000) / 1000,
+  };
+}
+/** Apply an expectation to a pre-clamp score. scale: x(1-t) (tougher at the top in absolute points); subtract: -10t points. */
+export function applyExpectation(raw: number, toughness: number, method: Expectations["method"]): number {
+  if (toughness <= 0) return raw;
+  return method === "subtract" ? raw - 10 * toughness : raw * (1 - toughness);
+}
 
 export function eraBar(state: StudioState, cfg: Config): number {
   const year = state.week / cfg.time.weeksPerYear;
@@ -33,6 +77,10 @@ export interface ScoreTrace {
   comboCriticMult: number;
   fatigueMult: number;
   saturationMult: number;
+  /** pre-expectation, pre-clamp scores (after combo, weakness, fatigue, saturation) */
+  audienceRaw: number;
+  criticRaw: number;
+  expectations: Expectations;
   audience: number;
   critic: number;
 }
@@ -43,6 +91,7 @@ export function computeScores(
   fatigue: number,
   saturated: boolean,
   cfg: Config,
+  expectations: Expectations = NO_EXPECTATIONS,
 ): ScoreTrace {
   const aw = cfg.scoring.audienceWeights as Record<Meter, number>;
   const cw = cfg.scoring.criticWeights as Record<Meter, number>;
@@ -76,6 +125,10 @@ export function computeScores(
   const saturationMult = saturated ? round2(1 - cfg.scoring.saturatedCriticPenalty) : 1;
   audience = audience * comboAudienceMult * fatigueMult;
   critic = critic * comboCriticMult * fatigueMult * saturationMult;
+  const audienceRaw = round2(audience);
+  const criticRaw = round2(critic);
+  audience = applyExpectation(audience, expectations.audienceToughness, expectations.method);
+  critic = applyExpectation(critic, expectations.criticToughness, expectations.method);
   return {
     meters,
     audienceBase,
@@ -87,6 +140,9 @@ export function computeScores(
     comboCriticMult,
     fatigueMult,
     saturationMult,
+    audienceRaw,
+    criticRaw,
+    expectations,
     audience: round2(Math.max(0, Math.min(10, audience))),
     critic: round2(Math.max(0, Math.min(10, critic))),
   };

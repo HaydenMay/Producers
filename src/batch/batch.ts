@@ -5,6 +5,7 @@ import { RULESET_VERSION, type Release } from "../core/types";
 import { careerMetrics, summarize, scoreTrend, type CareerMetrics } from "./metrics";
 import { checkInvariants, diagnose, type Flag, type Violation } from "./diagnostics";
 import { runCareer, type CareerOptions } from "./runner";
+import { bestOf, careerProgress, filmRefs, greatness, progressRows, type CareerProgress, type FilmRef, type GreatRow, type ProgressRow } from "./greatness";
 
 export interface BatchResult {
   meta: { ruleset: string; config: string; configHash: string; seeds: [number, number]; strategies: string[]; productions: number; featuresModelled: string[]; featuresNotModelled: string[]; runtimeMs: number; careers: number };
@@ -14,6 +15,13 @@ export interface BatchResult {
   flags: Flag[];
   violations: Violation[];
   releases: { seed: number; strategy: string; releases: Release[] }[];
+  /** Gate 2.6 top-end statistics (release windows, year bands, critic generations) */
+  great: GreatRow[];
+  /** Gate 2.6 Prestige progression per strategy, and per career */
+  progress: ProgressRow[];
+  progressCareers: CareerProgress[];
+  /** each career's best combined-rated film (deterministic tie-break) */
+  careerBest: FilmRef[];
 }
 
 /** Slim release record: enough for diagnostics, far less memory than full releases (weekly arrays, traces, cards). */
@@ -26,11 +34,15 @@ export function runBatch(seedStart: number, seedCount: number, strategies: strin
   const metrics: CareerMetrics[] = [];
   const violations: Violation[] = [];
   const releases: BatchResult["releases"] = [];
+  const films: { seed: number; strategy: string; films: FilmRef[] }[] = [];
+  const progressCareers: CareerProgress[] = [];
   for (let seed = seedStart; seed < seedStart + seedCount; seed++) {
     for (const strat of strategies) {
       const r = runCareer(seed, strat, cfg, opts);
       metrics.push(careerMetrics(r, cfg));
       violations.push(...checkInvariants(r, cfg));
+      films.push({ seed, strategy: strat, films: filmRefs(seed, strat, r.state.releases, cfg) });
+      progressCareers.push(careerProgress(seed, strat, r.state, cfg));
       if (keepReleases) releases.push({ seed, strategy: strat, releases: keepReleases === "full" ? r.state.releases : r.state.releases.map(slimRelease) });
     }
   }
@@ -43,6 +55,10 @@ export function runBatch(seedStart: number, seedCount: number, strategies: strin
     flags: diagnose(metrics, releases, undefined, cfg),
     violations,
     releases,
+    great: greatness(films, cfg, opts.productions),
+    progress: progressRows(progressCareers, cfg),
+    progressCareers,
+    careerBest: films.map((c) => bestOf(c.films)).filter((f): f is FilmRef => f !== null),
   };
 }
 

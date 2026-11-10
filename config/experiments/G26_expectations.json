@@ -1,0 +1,216 @@
+{
+ "_label": "Gate 2.6 critic generations + audience eras. Base = config/candidate.json (ladder 4-6-8, diffusion legs, hybrid Prestige) held constant. All expectation numbers are TEST ASSUMPTIONS.",
+ "reference": "control",
+ "seeds": 300,
+ "productions": [
+  5,
+  20,
+  50,
+  100
+ ],
+ "strategies": [
+  "balanced",
+  "quality-first",
+  "franchise-builder",
+  "repeat-farmer",
+  "cheap-duds",
+  "experimenter",
+  "self-funder",
+  "selective-self-funder",
+  "famous-star"
+ ],
+ "scoreIndexes": [
+  1,
+  5,
+  10,
+  20,
+  30,
+  50,
+  75,
+  100
+ ],
+ "variants": [
+  {
+   "name": "control",
+   "note": "Gate 2.5 candidate, current expectation rules (era bar 0.04/yr, cap 1.8; no generations)",
+   "overrides": {}
+  },
+  {
+   "name": "ref_no_era_bar",
+   "note": "ATTRIBUTION ONLY: existing era bar off",
+   "overrides": {
+    "production": {
+     "eraBarPerYear": 0
+    }
+   }
+  },
+  {
+   "name": "ref_era_bar_0.08",
+   "note": "ATTRIBUTION ONLY: existing shared era bar doubled (Gate 2 F1 blunt fix)",
+   "overrides": {
+    "production": {
+     "eraBarPerYear": 0.08
+    }
+   }
+  },
+  {
+   "name": "critic_mild",
+   "note": "critics only: new generation every 8 yrs, +3%/gen, max 9%",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 8,
+      "toughnessPerGeneration": 0.03,
+      "maxToughness": 0.09
+     }
+    }
+   }
+  },
+  {
+   "name": "critic_moderate",
+   "note": "critics only: every 6 yrs, +4%/gen, max 12%",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 6,
+      "toughnessPerGeneration": 0.04,
+      "maxToughness": 0.12
+     }
+    }
+   }
+  },
+  {
+   "name": "critic_strong",
+   "note": "critics only: every 5 yrs, +5%/gen, max 20%",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 5,
+      "toughnessPerGeneration": 0.05,
+      "maxToughness": 0.2
+     }
+    }
+   }
+  },
+  {
+   "name": "critic_moderate_subtract",
+   "note": "critics only, moderate, SUBTRACT method (\u22120.4 pt/gen) instead of scale",
+   "overrides": {
+    "expectations": {
+     "method": "subtract",
+     "critics": {
+      "enabled": true,
+      "generationYears": 6,
+      "toughnessPerGeneration": 0.04,
+      "maxToughness": 0.12
+     }
+    }
+   }
+  },
+  {
+   "name": "audience_mild",
+   "note": "audience only: new era every 12 yrs, +1.5%/era, max 4.5%",
+   "overrides": {
+    "expectations": {
+     "audience": {
+      "enabled": true,
+      "eraYears": 12,
+      "toughnessPerEra": 0.015,
+      "maxToughness": 0.045
+     }
+    }
+   }
+  },
+  {
+   "name": "audience_moderate",
+   "note": "audience only: every 10 yrs, +2%/era, max 6%",
+   "overrides": {
+    "expectations": {
+     "audience": {
+      "enabled": true,
+      "eraYears": 10,
+      "toughnessPerEra": 0.02,
+      "maxToughness": 0.06
+     }
+    }
+   }
+  },
+  {
+   "name": "audience_strong",
+   "note": "audience only: every 8 yrs, +3%/era, max 9%",
+   "overrides": {
+    "expectations": {
+     "audience": {
+      "enabled": true,
+      "eraYears": 8,
+      "toughnessPerEra": 0.03,
+      "maxToughness": 0.09
+     }
+    }
+   }
+  },
+  {
+   "name": "combo_A",
+   "note": "critic_mild + audience_mild",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 8,
+      "toughnessPerGeneration": 0.03,
+      "maxToughness": 0.09
+     },
+     "audience": {
+      "enabled": true,
+      "eraYears": 12,
+      "toughnessPerEra": 0.015,
+      "maxToughness": 0.045
+     }
+    }
+   }
+  },
+  {
+   "name": "combo_B",
+   "note": "critic_moderate + audience_moderate",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 6,
+      "toughnessPerGeneration": 0.04,
+      "maxToughness": 0.12
+     },
+     "audience": {
+      "enabled": true,
+      "eraYears": 10,
+      "toughnessPerEra": 0.02,
+      "maxToughness": 0.06
+     }
+    }
+   }
+  },
+  {
+   "name": "combo_C",
+   "note": "critic_strong + audience_mild",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 5,
+      "toughnessPerGeneration": 0.05,
+      "maxToughness": 0.2
+     },
+     "audience": {
+      "enabled": true,
+      "eraYears": 12,
+      "toughnessPerEra": 0.015,
+      "maxToughness": 0.045
+     }
+    }
+   }
+  }
+ ]
+}

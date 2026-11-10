@@ -12,7 +12,9 @@ import type { CareerMetrics } from "../batch/metrics";
 import { legsReport } from "../batch/legs";
 import { selfFundRegret, selfFundReport } from "../batch/selfFund";
 import { earlyReport, type EarlyScenario } from "../batch/early";
-import { experimentJson, experimentReport, runExperiment, type ExperimentSpec } from "../batch/experiment";
+import { greatCsv } from "../batch/greatness";
+import { fixedReport } from "../batch/eras";
+import { experimentJson, experimentGreatCsv, experimentCareerBestCsv, experimentReport, runExperiment, type ExperimentSpec } from "../batch/experiment";
 import type { Decision } from "../core/types";
 
 function args(argv: string[]) {
@@ -79,8 +81,9 @@ function main() {
       const base = `batch-${cfg.name.replace(/[^a-z0-9]+/gi, "_")}-s${seeds}-p${productions}`;
       out(dir, `${base}.md`, batchReport(b, cfg));
       out(dir, `${base}.careers.csv`, metricsCsv(b.metrics));
+      out(dir, `${base}.great.csv`, greatCsv(b.great));
       if (one(a, "releases-csv", "false") === "true") out(dir, `${base}.releases.csv`, releasesCsv(b));
-      out(dir, `${base}.summary.json`, JSON.stringify({ meta: b.meta, summary: b.summary, trends: b.trends, flags: b.flags, violations: b.violations }, null, 1));
+      out(dir, `${base}.summary.json`, JSON.stringify({ meta: b.meta, summary: b.summary, trends: b.trends, flags: b.flags, violations: b.violations, great: b.great, progress: b.progress }, null, 1));
       console.log(`ruleset ${b.meta.ruleset} · config ${b.meta.config} (${b.meta.configHash}) · seeds ${b.meta.seeds.join("–")} · ${b.meta.careers} careers · ${b.meta.runtimeMs} ms`);
       console.log(`invariant violations: ${b.violations.length}`);
       for (const f of b.flags) console.log(`${f.fired ? "FIRED" : "  ok "} ${f.flag}: ${f.why}`);
@@ -113,6 +116,8 @@ function main() {
       const res = runExperiment(spec, cfg);
       const p = out(dir, `${name}.md`, experimentReport(res, `Experiment: ${name}`));
       out(dir, `${name}.json`, JSON.stringify(experimentJson(res), null, 1));
+      out(dir, `${name}.great.csv`, experimentGreatCsv(res));
+      out(dir, `${name}.careerbest.csv`, experimentCareerBestCsv(res));
       const viol = res.runs.reduce((x, r) => x + r.batch.violations.length, 0);
       console.log(`experiment ${name}: ${res.runs.length} runs · ${res.runs.reduce((x, r) => x + r.batch.meta.careers, 0)} careers · ${res.runs.reduce((x, r) => x + r.batch.meta.runtimeMs, 0)} ms · invariant violations ${viol}`);
       console.log(`report: ${p}`);
@@ -136,6 +141,14 @@ function main() {
     case "early": {
       const spec = JSON.parse(readFileSync(one(a, "spec", "config/experiments/E_start_economy.json"), "utf8")) as { seeds: number; strategies: string[]; scenarios: EarlyScenario[] };
       const p = out(dir, "early-economy.md", earlyReport(cfg, spec.scenarios, Number(one(a, "seeds", String(spec.seeds))), spec.strategies));
+      console.log(`report: ${p}`);
+      break;
+    }
+    case "eras": {
+      const spec = JSON.parse(readFileSync(one(a, "spec", "config/experiments/G26_expectations.json"), "utf8")) as ExperimentSpec;
+      const r = fixedReport(cfg, spec.variants);
+      const p = out(dir, "fixed-quality-eras.md", r.md);
+      out(dir, "fixed-quality-eras.json", JSON.stringify(r.json, null, 1));
       console.log(`report: ${p}`);
       break;
     }

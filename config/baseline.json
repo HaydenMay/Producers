@@ -464,5 +464,22 @@
   "agents": {
     "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire).",
     "legacyHeuristicStaffCaps": true
+  },
+  "expectations": {
+    "_label": "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS.",
+    "method": "scale",
+    "critics": {
+      "enabled": false,
+      "generationYears": 6,
+      "toughnessPerGeneration": 0.04,
+      "maxToughness": 0.12,
+      "announceWeeksAhead": 26
+    },
+    "audience": {
+      "enabled": false,
+      "eraYears": 10,
+      "toughnessPerEra": 0.02,
+      "maxToughness": 0.06
+    }
   }
 }

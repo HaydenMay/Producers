@@ -129,6 +129,8 @@ export interface Release {
   critic: number; // 0..10
   avgScore: number;
   hallOfFame: boolean;
+  criticGeneration?: number; // Gate 2.6 proxy: critic generation that reviewed it (0 when disabled)
+  audienceEra?: number;
   openingViewers: number;
   weekIndex: number; // weeks since release
   lastViewers: number;

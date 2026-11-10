@@ -1,0 +1,8917 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 6) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): starlight $50,000 @ 8%; wolf $89,000 @ 31%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Lost Night (Action + Spies, new) with wolf advance $89,000 @ 31%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Lost Night hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Dee Okafor for $8,129.65.",
+  "data": {
+   "starId": "star7",
+   "price": 8129.65
+  }
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Lost Night hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 16,
+  "type": "surplus",
+  "message": "Lost Night: kept $870 of unused advance.",
+  "data": {
+   "projectId": "proj2",
+   "surplus": 870.35
+  }
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Action level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Lost Night released: Audience 6.28 / Critics 5.61 (avg 5.95). Opening pool 164,122, opening 49,237.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): wolf $93,000 @ 31%; starlight $47,000 @ 8%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Broken Signal (Action + Spies, new) with wolf advance $93,000 @ 31%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Lost Night opens to 49,237 viewers.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 0,
+   "now": 49237,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 23,
+  "type": "milestone",
+  "message": "Broken Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 23,
+  "type": "cast",
+  "message": "Cast Bo Hart for $33,664.35.",
+  "data": {
+   "starId": "star12",
+   "price": 33664.35
+  }
+ },
+ {
+  "week": 27,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 27,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 29,
+  "type": "milestone",
+  "message": "Broken Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 29,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 31,
+  "type": "ip_fans",
+  "message": "Lost Night fans: 0 → 2,482 (avg score 5.95, 163,299 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 31,
+  "type": "star_career",
+  "message": "Dee Okafor: Fame 12.0 → 14.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star7",
+   "fameDelta": 2.48,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 31,
+  "type": "trust",
+  "message": "Wolf Pictures earned 114% of its advance back on Lost Night. Trust 2.50 → 2.64.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.14,
+   "step": 0.14
+  }
+ },
+ {
+  "week": 31,
+  "type": "run_end",
+  "message": "Lost Night run ended after 15 weeks: 163,299 viewers, gross $326,598, studio take $225,353.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 32,
+  "type": "release",
+  "message": "Broken Signal released: Audience 6.51 / Critics 5.65 (avg 6.08). Opening pool 179,568, opening 53,870.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 32,
+  "type": "hire",
+  "message": "Hired Liv Diaz (plot 18, writing 27, filming 16, editing 28)."
+ },
+ {
+  "week": 32,
+  "type": "hire",
+  "message": "Hired Gus Okafor (plot 29, writing 18, filming 32, editing 20)."
+ },
+ {
+  "week": 32,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): wolf $87,000 @ 31%; starlight $48,000 @ 8%."
+ },
+ {
+  "week": 32,
+  "type": "project_start",
+  "message": "Started Iron Run (Comedy + Sports, new) with wolf advance $87,000 @ 31%.",
+  "data": {
+   "projectId": "proj20"
+  }
+ },
+ {
+  "week": 33,
+  "type": "feedback",
+  "message": "Broken Signal opens to 53,870 viewers.",
+  "data": {
+   "releaseId": "rel16",
+   "prev": 0,
+   "now": 53870,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 39,
+  "type": "milestone",
+  "message": "Iron Run hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj20"
+  }
+ },
+ {
+  "week": 39,
+  "type": "cast",
+  "message": "Cast Sam Diaz for $20,203.31.",
+  "data": {
+   "starId": "star23",
+   "price": 20203.31
+  }
+ },
+ {
+  "week": 40,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 45,
+  "type": "milestone",
+  "message": "Iron Run hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj20"
+  }
+ },
+ {
+  "week": 45,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 46,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 47,
+  "type": "ip_fans",
+  "message": "Broken Signal fans: 0 → 3,264 (avg score 6.08, 188,864 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 47,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 40.0 → 43.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 3.01,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 47,
+  "type": "trust",
+  "message": "Wolf Pictures earned 126% of its advance back on Broken Signal. Trust 2.62 → 2.85.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.26,
+   "step": 0.23
+  }
+ },
+ {
+  "week": 47,
+  "type": "run_end",
+  "message": "Broken Signal run ended after 15 weeks: 188,864 viewers, gross $377,728, studio take $260,632.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 47,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 47,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 48,
+  "type": "genre_level",
+  "message": "Studio Comedy level 0 → 1."
+ },
+ {
+  "week": 48,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Iron Run).",
+  "data": {
+   "awardId": "rel:rel26:audience_7_5",
+   "releaseId": "rel26",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 48,
+  "type": "release",
+  "message": "Iron Run released: Audience 7.53 / Critics 7.65 (avg 7.59). Opening pool 157,017, opening 47,105.",
+  "data": {
+   "releaseId": "rel26"
+  }
+ },
+ {
+  "week": 48,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 48,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 48,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (new): orbit $81,000 @ 35%; starlight $55,000 @ 8%."
+ },
+ {
+  "week": 48,
+  "type": "project_start",
+  "message": "Started Dead Run (Comedy + Spies, new) with orbit advance $81,000 @ 35%.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 49,
+  "type": "feedback",
+  "message": "Iron Run opens to 47,105 viewers.",
+  "data": {
+   "releaseId": "rel26",
+   "prev": 0,
+   "now": 47105,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 50,
+  "type": "feedback",
+  "message": "Critics love Iron Run, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel26",
+   "prev": 47105,
+   "now": 34655,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 52,
+  "type": "feedback",
+  "message": "Word of mouth on Iron Run is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel26",
+   "prev": 22099,
+   "now": 20330,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 55,
+  "type": "milestone",
+  "message": "Dead Run hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 55,
+  "type": "cast",
+  "message": "Cast Sam Diaz for $19,758.58.",
+  "data": {
+   "starId": "star23",
+   "price": 19758.58
+  }
+ },
+ {
+  "week": 59,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 60,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 61,
+  "type": "milestone",
+  "message": "Dead Run hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 61,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 63,
+  "type": "ip_fans",
+  "message": "Iron Run fans: 0 → 9,709 (avg score 7.59, 234,286 viewers).",
+  "data": {
+   "ipId": "ip19"
+  }
+ },
+ {
+  "week": 63,
+  "type": "star_career",
+  "message": "Sam Diaz: Fame 27.0 → 34.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star23",
+   "fameDelta": 7.9,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 63,
+  "type": "trust",
+  "message": "Wolf Pictures earned 167% of its advance back on Iron Run with strong reviews. Trust 2.83 → 3.51.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.67,
+   "step": 0.68
+  }
+ },
+ {
+  "week": 63,
+  "type": "run_end",
+  "message": "Iron Run run ended after 15 weeks: 234,286 viewers, gross $468,572, studio take $323,315.",
+  "data": {
+   "releaseId": "rel26"
+  }
+ },
+ {
+  "week": 64,
+  "type": "release",
+  "message": "Dead Run released: Audience 7.37 / Critics 7.96 (avg 7.67). Opening pool 237,770, opening 71,331.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (sequel): starlight $47,000 @ 8%; wolf $91,000 @ 30%."
+ },
+ {
+  "week": 64,
+  "type": "project_start",
+  "message": "Started Iron Run 2 (Comedy + Sports, sequel) with wolf advance $91,000 @ 30%.",
+  "data": {
+   "projectId": "proj35"
+  }
+ },
+ {
+  "week": 65,
+  "type": "feedback",
+  "message": "Dead Run opens to 71,331 viewers.",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 0,
+   "now": 71331,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 66,
+  "type": "feedback",
+  "message": "Critics love Dead Run, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 71331,
+   "now": 52748,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 66,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 68,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 33063,
+   "now": 29102,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 71,
+  "type": "milestone",
+  "message": "Iron Run 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj35"
+  }
+ },
+ {
+  "week": 71,
+  "type": "cast",
+  "message": "Cast Sam Diaz for $26,254.52.",
+  "data": {
+   "starId": "star23",
+   "price": 26254.52
+  }
+ },
+ {
+  "week": 77,
+  "type": "milestone",
+  "message": "Iron Run 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj35"
+  }
+ },
+ {
+  "week": 77,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 79,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 0 → 13,912 (avg score 7.67, 325,644 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 79,
+  "type": "star_career",
+  "message": "Sam Diaz: Fame 34.9 → 44.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 3.",
+  "data": {
+   "starId": "star23",
+   "fameDelta": 9.14,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 79,
+  "type": "trust",
+  "message": "Orbit Releasing earned 281% of its advance back on Dead Run with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.81,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 79,
+  "type": "run_end",
+  "message": "Dead Run run ended after 15 weeks: 325,644 viewers, gross $651,288, studio take $423,337.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 79,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 80,
+  "type": "genre_level",
+  "message": "Studio Comedy level 1 → 2."
+ },
+ {
+  "week": 80,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Iron Run 2).",
+  "data": {
+   "awardId": "rel:rel41:audience_7_5",
+   "releaseId": "rel41",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 80,
+  "type": "release",
+  "message": "Iron Run 2 released: Audience 7.8 / Critics 7.95 (avg 7.88). Opening pool 169,355, opening 50,807.",
+  "data": {
+   "releaseId": "rel41"
+  }
+ },
+ {
+  "week": 80,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 80,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 80,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): wolf $99,000 @ 30%; orbit $102,000 @ 34%."
+ },
+ {
+  "week": 80,
+  "type": "project_start",
+  "message": "Started Dead Run 2 (Comedy + Spies, sequel) with orbit advance $102,000 @ 34%.",
+  "data": {
+   "projectId": "proj42"
+  }
+ },
+ {
+  "week": 81,
+  "type": "feedback",
+  "message": "Iron Run 2 opens to 50,807 viewers.",
+  "data": {
+   "releaseId": "rel41",
+   "prev": 0,
+   "now": 50807,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 81,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 82,
+  "type": "feedback",
+  "message": "Critics love Iron Run 2, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel41",
+   "prev": 50807,
+   "now": 37635,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 84,
+  "type": "feedback",
+  "message": "Word of mouth on Iron Run 2 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel41",
+   "prev": 23664,
+   "now": 22631,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 87,
+  "type": "milestone",
+  "message": "Dead Run 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj42"
+  }
+ },
+ {
+  "week": 87,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 87,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 87,
+  "type": "cast",
+  "message": "Cast Sam Diaz for $33,465.11.",
+  "data": {
+   "starId": "star23",
+   "price": 33465.11
+  }
+ },
+ {
+  "week": 93,
+  "type": "milestone",
+  "message": "Dead Run 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj42"
+  }
+ },
+ {
+  "week": 93,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 95,
+  "type": "ip_fans",
+  "message": "Iron Run fans: 9,128 → 20,036 (avg score 7.88, 236,709 viewers).",
+  "data": {
+   "ipId": "ip19"
+  }
+ },
+ {
+  "week": 95,
+  "type": "star_career",
+  "message": "Sam Diaz: Fame 44.0 → 52.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star23",
+   "fameDelta": 8.81,
+   "relDelta": 0.75,
+   "grow": 4
+  }
+ },
+ {
+  "week": 95,
+  "type": "trust",
+  "message": "Wolf Pictures earned 156% of its advance back on Iron Run 2 with strong reviews. Trust 3.46 → 4.11.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.56,
+   "step": 0.65
+  }
+ },
+ {
+  "week": 95,
+  "type": "run_end",
+  "message": "Iron Run 2 run ended after 15 weeks: 236,709 viewers, gross $473,418, studio take $331,393.",
+  "data": {
+   "releaseId": "rel41"
+  }
+ },
+ {
+  "week": 96,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 2).",
+  "data": {
+   "awardId": "rel:rel48:meters_all_70",
+   "releaseId": "rel48",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 96,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Run 2).",
+  "data": {
+   "awardId": "rel:rel48:audience_7_5",
+   "releaseId": "rel48",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 96,
+  "type": "release",
+  "message": "Dead Run 2 released: Audience 7.54 / Critics 8.14 (avg 7.84). Opening pool 271,425, opening 81,428.",
+  "data": {
+   "releaseId": "rel48"
+  }
+ },
+ {
+  "week": 96,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Mythology."
+ },
+ {
+  "week": 96,
+  "type": "upgrade",
+  "message": "Studio upgraded: employee capacity 4 → 6 (cost $250,000)."
+ },
+ {
+  "week": 96,
+  "type": "hire",
+  "message": "Hired Max Grant (plot 33, writing 16, filming 27, editing 23)."
+ },
+ {
+  "week": 96,
+  "type": "hire",
+  "message": "Hired Lee Lind (plot 24, writing 29, filming 29, editing 22)."
+ },
+ {
+  "week": 96,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): wolf $128,000 @ 29%; starlight $61,000 @ 8%."
+ },
+ {
+  "week": 96,
+  "type": "project_start",
+  "message": "Started Hollow Protocol (Action + Sports, new) with wolf advance $128,000 @ 29%.",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 97,
+  "type": "feedback",
+  "message": "Dead Run 2 opens to 81,428 viewers.",
+  "data": {
+   "releaseId": "rel48",
+   "prev": 0,
+   "now": 81428,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 98,
+  "type": "feedback",
+  "message": "Critics love Dead Run 2, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel48",
+   "prev": 81428,
+   "now": 59619,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 99,
+  "type": "prestige",
+  "message": "Prestige +100: ip_gross_1m (Dead Run 2).",
+  "data": {
+   "awardId": "ip:ip27:ip_gross_1m",
+   "releaseId": "rel48",
+   "milestone": "ip_gross_1m",
+   "amount": 100
+  }
+ },
+ {
+  "week": 99,
+  "type": "prestige",
+  "message": "Prestige +150: ip_viewers_500k (Dead Run 2).",
+  "data": {
+   "awardId": "ip:ip27:ip_viewers_500k",
+   "releaseId": "rel48",
+   "milestone": "ip_viewers_500k",
+   "amount": 150
+  }
+ },
+ {
+  "week": 99,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 100,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run 2 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel48",
+   "prev": 36315,
+   "now": 32799,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 100,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 101,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 103,
+  "type": "milestone",
+  "message": "Hollow Protocol hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 103,
+  "type": "cast",
+  "message": "Cast Bo Hart for $31,502.97.",
+  "data": {
+   "starId": "star12",
+   "price": 31502.97
+  }
+ },
+ {
+  "week": 106,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 109,
+  "type": "milestone",
+  "message": "Hollow Protocol hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 109,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 111,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 13,082 → 28,008 (avg score 7.84, 328,488 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 111,
+  "type": "star_career",
+  "message": "Sam Diaz: Fame 52.9 → 62.6, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 4.",
+  "data": {
+   "starId": "star23",
+   "fameDelta": 9.75,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 111,
+  "type": "trust",
+  "message": "Orbit Releasing earned 219% of its advance back on Dead Run 2 with strong reviews. Trust 3.20 → 3.95.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.19,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 111,
+  "type": "run_end",
+  "message": "Dead Run 2 run ended after 15 weeks: 328,488 viewers, gross $656,976, studio take $433,604.",
+  "data": {
+   "releaseId": "rel48"
+  }
+ },
+ {
+  "week": 112,
+  "type": "surplus",
+  "message": "Hollow Protocol: kept $16,497 of unused advance.",
+  "data": {
+   "projectId": "proj52",
+   "surplus": 16497.03
+  }
+ },
+ {
+  "week": 112,
+  "type": "genre_level",
+  "message": "Studio Action level 1 → 2."
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Protocol).",
+  "data": {
+   "awardId": "rel:rel58:meters_all_70",
+   "releaseId": "rel58",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Protocol).",
+  "data": {
+   "awardId": "rel:rel58:audience_7_5",
+   "releaseId": "rel58",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Hollow Protocol).",
+  "data": {
+   "awardId": "rel:rel58:critic_8_5",
+   "releaseId": "rel58",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Hollow Protocol).",
+  "data": {
+   "awardId": "rel:rel58:hall_of_fame",
+   "releaseId": "rel58",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +100: first_hall_of_fame (Hollow Protocol).",
+  "data": {
+   "awardId": "career:first_hall_of_fame",
+   "releaseId": "rel58",
+   "milestone": "first_hall_of_fame",
+   "amount": 100
+  }
+ },
+ {
+  "week": 112,
+  "type": "release",
+  "message": "Hollow Protocol released: Audience 9.36 / Critics 8.78 (avg 9.07, HALL OF FAME). Opening pool 208,416, opening 62,525.",
+  "data": {
+   "releaseId": "rel58"
+  }
+ },
+ {
+  "week": 112,
+  "type": "upgrade",
+  "message": "Studio upgraded: employee capacity 6 → 8 (cost $750,000)."
+ },
+ {
+  "week": 112,
+  "type": "hire",
+  "message": "Hired Sam Quinn (plot 20, writing 29, filming 15, editing 21)."
+ },
+ {
+  "week": 112,
+  "type": "hire",
+  "message": "Hired Noa Sato (plot 30, writing 15, filming 25, editing 33)."
+ },
+ {
+  "week": 112,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): starlight $56,000 @ 8%; orbit $108,000 @ 33%."
+ },
+ {
+  "week": 112,
+  "type": "project_start",
+  "message": "Started Dead Run (Comedy + Sports, new) with orbit advance $108,000 @ 33%.",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 113,
+  "type": "feedback",
+  "message": "Hollow Protocol opens to 62,525 viewers.",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 0,
+   "now": 62525,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 114,
+  "type": "feedback",
+  "message": "Critics love Hollow Protocol, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 62525,
+   "now": 47593,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 114,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 116,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Protocol. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 29145,
+   "now": 35474,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 119,
+  "type": "milestone",
+  "message": "Dead Run hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 119,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 119,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 119,
+  "type": "cast",
+  "message": "Cast Sam Diaz for $42,555.29.",
+  "data": {
+   "starId": "star23",
+   "price": 42555.29
+  }
+ },
+ {
+  "week": 125,
+  "type": "milestone",
+  "message": "Dead Run hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 125,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 127,
+  "type": "ip_fans",
+  "message": "Hollow Protocol fans: 0 → 17,084 (avg score 9.07, 262,343 viewers).",
+  "data": {
+   "ipId": "ip51"
+  }
+ },
+ {
+  "week": 127,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 43.0 → 56.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 5.",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 12.95,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 127,
+  "type": "trust",
+  "message": "Wolf Pictures earned 119% of its advance back on Hollow Protocol with strong reviews. Trust 4.06 → 4.57.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.19,
+   "step": 0.51
+  }
+ },
+ {
+  "week": 127,
+  "type": "run_end",
+  "message": "Hollow Protocol run ended after 15 weeks: 262,343 viewers, gross $524,686, studio take $372,527.",
+  "data": {
+   "releaseId": "rel58"
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run).",
+  "data": {
+   "awardId": "rel:rel68:meters_all_70",
+   "releaseId": "rel68",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Run).",
+  "data": {
+   "awardId": "rel:rel68:audience_7_5",
+   "releaseId": "rel68",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 128,
+  "type": "release",
+  "message": "Dead Run released: Audience 8.09 / Critics 8.22 (avg 8.16). Opening pool 269,851, opening 80,955.",
+  "data": {
+   "releaseId": "rel68"
+  }
+ },
+ {
+  "week": 128,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 128,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 128,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): xyz $103,000 @ 45%; starlight $49,000 @ 8%; meridian $96,000 @ 50%."
+ },
+ {
+  "week": 128,
+  "type": "project_start",
+  "message": "Started Dead Run 3 (Comedy + Spies, sequel) with xyz advance $103,000 @ 45%.",
+  "data": {
+   "projectId": "proj69"
+  }
+ },
+ {
+  "week": 129,
+  "type": "feedback",
+  "message": "Dead Run opens to 80,955 viewers.",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 0,
+   "now": 80955,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 130,
+  "type": "feedback",
+  "message": "Critics love Dead Run, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 80955,
+   "now": 59570,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 132,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 36317,
+   "now": 36258,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 133,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Run is still climbing (36,258 → 36,378).",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 36258,
+   "now": 36378,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 134,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 135,
+  "type": "milestone",
+  "message": "Dead Run 3 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj69"
+  }
+ },
+ {
+  "week": 135,
+  "type": "cast",
+  "message": "Cast Sam Diaz for $42,169.21.",
+  "data": {
+   "starId": "star23",
+   "price": 42169.21
+  }
+ },
+ {
+  "week": 138,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 141,
+  "type": "milestone",
+  "message": "Dead Run 3 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj69"
+  }
+ },
+ {
+  "week": 141,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 141,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 143,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 0 → 16,640 (avg score 8.16, 329,114 viewers).",
+  "data": {
+   "ipId": "ip61"
+  }
+ },
+ {
+  "week": 143,
+  "type": "star_career",
+  "message": "Sam Diaz: Fame 62.6 → 73.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star23",
+   "fameDelta": 10.85,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 143,
+  "type": "trust",
+  "message": "Orbit Releasing earned 201% of its advance back on Dead Run with strong reviews. Trust 3.90 → 4.65.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.01,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 143,
+  "type": "run_end",
+  "message": "Dead Run run ended after 15 weeks: 329,114 viewers, gross $658,228, studio take $441,013.",
+  "data": {
+   "releaseId": "rel68"
+  }
+ },
+ {
+  "week": 144,
+  "type": "genre_level",
+  "message": "Studio Comedy level 2 → 3."
+ },
+ {
+  "week": 144,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 3).",
+  "data": {
+   "awardId": "rel:rel75:meters_all_70",
+   "releaseId": "rel75",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 144,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Run 3).",
+  "data": {
+   "awardId": "rel:rel75:audience_7_5",
+   "releaseId": "rel75",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 144,
+  "type": "release",
+  "message": "Dead Run 3 released: Audience 8.12 / Critics 7.87 (avg 7.99). Opening pool 300,463, opening 90,139.",
+  "data": {
+   "releaseId": "rel75"
+  }
+ },
+ {
+  "week": 144,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 144,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 144,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Zombies (new): wolf $121,000 @ 28%; orbit $118,000 @ 32%; meridian $139,000 @ 48%."
+ },
+ {
+  "week": 144,
+  "type": "project_start",
+  "message": "Started Hollow Night (Action + Zombies, new) with meridian advance $139,000 @ 48%.",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 145,
+  "type": "feedback",
+  "message": "Dead Run 3 opens to 90,139 viewers.",
+  "data": {
+   "releaseId": "rel75",
+   "prev": 0,
+   "now": 90139,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 146,
+  "type": "feedback",
+  "message": "Critics love Dead Run 3, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel75",
+   "prev": 90139,
+   "now": 65278,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 148,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Run 3. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel75",
+   "prev": 39997,
+   "now": 40687,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 149,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Run 3 is still climbing (40,687 → 40,997).",
+  "data": {
+   "releaseId": "rel75",
+   "prev": 40687,
+   "now": 40997,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 151,
+  "type": "milestone",
+  "message": "Hollow Night hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 151,
+  "type": "cast",
+  "message": "Cast Bo Hart for $39,849.23.",
+  "data": {
+   "starId": "star12",
+   "price": 39849.23
+  }
+ },
+ {
+  "week": 157,
+  "type": "milestone",
+  "message": "Hollow Night hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 157,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 158,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 159,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 25,536 → 43,360 (avg score 7.99, 372,568 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 159,
+  "type": "star_career",
+  "message": "Sam Diaz: Fame 73.5 → 84.1, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 5.",
+  "data": {
+   "starId": "star23",
+   "fameDelta": 10.66,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 159,
+  "type": "trust",
+  "message": "XYZ Network earned 326% of its advance back on Dead Run 3 with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 3.26,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 159,
+  "type": "run_end",
+  "message": "Dead Run 3 run ended after 15 weeks: 372,568 viewers, gross $745,136, studio take $409,825.",
+  "data": {
+   "releaseId": "rel75"
+  }
+ },
+ {
+  "week": 159,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 160,
+  "type": "surplus",
+  "message": "Hollow Night: kept $19,151 of unused advance.",
+  "data": {
+   "projectId": "proj77",
+   "surplus": 19150.77
+  }
+ },
+ {
+  "week": 160,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Night).",
+  "data": {
+   "awardId": "rel:rel83:meters_all_70",
+   "releaseId": "rel83",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 160,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Night).",
+  "data": {
+   "awardId": "rel:rel83:audience_7_5",
+   "releaseId": "rel83",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 160,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Hollow Night).",
+  "data": {
+   "awardId": "rel:rel83:critic_8_5",
+   "releaseId": "rel83",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 160,
+  "type": "release",
+  "message": "Hollow Night released: Audience 8.62 / Critics 9.06 (avg 8.84). Opening pool 324,298, opening 97,289.",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 160,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Pirates."
+ },
+ {
+  "week": 160,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 160,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 160,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Mythology (new): wolf $108,000 @ 29%; xyz $107,000 @ 43%."
+ },
+ {
+  "week": 160,
+  "type": "project_start",
+  "message": "Started Dead Echo (Action + Mythology, new) with xyz advance $107,000 @ 43%.",
+  "data": {
+   "projectId": "proj85"
+  }
+ },
+ {
+  "week": 161,
+  "type": "feedback",
+  "message": "Hollow Night opens to 97,289 viewers.",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 0,
+   "now": 97289,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 162,
+  "type": "feedback",
+  "message": "Critics love Hollow Night, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 97289,
+   "now": 76165,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 164,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Night. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 47466,
+   "now": 50558,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 165,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Hollow Night is still climbing (50,558 → 54,666).",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 50558,
+   "now": 54666,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 167,
+  "type": "milestone",
+  "message": "Dead Echo hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj85"
+  }
+ },
+ {
+  "week": 167,
+  "type": "cast",
+  "message": "Cast Bo Hart for $39,493.58.",
+  "data": {
+   "starId": "star12",
+   "price": 39493.58
+  }
+ },
+ {
+  "week": 173,
+  "type": "milestone",
+  "message": "Dead Echo hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj85"
+  }
+ },
+ {
+  "week": 173,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 174,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 175,
+  "type": "ip_fans",
+  "message": "Hollow Night fans: 0 → 26,810 (avg score 8.84, 436,368 viewers).",
+  "data": {
+   "ipId": "ip76"
+  }
+ },
+ {
+  "week": 175,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 56.0 → 70.3, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 14.29,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 175,
+  "type": "trust",
+  "message": "Meridian Global earned 301% of its advance back on Hollow Night with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 3.01,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 175,
+  "type": "run_end",
+  "message": "Hollow Night run ended after 15 weeks: 436,368 viewers, gross $872,736, studio take $453,823.",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Echo).",
+  "data": {
+   "awardId": "rel:rel91:meters_all_70",
+   "releaseId": "rel91",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Echo).",
+  "data": {
+   "awardId": "rel:rel91:audience_7_5",
+   "releaseId": "rel91",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 176,
+  "type": "release",
+  "message": "Dead Echo released: Audience 8.65 / Critics 6.86 (avg 7.76). Opening pool 308,772, opening 92,632.",
+  "data": {
+   "releaseId": "rel91"
+  }
+ },
+ {
+  "week": 176,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 176,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 176,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Mythology (new): xyz $108,000 @ 43%; meridian $117,000 @ 48%."
+ },
+ {
+  "week": 176,
+  "type": "project_start",
+  "message": "Started Wild Signal (Horror + Mythology, new) with meridian advance $117,000 @ 48%.",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 177,
+  "type": "feedback",
+  "message": "Dead Echo opens to 92,632 viewers.",
+  "data": {
+   "releaseId": "rel91",
+   "prev": 0,
+   "now": 92632,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 180,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Echo. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel91",
+   "prev": 38789,
+   "now": 44910,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 183,
+  "type": "milestone",
+  "message": "Wild Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 183,
+  "type": "cast",
+  "message": "Cast Gus Quinn for $40,127.9.",
+  "data": {
+   "starId": "star95",
+   "price": 40127.9
+  }
+ },
+ {
+  "week": 188,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 189,
+  "type": "milestone",
+  "message": "Wild Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 189,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 190,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 191,
+  "type": "ip_fans",
+  "message": "Dead Echo fans: 0 → 16,476 (avg score 7.76, 373,096 viewers).",
+  "data": {
+   "ipId": "ip84"
+  }
+ },
+ {
+  "week": 191,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 70.3 → 80.1, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 9.84,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 191,
+  "type": "trust",
+  "message": "XYZ Network earned 300% of its advance back on Dead Echo with strong reviews. Trust 3.20 → 3.95.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 3,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 191,
+  "type": "run_end",
+  "message": "Dead Echo run ended after 15 weeks: 373,096 viewers, gross $746,192, studio take $425,329.",
+  "data": {
+   "releaseId": "rel91"
+  }
+ },
+ {
+  "week": 192,
+  "type": "genre_level",
+  "message": "Studio Horror level 0 → 1."
+ },
+ {
+  "week": 192,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Wild Signal).",
+  "data": {
+   "awardId": "rel:rel99:meters_all_70",
+   "releaseId": "rel99",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 192,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Wild Signal).",
+  "data": {
+   "awardId": "rel:rel99:audience_7_5",
+   "releaseId": "rel99",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 192,
+  "type": "release",
+  "message": "Wild Signal released: Audience 8.64 / Critics 7.9 (avg 8.27). Opening pool 320,682, opening 96,205.",
+  "data": {
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 192,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Dinosaurs."
+ },
+ {
+  "week": 192,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 192,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 192,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): xyz $142,000 @ 41%; starlight $54,000 @ 8%."
+ },
+ {
+  "week": 192,
+  "type": "project_start",
+  "message": "Started Red Run (Action + Sports, new) with xyz advance $142,000 @ 41%.",
+  "data": {
+   "projectId": "proj101"
+  }
+ },
+ {
+  "week": 193,
+  "type": "feedback",
+  "message": "Wild Signal opens to 96,205 viewers.",
+  "data": {
+   "releaseId": "rel99",
+   "prev": 0,
+   "now": 96205,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 194,
+  "type": "feedback",
+  "message": "Critics love Wild Signal, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel99",
+   "prev": 96205,
+   "now": 69751,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 196,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Wild Signal. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel99",
+   "prev": 42705,
+   "now": 47517,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 198,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 199,
+  "type": "milestone",
+  "message": "Red Run hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj101"
+  }
+ },
+ {
+  "week": 199,
+  "type": "cast",
+  "message": "Cast Bo Hart for $56,303.18.",
+  "data": {
+   "starId": "star12",
+   "price": 56303.18
+  }
+ },
+ {
+  "week": 205,
+  "type": "milestone",
+  "message": "Red Run hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj101"
+  }
+ },
+ {
+  "week": 205,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 207,
+  "type": "ip_fans",
+  "message": "Wild Signal fans: 0 → 20,767 (avg score 8.27, 396,929 viewers).",
+  "data": {
+   "ipId": "ip92"
+  }
+ },
+ {
+  "week": 207,
+  "type": "star_career",
+  "message": "Gus Quinn: Fame 53.0 → 64.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star95",
+   "fameDelta": 11.87,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 207,
+  "type": "trust",
+  "message": "Meridian Global earned 326% of its advance back on Wild Signal with strong reviews. Trust 3.20 → 3.95.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 3.26,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 207,
+  "type": "run_end",
+  "message": "Wild Signal run ended after 15 weeks: 396,929 viewers, gross $793,858, studio take $412,806.",
+  "data": {
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 208,
+  "type": "surplus",
+  "message": "Red Run: kept $5,697 of unused advance.",
+  "data": {
+   "projectId": "proj101",
+   "surplus": 5696.82
+  }
+ },
+ {
+  "week": 208,
+  "type": "genre_level",
+  "message": "Studio Action level 2 → 3."
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Red Run).",
+  "data": {
+   "awardId": "rel:rel107:meters_all_70",
+   "releaseId": "rel107",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Red Run).",
+  "data": {
+   "awardId": "rel:rel107:audience_7_5",
+   "releaseId": "rel107",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Red Run).",
+  "data": {
+   "awardId": "rel:rel107:critic_8_5",
+   "releaseId": "rel107",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Red Run).",
+  "data": {
+   "awardId": "rel:rel107:hall_of_fame",
+   "releaseId": "rel107",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 208,
+  "type": "release",
+  "message": "Red Run released: Audience 9.55 / Critics 8.94 (avg 9.25, HALL OF FAME). Opening pool 281,458, opening 84,437.",
+  "data": {
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 208,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Time Travel."
+ },
+ {
+  "week": 208,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 208,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 208,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 208,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): wolf $115,000 @ 29%; meridian $144,000 @ 46%; xyz $123,000 @ 41%."
+ },
+ {
+  "week": 208,
+  "type": "project_start",
+  "message": "Started Midnight Horizon (Action + Sports, new) with meridian advance $144,000 @ 46%.",
+  "data": {
+   "projectId": "proj109"
+  }
+ },
+ {
+  "week": 209,
+  "type": "feedback",
+  "message": "Red Run opens to 84,437 viewers.",
+  "data": {
+   "releaseId": "rel107",
+   "prev": 0,
+   "now": 84437,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 210,
+  "type": "feedback",
+  "message": "Critics love Red Run, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel107",
+   "prev": 84437,
+   "now": 65471,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 210,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 212,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Red Run. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel107",
+   "prev": 40634,
+   "now": 50735,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 215,
+  "type": "milestone",
+  "message": "Midnight Horizon hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj109"
+  }
+ },
+ {
+  "week": 215,
+  "type": "cast",
+  "message": "Cast Bo Hart for $55,413.1.",
+  "data": {
+   "starId": "star12",
+   "price": 55413.1
+  }
+ },
+ {
+  "week": 221,
+  "type": "milestone",
+  "message": "Midnight Horizon hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj109"
+  }
+ },
+ {
+  "week": 221,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 223,
+  "type": "ip_fans",
+  "message": "Red Run fans: 0 → 25,405 (avg score 9.25, 373,600 viewers).",
+  "data": {
+   "ipId": "ip100"
+  }
+ },
+ {
+  "week": 223,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 80.1 → 95.3, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 15.16,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 223,
+  "type": "trust",
+  "message": "XYZ Network earned 216% of its advance back on Red Run with strong reviews. Trust 3.90 → 4.65.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.16,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 223,
+  "type": "run_end",
+  "message": "Red Run run ended after 15 weeks: 373,600 viewers, gross $747,200, studio take $440,848.",
+  "data": {
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 223,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 224,
+  "type": "surplus",
+  "message": "Midnight Horizon: kept $8,587 of unused advance.",
+  "data": {
+   "projectId": "proj109",
+   "surplus": 8586.9
+  }
+ },
+ {
+  "week": 224,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Midnight Horizon).",
+  "data": {
+   "awardId": "rel:rel115:meters_all_70",
+   "releaseId": "rel115",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 224,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Midnight Horizon).",
+  "data": {
+   "awardId": "rel:rel115:audience_7_5",
+   "releaseId": "rel115",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 224,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Midnight Horizon).",
+  "data": {
+   "awardId": "rel:rel115:critic_8_5",
+   "releaseId": "rel115",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 224,
+  "type": "release",
+  "message": "Midnight Horizon released: Audience 9.13 / Critics 8.54 (avg 8.84). Opening pool 353,055, opening 105,917.",
+  "data": {
+   "releaseId": "rel115"
+  }
+ },
+ {
+  "week": 224,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 224,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 224,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): orbit $106,000 @ 33%; meridian $131,000 @ 46%; xyz $135,000 @ 40%."
+ },
+ {
+  "week": 224,
+  "type": "project_start",
+  "message": "Started Dead Run 4 (Comedy + Spies, sequel) with xyz advance $135,000 @ 40%.",
+  "data": {
+   "projectId": "proj116"
+  }
+ },
+ {
+  "week": 225,
+  "type": "feedback",
+  "message": "Midnight Horizon opens to 105,917 viewers.",
+  "data": {
+   "releaseId": "rel115",
+   "prev": 0,
+   "now": 105917,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 226,
+  "type": "feedback",
+  "message": "Critics love Midnight Horizon, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel115",
+   "prev": 105917,
+   "now": 79401,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 228,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Horizon. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel115",
+   "prev": 48477,
+   "now": 57275,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 231,
+  "type": "milestone",
+  "message": "Dead Run 4 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj116"
+  }
+ },
+ {
+  "week": 231,
+  "type": "cast",
+  "message": "Cast Sam Diaz for $54,711.46.",
+  "data": {
+   "starId": "star23",
+   "price": 54711.46
+  }
+ },
+ {
+  "week": 235,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 237,
+  "type": "milestone",
+  "message": "Dead Run 4 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj116"
+  }
+ },
+ {
+  "week": 237,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 239,
+  "type": "ip_fans",
+  "message": "Midnight Horizon fans: 0 → 26,856 (avg score 8.84, 437,107 viewers).",
+  "data": {
+   "ipId": "ip108"
+  }
+ },
+ {
+  "week": 239,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 95.3 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 14.29,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 239,
+  "type": "trust",
+  "message": "Meridian Global earned 279% of its advance back on Midnight Horizon with strong reviews. Trust 3.90 → 4.65.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.79,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 239,
+  "type": "run_end",
+  "message": "Midnight Horizon run ended after 15 weeks: 437,107 viewers, gross $874,214, studio take $472,076.",
+  "data": {
+   "releaseId": "rel115"
+  }
+ },
+ {
+  "week": 240,
+  "type": "surplus",
+  "message": "Dead Run 4: kept $289 of unused advance.",
+  "data": {
+   "projectId": "proj116",
+   "surplus": 288.54
+  }
+ },
+ {
+  "week": 240,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 4).",
+  "data": {
+   "awardId": "rel:rel122:meters_all_70",
+   "releaseId": "rel122",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 240,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Run 4).",
+  "data": {
+   "awardId": "rel:rel122:audience_7_5",
+   "releaseId": "rel122",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 240,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Dead Run 4).",
+  "data": {
+   "awardId": "rel:rel122:critic_8_5",
+   "releaseId": "rel122",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 240,
+  "type": "release",
+  "message": "Dead Run 4 released: Audience 8.23 / Critics 8.85 (avg 8.54). Opening pool 302,811, opening 90,843.",
+  "data": {
+   "releaseId": "rel122"
+  }
+ },
+ {
+  "week": 240,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 240,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 240,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (new): starlight $51,000 @ 8%; orbit $99,000 @ 33%."
+ },
+ {
+  "week": 240,
+  "type": "project_start",
+  "message": "Started Red Night (Horror + Superheroes, new) with orbit advance $99,000 @ 33%.",
+  "data": {
+   "projectId": "proj124"
+  }
+ },
+ {
+  "week": 241,
+  "type": "feedback",
+  "message": "Dead Run 4 opens to 90,843 viewers.",
+  "data": {
+   "releaseId": "rel122",
+   "prev": 0,
+   "now": 90843,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 242,
+  "type": "feedback",
+  "message": "Critics love Dead Run 4, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel122",
+   "prev": 90843,
+   "now": 69151,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 243,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 244,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Run 4. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel122",
+   "prev": 42119,
+   "now": 42148,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 245,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Run 4 is still climbing (42,148 → 42,609).",
+  "data": {
+   "releaseId": "rel122",
+   "prev": 42148,
+   "now": 42609,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 247,
+  "type": "milestone",
+  "message": "Red Night hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj124"
+  }
+ },
+ {
+  "week": 247,
+  "type": "cast",
+  "message": "Cast Gus Quinn for $48,377.24.",
+  "data": {
+   "starId": "star95",
+   "price": 48377.24
+  }
+ },
+ {
+  "week": 248,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 250,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 253,
+  "type": "milestone",
+  "message": "Red Night hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj124"
+  }
+ },
+ {
+  "week": 253,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 255,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 36,045 → 57,169 (avg score 8.54, 372,949 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 255,
+  "type": "star_career",
+  "message": "Sam Diaz: Fame 84.1 → 96.7, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star23",
+   "fameDelta": 12.62,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 255,
+  "type": "trust",
+  "message": "XYZ Network earned 221% of its advance back on Dead Run 4 with strong reviews. Trust 4.60 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.21,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 255,
+  "type": "run_end",
+  "message": "Dead Run 4 run ended after 15 weeks: 372,949 viewers, gross $745,898, studio take $447,539.",
+  "data": {
+   "releaseId": "rel122"
+  }
+ },
+ {
+  "week": 255,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 256,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Red Night).",
+  "data": {
+   "awardId": "rel:rel130:meters_all_70",
+   "releaseId": "rel130",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 256,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Red Night).",
+  "data": {
+   "awardId": "rel:rel130:critic_8_5",
+   "releaseId": "rel130",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 256,
+  "type": "release",
+  "message": "Red Night released: Audience 6.87 / Critics 8.54 (avg 7.71). Opening pool 249,242, opening 74,773.",
+  "data": {
+   "releaseId": "rel130"
+  }
+ },
+ {
+  "week": 256,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 256,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 256,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (new): xyz $120,000 @ 40%; wolf $109,000 @ 29%."
+ },
+ {
+  "week": 256,
+  "type": "project_start",
+  "message": "Started Hollow Shadow (Horror + Spies, new) with xyz advance $120,000 @ 40%.",
+  "data": {
+   "projectId": "proj132"
+  }
+ },
+ {
+  "week": 257,
+  "type": "feedback",
+  "message": "Red Night opens to 74,773 viewers.",
+  "data": {
+   "releaseId": "rel130",
+   "prev": 0,
+   "now": 74773,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 258,
+  "type": "feedback",
+  "message": "Critics love Red Night, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel130",
+   "prev": 74773,
+   "now": 56695,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 263,
+  "type": "milestone",
+  "message": "Hollow Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj132"
+  }
+ },
+ {
+  "week": 263,
+  "type": "cast",
+  "message": "Cast Gus Quinn for $48,268.14.",
+  "data": {
+   "starId": "star95",
+   "price": 48268.14
+  }
+ },
+ {
+  "week": 269,
+  "type": "milestone",
+  "message": "Hollow Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj132"
+  }
+ },
+ {
+  "week": 269,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 271,
+  "type": "ip_fans",
+  "message": "Red Night fans: 0 → 13,440 (avg score 7.71, 309,953 viewers).",
+  "data": {
+   "ipId": "ip123"
+  }
+ },
+ {
+  "week": 271,
+  "type": "star_career",
+  "message": "Gus Quinn: Fame 64.9 → 74.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 5.",
+  "data": {
+   "starId": "star95",
+   "fameDelta": 9.13,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 271,
+  "type": "trust",
+  "message": "Orbit Releasing earned 207% of its advance back on Red Night with strong reviews. Trust 4.47 → 5.00.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.07,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 271,
+  "type": "run_end",
+  "message": "Red Night run ended after 15 weeks: 309,953 viewers, gross $619,906, studio take $415,337.",
+  "data": {
+   "releaseId": "rel130"
+  }
+ },
+ {
+  "week": 272,
+  "type": "genre_level",
+  "message": "Studio Horror level 1 → 2."
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Shadow).",
+  "data": {
+   "awardId": "rel:rel138:meters_all_70",
+   "releaseId": "rel138",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Shadow).",
+  "data": {
+   "awardId": "rel:rel138:audience_7_5",
+   "releaseId": "rel138",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Hollow Shadow).",
+  "data": {
+   "awardId": "rel:rel138:critic_8_5",
+   "releaseId": "rel138",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Hollow Shadow).",
+  "data": {
+   "awardId": "rel:rel138:hall_of_fame",
+   "releaseId": "rel138",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 272,
+  "type": "release",
+  "message": "Hollow Shadow released: Audience 8.85 / Critics 9.51 (avg 9.18, HALL OF FAME). Opening pool 251,328, opening 75,398.",
+  "data": {
+   "releaseId": "rel138"
+  }
+ },
+ {
+  "week": 272,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 272,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 272,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): starlight $48,000 @ 8%; meridian $137,000 @ 45%."
+ },
+ {
+  "week": 272,
+  "type": "project_start",
+  "message": "Started Dead Run 5 (Comedy + Spies, sequel) with meridian advance $137,000 @ 45%.",
+  "data": {
+   "projectId": "proj139"
+  }
+ },
+ {
+  "week": 273,
+  "type": "feedback",
+  "message": "Hollow Shadow opens to 75,398 viewers.",
+  "data": {
+   "releaseId": "rel138",
+   "prev": 0,
+   "now": 75398,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 274,
+  "type": "feedback",
+  "message": "Critics love Hollow Shadow, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel138",
+   "prev": 75398,
+   "now": 60448,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 276,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Shadow. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel138",
+   "prev": 37624,
+   "now": 41101,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 276,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 277,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Hollow Shadow is still climbing (41,101 → 41,705).",
+  "data": {
+   "releaseId": "rel138",
+   "prev": 41101,
+   "now": 41705,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 279,
+  "type": "milestone",
+  "message": "Dead Run 5 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj139"
+  }
+ },
+ {
+  "week": 279,
+  "type": "star_recast",
+  "message": "Sam Diaz was replaced in their established role in Dead Run; relationship -1.5.",
+  "data": {
+   "starId": "star23"
+  }
+ },
+ {
+  "week": 279,
+  "type": "cast",
+  "message": "Cast Rae Hart for $33,815.36.",
+  "data": {
+   "starId": "star141",
+   "price": 33815.36
+  }
+ },
+ {
+  "week": 283,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 285,
+  "type": "milestone",
+  "message": "Dead Run 5 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj139"
+  }
+ },
+ {
+  "week": 285,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 287,
+  "type": "ip_fans",
+  "message": "Hollow Shadow fans: 0 → 22,568 (avg score 9.18, 337,434 viewers).",
+  "data": {
+   "ipId": "ip131"
+  }
+ },
+ {
+  "week": 287,
+  "type": "star_career",
+  "message": "Gus Quinn: Fame 74.0 → 88.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star95",
+   "fameDelta": 14.47,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 287,
+  "type": "trust",
+  "message": "XYZ Network earned 225% of its advance back on Hollow Shadow with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.25,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 287,
+  "type": "run_end",
+  "message": "Hollow Shadow run ended after 15 weeks: 337,434 viewers, gross $674,868, studio take $404,921.",
+  "data": {
+   "releaseId": "rel138"
+  }
+ },
+ {
+  "week": 288,
+  "type": "surplus",
+  "message": "Dead Run 5: kept $23,185 of unused advance.",
+  "data": {
+   "projectId": "proj139",
+   "surplus": 23184.64
+  }
+ },
+ {
+  "week": 288,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 5).",
+  "data": {
+   "awardId": "rel:rel145:meters_all_70",
+   "releaseId": "rel145",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 288,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Run 5).",
+  "data": {
+   "awardId": "rel:rel145:audience_7_5",
+   "releaseId": "rel145",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 288,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Dead Run 5).",
+  "data": {
+   "awardId": "rel:rel145:critic_8_5",
+   "releaseId": "rel145",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 288,
+  "type": "release",
+  "message": "Dead Run 5 released: Audience 8.03 / Critics 8.64 (avg 8.34). Opening pool 312,280, opening 93,684.",
+  "data": {
+   "releaseId": "rel145"
+  }
+ },
+ {
+  "week": 288,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 288,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 288,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): xyz $140,000 @ 40%; wolf $113,000 @ 29%."
+ },
+ {
+  "week": 288,
+  "type": "project_start",
+  "message": "Started Dead Storm (Action + Sports, new) with xyz advance $140,000 @ 40%.",
+  "data": {
+   "projectId": "proj147"
+  }
+ },
+ {
+  "week": 289,
+  "type": "feedback",
+  "message": "Dead Run 5 opens to 93,684 viewers.",
+  "data": {
+   "releaseId": "rel145",
+   "prev": 0,
+   "now": 93684,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 289,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 290,
+  "type": "feedback",
+  "message": "Critics love Dead Run 5, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel145",
+   "prev": 93684,
+   "now": 70930,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 292,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run 5 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel145",
+   "prev": 43577,
+   "now": 42356,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 294,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 295,
+  "type": "milestone",
+  "message": "Dead Storm hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj147"
+  }
+ },
+ {
+  "week": 295,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 295,
+  "type": "cast",
+  "message": "Cast Bo Hart for $66,818.74.",
+  "data": {
+   "starId": "star12",
+   "price": 66818.74
+  }
+ },
+ {
+  "week": 296,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 301,
+  "type": "milestone",
+  "message": "Dead Storm hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj147"
+  }
+ },
+ {
+  "week": 301,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 303,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 52,123 → 73,297 (avg score 8.34, 396,224 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 303,
+  "type": "star_career",
+  "message": "Rae Hart: Fame 47.0 → 59.1, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star141",
+   "fameDelta": 12.11,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 303,
+  "type": "trust",
+  "message": "Meridian Global earned 260% of its advance back on Dead Run 5 with strong reviews. Trust 4.56 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.6,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 303,
+  "type": "run_end",
+  "message": "Dead Run 5 run ended after 15 weeks: 396,224 viewers, gross $792,448, studio take $435,846.",
+  "data": {
+   "releaseId": "rel145"
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Storm).",
+  "data": {
+   "awardId": "rel:rel153:meters_all_70",
+   "releaseId": "rel153",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Storm).",
+  "data": {
+   "awardId": "rel:rel153:audience_7_5",
+   "releaseId": "rel153",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 304,
+  "type": "release",
+  "message": "Dead Storm released: Audience 8.74 / Critics 7.35 (avg 8.05). Opening pool 300,087, opening 90,026.",
+  "data": {
+   "releaseId": "rel153"
+  }
+ },
+ {
+  "week": 304,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 304,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 304,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): xyz $148,000 @ 40%; starlight $48,000 @ 8%."
+ },
+ {
+  "week": 304,
+  "type": "project_start",
+  "message": "Started Dead Run 6 (Comedy + Spies, sequel) with xyz advance $148,000 @ 40%.",
+  "data": {
+   "projectId": "proj154"
+  }
+ },
+ {
+  "week": 305,
+  "type": "feedback",
+  "message": "Dead Storm opens to 90,026 viewers.",
+  "data": {
+   "releaseId": "rel153",
+   "prev": 0,
+   "now": 90026,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 306,
+  "type": "feedback",
+  "message": "Critics love Dead Storm, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel153",
+   "prev": 90026,
+   "now": 63408,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 308,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Storm. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel153",
+   "prev": 38923,
+   "now": 44921,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 309,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Storm is still climbing (44,921 → 45,928).",
+  "data": {
+   "releaseId": "rel153",
+   "prev": 44921,
+   "now": 45928,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 309,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 311,
+  "type": "milestone",
+  "message": "Dead Run 6 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj154"
+  }
+ },
+ {
+  "week": 311,
+  "type": "star_recast",
+  "message": "Rae Hart was replaced in their established role in Dead Run; relationship -1.5.",
+  "data": {
+   "starId": "star141"
+  }
+ },
+ {
+  "week": 311,
+  "type": "cast",
+  "message": "Cast Sam Lind for $33,724.12.",
+  "data": {
+   "starId": "star156",
+   "price": 33724.12
+  }
+ },
+ {
+  "week": 312,
+  "type": "critics",
+  "message": "A new generation of critics (generation 1; the original critics were generation 0) now reviews releases: standards 8.0% tougher than the first generation. Published reviews do not change.",
+  "data": {
+   "generation": 1
+  }
+ },
+ {
+  "week": 314,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 317,
+  "type": "milestone",
+  "message": "Dead Run 6 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj154"
+  }
+ },
+ {
+  "week": 317,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 319,
+  "type": "ip_fans",
+  "message": "Dead Storm fans: 0 → 18,207 (avg score 8.05, 373,100 viewers).",
+  "data": {
+   "ipId": "ip146"
+  }
+ },
+ {
+  "week": 319,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 10.88,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 319,
+  "type": "trust",
+  "message": "XYZ Network earned 213% of its advance back on Dead Storm with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.13,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 319,
+  "type": "run_end",
+  "message": "Dead Storm run ended after 15 weeks: 373,100 viewers, gross $746,200, studio take $447,720.",
+  "data": {
+   "releaseId": "rel153"
+  }
+ },
+ {
+  "week": 320,
+  "type": "surplus",
+  "message": "Dead Run 6: kept $34,276 of unused advance.",
+  "data": {
+   "projectId": "proj154",
+   "surplus": 34275.88
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 6).",
+  "data": {
+   "awardId": "rel:rel160:meters_all_70",
+   "releaseId": "rel160",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Run 6).",
+  "data": {
+   "awardId": "rel:rel160:audience_7_5",
+   "releaseId": "rel160",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 320,
+  "type": "release",
+  "message": "Dead Run 6 released: Audience 7.9 / Critics 7.8 (avg 7.85). Opening pool 301,988, opening 90,596.",
+  "data": {
+   "releaseId": "rel160"
+  }
+ },
+ {
+  "week": 320,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 320,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 320,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Dinosaurs (new): wolf $107,000 @ 29%; starlight $57,000 @ 8%; xyz $151,000 @ 39%."
+ },
+ {
+  "week": 320,
+  "type": "project_start",
+  "message": "Started Silver Horizon (Comedy + Dinosaurs, new) with xyz advance $151,000 @ 39%.",
+  "data": {
+   "projectId": "proj162"
+  }
+ },
+ {
+  "week": 321,
+  "type": "feedback",
+  "message": "Dead Run 6 opens to 90,596 viewers.",
+  "data": {
+   "releaseId": "rel160",
+   "prev": 0,
+   "now": 90596,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 322,
+  "type": "feedback",
+  "message": "Critics love Dead Run 6, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel160",
+   "prev": 90596,
+   "now": 65322,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 324,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run 6 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel160",
+   "prev": 39993,
+   "now": 39195,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 327,
+  "type": "milestone",
+  "message": "Silver Horizon hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj162"
+  }
+ },
+ {
+  "week": 327,
+  "type": "cast",
+  "message": "Cast Kai Hart for $26,173.14.",
+  "data": {
+   "starId": "star165",
+   "price": 26173.14
+  }
+ },
+ {
+  "week": 333,
+  "type": "milestone",
+  "message": "Silver Horizon hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj162"
+  }
+ },
+ {
+  "week": 333,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 335,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 68,918 → 85,895 (avg score 7.85, 372,310 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 335,
+  "type": "star_career",
+  "message": "Sam Lind: Fame 47.0 → 57.2, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star156",
+   "fameDelta": 10.16,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 335,
+  "type": "trust",
+  "message": "XYZ Network earned 201% of its advance back on Dead Run 6 with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.01,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 335,
+  "type": "run_end",
+  "message": "Dead Run 6 run ended after 15 weeks: 372,310 viewers, gross $744,620, studio take $446,772.",
+  "data": {
+   "releaseId": "rel160"
+  }
+ },
+ {
+  "week": 336,
+  "type": "surplus",
+  "message": "Silver Horizon: kept $44,827 of unused advance.",
+  "data": {
+   "projectId": "proj162",
+   "surplus": 44826.86
+  }
+ },
+ {
+  "week": 336,
+  "type": "genre_level",
+  "message": "Studio Comedy level 3 → 4."
+ },
+ {
+  "week": 336,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Horizon).",
+  "data": {
+   "awardId": "rel:rel168:meters_all_70",
+   "releaseId": "rel168",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 336,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Horizon).",
+  "data": {
+   "awardId": "rel:rel168:audience_7_5",
+   "releaseId": "rel168",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 336,
+  "type": "release",
+  "message": "Silver Horizon released: Audience 9.51 / Critics 8.37 (avg 8.94). Opening pool 294,420, opening 88,326.",
+  "data": {
+   "releaseId": "rel168"
+  }
+ },
+ {
+  "week": 336,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 336,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 336,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 336,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): wolf $111,000 @ 29%; xyz $143,000 @ 39%; starlight $49,000 @ 8%."
+ },
+ {
+  "week": 336,
+  "type": "project_start",
+  "message": "Started Dead Run 7 (Comedy + Spies, sequel) with xyz advance $143,000 @ 39%.",
+  "data": {
+   "projectId": "proj169"
+  }
+ },
+ {
+  "week": 337,
+  "type": "feedback",
+  "message": "Silver Horizon opens to 88,326 viewers.",
+  "data": {
+   "releaseId": "rel168",
+   "prev": 0,
+   "now": 88326,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 338,
+  "type": "feedback",
+  "message": "Critics love Silver Horizon, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel168",
+   "prev": 88326,
+   "now": 65890,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 340,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Horizon. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel168",
+   "prev": 40484,
+   "now": 51117,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 343,
+  "type": "milestone",
+  "message": "Dead Run 7 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj169"
+  }
+ },
+ {
+  "week": 343,
+  "type": "star_recast",
+  "message": "Sam Lind was replaced in their established role in Dead Run; relationship -1.5.",
+  "data": {
+   "starId": "star156"
+  }
+ },
+ {
+  "week": 343,
+  "type": "cast",
+  "message": "Cast Kai Hart for $26,155.28.",
+  "data": {
+   "starId": "star165",
+   "price": 26155.28
+  }
+ },
+ {
+  "week": 349,
+  "type": "milestone",
+  "message": "Dead Run 7 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj169"
+  }
+ },
+ {
+  "week": 349,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 349,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 351,
+  "type": "ip_fans",
+  "message": "Silver Horizon fans: 0 → 23,555 (avg score 8.94, 373,659 viewers).",
+  "data": {
+   "ipId": "ip161"
+  }
+ },
+ {
+  "week": 351,
+  "type": "star_career",
+  "message": "Kai Hart: Fame 38.0 → 52.1, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star165",
+   "fameDelta": 14.06,
+   "relDelta": 0.75,
+   "grow": 2
+  }
+ },
+ {
+  "week": 351,
+  "type": "trust",
+  "message": "XYZ Network earned 193% of its advance back on Silver Horizon with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.93,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 351,
+  "type": "run_end",
+  "message": "Silver Horizon run ended after 15 weeks: 373,659 viewers, gross $747,318, studio take $455,864.",
+  "data": {
+   "releaseId": "rel168"
+  }
+ },
+ {
+  "week": 352,
+  "type": "surplus",
+  "message": "Dead Run 7: kept $36,845 of unused advance.",
+  "data": {
+   "projectId": "proj169",
+   "surplus": 36844.72
+  }
+ },
+ {
+  "week": 352,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 7).",
+  "data": {
+   "awardId": "rel:rel175:meters_all_70",
+   "releaseId": "rel175",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 352,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Run 7).",
+  "data": {
+   "awardId": "rel:rel175:audience_7_5",
+   "releaseId": "rel175",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 352,
+  "type": "release",
+  "message": "Dead Run 7 released: Audience 7.66 / Critics 7.57 (avg 7.62). Opening pool 309,469, opening 92,841.",
+  "data": {
+   "releaseId": "rel175"
+  }
+ },
+ {
+  "week": 352,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 352,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 352,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Dinosaurs (sequel): xyz $135,000 @ 40%; meridian $120,000 @ 45%; orbit $102,000 @ 32%."
+ },
+ {
+  "week": 352,
+  "type": "project_start",
+  "message": "Started Silver Horizon 2 (Comedy + Dinosaurs, sequel) with xyz advance $135,000 @ 40%.",
+  "data": {
+   "projectId": "proj176"
+  }
+ },
+ {
+  "week": 353,
+  "type": "feedback",
+  "message": "Dead Run 7 opens to 92,841 viewers.",
+  "data": {
+   "releaseId": "rel175",
+   "prev": 0,
+   "now": 92841,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 354,
+  "type": "feedback",
+  "message": "Critics love Dead Run 7, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel175",
+   "prev": 92841,
+   "now": 65928,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 354,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 356,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run 7 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel175",
+   "prev": 40221,
+   "now": 38052,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 359,
+  "type": "milestone",
+  "message": "Silver Horizon 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj176"
+  }
+ },
+ {
+  "week": 359,
+  "type": "cast",
+  "message": "Cast Kai Hart for $36,388.41.",
+  "data": {
+   "starId": "star165",
+   "price": 36388.41
+  }
+ },
+ {
+  "week": 360,
+  "type": "prestige",
+  "message": "Prestige +150: ip_gross_5m (Dead Run 7).",
+  "data": {
+   "awardId": "ip:ip27:ip_gross_5m",
+   "releaseId": "rel175",
+   "milestone": "ip_gross_5m",
+   "amount": 150
+  }
+ },
+ {
+  "week": 364,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 365,
+  "type": "milestone",
+  "message": "Silver Horizon 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj176"
+  }
+ },
+ {
+  "week": 365,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 367,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 80,763 → 96,363 (avg score 7.62, 372,141 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 367,
+  "type": "star_career",
+  "message": "Kai Hart: Fame 52.1 → 61.4, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 4.",
+  "data": {
+   "starId": "star165",
+   "fameDelta": 9.34,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 367,
+  "type": "trust",
+  "message": "XYZ Network earned 203% of its advance back on Dead Run 7 with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.03,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 367,
+  "type": "run_end",
+  "message": "Dead Run 7 run ended after 15 weeks: 372,141 viewers, gross $744,282, studio take $454,012.",
+  "data": {
+   "releaseId": "rel175"
+  }
+ },
+ {
+  "week": 368,
+  "type": "surplus",
+  "message": "Silver Horizon 2: kept $18,612 of unused advance.",
+  "data": {
+   "projectId": "proj176",
+   "surplus": 18611.59
+  }
+ },
+ {
+  "week": 368,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Horizon 2).",
+  "data": {
+   "awardId": "rel:rel182:meters_all_70",
+   "releaseId": "rel182",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 368,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Horizon 2).",
+  "data": {
+   "awardId": "rel:rel182:audience_7_5",
+   "releaseId": "rel182",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 368,
+  "type": "release",
+  "message": "Silver Horizon 2 released: Audience 9.38 / Critics 7.42 (avg 8.4). Opening pool 293,011, opening 87,903.",
+  "data": {
+   "releaseId": "rel182"
+  }
+ },
+ {
+  "week": 368,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 368,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 368,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): xyz $145,000 @ 39%; wolf $101,000 @ 29%; starlight $55,000 @ 8%."
+ },
+ {
+  "week": 368,
+  "type": "project_start",
+  "message": "Started Dead Run 8 (Comedy + Spies, sequel) with xyz advance $145,000 @ 39%.",
+  "data": {
+   "projectId": "proj183"
+  }
+ },
+ {
+  "week": 369,
+  "type": "feedback",
+  "message": "Silver Horizon 2 opens to 87,903 viewers.",
+  "data": {
+   "releaseId": "rel182",
+   "prev": 0,
+   "now": 87903,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 370,
+  "type": "feedback",
+  "message": "Critics love Silver Horizon 2, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel182",
+   "prev": 87903,
+   "now": 62321,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 370,
+  "type": "prestige",
+  "message": "Prestige +100: ip_gross_1m (Silver Horizon 2).",
+  "data": {
+   "awardId": "ip:ip161:ip_gross_1m",
+   "releaseId": "rel182",
+   "milestone": "ip_gross_1m",
+   "amount": 100
+  }
+ },
+ {
+  "week": 370,
+  "type": "prestige",
+  "message": "Prestige +150: ip_viewers_500k (Silver Horizon 2).",
+  "data": {
+   "awardId": "ip:ip161:ip_viewers_500k",
+   "releaseId": "rel182",
+   "milestone": "ip_viewers_500k",
+   "amount": 150
+  }
+ },
+ {
+  "week": 372,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Horizon 2. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel182",
+   "prev": 38407,
+   "now": 49000,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 375,
+  "type": "milestone",
+  "message": "Dead Run 8 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj183"
+  }
+ },
+ {
+  "week": 375,
+  "type": "cast",
+  "message": "Cast Kai Hart for $42,314.96.",
+  "data": {
+   "starId": "star165",
+   "price": 42314.96
+  }
+ },
+ {
+  "week": 381,
+  "type": "milestone",
+  "message": "Dead Run 8 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj183"
+  }
+ },
+ {
+  "week": 381,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 383,
+  "type": "ip_fans",
+  "message": "Silver Horizon fans: 22,147 → 42,463 (avg score 8.4, 373,453 viewers).",
+  "data": {
+   "ipId": "ip161"
+  }
+ },
+ {
+  "week": 383,
+  "type": "star_career",
+  "message": "Kai Hart: Fame 61.4 → 73.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star165",
+   "fameDelta": 12.13,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 383,
+  "type": "trust",
+  "message": "XYZ Network earned 221% of its advance back on Silver Horizon 2 with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.21,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 383,
+  "type": "run_end",
+  "message": "Silver Horizon 2 run ended after 15 weeks: 373,453 viewers, gross $746,906, studio take $448,144.",
+  "data": {
+   "releaseId": "rel182"
+  }
+ },
+ {
+  "week": 384,
+  "type": "surplus",
+  "message": "Dead Run 8: kept $22,685 of unused advance.",
+  "data": {
+   "projectId": "proj183",
+   "surplus": 22685.04
+  }
+ },
+ {
+  "week": 384,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 8).",
+  "data": {
+   "awardId": "rel:rel189:meters_all_70",
+   "releaseId": "rel189",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 384,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Run 8).",
+  "data": {
+   "awardId": "rel:rel189:audience_7_5",
+   "releaseId": "rel189",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 384,
+  "type": "release",
+  "message": "Dead Run 8 released: Audience 7.52 / Critics 7.42 (avg 7.47). Opening pool 321,099, opening 96,330.",
+  "data": {
+   "releaseId": "rel189"
+  }
+ },
+ {
+  "week": 384,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 384,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 384,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 384,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (new): meridian $112,000 @ 46%; starlight $37,000 @ 8%; orbit $80,000 @ 33%."
+ },
+ {
+  "week": 384,
+  "type": "project_start",
+  "message": "Started Dead Frequency (Action + Time Travel, new) with meridian advance $112,000 @ 46%.",
+  "data": {
+   "projectId": "proj191"
+  }
+ },
+ {
+  "week": 385,
+  "type": "feedback",
+  "message": "Dead Run 8 opens to 96,330 viewers.",
+  "data": {
+   "releaseId": "rel189",
+   "prev": 0,
+   "now": 96330,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 386,
+  "type": "feedback",
+  "message": "Critics love Dead Run 8, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel189",
+   "prev": 96330,
+   "now": 67591,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 388,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run 8 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel189",
+   "prev": 41014,
+   "now": 38027,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 391,
+  "type": "milestone",
+  "message": "Dead Frequency hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj191"
+  }
+ },
+ {
+  "week": 391,
+  "type": "cast",
+  "message": "Cast Bo Hart for $65,589.68.",
+  "data": {
+   "starId": "star12",
+   "price": 65589.68
+  }
+ },
+ {
+  "week": 397,
+  "type": "milestone",
+  "message": "Dead Frequency hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj191"
+  }
+ },
+ {
+  "week": 397,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 399,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 90,606 → 105,317 (avg score 7.47, 372,237 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 399,
+  "type": "star_career",
+  "message": "Kai Hart: Fame 73.5 → 82.3, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 5.",
+  "data": {
+   "starId": "star165",
+   "fameDelta": 8.8,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 399,
+  "type": "trust",
+  "message": "XYZ Network earned 200% of its advance back on Dead Run 8 with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 399,
+  "type": "run_end",
+  "message": "Dead Run 8 run ended after 15 weeks: 372,237 viewers, gross $744,474, studio take $454,129.",
+  "data": {
+   "releaseId": "rel189"
+  }
+ },
+ {
+  "week": 400,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Frequency).",
+  "data": {
+   "awardId": "rel:rel197:meters_all_70",
+   "releaseId": "rel197",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 400,
+  "type": "release",
+  "message": "Dead Frequency released: Audience 7.05 / Critics 8.43 (avg 7.74). Opening pool 341,823, opening 102,547.",
+  "data": {
+   "releaseId": "rel197"
+  }
+ },
+ {
+  "week": 400,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 400,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 400,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): xyz $136,000 @ 39%; orbit $110,000 @ 32%."
+ },
+ {
+  "week": 400,
+  "type": "project_start",
+  "message": "Started Dead Run 9 (Comedy + Spies, sequel) with xyz advance $136,000 @ 39%.",
+  "data": {
+   "projectId": "proj198"
+  }
+ },
+ {
+  "week": 401,
+  "type": "feedback",
+  "message": "Dead Frequency opens to 102,547 viewers.",
+  "data": {
+   "releaseId": "rel197",
+   "prev": 0,
+   "now": 102547,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 402,
+  "type": "feedback",
+  "message": "Critics love Dead Frequency, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel197",
+   "prev": 102547,
+   "now": 76843,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 404,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Frequency is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel197",
+   "prev": 47293,
+   "now": 38228,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 407,
+  "type": "milestone",
+  "message": "Dead Run 9 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj198"
+  }
+ },
+ {
+  "week": 407,
+  "type": "star_recast",
+  "message": "Kai Hart was replaced in their established role in Dead Run; relationship -1.5.",
+  "data": {
+   "starId": "star165"
+  }
+ },
+ {
+  "week": 407,
+  "type": "cast",
+  "message": "Cast Sam Lind for $42,441.11.",
+  "data": {
+   "starId": "star156",
+   "price": 42441.11
+  }
+ },
+ {
+  "week": 413,
+  "type": "milestone",
+  "message": "Dead Run 9 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj198"
+  }
+ },
+ {
+  "week": 413,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 415,
+  "type": "ip_fans",
+  "message": "Dead Frequency fans: 0 → 18,910 (avg score 7.74, 431,348 viewers).",
+  "data": {
+   "ipId": "ip190"
+  }
+ },
+ {
+  "week": 415,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 8.",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 10.17,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 415,
+  "type": "trust",
+  "message": "Meridian Global earned 354% of its advance back on Dead Frequency with strong reviews. Trust 4.84 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 3.54,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 415,
+  "type": "run_end",
+  "message": "Dead Frequency run ended after 15 weeks: 431,348 viewers, gross $862,696, studio take $465,856.",
+  "data": {
+   "releaseId": "rel197"
+  }
+ },
+ {
+  "week": 416,
+  "type": "surplus",
+  "message": "Dead Run 9: kept $13,559 of unused advance.",
+  "data": {
+   "projectId": "proj198",
+   "surplus": 13558.89
+  }
+ },
+ {
+  "week": 416,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 9).",
+  "data": {
+   "awardId": "rel:rel204:meters_all_70",
+   "releaseId": "rel204",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 416,
+  "type": "release",
+  "message": "Dead Run 9 released: Audience 7.25 / Critics 7.16 (avg 7.21). Opening pool 318,626, opening 95,588.",
+  "data": {
+   "releaseId": "rel204"
+  }
+ },
+ {
+  "week": 416,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 416,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 416,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 416,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): wolf $126,000 @ 28%; meridian $191,000 @ 43%; starlight $64,000 @ 8%."
+ },
+ {
+  "week": 416,
+  "type": "project_start",
+  "message": "Started Wild Code (Action + Sports, new) with meridian advance $191,000 @ 43%.",
+  "data": {
+   "projectId": "proj206"
+  }
+ },
+ {
+  "week": 417,
+  "type": "feedback",
+  "message": "Dead Run 9 opens to 95,588 viewers.",
+  "data": {
+   "releaseId": "rel204",
+   "prev": 0,
+   "now": 95588,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 418,
+  "type": "feedback",
+  "message": "Critics love Dead Run 9, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel204",
+   "prev": 95588,
+   "now": 66230,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 420,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run 9 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel204",
+   "prev": 40308,
+   "now": 35884,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 423,
+  "type": "milestone",
+  "message": "Wild Code hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj206"
+  }
+ },
+ {
+  "week": 423,
+  "type": "cast",
+  "message": "Cast Max Okafor for $27,672.02.",
+  "data": {
+   "starId": "star208",
+   "price": 27672.02
+  }
+ },
+ {
+  "week": 424,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 429,
+  "type": "milestone",
+  "message": "Wild Code hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj206"
+  }
+ },
+ {
+  "week": 429,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 431,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 99,024 → 112,161 (avg score 7.21, 371,512 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 431,
+  "type": "star_career",
+  "message": "Sam Lind: Fame 57.2 → 65.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star156",
+   "fameDelta": 7.87,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 431,
+  "type": "trust",
+  "message": "XYZ Network earned 213% of its advance back on Dead Run 9 with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.13,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 431,
+  "type": "run_end",
+  "message": "Dead Run 9 run ended after 15 weeks: 371,512 viewers, gross $743,024, studio take $453,245.",
+  "data": {
+   "releaseId": "rel204"
+  }
+ },
+ {
+  "week": 432,
+  "type": "surplus",
+  "message": "Wild Code: kept $83,328 of unused advance.",
+  "data": {
+   "projectId": "proj206",
+   "surplus": 83327.98
+  }
+ },
+ {
+  "week": 432,
+  "type": "genre_level",
+  "message": "Studio Action level 3 → 4."
+ },
+ {
+  "week": 432,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Wild Code).",
+  "data": {
+   "awardId": "rel:rel212:meters_all_70",
+   "releaseId": "rel212",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 432,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Wild Code).",
+  "data": {
+   "awardId": "rel:rel212:audience_7_5",
+   "releaseId": "rel212",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 432,
+  "type": "release",
+  "message": "Wild Code released: Audience 8.33 / Critics 6.44 (avg 7.39). Opening pool 312,671, opening 93,801.",
+  "data": {
+   "releaseId": "rel212"
+  }
+ },
+ {
+  "week": 432,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Robots."
+ },
+ {
+  "week": 432,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 432,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 432,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Pirates (new): orbit $102,000 @ 32%; meridian $141,000 @ 44%; xyz $127,000 @ 40%."
+ },
+ {
+  "week": 432,
+  "type": "project_start",
+  "message": "Started Broken Frequency (Horror + Pirates, new) with meridian advance $141,000 @ 44%.",
+  "data": {
+   "projectId": "proj214"
+  }
+ },
+ {
+  "week": 433,
+  "type": "feedback",
+  "message": "Wild Code opens to 93,801 viewers.",
+  "data": {
+   "releaseId": "rel212",
+   "prev": 0,
+   "now": 93801,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 434,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 436,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Wild Code. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel212",
+   "prev": 39482,
+   "now": 44052,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 436,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 437,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Wild Code is still climbing (44,052 → 45,734).",
+  "data": {
+   "releaseId": "rel212",
+   "prev": 44052,
+   "now": 45734,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 439,
+  "type": "milestone",
+  "message": "Broken Frequency hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj214"
+  }
+ },
+ {
+  "week": 439,
+  "type": "cast",
+  "message": "Cast Gus Quinn for $63,309.2.",
+  "data": {
+   "starId": "star95",
+   "price": 63309.2
+  }
+ },
+ {
+  "week": 445,
+  "type": "milestone",
+  "message": "Broken Frequency hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj214"
+  }
+ },
+ {
+  "week": 445,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 447,
+  "type": "ip_fans",
+  "message": "Wild Code fans: 0 → 16,627 (avg score 7.39, 434,815 viewers).",
+  "data": {
+   "ipId": "ip205"
+  }
+ },
+ {
+  "week": 447,
+  "type": "star_career",
+  "message": "Max Okafor: Fame 40.0 → 48.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star208",
+   "fameDelta": 8.88,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 447,
+  "type": "trust",
+  "message": "Meridian Global earned 196% of its advance back on Wild Code with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.96,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 447,
+  "type": "run_end",
+  "message": "Wild Code run ended after 15 weeks: 434,815 viewers, gross $869,630, studio take $495,689.",
+  "data": {
+   "releaseId": "rel212"
+  }
+ },
+ {
+  "week": 448,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Broken Frequency).",
+  "data": {
+   "awardId": "rel:rel220:meters_all_70",
+   "releaseId": "rel220",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 448,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Broken Frequency).",
+  "data": {
+   "awardId": "rel:rel220:audience_7_5",
+   "releaseId": "rel220",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 448,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Broken Frequency).",
+  "data": {
+   "awardId": "rel:rel220:critic_8_5",
+   "releaseId": "rel220",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 448,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Broken Frequency).",
+  "data": {
+   "awardId": "rel:rel220:hall_of_fame",
+   "releaseId": "rel220",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 448,
+  "type": "release",
+  "message": "Broken Frequency released: Audience 9.58 / Critics 8.93 (avg 9.25, HALL OF FAME). Opening pool 304,355, opening 91,307.",
+  "data": {
+   "releaseId": "rel220"
+  }
+ },
+ {
+  "week": 448,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Vampires."
+ },
+ {
+  "week": 448,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 448,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 448,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): meridian $159,000 @ 43%; orbit $140,000 @ 31%; wolf $115,000 @ 28%."
+ },
+ {
+  "week": 448,
+  "type": "project_start",
+  "message": "Started Dead Run 10 (Comedy + Spies, sequel) with meridian advance $159,000 @ 43%.",
+  "data": {
+   "projectId": "proj221"
+  }
+ },
+ {
+  "week": 449,
+  "type": "feedback",
+  "message": "Broken Frequency opens to 91,307 viewers.",
+  "data": {
+   "releaseId": "rel220",
+   "prev": 0,
+   "now": 91307,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 450,
+  "type": "feedback",
+  "message": "Critics love Broken Frequency, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel220",
+   "prev": 91307,
+   "now": 70535,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 452,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Broken Frequency. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel220",
+   "prev": 43589,
+   "now": 54700,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 454,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 455,
+  "type": "milestone",
+  "message": "Dead Run 10 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj221"
+  }
+ },
+ {
+  "week": 455,
+  "type": "star_recast",
+  "message": "Sam Lind was replaced in their established role in Dead Run; relationship -1.5.",
+  "data": {
+   "starId": "star156"
+  }
+ },
+ {
+  "week": 455,
+  "type": "cast",
+  "message": "Cast Rae Hart for $44,080.19.",
+  "data": {
+   "starId": "star141",
+   "price": 44080.19
+  }
+ },
+ {
+  "week": 461,
+  "type": "milestone",
+  "message": "Dead Run 10 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj221"
+  }
+ },
+ {
+  "week": 461,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 462,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 463,
+  "type": "ip_fans",
+  "message": "Broken Frequency fans: 0 → 27,031 (avg score 9.25, 397,521 viewers).",
+  "data": {
+   "ipId": "ip213"
+  }
+ },
+ {
+  "week": 463,
+  "type": "star_career",
+  "message": "Gus Quinn: Fame 88.5 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star95",
+   "fameDelta": 15.43,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 463,
+  "type": "trust",
+  "message": "Meridian Global earned 248% of its advance back on Broken Frequency with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.48,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 463,
+  "type": "run_end",
+  "message": "Broken Frequency run ended after 15 weeks: 397,521 viewers, gross $795,042, studio take $445,224.",
+  "data": {
+   "releaseId": "rel220"
+  }
+ },
+ {
+  "week": 464,
+  "type": "surplus",
+  "message": "Dead Run 10: kept $34,920 of unused advance.",
+  "data": {
+   "projectId": "proj221",
+   "surplus": 34919.81
+  }
+ },
+ {
+  "week": 464,
+  "type": "genre_level",
+  "message": "Studio Comedy level 4 → 5."
+ },
+ {
+  "week": 464,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 10).",
+  "data": {
+   "awardId": "rel:rel227:meters_all_70",
+   "releaseId": "rel227",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 464,
+  "type": "release",
+  "message": "Dead Run 10 released: Audience 7.09 / Critics 7 (avg 7.05). Opening pool 360,395, opening 108,119.",
+  "data": {
+   "releaseId": "rel227"
+  }
+ },
+ {
+  "week": 464,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 464,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 464,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Dinosaurs (sequel): xyz $139,000 @ 40%; starlight $50,000 @ 8%."
+ },
+ {
+  "week": 464,
+  "type": "project_start",
+  "message": "Started Silver Horizon 3 (Comedy + Dinosaurs, sequel) with xyz advance $139,000 @ 40%.",
+  "data": {
+   "projectId": "proj228"
+  }
+ },
+ {
+  "week": 465,
+  "type": "feedback",
+  "message": "Dead Run 10 opens to 108,119 viewers.",
+  "data": {
+   "releaseId": "rel227",
+   "prev": 0,
+   "now": 108119,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 466,
+  "type": "feedback",
+  "message": "Critics love Dead Run 10, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel227",
+   "prev": 108119,
+   "now": 73888,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 468,
+  "type": "feedback",
+  "message": "Word of mouth on Dead Run 10 is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel227",
+   "prev": 44641,
+   "now": 38794,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 471,
+  "type": "milestone",
+  "message": "Silver Horizon 3 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj228"
+  }
+ },
+ {
+  "week": 471,
+  "type": "star_recast",
+  "message": "Kai Hart was replaced in their established role in Silver Horizon; relationship -1.5.",
+  "data": {
+   "starId": "star165"
+  }
+ },
+ {
+  "week": 471,
+  "type": "cast",
+  "message": "Cast Rae Hart for $44,070.26.",
+  "data": {
+   "starId": "star141",
+   "price": 44070.26
+  }
+ },
+ {
+  "week": 475,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 476,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 477,
+  "type": "milestone",
+  "message": "Silver Horizon 3 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj228"
+  }
+ },
+ {
+  "week": 477,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 479,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 102,262 → 115,242 (avg score 7.05, 395,737 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 479,
+  "type": "star_career",
+  "message": "Rae Hart: Fame 59.1 → 66.5, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star141",
+   "fameDelta": 7.43,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 479,
+  "type": "trust",
+  "message": "Meridian Global earned 214% of its advance back on Dead Run 10 with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.14,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 479,
+  "type": "run_end",
+  "message": "Dead Run 10 run ended after 15 weeks: 395,737 viewers, gross $791,474, studio take $451,140.",
+  "data": {
+   "releaseId": "rel227"
+  }
+ },
+ {
+  "week": 480,
+  "type": "surplus",
+  "message": "Silver Horizon 3: kept $14,930 of unused advance.",
+  "data": {
+   "projectId": "proj228",
+   "surplus": 14929.74
+  }
+ },
+ {
+  "week": 480,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Horizon 3).",
+  "data": {
+   "awardId": "rel:rel234:meters_all_70",
+   "releaseId": "rel234",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 480,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Horizon 3).",
+  "data": {
+   "awardId": "rel:rel234:audience_7_5",
+   "releaseId": "rel234",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 480,
+  "type": "release",
+  "message": "Silver Horizon 3 released: Audience 9.19 / Critics 8.07 (avg 8.63). Opening pool 305,179, opening 91,554.",
+  "data": {
+   "releaseId": "rel234"
+  }
+ },
+ {
+  "week": 480,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 480,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 480,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Vampires (new): orbit $116,000 @ 32%; meridian $150,000 @ 43%."
+ },
+ {
+  "week": 480,
+  "type": "project_start",
+  "message": "Started Iron Frequency (Horror + Vampires, new) with meridian advance $150,000 @ 43%.",
+  "data": {
+   "projectId": "proj236"
+  }
+ },
+ {
+  "week": 481,
+  "type": "feedback",
+  "message": "Silver Horizon 3 opens to 91,554 viewers.",
+  "data": {
+   "releaseId": "rel234",
+   "prev": 0,
+   "now": 91554,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 482,
+  "type": "feedback",
+  "message": "Critics love Silver Horizon 3, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel234",
+   "prev": 91554,
+   "now": 66860,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 482,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 484,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Horizon 3. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel234",
+   "prev": 40802,
+   "now": 49434,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 487,
+  "type": "milestone",
+  "message": "Iron Frequency hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj236"
+  }
+ },
+ {
+  "week": 487,
+  "type": "cast",
+  "message": "Cast Gus Quinn for $69,885.61.",
+  "data": {
+   "starId": "star95",
+   "price": 69885.61
+  }
+ },
+ {
+  "week": 492,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 493,
+  "type": "milestone",
+  "message": "Iron Frequency hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj236"
+  }
+ },
+ {
+  "week": 493,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 494,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 495,
+  "type": "ip_fans",
+  "message": "Silver Horizon fans: 34,229 → 55,925 (avg score 8.63, 373,555 viewers).",
+  "data": {
+   "ipId": "ip161"
+  }
+ },
+ {
+  "week": 495,
+  "type": "star_career",
+  "message": "Rae Hart: Fame 66.5 → 79.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star141",
+   "fameDelta": 12.95,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 495,
+  "type": "trust",
+  "message": "XYZ Network earned 215% of its advance back on Silver Horizon 3 with strong reviews. Trust 4.91 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.15,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 495,
+  "type": "run_end",
+  "message": "Silver Horizon 3 run ended after 15 weeks: 373,555 viewers, gross $747,110, studio take $448,266.",
+  "data": {
+   "releaseId": "rel234"
+  }
+ },
+ {
+  "week": 495,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 496,
+  "type": "surplus",
+  "message": "Iron Frequency: kept $114 of unused advance.",
+  "data": {
+   "projectId": "proj236",
+   "surplus": 114.39
+  }
+ },
+ {
+  "week": 496,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Iron Frequency).",
+  "data": {
+   "awardId": "rel:rel242:meters_all_70",
+   "releaseId": "rel242",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 496,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Iron Frequency).",
+  "data": {
+   "awardId": "rel:rel242:audience_7_5",
+   "releaseId": "rel242",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 496,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Iron Frequency).",
+  "data": {
+   "awardId": "rel:rel242:critic_8_5",
+   "releaseId": "rel242",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 496,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Iron Frequency).",
+  "data": {
+   "awardId": "rel:rel242:hall_of_fame",
+   "releaseId": "rel242",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 496,
+  "type": "release",
+  "message": "Iron Frequency released: Audience 9.61 / Critics 9.71 (avg 9.66, HALL OF FAME). Opening pool 340,173, opening 102,052.",
+  "data": {
+   "releaseId": "rel242"
+  }
+ },
+ {
+  "week": 496,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 496,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 496,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Vampires (new): meridian $180,000 @ 42%; wolf $145,000 @ 28%."
+ },
+ {
+  "week": 496,
+  "type": "project_start",
+  "message": "Started Dead Protocol (Action + Vampires, new) with meridian advance $180,000 @ 42%.",
+  "data": {
+   "projectId": "proj244"
+  }
+ },
+ {
+  "week": 497,
+  "type": "feedback",
+  "message": "Iron Frequency opens to 102,052 viewers.",
+  "data": {
+   "releaseId": "rel242",
+   "prev": 0,
+   "now": 102052,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 498,
+  "type": "feedback",
+  "message": "Critics love Iron Frequency, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel242",
+   "prev": 102052,
+   "now": 80175,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 500,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Iron Frequency. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel242",
+   "prev": 47824,
+   "now": 58933,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 503,
+  "type": "milestone",
+  "message": "Dead Protocol hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj244"
+  }
+ },
+ {
+  "week": 503,
+  "type": "cast",
+  "message": "Cast Max Okafor for $33,427.12.",
+  "data": {
+   "starId": "star208",
+   "price": 33427.12
+  }
+ },
+ {
+  "week": 509,
+  "type": "milestone",
+  "message": "Dead Protocol hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj244"
+  }
+ },
+ {
+  "week": 509,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 511,
+  "type": "ip_fans",
+  "message": "Iron Frequency fans: 0 → 29,676 (avg score 9.66, 398,018 viewers).",
+  "data": {
+   "ipId": "ip235"
+  }
+ },
+ {
+  "week": 511,
+  "type": "star_career",
+  "message": "Gus Quinn: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star95",
+   "fameDelta": 16.92,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 511,
+  "type": "trust",
+  "message": "Meridian Global earned 228% of its advance back on Iron Frequency with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.28,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 511,
+  "type": "run_end",
+  "message": "Iron Frequency run ended after 15 weeks: 398,018 viewers, gross $796,036, studio take $453,741.",
+  "data": {
+   "releaseId": "rel242"
+  }
+ },
+ {
+  "week": 512,
+  "type": "surplus",
+  "message": "Dead Protocol: kept $66,573 of unused advance.",
+  "data": {
+   "projectId": "proj244",
+   "surplus": 66572.88
+  }
+ },
+ {
+  "week": 512,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Protocol).",
+  "data": {
+   "awardId": "rel:rel250:meters_all_70",
+   "releaseId": "rel250",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 512,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Protocol).",
+  "data": {
+   "awardId": "rel:rel250:audience_7_5",
+   "releaseId": "rel250",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 512,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Dead Protocol).",
+  "data": {
+   "awardId": "rel:rel250:critic_8_5",
+   "releaseId": "rel250",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 512,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Dead Protocol).",
+  "data": {
+   "awardId": "rel:rel250:hall_of_fame",
+   "releaseId": "rel250",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 512,
+  "type": "release",
+  "message": "Dead Protocol released: Audience 10 / Critics 9.76 (avg 9.88, HALL OF FAME). Opening pool 350,567, opening 105,170.",
+  "data": {
+   "releaseId": "rel250"
+  }
+ },
+ {
+  "week": 512,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 512,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 512,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 512,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Vampires (new): orbit $134,000 @ 31%; meridian $156,000 @ 43%; starlight $55,000 @ 8%."
+ },
+ {
+  "week": 512,
+  "type": "project_start",
+  "message": "Started Dead Code (Horror + Vampires, new) with meridian advance $156,000 @ 43%.",
+  "data": {
+   "projectId": "proj252"
+  }
+ },
+ {
+  "week": 513,
+  "type": "feedback",
+  "message": "Dead Protocol opens to 105,170 viewers.",
+  "data": {
+   "releaseId": "rel250",
+   "prev": 0,
+   "now": 105170,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 514,
+  "type": "feedback",
+  "message": "Critics love Dead Protocol, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel250",
+   "prev": 105170,
+   "now": 83998,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 514,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 516,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Protocol. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel250",
+   "prev": 51076,
+   "now": 66834,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 516,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 519,
+  "type": "milestone",
+  "message": "Dead Code hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj252"
+  }
+ },
+ {
+  "week": 519,
+  "type": "cast",
+  "message": "Cast Gus Quinn for $68,239.11.",
+  "data": {
+   "starId": "star95",
+   "price": 68239.11
+  }
+ },
+ {
+  "week": 520,
+  "type": "audience_era",
+  "message": "A new entertainment era: audiences expect a little more (2.0% above the first era).",
+  "data": {
+   "era": 1
+  }
+ },
+ {
+  "week": 522,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 525,
+  "type": "milestone",
+  "message": "Dead Code hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj252"
+  }
+ },
+ {
+  "week": 525,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 527,
+  "type": "ip_fans",
+  "message": "Dead Protocol fans: 0 → 34,185 (avg score 9.88, 437,816 viewers).",
+  "data": {
+   "ipId": "ip243"
+  }
+ },
+ {
+  "week": 527,
+  "type": "star_career",
+  "message": "Max Okafor: Fame 48.9 → 67.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star208",
+   "fameDelta": 18.17,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 527,
+  "type": "trust",
+  "message": "Meridian Global earned 204% of its advance back on Dead Protocol with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.04,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 527,
+  "type": "run_end",
+  "message": "Dead Protocol run ended after 15 weeks: 437,816 viewers, gross $875,632, studio take $507,867.",
+  "data": {
+   "releaseId": "rel250"
+  }
+ },
+ {
+  "week": 528,
+  "type": "surplus",
+  "message": "Dead Code: kept $7,761 of unused advance.",
+  "data": {
+   "projectId": "proj252",
+   "surplus": 7760.89
+  }
+ },
+ {
+  "week": 528,
+  "type": "genre_level",
+  "message": "Studio Horror level 2 → 3."
+ },
+ {
+  "week": 528,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Code).",
+  "data": {
+   "awardId": "rel:rel258:meters_all_70",
+   "releaseId": "rel258",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 528,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Code).",
+  "data": {
+   "awardId": "rel:rel258:audience_7_5",
+   "releaseId": "rel258",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 528,
+  "type": "release",
+  "message": "Dead Code released: Audience 8.96 / Critics 8.32 (avg 8.64). Opening pool 319,241, opening 95,772.",
+  "data": {
+   "releaseId": "rel258"
+  }
+ },
+ {
+  "week": 528,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 528,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 528,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (sequel): meridian $146,000 @ 44%; orbit $107,000 @ 32%."
+ },
+ {
+  "week": 528,
+  "type": "project_start",
+  "message": "Started Dead Run 11 (Comedy + Spies, sequel) with meridian advance $146,000 @ 44%.",
+  "data": {
+   "projectId": "proj259"
+  }
+ },
+ {
+  "week": 529,
+  "type": "feedback",
+  "message": "Dead Code opens to 95,772 viewers.",
+  "data": {
+   "releaseId": "rel258",
+   "prev": 0,
+   "now": 95772,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 529,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 530,
+  "type": "feedback",
+  "message": "Critics love Dead Code, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel258",
+   "prev": 95772,
+   "now": 71040,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 532,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Code. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel258",
+   "prev": 43466,
+   "now": 50298,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 534,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 535,
+  "type": "milestone",
+  "message": "Dead Run 11 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj259"
+  }
+ },
+ {
+  "week": 535,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 535,
+  "type": "star_recast",
+  "message": "Rae Hart was replaced in their established role in Dead Run; relationship -1.5.",
+  "data": {
+   "starId": "star141"
+  }
+ },
+ {
+  "week": 535,
+  "type": "cast",
+  "message": "Cast Sam Lind for $49,300.07.",
+  "data": {
+   "starId": "star156",
+   "price": 49300.07
+  }
+ },
+ {
+  "week": 536,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 541,
+  "type": "milestone",
+  "message": "Dead Run 11 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj259"
+  }
+ },
+ {
+  "week": 541,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 543,
+  "type": "ip_fans",
+  "message": "Dead Code fans: 0 → 23,133 (avg score 8.64, 397,202 viewers).",
+  "data": {
+   "ipId": "ip251"
+  }
+ },
+ {
+  "week": 543,
+  "type": "star_career",
+  "message": "Gus Quinn: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 7.",
+  "data": {
+   "starId": "star95",
+   "fameDelta": 13.21,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 543,
+  "type": "trust",
+  "message": "Meridian Global earned 219% of its advance back on Dead Code with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.19,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 543,
+  "type": "run_end",
+  "message": "Dead Code run ended after 15 weeks: 397,202 viewers, gross $794,404, studio take $452,810.",
+  "data": {
+   "releaseId": "rel258"
+  }
+ },
+ {
+  "week": 544,
+  "type": "surplus",
+  "message": "Dead Run 11: kept $16,700 of unused advance.",
+  "data": {
+   "projectId": "proj259",
+   "surplus": 16699.93
+  }
+ },
+ {
+  "week": 544,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Run 11).",
+  "data": {
+   "awardId": "rel:rel265:meters_all_70",
+   "releaseId": "rel265",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 544,
+  "type": "release",
+  "message": "Dead Run 11 released: Audience 6.73 / Critics 6.77 (avg 6.75). Opening pool 341,693, opening 102,508.",
+  "data": {
+   "releaseId": "rel265"
+  }
+ },
+ {
+  "week": 544,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 544,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 544,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Superheroes (new): wolf $111,000 @ 29%; orbit $108,000 @ 32%; xyz $160,000 @ 39%."
+ },
+ {
+  "week": 544,
+  "type": "project_start",
+  "message": "Started Broken Edge (Comedy + Superheroes, new) with xyz advance $160,000 @ 39%.",
+  "data": {
+   "projectId": "proj267"
+  }
+ },
+ {
+  "week": 545,
+  "type": "feedback",
+  "message": "Dead Run 11 opens to 102,508 viewers.",
+  "data": {
+   "releaseId": "rel265",
+   "prev": 0,
+   "now": 102508,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 549,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 551,
+  "type": "milestone",
+  "message": "Broken Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj267"
+  }
+ },
+ {
+  "week": 551,
+  "type": "cast",
+  "message": "Cast Sam Lind for $49,291.6.",
+  "data": {
+   "starId": "star156",
+   "price": 49291.6
+  }
+ },
+ {
+  "week": 552,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 557,
+  "type": "milestone",
+  "message": "Broken Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj267"
+  }
+ },
+ {
+  "week": 557,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 559,
+  "type": "ip_fans",
+  "message": "Dead Run fans: 98,795 → 109,556 (avg score 6.75, 384,322 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 559,
+  "type": "star_career",
+  "message": "Sam Lind: Fame 65.0 → 71.3, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star156",
+   "fameDelta": 6.29,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 559,
+  "type": "trust",
+  "message": "Meridian Global earned 232% of its advance back on Dead Run 11. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.32,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 559,
+  "type": "run_end",
+  "message": "Dead Run 11 run ended after 15 weeks: 384,322 viewers, gross $768,644, studio take $430,441.",
+  "data": {
+   "releaseId": "rel265"
+  }
+ },
+ {
+  "week": 560,
+  "type": "surplus",
+  "message": "Broken Edge: kept $30,708 of unused advance.",
+  "data": {
+   "projectId": "proj267",
+   "surplus": 30708.4
+  }
+ },
+ {
+  "week": 560,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Broken Edge).",
+  "data": {
+   "awardId": "rel:rel273:meters_all_70",
+   "releaseId": "rel273",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 560,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Broken Edge).",
+  "data": {
+   "awardId": "rel:rel273:audience_7_5",
+   "releaseId": "rel273",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 560,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Broken Edge).",
+  "data": {
+   "awardId": "rel:rel273:critic_8_5",
+   "releaseId": "rel273",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 560,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Broken Edge).",
+  "data": {
+   "awardId": "rel:rel273:hall_of_fame",
+   "releaseId": "rel273",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 560,
+  "type": "release",
+  "message": "Broken Edge released: Audience 8.98 / Critics 9.03 (avg 9, HALL OF FAME). Opening pool 309,202, opening 92,761.",
+  "data": {
+   "releaseId": "rel273"
+  }
+ },
+ {
+  "week": 560,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 560,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 560,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Dinosaurs (sequel): starlight $49,000 @ 8%; xyz $131,000 @ 40%."
+ },
+ {
+  "week": 560,
+  "type": "project_start",
+  "message": "Started Silver Horizon 4 (Comedy + Dinosaurs, sequel) with xyz advance $131,000 @ 40%.",
+  "data": {
+   "projectId": "proj274"
+  }
+ },
+ {
+  "week": 561,
+  "type": "feedback",
+  "message": "Broken Edge opens to 92,761 viewers.",
+  "data": {
+   "releaseId": "rel273",
+   "prev": 0,
+   "now": 92761,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 562,
+  "type": "feedback",
+  "message": "Critics love Broken Edge, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel273",
+   "prev": 92761,
+   "now": 70983,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 564,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Broken Edge. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel273",
+   "prev": 42959,
+   "now": 48727,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 567,
+  "type": "milestone",
+  "message": "Silver Horizon 4 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj274"
+  }
+ },
+ {
+  "week": 567,
+  "type": "star_recast",
+  "message": "Rae Hart was replaced in their established role in Silver Horizon; relationship -1.5.",
+  "data": {
+   "starId": "star141"
+  }
+ },
+ {
+  "week": 567,
+  "type": "cast",
+  "message": "Cast Sam Lind for $55,113.13.",
+  "data": {
+   "starId": "star156",
+   "price": 55113.13
+  }
+ },
+ {
+  "week": 573,
+  "type": "milestone",
+  "message": "Silver Horizon 4 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj274"
+  }
+ },
+ {
+  "week": 573,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 574,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 575,
+  "type": "ip_fans",
+  "message": "Broken Edge fans: 0 → 23,909 (avg score 9, 373,580 viewers).",
+  "data": {
+   "ipId": "ip266"
+  }
+ },
+ {
+  "week": 575,
+  "type": "star_career",
+  "message": "Sam Lind: Fame 71.3 → 85.6, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star156",
+   "fameDelta": 14.27,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 575,
+  "type": "trust",
+  "message": "XYZ Network earned 182% of its advance back on Broken Edge with strong reviews. Trust 4.88 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.82,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 575,
+  "type": "run_end",
+  "message": "Broken Edge run ended after 15 weeks: 373,580 viewers, gross $747,160, studio take $455,768.",
+  "data": {
+   "releaseId": "rel273"
+  }
+ },
+ {
+  "week": 576,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Horizon 4).",
+  "data": {
+   "awardId": "rel:rel280:meters_all_70",
+   "releaseId": "rel280",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 576,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Horizon 4).",
+  "data": {
+   "awardId": "rel:rel280:audience_7_5",
+   "releaseId": "rel280",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 576,
+  "type": "release",
+  "message": "Silver Horizon 4 released: Audience 8.84 / Critics 7.92 (avg 8.38). Opening pool 308,172, opening 92,452.",
+  "data": {
+   "releaseId": "rel280"
+  }
+ },
+ {
+  "week": 576,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 576,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 576,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 576,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Vampires (sequel): meridian $179,000 @ 43%; starlight $59,000 @ 8%."
+ },
+ {
+  "week": 576,
+  "type": "project_start",
+  "message": "Started Dead Protocol 2 (Action + Vampires, sequel) with meridian advance $179,000 @ 43%.",
+  "data": {
+   "projectId": "proj281"
+  }
+ },
+ {
+  "week": 577,
+  "type": "feedback",
+  "message": "Silver Horizon 4 opens to 92,452 viewers.",
+  "data": {
+   "releaseId": "rel280",
+   "prev": 0,
+   "now": 92452,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 578,
+  "type": "feedback",
+  "message": "Critics love Silver Horizon 4, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel280",
+   "prev": 92452,
+   "now": 66899,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 580,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Horizon 4. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel280",
+   "prev": 40775,
+   "now": 46887,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 583,
+  "type": "milestone",
+  "message": "Dead Protocol 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj281"
+  }
+ },
+ {
+  "week": 583,
+  "type": "cast",
+  "message": "Cast Max Okafor for $46,583.22.",
+  "data": {
+   "starId": "star208",
+   "price": 46583.22
+  }
+ },
+ {
+  "week": 589,
+  "type": "milestone",
+  "message": "Dead Protocol 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj281"
+  }
+ },
+ {
+  "week": 589,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 589,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 590,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 591,
+  "type": "ip_fans",
+  "message": "Silver Horizon fans: 46,490 → 66,681 (avg score 8.38, 373,347 viewers).",
+  "data": {
+   "ipId": "ip161"
+  }
+ },
+ {
+  "week": 591,
+  "type": "star_career",
+  "message": "Sam Lind: Fame 85.6 → 97.7, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star156",
+   "fameDelta": 12.06,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 591,
+  "type": "trust",
+  "message": "XYZ Network earned 228% of its advance back on Silver Horizon 4 with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.28,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 591,
+  "type": "run_end",
+  "message": "Silver Horizon 4 run ended after 15 weeks: 373,347 viewers, gross $746,694, studio take $448,016.",
+  "data": {
+   "releaseId": "rel280"
+  }
+ },
+ {
+  "week": 592,
+  "type": "surplus",
+  "message": "Dead Protocol 2: kept $52,417 of unused advance.",
+  "data": {
+   "projectId": "proj281",
+   "surplus": 52416.78
+  }
+ },
+ {
+  "week": 592,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Protocol 2).",
+  "data": {
+   "awardId": "rel:rel287:meters_all_70",
+   "releaseId": "rel287",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 592,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Protocol 2).",
+  "data": {
+   "awardId": "rel:rel287:audience_7_5",
+   "releaseId": "rel287",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 592,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Dead Protocol 2).",
+  "data": {
+   "awardId": "rel:rel287:critic_8_5",
+   "releaseId": "rel287",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 592,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Dead Protocol 2).",
+  "data": {
+   "awardId": "rel:rel287:hall_of_fame",
+   "releaseId": "rel287",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 592,
+  "type": "release",
+  "message": "Dead Protocol 2 released: Audience 10 / Critics 9.68 (avg 9.84, HALL OF FAME). Opening pool 340,918, opening 102,275.",
+  "data": {
+   "releaseId": "rel287"
+  }
+ },
+ {
+  "week": 592,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 592,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 592,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Pirates (new): wolf $97,000 @ 30%; starlight $47,000 @ 8%; orbit $107,000 @ 33%."
+ },
+ {
+  "week": 592,
+  "type": "project_start",
+  "message": "Started Midnight Shadow (Horror + Pirates, new) with orbit advance $107,000 @ 33%.",
+  "data": {
+   "projectId": "proj289"
+  }
+ },
+ {
+  "week": 593,
+  "type": "feedback",
+  "message": "Dead Protocol 2 opens to 102,275 viewers.",
+  "data": {
+   "releaseId": "rel287",
+   "prev": 0,
+   "now": 102275,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 593,
+  "type": "prestige",
+  "message": "Prestige +100: ip_gross_1m (Dead Protocol 2).",
+  "data": {
+   "awardId": "ip:ip243:ip_gross_1m",
+   "releaseId": "rel287",
+   "milestone": "ip_gross_1m",
+   "amount": 100
+  }
+ },
+ {
+  "week": 593,
+  "type": "prestige",
+  "message": "Prestige +150: ip_viewers_500k (Dead Protocol 2).",
+  "data": {
+   "awardId": "ip:ip243:ip_viewers_500k",
+   "releaseId": "rel287",
+   "milestone": "ip_viewers_500k",
+   "amount": 150
+  }
+ },
+ {
+  "week": 594,
+  "type": "feedback",
+  "message": "Critics love Dead Protocol 2, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel287",
+   "prev": 102275,
+   "now": 81864,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 596,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Protocol 2. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel287",
+   "prev": 50219,
+   "now": 65858,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 599,
+  "type": "milestone",
+  "message": "Midnight Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj289"
+  }
+ },
+ {
+  "week": 599,
+  "type": "cast",
+  "message": "Cast Gus Quinn for $66,503.72.",
+  "data": {
+   "starId": "star95",
+   "price": 66503.72
+  }
+ },
+ {
+  "week": 605,
+  "type": "milestone",
+  "message": "Midnight Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj289"
+  }
+ },
+ {
+  "week": 605,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 607,
+  "type": "ip_fans",
+  "message": "Dead Protocol fans: 29,306 → 63,202 (avg score 9.84, 437,710 viewers).",
+  "data": {
+   "ipId": "ip243"
+  }
+ },
+ {
+  "week": 607,
+  "type": "star_career",
+  "message": "Max Okafor: Fame 67.0 → 85.1, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star208",
+   "fameDelta": 18.02,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 607,
+  "type": "trust",
+  "message": "Meridian Global earned 210% of its advance back on Dead Protocol 2 with strong reviews. Trust 4.93 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.1,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 607,
+  "type": "run_end",
+  "message": "Dead Protocol 2 run ended after 15 weeks: 437,710 viewers, gross $875,420, studio take $498,989.",
+  "data": {
+   "releaseId": "rel287"
+  }
+ },
+ {
+  "week": 608,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Midnight Shadow).",
+  "data": {
+   "awardId": "rel:rel295:meters_all_70",
+   "releaseId": "rel295",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 608,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Midnight Shadow).",
+  "data": {
+   "awardId": "rel:rel295:audience_7_5",
+   "releaseId": "rel295",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 608,
+  "type": "release",
+  "message": "Midnight Shadow released: Audience 9 / Critics 7.69 (avg 8.35). Opening pool 264,970, opening 79,491.",
+  "data": {
+   "releaseId": "rel295"
+  }
+ },
+ {
+  "week": 608,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 608,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 608,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Mythology (new): meridian $139,000 @ 44%; orbit $105,000 @ 32%."
+ },
+ {
+  "week": 608,
+  "type": "project_start",
+  "message": "Started Broken Signal (Comedy + Mythology, new) with meridian advance $139,000 @ 44%.",
+  "data": {
+   "projectId": "proj297"
+  }
+ },
+ {
+  "week": 609,
+  "type": "feedback",
+  "message": "Midnight Shadow opens to 79,491 viewers.",
+  "data": {
+   "releaseId": "rel295",
+   "prev": 0,
+   "now": 79491,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 610,
+  "type": "feedback",
+  "message": "Critics love Midnight Shadow, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel295",
+   "prev": 79491,
+   "now": 57025,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 610,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 612,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Shadow. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel295",
+   "prev": 34970,
+   "now": 41614,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 615,
+  "type": "milestone",
+  "message": "Broken Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj297"
+  }
+ },
+ {
+  "week": 615,
+  "type": "cast",
+  "message": "Cast Sam Diaz for $68,420.38.",
+  "data": {
+   "starId": "star23",
+   "price": 68420.38
+  }
+ },
+ {
+  "week": 621,
+  "type": "milestone",
+  "message": "Broken Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj297"
+  }
+ },
+ {
+  "week": 621,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 623,
+  "type": "ip_fans",
+  "message": "Midnight Shadow fans: 0 → 17,668 (avg score 8.35, 329,636 viewers).",
+  "data": {
+   "ipId": "ip288"
+  }
+ },
+ {
+  "week": 623,
+  "type": "star_career",
+  "message": "Gus Quinn: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star95",
+   "fameDelta": 11.51,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 623,
+  "type": "trust",
+  "message": "Orbit Releasing earned 203% of its advance back on Midnight Shadow with strong reviews. Trust 4.49 → 5.00.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.03,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 623,
+  "type": "run_end",
+  "message": "Midnight Shadow run ended after 15 weeks: 329,636 viewers, gross $659,272, studio take $441,712.",
+  "data": {
+   "releaseId": "rel295"
+  }
+ },
+ {
+  "week": 624,
+  "type": "critics",
+  "message": "A new generation of critics (generation 2; the original critics were generation 0) now reviews releases: standards 12.0% tougher than the first generation. Published reviews do not change.",
+  "data": {
+   "generation": 2
+  }
+ },
+ {
+  "week": 624,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Broken Signal).",
+  "data": {
+   "awardId": "rel:rel303:meters_all_70",
+   "releaseId": "rel303",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 624,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Broken Signal).",
+  "data": {
+   "awardId": "rel:rel303:audience_7_5",
+   "releaseId": "rel303",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 624,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Broken Signal).",
+  "data": {
+   "awardId": "rel:rel303:critic_8_5",
+   "releaseId": "rel303",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 624,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Broken Signal).",
+  "data": {
+   "awardId": "rel:rel303:hall_of_fame",
+   "releaseId": "rel303",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 624,
+  "type": "release",
+  "message": "Broken Signal released: Audience 8.99 / Critics 9.39 (avg 9.19, HALL OF FAME). Opening pool 338,987, opening 101,696.",
+  "data": {
+   "releaseId": "rel303"
+  }
+ },
+ {
+  "week": 624,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 624,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 624,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Mythology (new): starlight $59,000 @ 8%; orbit $127,000 @ 31%; meridian $159,000 @ 43%."
+ },
+ {
+  "week": 624,
+  "type": "project_start",
+  "message": "Started Lost Frequency (Comedy + Mythology, new) with meridian advance $159,000 @ 43%.",
+  "data": {
+   "projectId": "proj305"
+  }
+ },
+ {
+  "week": 625,
+  "type": "feedback",
+  "message": "Broken Signal opens to 101,696 viewers.",
+  "data": {
+   "releaseId": "rel303",
+   "prev": 0,
+   "now": 101696,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 626,
+  "type": "feedback",
+  "message": "Critics love Broken Signal, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel303",
+   "prev": 101696,
+   "now": 78747,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 628,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Broken Signal. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel303",
+   "prev": 47147,
+   "now": 52956,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 631,
+  "type": "milestone",
+  "message": "Lost Frequency hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj305"
+  }
+ },
+ {
+  "week": 631,
+  "type": "cast",
+  "message": "Cast Eli Park for $3,418.11.",
+  "data": {
+   "starId": "star310",
+   "price": 3418.11
+  }
+ },
+ {
+  "week": 637,
+  "type": "milestone",
+  "message": "Lost Frequency hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj305"
+  }
+ },
+ {
+  "week": 637,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 639,
+  "type": "ip_fans",
+  "message": "Broken Signal fans: 0 → 26,655 (avg score 9.19, 397,598 viewers).",
+  "data": {
+   "ipId": "ip296"
+  }
+ },
+ {
+  "week": 639,
+  "type": "star_career",
+  "message": "Sam Diaz: Fame 96.7 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star23",
+   "fameDelta": 15.21,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 639,
+  "type": "trust",
+  "message": "Meridian Global earned 252% of its advance back on Broken Signal with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.52,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 639,
+  "type": "run_end",
+  "message": "Broken Signal run ended after 15 weeks: 397,598 viewers, gross $795,196, studio take $445,310.",
+  "data": {
+   "releaseId": "rel303"
+  }
+ },
+ {
+  "week": 640,
+  "type": "surplus",
+  "message": "Lost Frequency: kept $75,582 of unused advance.",
+  "data": {
+   "projectId": "proj305",
+   "surplus": 75581.89
+  }
+ },
+ {
+  "week": 640,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Frequency).",
+  "data": {
+   "awardId": "rel:rel311:meters_all_70",
+   "releaseId": "rel311",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 640,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Frequency).",
+  "data": {
+   "awardId": "rel:rel311:audience_7_5",
+   "releaseId": "rel311",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 640,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Lost Frequency).",
+  "data": {
+   "awardId": "rel:rel311:critic_8_5",
+   "releaseId": "rel311",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 640,
+  "type": "release",
+  "message": "Lost Frequency released: Audience 8.54 / Critics 8.92 (avg 8.73). Opening pool 293,572, opening 88,072.",
+  "data": {
+   "releaseId": "rel311"
+  }
+ },
+ {
+  "week": 640,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 640,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 640,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 640,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Vampires (new): xyz $161,000 @ 39%; wolf $121,000 @ 29%; meridian $179,000 @ 43%."
+ },
+ {
+  "week": 640,
+  "type": "project_start",
+  "message": "Started Last Edge (Action + Vampires, new) with meridian advance $179,000 @ 43%.",
+  "data": {
+   "projectId": "proj313"
+  }
+ },
+ {
+  "week": 641,
+  "type": "feedback",
+  "message": "Lost Frequency opens to 88,072 viewers.",
+  "data": {
+   "releaseId": "rel311",
+   "prev": 0,
+   "now": 88072,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 642,
+  "type": "feedback",
+  "message": "Critics love Lost Frequency, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel311",
+   "prev": 88072,
+   "now": 68478,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 644,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Frequency. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel311",
+   "prev": 42726,
+   "now": 45088,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 645,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Frequency is still climbing (45,088 → 48,211).",
+  "data": {
+   "releaseId": "rel311",
+   "prev": 45088,
+   "now": 48211,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 647,
+  "type": "milestone",
+  "message": "Last Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj313"
+  }
+ },
+ {
+  "week": 647,
+  "type": "cast",
+  "message": "Cast Gus Diaz for $34,034.37.",
+  "data": {
+   "starId": "star316",
+   "price": 34034.37
+  }
+ },
+ {
+  "week": 650,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 653,
+  "type": "milestone",
+  "message": "Last Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj313"
+  }
+ },
+ {
+  "week": 653,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 654,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 655,
+  "type": "ip_fans",
+  "message": "Lost Frequency fans: 0 → 23,665 (avg score 8.73, 396,533 viewers).",
+  "data": {
+   "ipId": "ip304"
+  }
+ },
+ {
+  "week": 655,
+  "type": "star_career",
+  "message": "Eli Park: Fame 4.0 → 17.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star310",
+   "fameDelta": 13.53,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 655,
+  "type": "trust",
+  "message": "Meridian Global earned 214% of its advance back on Lost Frequency with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.14,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 655,
+  "type": "run_end",
+  "message": "Lost Frequency run ended after 15 weeks: 396,533 viewers, gross $793,066, studio take $452,048.",
+  "data": {
+   "releaseId": "rel311"
+  }
+ },
+ {
+  "week": 656,
+  "type": "surplus",
+  "message": "Last Edge: kept $64,966 of unused advance.",
+  "data": {
+   "projectId": "proj313",
+   "surplus": 64965.63
+  }
+ },
+ {
+  "week": 656,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge).",
+  "data": {
+   "awardId": "rel:rel319:meters_all_70",
+   "releaseId": "rel319",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 656,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge).",
+  "data": {
+   "awardId": "rel:rel319:audience_7_5",
+   "releaseId": "rel319",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 656,
+  "type": "release",
+  "message": "Last Edge released: Audience 9.28 / Critics 8.43 (avg 8.86). Opening pool 324,557, opening 97,367.",
+  "data": {
+   "releaseId": "rel319"
+  }
+ },
+ {
+  "week": 656,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 656,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 656,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Vampires (new): starlight $55,000 @ 8%; orbit $117,000 @ 31%; meridian $166,000 @ 43%."
+ },
+ {
+  "week": 656,
+  "type": "project_start",
+  "message": "Started Wild Edge (Horror + Vampires, new) with meridian advance $166,000 @ 43%.",
+  "data": {
+   "projectId": "proj321"
+  }
+ },
+ {
+  "week": 657,
+  "type": "feedback",
+  "message": "Last Edge opens to 97,367 viewers.",
+  "data": {
+   "releaseId": "rel319",
+   "prev": 0,
+   "now": 97367,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 658,
+  "type": "feedback",
+  "message": "Critics love Last Edge, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel319",
+   "prev": 97367,
+   "now": 73604,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 660,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel319",
+   "prev": 45862,
+   "now": 55719,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 660,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 661,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge is still climbing (55,719 → 56,733).",
+  "data": {
+   "releaseId": "rel319",
+   "prev": 55719,
+   "now": 56733,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 662,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 663,
+  "type": "milestone",
+  "message": "Wild Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj321"
+  }
+ },
+ {
+  "week": 663,
+  "type": "cast",
+  "message": "Cast Gus Quinn for $65,042.41.",
+  "data": {
+   "starId": "star95",
+   "price": 65042.41
+  }
+ },
+ {
+  "week": 669,
+  "type": "milestone",
+  "message": "Wild Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj321"
+  }
+ },
+ {
+  "week": 669,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 671,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 0 → 26,981 (avg score 8.86, 436,861 viewers).",
+  "data": {
+   "ipId": "ip312"
+  }
+ },
+ {
+  "week": 671,
+  "type": "star_career",
+  "message": "Gus Diaz: Fame 48.0 → 62.4, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star316",
+   "fameDelta": 14.37,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 671,
+  "type": "trust",
+  "message": "Meridian Global earned 210% of its advance back on Last Edge with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.1,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 671,
+  "type": "run_end",
+  "message": "Last Edge run ended after 15 weeks: 436,861 viewers, gross $873,722, studio take $498,022.",
+  "data": {
+   "releaseId": "rel319"
+  }
+ },
+ {
+  "week": 672,
+  "type": "surplus",
+  "message": "Wild Edge: kept $20,958 of unused advance.",
+  "data": {
+   "projectId": "proj321",
+   "surplus": 20957.59
+  }
+ },
+ {
+  "week": 672,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Wild Edge).",
+  "data": {
+   "awardId": "rel:rel327:meters_all_70",
+   "releaseId": "rel327",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 672,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Wild Edge).",
+  "data": {
+   "awardId": "rel:rel327:audience_7_5",
+   "releaseId": "rel327",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 672,
+  "type": "release",
+  "message": "Wild Edge released: Audience 8.55 / Critics 8.42 (avg 8.49). Opening pool 340,173, opening 102,052.",
+  "data": {
+   "releaseId": "rel327"
+  }
+ },
+ {
+  "week": 672,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 672,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 672,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Dinosaurs (sequel): meridian $133,000 @ 44%; xyz $129,000 @ 40%; orbit $118,000 @ 32%."
+ },
+ {
+  "week": 672,
+  "type": "project_start",
+  "message": "Started Silver Horizon 5 (Comedy + Dinosaurs, sequel) with meridian advance $133,000 @ 44%.",
+  "data": {
+   "projectId": "proj328"
+  }
+ },
+ {
+  "week": 673,
+  "type": "feedback",
+  "message": "Wild Edge opens to 102,052 viewers.",
+  "data": {
+   "releaseId": "rel327",
+   "prev": 0,
+   "now": 102052,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 674,
+  "type": "feedback",
+  "message": "Critics love Wild Edge, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel327",
+   "prev": 102052,
+   "now": 75339,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 674,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 676,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Wild Edge. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel327",
+   "prev": 45415,
+   "now": 48850,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 679,
+  "type": "milestone",
+  "message": "Silver Horizon 5 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj328"
+  }
+ },
+ {
+  "week": 679,
+  "type": "star_recast",
+  "message": "Sam Lind was replaced in their established role in Silver Horizon; relationship -1.5.",
+  "data": {
+   "starId": "star156"
+  }
+ },
+ {
+  "week": 679,
+  "type": "cast",
+  "message": "Cast Eli Park for $10,525.88.",
+  "data": {
+   "starId": "star310",
+   "price": 10525.88
+  }
+ },
+ {
+  "week": 682,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 685,
+  "type": "milestone",
+  "message": "Silver Horizon 5 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj328"
+  }
+ },
+ {
+  "week": 685,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 687,
+  "type": "ip_fans",
+  "message": "Wild Edge fans: 0 → 22,179 (avg score 8.49, 397,196 viewers).",
+  "data": {
+   "ipId": "ip320"
+  }
+ },
+ {
+  "week": 687,
+  "type": "star_career",
+  "message": "Gus Quinn: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 8.",
+  "data": {
+   "starId": "star95",
+   "fameDelta": 12.67,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 687,
+  "type": "trust",
+  "message": "Meridian Global earned 206% of its advance back on Wild Edge with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.06,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 687,
+  "type": "run_end",
+  "message": "Wild Edge run ended after 15 weeks: 397,196 viewers, gross $794,392, studio take $452,803.",
+  "data": {
+   "releaseId": "rel327"
+  }
+ },
+ {
+  "week": 688,
+  "type": "surplus",
+  "message": "Silver Horizon 5: kept $42,474 of unused advance.",
+  "data": {
+   "projectId": "proj328",
+   "surplus": 42474.12
+  }
+ },
+ {
+  "week": 688,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Horizon 5).",
+  "data": {
+   "awardId": "rel:rel334:meters_all_70",
+   "releaseId": "rel334",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 688,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Horizon 5).",
+  "data": {
+   "awardId": "rel:rel334:audience_7_5",
+   "releaseId": "rel334",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 688,
+  "type": "release",
+  "message": "Silver Horizon 5 released: Audience 8.58 / Critics 7.35 (avg 7.97). Opening pool 296,403, opening 88,921.",
+  "data": {
+   "releaseId": "rel334"
+  }
+ },
+ {
+  "week": 688,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 688,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 688,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Vampires (new): xyz $158,000 @ 38%; wolf $123,000 @ 29%."
+ },
+ {
+  "week": 688,
+  "type": "project_start",
+  "message": "Started Hollow Legacy (Action + Vampires, new) with xyz advance $158,000 @ 38%.",
+  "data": {
+   "projectId": "proj336"
+  }
+ },
+ {
+  "week": 689,
+  "type": "feedback",
+  "message": "Silver Horizon 5 opens to 88,921 viewers.",
+  "data": {
+   "releaseId": "rel334",
+   "prev": 0,
+   "now": 88921,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 690,
+  "type": "feedback",
+  "message": "Critics love Silver Horizon 5, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel334",
+   "prev": 88921,
+   "now": 63170,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 692,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Horizon 5. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel334",
+   "prev": 39272,
+   "now": 44129,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 693,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Horizon 5 is still climbing (44,129 → 47,450).",
+  "data": {
+   "releaseId": "rel334",
+   "prev": 44129,
+   "now": 47450,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 695,
+  "type": "milestone",
+  "message": "Hollow Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj336"
+  }
+ },
+ {
+  "week": 695,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 695,
+  "type": "cast",
+  "message": "Cast Gus Diaz for $44,518.93.",
+  "data": {
+   "starId": "star316",
+   "price": 44518.93
+  }
+ },
+ {
+  "week": 697,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 699,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 700,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 701,
+  "type": "milestone",
+  "message": "Hollow Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj336"
+  }
+ },
+ {
+  "week": 701,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 703,
+  "type": "ip_fans",
+  "message": "Silver Horizon fans: 53,749 → 72,580 (avg score 7.97, 396,266 viewers).",
+  "data": {
+   "ipId": "ip161"
+  }
+ },
+ {
+  "week": 703,
+  "type": "star_career",
+  "message": "Eli Park: Fame 17.5 → 28.3, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 3.",
+  "data": {
+   "starId": "star310",
+   "fameDelta": 10.77,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 703,
+  "type": "trust",
+  "message": "Meridian Global earned 262% of its advance back on Silver Horizon 5 with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.62,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 703,
+  "type": "run_end",
+  "message": "Silver Horizon 5 run ended after 15 weeks: 396,266 viewers, gross $792,532, studio take $443,818.",
+  "data": {
+   "releaseId": "rel334"
+  }
+ },
+ {
+  "week": 704,
+  "type": "surplus",
+  "message": "Hollow Legacy: kept $33,481 of unused advance.",
+  "data": {
+   "projectId": "proj336",
+   "surplus": 33481.07
+  }
+ },
+ {
+  "week": 704,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Legacy).",
+  "data": {
+   "awardId": "rel:rel342:meters_all_70",
+   "releaseId": "rel342",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 704,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Legacy).",
+  "data": {
+   "awardId": "rel:rel342:audience_7_5",
+   "releaseId": "rel342",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 704,
+  "type": "release",
+  "message": "Hollow Legacy released: Audience 8.78 / Critics 7.17 (avg 7.98). Opening pool 280,858, opening 84,257.",
+  "data": {
+   "releaseId": "rel342"
+  }
+ },
+ {
+  "week": 704,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 704,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 704,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Robots (new): meridian $142,000 @ 44%; xyz $141,000 @ 40%; starlight $47,000 @ 8%."
+ },
+ {
+  "week": 704,
+  "type": "project_start",
+  "message": "Started Dead Code (Action + Robots, new) with meridian advance $142,000 @ 44%.",
+  "data": {
+   "projectId": "proj344"
+  }
+ },
+ {
+  "week": 705,
+  "type": "feedback",
+  "message": "Hollow Legacy opens to 84,257 viewers.",
+  "data": {
+   "releaseId": "rel342",
+   "prev": 0,
+   "now": 84257,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 706,
+  "type": "feedback",
+  "message": "Critics love Hollow Legacy, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel342",
+   "prev": 84257,
+   "now": 59182,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 708,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Legacy. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel342",
+   "prev": 36731,
+   "now": 42951,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 709,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Hollow Legacy is still climbing (42,951 → 47,480).",
+  "data": {
+   "releaseId": "rel342",
+   "prev": 42951,
+   "now": 47480,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 711,
+  "type": "milestone",
+  "message": "Dead Code hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj344"
+  }
+ },
+ {
+  "week": 711,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 711,
+  "type": "cast",
+  "message": "Cast Gus Diaz for $44,508.5.",
+  "data": {
+   "starId": "star316",
+   "price": 44508.5
+  }
+ },
+ {
+  "week": 714,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 715,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 717,
+  "type": "milestone",
+  "message": "Dead Code hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj344"
+  }
+ },
+ {
+  "week": 717,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 717,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 719,
+  "type": "ip_fans",
+  "message": "Hollow Legacy fans: 0 → 17,772 (avg score 7.98, 372,744 viewers).",
+  "data": {
+   "ipId": "ip335"
+  }
+ },
+ {
+  "week": 719,
+  "type": "star_career",
+  "message": "Gus Diaz: Fame 62.4 → 73.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 4.",
+  "data": {
+   "starId": "star316",
+   "fameDelta": 10.62,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 719,
+  "type": "trust",
+  "message": "XYZ Network earned 179% of its advance back on Hollow Legacy with strong reviews. Trust 4.82 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.79,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 719,
+  "type": "run_end",
+  "message": "Hollow Legacy run ended after 15 weeks: 372,744 viewers, gross $745,488, studio take $462,203.",
+  "data": {
+   "releaseId": "rel342"
+  }
+ },
+ {
+  "week": 719,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 720,
+  "type": "surplus",
+  "message": "Dead Code: kept $17,492 of unused advance.",
+  "data": {
+   "projectId": "proj344",
+   "surplus": 17491.5
+  }
+ },
+ {
+  "week": 720,
+  "type": "genre_level",
+  "message": "Studio Action level 4 → 5."
+ },
+ {
+  "week": 720,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Code).",
+  "data": {
+   "awardId": "rel:rel350:meters_all_70",
+   "releaseId": "rel350",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 720,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Code).",
+  "data": {
+   "awardId": "rel:rel350:audience_7_5",
+   "releaseId": "rel350",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 720,
+  "type": "release",
+  "message": "Dead Code released: Audience 8.98 / Critics 7.34 (avg 8.16). Opening pool 362,612, opening 108,784.",
+  "data": {
+   "releaseId": "rel350"
+  }
+ },
+ {
+  "week": 720,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 720,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 720,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Pirates (new): wolf $96,000 @ 30%; xyz $151,000 @ 40%."
+ },
+ {
+  "week": 720,
+  "type": "project_start",
+  "message": "Started Lost Echo (Comedy + Pirates, new) with xyz advance $151,000 @ 40%.",
+  "data": {
+   "projectId": "proj352"
+  }
+ },
+ {
+  "week": 721,
+  "type": "feedback",
+  "message": "Dead Code opens to 108,784 viewers.",
+  "data": {
+   "releaseId": "rel350",
+   "prev": 0,
+   "now": 108784,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 722,
+  "type": "feedback",
+  "message": "Critics love Dead Code, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel350",
+   "prev": 108784,
+   "now": 76307,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 722,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 724,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Code. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel350",
+   "prev": 46596,
+   "now": 55948,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 727,
+  "type": "milestone",
+  "message": "Lost Echo hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj352"
+  }
+ },
+ {
+  "week": 727,
+  "type": "cast",
+  "message": "Cast Eli Park for $16,804.09.",
+  "data": {
+   "starId": "star310",
+   "price": 16804.09
+  }
+ },
+ {
+  "week": 731,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 733,
+  "type": "milestone",
+  "message": "Lost Echo hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj352"
+  }
+ },
+ {
+  "week": 733,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 733,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 735,
+  "type": "ip_fans",
+  "message": "Dead Code fans: 0 → 22,092 (avg score 8.16, 436,954 viewers).",
+  "data": {
+   "ipId": "ip343"
+  }
+ },
+ {
+  "week": 735,
+  "type": "star_career",
+  "message": "Gus Diaz: Fame 73.0 → 84.8, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star316",
+   "fameDelta": 11.76,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 735,
+  "type": "trust",
+  "message": "Meridian Global earned 271% of its advance back on Dead Code with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.71,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 735,
+  "type": "run_end",
+  "message": "Dead Code run ended after 15 weeks: 436,954 viewers, gross $873,908, studio take $489,388.",
+  "data": {
+   "releaseId": "rel350"
+  }
+ },
+ {
+  "week": 736,
+  "type": "surplus",
+  "message": "Lost Echo: kept $54,196 of unused advance.",
+  "data": {
+   "projectId": "proj352",
+   "surplus": 54195.91
+  }
+ },
+ {
+  "week": 736,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Echo).",
+  "data": {
+   "awardId": "rel:rel358:meters_all_70",
+   "releaseId": "rel358",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 736,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Echo).",
+  "data": {
+   "awardId": "rel:rel358:audience_7_5",
+   "releaseId": "rel358",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 736,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Lost Echo).",
+  "data": {
+   "awardId": "rel:rel358:critic_8_5",
+   "releaseId": "rel358",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 736,
+  "type": "release",
+  "message": "Lost Echo released: Audience 8.1 / Critics 8.66 (avg 8.38). Opening pool 289,531, opening 86,859.",
+  "data": {
+   "releaseId": "rel358"
+  }
+ },
+ {
+  "week": 736,
+  "type": "train",
+  "message": "Trained Noa Sato: +3 to all stats."
+ },
+ {
+  "week": 736,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 736,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Pirates (new): xyz $160,000 @ 39%; starlight $53,000 @ 8%; wolf $108,000 @ 30%."
+ },
+ {
+  "week": 736,
+  "type": "project_start",
+  "message": "Started Midnight Legacy (Action + Pirates, new) with xyz advance $160,000 @ 39%.",
+  "data": {
+   "projectId": "proj360"
+  }
+ },
+ {
+  "week": 737,
+  "type": "feedback",
+  "message": "Lost Echo opens to 86,859 viewers.",
+  "data": {
+   "releaseId": "rel358",
+   "prev": 0,
+   "now": 86859,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 738,
+  "type": "feedback",
+  "message": "Critics love Lost Echo, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel358",
+   "prev": 86859,
+   "now": 65993,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 740,
+  "type": "feedback",
+  "message": "Word of mouth on Lost Echo is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel358",
+   "prev": 40680,
+   "now": 40026,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 741,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Echo is still climbing (40,026 → 40,215).",
+  "data": {
+   "releaseId": "rel358",
+   "prev": 40026,
+   "now": 40215,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 743,
+  "type": "milestone",
+  "message": "Midnight Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj360"
+  }
+ },
+ {
+  "week": 743,
+  "type": "cast",
+  "message": "Cast Bo Hart for $63,659.69.",
+  "data": {
+   "starId": "star12",
+   "price": 63659.69
+  }
+ },
+ {
+  "week": 748,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 749,
+  "type": "milestone",
+  "message": "Midnight Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj360"
+  }
+ },
+ {
+  "week": 749,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 751,
+  "type": "ip_fans",
+  "message": "Lost Echo fans: 0 → 20,142 (avg score 8.38, 372,447 viewers).",
+  "data": {
+   "ipId": "ip351"
+  }
+ },
+ {
+  "week": 751,
+  "type": "star_career",
+  "message": "Eli Park: Fame 28.3 → 40.4, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star310",
+   "fameDelta": 12.05,
+   "relDelta": 0.75,
+   "grow": 2
+  }
+ },
+ {
+  "week": 751,
+  "type": "trust",
+  "message": "XYZ Network earned 197% of its advance back on Lost Echo with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.97,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 751,
+  "type": "run_end",
+  "message": "Lost Echo run ended after 15 weeks: 372,447 viewers, gross $744,894, studio take $446,936.",
+  "data": {
+   "releaseId": "rel358"
+  }
+ },
+ {
+  "week": 752,
+  "type": "surplus",
+  "message": "Midnight Legacy: kept $16,340 of unused advance.",
+  "data": {
+   "projectId": "proj360",
+   "surplus": 16340.31
+  }
+ },
+ {
+  "week": 752,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Midnight Legacy).",
+  "data": {
+   "awardId": "rel:rel366:meters_all_70",
+   "releaseId": "rel366",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 752,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Midnight Legacy).",
+  "data": {
+   "awardId": "rel:rel366:audience_7_5",
+   "releaseId": "rel366",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 752,
+  "type": "release",
+  "message": "Midnight Legacy released: Audience 9.54 / Critics 8.17 (avg 8.86). Opening pool 319,762, opening 95,929.",
+  "data": {
+   "releaseId": "rel366"
+  }
+ },
+ {
+  "week": 752,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 752,
+  "type": "train",
+  "message": "Trained Liv Diaz: +3 to all stats."
+ },
+ {
+  "week": 752,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Dinosaurs (new): xyz $122,000 @ 40%; orbit $92,000 @ 33%."
+ },
+ {
+  "week": 752,
+  "type": "project_start",
+  "message": "Started Hollow Pulse (Action + Dinosaurs, new) with xyz advance $122,000 @ 40%.",
+  "data": {
+   "projectId": "proj368"
+  }
+ },
+ {
+  "week": 753,
+  "type": "feedback",
+  "message": "Midnight Legacy opens to 95,929 viewers.",
+  "data": {
+   "releaseId": "rel366",
+   "prev": 0,
+   "now": 95929,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 753,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 754,
+  "type": "feedback",
+  "message": "Critics love Midnight Legacy, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel366",
+   "prev": 95929,
+   "now": 69945,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 755,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 756,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Legacy. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel366",
+   "prev": 42243,
+   "now": 53927,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 757,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 759,
+  "type": "milestone",
+  "message": "Hollow Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj368"
+  }
+ },
+ {
+  "week": 759,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 759,
+  "type": "cast",
+  "message": "Cast Bo Hart for $63,632.87.",
+  "data": {
+   "starId": "star12",
+   "price": 63632.87
+  }
+ },
+ {
+  "week": 765,
+  "type": "milestone",
+  "message": "Hollow Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj368"
+  }
+ },
+ {
+  "week": 765,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 767,
+  "type": "ip_fans",
+  "message": "Midnight Legacy fans: 0 → 23,095 (avg score 8.86, 373,947 viewers).",
+  "data": {
+   "ipId": "ip359"
+  }
+ },
+ {
+  "week": 767,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 13.77,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 767,
+  "type": "trust",
+  "message": "XYZ Network earned 182% of its advance back on Midnight Legacy with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.82,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 767,
+  "type": "run_end",
+  "message": "Midnight Legacy run ended after 15 weeks: 373,947 viewers, gross $747,894, studio take $456,215.",
+  "data": {
+   "releaseId": "rel366"
+  }
+ },
+ {
+  "week": 768,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Pulse).",
+  "data": {
+   "awardId": "rel:rel374:meters_all_70",
+   "releaseId": "rel374",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 768,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Pulse).",
+  "data": {
+   "awardId": "rel:rel374:audience_7_5",
+   "releaseId": "rel374",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 768,
+  "type": "release",
+  "message": "Hollow Pulse released: Audience 9.01 / Critics 5.74 (avg 7.38). Opening pool 300,087, opening 90,026.",
+  "data": {
+   "releaseId": "rel374"
+  }
+ },
+ {
+  "week": 768,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 768,
+  "type": "train",
+  "message": "Trained Sam Quinn: +3 to all stats."
+ },
+ {
+  "week": 768,
+  "type": "train",
+  "message": "Trained Lee Lind: +3 to all stats."
+ },
+ {
+  "week": 768,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): meridian $175,000 @ 43%; wolf $120,000 @ 29%; starlight $58,000 @ 8%."
+ },
+ {
+  "week": 768,
+  "type": "project_start",
+  "message": "Started Midnight Edge (Action + Spies, new) with meridian advance $175,000 @ 43%.",
+  "data": {
+   "projectId": "proj376"
+  }
+ },
+ {
+  "week": 769,
+  "type": "feedback",
+  "message": "Hollow Pulse opens to 90,026 viewers.",
+  "data": {
+   "releaseId": "rel374",
+   "prev": 0,
+   "now": 90026,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 771,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 772,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Pulse. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel374",
+   "prev": 35669,
+   "now": 45638,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 773,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Hollow Pulse is still climbing (45,638 → 49,344).",
+  "data": {
+   "releaseId": "rel374",
+   "prev": 45638,
+   "now": 49344,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 775,
+  "type": "milestone",
+  "message": "Midnight Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj376"
+  }
+ },
+ {
+  "week": 775,
+  "type": "cast",
+  "message": "Cast Bo Hart for $63,606.74.",
+  "data": {
+   "starId": "star12",
+   "price": 63606.74
+  }
+ },
+ {
+  "week": 781,
+  "type": "milestone",
+  "message": "Midnight Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj376"
+  }
+ },
+ {
+  "week": 781,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 783,
+  "type": "ip_fans",
+  "message": "Hollow Pulse fans: 0 → 14,208 (avg score 7.38, 373,100 viewers).",
+  "data": {
+   "ipId": "ip367"
+  }
+ },
+ {
+  "week": 783,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 9.",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 8.49,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 783,
+  "type": "trust",
+  "message": "XYZ Network earned 245% of its advance back on Hollow Pulse with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.45,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 783,
+  "type": "run_end",
+  "message": "Hollow Pulse run ended after 15 weeks: 373,100 viewers, gross $746,200, studio take $447,720.",
+  "data": {
+   "releaseId": "rel374"
+  }
+ },
+ {
+  "week": 784,
+  "type": "surplus",
+  "message": "Midnight Edge: kept $31,393 of unused advance.",
+  "data": {
+   "projectId": "proj376",
+   "surplus": 31393.26
+  }
+ },
+ {
+  "week": 784,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Midnight Edge).",
+  "data": {
+   "awardId": "rel:rel382:meters_all_70",
+   "releaseId": "rel382",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 784,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Midnight Edge).",
+  "data": {
+   "awardId": "rel:rel382:audience_7_5",
+   "releaseId": "rel382",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 784,
+  "type": "release",
+  "message": "Midnight Edge released: Audience 9.33 / Critics 6.62 (avg 7.98). Opening pool 351,166, opening 105,350.",
+  "data": {
+   "releaseId": "rel382"
+  }
+ },
+ {
+  "week": 784,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 784,
+  "type": "train",
+  "message": "Trained Gus Okafor: +3 to all stats."
+ },
+ {
+  "week": 784,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Dinosaurs (sequel): starlight $50,000 @ 8%; xyz $132,000 @ 40%; orbit $108,000 @ 32%."
+ },
+ {
+  "week": 784,
+  "type": "project_start",
+  "message": "Started Silver Horizon 6 (Comedy + Dinosaurs, sequel) with xyz advance $132,000 @ 40%.",
+  "data": {
+   "projectId": "proj383"
+  }
+ },
+ {
+  "week": 785,
+  "type": "feedback",
+  "message": "Midnight Edge opens to 105,350 viewers.",
+  "data": {
+   "releaseId": "rel382",
+   "prev": 0,
+   "now": 105350,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 788,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Edge. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel382",
+   "prev": 43828,
+   "now": 57031,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 791,
+  "type": "milestone",
+  "message": "Silver Horizon 6 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj383"
+  }
+ },
+ {
+  "week": 791,
+  "type": "star_recast",
+  "message": "Eli Park was replaced in their established role in Silver Horizon; relationship -1.5.",
+  "data": {
+   "starId": "star310"
+  }
+ },
+ {
+  "week": 791,
+  "type": "cast",
+  "message": "Cast Dee Diaz for $16,072.89.",
+  "data": {
+   "starId": "star385",
+   "price": 16072.89
+  }
+ },
+ {
+  "week": 793,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 797,
+  "type": "milestone",
+  "message": "Silver Horizon 6 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj383"
+  }
+ },
+ {
+  "week": 797,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 799,
+  "type": "ip_fans",
+  "message": "Midnight Edge fans: 0 → 20,835 (avg score 7.98, 436,979 viewers).",
+  "data": {
+   "ipId": "ip375"
+  }
+ },
+ {
+  "week": 799,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 11.09,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 799,
+  "type": "trust",
+  "message": "Meridian Global earned 215% of its advance back on Midnight Edge with strong reviews. Trust 4.91 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.15,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 799,
+  "type": "run_end",
+  "message": "Midnight Edge run ended after 15 weeks: 436,979 viewers, gross $873,958, studio take $498,156.",
+  "data": {
+   "releaseId": "rel382"
+  }
+ },
+ {
+  "week": 800,
+  "type": "surplus",
+  "message": "Silver Horizon 6: kept $35,927 of unused advance.",
+  "data": {
+   "projectId": "proj383",
+   "surplus": 35927.11
+  }
+ },
+ {
+  "week": 800,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Horizon 6).",
+  "data": {
+   "awardId": "rel:rel389:meters_all_70",
+   "releaseId": "rel389",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 800,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Horizon 6).",
+  "data": {
+   "awardId": "rel:rel389:audience_7_5",
+   "releaseId": "rel389",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 800,
+  "type": "release",
+  "message": "Silver Horizon 6 released: Audience 8.4 / Critics 7.19 (avg 7.8). Opening pool 285,691, opening 85,707.",
+  "data": {
+   "releaseId": "rel389"
+  }
+ },
+ {
+  "week": 801,
+  "type": "feedback",
+  "message": "Silver Horizon 6 opens to 85,707 viewers.",
+  "data": {
+   "releaseId": "rel389",
+   "prev": 0,
+   "now": 85707,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 802,
+  "type": "feedback",
+  "message": "Critics love Silver Horizon 6, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel389",
+   "prev": 85707,
+   "now": 60157,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 803,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 804,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Horizon 6. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel389",
+   "prev": 37234,
+   "now": 40826,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 805,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Horizon 6 is still climbing (40,826 → 42,805).",
+  "data": {
+   "releaseId": "rel389",
+   "prev": 40826,
+   "now": 42805,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 808,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 815,
+  "type": "ip_fans",
+  "message": "Silver Horizon fans: 58,503 → 75,187 (avg score 7.8, 372,403 viewers).",
+  "data": {
+   "ipId": "ip161"
+  }
+ },
+ {
+  "week": 815,
+  "type": "star_career",
+  "message": "Dee Diaz: Fame 25.0 → 35.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star385",
+   "fameDelta": 9.98,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 815,
+  "type": "trust",
+  "message": "XYZ Network earned 226% of its advance back on Silver Horizon 6 with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.26,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 815,
+  "type": "run_end",
+  "message": "Silver Horizon 6 run ended after 15 weeks: 372,403 viewers, gross $744,806, studio take $446,884.",
+  "data": {
+   "releaseId": "rel389"
+  }
+ }
+]

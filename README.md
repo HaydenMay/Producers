@@ -16,6 +16,33 @@ A headless, deterministic simulation and balance tool for the **Entertainment St
 **Tests:** 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
+## Gate 2.6 additions (critic generations + great-film metrics, pending designer review)
+
+- **Expectation curves** (`expectations`, off by default, so Gate 2.5 results are byte-identical): a calendar-based **harness proxy** for critic generations (named critics retiring and being replaced by a tougher generation, announced ahead of time) and gentler audience eras. Applied once at release, after combo/weakness/fatigue/saturation and before the 0–10 clamp; published scores never change. Each release trace shows `raw → combo/weakness → generation/era adjustment → final`.
+- **Great-film metrics** in every batch, experiment, career report and the web Batch tab:
+  - Hall of Fame counts and % (with denominators)
+  - average ≥ 9.0 and > 9.0; Audience ≥ 9 and Critic ≥ 9; 8+
+  - HoF per career (p10/p50/p90, % of careers with zero) and distinct HoF IPs
+  - best film per career (p10/p50/p90/p99)
+  - best combined, Audience and Critic films with seed, release #, year and critic generation (deterministic tie-break)
+  - breakdowns by release window (1–5, 6–20, 21–50, 51–100), in-game year band and critic generation
+- **Prestige progression:** for each Prestige-gated upgrade, the share of careers meeting the gate and buying it, the film # when that happened, "cash-rich but Prestige-locked" careers, and purchases below the gate (must be 0; also an invariant). Milestones awarded per career.
+- **Fixed-quality cases:** the same production scored at years 0–36 under each variant (`npm run eras`).
+- Docs: `docs/gate-2-6-findings.md` (results + designer decision table), new assumptions G14–G21 in `docs/assumptions-register.md`.
+
+```bash
+# full Gate 2.6 matrix (13 variants x 9 strategies x 300 seeds; ~70 min total on one core) + follow-up (combo_D; ~17 min)
+npm run eras -- --config config/candidate.json --out reports/gate2_6
+for P in 5 20 50 100; do npm run experiment -- --config config/candidate.json --spec config/experiments/G26_expectations.json --productions $P --out reports/gate2_6/p$P; done
+for P in 5 20 50 100; do npm run experiment -- --config config/candidate.json --spec config/experiments/G26_followup.json --productions $P --out reports/gate2_6/followup/p$P; done
+# each run writes G26_expectations.md (summary), .json (all metrics), .great.csv (every greatness row), .careerbest.csv (each career's best film)
+npm run batch -- --config config/candidate.json --seeds 50 --productions 50     # batch report now includes great films + progression; .great.csv
+npm run sim -- --config config/candidate.json --set 'expectations.critics.enabled=true' --seed 6 --strategy balanced --productions 40
+npx tsx scripts/probe-hof-boundary.ts   # Hall of Fame rounding boundary check
+python3 -I scripts/g26_decision_table.py                                   # designer decision table from the reports
+python3 -I scripts/g26_decision_table.py reports/gate2_6/followup G26_followup
+```
+
 ## Gate 2.5 additions (movie system iteration, pending designer approval)
 
 - **Studio-wide employee capacity** (`staffCapacity`): the engine refuses hires above `maxStaff` (choices, `applyDecision` and `hireStaff` all enforce it). Every employed staff member still works on the one production. Upgrades are an explicit legal action, `upgrade_studio`, with cost + Prestige test triggers. The baseline keeps the historical uncapped behavior; `config/candidate.json` uses **2 / 4 → 6 → 8**.
@@ -46,7 +73,7 @@ npm run sim -- --config config/candidate.json --seed 42 --strategy balanced --pr
 
 ```bash
 npm install
-npm test                      # 50 tests
+npm test                      # 64 tests
 npm run typecheck
 
 # one seeded career → reports/sim-seed42-balanced-5.md (+ .decisions.json, .events.json)
