@@ -1,0 +1,652 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 58) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): starlight $41,000 @ 8%; wolf $79,000 @ 32%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Broken Rising (Action + Superheroes, new) with wolf advance $79,000 @ 32%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Broken Rising hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Gus Reyes for $7,470.73.",
+  "data": {
+   "starId": "star7",
+   "price": 7470.73
+  }
+ },
+ {
+  "week": 11,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Broken Rising hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 15,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 16,
+  "type": "surplus",
+  "message": "Broken Rising: kept $11,529 of unused advance.",
+  "data": {
+   "projectId": "proj2",
+   "surplus": 11529.27
+  }
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Action level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Broken Rising released: Audience 4.97 / Critics 5.63 (avg 5.3). Opening pool 89,844, opening 26,953.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): wolf $98,000 @ 31%; starlight $53,000 @ 8%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Last Edge (Action + Spies, new) with wolf advance $98,000 @ 31%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Broken Rising opens to 26,953 viewers.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 23,
+  "type": "milestone",
+  "message": "Last Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 23,
+  "type": "cast",
+  "message": "Cast Dee Kerr for $5,621.04.",
+  "data": {
+   "starId": "star15",
+   "price": 5621.04
+  }
+ },
+ {
+  "week": 24,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 26,
+  "type": "ip_fans",
+  "message": "Broken Rising fans: 0 → 348 (avg score 5.3, 72,448 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 26,
+  "type": "star_career",
+  "message": "Gus Reyes: Fame 11.0 → 11.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star7",
+   "fameDelta": 0.49,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 26,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 59% of its $79,000 advance on Broken Rising. Trust 2.50 → 2.23.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.59,
+   "step": -0.27
+  }
+ },
+ {
+  "week": 26,
+  "type": "run_end",
+  "message": "Broken Rising run ended after 10 weeks: 72,448 viewers, gross $144,896, studio take $98,529.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 27,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 27,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 28,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 29,
+  "type": "milestone",
+  "message": "Last Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 29,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 31,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 32,
+  "type": "surplus",
+  "message": "Last Edge: kept $32,379 of unused advance.",
+  "data": {
+   "projectId": "proj10",
+   "surplus": 32378.96
+  }
+ },
+ {
+  "week": 32,
+  "type": "release",
+  "message": "Last Edge released: Audience 6.68 / Critics 5.89 (avg 6.29). Opening pool 86,681, opening 26,004.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 32,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): wolf $95,000 @ 32%; starlight $52,000 @ 8%."
+ },
+ {
+  "week": 32,
+  "type": "project_start",
+  "message": "Started Red Pulse (Action + Spies, new) with wolf advance $95,000 @ 32%.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 33,
+  "type": "feedback",
+  "message": "Last Edge opens to 26,004 viewers.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 35,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 39,
+  "type": "milestone",
+  "message": "Red Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 39,
+  "type": "cast",
+  "message": "Cast Liv Quinn for $3,040.82.",
+  "data": {
+   "starId": "star19",
+   "price": 3040.82
+  }
+ },
+ {
+  "week": 44,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 45,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 0 → 1,627 (avg score 6.29, 78,838 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 45,
+  "type": "star_career",
+  "message": "Dee Kerr: Fame 8.0 → 10.2, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star15",
+   "fameDelta": 2.22,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 45,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 50% of its $98,000 advance on Last Edge. Trust 2.34 → 2.14.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.5,
+   "step": -0.2
+  }
+ },
+ {
+  "week": 45,
+  "type": "run_end",
+  "message": "Last Edge run ended after 13 weeks: 78,838 viewers, gross $157,676, studio take $108,796.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 45,
+  "type": "milestone",
+  "message": "Red Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 45,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 47,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 48,
+  "type": "surplus",
+  "message": "Red Pulse: kept $31,959 of unused advance.",
+  "data": {
+   "projectId": "proj18",
+   "surplus": 31959.18
+  }
+ },
+ {
+  "week": 48,
+  "type": "genre_level",
+  "message": "Studio Action level 1 → 2."
+ },
+ {
+  "week": 48,
+  "type": "release",
+  "message": "Red Pulse released: Audience 6.31 / Critics 5.66 (avg 5.99). Opening pool 81,281, opening 24,384.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 48,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 48,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (new): wolf $78,000 @ 32%; starlight $51,000 @ 8%."
+ },
+ {
+  "week": 48,
+  "type": "project_start",
+  "message": "Started Midnight Frequency (Comedy + Spies, new) with wolf advance $78,000 @ 32%.",
+  "data": {
+   "projectId": "proj26"
+  }
+ },
+ {
+  "week": 49,
+  "type": "feedback",
+  "message": "Red Pulse opens to 24,384 viewers.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 55,
+  "type": "milestone",
+  "message": "Midnight Frequency hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj26"
+  }
+ },
+ {
+  "week": 55,
+  "type": "cast",
+  "message": "Cast Jo Imai for $2,263.5.",
+  "data": {
+   "starId": "star31",
+   "price": 2263.5
+  }
+ },
+ {
+  "week": 60,
+  "type": "ip_fans",
+  "message": "Red Pulse fans: 0 → 1,123 (avg score 5.99, 70,920 viewers).",
+  "data": {
+   "ipId": "ip17"
+  }
+ },
+ {
+  "week": 60,
+  "type": "star_career",
+  "message": "Liv Quinn: Fame 3.0 → 4.6, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star19",
+   "fameDelta": 1.59,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 60,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 48% of its $95,000 advance on Red Pulse. Trust 2.23 → 1.98.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.48,
+   "step": -0.25
+  }
+ },
+ {
+  "week": 60,
+  "type": "run_end",
+  "message": "Red Pulse run ended after 12 weeks: 70,920 viewers, gross $141,840, studio take $96,451.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 61,
+  "type": "milestone",
+  "message": "Midnight Frequency hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj26"
+  }
+ },
+ {
+  "week": 61,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 64,
+  "type": "surplus",
+  "message": "Midnight Frequency: kept $15,737 of unused advance.",
+  "data": {
+   "projectId": "proj26",
+   "surplus": 15736.5
+  }
+ },
+ {
+  "week": 64,
+  "type": "genre_level",
+  "message": "Studio Comedy level 0 → 1."
+ },
+ {
+  "week": 64,
+  "type": "release",
+  "message": "Midnight Frequency released: Audience 5.84 / Critics 6.4 (avg 6.12). Opening pool 71,887, opening 21,566.",
+  "data": {
+   "releaseId": "rel32"
+  }
+ },
+ {
+  "week": 64,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): starlight $52,000 @ 8%; wolf $91,000 @ 32%."
+ },
+ {
+  "week": 64,
+  "type": "project_start",
+  "message": "Started Red Legacy (Action + Spies, new) with wolf advance $91,000 @ 32%.",
+  "data": {
+   "projectId": "proj34"
+  }
+ },
+ {
+  "week": 65,
+  "type": "feedback",
+  "message": "Midnight Frequency opens to 21,566 viewers.",
+  "data": {
+   "releaseId": "rel32"
+  }
+ },
+ {
+  "week": 67,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 71,
+  "type": "milestone",
+  "message": "Red Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj34"
+  }
+ },
+ {
+  "week": 71,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 71,
+  "type": "cast",
+  "message": "Cast Jo Imai for $2,263.5.",
+  "data": {
+   "starId": "star31",
+   "price": 2263.5
+  }
+ },
+ {
+  "week": 75,
+  "type": "ip_fans",
+  "message": "Midnight Frequency fans: 0 → 1,138 (avg score 6.12, 63,529 viewers).",
+  "data": {
+   "ipId": "ip25"
+  }
+ },
+ {
+  "week": 75,
+  "type": "star_career",
+  "message": "Jo Imai: Fame 1.0 → 2.7, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star31",
+   "fameDelta": 1.67,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 75,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 52% of its $78,000 advance on Midnight Frequency. Trust 2.07 → 1.87.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.52,
+   "step": -0.2
+  }
+ },
+ {
+  "week": 75,
+  "type": "run_end",
+  "message": "Midnight Frequency run ended after 11 weeks: 63,529 viewers, gross $127,058, studio take $86,399.",
+  "data": {
+   "releaseId": "rel32"
+  }
+ },
+ {
+  "week": 75,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 76,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 77,
+  "type": "milestone",
+  "message": "Red Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj34"
+  }
+ },
+ {
+  "week": 77,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 78,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 80,
+  "type": "surplus",
+  "message": "Red Legacy: kept $28,737 of unused advance.",
+  "data": {
+   "projectId": "proj34",
+   "surplus": 28736.5
+  }
+ },
+ {
+  "week": 80,
+  "type": "release",
+  "message": "Red Legacy released: Audience 6.11 / Critics 5.58 (avg 5.85). Opening pool 80,919, opening 24,276.",
+  "data": {
+   "releaseId": "rel40"
+  }
+ },
+ {
+  "week": 81,
+  "type": "feedback",
+  "message": "Red Legacy opens to 24,276 viewers.",
+  "data": {
+   "releaseId": "rel40"
+  }
+ },
+ {
+  "week": 84,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 84,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 87,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 88,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 92,
+  "type": "ip_fans",
+  "message": "Red Legacy fans: 0 → 945 (avg score 5.85, 69,485 viewers).",
+  "data": {
+   "ipId": "ip33"
+  }
+ },
+ {
+  "week": 92,
+  "type": "star_career",
+  "message": "Jo Imai: Fame 2.7 → 4.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 3.",
+  "data": {
+   "starId": "star31",
+   "fameDelta": 1.35,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 92,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 49% of its $91,000 advance on Red Legacy. Trust 1.97 → 1.71.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.49,
+   "step": -0.26
+  }
+ },
+ {
+  "week": 92,
+  "type": "run_end",
+  "message": "Red Legacy run ended after 12 weeks: 69,485 viewers, gross $138,970, studio take $94,500.",
+  "data": {
+   "releaseId": "rel40"
+  }
+ }
+]

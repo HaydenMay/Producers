@@ -1,0 +1,3134 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 84) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (new): wolf $93,000 @ 31%; starlight $50,000 @ 8%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Lost Horizon (Horror + Spies, new) with wolf advance $93,000 @ 31%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 6,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Lost Horizon hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Mo Lowe for $25,064.56.",
+  "data": {
+   "starId": "star4",
+   "price": 25064.56
+  }
+ },
+ {
+  "week": 10,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Lost Horizon hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Horror level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Lost Horizon released: Audience 6.7 / Critics 5.77 (avg 6.24). Opening pool 144,424, opening 43,327.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (new): wolf $85,000 @ 31%; starlight $51,000 @ 8%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Lost Legacy (Horror + Spies, new) with wolf advance $85,000 @ 31%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Lost Horizon opens to 43,327 viewers.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 23,
+  "type": "milestone",
+  "message": "Lost Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 23,
+  "type": "cast",
+  "message": "Cast Mo Lowe for $25,064.56.",
+  "data": {
+   "starId": "star4",
+   "price": 25064.56
+  }
+ },
+ {
+  "week": 26,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 29,
+  "type": "milestone",
+  "message": "Lost Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 29,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 30,
+  "type": "ip_fans",
+  "message": "Lost Horizon fans: 0 → 2,601 (avg score 6.24, 131,078 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 30,
+  "type": "star_career",
+  "message": "Mo Lowe: Fame 32.0 → 34.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 2.89,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 30,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 87% of its $93,000 advance on Lost Horizon. Trust 2.50 → 2.52.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.87,
+   "step": 0.02
+  }
+ },
+ {
+  "week": 30,
+  "type": "run_end",
+  "message": "Lost Horizon run ended after 14 weeks: 131,078 viewers, gross $262,156, studio take $180,888.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 30,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 32,
+  "type": "release",
+  "message": "Lost Legacy released: Audience 6.51 / Critics 5.66 (avg 6.09). Opening pool 146,480, opening 43,944.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 32,
+  "type": "hire",
+  "message": "Hired Rae Vale (plot 15, writing 18, filming 22, editing 16)."
+ },
+ {
+  "week": 32,
+  "type": "hire",
+  "message": "Hired Jo Park (plot 19, writing 24, filming 16, editing 27)."
+ },
+ {
+  "week": 32,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (new): starlight $41,000 @ 8%; wolf $76,000 @ 32%."
+ },
+ {
+  "week": 32,
+  "type": "project_start",
+  "message": "Started Lost Pulse (Horror + Superheroes, new) with wolf advance $76,000 @ 32%.",
+  "data": {
+   "projectId": "proj20"
+  }
+ },
+ {
+  "week": 33,
+  "type": "feedback",
+  "message": "Lost Legacy opens to 43,944 viewers.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 36,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 39,
+  "type": "milestone",
+  "message": "Lost Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj20"
+  }
+ },
+ {
+  "week": 39,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 39,
+  "type": "cast",
+  "message": "Cast Mo Lowe for $27,011.57.",
+  "data": {
+   "starId": "star4",
+   "price": 27011.57
+  }
+ },
+ {
+  "week": 45,
+  "type": "milestone",
+  "message": "Lost Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj20"
+  }
+ },
+ {
+  "week": 45,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 46,
+  "type": "ip_fans",
+  "message": "Lost Legacy fans: 0 → 2,274 (avg score 6.09, 130,410 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 46,
+  "type": "star_career",
+  "message": "Mo Lowe: Fame 34.9 → 37.4, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 5.",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 2.53,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 46,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 95% of its $85,000 advance on Lost Legacy. Trust 2.50 → 2.55.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.95,
+   "step": 0.05
+  }
+ },
+ {
+  "week": 46,
+  "type": "run_end",
+  "message": "Lost Legacy run ended after 14 weeks: 130,410 viewers, gross $260,820, studio take $179,966.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 48,
+  "type": "genre_level",
+  "message": "Studio Horror level 1 → 2."
+ },
+ {
+  "week": 48,
+  "type": "release",
+  "message": "Lost Pulse released: Audience 5.53 / Critics 7.16 (avg 6.35). Opening pool 186,411, opening 55,923.",
+  "data": {
+   "releaseId": "rel26"
+  }
+ },
+ {
+  "week": 48,
+  "type": "hire",
+  "message": "Hired Rae Lind (plot 15, writing 23, filming 32, editing 27)."
+ },
+ {
+  "week": 48,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 48,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): starlight $54,000 @ 8%; wolf $100,000 @ 31%."
+ },
+ {
+  "week": 48,
+  "type": "project_start",
+  "message": "Started Dead Night (Action + Superheroes, new) with wolf advance $100,000 @ 31%.",
+  "data": {
+   "projectId": "proj29"
+  }
+ },
+ {
+  "week": 49,
+  "type": "feedback",
+  "message": "Lost Pulse opens to 55,923 viewers.",
+  "data": {
+   "releaseId": "rel26"
+  }
+ },
+ {
+  "week": 50,
+  "type": "feedback",
+  "message": "Critics are raving about Lost Pulse. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel26",
+   "retention": 0.69776
+  }
+ },
+ {
+  "week": 50,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 51,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 55,
+  "type": "milestone",
+  "message": "Dead Night hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj29"
+  }
+ },
+ {
+  "week": 55,
+  "type": "cast",
+  "message": "Cast Jo Vale for $79,586.09.",
+  "data": {
+   "starId": "star33",
+   "price": 79586.09
+  }
+ },
+ {
+  "week": 59,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 61,
+  "type": "ip_fans",
+  "message": "Lost Pulse fans: 0 → 3,689 (avg score 6.35, 170,771 viewers).",
+  "data": {
+   "ipId": "ip19"
+  }
+ },
+ {
+  "week": 61,
+  "type": "star_career",
+  "message": "Mo Lowe: Fame 37.4 → 41.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 3.59,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 61,
+  "type": "trust",
+  "message": "Wolf Pictures earned 144% of its advance back on Lost Pulse. Trust 2.53 → 2.91.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.44,
+   "step": 0.38
+  }
+ },
+ {
+  "week": 61,
+  "type": "run_end",
+  "message": "Lost Pulse run ended after 13 weeks: 170,771 viewers, gross $341,542, studio take $232,249.",
+  "data": {
+   "releaseId": "rel26"
+  }
+ },
+ {
+  "week": 61,
+  "type": "milestone",
+  "message": "Dead Night hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj29"
+  }
+ },
+ {
+  "week": 61,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 64,
+  "type": "genre_level",
+  "message": "Studio Action level 0 → 1."
+ },
+ {
+  "week": 64,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Night).",
+  "data": {
+   "awardId": "ip:ip28:audience_7_5",
+   "releaseId": "rel35"
+  }
+ },
+ {
+  "week": 64,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Dead Night).",
+  "data": {
+   "awardId": "ip:ip28:critic_8_5",
+   "releaseId": "rel35"
+  }
+ },
+ {
+  "week": 64,
+  "type": "release",
+  "message": "Dead Night released: Audience 7.5 / Critics 8.72 (avg 8.11). Opening pool 201,326, opening 60,398.",
+  "data": {
+   "releaseId": "rel35"
+  }
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Jo Park: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): orbit $83,000 @ 35%; wolf $118,000 @ 30%; xyz $114,000 @ 43%."
+ },
+ {
+  "week": 64,
+  "type": "project_start",
+  "message": "Started Hollow Signal (Action + Superheroes, new) with xyz advance $114,000 @ 43%.",
+  "data": {
+   "projectId": "proj37"
+  }
+ },
+ {
+  "week": 65,
+  "type": "feedback",
+  "message": "Dead Night opens to 60,398 viewers.",
+  "data": {
+   "releaseId": "rel35"
+  }
+ },
+ {
+  "week": 66,
+  "type": "feedback",
+  "message": "Critics are raving about Dead Night. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel35",
+   "retention": 0.75392
+  }
+ },
+ {
+  "week": 66,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 68,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Night. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel35",
+   "retention": 0.74
+  }
+ },
+ {
+  "week": 68,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 70,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 70,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 71,
+  "type": "milestone",
+  "message": "Hollow Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj37"
+  }
+ },
+ {
+  "week": 71,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 71,
+  "type": "cast",
+  "message": "Cast Eli Lind for $46,325.53.",
+  "data": {
+   "starId": "star39",
+   "price": 46325.53
+  }
+ },
+ {
+  "week": 73,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 76,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 77,
+  "type": "milestone",
+  "message": "Hollow Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj37"
+  }
+ },
+ {
+  "week": 77,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 79,
+  "type": "ip_fans",
+  "message": "Dead Night fans: 0 → 11,664 (avg score 8.11, 234,409 viewers).",
+  "data": {
+   "ipId": "ip28"
+  }
+ },
+ {
+  "week": 79,
+  "type": "star_career",
+  "message": "Jo Vale: Fame 73.0 → 82.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star33",
+   "fameDelta": 9.48,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 79,
+  "type": "trust",
+  "message": "Wolf Pictures earned 145% of its advance back on Dead Night with strong reviews. Trust 2.88 → 3.50.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.45,
+   "step": 0.62
+  }
+ },
+ {
+  "week": 79,
+  "type": "run_end",
+  "message": "Dead Night run ended after 15 weeks: 234,409 viewers, gross $468,818, studio take $323,484.",
+  "data": {
+   "releaseId": "rel35"
+  }
+ },
+ {
+  "week": 80,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Signal).",
+  "data": {
+   "awardId": "ip:ip36:meters_all_70",
+   "releaseId": "rel43"
+  }
+ },
+ {
+  "week": 80,
+  "type": "release",
+  "message": "Hollow Signal released: Audience 7.35 / Critics 7.7 (avg 7.53). Opening pool 240,145, opening 72,044.",
+  "data": {
+   "releaseId": "rel43"
+  }
+ },
+ {
+  "week": 80,
+  "type": "train",
+  "message": "Trained Rae Lind: +3 to all stats."
+ },
+ {
+  "week": 80,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 80,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (new): xyz $103,000 @ 43%; starlight $58,000 @ 8%; orbit $103,000 @ 35%."
+ },
+ {
+  "week": 80,
+  "type": "project_start",
+  "message": "Started Hollow Rising (Horror + Spies, new) with orbit advance $103,000 @ 35%.",
+  "data": {
+   "projectId": "proj45"
+  }
+ },
+ {
+  "week": 81,
+  "type": "feedback",
+  "message": "Hollow Signal opens to 72,044 viewers.",
+  "data": {
+   "releaseId": "rel43"
+  }
+ },
+ {
+  "week": 82,
+  "type": "feedback",
+  "message": "Critics are raving about Hollow Signal. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel43",
+   "retention": 0.7172000000000001
+  }
+ },
+ {
+  "week": 84,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Signal. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel43",
+   "retention": 0.7328
+  }
+ },
+ {
+  "week": 87,
+  "type": "milestone",
+  "message": "Hollow Rising hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj45"
+  }
+ },
+ {
+  "week": 87,
+  "type": "cast",
+  "message": "Cast Mo Lowe for $28,681.28.",
+  "data": {
+   "starId": "star4",
+   "price": 28681.28
+  }
+ },
+ {
+  "week": 88,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 93,
+  "type": "milestone",
+  "message": "Hollow Rising hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj45"
+  }
+ },
+ {
+  "week": 93,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 93,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 95,
+  "type": "ip_fans",
+  "message": "Hollow Signal fans: 0 → 10,488 (avg score 7.53, 259,081 viewers).",
+  "data": {
+   "ipId": "ip36"
+  }
+ },
+ {
+  "week": 95,
+  "type": "star_career",
+  "message": "Eli Lind: Fame 53.0 → 61.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 8.01,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 95,
+  "type": "trust",
+  "message": "XYZ Network earned 195% of its advance back on Hollow Signal with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.95,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 95,
+  "type": "run_end",
+  "message": "Hollow Signal run ended after 15 weeks: 259,081 viewers, gross $518,162, studio take $295,352.",
+  "data": {
+   "releaseId": "rel43"
+  }
+ },
+ {
+  "week": 96,
+  "type": "surplus",
+  "message": "Hollow Rising: kept $6,319 of unused advance.",
+  "data": {
+   "projectId": "proj45",
+   "surplus": 6318.72
+  }
+ },
+ {
+  "week": 96,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Rising).",
+  "data": {
+   "awardId": "ip:ip44:meters_all_70",
+   "releaseId": "rel51"
+  }
+ },
+ {
+  "week": 96,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Rising).",
+  "data": {
+   "awardId": "ip:ip44:audience_7_5",
+   "releaseId": "rel51"
+  }
+ },
+ {
+  "week": 96,
+  "type": "release",
+  "message": "Hollow Rising released: Audience 8.17 / Critics 7.2 (avg 7.69). Opening pool 236,505, opening 70,952.",
+  "data": {
+   "releaseId": "rel51"
+  }
+ },
+ {
+  "week": 96,
+  "type": "train",
+  "message": "Trained Jo Park: +3 to all stats."
+ },
+ {
+  "week": 96,
+  "type": "train",
+  "message": "Trained Rae Lind: +3 to all stats."
+ },
+ {
+  "week": 96,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): orbit $93,000 @ 35%; xyz $122,000 @ 42%; starlight $52,000 @ 8%."
+ },
+ {
+  "week": 96,
+  "type": "project_start",
+  "message": "Started Iron Pulse (Comedy + Sports, new) with xyz advance $122,000 @ 42%.",
+  "data": {
+   "projectId": "proj53"
+  }
+ },
+ {
+  "week": 97,
+  "type": "feedback",
+  "message": "Hollow Rising opens to 70,952 viewers.",
+  "data": {
+   "releaseId": "rel51"
+  }
+ },
+ {
+  "week": 98,
+  "type": "feedback",
+  "message": "Critics are raving about Hollow Rising. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel51",
+   "retention": 0.6992
+  }
+ },
+ {
+  "week": 99,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 100,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Rising. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel51",
+   "retention": 0.77216
+  }
+ },
+ {
+  "week": 103,
+  "type": "milestone",
+  "message": "Iron Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj53"
+  }
+ },
+ {
+  "week": 103,
+  "type": "cast",
+  "message": "Cast Eli Lind for $29,722.78.",
+  "data": {
+   "starId": "star56",
+   "price": 29722.78
+  }
+ },
+ {
+  "week": 109,
+  "type": "milestone",
+  "message": "Iron Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj53"
+  }
+ },
+ {
+  "week": 109,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 110,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 111,
+  "type": "ip_fans",
+  "message": "Hollow Rising fans: 0 → 11,447 (avg score 7.69, 265,970 viewers).",
+  "data": {
+   "ipId": "ip44"
+  }
+ },
+ {
+  "week": 111,
+  "type": "star_career",
+  "message": "Mo Lowe: Fame 41.0 → 49.6, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 8.6,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 111,
+  "type": "trust",
+  "message": "Orbit Releasing earned 181% of its advance back on Hollow Rising with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 1.81,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 111,
+  "type": "run_end",
+  "message": "Hollow Rising run ended after 15 weeks: 265,970 viewers, gross $531,940, studio take $345,761.",
+  "data": {
+   "releaseId": "rel51"
+  }
+ },
+ {
+  "week": 111,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 112,
+  "type": "surplus",
+  "message": "Iron Pulse: kept $24,277 of unused advance.",
+  "data": {
+   "projectId": "proj53",
+   "surplus": 24277.22
+  }
+ },
+ {
+  "week": 112,
+  "type": "genre_level",
+  "message": "Studio Comedy level 0 → 1."
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Iron Pulse).",
+  "data": {
+   "awardId": "ip:ip52:meters_all_70",
+   "releaseId": "rel59"
+  }
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Iron Pulse).",
+  "data": {
+   "awardId": "ip:ip52:audience_7_5",
+   "releaseId": "rel59"
+  }
+ },
+ {
+  "week": 112,
+  "type": "release",
+  "message": "Iron Pulse released: Audience 7.88 / Critics 7.65 (avg 7.77). Opening pool 228,240, opening 68,472.",
+  "data": {
+   "releaseId": "rel59"
+  }
+ },
+ {
+  "week": 112,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 112,
+  "type": "train",
+  "message": "Trained Jo Park: +3 to all stats."
+ },
+ {
+  "week": 112,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Zombies (new): wolf $77,000 @ 31%; starlight $42,000 @ 8%; orbit $89,000 @ 35%."
+ },
+ {
+  "week": 112,
+  "type": "project_start",
+  "message": "Started Silver Protocol (Comedy + Zombies, new) with orbit advance $89,000 @ 35%.",
+  "data": {
+   "projectId": "proj61"
+  }
+ },
+ {
+  "week": 113,
+  "type": "feedback",
+  "message": "Iron Pulse opens to 68,472 viewers.",
+  "data": {
+   "releaseId": "rel59"
+  }
+ },
+ {
+  "week": 114,
+  "type": "feedback",
+  "message": "Critics are raving about Iron Pulse. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel59",
+   "retention": 0.7154
+  }
+ },
+ {
+  "week": 116,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Iron Pulse. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel59",
+   "retention": 0.75824
+  }
+ },
+ {
+  "week": 119,
+  "type": "milestone",
+  "message": "Silver Protocol hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj61"
+  }
+ },
+ {
+  "week": 119,
+  "type": "cast",
+  "message": "Cast Kai Imai for $83,666.68.",
+  "data": {
+   "starId": "star65",
+   "price": 83666.68
+  }
+ },
+ {
+  "week": 125,
+  "type": "milestone",
+  "message": "Silver Protocol hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj61"
+  }
+ },
+ {
+  "week": 125,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 127,
+  "type": "ip_fans",
+  "message": "Iron Pulse fans: 0 → 11,398 (avg score 7.77, 257,177 viewers).",
+  "data": {
+   "ipId": "ip52"
+  }
+ },
+ {
+  "week": 127,
+  "type": "star_career",
+  "message": "Eli Lind: Fame 39.0 → 47.8, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star56",
+   "fameDelta": 8.75,
+   "relDelta": 0.75,
+   "grow": 5
+  }
+ },
+ {
+  "week": 127,
+  "type": "trust",
+  "message": "XYZ Network earned 177% of its advance back on Iron Pulse with strong reviews. Trust 3.20 → 3.95.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.77,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 127,
+  "type": "run_end",
+  "message": "Iron Pulse run ended after 15 weeks: 257,177 viewers, gross $514,354, studio take $298,325.",
+  "data": {
+   "releaseId": "rel59"
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Protocol).",
+  "data": {
+   "awardId": "ip:ip60:meters_all_70",
+   "releaseId": "rel67"
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Protocol).",
+  "data": {
+   "awardId": "ip:ip60:audience_7_5",
+   "releaseId": "rel67"
+  }
+ },
+ {
+  "week": 128,
+  "type": "release",
+  "message": "Silver Protocol released: Audience 8.04 / Critics 8.16 (avg 8.1). Opening pool 223,241, opening 66,972.",
+  "data": {
+   "releaseId": "rel67"
+  }
+ },
+ {
+  "week": 128,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 128,
+  "type": "train",
+  "message": "Trained Rae Lind: +3 to all stats."
+ },
+ {
+  "week": 128,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 128,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): xyz $133,000 @ 42%; starlight $47,000 @ 8%."
+ },
+ {
+  "week": 128,
+  "type": "project_start",
+  "message": "Started Wild Night (Action + Superheroes, new) with xyz advance $133,000 @ 42%.",
+  "data": {
+   "projectId": "proj69"
+  }
+ },
+ {
+  "week": 129,
+  "type": "feedback",
+  "message": "Silver Protocol opens to 66,972 viewers.",
+  "data": {
+   "releaseId": "rel67"
+  }
+ },
+ {
+  "week": 130,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Protocol. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel67",
+   "retention": 0.73376
+  }
+ },
+ {
+  "week": 132,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Protocol. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel67",
+   "retention": 0.7659199999999999
+  }
+ },
+ {
+  "week": 133,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 135,
+  "type": "milestone",
+  "message": "Wild Night hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj69"
+  }
+ },
+ {
+  "week": 135,
+  "type": "cast",
+  "message": "Cast Eli Lind for $49,253.46.",
+  "data": {
+   "starId": "star39",
+   "price": 49253.46
+  }
+ },
+ {
+  "week": 141,
+  "type": "milestone",
+  "message": "Wild Night hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj69"
+  }
+ },
+ {
+  "week": 141,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 143,
+  "type": "ip_fans",
+  "message": "Silver Protocol fans: 0 → 13,088 (avg score 8.1, 263,875 viewers).",
+  "data": {
+   "ipId": "ip60"
+  }
+ },
+ {
+  "week": 143,
+  "type": "star_career",
+  "message": "Kai Imai: Fame 86.0 → 95.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star65",
+   "fameDelta": 9.88,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 143,
+  "type": "trust",
+  "message": "Orbit Releasing earned 208% of its advance back on Silver Protocol with strong reviews. Trust 3.20 → 3.95.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.08,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 143,
+  "type": "run_end",
+  "message": "Silver Protocol run ended after 15 weeks: 263,875 viewers, gross $527,750, studio take $343,038.",
+  "data": {
+   "releaseId": "rel67"
+  }
+ },
+ {
+  "week": 144,
+  "type": "surplus",
+  "message": "Wild Night: kept $15,747 of unused advance.",
+  "data": {
+   "projectId": "proj69",
+   "surplus": 15746.54
+  }
+ },
+ {
+  "week": 144,
+  "type": "genre_level",
+  "message": "Studio Action level 1 → 2."
+ },
+ {
+  "week": 144,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Wild Night).",
+  "data": {
+   "awardId": "ip:ip68:meters_all_70",
+   "releaseId": "rel75"
+  }
+ },
+ {
+  "week": 144,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Wild Night).",
+  "data": {
+   "awardId": "ip:ip68:critic_8_5",
+   "releaseId": "rel75"
+  }
+ },
+ {
+  "week": 144,
+  "type": "release",
+  "message": "Wild Night released: Audience 7.31 / Critics 8.54 (avg 7.92). Opening pool 232,902, opening 69,871.",
+  "data": {
+   "releaseId": "rel75"
+  }
+ },
+ {
+  "week": 144,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Time Travel."
+ },
+ {
+  "week": 144,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 144,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 144,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Zombies (new): starlight $42,000 @ 8%; meridian $89,000 @ 50%."
+ },
+ {
+  "week": 144,
+  "type": "project_start",
+  "message": "Started Iron Pulse (Horror + Zombies, new) with meridian advance $89,000 @ 50%.",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 145,
+  "type": "feedback",
+  "message": "Wild Night opens to 69,871 viewers.",
+  "data": {
+   "releaseId": "rel75"
+  }
+ },
+ {
+  "week": 146,
+  "type": "feedback",
+  "message": "Critics are raving about Wild Night. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel75",
+   "retention": 0.74744
+  }
+ },
+ {
+  "week": 148,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Wild Night. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel75",
+   "retention": 0.73088
+  }
+ },
+ {
+  "week": 151,
+  "type": "milestone",
+  "message": "Iron Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 151,
+  "type": "cast",
+  "message": "Cast Mo Lowe for $32,342.55.",
+  "data": {
+   "starId": "star4",
+   "price": 32342.55
+  }
+ },
+ {
+  "week": 157,
+  "type": "milestone",
+  "message": "Iron Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 157,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 159,
+  "type": "ip_fans",
+  "message": "Wild Night fans: 0 → 12,323 (avg score 7.92, 263,769 viewers).",
+  "data": {
+   "ipId": "ip68"
+  }
+ },
+ {
+  "week": 159,
+  "type": "star_career",
+  "message": "Eli Lind: Fame 61.0 → 70.3, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 4.",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 9.31,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 159,
+  "type": "trust",
+  "message": "XYZ Network earned 167% of its advance back on Wild Night with strong reviews. Trust 3.90 → 4.62.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.67,
+   "step": 0.72
+  }
+ },
+ {
+  "week": 159,
+  "type": "run_end",
+  "message": "Wild Night run ended after 15 weeks: 263,769 viewers, gross $527,538, studio take $305,972.",
+  "data": {
+   "releaseId": "rel75"
+  }
+ },
+ {
+  "week": 160,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Iron Pulse).",
+  "data": {
+   "awardId": "ip:ip76:meters_all_70",
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 160,
+  "type": "release",
+  "message": "Iron Pulse released: Audience 7.42 / Critics 8.38 (avg 7.9). Opening pool 236,991, opening 71,097.",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 160,
+  "type": "train",
+  "message": "Trained Jo Park: +3 to all stats."
+ },
+ {
+  "week": 160,
+  "type": "train",
+  "message": "Trained Rae Lind: +3 to all stats."
+ },
+ {
+  "week": 160,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): wolf $83,000 @ 31%; xyz $131,000 @ 41%."
+ },
+ {
+  "week": 160,
+  "type": "project_start",
+  "message": "Started Dead Edge (Comedy + Sports, new) with xyz advance $131,000 @ 41%.",
+  "data": {
+   "projectId": "proj85"
+  }
+ },
+ {
+  "week": 161,
+  "type": "feedback",
+  "message": "Iron Pulse opens to 71,097 viewers.",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 162,
+  "type": "feedback",
+  "message": "Critics are raving about Iron Pulse. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel83",
+   "retention": 0.74168
+  }
+ },
+ {
+  "week": 164,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Iron Pulse. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel83",
+   "retention": 0.7361599999999999
+  }
+ },
+ {
+  "week": 167,
+  "type": "milestone",
+  "message": "Dead Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj85"
+  }
+ },
+ {
+  "week": 167,
+  "type": "cast",
+  "message": "Cast Kai Imai for $88,686.84.",
+  "data": {
+   "starId": "star65",
+   "price": 88686.84
+  }
+ },
+ {
+  "week": 173,
+  "type": "milestone",
+  "message": "Dead Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj85"
+  }
+ },
+ {
+  "week": 173,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 175,
+  "type": "ip_fans",
+  "message": "Iron Pulse fans: 0 → 12,450 (avg score 7.9, 268,310 viewers).",
+  "data": {
+   "ipId": "ip76"
+  }
+ },
+ {
+  "week": 175,
+  "type": "star_career",
+  "message": "Mo Lowe: Fame 49.6 → 58.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 9.3,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 175,
+  "type": "trust",
+  "message": "Meridian Global earned 301% of its advance back on Iron Pulse with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 3.01,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 175,
+  "type": "run_end",
+  "message": "Iron Pulse run ended after 15 weeks: 268,310 viewers, gross $536,620, studio take $268,310.",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 176,
+  "type": "genre_level",
+  "message": "Studio Comedy level 1 → 2."
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Edge).",
+  "data": {
+   "awardId": "ip:ip84:meters_all_70",
+   "releaseId": "rel91"
+  }
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Edge).",
+  "data": {
+   "awardId": "ip:ip84:audience_7_5",
+   "releaseId": "rel91"
+  }
+ },
+ {
+  "week": 176,
+  "type": "release",
+  "message": "Dead Edge released: Audience 7.83 / Critics 8.43 (avg 8.13). Opening pool 259,917, opening 77,975.",
+  "data": {
+   "releaseId": "rel91"
+  }
+ },
+ {
+  "week": 176,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 176,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 176,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Zombies (new): orbit $73,000 @ 34%; meridian $107,000 @ 49%."
+ },
+ {
+  "week": 176,
+  "type": "project_start",
+  "message": "Started Silver Shadow (Action + Zombies, new) with meridian advance $107,000 @ 49%.",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 177,
+  "type": "feedback",
+  "message": "Dead Edge opens to 77,975 viewers.",
+  "data": {
+   "releaseId": "rel91"
+  }
+ },
+ {
+  "week": 178,
+  "type": "feedback",
+  "message": "Critics are raving about Dead Edge. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel91",
+   "retention": 0.7434799999999999
+  }
+ },
+ {
+  "week": 178,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 180,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Edge. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel91",
+   "retention": 0.7558400000000001
+  }
+ },
+ {
+  "week": 183,
+  "type": "milestone",
+  "message": "Silver Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 183,
+  "type": "cast",
+  "message": "Cast Eli Lind for $55,041.71.",
+  "data": {
+   "starId": "star39",
+   "price": 55041.71
+  }
+ },
+ {
+  "week": 185,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 189,
+  "type": "milestone",
+  "message": "Silver Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 189,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 191,
+  "type": "ip_fans",
+  "message": "Dead Edge fans: 0 → 15,342 (avg score 8.13, 306,347 viewers).",
+  "data": {
+   "ipId": "ip84"
+  }
+ },
+ {
+  "week": 191,
+  "type": "star_career",
+  "message": "Kai Imai: Fame 95.9 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 9.",
+  "data": {
+   "starId": "star65",
+   "fameDelta": 10.51,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 191,
+  "type": "trust",
+  "message": "XYZ Network earned 192% of its advance back on Dead Edge with strong reviews. Trust 4.57 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.92,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 191,
+  "type": "run_end",
+  "message": "Dead Edge run ended after 15 weeks: 306,347 viewers, gross $612,694, studio take $361,489.",
+  "data": {
+   "releaseId": "rel91"
+  }
+ },
+ {
+  "week": 192,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow).",
+  "data": {
+   "awardId": "ip:ip92:meters_all_70",
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 192,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Silver Shadow).",
+  "data": {
+   "awardId": "ip:ip92:critic_8_5",
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 192,
+  "type": "release",
+  "message": "Silver Shadow released: Audience 6.52 / Critics 9 (avg 7.76). Opening pool 303,700, opening 91,110.",
+  "data": {
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 192,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 192,
+  "type": "train",
+  "message": "Trained Jo Park: +3 to all stats."
+ },
+ {
+  "week": 192,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Superheroes (new): wolf $105,000 @ 30%; xyz $144,000 @ 39%; orbit $103,000 @ 33%."
+ },
+ {
+  "week": 192,
+  "type": "project_start",
+  "message": "Started Wild Horizon (Comedy + Superheroes, new) with xyz advance $144,000 @ 39%.",
+  "data": {
+   "projectId": "proj101"
+  }
+ },
+ {
+  "week": 193,
+  "type": "feedback",
+  "message": "Silver Shadow opens to 91,110 viewers.",
+  "data": {
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 194,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Shadow. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel99",
+   "retention": 0.764
+  }
+ },
+ {
+  "week": 198,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 199,
+  "type": "milestone",
+  "message": "Wild Horizon hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj101"
+  }
+ },
+ {
+  "week": 199,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 199,
+  "type": "cast",
+  "message": "Cast Kai Imai for $87,365.78.",
+  "data": {
+   "starId": "star65",
+   "price": 87365.78
+  }
+ },
+ {
+  "week": 205,
+  "type": "milestone",
+  "message": "Wild Horizon hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj101"
+  }
+ },
+ {
+  "week": 205,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 205,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 207,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 0 → 14,652 (avg score 7.76, 331,802 viewers).",
+  "data": {
+   "ipId": "ip92"
+  }
+ },
+ {
+  "week": 207,
+  "type": "star_career",
+  "message": "Eli Lind: Fame 70.3 → 79.8, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 9.5,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 207,
+  "type": "trust",
+  "message": "Meridian Global earned 304% of its advance back on Silver Shadow with strong reviews. Trust 3.20 → 3.95.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 3.04,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 207,
+  "type": "run_end",
+  "message": "Silver Shadow run ended after 15 weeks: 331,802 viewers, gross $663,604, studio take $338,438.",
+  "data": {
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Wild Horizon).",
+  "data": {
+   "awardId": "ip:ip100:meters_all_70",
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Wild Horizon).",
+  "data": {
+   "awardId": "ip:ip100:audience_7_5",
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Wild Horizon).",
+  "data": {
+   "awardId": "ip:ip100:critic_8_5",
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Wild Horizon).",
+  "data": {
+   "awardId": "ip:ip100:hall_of_fame",
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 208,
+  "type": "release",
+  "message": "Wild Horizon released: Audience 8.39 / Critics 9.81 (avg 9.1, HALL OF FAME). Opening pool 300,087, opening 90,026.",
+  "data": {
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 208,
+  "type": "train",
+  "message": "Trained Rae Lind: +3 to all stats."
+ },
+ {
+  "week": 208,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 208,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Superheroes (new): orbit $117,000 @ 33%; meridian $141,000 @ 45%; starlight $60,000 @ 8%."
+ },
+ {
+  "week": 208,
+  "type": "project_start",
+  "message": "Started Silver Pulse (Comedy + Superheroes, new) with meridian advance $141,000 @ 45%.",
+  "data": {
+   "projectId": "proj109"
+  }
+ },
+ {
+  "week": 209,
+  "type": "feedback",
+  "message": "Wild Horizon opens to 90,026 viewers.",
+  "data": {
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 210,
+  "type": "feedback",
+  "message": "Critics are raving about Wild Horizon. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel107",
+   "retention": 0.79316
+  }
+ },
+ {
+  "week": 212,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Wild Horizon. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel107",
+   "retention": 0.7827200000000001
+  }
+ },
+ {
+  "week": 215,
+  "type": "milestone",
+  "message": "Silver Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj109"
+  }
+ },
+ {
+  "week": 215,
+  "type": "cast",
+  "message": "Cast Kai Imai for $84,334.46.",
+  "data": {
+   "starId": "star65",
+   "price": 84334.46
+  }
+ },
+ {
+  "week": 219,
+  "type": "ip_fans",
+  "message": "Wild Horizon fans: 0 → 24,666 (avg score 9.1, 376,000 viewers).",
+  "data": {
+   "ipId": "ip100"
+  }
+ },
+ {
+  "week": 219,
+  "type": "star_career",
+  "message": "Kai Imai: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star65",
+   "fameDelta": 14.65,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 219,
+  "type": "trust",
+  "message": "XYZ Network earned 204% of its advance back on Wild Horizon with strong reviews. Trust 4.96 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.04,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 219,
+  "type": "run_end",
+  "message": "Wild Horizon run ended after 11 weeks: 376,000 viewers, gross $752,000, studio take $458,720.",
+  "data": {
+   "releaseId": "rel107"
+  }
+ },
+ {
+  "week": 219,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 220,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 221,
+  "type": "milestone",
+  "message": "Silver Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj109"
+  }
+ },
+ {
+  "week": 221,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 224,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Pulse).",
+  "data": {
+   "awardId": "ip:ip108:meters_all_70",
+   "releaseId": "rel115"
+  }
+ },
+ {
+  "week": 224,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Pulse).",
+  "data": {
+   "awardId": "ip:ip108:audience_7_5",
+   "releaseId": "rel115"
+  }
+ },
+ {
+  "week": 224,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Silver Pulse).",
+  "data": {
+   "awardId": "ip:ip108:critic_8_5",
+   "releaseId": "rel115"
+  }
+ },
+ {
+  "week": 224,
+  "type": "release",
+  "message": "Silver Pulse released: Audience 8.02 / Critics 9.37 (avg 8.7). Opening pool 319,241, opening 95,772.",
+  "data": {
+   "releaseId": "rel115"
+  }
+ },
+ {
+  "week": 224,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 224,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 224,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Superheroes (new): xyz $149,000 @ 39%; wolf $98,000 @ 30%."
+ },
+ {
+  "week": 224,
+  "type": "project_start",
+  "message": "Started Midnight Horizon (Comedy + Superheroes, new) with xyz advance $149,000 @ 39%.",
+  "data": {
+   "projectId": "proj117"
+  }
+ },
+ {
+  "week": 225,
+  "type": "feedback",
+  "message": "Silver Pulse opens to 95,772 viewers.",
+  "data": {
+   "releaseId": "rel115"
+  }
+ },
+ {
+  "week": 225,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 226,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Pulse. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel115",
+   "retention": 0.77732
+  }
+ },
+ {
+  "week": 228,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Pulse. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel115",
+   "retention": 0.76496
+  }
+ },
+ {
+  "week": 231,
+  "type": "milestone",
+  "message": "Midnight Horizon hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj117"
+  }
+ },
+ {
+  "week": 231,
+  "type": "cast",
+  "message": "Cast Kai Imai for $82,035.56.",
+  "data": {
+   "starId": "star65",
+   "price": 82035.56
+  }
+ },
+ {
+  "week": 237,
+  "type": "milestone",
+  "message": "Midnight Horizon hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj117"
+  }
+ },
+ {
+  "week": 237,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 238,
+  "type": "ip_fans",
+  "message": "Silver Pulse fans: 0 → 23,680 (avg score 8.7, 400,000 viewers).",
+  "data": {
+   "ipId": "ip108"
+  }
+ },
+ {
+  "week": 238,
+  "type": "star_career",
+  "message": "Kai Imai: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 10.",
+  "data": {
+   "starId": "star65",
+   "fameDelta": 13.45,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 238,
+  "type": "trust",
+  "message": "Meridian Global earned 255% of its advance back on Silver Pulse with strong reviews. Trust 3.91 → 4.66.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.55,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 238,
+  "type": "run_end",
+  "message": "Silver Pulse run ended after 14 weeks: 400,000 viewers, gross $800,000, studio take $440,000.",
+  "data": {
+   "releaseId": "rel115"
+  }
+ },
+ {
+  "week": 238,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 240,
+  "type": "genre_level",
+  "message": "Studio Comedy level 2 → 3."
+ },
+ {
+  "week": 240,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Midnight Horizon).",
+  "data": {
+   "awardId": "ip:ip116:meters_all_70",
+   "releaseId": "rel123"
+  }
+ },
+ {
+  "week": 240,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Midnight Horizon).",
+  "data": {
+   "awardId": "ip:ip116:audience_7_5",
+   "releaseId": "rel123"
+  }
+ },
+ {
+  "week": 240,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Midnight Horizon).",
+  "data": {
+   "awardId": "ip:ip116:critic_8_5",
+   "releaseId": "rel123"
+  }
+ },
+ {
+  "week": 240,
+  "type": "release",
+  "message": "Midnight Horizon released: Audience 7.63 / Critics 8.91 (avg 8.27). Opening pool 300,087, opening 90,026.",
+  "data": {
+   "releaseId": "rel123"
+  }
+ },
+ {
+  "week": 240,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 240,
+  "type": "train",
+  "message": "Trained Jo Park: +3 to all stats."
+ },
+ {
+  "week": 240,
+  "type": "train",
+  "message": "Trained Rae Lind: +3 to all stats."
+ },
+ {
+  "week": 240,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Time Travel (new): xyz $107,000 @ 41%; meridian $109,000 @ 46%; orbit $86,000 @ 34%."
+ },
+ {
+  "week": 240,
+  "type": "project_start",
+  "message": "Started Iron Signal (Horror + Time Travel, new) with meridian advance $109,000 @ 46%.",
+  "data": {
+   "projectId": "proj125"
+  }
+ },
+ {
+  "week": 241,
+  "type": "feedback",
+  "message": "Midnight Horizon opens to 90,026 viewers.",
+  "data": {
+   "releaseId": "rel123"
+  }
+ },
+ {
+  "week": 242,
+  "type": "feedback",
+  "message": "Critics are raving about Midnight Horizon. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel123",
+   "retention": 0.76076
+  }
+ },
+ {
+  "week": 244,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Horizon. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel123",
+   "retention": 0.74624
+  }
+ },
+ {
+  "week": 245,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 245,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 247,
+  "type": "milestone",
+  "message": "Iron Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj125"
+  }
+ },
+ {
+  "week": 247,
+  "type": "cast",
+  "message": "Cast Mo Lowe for $35,848.81.",
+  "data": {
+   "starId": "star4",
+   "price": 35848.81
+  }
+ },
+ {
+  "week": 253,
+  "type": "milestone",
+  "message": "Iron Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj125"
+  }
+ },
+ {
+  "week": 253,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 255,
+  "type": "ip_fans",
+  "message": "Midnight Horizon fans: 0 → 18,716 (avg score 8.27, 357,716 viewers).",
+  "data": {
+   "ipId": "ip116"
+  }
+ },
+ {
+  "week": 255,
+  "type": "star_career",
+  "message": "Kai Imai: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star65",
+   "fameDelta": 11.52,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 255,
+  "type": "trust",
+  "message": "XYZ Network earned 187% of its advance back on Midnight Horizon with strong reviews. Trust 4.95 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.87,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 255,
+  "type": "run_end",
+  "message": "Midnight Horizon run ended after 15 weeks: 357,716 viewers, gross $715,432, studio take $436,414.",
+  "data": {
+   "releaseId": "rel123"
+  }
+ },
+ {
+  "week": 256,
+  "type": "surplus",
+  "message": "Iron Signal: kept $5,151 of unused advance.",
+  "data": {
+   "projectId": "proj125",
+   "surplus": 5151.19
+  }
+ },
+ {
+  "week": 256,
+  "type": "genre_level",
+  "message": "Studio Horror level 2 → 3."
+ },
+ {
+  "week": 256,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Iron Signal).",
+  "data": {
+   "awardId": "ip:ip124:meters_all_70",
+   "releaseId": "rel131"
+  }
+ },
+ {
+  "week": 256,
+  "type": "release",
+  "message": "Iron Signal released: Audience 6.64 / Critics 7.78 (avg 7.21). Opening pool 296,662, opening 88,999.",
+  "data": {
+   "releaseId": "rel131"
+  }
+ },
+ {
+  "week": 256,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 256,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 256,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (new): starlight $56,000 @ 8%; meridian $182,000 @ 43%."
+ },
+ {
+  "week": 256,
+  "type": "project_start",
+  "message": "Started Dead Legacy (Action + Time Travel, new) with meridian advance $182,000 @ 43%.",
+  "data": {
+   "projectId": "proj133"
+  }
+ },
+ {
+  "week": 257,
+  "type": "feedback",
+  "message": "Iron Signal opens to 88,999 viewers.",
+  "data": {
+   "releaseId": "rel131"
+  }
+ },
+ {
+  "week": 258,
+  "type": "feedback",
+  "message": "Critics are raving about Iron Signal. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel131",
+   "retention": 0.72008
+  }
+ },
+ {
+  "week": 259,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 263,
+  "type": "milestone",
+  "message": "Dead Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj133"
+  }
+ },
+ {
+  "week": 263,
+  "type": "cast",
+  "message": "Cast Eli Lind for $58,435.87.",
+  "data": {
+   "starId": "star39",
+   "price": 58435.87
+  }
+ },
+ {
+  "week": 269,
+  "type": "milestone",
+  "message": "Dead Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj133"
+  }
+ },
+ {
+  "week": 269,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 271,
+  "type": "ip_fans",
+  "message": "Iron Signal fans: 0 → 10,756 (avg score 7.21, 304,182 viewers).",
+  "data": {
+   "ipId": "ip124"
+  }
+ },
+ {
+  "week": 271,
+  "type": "star_career",
+  "message": "Mo Lowe: Fame 58.9 → 66.3, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 7.4,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 271,
+  "type": "trust",
+  "message": "Meridian Global earned 257% of its advance back on Iron Signal with strong reviews. Trust 4.61 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.57,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 271,
+  "type": "run_end",
+  "message": "Iron Signal run ended after 15 weeks: 304,182 viewers, gross $608,364, studio take $328,517.",
+  "data": {
+   "releaseId": "rel131"
+  }
+ },
+ {
+  "week": 272,
+  "type": "surplus",
+  "message": "Dead Legacy: kept $55,564 of unused advance.",
+  "data": {
+   "projectId": "proj133",
+   "surplus": 55564.13
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Legacy).",
+  "data": {
+   "awardId": "ip:ip132:meters_all_70",
+   "releaseId": "rel139"
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Legacy).",
+  "data": {
+   "awardId": "ip:ip132:audience_7_5",
+   "releaseId": "rel139"
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Dead Legacy).",
+  "data": {
+   "awardId": "ip:ip132:critic_8_5",
+   "releaseId": "rel139"
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Dead Legacy).",
+  "data": {
+   "awardId": "ip:ip132:hall_of_fame",
+   "releaseId": "rel139"
+  }
+ },
+ {
+  "week": 272,
+  "type": "release",
+  "message": "Dead Legacy released: Audience 9.05 / Critics 9.98 (avg 9.52, HALL OF FAME). Opening pool 339,731, opening 101,919.",
+  "data": {
+   "releaseId": "rel139"
+  }
+ },
+ {
+  "week": 272,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Dinosaurs."
+ },
+ {
+  "week": 272,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 272,
+  "type": "train",
+  "message": "Trained Jo Park: +3 to all stats."
+ },
+ {
+  "week": 272,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (new): orbit $102,000 @ 32%; starlight $64,000 @ 8%; meridian $195,000 @ 43%."
+ },
+ {
+  "week": 272,
+  "type": "project_start",
+  "message": "Started Lost Signal (Action + Time Travel, new) with meridian advance $195,000 @ 43%.",
+  "data": {
+   "projectId": "proj141"
+  }
+ },
+ {
+  "week": 273,
+  "type": "feedback",
+  "message": "Dead Legacy opens to 101,919 viewers.",
+  "data": {
+   "releaseId": "rel139"
+  }
+ },
+ {
+  "week": 274,
+  "type": "feedback",
+  "message": "Critics are raving about Dead Legacy. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel139",
+   "retention": 0.79928
+  }
+ },
+ {
+  "week": 275,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 276,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Legacy. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel139",
+   "retention": 0.8144
+  }
+ },
+ {
+  "week": 279,
+  "type": "milestone",
+  "message": "Lost Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj141"
+  }
+ },
+ {
+  "week": 279,
+  "type": "cast",
+  "message": "Cast Eli Lind for $57,665.27.",
+  "data": {
+   "starId": "star39",
+   "price": 57665.27
+  }
+ },
+ {
+  "week": 280,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 282,
+  "type": "ip_fans",
+  "message": "Dead Legacy fans: 0 → 31,821 (avg score 9.52, 440,000 viewers).",
+  "data": {
+   "ipId": "ip132"
+  }
+ },
+ {
+  "week": 282,
+  "type": "star_career",
+  "message": "Eli Lind: Fame 79.8 → 96.7, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 5.",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 16.85,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 282,
+  "type": "trust",
+  "message": "Meridian Global earned 208% of its advance back on Dead Legacy with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.08,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 282,
+  "type": "run_end",
+  "message": "Dead Legacy run ended after 10 weeks: 440,000 viewers, gross $880,000, studio take $501,600.",
+  "data": {
+   "releaseId": "rel139"
+  }
+ },
+ {
+  "week": 285,
+  "type": "milestone",
+  "message": "Lost Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj141"
+  }
+ },
+ {
+  "week": 285,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 285,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 288,
+  "type": "surplus",
+  "message": "Lost Signal: kept $69,335 of unused advance.",
+  "data": {
+   "projectId": "proj141",
+   "surplus": 69334.73
+  }
+ },
+ {
+  "week": 288,
+  "type": "genre_level",
+  "message": "Studio Action level 2 → 3."
+ },
+ {
+  "week": 288,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Signal).",
+  "data": {
+   "awardId": "ip:ip140:meters_all_70",
+   "releaseId": "rel147"
+  }
+ },
+ {
+  "week": 288,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Signal).",
+  "data": {
+   "awardId": "ip:ip140:audience_7_5",
+   "releaseId": "rel147"
+  }
+ },
+ {
+  "week": 288,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Lost Signal).",
+  "data": {
+   "awardId": "ip:ip140:critic_8_5",
+   "releaseId": "rel147"
+  }
+ },
+ {
+  "week": 288,
+  "type": "release",
+  "message": "Lost Signal released: Audience 8.63 / Critics 8.57 (avg 8.6). Opening pool 317,666, opening 95,300.",
+  "data": {
+   "releaseId": "rel147"
+  }
+ },
+ {
+  "week": 288,
+  "type": "train",
+  "message": "Trained Rae Lind: +3 to all stats."
+ },
+ {
+  "week": 288,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 288,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): xyz $164,000 @ 39%; meridian $195,000 @ 43%."
+ },
+ {
+  "week": 288,
+  "type": "project_start",
+  "message": "Started Wild Protocol (Action + Sports, new) with meridian advance $195,000 @ 43%.",
+  "data": {
+   "projectId": "proj149"
+  }
+ },
+ {
+  "week": 289,
+  "type": "feedback",
+  "message": "Lost Signal opens to 95,300 viewers.",
+  "data": {
+   "releaseId": "rel147"
+  }
+ },
+ {
+  "week": 290,
+  "type": "feedback",
+  "message": "Critics are raving about Lost Signal. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel147",
+   "retention": 0.7485200000000001
+  }
+ },
+ {
+  "week": 292,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Signal. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel147",
+   "retention": 0.7942400000000001
+  }
+ },
+ {
+  "week": 295,
+  "type": "milestone",
+  "message": "Wild Protocol hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj149"
+  }
+ },
+ {
+  "week": 295,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 295,
+  "type": "cast",
+  "message": "Cast Eli Lind for $69,938.51.",
+  "data": {
+   "starId": "star39",
+   "price": 69938.51
+  }
+ },
+ {
+  "week": 301,
+  "type": "milestone",
+  "message": "Wild Protocol hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj149"
+  }
+ },
+ {
+  "week": 301,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 303,
+  "type": "ip_fans",
+  "message": "Lost Signal fans: 0 → 23,604 (avg score 8.6, 409,784 viewers).",
+  "data": {
+   "ipId": "ip140"
+  }
+ },
+ {
+  "week": 303,
+  "type": "star_career",
+  "message": "Eli Lind: Fame 96.7 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 13.18,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 303,
+  "type": "trust",
+  "message": "Meridian Global earned 181% of its advance back on Lost Signal with strong reviews. Trust 4.97 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.81,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 303,
+  "type": "run_end",
+  "message": "Lost Signal run ended after 15 weeks: 409,784 viewers, gross $819,568, studio take $467,154.",
+  "data": {
+   "releaseId": "rel147"
+  }
+ },
+ {
+  "week": 304,
+  "type": "surplus",
+  "message": "Wild Protocol: kept $57,061 of unused advance.",
+  "data": {
+   "projectId": "proj149",
+   "surplus": 57061.49
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Wild Protocol).",
+  "data": {
+   "awardId": "ip:ip148:meters_all_70",
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Wild Protocol).",
+  "data": {
+   "awardId": "ip:ip148:audience_7_5",
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Wild Protocol).",
+  "data": {
+   "awardId": "ip:ip148:critic_8_5",
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Wild Protocol).",
+  "data": {
+   "awardId": "ip:ip148:hall_of_fame",
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 304,
+  "type": "release",
+  "message": "Wild Protocol released: Audience 9.9 / Critics 10 (avg 9.95, HALL OF FAME). Opening pool 351,166, opening 105,350.",
+  "data": {
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 304,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Robots."
+ },
+ {
+  "week": 304,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 304,
+  "type": "train",
+  "message": "Trained Rae Vale: +3 to all stats."
+ },
+ {
+  "week": 304,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): wolf $124,000 @ 29%; xyz $175,000 @ 38%; meridian $180,000 @ 42%."
+ },
+ {
+  "week": 304,
+  "type": "project_start",
+  "message": "Started Silver Pulse (Action + Sports, new) with meridian advance $180,000 @ 42%.",
+  "data": {
+   "projectId": "proj157"
+  }
+ },
+ {
+  "week": 305,
+  "type": "feedback",
+  "message": "Wild Protocol opens to 105,350 viewers.",
+  "data": {
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 306,
+  "type": "feedback",
+  "message": "Critics are raving about Wild Protocol. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel155",
+   "retention": 0.8
+  }
+ },
+ {
+  "week": 306,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 308,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Wild Protocol. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel155",
+   "retention": 0.8552
+  }
+ },
+ {
+  "week": 311,
+  "type": "milestone",
+  "message": "Silver Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj157"
+  }
+ },
+ {
+  "week": 311,
+  "type": "cast",
+  "message": "Cast Eli Lind for $68,643.58.",
+  "data": {
+   "starId": "star39",
+   "price": 68643.58
+  }
+ },
+ {
+  "week": 312,
+  "type": "ip_fans",
+  "message": "Wild Protocol fans: 0 → 34,848 (avg score 9.95, 440,000 viewers).",
+  "data": {
+   "ipId": "ip148"
+  }
+ },
+ {
+  "week": 312,
+  "type": "star_career",
+  "message": "Eli Lind: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 6.",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 18.46,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 312,
+  "type": "trust",
+  "message": "Meridian Global earned 194% of its advance back on Wild Protocol with strong reviews. Trust 4.99 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.94,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 312,
+  "type": "run_end",
+  "message": "Wild Protocol run ended after 8 weeks: 440,000 viewers, gross $880,000, studio take $501,600.",
+  "data": {
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 317,
+  "type": "milestone",
+  "message": "Silver Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj157"
+  }
+ },
+ {
+  "week": 317,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 320,
+  "type": "surplus",
+  "message": "Silver Pulse: kept $43,356 of unused advance.",
+  "data": {
+   "projectId": "proj157",
+   "surplus": 43356.42
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Pulse).",
+  "data": {
+   "awardId": "ip:ip156:meters_all_70",
+   "releaseId": "rel163"
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Pulse).",
+  "data": {
+   "awardId": "ip:ip156:audience_7_5",
+   "releaseId": "rel163"
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Silver Pulse).",
+  "data": {
+   "awardId": "ip:ip156:critic_8_5",
+   "releaseId": "rel163"
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Silver Pulse).",
+  "data": {
+   "awardId": "ip:ip156:hall_of_fame",
+   "releaseId": "rel163"
+  }
+ },
+ {
+  "week": 320,
+  "type": "release",
+  "message": "Silver Pulse released: Audience 9.44 / Critics 9.59 (avg 9.52, HALL OF FAME). Opening pool 351,166, opening 105,350.",
+  "data": {
+   "releaseId": "rel163"
+  }
+ },
+ {
+  "week": 321,
+  "type": "feedback",
+  "message": "Silver Pulse opens to 105,350 viewers.",
+  "data": {
+   "releaseId": "rel163"
+  }
+ },
+ {
+  "week": 322,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Pulse. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel163",
+   "retention": 0.7852399999999999
+  }
+ },
+ {
+  "week": 323,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 324,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Pulse. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel163",
+   "retention": 0.83312
+  }
+ },
+ {
+  "week": 326,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 329,
+  "type": "ip_fans",
+  "message": "Silver Pulse fans: 0 → 31,821 (avg score 9.52, 440,000 viewers).",
+  "data": {
+   "ipId": "ip156"
+  }
+ },
+ {
+  "week": 329,
+  "type": "star_career",
+  "message": "Eli Lind: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 16.85,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 329,
+  "type": "trust",
+  "message": "Meridian Global earned 205% of its advance back on Silver Pulse with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.05,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 329,
+  "type": "run_end",
+  "message": "Silver Pulse run ended after 9 weeks: 440,000 viewers, gross $880,000, studio take $510,400.",
+  "data": {
+   "releaseId": "rel163"
+  }
+ }
+]

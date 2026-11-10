@@ -1,0 +1,16 @@
+{
+  "_label": "Diagnostic flag thresholds \u2014 tunable, not moral judgments",
+  "surplusDominanceRatio": 0.95,
+  "earlySoftlockNegativeWeeks": 52,
+  "prestigeTooFastPerYear": 400,
+  "prestigeTooSlowShareZero": 0.5,
+  "prestigeTooSlowMinReleases": 10,
+  "qualityInflationLateShare8plus": 0.5,
+  "qualityInflationShare9plus": 0.25,
+  "deadStrategyRatio": 0.25,
+  "dominantPairedWinShare": 0.8,
+  "trustSpiralMinTrust": 0.75,
+  "trustSpiralShare": 0.3,
+  "highReviewsAvg": 7.5,
+  "lowSalesQuantile": 0.2
+}

@@ -1,0 +1,679 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 42) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Zombies (new): wolf $100,000 @ 31%; starlight $52,000 @ 8%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Dead Shadow (Horror + Zombies, new) with wolf advance $100,000 @ 31%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 2,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Dead Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Jo Vale for $29,239.22.",
+  "data": {
+   "starId": "star5",
+   "price": 29239.22
+  }
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Dead Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 16,
+  "type": "surplus",
+  "message": "Dead Shadow: kept $2,761 of unused advance.",
+  "data": {
+   "projectId": "proj2",
+   "surplus": 2760.78
+  }
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Horror level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Dead Shadow released: Audience 6.09 / Critics 6.08 (avg 6.09). Opening pool 147,260, opening 44,178.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): starlight $52,000 @ 8%; wolf $96,000 @ 31%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Broken Shadow (Action + Superheroes, new) with wolf advance $96,000 @ 31%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Dead Shadow opens to 44,178 viewers.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 22,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 23,
+  "type": "milestone",
+  "message": "Broken Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 23,
+  "type": "cast",
+  "message": "Cast Dee Lind for $8,808.55.",
+  "data": {
+   "starId": "star11",
+   "price": 8808.55
+  }
+ },
+ {
+  "week": 25,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 29,
+  "type": "ip_fans",
+  "message": "Dead Shadow fans: 0 → 2,280 (avg score 6.09, 130,710 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 29,
+  "type": "star_career",
+  "message": "Jo Vale: Fame 36.0 → 38.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star5",
+   "fameDelta": 2.54,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 29,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 81% of its $100,000 advance on Dead Shadow. Trust 2.50 → 2.46.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.81,
+   "step": -0.04
+  }
+ },
+ {
+  "week": 29,
+  "type": "run_end",
+  "message": "Dead Shadow run ended after 13 weeks: 130,710 viewers, gross $261,420, studio take $180,380.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 29,
+  "type": "milestone",
+  "message": "Broken Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 29,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 29,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 32,
+  "type": "surplus",
+  "message": "Broken Shadow: kept $7,191 of unused advance.",
+  "data": {
+   "projectId": "proj10",
+   "surplus": 7191.45
+  }
+ },
+ {
+  "week": 32,
+  "type": "genre_level",
+  "message": "Studio Action level 0 → 1."
+ },
+ {
+  "week": 32,
+  "type": "release",
+  "message": "Broken Shadow released: Audience 5.66 / Critics 6.65 (avg 6.16). Opening pool 197,450, opening 59,235.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 32,
+  "type": "hire",
+  "message": "Hired Kit Lowe (plot 21, writing 32, filming 32, editing 22)."
+ },
+ {
+  "week": 32,
+  "type": "train",
+  "message": "Trained Kit Lowe: +3 to all stats."
+ },
+ {
+  "week": 32,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): starlight $57,000 @ 8%; wolf $106,000 @ 31%."
+ },
+ {
+  "week": 32,
+  "type": "project_start",
+  "message": "Started Midnight Echo (Action + Superheroes, new) with wolf advance $106,000 @ 31%.",
+  "data": {
+   "projectId": "proj19"
+  }
+ },
+ {
+  "week": 33,
+  "type": "feedback",
+  "message": "Broken Shadow opens to 59,235 viewers.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 39,
+  "type": "milestone",
+  "message": "Midnight Echo hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj19"
+  }
+ },
+ {
+  "week": 39,
+  "type": "cast",
+  "message": "Cast Dee Fox for $4,504.14.",
+  "data": {
+   "starId": "star24",
+   "price": 4504.14
+  }
+ },
+ {
+  "week": 40,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 45,
+  "type": "ip_fans",
+  "message": "Broken Shadow fans: 0 → 3,283 (avg score 6.16, 176,891 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 45,
+  "type": "star_career",
+  "message": "Dee Lind: Fame 13.0 → 16.1, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star11",
+   "fameDelta": 3.14,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 45,
+  "type": "trust",
+  "message": "Wolf Pictures earned 114% of its advance back on Broken Shadow. Trust 2.50 → 2.67.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.14,
+   "step": 0.17
+  }
+ },
+ {
+  "week": 45,
+  "type": "run_end",
+  "message": "Broken Shadow run ended after 13 weeks: 176,891 viewers, gross $353,782, studio take $244,110.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 45,
+  "type": "milestone",
+  "message": "Midnight Echo hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj19"
+  }
+ },
+ {
+  "week": 45,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 45,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 48,
+  "type": "surplus",
+  "message": "Midnight Echo: kept $21,496 of unused advance.",
+  "data": {
+   "projectId": "proj19",
+   "surplus": 21495.86
+  }
+ },
+ {
+  "week": 48,
+  "type": "release",
+  "message": "Midnight Echo released: Audience 6.35 / Critics 7.49 (avg 6.92). Opening pool 194,596, opening 58,379.",
+  "data": {
+   "releaseId": "rel25"
+  }
+ },
+ {
+  "week": 48,
+  "type": "hire",
+  "message": "Hired Fin Lowe (plot 35, writing 30, filming 26, editing 30)."
+ },
+ {
+  "week": 48,
+  "type": "train",
+  "message": "Trained Fin Lowe: +3 to all stats."
+ },
+ {
+  "week": 48,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): wolf $115,000 @ 31%; starlight $57,000 @ 8%."
+ },
+ {
+  "week": 48,
+  "type": "project_start",
+  "message": "Started Midnight Pulse (Action + Superheroes, new) with wolf advance $115,000 @ 31%.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 49,
+  "type": "feedback",
+  "message": "Midnight Echo opens to 58,379 viewers.",
+  "data": {
+   "releaseId": "rel25"
+  }
+ },
+ {
+  "week": 49,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 50,
+  "type": "feedback",
+  "message": "Critics are raving about Midnight Echo. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel25",
+   "retention": 0.70964
+  }
+ },
+ {
+  "week": 55,
+  "type": "milestone",
+  "message": "Midnight Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 55,
+  "type": "cast",
+  "message": "Cast Mo Lind for $89,738.33.",
+  "data": {
+   "starId": "star32",
+   "price": 89738.33
+  }
+ },
+ {
+  "week": 60,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 61,
+  "type": "milestone",
+  "message": "Midnight Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 61,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 62,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 63,
+  "type": "ip_fans",
+  "message": "Midnight Echo fans: 0 → 5,901 (avg score 6.92, 192,085 viewers).",
+  "data": {
+   "ipId": "ip18"
+  }
+ },
+ {
+  "week": 63,
+  "type": "star_career",
+  "message": "Dee Fox: Fame 6.0 → 11.4, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star24",
+   "fameDelta": 5.39,
+   "relDelta": 0.75,
+   "grow": 4
+  }
+ },
+ {
+  "week": 63,
+  "type": "trust",
+  "message": "Wolf Pictures earned 112% of its advance back on Midnight Echo. Trust 2.64 → 2.90.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.12,
+   "step": 0.26
+  }
+ },
+ {
+  "week": 63,
+  "type": "run_end",
+  "message": "Midnight Echo run ended after 15 weeks: 192,085 viewers, gross $384,170, studio take $265,077.",
+  "data": {
+   "releaseId": "rel25"
+  }
+ },
+ {
+  "week": 64,
+  "type": "genre_level",
+  "message": "Studio Action level 1 → 2."
+ },
+ {
+  "week": 64,
+  "type": "release",
+  "message": "Midnight Pulse released: Audience 6.69 / Critics 7.08 (avg 6.89). Opening pool 203,542, opening 61,063.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Zombies (new): wolf $110,000 @ 30%; starlight $57,000 @ 8%."
+ },
+ {
+  "week": 64,
+  "type": "project_start",
+  "message": "Started Lost Protocol (Horror + Zombies, new) with wolf advance $110,000 @ 30%.",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 65,
+  "type": "feedback",
+  "message": "Midnight Pulse opens to 61,063 viewers.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 66,
+  "type": "feedback",
+  "message": "Critics are raving about Midnight Pulse. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel34",
+   "retention": 0.6948799999999999
+  }
+ },
+ {
+  "week": 71,
+  "type": "milestone",
+  "message": "Lost Protocol hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 71,
+  "type": "cast",
+  "message": "Cast Jo Vale for $30,850.",
+  "data": {
+   "starId": "star5",
+   "price": 30850
+  }
+ },
+ {
+  "week": 77,
+  "type": "milestone",
+  "message": "Lost Protocol hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 77,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 79,
+  "type": "ip_fans",
+  "message": "Midnight Pulse fans: 0 → 6,071 (avg score 6.89, 200,750 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 79,
+  "type": "star_career",
+  "message": "Mo Lind: Fame 79.0 → 84.4, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star32",
+   "fameDelta": 5.41,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 79,
+  "type": "trust",
+  "message": "Wolf Pictures earned 108% of its advance back on Midnight Pulse. Trust 2.88 → 3.11.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.08,
+   "step": 0.23
+  }
+ },
+ {
+  "week": 79,
+  "type": "run_end",
+  "message": "Midnight Pulse run ended after 15 weeks: 200,750 viewers, gross $401,500, studio take $277,035.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 79,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 80,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Protocol).",
+  "data": {
+   "awardId": "ip:ip35:audience_7_5",
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 80,
+  "type": "release",
+  "message": "Lost Protocol released: Audience 7.62 / Critics 7.79 (avg 7.71). Opening pool 206,905, opening 62,072.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 81,
+  "type": "feedback",
+  "message": "Lost Protocol opens to 62,072 viewers.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 81,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 82,
+  "type": "feedback",
+  "message": "Critics are raving about Lost Protocol. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel42",
+   "retention": 0.72044
+  }
+ },
+ {
+  "week": 84,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Protocol. Word of mouth is strong!",
+  "data": {
+   "releaseId": "rel42",
+   "retention": 0.74576
+  }
+ },
+ {
+  "week": 85,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 85,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 89,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 91,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 95,
+  "type": "ip_fans",
+  "message": "Lost Protocol fans: 0 → 9,962 (avg score 7.71, 229,760 viewers).",
+  "data": {
+   "ipId": "ip35"
+  }
+ },
+ {
+  "week": 95,
+  "type": "star_career",
+  "message": "Jo Vale: Fame 38.5 → 46.7, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star5",
+   "fameDelta": 8.2,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 95,
+  "type": "trust",
+  "message": "Wolf Pictures earned 125% of its advance back on Lost Protocol with strong reviews. Trust 3.09 → 3.54.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.25,
+   "step": 0.45
+  }
+ },
+ {
+  "week": 95,
+  "type": "run_end",
+  "message": "Lost Protocol run ended after 15 weeks: 229,760 viewers, gross $459,520, studio take $321,664.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ }
+]

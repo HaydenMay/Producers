@@ -1,0 +1,21 @@
+* { box-sizing: border-box; }
+body { margin: 0; font: 14px/1.45 system-ui, sans-serif; color: #1d1d1f; background: #f6f6f4; }
+header { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; padding: 10px 16px; background: #fff; border-bottom: 1px solid #ddd; position: sticky; top: 0; }
+.warn { background: #fff4d6; border: 1px solid #e6c56a; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+nav { margin-left: auto; display: flex; gap: 6px; }
+button { font: inherit; padding: 5px 10px; border: 1px solid #bbb; background: #fff; border-radius: 4px; cursor: pointer; }
+button.active, button.primary { background: #1d1d1f; color: #fff; border-color: #1d1d1f; }
+button:disabled { opacity: 0.45; cursor: not-allowed; }
+main { padding: 16px; max-width: 1200px; margin: 0 auto; }
+.card { background: #fff; border: 1px solid #ddd; border-radius: 6px; padding: 12px; margin-bottom: 12px; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; }
+th, td { border-bottom: 1px solid #eee; padding: 4px 6px; text-align: left; vertical-align: top; }
+th { background: #fafafa; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.muted { color: #777; font-size: 12px; }
+pre { white-space: pre-wrap; background: #fafafa; border: 1px solid #eee; padding: 8px; font-size: 12px; max-height: 420px; overflow: auto; }
+.fired { color: #b00020; font-weight: 600; }
+input[type="number"] { width: 110px; }
+label { font-size: 13px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 800px) { .grid2 { grid-template-columns: 1fr; } }

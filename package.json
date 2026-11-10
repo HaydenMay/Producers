@@ -1,0 +1,26 @@
+{
+  "name": "entertainment-studio-balance-harness",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Headless deterministic balance harness for Entertainment Studio Tycoon (design v9.61). Not the game.",
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "sim": "tsx src/cli/main.ts sim",
+    "batch": "tsx src/cli/main.ts batch",
+    "compare": "tsx src/cli/main.ts compare",
+    "scenarios": "tsx src/cli/main.ts scenarios",
+    "dev": "vite --config vite.config.ts",
+    "build:web": "vite build --config vite.config.ts",
+    "replay": "tsx src/cli/main.ts replay"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "jsdom": "^31.0.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0"
+  }
+}

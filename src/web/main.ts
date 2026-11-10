@@ -1,0 +1,239 @@
+// Thin UI over the same core. No game rules here: everything goes through getChoices/applyDecision/advanceWeek.
+import { baselineConfig, configHash, setPath, type Config } from "../core/config";
+import { advanceWeek, applyDecision, createStudio, getChoices, replay, FEATURES_NOT_MODELLED } from "../core/simulation";
+import type { Decision, PlanDecision, StudioState } from "../core/types";
+import { STRATEGIES, STRATEGY_IDS } from "../agents/strategies";
+import { makeAgentRng } from "../core/rng";
+import { runBatch } from "../batch/batch";
+import { releaseTrace, metricsCsv } from "../batch/report";
+import type { Dist } from "../batch/metrics";
+
+let cfg: Config = baselineConfig();
+let s: StudioState = createStudio(42, cfg);
+let log: Decision[] = [];
+let agentRng = makeAgentRng(42, "ui");
+const $ = (x: number) => `$${Math.round(x).toLocaleString("en-US")}`;
+const el = (id: string) => document.getElementById(id)!;
+const esc = (t: string) => t.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]!);
+
+function act(d: Decision) {
+  try {
+    applyDecision(s, cfg, d);
+    log.push(d);
+  } catch (e) {
+    alert((e as Error).message);
+  }
+  renderCareer();
+}
+
+function toNextDecision() {
+  for (let i = 0; i < 500; i++) {
+    const ch = getChoices(s, cfg);
+    if (ch.phase !== "production") break;
+    act({ type: "wait" });
+  }
+  renderCareer();
+}
+
+function newStudio(seed: number) {
+  s = createStudio(seed, cfg);
+  log = [];
+  agentRng = makeAgentRng(seed, "ui");
+  renderCareer();
+}
+
+function planForm(ch: ReturnType<typeof getChoices>): string {
+  const plans = ch.options.filter((o): o is PlanDecision => o.type === "plan");
+  const genres = [...new Set(plans.map((p) => p.genre))];
+  const themes = [...new Set(plans.filter((p) => p.ipRelation === "new").map((p) => p.theme))];
+  const ips = Object.values(s.ips).filter((ip) => plans.some((p) => p.parentIpId === ip.id));
+  const book = Object.entries(s.comboBook).map(([k, g]) => `${k.replace("|", " + ")}: A ${g.audience} / C ${g.critic}`).join(" · ") || "nothing revealed yet";
+  const trends = Object.entries(s.trends).filter(([, t]) => t.stage !== "none").map(([k, t]) => `${k}: ${t.stage}`).join(", ") || "no active crazes";
+  return `<div class="card"><h3>Plan the next production</h3>
+    <div class="row">
+      <label>Relation <select id="rel"><option value="new">new IP</option><option value="sequel">sequel</option><option value="reboot">reboot</option><option value="spinoff">spinoff</option></select></label>
+      <label>Parent IP <select id="ip">${ips.map((ip) => `<option value="${ip.id}">${esc(ip.name)} (${ip.fans.toLocaleString()} fans)</option>`).join("") || "<option value=''>—</option>"}</select></label>
+      <label>Genre <select id="genre">${genres.map((g) => `<option>${g}</option>`).join("")}</select></label>
+      <label>Theme <select id="theme">${themes.map((t) => `<option>${t}</option>`).join("")}</select></label>
+      <button class="primary" id="doPlan">Pitch it</button>
+    </div>
+    <p class="muted">Combo book: ${esc(book)}<br/>Trends: ${esc(trends)}<br/>Sequels/reboots keep the IP's genre + theme; spinoffs keep the genre.</p></div>`;
+}
+
+function reinvestButtons(ch: ReturnType<typeof getChoices>): string {
+  const r = ch.options.filter((o) => ["hire", "train", "studio_ads", "research_theme"].includes(o.type));
+  if (!r.length) return `<p class="muted">No reinvestment available${s.cash < 0 ? " (cash is negative: no hiring/training/ads/self-funding)" : ""}.</p>`;
+  return `<div class="row">${r.map((o, i) => `<button data-reinvest="${i}">${o.type === "train" ? `train ${s.staff.find((x) => x.id === (o as { staffId: string }).staffId)?.name}` : o.type === "research_theme" ? `research ${(o as { theme: string }).theme}` : o.type.replace("_", " ")}</button>`).join("")}</div>`;
+}
+
+function renderCareer() {
+  const ch = getChoices(s, cfg);
+  const root = el("tab-career");
+  let body = "";
+  if (ch.phase === "planning") body = planForm(ch) + `<div class="card"><h3>Reinvest</h3>${reinvestButtons(ch)}<button id="wait1">Advance 1 week (idle)</button></div>`;
+  if (ch.phase === "pitch")
+    body = `<div class="card"><h3>Pitch meeting</h3><table><tr><th>Distributor</th><th>Advance</th><th>Royalty</th><th>Reach</th><th>Why</th><th></th></tr>${ch
+      .offers!.map((o) => `<tr><td>${o.distributorId}${o.lifeline ? " (lifeline)" : ""}</td><td>${$(o.advance)}</td><td>${(o.royalty * 100).toFixed(0)}%</td><td>${o.reach}</td><td class="muted">${esc(o.reasons.join("; "))}</td><td><button data-offer="${o.distributorId}">Choose</button></td></tr>`)
+      .join("")}</table>${ch.options.some((o) => o.type === "choose_offer" && o.distributorId === null) ? `<button data-offer="__self">Self-fund (pay ${$(cfg.production.movie.baseCost)} base, keep 100%, small reach)</button>` : `<p class="muted">Self-funding unavailable (needs non-negative cash ≥ base cost).</p>`}</div>`;
+  if (ch.phase === "casting")
+    body = `<div class="card"><h3>40%: audition results</h3><p class="muted">Funds: unspent advance ${$(s.project!.unspentAdvance)} + spendable cash ${$(ch.spendableCash)}. Affordability was checked before this list was shown.</p><table><tr><th>Star</th><th>Source</th><th>Level</th><th>Skills (by family)</th><th>Fame</th><th>Rel.</th><th>Price (fame fee + premium − loyalty)</th><th></th></tr>${ch
+      .auditionCards!.map((c) => {
+        const st = s.stars[c.starId];
+        return `<tr><td>${esc(st.name)}${c.fallbackInserted ? " <b>(free fallback)</b>" : ""}</td><td>${c.source}</td><td>${st.level}</td><td>${Object.entries(st.skills).map(([k, v]) => `${k} ${v}`).join(", ")}</td><td>${st.fame.toFixed(0)}</td><td>${st.relationship.toFixed(2)}</td><td>${$(c.price)} <span class="muted">(${$(c.breakdown.fameFee)} + ${$(c.breakdown.prestigePremium)} − ${$(c.breakdown.relationshipDiscount)})</span></td><td><button data-cast="${c.starId}" ${c.affordable ? "" : "disabled"}>Cast</button></td></tr>`;
+      })
+      .join("")}</table></div>`;
+  if (ch.phase === "marketing")
+    body = `<div class="card"><h3>80%: release campaign</h3><p class="muted">Marketing changes opening viewership only, never scores.</p><div class="row">${ch.campaigns!.map((c) => `<button data-camp="${c.id}" ${c.affordable ? "" : "disabled"}>${c.id} (${$(c.cost)})</button>`).join("")}</div></div>`;
+  if (ch.phase === "production") {
+    const p = s.project!;
+    body = `<div class="card"><h3>In production: ${esc(p.title)} — ${p.progress.toFixed(1)}%</h3><p>Meter points: ${Object.entries(p.meterPoints).map(([k, v]) => `${k} ${v.toFixed(1)}`).join(" · ")} · Star points ${p.starPoints.toFixed(1)} · Unspent advance ${$(p.unspentAdvance)}</p>
+      <div class="row"><button id="wait1">Advance 1 week</button><button class="primary" id="toNext">Advance to next decision</button>${ch.canCancel ? `<button id="cancel">Cancel (repay advance)</button>` : `<span class="muted">Cancel unavailable: can't repay the advance</span>`}</div></div>`;
+  }
+  const rels = [...s.releases].reverse();
+  root.innerHTML = `
+    <div class="card row">
+      <label>Seed <input id="seed" type="number" value="${s.seed}"/></label><button id="newStudio">New studio</button>
+      <label>Strategy <select id="strat">${STRATEGY_IDS.map((x) => `<option>${x}</option>`).join("")}</select></label><button id="agent">Let strategy decide once</button><button id="agent20">…until 1 release</button>
+      <button id="dlLog">Download decision log</button>
+    </div>
+    <div class="card"><b>Week ${s.week}</b> (year ${(s.week / 52).toFixed(1)}) · Cash <b>${$(s.cash)}</b> · Prestige <b>${s.prestige}</b> · Phase <b>${ch.phase}</b> · Releases ${s.releases.length} (${s.releases.filter((r) => r.active).length} running) · Config ${cfg.name} (${configHash(cfg)})
+      <div class="muted">Staff: ${s.staff.map((x) => `${esc(x.name)} [P ${x.stats.plot.toFixed(0)} W ${x.stats.writing.toFixed(0)} F ${x.stats.filming.toFixed(0)} E ${x.stats.editing.toFixed(0)}]`).join(" · ")}<br/>Trust: ${s.distributors.map((d) => `${d.id} ${d.trust.toFixed(2)}`).join(", ")} · Not modelled: ${FEATURES_NOT_MODELLED.join(", ")}</div></div>
+    ${body}
+    <div class="grid2"><div class="card"><h3>Releases (newest first)</h3>${rels.map((r) => `<details><summary>${esc(r.title)} — A ${r.audience} / C ${r.critic} · gross ${$(r.grossTotal)} ${r.active ? "(running)" : ""}</summary><pre>${esc(releaseTrace(r, s))}</pre></details>`).join("") || "<p class='muted'>none yet</p>"}</div>
+    <div class="card"><h3>Event log (latest 40)</h3><pre>${esc(s.events.slice(-40).map((e) => `w${e.week} [${e.type}] ${e.message}`).join("\n"))}</pre></div></div>`;
+  // wiring
+  (el("strat") as HTMLSelectElement).value = (window as unknown as { __strat?: string }).__strat ?? "balanced";
+  el("strat").onchange = (e) => ((window as unknown as { __strat?: string }).__strat = (e.target as HTMLSelectElement).value);
+  el("newStudio").onclick = () => newStudio(Number((el("seed") as HTMLInputElement).value));
+  const agentOnce = () => {
+    const c = getChoices(s, cfg);
+    const strat = STRATEGIES[(el("strat") as HTMLSelectElement).value];
+    act(c.phase === "production" ? { type: "wait" } : strat.decide(s, cfg, c, agentRng, { reinvestsThisStop: 0 }));
+  };
+  el("agent").onclick = agentOnce;
+  el("agent20").onclick = () => {
+    const target = s.releases.length + 1;
+    for (let i = 0; i < 800 && s.releases.length < target; i++) agentOnce();
+  };
+  el("dlLog").onclick = () => download(`decisions-seed${s.seed}.json`, JSON.stringify({ seed: s.seed, configHash: configHash(cfg), decisions: log }));
+  root.querySelectorAll<HTMLButtonElement>("[data-offer]").forEach((b) => (b.onclick = () => act({ type: "choose_offer", distributorId: b.dataset.offer === "__self" ? null : b.dataset.offer! })));
+  root.querySelectorAll<HTMLButtonElement>("[data-cast]").forEach((b) => (b.onclick = () => act({ type: "cast", starId: b.dataset.cast! })));
+  root.querySelectorAll<HTMLButtonElement>("[data-camp]").forEach((b) => (b.onclick = () => act({ type: "market", campaign: b.dataset.camp! })));
+  const reinvest = ch.options.filter((o) => ["hire", "train", "studio_ads", "research_theme"].includes(o.type));
+  root.querySelectorAll<HTMLButtonElement>("[data-reinvest]").forEach((b) => (b.onclick = () => act(reinvest[Number(b.dataset.reinvest)])));
+  document.getElementById("wait1")?.addEventListener("click", () => act({ type: "wait" }));
+  document.getElementById("toNext")?.addEventListener("click", toNextDecision);
+  document.getElementById("cancel")?.addEventListener("click", () => act({ type: "cancel" }));
+  document.getElementById("doPlan")?.addEventListener("click", () => {
+    const rel = (el("rel") as HTMLSelectElement).value as PlanDecision["ipRelation"];
+    const ipId = (el("ip") as HTMLSelectElement).value;
+    const plans = ch.options.filter((o): o is PlanDecision => o.type === "plan");
+    const genre = (el("genre") as HTMLSelectElement).value;
+    const theme = (el("theme") as HTMLSelectElement).value;
+    const match = rel === "new" ? plans.find((p) => p.ipRelation === "new" && p.genre === genre && p.theme === theme) : rel === "spinoff" ? plans.find((p) => p.ipRelation === "spinoff" && p.parentIpId === ipId && p.theme === theme) : plans.find((p) => p.ipRelation === rel && p.parentIpId === ipId);
+    if (!match) return alert("That combination isn't a legal plan right now.");
+    act(match);
+  });
+}
+
+function download(name: string, text: string) {
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], { type: "text/plain" }));
+  a.download = name;
+  a.click();
+}
+
+function renderBatch() {
+  const root = el("tab-batch");
+  root.innerHTML = `<div class="card row"><label>Seeds <input id="bSeeds" type="number" value="50"/></label><label>Productions <input id="bProd" type="number" value="20"/></label>
+    ${STRATEGY_IDS.map((x) => `<label><input type="checkbox" class="bStrat" value="${x}" checked/> ${x}</label>`).join(" ")}
+    <button class="primary" id="bRun">Run batch</button></div><div id="bOut"></div>`;
+  el("bRun").onclick = () => {
+    const strategies = [...root.querySelectorAll<HTMLInputElement>(".bStrat:checked")].map((x) => x.value);
+    const b = runBatch(1, Number((el("bSeeds") as HTMLInputElement).value), strategies, cfg, { productions: Number((el("bProd") as HTMLInputElement).value), drain: true }, true);
+    const keys = ["endCash", "prestige", "meanAudience", "meanCritic", "shareLate8plus", "surplusKept", "negativeCashWeeks", "meanTrustEnd"];
+    el("bOut").innerHTML = `<div class="card"><b>${b.meta.careers} careers · ${b.meta.runtimeMs} ms · config ${b.meta.config} (${b.meta.configHash}) · invariant violations: ${b.violations.length}</b>
+      <table><tr><th>Strategy</th>${keys.map((k) => `<th>${k} (median)</th>`).join("")}</tr>${Object.entries(b.summary).map(([st, row]) => `<tr><td>${st}</td>${keys.map((k) => `<td>${(row[k] as Dist).median}</td>`).join("")}</tr>`).join("")}</table></div>
+      <div class="card"><h3>Flags</h3><table>${b.flags.map((f) => `<tr><td class="${f.fired ? "fired" : ""}">${f.flag}</td><td>${f.fired ? "FIRED" : "ok"}</td><td>${esc(f.why)}</td></tr>`).join("")}</table></div>
+      <div class="card"><h3>Avg score by production index</h3><pre>${Object.entries(b.trends).map(([k, t]) => `${k.padEnd(18)} ${t.map((x) => x.toFixed(1)).join(" ")}`).join("\n")}</pre>
+      <button id="bDl">Download careers CSV</button> <button id="bDlJ">Download summary JSON</button></div>`;
+    el("bDl").onclick = () => download("careers.csv", metricsCsv(b.metrics));
+    el("bDlJ").onclick = () => download("summary.json", JSON.stringify({ meta: b.meta, summary: b.summary, flags: b.flags }, null, 1));
+  };
+}
+
+const CURATED: [string, string][] = [
+  ["start.cash", "Starting cash"],
+  ["production.movie.baseCost", "Movie base cost"],
+  ["production.movie.durationWeeks", "Movie duration (weeks)"],
+  ["production.eraBarPerYear", "Era quality bar growth / year"],
+  ["staffGrowth.statGainPerWeek", "Staff stat growth / week"],
+  ["staffGrowth.hireCost", "Hire cost"],
+  ["studioGenre.qualityBonusPerLevel", "Studio genre bonus / level"],
+  ["stars.feePerFame", "Star fee per Fame^k"],
+  ["stars.growthPerProject", "Star skill growth / project"],
+  ["audience.baseRetention", "Base weekly retention"],
+  ["audience.audienceRetentionWeight", "Word-of-mouth strength"],
+  ["audience.fanAwareness", "IP fan → awareness"],
+  ["world.grossPerViewer", "Gross per viewer"],
+  ["distribution.selfFundReach", "Self-fund reach (pre-streaming)"],
+  ["distribution.trustMaxStep", "Max trust change per release"],
+  ["marketing.studioAdsBuzz", "Studio ads buzz"],
+];
+
+function get(path: string): unknown {
+  return path.split(".").reduce<unknown>((o, k) => (o as Record<string, unknown>)[k], cfg);
+}
+
+function renderConfig() {
+  const root = el("tab-config");
+  root.innerHTML = `<div class="card"><p class="warn">Simulation assumptions — not design locks. Changing these doesn't change the game design.</p>
+    <table>${CURATED.map(([p, label]) => `<tr><td>${label}</td><td><code>${p}</code></td><td><input type="number" step="any" data-path="${p}" value="${get(p)}"/></td></tr>`).join("")}</table>
+    <div class="row"><button class="primary" id="cApply">Apply</button><button id="cReset">Reset to baseline</button><span class="muted">Current hash ${configHash(cfg)}. Applying starts a new studio.</span></div></div>`;
+  el("cApply").onclick = () => {
+    let c = baselineConfig();
+    const changed: string[] = [];
+    root.querySelectorAll<HTMLInputElement>("[data-path]").forEach((i) => {
+      const v = Number(i.value);
+      const p = i.dataset.path!;
+      const cur = p.split(".").reduce<unknown>((o, k) => (o as Record<string, unknown>)[k], c);
+      if (v !== cur) {
+        c = setPath(c, p, v);
+        changed.push(`${p}=${v}`);
+      }
+    });
+    c.name = changed.length ? `ui:${changed.join(",")}` : "baseline";
+    cfg = c;
+    newStudio(s.seed);
+    renderConfig();
+  };
+  el("cReset").onclick = () => {
+    cfg = baselineConfig();
+    newStudio(s.seed);
+    renderConfig();
+  };
+}
+
+function renderReplay() {
+  const root = el("tab-replay");
+  root.innerHTML = `<div class="card"><p>Paste a decision log (from the CLI's <code>*.decisions.json</code> or the Download button).</p><textarea id="rText" rows="6" style="width:100%"></textarea><button class="primary" id="rRun">Replay into Single career</button></div>`;
+  el("rRun").onclick = () => {
+    const parsed = JSON.parse((el("rText") as HTMLTextAreaElement).value) as { seed: number; decisions: Decision[]; configHash?: string };
+    if (parsed.configHash && parsed.configHash !== configHash(cfg)) alert(`Log recorded with config ${parsed.configHash}; current is ${configHash(cfg)}. Replay may diverge.`);
+    s = replay(parsed.seed, cfg, parsed.decisions);
+    log = [...parsed.decisions];
+    showTab("career");
+  };
+}
+
+function showTab(t: string) {
+  document.querySelectorAll<HTMLButtonElement>("nav button").forEach((b) => b.classList.toggle("active", b.dataset.tab === t));
+  ["career", "batch", "config", "replay"].forEach((x) => (el(`tab-${x}`).hidden = x !== t));
+  if (t === "career") renderCareer();
+}
+document.querySelectorAll<HTMLButtonElement>("nav button").forEach((b) => (b.onclick = () => showTab(b.dataset.tab!)));
+renderCareer();
+renderBatch();
+renderConfig();
+renderReplay();
+void advanceWeek;

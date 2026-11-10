@@ -1,0 +1,12 @@
+{
+  "_label": "Regression seed bank: interesting careers found by batches. Re-run after every change (npm run scenarios).",
+  "regressionSeeds": [
+    { "seed": 38, "strategy": "self-funder", "productions": 20, "why": "longest negative-cash stretch at baseline (68 weeks) — cash-lock watch" },
+    { "seed": 58, "strategy": "cheap-duds", "productions": 20, "why": "richest surplus-farming career at baseline — surplus exploit watch" },
+    { "seed": 84, "strategy": "quality-first", "productions": 20, "why": "highest Prestige at baseline — Prestige pace watch" },
+    { "seed": 14, "strategy": "quality-first", "productions": 20, "why": "every late release 8+ — quality inflation watch" },
+    { "seed": 96, "strategy": "self-funder", "productions": 20, "why": "lowest end distributor trust — trust spiral watch" },
+    { "seed": 1, "strategy": "balanced", "productions": 50, "why": "long career smoke test (50 productions)" },
+    { "seed": 2, "strategy": "famous-star", "productions": 50, "why": "long high-spend career" }
+  ]
+}

@@ -1,0 +1,1574 @@
+{
+ "meta": {
+  "ruleset": "v9.61-movie-kernel-0.1",
+  "config": "baseline",
+  "configHash": "5355fe52",
+  "seeds": [
+   1,
+   100
+  ],
+  "strategies": [
+   "balanced",
+   "quality-first",
+   "cheap-duds",
+   "famous-star",
+   "self-funder",
+   "experimenter",
+   "franchise-builder"
+  ],
+  "productions": 1,
+  "featuresModelled": [
+   "movies",
+   "distributor advances/royalties/trust",
+   "Stars (families, budgets, fallback, callbacks, relationships)",
+   "marketing + studio buzz",
+   "scores + legs",
+   "IP fans",
+   "Prestige milestones",
+   "studio genre levels",
+   "trends",
+   "staff XP/hire/train",
+   "theme research + staff pitches"
+  ],
+  "featuresNotModelled": [
+   "limited series",
+   "TV series/seasons/renewals/hiatus/announcements",
+   "streaming service/subscribers",
+   "eras beyond a gentle quality bar",
+   "studio upgrades/format unlock gates",
+   "genre unlocks",
+   "late-game concurrency"
+  ],
+  "runtimeMs": 372,
+  "careers": 700
+ },
+ "summary": {
+  "balanced": {
+   "endCash": {
+    "n": 100,
+    "mean": 122486.02,
+    "median": 119957,
+    "p10": 76992.1,
+    "p90": 167578.1,
+    "min": 51152,
+    "max": 191320
+   },
+   "profit": {
+    "n": 100,
+    "mean": 82486.02,
+    "median": 79957,
+    "p10": 36992.1,
+    "p90": 127578.1,
+    "min": 11152,
+    "max": 151320
+   },
+   "cashPerYear": {
+    "n": 100,
+    "mean": 150659.3,
+    "median": 149049.5,
+    "p10": 66883.5,
+    "p90": 228649.1,
+    "min": 23195,
+    "max": 262287
+   },
+   "prestige": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "prestigePerYear": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "meanAudience": {
+    "n": 100,
+    "mean": 5.59,
+    "median": 5.68,
+    "p10": 4.42,
+    "p90": 6.4,
+    "min": 4.21,
+    "max": 6.68
+   },
+   "meanCritic": {
+    "n": 100,
+    "mean": 5.69,
+    "median": 5.72,
+    "p10": 5.04,
+    "p90": 6.46,
+    "min": 4.33,
+    "max": 6.7
+   },
+   "hofCount": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "shareLate8plus": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "surplusKept": {
+    "n": 100,
+    "mean": 1082.46,
+    "median": 0,
+    "p10": 0,
+    "p90": 3813.7,
+    "min": 0,
+    "max": 12504
+   },
+   "surplusShareOfIncome": {
+    "n": 100,
+    "mean": 0.01,
+    "median": 0,
+    "p10": 0,
+    "p90": 0.02,
+    "min": 0,
+    "max": 0.06
+   },
+   "royaltyCosts": {
+    "n": 100,
+    "mean": 71665.06,
+    "median": 71227.5,
+    "p10": 54637.7,
+    "p90": 89093,
+    "min": 36515,
+    "max": 102206
+   },
+   "starSpend": {
+    "n": 100,
+    "mean": 15762.46,
+    "median": 9507,
+    "p10": 3041,
+    "p90": 33778.6,
+    "min": 2000,
+    "max": 44527
+   },
+   "campaignSpend": {
+    "n": 100,
+    "mean": 9080,
+    "median": 8000,
+    "p10": 0,
+    "p90": 20000,
+    "min": 0,
+    "max": 20000
+   },
+   "negativeCashWeeks": {
+    "n": 100,
+    "mean": 2.03,
+    "median": 2,
+    "p10": 0,
+    "p90": 4.2,
+    "min": 0,
+    "max": 9
+   },
+   "meanLegs": {
+    "n": 100,
+    "mean": 2.81,
+    "median": 2.83,
+    "p10": 2.6,
+    "p90": 2.98,
+    "min": 2.43,
+    "max": 3.1
+   },
+   "maxIpFans": {
+    "n": 100,
+    "mean": 1320.01,
+    "median": 1309.5,
+    "p10": 0,
+    "p90": 2379.6,
+    "min": 0,
+    "max": 3844
+   },
+   "meanTrustEnd": {
+    "n": 100,
+    "mean": 2.49,
+    "median": 2.49,
+    "p10": 2.46,
+    "p90": 2.51,
+    "min": 2.42,
+    "max": 2.52
+   },
+   "meanDistributorRoi": {
+    "n": 100,
+    "mean": 0.88,
+    "median": 0.89,
+    "p10": 0.71,
+    "p90": 1.03,
+    "min": 0.6,
+    "max": 1.15
+   },
+   "combosExplored": {
+    "n": 100,
+    "mean": 1,
+    "median": 1,
+    "p10": 1,
+    "p90": 1,
+    "min": 1,
+    "max": 1
+   },
+   "meanStaffStat": {
+    "n": 100,
+    "mean": 27.5,
+    "median": 27.5,
+    "p10": 27.5,
+    "p90": 27.5,
+    "min": 27.5,
+    "max": 27.5
+   },
+   "years": {
+    "n": 100,
+    "mean": 0.54,
+    "median": 0.54,
+    "p10": 0.5,
+    "p90": 0.58,
+    "min": 0.48,
+    "max": 0.6
+   },
+   "shareEndedNegative": 0,
+   "shareAnyPrestige": 0,
+   "shareStuck": 0
+  },
+  "quality-first": {
+   "endCash": {
+    "n": 100,
+    "mean": 109299.45,
+    "median": 108929,
+    "p10": 74754.6,
+    "p90": 146728,
+    "min": 53540,
+    "max": 164193
+   },
+   "profit": {
+    "n": 100,
+    "mean": 69299.45,
+    "median": 68929,
+    "p10": 34754.6,
+    "p90": 106728,
+    "min": 13540,
+    "max": 124193
+   },
+   "cashPerYear": {
+    "n": 100,
+    "mean": 128562.91,
+    "median": 131231,
+    "p10": 68150,
+    "p90": 191374.7,
+    "min": 28162,
+    "max": 215267
+   },
+   "prestige": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "prestigePerYear": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "meanAudience": {
+    "n": 100,
+    "mean": 5.46,
+    "median": 5.57,
+    "p10": 4.42,
+    "p90": 6.16,
+    "min": 4.16,
+    "max": 6.7
+   },
+   "meanCritic": {
+    "n": 100,
+    "mean": 5.57,
+    "median": 5.74,
+    "p10": 4.41,
+    "p90": 6.17,
+    "min": 4.33,
+    "max": 6.7
+   },
+   "hofCount": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "shareLate8plus": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "surplusKept": {
+    "n": 100,
+    "mean": 3207.76,
+    "median": 0,
+    "p10": 0,
+    "p90": 11632.5,
+    "min": 0,
+    "max": 30374
+   },
+   "surplusShareOfIncome": {
+    "n": 100,
+    "mean": 0.02,
+    "median": 0,
+    "p10": 0,
+    "p90": 0.08,
+    "min": 0,
+    "max": 0.17
+   },
+   "royaltyCosts": {
+    "n": 100,
+    "mean": 65106.32,
+    "median": 65188,
+    "p10": 52798.9,
+    "p90": 78546.6,
+    "min": 40904,
+    "max": 91058
+   },
+   "starSpend": {
+    "n": 100,
+    "mean": 18165.3,
+    "median": 19741,
+    "p10": 3450.5,
+    "p90": 34926,
+    "min": 2000,
+    "max": 52462
+   },
+   "campaignSpend": {
+    "n": 100,
+    "mean": 4160,
+    "median": 8000,
+    "p10": 0,
+    "p90": 8000,
+    "min": 0,
+    "max": 8000
+   },
+   "negativeCashWeeks": {
+    "n": 100,
+    "mean": 2.39,
+    "median": 1.5,
+    "p10": 0,
+    "p90": 6.1,
+    "min": 0,
+    "max": 9
+   },
+   "meanLegs": {
+    "n": 100,
+    "mean": 2.77,
+    "median": 2.78,
+    "p10": 2.58,
+    "p90": 2.96,
+    "min": 2.44,
+    "max": 3.1
+   },
+   "maxIpFans": {
+    "n": 100,
+    "mean": 969.9,
+    "median": 897,
+    "p10": 0,
+    "p90": 2219.8,
+    "min": 0,
+    "max": 3183
+   },
+   "meanTrustEnd": {
+    "n": 100,
+    "mean": 2.48,
+    "median": 2.48,
+    "p10": 2.46,
+    "p90": 2.5,
+    "min": 2.44,
+    "max": 2.52
+   },
+   "meanDistributorRoi": {
+    "n": 100,
+    "mean": 0.82,
+    "median": 0.81,
+    "p10": 0.71,
+    "p90": 0.92,
+    "min": 0.66,
+    "max": 1.11
+   },
+   "combosExplored": {
+    "n": 100,
+    "mean": 1,
+    "median": 1,
+    "p10": 1,
+    "p90": 1,
+    "min": 1,
+    "max": 1
+   },
+   "meanStaffStat": {
+    "n": 100,
+    "mean": 27.5,
+    "median": 27.5,
+    "p10": 27.5,
+    "p90": 27.5,
+    "min": 27.5,
+    "max": 27.5
+   },
+   "years": {
+    "n": 100,
+    "mean": 0.54,
+    "median": 0.54,
+    "p10": 0.5,
+    "p90": 0.56,
+    "min": 0.48,
+    "max": 0.58
+   },
+   "shareEndedNegative": 0,
+   "shareAnyPrestige": 0,
+   "shareStuck": 0
+  },
+  "cheap-duds": {
+   "endCash": {
+    "n": 100,
+    "mean": 83052.71,
+    "median": 82771.5,
+    "p10": 60773.4,
+    "p90": 110286.8,
+    "min": 6450,
+    "max": 142047
+   },
+   "profit": {
+    "n": 100,
+    "mean": 43052.71,
+    "median": 42771.5,
+    "p10": 20773.4,
+    "p90": 70286.8,
+    "min": -33550,
+    "max": 102047
+   },
+   "cashPerYear": {
+    "n": 100,
+    "mean": 82490.68,
+    "median": 82374,
+    "p10": 41546,
+    "p90": 134501.9,
+    "min": -72691,
+    "max": 189515
+   },
+   "prestige": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "prestigePerYear": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "meanAudience": {
+    "n": 100,
+    "mean": 5.4,
+    "median": 5.5,
+    "p10": 4.42,
+    "p90": 6.19,
+    "min": 4.11,
+    "max": 6.71
+   },
+   "meanCritic": {
+    "n": 100,
+    "mean": 5.54,
+    "median": 5.6,
+    "p10": 4.97,
+    "p90": 6.44,
+    "min": 4.32,
+    "max": 6.57
+   },
+   "hofCount": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "shareLate8plus": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "surplusKept": {
+    "n": 100,
+    "mean": 15704.9,
+    "median": 16000,
+    "p10": 978.4,
+    "p90": 28542.3,
+    "min": 0,
+    "max": 41504
+   },
+   "surplusShareOfIncome": {
+    "n": 100,
+    "mean": 0.13,
+    "median": 0.15,
+    "p10": 0.01,
+    "p90": 0.23,
+    "min": 0,
+    "max": 0.29
+   },
+   "royaltyCosts": {
+    "n": 100,
+    "mean": 43603.44,
+    "median": 42832,
+    "p10": 37998.4,
+    "p90": 51376.1,
+    "min": 30001,
+    "max": 62769
+   },
+   "starSpend": {
+    "n": 100,
+    "mean": 4110.31,
+    "median": 3496,
+    "p10": 2000,
+    "p90": 6832,
+    "min": 2000,
+    "max": 10224
+   },
+   "campaignSpend": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "negativeCashWeeks": {
+    "n": 100,
+    "mean": 0.05,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 3
+   },
+   "meanLegs": {
+    "n": 100,
+    "mean": 2.75,
+    "median": 2.77,
+    "p10": 2.55,
+    "p90": 2.9,
+    "min": 2.43,
+    "max": 3.15
+   },
+   "maxIpFans": {
+    "n": 100,
+    "mean": 588.59,
+    "median": 593,
+    "p10": 0,
+    "p90": 1163.2,
+    "min": 0,
+    "max": 1973
+   },
+   "meanTrustEnd": {
+    "n": 100,
+    "mean": 2.45,
+    "median": 2.45,
+    "p10": 2.44,
+    "p90": 2.46,
+    "min": 2.42,
+    "max": 2.5
+   },
+   "meanDistributorRoi": {
+    "n": 100,
+    "mean": 0.55,
+    "median": 0.53,
+    "p10": 0.47,
+    "p90": 0.66,
+    "min": 0.43,
+    "max": 0.8
+   },
+   "combosExplored": {
+    "n": 100,
+    "mean": 1,
+    "median": 1,
+    "p10": 1,
+    "p90": 1,
+    "min": 1,
+    "max": 1
+   },
+   "meanStaffStat": {
+    "n": 100,
+    "mean": 27.5,
+    "median": 27.5,
+    "p10": 27.5,
+    "p90": 27.5,
+    "min": 27.5,
+    "max": 27.5
+   },
+   "years": {
+    "n": 100,
+    "mean": 0.52,
+    "median": 0.52,
+    "p10": 0.5,
+    "p90": 0.54,
+    "min": 0.46,
+    "max": 0.56
+   },
+   "shareEndedNegative": 0,
+   "shareAnyPrestige": 0,
+   "shareStuck": 0
+  },
+  "famous-star": {
+   "endCash": {
+    "n": 100,
+    "mean": 94707.7,
+    "median": 96154.5,
+    "p10": 68853,
+    "p90": 120378.9,
+    "min": 48980,
+    "max": 150904
+   },
+   "profit": {
+    "n": 100,
+    "mean": 54707.7,
+    "median": 56154.5,
+    "p10": 28853,
+    "p90": 80378.9,
+    "min": 8980,
+    "max": 110904
+   },
+   "cashPerYear": {
+    "n": 100,
+    "mean": 102005.14,
+    "median": 104275,
+    "p10": 56313.5,
+    "p90": 144644.4,
+    "min": 17961,
+    "max": 198862
+   },
+   "prestige": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "prestigePerYear": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "meanAudience": {
+    "n": 100,
+    "mean": 5.45,
+    "median": 5.54,
+    "p10": 4.73,
+    "p90": 6.07,
+    "min": 4.16,
+    "max": 6.34
+   },
+   "meanCritic": {
+    "n": 100,
+    "mean": 5.65,
+    "median": 5.68,
+    "p10": 4.99,
+    "p90": 6.44,
+    "min": 4.32,
+    "max": 6.67
+   },
+   "hofCount": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "shareLate8plus": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "surplusKept": {
+    "n": 100,
+    "mean": 1321.09,
+    "median": 0,
+    "p10": 0,
+    "p90": 4403.9,
+    "min": 0,
+    "max": 11784
+   },
+   "surplusShareOfIncome": {
+    "n": 100,
+    "mean": 0.01,
+    "median": 0,
+    "p10": 0,
+    "p90": 0.03,
+    "min": 0,
+    "max": 0.07
+   },
+   "royaltyCosts": {
+    "n": 100,
+    "mean": 63499.24,
+    "median": 63491.5,
+    "p10": 49012,
+    "p90": 74853.5,
+    "min": 42903,
+    "max": 88529
+   },
+   "starSpend": {
+    "n": 100,
+    "mean": 21769.24,
+    "median": 23566,
+    "p10": 6156.5,
+    "p90": 37265.2,
+    "min": 2626,
+    "max": 47111
+   },
+   "campaignSpend": {
+    "n": 100,
+    "mean": 1560,
+    "median": 0,
+    "p10": 0,
+    "p90": 8000,
+    "min": 0,
+    "max": 20000
+   },
+   "negativeCashWeeks": {
+    "n": 100,
+    "mean": 6.6,
+    "median": 6,
+    "p10": 5,
+    "p90": 9,
+    "min": 4,
+    "max": 9
+   },
+   "meanLegs": {
+    "n": 100,
+    "mean": 2.78,
+    "median": 2.81,
+    "p10": 2.6,
+    "p90": 2.93,
+    "min": 2.5,
+    "max": 3.02
+   },
+   "maxIpFans": {
+    "n": 100,
+    "mean": 951.18,
+    "median": 1083.5,
+    "p10": 0,
+    "p90": 1762.3,
+    "min": 0,
+    "max": 2353
+   },
+   "meanTrustEnd": {
+    "n": 100,
+    "mean": 2.48,
+    "median": 2.48,
+    "p10": 2.46,
+    "p90": 2.5,
+    "min": 2.44,
+    "max": 2.51
+   },
+   "meanDistributorRoi": {
+    "n": 100,
+    "mean": 0.79,
+    "median": 0.78,
+    "p10": 0.69,
+    "p90": 0.91,
+    "min": 0.65,
+    "max": 1.01
+   },
+   "combosExplored": {
+    "n": 100,
+    "mean": 1,
+    "median": 1,
+    "p10": 1,
+    "p90": 1,
+    "min": 1,
+    "max": 1
+   },
+   "meanStaffStat": {
+    "n": 100,
+    "mean": 27.5,
+    "median": 27.5,
+    "p10": 27.5,
+    "p90": 27.5,
+    "min": 27.5,
+    "max": 27.5
+   },
+   "years": {
+    "n": 100,
+    "mean": 0.53,
+    "median": 0.54,
+    "p10": 0.5,
+    "p90": 0.56,
+    "min": 0.48,
+    "max": 0.58
+   },
+   "shareEndedNegative": 0,
+   "shareAnyPrestige": 0,
+   "shareStuck": 0
+  },
+  "self-funder": {
+   "endCash": {
+    "n": 100,
+    "mean": 30762.11,
+    "median": 31259.5,
+    "p10": 18850.7,
+    "p90": 41339.6,
+    "min": 13597,
+    "max": 63474
+   },
+   "profit": {
+    "n": 100,
+    "mean": -9237.89,
+    "median": -8740.5,
+    "p10": -21149.3,
+    "p90": 1339.6,
+    "min": -26403,
+    "max": 23474
+   },
+   "cashPerYear": {
+    "n": 100,
+    "mean": -19306.81,
+    "median": -17495.5,
+    "p10": -45132.7,
+    "p90": 2665.8,
+    "min": -57206,
+    "max": 45208
+   },
+   "prestige": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "prestigePerYear": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "meanAudience": {
+    "n": 100,
+    "mean": 5.48,
+    "median": 5.53,
+    "p10": 4.69,
+    "p90": 6.34,
+    "min": 4.06,
+    "max": 6.7
+   },
+   "meanCritic": {
+    "n": 100,
+    "mean": 5.61,
+    "median": 5.63,
+    "p10": 4.43,
+    "p90": 6.43,
+    "min": 4.27,
+    "max": 6.6
+   },
+   "hofCount": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "shareLate8plus": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "surplusKept": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "surplusShareOfIncome": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "royaltyCosts": {
+    "n": 100,
+    "mean": 6041.8,
+    "median": 5930.5,
+    "p10": 5036.7,
+    "p90": 7136.2,
+    "min": 4713,
+    "max": 8639
+   },
+   "starSpend": {
+    "n": 100,
+    "mean": 3642.54,
+    "median": 3496,
+    "p10": 0,
+    "p90": 7471,
+    "min": 0,
+    "max": 9507
+   },
+   "campaignSpend": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "negativeCashWeeks": {
+    "n": 100,
+    "mean": 7.15,
+    "median": 7.5,
+    "p10": 5,
+    "p90": 9,
+    "min": 3,
+    "max": 10
+   },
+   "meanLegs": {
+    "n": 100,
+    "mean": 2.74,
+    "median": 2.75,
+    "p10": 2.53,
+    "p90": 2.93,
+    "min": 2.37,
+    "max": 3.05
+   },
+   "maxIpFans": {
+    "n": 100,
+    "mean": 375.35,
+    "median": 362.5,
+    "p10": 0,
+    "p90": 745.6,
+    "min": 0,
+    "max": 1084
+   },
+   "meanTrustEnd": {
+    "n": 100,
+    "mean": 2.4,
+    "median": 2.4,
+    "p10": 2.38,
+    "p90": 2.41,
+    "min": 2.36,
+    "max": 2.42
+   },
+   "meanDistributorRoi": {
+    "n": 100,
+    "mean": 0.13,
+    "median": 0.13,
+    "p10": 0.12,
+    "p90": 0.16,
+    "min": 0.11,
+    "max": 0.18
+   },
+   "combosExplored": {
+    "n": 100,
+    "mean": 1,
+    "median": 1,
+    "p10": 1,
+    "p90": 1,
+    "min": 1,
+    "max": 1
+   },
+   "meanStaffStat": {
+    "n": 100,
+    "mean": 27.5,
+    "median": 27.5,
+    "p10": 27.5,
+    "p90": 27.5,
+    "min": 27.5,
+    "max": 27.5
+   },
+   "years": {
+    "n": 100,
+    "mean": 0.49,
+    "median": 0.5,
+    "p10": 0.46,
+    "p90": 0.52,
+    "min": 0.46,
+    "max": 0.54
+   },
+   "shareEndedNegative": 0,
+   "shareAnyPrestige": 0,
+   "shareStuck": 0
+  },
+  "experimenter": {
+   "endCash": {
+    "n": 100,
+    "mean": 110218.04,
+    "median": 107795,
+    "p10": 80267,
+    "p90": 144943.6,
+    "min": 47056,
+    "max": 173708
+   },
+   "profit": {
+    "n": 100,
+    "mean": 70218.04,
+    "median": 67795,
+    "p10": 40267,
+    "p90": 104943.6,
+    "min": 7056,
+    "max": 133708
+   },
+   "cashPerYear": {
+    "n": 100,
+    "mean": 129745.76,
+    "median": 128105.5,
+    "p10": 75045.1,
+    "p90": 193149.8,
+    "min": 14677,
+    "max": 231761
+   },
+   "prestige": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "prestigePerYear": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "meanAudience": {
+    "n": 100,
+    "mean": 5.6,
+    "median": 5.67,
+    "p10": 4.84,
+    "p90": 6.22,
+    "min": 4.27,
+    "max": 6.71
+   },
+   "meanCritic": {
+    "n": 100,
+    "mean": 5.6,
+    "median": 5.68,
+    "p10": 4.94,
+    "p90": 6.19,
+    "min": 4.35,
+    "max": 6.63
+   },
+   "hofCount": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "shareLate8plus": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "surplusKept": {
+    "n": 100,
+    "mean": 3568.05,
+    "median": 0,
+    "p10": 0,
+    "p90": 14702.9,
+    "min": 0,
+    "max": 25374
+   },
+   "surplusShareOfIncome": {
+    "n": 100,
+    "mean": 0.02,
+    "median": 0,
+    "p10": 0,
+    "p90": 0.09,
+    "min": 0,
+    "max": 0.15
+   },
+   "royaltyCosts": {
+    "n": 100,
+    "mean": 65270.78,
+    "median": 65060.5,
+    "p10": 54441.6,
+    "p90": 78966.3,
+    "min": 36468,
+    "max": 93489
+   },
+   "starSpend": {
+    "n": 100,
+    "mean": 18133.74,
+    "median": 19279,
+    "p10": 3496,
+    "p90": 36206.8,
+    "min": 2264,
+    "max": 49755
+   },
+   "campaignSpend": {
+    "n": 100,
+    "mean": 4400,
+    "median": 8000,
+    "p10": 0,
+    "p90": 8000,
+    "min": 0,
+    "max": 8000
+   },
+   "negativeCashWeeks": {
+    "n": 100,
+    "mean": 2.32,
+    "median": 1,
+    "p10": 0,
+    "p90": 7,
+    "min": 0,
+    "max": 9
+   },
+   "meanLegs": {
+    "n": 100,
+    "mean": 2.8,
+    "median": 2.81,
+    "p10": 2.65,
+    "p90": 2.94,
+    "min": 2.43,
+    "max": 3.1
+   },
+   "maxIpFans": {
+    "n": 100,
+    "mean": 1070.1,
+    "median": 1059.5,
+    "p10": 191.9,
+    "p90": 1973.8,
+    "min": 0,
+    "max": 3062
+   },
+   "meanTrustEnd": {
+    "n": 100,
+    "mean": 2.48,
+    "median": 2.48,
+    "p10": 2.47,
+    "p90": 2.5,
+    "min": 2.43,
+    "max": 2.52
+   },
+   "meanDistributorRoi": {
+    "n": 100,
+    "mean": 0.81,
+    "median": 0.8,
+    "p10": 0.7,
+    "p90": 0.93,
+    "min": 0.64,
+    "max": 1.07
+   },
+   "combosExplored": {
+    "n": 100,
+    "mean": 1,
+    "median": 1,
+    "p10": 1,
+    "p90": 1,
+    "min": 1,
+    "max": 1
+   },
+   "meanStaffStat": {
+    "n": 100,
+    "mean": 27.5,
+    "median": 27.5,
+    "p10": 27.5,
+    "p90": 27.5,
+    "min": 27.5,
+    "max": 27.5
+   },
+   "years": {
+    "n": 100,
+    "mean": 0.54,
+    "median": 0.54,
+    "p10": 0.52,
+    "p90": 0.56,
+    "min": 0.48,
+    "max": 0.6
+   },
+   "shareEndedNegative": 0,
+   "shareAnyPrestige": 0,
+   "shareStuck": 0
+  },
+  "franchise-builder": {
+   "endCash": {
+    "n": 100,
+    "mean": 121398.23,
+    "median": 117858,
+    "p10": 75148.9,
+    "p90": 173639.8,
+    "min": 54932,
+    "max": 185329
+   },
+   "profit": {
+    "n": 100,
+    "mean": 81398.23,
+    "median": 77858,
+    "p10": 35148.9,
+    "p90": 133639.8,
+    "min": 14932,
+    "max": 145329
+   },
+   "cashPerYear": {
+    "n": 100,
+    "mean": 148158.64,
+    "median": 139594,
+    "p10": 67694.2,
+    "p90": 233384.8,
+    "min": 28758,
+    "max": 256168
+   },
+   "prestige": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "prestigePerYear": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "meanAudience": {
+    "n": 100,
+    "mean": 5.69,
+    "median": 5.68,
+    "p10": 5.01,
+    "p90": 6.46,
+    "min": 4.16,
+    "max": 6.7
+   },
+   "meanCritic": {
+    "n": 100,
+    "mean": 5.56,
+    "median": 5.65,
+    "p10": 4.5,
+    "p90": 6.07,
+    "min": 4.33,
+    "max": 6.58
+   },
+   "hofCount": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "shareLate8plus": {
+    "n": 100,
+    "mean": 0,
+    "median": 0,
+    "p10": 0,
+    "p90": 0,
+    "min": 0,
+    "max": 0
+   },
+   "surplusKept": {
+    "n": 100,
+    "mean": 1189.88,
+    "median": 0,
+    "p10": 0,
+    "p90": 6100.5,
+    "min": 0,
+    "max": 12504
+   },
+   "surplusShareOfIncome": {
+    "n": 100,
+    "mean": 0.01,
+    "median": 0,
+    "p10": 0,
+    "p90": 0.03,
+    "min": 0,
+    "max": 0.06
+   },
+   "royaltyCosts": {
+    "n": 100,
+    "mean": 72026.15,
+    "median": 69624.5,
+    "p10": 54815.1,
+    "p90": 89679.3,
+    "min": 43099,
+    "max": 95495
+   },
+   "starSpend": {
+    "n": 100,
+    "mean": 17423.39,
+    "median": 18372,
+    "p10": 3450.5,
+    "p90": 35970,
+    "min": 2000,
+    "max": 44527
+   },
+   "campaignSpend": {
+    "n": 100,
+    "mean": 8680,
+    "median": 8000,
+    "p10": 0,
+    "p90": 20000,
+    "min": 0,
+    "max": 20000
+   },
+   "negativeCashWeeks": {
+    "n": 100,
+    "mean": 2.63,
+    "median": 2,
+    "p10": 0,
+    "p90": 8,
+    "min": 0,
+    "max": 9
+   },
+   "meanLegs": {
+    "n": 100,
+    "mean": 2.81,
+    "median": 2.79,
+    "p10": 2.64,
+    "p90": 3,
+    "min": 2.53,
+    "max": 3.09
+   },
+   "maxIpFans": {
+    "n": 100,
+    "mean": 1230.53,
+    "median": 1120,
+    "p10": 171.4,
+    "p90": 2473,
+    "min": 0,
+    "max": 3517
+   },
+   "meanTrustEnd": {
+    "n": 100,
+    "mean": 2.49,
+    "median": 2.49,
+    "p10": 2.47,
+    "p90": 2.51,
+    "min": 2.46,
+    "max": 2.53
+   },
+   "meanDistributorRoi": {
+    "n": 100,
+    "mean": 0.89,
+    "median": 0.88,
+    "p10": 0.73,
+    "p90": 1.04,
+    "min": 0.66,
+    "max": 1.15
+   },
+   "combosExplored": {
+    "n": 100,
+    "mean": 1,
+    "median": 1,
+    "p10": 1,
+    "p90": 1,
+    "min": 1,
+    "max": 1
+   },
+   "meanStaffStat": {
+    "n": 100,
+    "mean": 27.5,
+    "median": 27.5,
+    "p10": 27.5,
+    "p90": 27.5,
+    "min": 27.5,
+    "max": 27.5
+   },
+   "years": {
+    "n": 100,
+    "mean": 0.54,
+    "median": 0.54,
+    "p10": 0.52,
+    "p90": 0.58,
+    "min": 0.5,
+    "max": 0.6
+   },
+   "shareEndedNegative": 0,
+   "shareAnyPrestige": 0,
+   "shareStuck": 0
+  }
+ },
+ "trends": {
+  "balanced": [
+   5.64
+  ],
+  "quality-first": [
+   5.52
+  ],
+  "cheap-duds": [
+   5.47
+  ],
+  "famous-star": [
+   5.55
+  ],
+  "self-funder": [
+   5.55
+  ],
+  "experimenter": [
+   5.6
+  ],
+  "franchise-builder": [
+   5.63
+  ]
+ },
+ "flags": [
+  {
+   "flag": "SURPLUS_FARMING_DOMINANT",
+   "fired": false,
+   "why": "cheap-duds median end cash 82772 vs best decent policy 119957 (fires at >= 0.95x)",
+   "implicated": "distribution.roster[].generosity, production.movie.baseCost, marketing/Star value"
+  },
+  {
+   "flag": "EARLY_SOFTLOCK",
+   "fired": false,
+   "why": "0/700 careers stuck (hit maxWeeks or >= 52 negative-cash weeks)",
+   "seeds": [],
+   "implicated": "start.cash, wages, lifeline terms"
+  },
+  {
+   "flag": "PRESTIGE_TOO_FAST",
+   "fired": false,
+   "why": "0/700 careers earn > 400 Prestige/year",
+   "seeds": [],
+   "implicated": "prestige.milestones, prestige.repeatScope"
+  },
+  {
+   "flag": "PRESTIGE_TOO_SLOW",
+   "fired": false,
+   "why": "0/0 careers with >= 10 releases have zero Prestige",
+   "implicated": "prestige thresholds vs typical scores"
+  },
+  {
+   "flag": "QUALITY_INFLATION",
+   "fired": false,
+   "why": "0/700 careers: late releases mostly 8+ or > 25% of releases 9+",
+   "seeds": [],
+   "implicated": "staffGrowth.statGainPerWeek, stars.growthPerProject, studioGenre.qualityBonusPerLevel, production.eraBarPerYear"
+  },
+  {
+   "flag": "DEAD_STRATEGY",
+   "fired": false,
+   "why": "no strategy collapses",
+   "implicated": "varies by strategy"
+  },
+  {
+   "flag": "DOMINANT_STRATEGY",
+   "fired": false,
+   "why": "no policy wins cash AND Prestige in >= 80% of paired seeds"
+  },
+  {
+   "flag": "STAR_PRICE_NO_VALUE",
+   "fired": false,
+   "why": "famous-star median cash/release 56155 vs cheap-duds 42772 (Fame + marketing spend does pay back)",
+   "implicated": "stars.feePerFame, audience.fameAwareness, marketing campaigns"
+  },
+  {
+   "flag": "FRANCHISE_AUTO_WIN",
+   "fired": false,
+   "why": "franchise-builder median cash 117858; fires if > 1.25x every other policy and Prestige >= all",
+   "implicated": "audience.fanAwareness, repetitionFatigue.sequelPerRepeat"
+  },
+  {
+   "flag": "DISTRIBUTOR_TRUST_SPIRAL",
+   "fired": false,
+   "why": "0/700 careers end with mean distributor trust < 0.75",
+   "seeds": [],
+   "implicated": "distribution.trust*"
+  },
+  {
+   "flag": "STREAMING_PASSIVE_MONEY_PRINTER",
+   "fired": false,
+   "why": "NOT APPLICABLE: streaming is not modelled yet (Gate 3)"
+  },
+  {
+   "flag": "HIGH_REVIEWS_UNEXPLAINED_LOW_SALES",
+   "fired": false,
+   "why": "0 releases with avg >= 7.5 and gross in bottom 20%: 0 explained by small reach, 0 by low awareness (little marketing/Fame/fans), 0 unexplained",
+   "seeds": [],
+   "implicated": "audience opening/legs model"
+  },
+  {
+   "flag": "UNSUPPORTED_RULE_ASSUMPTION",
+   "fired": true,
+   "why": "INFO: results depend on WORKING ASSUMPTIONS (see docs/assumptions-register.md): prestige repeatScope=perIP, trust formula, offer/heat formula, saturating awareness + geometric legs, genre XP on completion, staff-pitch rule, all numeric values."
+  }
+ ],
+ "violations": []
+}
