@@ -62,7 +62,7 @@ export function runBatch(seedStart: number, seedCount: number, strategies: strin
     flags: diagnose(metrics, releases, undefined, cfg),
     violations,
     releases,
-    great: greatness(films, cfg, opts.productions),
+    great: greatness(films, cfg, opts.years !== undefined ? 1000 : opts.productions),
     progress: progressRows(progressCareers, cfg),
     progressCareers,
     careerBest: films.map((c) => bestOf(c.films)).filter((f): f is FilmRef => f !== null),

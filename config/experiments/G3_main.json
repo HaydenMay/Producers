@@ -1,0 +1,42 @@
+{
+ "_label": "Gate 3 main matrix: config/gate3.json (Gate 2.5 candidate + limited series + TV + streaming; Gate 2.6 curves OFF). Movie-only strategies (balanced, quality-first, repeat-farmer, cheap-duds, self-funder) are the in-config all-movie controls. Horizons in in-game years; plus a 5-production early-game run.",
+ "reference": "gate3",
+ "seeds": 200,
+ "productions": [
+  5
+ ],
+ "years": [
+  5,
+  10,
+  15,
+  25
+ ],
+ "strategies": [
+  "balanced",
+  "quality-first",
+  "repeat-farmer",
+  "cheap-duds",
+  "self-funder",
+  "tv-first",
+  "renewal-franchise",
+  "mixed",
+  "streaming-pivot",
+  "traditional-holdout",
+  "limited-focus",
+  "tv-duds"
+ ],
+ "scoreIndexes": [
+  1,
+  5,
+  10,
+  20,
+  30,
+  40
+ ],
+ "variants": [
+  {
+   "name": "gate3",
+   "overrides": {}
+  }
+ ]
+}

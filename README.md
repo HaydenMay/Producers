@@ -16,6 +16,40 @@ A headless, deterministic simulation and balance tool for the **Entertainment St
 **Tests:** 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
+## Gate 3: limited series, renewable TV and streaming (pending designer review)
+
+Everything is **config-gated**: `config/baseline.json` keeps every Gate 3 feature off (the movie kernel, byte-identical); `config/gate3.json` = the Gate 2.5 candidate + limited series + TV + streaming (Gate 2.6 critic curves stay off). Docs:
+- `docs/gate-3-architecture.md`: modules, weekly order, schema changes, invariants.
+- `docs/gate-3-assumptions.md`: every Gate 3 number, labelled.
+- `docs/gate-3-findings.md`: results.
+- `docs/gate-3-open-decisions.md`: ranked designer calls.
+
+```bash
+# one mixed career (movies + limited series + TV + streaming), 15 in-game years, with full traces + decision log
+npm run sim -- --config config/gate3.json --strategy mixed --seed 1 --years 15 --out reports/gate3/traces
+# a TV-only career
+npm run sim -- --config config/gate3.json --strategy tv-first --seed 2 --years 15 --out reports/gate3/traces
+# a streaming launch (builds as early as it can, then self-funds Streaming Originals)
+npm run sim -- --config config/gate3.json --strategy streaming-pivot --seed 1 --years 12 --out reports/gate3/traces
+# replay any of them exactly
+npm run replay -- --config config/gate3.json --decisions reports/gate3/traces/sim-seed1-mixed-y15.decisions.json
+# a 100-seed batch across the Gate 3 policies (10-year horizon)
+npm run batch -- --config config/gate3.json --seeds 100 --years 10 --strategies balanced,tv-first,renewal-franchise,mixed,streaming-pivot,traditional-holdout,limited-focus,tv-duds --out reports/gate3/batch
+# TV financing A vs B (paired seeds), season sizes, streaming sensitivity, critic curves, main matrix
+npm run experiment -- --config config/gate3.json --spec config/experiments/G3_contract.json --out reports/gate3/G3_contract
+npm run experiment -- --config config/gate3.json --spec config/experiments/G3_season_size.json --out reports/gate3/G3_season_size
+npm run experiment -- --config config/gate3.json --spec config/experiments/G3_streaming.json --out reports/gate3/G3_streaming
+npm run experiment -- --config config/gate3.json --spec config/experiments/G3_critics.json --out reports/gate3/G3_critics
+npm run experiment -- --config config/gate3.json --spec config/experiments/G3_main.json --out reports/gate3/G3_main
+# counterfactual cases (clone-and-branch): low-reach limited series, long show, bad twist, hiatus, HoF evergreen, Originals in debt, idle platform, catalog quality
+npm run counterfactuals -- --config config/gate3.json --out reports/gate3
+npx tsx scripts/g3-econ.ts    # per-format net per production week (calibration probe)
+```
+
+- **New CLI options:** `--years N` (an in-game horizon instead of a production count) for `sim`, `batch` and `experiment` (`"years": [...]` in specs).
+- **New policies:** `tv-first`, `renewal-franchise`, `mixed`, `streaming-pivot`, `traditional-holdout`, `limited-focus`, `tv-duds` (adversarial). The pre-Gate-3 policies stay movie-only and serve as all-movie controls.
+- **Web UI:** "Load Gate 3 mixed config" button; format / episodes / next-season / twist selectors; Streaming Original button at the pitch; TV unlock, season announcement, engineer and streaming-build buttons (also during production); a TV and streaming status line. The config editor lists the Gate 3 thresholds.
+
 ## Gate 2.6 additions (critic generations + great-film metrics, pending designer review)
 
 - **Expectation curves** (`expectations`, off by default, so Gate 2.5 results are byte-identical): a calendar-based **harness proxy** for critic generations (named critics retiring and being replaced by a tougher generation, announced ahead of time) and gentler audience eras. Applied once at release, after combo/weakness/fatigue/saturation and before the 0–10 clamp; published scores never change. Each release trace shows `raw → combo/weakness → generation/era adjustment → final`.
@@ -73,7 +107,7 @@ npm run sim -- --config config/candidate.json --seed 42 --strategy balanced --pr
 
 ```bash
 npm install
-npm test                      # 64 tests
+npm test                      # 90 tests
 npm run typecheck
 
 # one seeded career → reports/sim-seed42-balanced-5.md (+ .decisions.json, .events.json)

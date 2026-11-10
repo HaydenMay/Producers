@@ -1,0 +1,5348 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 2) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Sports (new): starlight $48,000 @ 8%; wolf $86,000 @ 32%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Iron Pulse (Horror + Sports, new) with wolf advance $86,000 @ 32%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 1,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Iron Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Jay Vale for $27,120.41.",
+  "data": {
+   "starId": "star4",
+   "price": 27120.41
+  }
+ },
+ {
+  "week": 11,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Iron Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Horror level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Iron Pulse released: Audience 5.65 / Critics 6.03 (avg 5.84). Opening pool 112,293, opening 33,688.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): starlight $55,000 @ 8%; wolf $92,000 @ 33%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Silver Horizon (limited_series, 6 episodes, Comedy + Sports, new) with wolf advance $92,000 @ 33%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Iron Pulse opens to 33,688 viewers.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 0,
+   "now": 33688,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 21,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 24,
+  "type": "milestone",
+  "message": "Silver Horizon hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 24,
+  "type": "cast",
+  "message": "Cast Eli Sato for $2,263.5.",
+  "data": {
+   "starId": "star15",
+   "price": 2263.5
+  }
+ },
+ {
+  "week": 29,
+  "type": "ip_fans",
+  "message": "Iron Pulse fans: 0 → 1,386 (avg score 5.84, 103,143 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 29,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 34.0 → 35.7, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 1.71,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 29,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 77% of its $86,000 advance on Iron Pulse. Trust 2.50 → 2.41.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.77,
+   "step": -0.09
+  }
+ },
+ {
+  "week": 29,
+  "type": "run_end",
+  "message": "Iron Pulse run ended after 13 weeks: 103,143 viewers, gross $206,286, studio take $140,274.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 31,
+  "type": "milestone",
+  "message": "Silver Horizon hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 31,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 31,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 32,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 34,
+  "type": "genre_level",
+  "message": "Studio Comedy level 0 → 1."
+ },
+ {
+  "week": 34,
+  "type": "release",
+  "message": "Silver Horizon released: Audience 4.53 / Critics 5.28 (avg 4.91). Opening pool 143,007, opening 42,902. Limited series: self-contained, no renewal.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 34,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (new): starlight $82,000 @ 8%; wolf $146,000 @ 31%."
+ },
+ {
+  "week": 34,
+  "type": "project_start",
+  "message": "Started Red Signal (limited_series, 6 episodes, Horror + Spies, new) with wolf advance $146,000 @ 31%.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 35,
+  "type": "feedback",
+  "message": "Silver Horizon opens to 71,504 viewers.",
+  "data": {
+   "releaseId": "rel16",
+   "prev": 0,
+   "now": 71504,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 40,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 42,
+  "type": "milestone",
+  "message": "Red Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 42,
+  "type": "cast",
+  "message": "Cast Jay Vale for $27,856.04.",
+  "data": {
+   "starId": "star4",
+   "price": 27856.04
+  }
+ },
+ {
+  "week": 43,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 44,
+  "type": "ip_fans",
+  "message": "Silver Horizon fans: 0 → 0 (avg score 4.91, 472,173 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 44,
+  "type": "star_career",
+  "message": "Eli Sato: Fame 1.0 → 0.8, relationship -0.50 (worked together (+); project hurt their career: Fame fell (-)).",
+  "data": {
+   "starId": "star15",
+   "fameDelta": -0.19,
+   "relDelta": -0.5,
+   "grow": 5
+  }
+ },
+ {
+  "week": 44,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 97% of its $92,000 advance on Silver Horizon and reviews were poor. Trust 2.50 → 2.40.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.97,
+   "step": -0.1
+  }
+ },
+ {
+  "week": 44,
+  "type": "run_end",
+  "message": "Silver Horizon run ended after 10 weeks: 472,173 viewer-episodes (108,563 distinct people), gross $269,139, studio take $180,323.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 49,
+  "type": "milestone",
+  "message": "Red Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 49,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 49,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 52,
+  "type": "surplus",
+  "message": "Red Signal: kept $8,144 of unused advance.",
+  "data": {
+   "projectId": "proj18",
+   "surplus": 8143.96
+  }
+ },
+ {
+  "week": 52,
+  "type": "release",
+  "message": "Red Signal released: Audience 5.98 / Critics 6.45 (avg 6.22). Opening pool 189,434, opening 56,830. Limited series: self-contained, no renewal.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 52,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 52,
+  "type": "hire",
+  "message": "Hired Eli Fox (plot 26, writing 25, filming 21, editing 22)."
+ },
+ {
+  "week": 52,
+  "type": "hire",
+  "message": "Hired Alex Reyes (plot 30, writing 34, filming 33, editing 26)."
+ },
+ {
+  "week": 52,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (new): wolf $118,000 @ 32%; starlight $70,000 @ 8%."
+ },
+ {
+  "week": 52,
+  "type": "project_start",
+  "message": "Started Midnight Storm (limited_series, 6 episodes, Comedy + Spies, new) with wolf advance $118,000 @ 32%.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 53,
+  "type": "feedback",
+  "message": "Red Signal opens to 94,717 viewers.",
+  "data": {
+   "releaseId": "rel24",
+   "prev": 0,
+   "now": 94717,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 57,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Red Signal is still climbing (127,033 → 128,304).",
+  "data": {
+   "releaseId": "rel24",
+   "prev": 127033,
+   "now": 128304,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 60,
+  "type": "milestone",
+  "message": "Midnight Storm hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 60,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 60,
+  "type": "cast",
+  "message": "Cast Jo Lowe for $19,279.37.",
+  "data": {
+   "starId": "star31",
+   "price": 19279.37
+  }
+ },
+ {
+  "week": 61,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 62,
+  "type": "ip_fans",
+  "message": "Red Signal fans: 0 → 3,094 (avg score 6.22, 795,986 viewers).",
+  "data": {
+   "ipId": "ip17"
+  }
+ },
+ {
+  "week": 62,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 35.7 → 38.8, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 3.13,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 62,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 96% of its $146,000 advance on Red Signal. Trust 2.50 → 2.57.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.96,
+   "step": 0.07
+  }
+ },
+ {
+  "week": 62,
+  "type": "run_end",
+  "message": "Red Signal run ended after 10 weeks: 795,986 viewer-episodes (158,509 distinct people), gross $453,712, studio take $313,061.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 63,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 64,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 67,
+  "type": "milestone",
+  "message": "Midnight Storm hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 67,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 69,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 70,
+  "type": "release",
+  "message": "Midnight Storm released: Audience 7.3 / Critics 6.73 (avg 7.02). Opening pool 184,040, opening 55,212. Limited series: self-contained, no renewal.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 70,
+  "type": "train",
+  "message": "Trained Eli Fox: +3 to all stats."
+ },
+ {
+  "week": 70,
+  "type": "train",
+  "message": "Trained Eli Fox: +3 to all stats."
+ },
+ {
+  "week": 70,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Zombies (new): starlight $81,000 @ 8%; wolf $145,000 @ 31%."
+ },
+ {
+  "week": 70,
+  "type": "project_start",
+  "message": "Started Midnight Rising (limited_series, 6 episodes, Action + Zombies, new) with wolf advance $145,000 @ 31%.",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 71,
+  "type": "feedback",
+  "message": "Midnight Storm opens to 92,020 viewers.",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 0,
+   "now": 92020,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 71,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 74,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Storm. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 124010,
+   "now": 138303,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 75,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Midnight Storm is still climbing (138,303 → 153,272).",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 138303,
+   "now": 153272,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 76,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 78,
+  "type": "milestone",
+  "message": "Midnight Rising hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 78,
+  "type": "cast",
+  "message": "Cast Sam Fox for $33,664.35.",
+  "data": {
+   "starId": "star39",
+   "price": 33664.35
+  }
+ },
+ {
+  "week": 80,
+  "type": "ip_fans",
+  "message": "Midnight Storm fans: 0 → 5,580 (avg score 7.02, 894,683 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 80,
+  "type": "star_career",
+  "message": "Jo Lowe: Fame 26.0 → 31.4, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star31",
+   "fameDelta": 5.4,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 80,
+  "type": "trust",
+  "message": "Wolf Pictures earned 138% of its advance back on Midnight Storm with strong reviews. Trust 2.54 → 2.97.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.38,
+   "step": 0.43
+  }
+ },
+ {
+  "week": 80,
+  "type": "run_end",
+  "message": "Midnight Storm run ended after 10 weeks: 894,683 viewer-episodes (172,635 distinct people), gross $509,969, studio take $346,779.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 84,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 85,
+  "type": "milestone",
+  "message": "Midnight Rising hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 85,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 88,
+  "type": "surplus",
+  "message": "Midnight Rising: kept $1,336 of unused advance.",
+  "data": {
+   "projectId": "proj36",
+   "surplus": 1335.65
+  }
+ },
+ {
+  "week": 88,
+  "type": "genre_level",
+  "message": "Studio Action level 0 → 1."
+ },
+ {
+  "week": 88,
+  "type": "release",
+  "message": "Midnight Rising released: Audience 7.39 / Critics 8.06 (avg 7.73). Opening pool 207,403, opening 62,221. Limited series: self-contained, no renewal.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 88,
+  "type": "train",
+  "message": "Trained Eli Fox: +3 to all stats."
+ },
+ {
+  "week": 88,
+  "type": "train",
+  "message": "Trained Alex Reyes: +3 to all stats."
+ },
+ {
+  "week": 88,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Zombies (new): starlight $76,000 @ 8%; wolf $155,000 @ 30%."
+ },
+ {
+  "week": 88,
+  "type": "project_start",
+  "message": "Started Lost Rising (limited_series, 6 episodes, Horror + Zombies, new) with wolf advance $155,000 @ 30%.",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 89,
+  "type": "feedback",
+  "message": "Midnight Rising opens to 103,702 viewers.",
+  "data": {
+   "releaseId": "rel42",
+   "prev": 0,
+   "now": 103702,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 90,
+  "type": "feedback",
+  "message": "Critics are raving about Midnight Rising. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel42",
+   "prev": 103702,
+   "now": 129709,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 92,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Rising. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel42",
+   "prev": 146185,
+   "now": 162708,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 92,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 93,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Midnight Rising is still climbing (162,708 → 180,440).",
+  "data": {
+   "releaseId": "rel42",
+   "prev": 162708,
+   "now": 180440,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 96,
+  "type": "milestone",
+  "message": "Lost Rising hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 96,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 96,
+  "type": "cast",
+  "message": "Cast Jay Vale for $29,993.78.",
+  "data": {
+   "starId": "star4",
+   "price": 29993.78
+  }
+ },
+ {
+  "week": 98,
+  "type": "ip_fans",
+  "message": "Midnight Rising fans: 0 → 8,725 (avg score 7.73, 1,047,127 viewers).",
+  "data": {
+   "ipId": "ip35"
+  }
+ },
+ {
+  "week": 98,
+  "type": "star_career",
+  "message": "Sam Fox: Fame 40.0 → 47.8, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 7.8,
+   "relDelta": 0.75,
+   "grow": 5
+  }
+ },
+ {
+  "week": 98,
+  "type": "trust",
+  "message": "Wolf Pictures earned 128% of its advance back on Midnight Rising with strong reviews. Trust 2.94 → 3.40.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.28,
+   "step": 0.46
+  }
+ },
+ {
+  "week": 98,
+  "type": "run_end",
+  "message": "Midnight Rising run ended after 10 weeks: 1,047,127 viewer-episodes (199,743 distinct people), gross $596,862, studio take $411,835.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 100,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 103,
+  "type": "milestone",
+  "message": "Lost Rising hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 103,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 103,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 106,
+  "type": "surplus",
+  "message": "Lost Rising: kept $15,006 of unused advance.",
+  "data": {
+   "projectId": "proj44",
+   "surplus": 15006.22
+  }
+ },
+ {
+  "week": 106,
+  "type": "genre_level",
+  "message": "Studio Horror level 1 → 2."
+ },
+ {
+  "week": 106,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Rising).",
+  "data": {
+   "awardId": "rel:rel50:audience_7_5",
+   "releaseId": "rel50",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 106,
+  "type": "release",
+  "message": "Lost Rising released: Audience 7.56 / Critics 7.43 (avg 7.49). Opening pool 187,069, opening 56,121. Limited series: self-contained, no renewal.",
+  "data": {
+   "releaseId": "rel50"
+  }
+ },
+ {
+  "week": 106,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 106,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 106,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): orbit $122,000 @ 35%; wolf $145,000 @ 30%."
+ },
+ {
+  "week": 106,
+  "type": "project_start",
+  "message": "Started Hollow Protocol (limited_series, 6 episodes, Action + Sports, new) with wolf advance $145,000 @ 30%.",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 107,
+  "type": "feedback",
+  "message": "Lost Rising opens to 93,535 viewers.",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 0,
+   "now": 93535,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 108,
+  "type": "feedback",
+  "message": "Critics are raving about Lost Rising. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 93535,
+   "now": 116455,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 109,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 110,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Rising. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 131200,
+   "now": 146902,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 111,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Rising is still climbing (146,902 → 163,908).",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 146902,
+   "now": 163908,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 114,
+  "type": "milestone",
+  "message": "Hollow Protocol hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 114,
+  "type": "cast",
+  "message": "Cast Sam Fox for $39,989.18.",
+  "data": {
+   "starId": "star39",
+   "price": 39989.18
+  }
+ },
+ {
+  "week": 116,
+  "type": "ip_fans",
+  "message": "Lost Rising fans: 0 → 7,274 (avg score 7.49, 948,493 viewers).",
+  "data": {
+   "ipId": "ip43"
+  }
+ },
+ {
+  "week": 116,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 38.8 → 45.7, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 6.83,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 116,
+  "type": "trust",
+  "message": "Wolf Pictures earned 105% of its advance back on Lost Rising with strong reviews. Trust 3.37 → 3.66.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.05,
+   "step": 0.29
+  }
+ },
+ {
+  "week": 116,
+  "type": "run_end",
+  "message": "Lost Rising run ended after 10 weeks: 948,493 viewer-episodes (182,570 distinct people), gross $540,641, studio take $378,449.",
+  "data": {
+   "releaseId": "rel50"
+  }
+ },
+ {
+  "week": 121,
+  "type": "milestone",
+  "message": "Hollow Protocol hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 121,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 124,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Protocol).",
+  "data": {
+   "awardId": "rel:rel58:audience_7_5",
+   "releaseId": "rel58",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 124,
+  "type": "release",
+  "message": "Hollow Protocol released: Audience 7.7 / Critics 7.12 (avg 7.41). Opening pool 191,096, opening 57,329. Limited series: self-contained, no renewal.",
+  "data": {
+   "releaseId": "rel58"
+  }
+ },
+ {
+  "week": 124,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 124,
+  "type": "train",
+  "message": "Trained Eli Fox: +3 to all stats."
+ },
+ {
+  "week": 124,
+  "type": "train",
+  "message": "Trained Alex Reyes: +3 to all stats."
+ },
+ {
+  "week": 124,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (new): wolf $169,000 @ 30%; orbit $138,000 @ 35%."
+ },
+ {
+  "week": 124,
+  "type": "project_start",
+  "message": "Started Dead Horizon (limited_series, 6 episodes, Horror + Superheroes, new) with wolf advance $169,000 @ 30%.",
+  "data": {
+   "projectId": "proj60"
+  }
+ },
+ {
+  "week": 125,
+  "type": "feedback",
+  "message": "Hollow Protocol opens to 95,548 viewers.",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 0,
+   "now": 95548,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 126,
+  "type": "feedback",
+  "message": "Critics are raving about Hollow Protocol. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 95548,
+   "now": 118517,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 128,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Protocol. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 133243,
+   "now": 149682,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 129,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Hollow Protocol is still climbing (149,682 → 167,718).",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 149682,
+   "now": 167718,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 132,
+  "type": "milestone",
+  "message": "Dead Horizon hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj60"
+  }
+ },
+ {
+  "week": 132,
+  "type": "cast",
+  "message": "Cast Jay Vale for $33,717.7.",
+  "data": {
+   "starId": "star4",
+   "price": 33717.7
+  }
+ },
+ {
+  "week": 134,
+  "type": "ip_fans",
+  "message": "Hollow Protocol fans: 0 → 7,237 (avg score 7.41, 969,521 viewers).",
+  "data": {
+   "ipId": "ip51"
+  }
+ },
+ {
+  "week": 134,
+  "type": "star_career",
+  "message": "Sam Fox: Fame 47.8 → 54.5, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 3.",
+  "data": {
+   "starId": "star39",
+   "fameDelta": 6.7,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 134,
+  "type": "trust",
+  "message": "Wolf Pictures earned 114% of its advance back on Hollow Protocol with strong reviews. Trust 3.63 → 3.97.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.14,
+   "step": 0.34
+  }
+ },
+ {
+  "week": 134,
+  "type": "run_end",
+  "message": "Hollow Protocol run ended after 10 weeks: 969,521 viewer-episodes (187,693 distinct people), gross $552,627, studio take $386,839.",
+  "data": {
+   "releaseId": "rel58"
+  }
+ },
+ {
+  "week": 136,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 139,
+  "type": "milestone",
+  "message": "Dead Horizon hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj60"
+  }
+ },
+ {
+  "week": 139,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 142,
+  "type": "surplus",
+  "message": "Dead Horizon: kept $25,282 of unused advance.",
+  "data": {
+   "projectId": "proj60",
+   "surplus": 25282.3
+  }
+ },
+ {
+  "week": 142,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Horizon).",
+  "data": {
+   "awardId": "rel:rel66:meters_all_70",
+   "releaseId": "rel66",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 142,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Horizon).",
+  "data": {
+   "awardId": "rel:rel66:audience_7_5",
+   "releaseId": "rel66",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 142,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Dead Horizon).",
+  "data": {
+   "awardId": "rel:rel66:critic_8_5",
+   "releaseId": "rel66",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 142,
+  "type": "release",
+  "message": "Dead Horizon released: Audience 9 / Critics 8.53 (avg 8.77). Opening pool 182,392, opening 54,718. Limited series: self-contained, no renewal.",
+  "data": {
+   "releaseId": "rel66"
+  }
+ },
+ {
+  "week": 142,
+  "type": "unlock",
+  "message": "Studio upgrade: TV series unlocked (Prestige 360, cost $150,000). Season orders up to 5 episodes at this Prestige."
+ },
+ {
+  "week": 142,
+  "type": "upgrade",
+  "message": "Studio upgraded: employee capacity 4 → 6 (cost $250,000)."
+ },
+ {
+  "week": 142,
+  "type": "hire",
+  "message": "Hired Sam Imai (plot 27, writing 27, filming 24, editing 32)."
+ },
+ {
+  "week": 142,
+  "type": "hire",
+  "message": "Hired Cam Vale (plot 16, writing 26, filming 18, editing 23)."
+ },
+ {
+  "week": 142,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (new): wolf $173,000 @ 29%; orbit $143,000 @ 35%."
+ },
+ {
+  "week": 142,
+  "type": "project_start",
+  "message": "Started Silver Shadow (tv, 5 episodes, Horror + Superheroes, new) with wolf advance $173,000 @ 29%.",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 143,
+  "type": "feedback",
+  "message": "Dead Horizon opens to 91,196 viewers.",
+  "data": {
+   "releaseId": "rel66",
+   "prev": 0,
+   "now": 91196,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 144,
+  "type": "feedback",
+  "message": "Critics are raving about Dead Horizon. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel66",
+   "prev": 91196,
+   "now": 115012,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 146,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Horizon. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel66",
+   "prev": 130446,
+   "now": 150849,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 147,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Horizon is still climbing (150,849 → 175,660).",
+  "data": {
+   "releaseId": "rel66",
+   "prev": 150849,
+   "now": 175660,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 149,
+  "type": "milestone",
+  "message": "Silver Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 149,
+  "type": "cast",
+  "message": "Cast Jay Vale for $31,973.15.",
+  "data": {
+   "starId": "star4",
+   "price": 31973.15
+  }
+ },
+ {
+  "week": 152,
+  "type": "ip_fans",
+  "message": "Dead Horizon fans: 0 → 12,037 (avg score 8.77, 987,244 viewers).",
+  "data": {
+   "ipId": "ip59"
+  }
+ },
+ {
+  "week": 152,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 45.7 → 56.4, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 10.76,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 152,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 100% of its $169,000 advance on Dead Horizon. Trust 3.94 → 4.34.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1,
+   "step": 0.4
+  }
+ },
+ {
+  "week": 152,
+  "type": "run_end",
+  "message": "Dead Horizon run ended after 10 weeks: 987,244 viewer-episodes (199,557 distinct people), gross $562,729, studio take $393,910.",
+  "data": {
+   "releaseId": "rel66"
+  }
+ },
+ {
+  "week": 152,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 155,
+  "type": "milestone",
+  "message": "Silver Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 155,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 158,
+  "type": "surplus",
+  "message": "Silver Shadow: kept $31,027 of unused advance.",
+  "data": {
+   "projectId": "proj70",
+   "surplus": 31026.85
+  }
+ },
+ {
+  "week": 158,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow).",
+  "data": {
+   "awardId": "rel:rel76:meters_all_70",
+   "releaseId": "rel76",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 158,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Shadow).",
+  "data": {
+   "awardId": "rel:rel76:audience_7_5",
+   "releaseId": "rel76",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 158,
+  "type": "release",
+  "message": "Silver Shadow released: Audience 8.99 / Critics 8.45 (avg 8.72). Opening pool 187,494, opening 56,248. Renewable (season average 8.72).",
+  "data": {
+   "releaseId": "rel76"
+  }
+ },
+ {
+  "week": 158,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Robots."
+ },
+ {
+  "week": 158,
+  "type": "announce",
+  "message": "Announced Silver Shadow season 2: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 2
+  }
+ },
+ {
+  "week": 158,
+  "type": "train",
+  "message": "Trained Cam Vale: +3 to all stats."
+ },
+ {
+  "week": 158,
+  "type": "train",
+  "message": "Trained Cam Vale: +3 to all stats."
+ },
+ {
+  "week": 158,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (season): wolf $181,000 @ 29%; xyz $147,000 @ 44%."
+ },
+ {
+  "week": 158,
+  "type": "project_start",
+  "message": "Started Silver Shadow: Season 2 (tv, 5 episodes, Horror + Superheroes, season) with wolf advance $181,000 @ 29%.",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 159,
+  "type": "feedback",
+  "message": "Silver Shadow opens to 93,747 viewers.",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 0,
+   "now": 93747,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 160,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Shadow. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 93747,
+   "now": 118033,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 162,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Shadow. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 133686,
+   "now": 154504,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 163,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Shadow is still climbing (154,504 → 179,834).",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 154504,
+   "now": 179834,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 165,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 165,
+  "type": "cast",
+  "message": "Cast Jay Vale for $39,569.11.",
+  "data": {
+   "starId": "star4",
+   "price": 39569.11
+  }
+ },
+ {
+  "week": 166,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 0 → 10,704 (avg score 8.72, 764,776 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 166,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 56.4 → 66.6, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 10.14,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 166,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 41% of its $173,000 advance on Silver Shadow. Trust 4.32 → 4.37.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.41,
+   "step": 0.05
+  }
+ },
+ {
+  "week": 166,
+  "type": "run_end",
+  "message": "Silver Shadow run ended after 8 weeks: 764,776 viewer-episodes (179,834 distinct people), gross $244,728, studio take $173,757.",
+  "data": {
+   "releaseId": "rel76"
+  }
+ },
+ {
+  "week": 170,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 171,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 171,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 172,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 174,
+  "type": "surplus",
+  "message": "Silver Shadow: Season 2: kept $31,431 of unused advance.",
+  "data": {
+   "projectId": "proj77",
+   "surplus": 31430.89
+  }
+ },
+ {
+  "week": 174,
+  "type": "genre_level",
+  "message": "Studio Horror level 2 → 3."
+ },
+ {
+  "week": 174,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow: Season 2).",
+  "data": {
+   "awardId": "rel:rel83:meters_all_70",
+   "releaseId": "rel83",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 174,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Shadow: Season 2).",
+  "data": {
+   "awardId": "rel:rel83:audience_7_5",
+   "releaseId": "rel83",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 174,
+  "type": "release",
+  "message": "Silver Shadow: Season 2 released: Audience 9 / Critics 8.46 (avg 8.73). Opening pool 208,263, opening 62,479. Renewable (season average 8.73).",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 174,
+  "type": "announce",
+  "message": "Announced Silver Shadow season 3: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 3
+  }
+ },
+ {
+  "week": 174,
+  "type": "train",
+  "message": "Trained Cam Vale: +3 to all stats."
+ },
+ {
+  "week": 174,
+  "type": "train",
+  "message": "Trained Sam Imai: +3 to all stats."
+ },
+ {
+  "week": 174,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (season): starlight $136,000 @ 8%; orbit $241,000 @ 35%; xyz $278,000 @ 44%."
+ },
+ {
+  "week": 174,
+  "type": "project_start",
+  "message": "Started Silver Shadow: Season 3 (tv, 10 episodes, Horror + Superheroes, season) with orbit advance $241,000 @ 35%.",
+  "data": {
+   "projectId": "proj84"
+  }
+ },
+ {
+  "week": 175,
+  "type": "feedback",
+  "message": "Silver Shadow: Season 2 opens to 104,132 viewers.",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 0,
+   "now": 104132,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 176,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Shadow: Season 2. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 104132,
+   "now": 130767,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 178,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Shadow: Season 2. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 147608,
+   "now": 170357,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 179,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Shadow: Season 2 is still climbing (170,357 → 196,061).",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 170357,
+   "now": 196061,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 182,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 10,381 → 22,082 (avg score 8.73, 841,563 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 182,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 66.6 → 77.1, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 8.",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 10.57,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 182,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 43% of its $181,000 advance on Silver Shadow: Season 2. Trust 4.35 → 4.41.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.43,
+   "step": 0.06
+  }
+ },
+ {
+  "week": 182,
+  "type": "run_end",
+  "message": "Silver Shadow: Season 2 run ended after 8 weeks: 841,563 viewer-episodes (196,061 distinct people), gross $269,300, studio take $191,203.",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 185,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 3 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj84"
+  }
+ },
+ {
+  "week": 185,
+  "type": "cast",
+  "message": "Cast Jay Vale for $55,799.27.",
+  "data": {
+   "starId": "star4",
+   "price": 55799.27
+  }
+ },
+ {
+  "week": 187,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 188,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 190,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 195,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 3 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj84"
+  }
+ },
+ {
+  "week": 195,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 200,
+  "type": "surplus",
+  "message": "Silver Shadow: Season 3: kept $201 of unused advance.",
+  "data": {
+   "projectId": "proj84",
+   "surplus": 200.73
+  }
+ },
+ {
+  "week": 200,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow: Season 3).",
+  "data": {
+   "awardId": "rel:rel90:meters_all_70",
+   "releaseId": "rel90",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 200,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Shadow: Season 3).",
+  "data": {
+   "awardId": "rel:rel90:audience_7_5",
+   "releaseId": "rel90",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 200,
+  "type": "release",
+  "message": "Silver Shadow: Season 3 released: Audience 8.94 / Critics 8.37 (avg 8.65). Opening pool 266,701, opening 80,010. Renewable (season average 8.65).",
+  "data": {
+   "releaseId": "rel90"
+  }
+ },
+ {
+  "week": 200,
+  "type": "announce",
+  "message": "Announced Silver Shadow season 4: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 4
+  }
+ },
+ {
+  "week": 200,
+  "type": "train",
+  "message": "Trained Cam Vale: +3 to all stats."
+ },
+ {
+  "week": 200,
+  "type": "train",
+  "message": "Trained Sam Imai: +3 to all stats."
+ },
+ {
+  "week": 200,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (season): starlight $154,000 @ 8%; wolf $323,000 @ 29%; xyz $276,000 @ 44%."
+ },
+ {
+  "week": 200,
+  "type": "project_start",
+  "message": "Started Silver Shadow: Season 4 (tv, 10 episodes, Horror + Superheroes, season) with wolf advance $323,000 @ 29%.",
+  "data": {
+   "projectId": "proj91"
+  }
+ },
+ {
+  "week": 201,
+  "type": "feedback",
+  "message": "Silver Shadow: Season 3 opens to 133,351 viewers.",
+  "data": {
+   "releaseId": "rel90",
+   "prev": 0,
+   "now": 133351,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 201,
+  "type": "prestige",
+  "message": "Prestige +150: ip_viewers_500k (Silver Shadow: Season 3).",
+  "data": {
+   "awardId": "ip:ip69:ip_viewers_500k",
+   "releaseId": "rel90",
+   "milestone": "ip_viewers_500k",
+   "amount": 150
+  }
+ },
+ {
+  "week": 202,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Shadow: Season 3. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel90",
+   "prev": 133351,
+   "now": 167234,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 204,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Shadow: Season 3. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel90",
+   "prev": 188598,
+   "now": 217331,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 205,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Shadow: Season 3 is still climbing (217,331 → 248,625).",
+  "data": {
+   "releaseId": "rel90",
+   "prev": 217331,
+   "now": 248625,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 207,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +100: ip_gross_1m (Silver Shadow: Season 3).",
+  "data": {
+   "awardId": "ip:ip69:ip_gross_1m",
+   "releaseId": "rel90",
+   "milestone": "ip_gross_1m",
+   "amount": 100
+  }
+ },
+ {
+  "week": 208,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 211,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 4 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj91"
+  }
+ },
+ {
+  "week": 211,
+  "type": "cast",
+  "message": "Cast Jay Vale for $52,863.45.",
+  "data": {
+   "starId": "star4",
+   "price": 52863.45
+  }
+ },
+ {
+  "week": 212,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 213,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 20,805 → 39,125 (avg score 8.65, 2,579,418 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 213,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 77.1 → 89.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 12.35,
+   "relDelta": 0.75,
+   "grow": 2
+  }
+ },
+ {
+  "week": 213,
+  "type": "trust",
+  "message": "Orbit Releasing earned 120% of its advance back on Silver Shadow: Season 3 with strong reviews. Trust 2.50 → 3.02.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 1.2,
+   "step": 0.52
+  }
+ },
+ {
+  "week": 213,
+  "type": "run_end",
+  "message": "Silver Shadow: Season 3 run ended after 13 weeks: 2,579,418 viewer-episodes (313,696 distinct people), gross $825,414, studio take $536,519.",
+  "data": {
+   "releaseId": "rel90"
+  }
+ },
+ {
+  "week": 221,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 4 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj91"
+  }
+ },
+ {
+  "week": 221,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 226,
+  "type": "surplus",
+  "message": "Silver Shadow: Season 4: kept $85,137 of unused advance.",
+  "data": {
+   "projectId": "proj91",
+   "surplus": 85136.55
+  }
+ },
+ {
+  "week": 226,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow: Season 4).",
+  "data": {
+   "awardId": "rel:rel97:meters_all_70",
+   "releaseId": "rel97",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 226,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Shadow: Season 4).",
+  "data": {
+   "awardId": "rel:rel97:audience_7_5",
+   "releaseId": "rel97",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 226,
+  "type": "release",
+  "message": "Silver Shadow: Season 4 released: Audience 8.81 / Critics 8.25 (avg 8.53). Opening pool 220,597, opening 66,179. Renewable (season average 8.53).",
+  "data": {
+   "releaseId": "rel97"
+  }
+ },
+ {
+  "week": 226,
+  "type": "announce",
+  "message": "Announced Silver Shadow season 5: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 5
+  }
+ },
+ {
+  "week": 226,
+  "type": "upgrade",
+  "message": "Studio upgraded: employee capacity 6 → 8 (cost $750,000)."
+ },
+ {
+  "week": 226,
+  "type": "hire",
+  "message": "Hired Dee Park (plot 30, writing 30, filming 30, editing 28)."
+ },
+ {
+  "week": 226,
+  "type": "hire",
+  "message": "Hired Mo Novak (plot 20, writing 20, filming 24, editing 28)."
+ },
+ {
+  "week": 226,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (season): starlight $151,000 @ 8%; meridian $341,000 @ 48%."
+ },
+ {
+  "week": 226,
+  "type": "project_start",
+  "message": "Started Silver Shadow: Season 5 (tv, 10 episodes, Horror + Superheroes, season) with meridian advance $341,000 @ 48%.",
+  "data": {
+   "projectId": "proj100"
+  }
+ },
+ {
+  "week": 227,
+  "type": "feedback",
+  "message": "Silver Shadow: Season 4 opens to 110,299 viewers.",
+  "data": {
+   "releaseId": "rel97",
+   "prev": 0,
+   "now": 110299,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 228,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Shadow: Season 4. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel97",
+   "prev": 110299,
+   "now": 138038,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 230,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Shadow: Season 4. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel97",
+   "prev": 155424,
+   "now": 178497,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 230,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 231,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Shadow: Season 4 is still climbing (178,497 → 201,514).",
+  "data": {
+   "releaseId": "rel97",
+   "prev": 178497,
+   "now": 201514,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 237,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 5 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj100"
+  }
+ },
+ {
+  "week": 237,
+  "type": "cast",
+  "message": "Cast Jay Vale for $63,888.26.",
+  "data": {
+   "starId": "star4",
+   "price": 63888.26
+  }
+ },
+ {
+  "week": 239,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 37,214 → 51,343 (avg score 8.53, 2,083,537 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 239,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 89.5 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 9.",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 11.03,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 239,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 60% of its $323,000 advance on Silver Shadow: Season 4. Trust 4.33 → 4.49.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.6,
+   "step": 0.16
+  }
+ },
+ {
+  "week": 239,
+  "type": "run_end",
+  "message": "Silver Shadow: Season 4 run ended after 13 weeks: 2,083,537 viewer-episodes (250,155 distinct people), gross $666,732, studio take $473,380.",
+  "data": {
+   "releaseId": "rel97"
+  }
+ },
+ {
+  "week": 247,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 5 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj100"
+  }
+ },
+ {
+  "week": 247,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 247,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 248,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 252,
+  "type": "surplus",
+  "message": "Silver Shadow: Season 5: kept $92,112 of unused advance.",
+  "data": {
+   "projectId": "proj100",
+   "surplus": 92111.74
+  }
+ },
+ {
+  "week": 252,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow: Season 5).",
+  "data": {
+   "awardId": "rel:rel106:meters_all_70",
+   "releaseId": "rel106",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 252,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Shadow: Season 5).",
+  "data": {
+   "awardId": "rel:rel106:audience_7_5",
+   "releaseId": "rel106",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 252,
+  "type": "release",
+  "message": "Silver Shadow: Season 5 released: Audience 8.63 / Critics 8.07 (avg 8.35). Opening pool 342,688, opening 102,806. Renewable (season average 8.35).",
+  "data": {
+   "releaseId": "rel106"
+  }
+ },
+ {
+  "week": 252,
+  "type": "announce",
+  "message": "Announced Silver Shadow season 6: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 6
+  }
+ },
+ {
+  "week": 252,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 252,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 252,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (season): meridian $337,000 @ 48%; starlight $153,000 @ 8%; wolf $362,000 @ 28%."
+ },
+ {
+  "week": 252,
+  "type": "project_start",
+  "message": "Started Silver Shadow: Season 6 (tv, 10 episodes, Horror + Superheroes, season) with meridian advance $337,000 @ 48%.",
+  "data": {
+   "projectId": "proj107"
+  }
+ },
+ {
+  "week": 253,
+  "type": "feedback",
+  "message": "Silver Shadow: Season 5 opens to 171,344 viewers.",
+  "data": {
+   "releaseId": "rel106",
+   "prev": 0,
+   "now": 171344,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 254,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Shadow: Season 5. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel106",
+   "prev": 171344,
+   "now": 213952,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 256,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Shadow: Season 5. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel106",
+   "prev": 240585,
+   "now": 275143,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 257,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Shadow: Season 5 is still climbing (275,143 → 308,370).",
+  "data": {
+   "releaseId": "rel106",
+   "prev": 275143,
+   "now": 308370,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 263,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 6 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj107"
+  }
+ },
+ {
+  "week": 263,
+  "type": "cast",
+  "message": "Cast Jay Vale for $73,501.54.",
+  "data": {
+   "starId": "star4",
+   "price": 73501.54
+  }
+ },
+ {
+  "week": 265,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 48,837 → 69,174 (avg score 8.35, 3,184,409 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 265,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 12,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 265,
+  "type": "trust",
+  "message": "Meridian Global earned 143% of its advance back on Silver Shadow: Season 5 with strong reviews. Trust 2.50 → 3.14.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.43,
+   "step": 0.64
+  }
+ },
+ {
+  "week": 265,
+  "type": "run_end",
+  "message": "Silver Shadow: Season 5 run ended after 13 weeks: 3,184,409 viewer-episodes (379,429 distinct people), gross $1,019,011, studio take $529,886.",
+  "data": {
+   "releaseId": "rel106"
+  }
+ },
+ {
+  "week": 265,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 273,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 6 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj107"
+  }
+ },
+ {
+  "week": 273,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 278,
+  "type": "surplus",
+  "message": "Silver Shadow: Season 6: kept $78,498 of unused advance.",
+  "data": {
+   "projectId": "proj107",
+   "surplus": 78498.46
+  }
+ },
+ {
+  "week": 278,
+  "type": "genre_level",
+  "message": "Studio Horror level 3 → 4."
+ },
+ {
+  "week": 278,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow: Season 6).",
+  "data": {
+   "awardId": "rel:rel113:meters_all_70",
+   "releaseId": "rel113",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 278,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Shadow: Season 6).",
+  "data": {
+   "awardId": "rel:rel113:audience_7_5",
+   "releaseId": "rel113",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 278,
+  "type": "release",
+  "message": "Silver Shadow: Season 6 released: Audience 8.29 / Critics 7.74 (avg 8.02). Opening pool 348,591, opening 104,577. Renewable (season average 8.02).",
+  "data": {
+   "releaseId": "rel113"
+  }
+ },
+ {
+  "week": 278,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Time Travel."
+ },
+ {
+  "week": 278,
+  "type": "announce",
+  "message": "Announced Silver Shadow season 7: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 7
+  }
+ },
+ {
+  "week": 278,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 278,
+  "type": "train",
+  "message": "Trained Dee Park: +3 to all stats."
+ },
+ {
+  "week": 278,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (season): starlight $165,000 @ 8%; meridian $377,000 @ 47%; orbit $276,000 @ 34%."
+ },
+ {
+  "week": 278,
+  "type": "project_start",
+  "message": "Started Silver Shadow: Season 7 (tv, 10 episodes, Horror + Superheroes, season) with meridian advance $377,000 @ 47%.",
+  "data": {
+   "projectId": "proj114"
+  }
+ },
+ {
+  "week": 279,
+  "type": "feedback",
+  "message": "Silver Shadow: Season 6 opens to 174,296 viewers.",
+  "data": {
+   "releaseId": "rel113",
+   "prev": 0,
+   "now": 174296,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 280,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Shadow: Season 6. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel113",
+   "prev": 174296,
+   "now": 216888,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 280,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 282,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Shadow: Season 6. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel113",
+   "prev": 243510,
+   "now": 276424,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 283,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Shadow: Season 6 is still climbing (276,424 → 308,900).",
+  "data": {
+   "releaseId": "rel113",
+   "prev": 276424,
+   "now": 308900,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 285,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 289,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 7 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj114"
+  }
+ },
+ {
+  "week": 289,
+  "type": "cast",
+  "message": "Cast Jay Vale for $72,656.49.",
+  "data": {
+   "starId": "star4",
+   "price": 72656.49
+  }
+ },
+ {
+  "week": 291,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 65,798 → 84,112 (avg score 8.02, 3,193,502 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 291,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 10.",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 10.82,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 291,
+  "type": "trust",
+  "message": "Meridian Global earned 146% of its advance back on Silver Shadow: Season 6 with strong reviews. Trust 3.10 → 3.71.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.46,
+   "step": 0.61
+  }
+ },
+ {
+  "week": 291,
+  "type": "run_end",
+  "message": "Silver Shadow: Season 6 run ended after 13 weeks: 3,193,502 viewer-episodes (379,024 distinct people), gross $1,021,921, studio take $531,399.",
+  "data": {
+   "releaseId": "rel113"
+  }
+ },
+ {
+  "week": 299,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 7 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj114"
+  }
+ },
+ {
+  "week": 299,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 300,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 302,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 304,
+  "type": "surplus",
+  "message": "Silver Shadow: Season 7: kept $119,344 of unused advance.",
+  "data": {
+   "projectId": "proj114",
+   "surplus": 119343.51
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow: Season 7).",
+  "data": {
+   "awardId": "rel:rel120:meters_all_70",
+   "releaseId": "rel120",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Shadow: Season 7).",
+  "data": {
+   "awardId": "rel:rel120:audience_7_5",
+   "releaseId": "rel120",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 304,
+  "type": "release",
+  "message": "Silver Shadow: Season 7 released: Audience 7.84 / Critics 7.32 (avg 7.58). Opening pool 353,065, opening 105,920. Renewable (season average 7.58).",
+  "data": {
+   "releaseId": "rel120"
+  }
+ },
+ {
+  "week": 304,
+  "type": "announce",
+  "message": "Announced Silver Shadow season 8: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 8
+  }
+ },
+ {
+  "week": 304,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 304,
+  "type": "train",
+  "message": "Trained Dee Park: +3 to all stats."
+ },
+ {
+  "week": 304,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (season): xyz $313,000 @ 43%; meridian $363,000 @ 46%; orbit $276,000 @ 34%."
+ },
+ {
+  "week": 304,
+  "type": "project_start",
+  "message": "Started Silver Shadow: Season 8 (tv, 10 episodes, Horror + Superheroes, season) with meridian advance $363,000 @ 46%.",
+  "data": {
+   "projectId": "proj121"
+  }
+ },
+ {
+  "week": 305,
+  "type": "feedback",
+  "message": "Silver Shadow: Season 7 opens to 176,533 viewers.",
+  "data": {
+   "releaseId": "rel120",
+   "prev": 0,
+   "now": 176533,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 306,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Shadow: Season 7. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel120",
+   "prev": 176533,
+   "now": 218762,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 308,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Shadow: Season 7. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel120",
+   "prev": 245202,
+   "now": 275700,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 309,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Shadow: Season 7 is still climbing (275,700 → 307,919).",
+  "data": {
+   "releaseId": "rel120",
+   "prev": 275700,
+   "now": 307919,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 314,
+  "type": "prestige",
+  "message": "Prestige +150: ip_gross_5m (Silver Shadow: Season 7).",
+  "data": {
+   "awardId": "ip:ip69:ip_gross_5m",
+   "releaseId": "rel120",
+   "milestone": "ip_gross_5m",
+   "amount": 150
+  }
+ },
+ {
+  "week": 315,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 8 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj121"
+  }
+ },
+ {
+  "week": 315,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 315,
+  "type": "cast",
+  "message": "Cast Jay Vale for $71,162.82.",
+  "data": {
+   "starId": "star4",
+   "price": 71162.82
+  }
+ },
+ {
+  "week": 317,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 80,006 → 95,613 (avg score 7.58, 3,191,488 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 317,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 9.24,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 317,
+  "type": "trust",
+  "message": "Meridian Global earned 127% of its advance back on Silver Shadow: Season 7 with strong reviews. Trust 3.67 → 4.11.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.27,
+   "step": 0.44
+  }
+ },
+ {
+  "week": 317,
+  "type": "run_end",
+  "message": "Silver Shadow: Season 7 run ended after 13 weeks: 3,191,488 viewer-episodes (378,077 distinct people), gross $1,021,276, studio take $541,276.",
+  "data": {
+   "releaseId": "rel120"
+  }
+ },
+ {
+  "week": 322,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 325,
+  "type": "milestone",
+  "message": "Silver Shadow: Season 8 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj121"
+  }
+ },
+ {
+  "week": 325,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 325,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 330,
+  "type": "surplus",
+  "message": "Silver Shadow: Season 8: kept $106,837 of unused advance.",
+  "data": {
+   "projectId": "proj121",
+   "surplus": 106837.18
+  }
+ },
+ {
+  "week": 330,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Shadow: Season 8).",
+  "data": {
+   "awardId": "rel:rel127:meters_all_70",
+   "releaseId": "rel127",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 330,
+  "type": "release",
+  "message": "Silver Shadow: Season 8 released: Audience 7.16 / Critics 6.68 (avg 6.92). Opening pool 362,338, opening 108,701. Renewable (season average 6.92).",
+  "data": {
+   "releaseId": "rel127"
+  }
+ },
+ {
+  "week": 330,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Mythology."
+ },
+ {
+  "week": 330,
+  "type": "announce",
+  "message": "Announced Silver Shadow season 9: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 9
+  }
+ },
+ {
+  "week": 330,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 330,
+  "type": "train",
+  "message": "Trained Dee Park: +3 to all stats."
+ },
+ {
+  "week": 330,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (new): starlight $145,000 @ 8%; xyz $288,000 @ 44%."
+ },
+ {
+  "week": 330,
+  "type": "project_start",
+  "message": "Started Silver Signal (tv, 10 episodes, Action + Time Travel, new) with xyz advance $288,000 @ 44%.",
+  "data": {
+   "projectId": "proj129"
+  }
+ },
+ {
+  "week": 331,
+  "type": "feedback",
+  "message": "Silver Shadow: Season 8 opens to 181,169 viewers.",
+  "data": {
+   "releaseId": "rel127",
+   "prev": 0,
+   "now": 181169,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 334,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Shadow: Season 8. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel127",
+   "prev": 241749,
+   "now": 268555,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 335,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Shadow: Season 8 is still climbing (268,555 → 296,276).",
+  "data": {
+   "releaseId": "rel127",
+   "prev": 268555,
+   "now": 296276,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 335,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 340,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 341,
+  "type": "milestone",
+  "message": "Silver Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj129"
+  }
+ },
+ {
+  "week": 341,
+  "type": "cast",
+  "message": "Cast Ivy Imai for $21,801.85.",
+  "data": {
+   "starId": "star131",
+   "price": 21801.85
+  }
+ },
+ {
+  "week": 343,
+  "type": "ip_fans",
+  "message": "Silver Shadow fans: 90,945 → 102,499 (avg score 6.92, 3,118,583 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 343,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 6.86,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 343,
+  "type": "trust",
+  "message": "Meridian Global earned 126% of its advance back on Silver Shadow: Season 8. Trust 4.07 → 4.42.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.26,
+   "step": 0.35
+  }
+ },
+ {
+  "week": 343,
+  "type": "run_end",
+  "message": "Silver Shadow: Season 8 run ended after 13 weeks: 3,118,583 viewer-episodes (376,110 distinct people), gross $997,947, studio take $538,891.",
+  "data": {
+   "releaseId": "rel127"
+  }
+ },
+ {
+  "week": 351,
+  "type": "milestone",
+  "message": "Silver Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj129"
+  }
+ },
+ {
+  "week": 351,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 355,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 356,
+  "type": "surplus",
+  "message": "Silver Signal: kept $81,198 of unused advance.",
+  "data": {
+   "projectId": "proj129",
+   "surplus": 81198.15
+  }
+ },
+ {
+  "week": 356,
+  "type": "genre_level",
+  "message": "Studio Action level 1 → 2."
+ },
+ {
+  "week": 356,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Signal).",
+  "data": {
+   "awardId": "rel:rel135:meters_all_70",
+   "releaseId": "rel135",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 356,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Signal).",
+  "data": {
+   "awardId": "rel:rel135:audience_7_5",
+   "releaseId": "rel135",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 356,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Silver Signal).",
+  "data": {
+   "awardId": "rel:rel135:critic_8_5",
+   "releaseId": "rel135",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 356,
+  "type": "release",
+  "message": "Silver Signal released: Audience 7.95 / Critics 8.95 (avg 8.45). Opening pool 291,429, opening 87,429. Renewable (season average 8.45).",
+  "data": {
+   "releaseId": "rel135"
+  }
+ },
+ {
+  "week": 356,
+  "type": "announce",
+  "message": "Announced Silver Signal season 2: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip128",
+   "season": 2
+  }
+ },
+ {
+  "week": 356,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 356,
+  "type": "train",
+  "message": "Trained Dee Park: +3 to all stats."
+ },
+ {
+  "week": 356,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (season): meridian $555,000 @ 46%; wolf $408,000 @ 29%; xyz $398,000 @ 44%."
+ },
+ {
+  "week": 356,
+  "type": "project_start",
+  "message": "Started Silver Signal: Season 2 (tv, 15 episodes, Action + Time Travel, season) with meridian advance $555,000 @ 46%.",
+  "data": {
+   "projectId": "proj136"
+  }
+ },
+ {
+  "week": 357,
+  "type": "feedback",
+  "message": "Silver Signal opens to 145,715 viewers.",
+  "data": {
+   "releaseId": "rel135",
+   "prev": 0,
+   "now": 145715,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 358,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Signal. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel135",
+   "prev": 145715,
+   "now": 183995,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 358,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 360,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Signal. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel135",
+   "prev": 208245,
+   "now": 234420,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 361,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Signal is still climbing (234,420 → 264,173).",
+  "data": {
+   "releaseId": "rel135",
+   "prev": 234420,
+   "now": 264173,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 362,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 369,
+  "type": "ip_fans",
+  "message": "Silver Signal fans: 0 → 19,312 (avg score 8.45, 2,829,070 viewers).",
+  "data": {
+   "ipId": "ip128"
+  }
+ },
+ {
+  "week": 369,
+  "type": "star_career",
+  "message": "Ivy Imai: Fame 32.0 → 44.1, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star131",
+   "fameDelta": 12.07,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 369,
+  "type": "trust",
+  "message": "XYZ Network earned 138% of its advance back on Silver Signal with strong reviews. Trust 2.50 → 3.12.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.38,
+   "step": 0.62
+  }
+ },
+ {
+  "week": 369,
+  "type": "run_end",
+  "message": "Silver Signal run ended after 13 weeks: 2,829,070 viewer-episodes (349,862 distinct people), gross $905,302, studio take $506,969.",
+  "data": {
+   "releaseId": "rel135"
+  }
+ },
+ {
+  "week": 371,
+  "type": "milestone",
+  "message": "Silver Signal: Season 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj136"
+  }
+ },
+ {
+  "week": 371,
+  "type": "cast",
+  "message": "Cast Ivy Imai for $30,419.96.",
+  "data": {
+   "starId": "star131",
+   "price": 30419.96
+  }
+ },
+ {
+  "week": 375,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 375,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 378,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 385,
+  "type": "milestone",
+  "message": "Silver Signal: Season 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj136"
+  }
+ },
+ {
+  "week": 385,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 392,
+  "type": "surplus",
+  "message": "Silver Signal: Season 2: kept $264,580 of unused advance.",
+  "data": {
+   "projectId": "proj136",
+   "surplus": 264580.04
+  }
+ },
+ {
+  "week": 392,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Signal: Season 2).",
+  "data": {
+   "awardId": "rel:rel142:meters_all_70",
+   "releaseId": "rel142",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 392,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Signal: Season 2).",
+  "data": {
+   "awardId": "rel:rel142:audience_7_5",
+   "releaseId": "rel142",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 392,
+  "type": "release",
+  "message": "Silver Signal: Season 2 released: Audience 7.93 / Critics 8.03 (avg 7.98). Opening pool 337,805, opening 101,342. Renewable (season average 7.98).",
+  "data": {
+   "releaseId": "rel142"
+  }
+ },
+ {
+  "week": 392,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Dinosaurs."
+ },
+ {
+  "week": 392,
+  "type": "announce",
+  "message": "Announced Silver Signal season 3: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip128",
+   "season": 3
+  }
+ },
+ {
+  "week": 392,
+  "type": "train",
+  "message": "Trained Cam Vale: +3 to all stats."
+ },
+ {
+  "week": 392,
+  "type": "train",
+  "message": "Trained Sam Imai: +3 to all stats."
+ },
+ {
+  "week": 392,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (season): meridian $448,000 @ 47%; orbit $261,000 @ 36%."
+ },
+ {
+  "week": 392,
+  "type": "project_start",
+  "message": "Started Silver Signal: Season 3 (tv, 15 episodes, Action + Time Travel, season) with meridian advance $448,000 @ 47%.",
+  "data": {
+   "projectId": "proj143"
+  }
+ },
+ {
+  "week": 393,
+  "type": "feedback",
+  "message": "Silver Signal: Season 2 opens to 168,903 viewers.",
+  "data": {
+   "releaseId": "rel142",
+   "prev": 0,
+   "now": 168903,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 393,
+  "type": "prestige",
+  "message": "Prestige +150: ip_viewers_500k (Silver Signal: Season 2).",
+  "data": {
+   "awardId": "ip:ip128:ip_viewers_500k",
+   "releaseId": "rel142",
+   "milestone": "ip_viewers_500k",
+   "amount": 150
+  }
+ },
+ {
+  "week": 394,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Signal: Season 2. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel142",
+   "prev": 168903,
+   "now": 211302,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 394,
+  "type": "prestige",
+  "message": "Prestige +100: ip_gross_1m (Silver Signal: Season 2).",
+  "data": {
+   "awardId": "ip:ip128:ip_gross_1m",
+   "releaseId": "rel142",
+   "milestone": "ip_gross_1m",
+   "amount": 100
+  }
+ },
+ {
+  "week": 396,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Signal: Season 2. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel142",
+   "prev": 238262,
+   "now": 268517,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 397,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Signal: Season 2 is still climbing (268,517 → 302,648).",
+  "data": {
+   "releaseId": "rel142",
+   "prev": 268517,
+   "now": 302648,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 401,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 407,
+  "type": "milestone",
+  "message": "Silver Signal: Season 3 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj143"
+  }
+ },
+ {
+  "week": 407,
+  "type": "cast",
+  "message": "Cast Ivy Imai for $30,223.28.",
+  "data": {
+   "starId": "star131",
+   "price": 30223.28
+  }
+ },
+ {
+  "week": 410,
+  "type": "ip_fans",
+  "message": "Silver Signal fans: 17,846 → 38,464 (avg score 7.98, 5,410,703 viewers).",
+  "data": {
+   "ipId": "ip128"
+  }
+ },
+ {
+  "week": 410,
+  "type": "star_career",
+  "message": "Ivy Imai: Fame 44.1 → 55.1, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star131",
+   "fameDelta": 11.06,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 410,
+  "type": "trust",
+  "message": "Meridian Global earned 144% of its advance back on Silver Signal: Season 2 with strong reviews. Trust 4.32 → 4.91.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.44,
+   "step": 0.59
+  }
+ },
+ {
+  "week": 410,
+  "type": "run_end",
+  "message": "Silver Signal: Season 2 run ended after 18 weeks: 5,410,703 viewer-episodes (432,427 distinct people), gross $1,731,425, studio take $934,969.",
+  "data": {
+   "releaseId": "rel142"
+  }
+ },
+ {
+  "week": 415,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 418,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 421,
+  "type": "milestone",
+  "message": "Silver Signal: Season 3 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj143"
+  }
+ },
+ {
+  "week": 421,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 421,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 427,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 428,
+  "type": "surplus",
+  "message": "Silver Signal: Season 3: kept $157,777 of unused advance.",
+  "data": {
+   "projectId": "proj143",
+   "surplus": 157776.72
+  }
+ },
+ {
+  "week": 428,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Signal: Season 3).",
+  "data": {
+   "awardId": "rel:rel149:meters_all_70",
+   "releaseId": "rel149",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 428,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Signal: Season 3).",
+  "data": {
+   "awardId": "rel:rel149:audience_7_5",
+   "releaseId": "rel149",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 428,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Silver Signal: Season 3).",
+  "data": {
+   "awardId": "rel:rel149:critic_8_5",
+   "releaseId": "rel149",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 428,
+  "type": "release",
+  "message": "Silver Signal: Season 3 released: Audience 7.79 / Critics 8.76 (avg 8.28). Opening pool 345,954, opening 103,786. Renewable (season average 8.28).",
+  "data": {
+   "releaseId": "rel149"
+  }
+ },
+ {
+  "week": 428,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Pirates."
+ },
+ {
+  "week": 428,
+  "type": "announce",
+  "message": "Announced Silver Signal season 4: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip128",
+   "season": 4
+  }
+ },
+ {
+  "week": 428,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 428,
+  "type": "train",
+  "message": "Trained Dee Park: +3 to all stats."
+ },
+ {
+  "week": 428,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (season): starlight $191,000 @ 8%; wolf $413,000 @ 30%."
+ },
+ {
+  "week": 428,
+  "type": "project_start",
+  "message": "Started Silver Signal: Season 4 (tv, 15 episodes, Action + Time Travel, season) with wolf advance $413,000 @ 30%.",
+  "data": {
+   "projectId": "proj150"
+  }
+ },
+ {
+  "week": 429,
+  "type": "feedback",
+  "message": "Silver Signal: Season 3 opens to 172,977 viewers.",
+  "data": {
+   "releaseId": "rel149",
+   "prev": 0,
+   "now": 172977,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 430,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Signal: Season 3. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel149",
+   "prev": 172977,
+   "now": 217905,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 432,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Signal: Season 3. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel149",
+   "prev": 246303,
+   "now": 276283,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 433,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Signal: Season 3 is still climbing (276,283 → 309,878).",
+  "data": {
+   "releaseId": "rel149",
+   "prev": 276283,
+   "now": 309878,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 443,
+  "type": "milestone",
+  "message": "Silver Signal: Season 4 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj150"
+  }
+ },
+ {
+  "week": 443,
+  "type": "cast",
+  "message": "Cast Ivy Imai for $37,812.87.",
+  "data": {
+   "starId": "star131",
+   "price": 37812.87
+  }
+ },
+ {
+  "week": 446,
+  "type": "ip_fans",
+  "message": "Silver Signal fans: 35,889 → 58,595 (avg score 8.28, 5,461,573 viewers).",
+  "data": {
+   "ipId": "ip128"
+  }
+ },
+ {
+  "week": 446,
+  "type": "star_career",
+  "message": "Ivy Imai: Fame 55.1 → 67.3, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star131",
+   "fameDelta": 12.18,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 446,
+  "type": "trust",
+  "message": "Meridian Global earned 183% of its advance back on Silver Signal: Season 3 with strong reviews. Trust 4.86 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.83,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 446,
+  "type": "run_end",
+  "message": "Silver Signal: Season 3 run ended after 18 weeks: 5,461,573 viewer-episodes (432,665 distinct people), gross $1,747,703, studio take $926,283.",
+  "data": {
+   "releaseId": "rel149"
+  }
+ },
+ {
+  "week": 447,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 457,
+  "type": "milestone",
+  "message": "Silver Signal: Season 4 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj150"
+  }
+ },
+ {
+  "week": 457,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 461,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 464,
+  "type": "surplus",
+  "message": "Silver Signal: Season 4: kept $115,187 of unused advance.",
+  "data": {
+   "projectId": "proj150",
+   "surplus": 115187.13
+  }
+ },
+ {
+  "week": 464,
+  "type": "genre_level",
+  "message": "Studio Action level 2 → 3."
+ },
+ {
+  "week": 464,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Signal: Season 4).",
+  "data": {
+   "awardId": "rel:rel156:meters_all_70",
+   "releaseId": "rel156",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 464,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Signal: Season 4).",
+  "data": {
+   "awardId": "rel:rel156:audience_7_5",
+   "releaseId": "rel156",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 464,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Silver Signal: Season 4).",
+  "data": {
+   "awardId": "rel:rel156:critic_8_5",
+   "releaseId": "rel156",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 464,
+  "type": "release",
+  "message": "Silver Signal: Season 4 released: Audience 7.57 / Critics 8.51 (avg 8.04). Opening pool 217,552, opening 65,266. Renewable (season average 8.04).",
+  "data": {
+   "releaseId": "rel156"
+  }
+ },
+ {
+  "week": 464,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Vampires."
+ },
+ {
+  "week": 464,
+  "type": "announce",
+  "message": "Announced Silver Signal season 5: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip128",
+   "season": 5
+  }
+ },
+ {
+  "week": 464,
+  "type": "train",
+  "message": "Trained Cam Vale: +3 to all stats."
+ },
+ {
+  "week": 464,
+  "type": "train",
+  "message": "Trained Sam Imai: +3 to all stats."
+ },
+ {
+  "week": 464,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (season): orbit $267,000 @ 36%; meridian $588,000 @ 45%; wolf $380,000 @ 30%."
+ },
+ {
+  "week": 464,
+  "type": "project_start",
+  "message": "Started Silver Signal: Season 5 (tv, 15 episodes, Action + Time Travel, season) with meridian advance $588,000 @ 45%.",
+  "data": {
+   "projectId": "proj157"
+  }
+ },
+ {
+  "week": 465,
+  "type": "feedback",
+  "message": "Silver Signal: Season 4 opens to 108,776 viewers.",
+  "data": {
+   "releaseId": "rel156",
+   "prev": 0,
+   "now": 108776,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 466,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Signal: Season 4. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel156",
+   "prev": 108776,
+   "now": 136522,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 468,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Signal: Season 4. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel156",
+   "prev": 153928,
+   "now": 171770,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 469,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Signal: Season 4 is still climbing (171,770 → 191,375).",
+  "data": {
+   "releaseId": "rel156",
+   "prev": 171770,
+   "now": 191375,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 470,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 471,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 475,
+  "type": "prestige",
+  "message": "Prestige +150: ip_gross_5m (Silver Signal: Season 4).",
+  "data": {
+   "awardId": "ip:ip128:ip_gross_5m",
+   "releaseId": "rel156",
+   "milestone": "ip_gross_5m",
+   "amount": 150
+  }
+ },
+ {
+  "week": 479,
+  "type": "milestone",
+  "message": "Silver Signal: Season 5 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj157"
+  }
+ },
+ {
+  "week": 479,
+  "type": "cast",
+  "message": "Cast Ivy Imai for $45,925.17.",
+  "data": {
+   "starId": "star131",
+   "price": 45925.17
+  }
+ },
+ {
+  "week": 482,
+  "type": "ip_fans",
+  "message": "Silver Signal fans: 54,672 → 67,307 (avg score 8.04, 3,318,031 viewers).",
+  "data": {
+   "ipId": "ip128"
+  }
+ },
+ {
+  "week": 482,
+  "type": "star_career",
+  "message": "Ivy Imai: Fame 67.3 → 77.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star131",
+   "fameDelta": 9.64,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 482,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 77% of its $413,000 advance on Silver Signal: Season 4. Trust 4.14 → 4.34.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.77,
+   "step": 0.2
+  }
+ },
+ {
+  "week": 482,
+  "type": "run_end",
+  "message": "Silver Signal: Season 4 run ended after 18 weeks: 3,318,031 viewer-episodes (259,763 distinct people), gross $1,061,770, studio take $743,239.",
+  "data": {
+   "releaseId": "rel156"
+  }
+ },
+ {
+  "week": 487,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 490,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 491,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 493,
+  "type": "milestone",
+  "message": "Silver Signal: Season 5 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj157"
+  }
+ },
+ {
+  "week": 493,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 500,
+  "type": "surplus",
+  "message": "Silver Signal: Season 5: kept $282,075 of unused advance.",
+  "data": {
+   "projectId": "proj157",
+   "surplus": 282074.83
+  }
+ },
+ {
+  "week": 500,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Signal: Season 5).",
+  "data": {
+   "awardId": "rel:rel163:meters_all_70",
+   "releaseId": "rel163",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 500,
+  "type": "release",
+  "message": "Silver Signal: Season 5 released: Audience 7.36 / Critics 8.27 (avg 7.82). Opening pool 393,534, opening 118,060. Renewable (season average 7.82).",
+  "data": {
+   "releaseId": "rel163"
+  }
+ },
+ {
+  "week": 500,
+  "type": "announce",
+  "message": "Announced Silver Signal season 6: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip128",
+   "season": 6
+  }
+ },
+ {
+  "week": 500,
+  "type": "train",
+  "message": "Trained Dee Park: +3 to all stats."
+ },
+ {
+  "week": 500,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 500,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (season): starlight $223,000 @ 8%; wolf $481,000 @ 29%."
+ },
+ {
+  "week": 500,
+  "type": "project_start",
+  "message": "Started Silver Signal: Season 6 (tv, 15 episodes, Action + Time Travel, season) with wolf advance $481,000 @ 29%.",
+  "data": {
+   "projectId": "proj164"
+  }
+ },
+ {
+  "week": 501,
+  "type": "feedback",
+  "message": "Silver Signal: Season 5 opens to 196,767 viewers.",
+  "data": {
+   "releaseId": "rel163",
+   "prev": 0,
+   "now": 196767,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 502,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Signal: Season 5. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel163",
+   "prev": 196767,
+   "now": 245947,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 504,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Signal: Season 5. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel163",
+   "prev": 276437,
+   "now": 306860,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 504,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 505,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Signal: Season 5 is still climbing (306,860 → 339,661).",
+  "data": {
+   "releaseId": "rel163",
+   "prev": 306860,
+   "now": 339661,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 506,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 515,
+  "type": "milestone",
+  "message": "Silver Signal: Season 6 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj164"
+  }
+ },
+ {
+  "week": 515,
+  "type": "cast",
+  "message": "Cast Ivy Imai for $51,671.88.",
+  "data": {
+   "starId": "star131",
+   "price": 51671.88
+  }
+ },
+ {
+  "week": 518,
+  "type": "ip_fans",
+  "message": "Silver Signal fans: 62,802 → 82,381 (avg score 7.82, 5,679,345 viewers).",
+  "data": {
+   "ipId": "ip128"
+  }
+ },
+ {
+  "week": 518,
+  "type": "star_career",
+  "message": "Ivy Imai: Fame 77.0 → 87.4, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star131",
+   "fameDelta": 10.48,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 518,
+  "type": "trust",
+  "message": "Meridian Global earned 139% of its advance back on Silver Signal: Season 5 with strong reviews. Trust 4.90 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.39,
+   "step": 0.54
+  }
+ },
+ {
+  "week": 518,
+  "type": "run_end",
+  "message": "Silver Signal: Season 5 run ended after 18 weeks: 5,679,345 viewer-episodes (433,921 distinct people), gross $1,817,390, studio take $999,565.",
+  "data": {
+   "releaseId": "rel163"
+  }
+ },
+ {
+  "week": 524,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 526,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 529,
+  "type": "milestone",
+  "message": "Silver Signal: Season 6 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj164"
+  }
+ },
+ {
+  "week": 529,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 530,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 531,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 536,
+  "type": "surplus",
+  "message": "Silver Signal: Season 6: kept $169,328 of unused advance.",
+  "data": {
+   "projectId": "proj164",
+   "surplus": 169328.12
+  }
+ },
+ {
+  "week": 536,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Signal: Season 6).",
+  "data": {
+   "awardId": "rel:rel170:meters_all_70",
+   "releaseId": "rel170",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 536,
+  "type": "release",
+  "message": "Silver Signal: Season 6 released: Audience 6.97 / Critics 7.05 (avg 7.01). Opening pool 231,734, opening 69,520. Renewable (season average 7.01).",
+  "data": {
+   "releaseId": "rel170"
+  }
+ },
+ {
+  "week": 536,
+  "type": "announce",
+  "message": "Announced Silver Signal season 7: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip128",
+   "season": 7
+  }
+ },
+ {
+  "week": 536,
+  "type": "train",
+  "message": "Trained Cam Vale: +3 to all stats."
+ },
+ {
+  "week": 536,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 536,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (season): orbit $267,000 @ 36%; meridian $556,000 @ 45%."
+ },
+ {
+  "week": 536,
+  "type": "project_start",
+  "message": "Started Silver Signal: Season 7 (tv, 15 episodes, Action + Time Travel, season) with meridian advance $556,000 @ 45%.",
+  "data": {
+   "projectId": "proj171"
+  }
+ },
+ {
+  "week": 537,
+  "type": "feedback",
+  "message": "Silver Signal: Season 6 opens to 115,867 viewers.",
+  "data": {
+   "releaseId": "rel170",
+   "prev": 0,
+   "now": 115867,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 538,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Signal: Season 6. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel170",
+   "prev": 115867,
+   "now": 143231,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 539,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 541,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Signal: Season 6 is still climbing (176,737 → 193,356).",
+  "data": {
+   "releaseId": "rel170",
+   "prev": 176737,
+   "now": 193356,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 551,
+  "type": "milestone",
+  "message": "Silver Signal: Season 7 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj171"
+  }
+ },
+ {
+  "week": 551,
+  "type": "cast",
+  "message": "Cast Ivy Imai for $57,673.11.",
+  "data": {
+   "starId": "star131",
+   "price": 57673.11
+  }
+ },
+ {
+  "week": 554,
+  "type": "ip_fans",
+  "message": "Silver Signal fans: 76,865 → 85,212 (avg score 7.01, 3,316,215 viewers).",
+  "data": {
+   "ipId": "ip128"
+  }
+ },
+ {
+  "week": 554,
+  "type": "star_career",
+  "message": "Ivy Imai: Fame 87.4 → 93.8, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 8.",
+  "data": {
+   "starId": "star131",
+   "fameDelta": 6.37,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 554,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 64% of its $481,000 advance on Silver Signal: Season 6. Trust 4.24 → 4.23.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.64,
+   "step": -0.01
+  }
+ },
+ {
+  "week": 554,
+  "type": "run_end",
+  "message": "Silver Signal: Season 6 run ended after 18 weeks: 3,316,215 viewer-episodes (259,551 distinct people), gross $1,061,189, studio take $753,444.",
+  "data": {
+   "releaseId": "rel170"
+  }
+ },
+ {
+  "week": 558,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 559,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 564,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 565,
+  "type": "milestone",
+  "message": "Silver Signal: Season 7 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj171"
+  }
+ },
+ {
+  "week": 565,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 566,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 572,
+  "type": "surplus",
+  "message": "Silver Signal: Season 7: kept $238,327 of unused advance.",
+  "data": {
+   "projectId": "proj171",
+   "surplus": 238326.89
+  }
+ },
+ {
+  "week": 572,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Signal: Season 7).",
+  "data": {
+   "awardId": "rel:rel177:meters_all_70",
+   "releaseId": "rel177",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 572,
+  "type": "release",
+  "message": "Silver Signal: Season 7 released: Audience 6.41 / Critics 7.2 (avg 6.81). Opening pool 383,765, opening 115,130. Renewable (season average 6.81).",
+  "data": {
+   "releaseId": "rel177"
+  }
+ },
+ {
+  "week": 572,
+  "type": "announce",
+  "message": "Announced Silver Signal season 8: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip128",
+   "season": 8
+  }
+ },
+ {
+  "week": 572,
+  "type": "train",
+  "message": "Trained Sam Imai: +3 to all stats."
+ },
+ {
+  "week": 572,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 572,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Time Travel (season): xyz $405,000 @ 44%; starlight $196,000 @ 8%."
+ },
+ {
+  "week": 572,
+  "type": "project_start",
+  "message": "Started Silver Signal: Season 8 (tv, 15 episodes, Action + Time Travel, season) with xyz advance $405,000 @ 44%.",
+  "data": {
+   "projectId": "proj178"
+  }
+ },
+ {
+  "week": 573,
+  "type": "feedback",
+  "message": "Silver Signal: Season 7 opens to 191,883 viewers.",
+  "data": {
+   "releaseId": "rel177",
+   "prev": 0,
+   "now": 191883,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 574,
+  "type": "feedback",
+  "message": "Critics are raving about Silver Signal: Season 7. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel177",
+   "prev": 191883,
+   "now": 237555,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 577,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Signal: Season 7 is still climbing (280,798 → 293,220).",
+  "data": {
+   "releaseId": "rel177",
+   "prev": 280798,
+   "now": 293220,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 578,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 579,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 587,
+  "type": "milestone",
+  "message": "Silver Signal: Season 8 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj178"
+  }
+ },
+ {
+  "week": 587,
+  "type": "cast",
+  "message": "Cast Ivy Imai for $61,962.57.",
+  "data": {
+   "starId": "star131",
+   "price": 61962.57
+  }
+ },
+ {
+  "week": 590,
+  "type": "ip_fans",
+  "message": "Silver Signal fans: 79,507 → 91,962 (avg score 6.81, 4,574,754 viewers).",
+  "data": {
+   "ipId": "ip128"
+  }
+ },
+ {
+  "week": 590,
+  "type": "star_career",
+  "message": "Ivy Imai: Fame 93.8 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star131",
+   "fameDelta": 6.71,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 590,
+  "type": "trust",
+  "message": "Meridian Global earned 118% of its advance back on Silver Signal: Season 7. Trust 4.90 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.18,
+   "step": 0.29
+  }
+ },
+ {
+  "week": 590,
+  "type": "run_end",
+  "message": "Silver Signal: Season 7 run ended after 18 weeks: 4,574,754 viewer-episodes (430,083 distinct people), gross $1,463,921, studio take $805,157.",
+  "data": {
+   "releaseId": "rel177"
+  }
+ },
+ {
+  "week": 594,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 599,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 599,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 601,
+  "type": "milestone",
+  "message": "Silver Signal: Season 8 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj178"
+  }
+ },
+ {
+  "week": 601,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 608,
+  "type": "surplus",
+  "message": "Silver Signal: Season 8: kept $83,037 of unused advance.",
+  "data": {
+   "projectId": "proj178",
+   "surplus": 83037.43
+  }
+ },
+ {
+  "week": 608,
+  "type": "genre_level",
+  "message": "Studio Action level 3 → 4."
+ },
+ {
+  "week": 608,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Signal: Season 8).",
+  "data": {
+   "awardId": "rel:rel184:meters_all_70",
+   "releaseId": "rel184",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 608,
+  "type": "release",
+  "message": "Silver Signal: Season 8 released: Audience 5.93 / Critics 6.66 (avg 6.3). Opening pool 331,549, opening 99,465. Renewable (season average 6.3).",
+  "data": {
+   "releaseId": "rel184"
+  }
+ },
+ {
+  "week": 608,
+  "type": "announce",
+  "message": "Announced Silver Signal season 9: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip128",
+   "season": 9
+  }
+ },
+ {
+  "week": 608,
+  "type": "train",
+  "message": "Trained Eli Fox: +3 to all stats."
+ },
+ {
+  "week": 608,
+  "type": "train",
+  "message": "Trained Dee Park: +3 to all stats."
+ },
+ {
+  "week": 608,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Pirates (new): wolf $472,000 @ 29%; meridian $599,000 @ 44%."
+ },
+ {
+  "week": 608,
+  "type": "project_start",
+  "message": "Started Dead Pulse (tv, 15 episodes, Horror + Pirates, new) with meridian advance $599,000 @ 44%.",
+  "data": {
+   "projectId": "proj186"
+  }
+ },
+ {
+  "week": 609,
+  "type": "feedback",
+  "message": "Silver Signal: Season 8 opens to 165,775 viewers.",
+  "data": {
+   "releaseId": "rel184",
+   "prev": 0,
+   "now": 165775,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 613,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Signal: Season 8 is still climbing (224,911 → 225,748).",
+  "data": {
+   "releaseId": "rel184",
+   "prev": 224911,
+   "now": 225748,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 614,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 618,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 623,
+  "type": "milestone",
+  "message": "Dead Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj186"
+  }
+ },
+ {
+  "week": 623,
+  "type": "cast",
+  "message": "Cast Jay Vale for $67,258.41.",
+  "data": {
+   "starId": "star4",
+   "price": 67258.41
+  }
+ },
+ {
+  "week": 626,
+  "type": "ip_fans",
+  "message": "Silver Signal fans: 85,805 → 93,290 (avg score 6.3, 3,221,545 viewers).",
+  "data": {
+   "ipId": "ip128"
+  }
+ },
+ {
+  "week": 626,
+  "type": "star_career",
+  "message": "Ivy Imai: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 9.",
+  "data": {
+   "starId": "star131",
+   "fameDelta": 4.59,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 626,
+  "type": "trust",
+  "message": "XYZ Network earned 112% of its advance back on Silver Signal: Season 8. Trust 2.75 → 2.93.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.12,
+   "step": 0.18
+  }
+ },
+ {
+  "week": 626,
+  "type": "run_end",
+  "message": "Silver Signal: Season 8 run ended after 18 weeks: 3,221,545 viewer-episodes (359,875 distinct people), gross $1,030,894, studio take $577,301.",
+  "data": {
+   "releaseId": "rel184"
+  }
+ },
+ {
+  "week": 628,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 634,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 637,
+  "type": "milestone",
+  "message": "Dead Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj186"
+  }
+ },
+ {
+  "week": 637,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 639,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 644,
+  "type": "surplus",
+  "message": "Dead Pulse: kept $271,742 of unused advance.",
+  "data": {
+   "projectId": "proj186",
+   "surplus": 271741.59
+  }
+ },
+ {
+  "week": 644,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Pulse).",
+  "data": {
+   "awardId": "rel:rel192:meters_all_70",
+   "releaseId": "rel192",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 644,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Pulse).",
+  "data": {
+   "awardId": "rel:rel192:audience_7_5",
+   "releaseId": "rel192",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 644,
+  "type": "release",
+  "message": "Dead Pulse released: Audience 9.6 / Critics 7.41 (avg 8.5). Opening pool 319,241, opening 95,772. Renewable (season average 8.5).",
+  "data": {
+   "releaseId": "rel192"
+  }
+ },
+ {
+  "week": 644,
+  "type": "announce",
+  "message": "Announced Dead Pulse season 2: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip185",
+   "season": 2
+  }
+ },
+ {
+  "week": 644,
+  "type": "train",
+  "message": "Trained Mo Novak: +3 to all stats."
+ },
+ {
+  "week": 644,
+  "type": "train",
+  "message": "Trained Alex Reyes: +3 to all stats."
+ },
+ {
+  "week": 644,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Pirates (season): starlight $183,000 @ 8%; wolf $379,000 @ 30%; orbit $307,000 @ 36%."
+ },
+ {
+  "week": 644,
+  "type": "project_start",
+  "message": "Started Dead Pulse: Season 2 (tv, 15 episodes, Horror + Pirates, season) with wolf advance $379,000 @ 30%.",
+  "data": {
+   "projectId": "proj193"
+  }
+ },
+ {
+  "week": 645,
+  "type": "feedback",
+  "message": "Dead Pulse opens to 159,621 viewers.",
+  "data": {
+   "releaseId": "rel192",
+   "prev": 0,
+   "now": 159621,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 646,
+  "type": "feedback",
+  "message": "Critics are raving about Dead Pulse. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel192",
+   "prev": 159621,
+   "now": 198282,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 648,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Pulse. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel192",
+   "prev": 222768,
+   "now": 261272,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 648,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 649,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Pulse is still climbing (261,272 → 299,931).",
+  "data": {
+   "releaseId": "rel192",
+   "prev": 261272,
+   "now": 299931,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 654,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 654,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 655,
+  "type": "prestige",
+  "message": "Prestige +100: ip_gross_1m (Dead Pulse).",
+  "data": {
+   "awardId": "ip:ip185:ip_gross_1m",
+   "releaseId": "rel192",
+   "milestone": "ip_gross_1m",
+   "amount": 100
+  }
+ },
+ {
+  "week": 659,
+  "type": "milestone",
+  "message": "Dead Pulse: Season 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj193"
+  }
+ },
+ {
+  "week": 659,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 659,
+  "type": "cast",
+  "message": "Cast Jay Vale for $66,911.23.",
+  "data": {
+   "starId": "star4",
+   "price": 66911.23
+  }
+ },
+ {
+  "week": 662,
+  "type": "ip_fans",
+  "message": "Dead Pulse fans: 0 → 22,156 (avg score 8.5, 5,068,419 viewers).",
+  "data": {
+   "ipId": "ip185"
+  }
+ },
+ {
+  "week": 662,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 12.69,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 662,
+  "type": "trust",
+  "message": "Meridian Global earned 119% of its advance back on Dead Pulse with strong reviews. Trust 4.90 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.19,
+   "step": 0.51
+  }
+ },
+ {
+  "week": 662,
+  "type": "run_end",
+  "message": "Dead Pulse run ended after 18 weeks: 5,068,419 viewer-episodes (395,645 distinct people), gross $1,621,894, studio take $908,261.",
+  "data": {
+   "releaseId": "rel192"
+  }
+ },
+ {
+  "week": 673,
+  "type": "milestone",
+  "message": "Dead Pulse: Season 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj193"
+  }
+ },
+ {
+  "week": 673,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 679,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 680,
+  "type": "surplus",
+  "message": "Dead Pulse: Season 2: kept $52,089 of unused advance.",
+  "data": {
+   "projectId": "proj193",
+   "surplus": 52088.77
+  }
+ },
+ {
+  "week": 680,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Pulse: Season 2).",
+  "data": {
+   "awardId": "rel:rel199:meters_all_70",
+   "releaseId": "rel199",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 680,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Pulse: Season 2).",
+  "data": {
+   "awardId": "rel:rel199:audience_7_5",
+   "releaseId": "rel199",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 680,
+  "type": "release",
+  "message": "Dead Pulse: Season 2 released: Audience 9.51 / Critics 8.16 (avg 8.84). Opening pool 216,431, opening 64,929. Renewable (season average 8.84).",
+  "data": {
+   "releaseId": "rel199"
+  }
+ },
+ {
+  "week": 680,
+  "type": "announce",
+  "message": "Announced Dead Pulse season 3: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip185",
+   "season": 3
+  }
+ },
+ {
+  "week": 680,
+  "type": "train",
+  "message": "Trained Cam Vale: +3 to all stats."
+ },
+ {
+  "week": 680,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 680,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Pirates (season): meridian $495,000 @ 45%; xyz $359,000 @ 44%."
+ },
+ {
+  "week": 680,
+  "type": "project_start",
+  "message": "Started Dead Pulse: Season 3 (tv, 15 episodes, Horror + Pirates, season) with meridian advance $495,000 @ 45%.",
+  "data": {
+   "projectId": "proj200"
+  }
+ },
+ {
+  "week": 681,
+  "type": "feedback",
+  "message": "Dead Pulse: Season 2 opens to 108,216 viewers.",
+  "data": {
+   "releaseId": "rel199",
+   "prev": 0,
+   "now": 108216,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 681,
+  "type": "prestige",
+  "message": "Prestige +150: ip_viewers_500k (Dead Pulse: Season 2).",
+  "data": {
+   "awardId": "ip:ip185:ip_viewers_500k",
+   "releaseId": "rel199",
+   "milestone": "ip_viewers_500k",
+   "amount": 150
+  }
+ },
+ {
+  "week": 682,
+  "type": "feedback",
+  "message": "Critics are raving about Dead Pulse: Season 2. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel199",
+   "prev": 108216,
+   "now": 135367,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 684,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Pulse: Season 2. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel199",
+   "prev": 152445,
+   "now": 178105,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 685,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Pulse: Season 2 is still climbing (178,105 → 201,751).",
+  "data": {
+   "releaseId": "rel199",
+   "prev": 178105,
+   "now": 201751,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 688,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 694,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 695,
+  "type": "milestone",
+  "message": "Dead Pulse: Season 3 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj200"
+  }
+ },
+ {
+  "week": 695,
+  "type": "cast",
+  "message": "Cast Jay Vale for $66,540.75.",
+  "data": {
+   "starId": "star4",
+   "price": 66540.75
+  }
+ },
+ {
+  "week": 698,
+  "type": "ip_fans",
+  "message": "Dead Pulse fans: 20,673 → 36,725 (avg score 8.84, 3,376,715 viewers).",
+  "data": {
+   "ipId": "ip185"
+  }
+ },
+ {
+  "week": 698,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 12.2,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 698,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 86% of its $379,000 advance on Dead Pulse: Season 2. Trust 4.02 → 4.33.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.86,
+   "step": 0.31
+  }
+ },
+ {
+  "week": 698,
+  "type": "run_end",
+  "message": "Dead Pulse: Season 2 run ended after 18 weeks: 3,376,715 viewer-episodes (261,255 distinct people), gross $1,080,549, studio take $756,384.",
+  "data": {
+   "releaseId": "rel199"
+  }
+ },
+ {
+  "week": 705,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 709,
+  "type": "milestone",
+  "message": "Dead Pulse: Season 3 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj200"
+  }
+ },
+ {
+  "week": 709,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 716,
+  "type": "surplus",
+  "message": "Dead Pulse: Season 3: kept $168,459 of unused advance.",
+  "data": {
+   "projectId": "proj200",
+   "surplus": 168459.25
+  }
+ },
+ {
+  "week": 716,
+  "type": "genre_level",
+  "message": "Studio Horror level 4 → 5."
+ },
+ {
+  "week": 716,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Pulse: Season 3).",
+  "data": {
+   "awardId": "rel:rel206:meters_all_70",
+   "releaseId": "rel206",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 716,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Pulse: Season 3).",
+  "data": {
+   "awardId": "rel:rel206:audience_7_5",
+   "releaseId": "rel206",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 716,
+  "type": "release",
+  "message": "Dead Pulse: Season 3 released: Audience 9.33 / Critics 8 (avg 8.66). Opening pool 343,188, opening 102,956. Renewable (season average 8.66).",
+  "data": {
+   "releaseId": "rel206"
+  }
+ },
+ {
+  "week": 716,
+  "type": "announce",
+  "message": "Announced Dead Pulse season 4: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip185",
+   "season": 4
+  }
+ },
+ {
+  "week": 716,
+  "type": "train",
+  "message": "Trained Sam Imai: +3 to all stats."
+ },
+ {
+  "week": 716,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 716,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Pirates (season): meridian $708,000 @ 44%; orbit $473,000 @ 35%; starlight $259,000 @ 8%."
+ },
+ {
+  "week": 716,
+  "type": "project_start",
+  "message": "Started Dead Pulse: Season 4 (tv, 20 episodes, Horror + Pirates, season) with meridian advance $708,000 @ 44%.",
+  "data": {
+   "projectId": "proj207"
+  }
+ },
+ {
+  "week": 717,
+  "type": "feedback",
+  "message": "Dead Pulse: Season 3 opens to 171,594 viewers.",
+  "data": {
+   "releaseId": "rel206",
+   "prev": 0,
+   "now": 171594,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 718,
+  "type": "feedback",
+  "message": "Critics are raving about Dead Pulse: Season 3. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel206",
+   "prev": 171594,
+   "now": 214115,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 719,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 720,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Pulse: Season 3. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel206",
+   "prev": 240700,
+   "now": 279920,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 721,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Pulse: Season 3 is still climbing (279,920 → 312,346).",
+  "data": {
+   "releaseId": "rel206",
+   "prev": 279920,
+   "now": 312346,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 725,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 734,
+  "type": "ip_fans",
+  "message": "Dead Pulse fans: 34,267 → 57,459 (avg score 8.66, 5,174,961 viewers).",
+  "data": {
+   "ipId": "ip185"
+  }
+ },
+ {
+  "week": 734,
+  "type": "star_career",
+  "message": "Jay Vale: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star4",
+   "fameDelta": 13.27,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 734,
+  "type": "trust",
+  "message": "Meridian Global earned 151% of its advance back on Dead Pulse: Season 3 with strong reviews. Trust 4.90 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.51,
+   "step": 0.7
+  }
+ },
+ {
+  "week": 734,
+  "type": "run_end",
+  "message": "Dead Pulse: Season 3 run ended after 18 weeks: 5,174,961 viewer-episodes (396,032 distinct people), gross $1,655,988, studio take $910,793.",
+  "data": {
+   "releaseId": "rel206"
+  }
+ },
+ {
+  "week": 735,
+  "type": "milestone",
+  "message": "Dead Pulse: Season 4 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj207"
+  }
+ },
+ {
+  "week": 735,
+  "type": "cast",
+  "message": "Cast Jay Vale for $66,388.93.",
+  "data": {
+   "starId": "star4",
+   "price": 66388.93
+  }
+ },
+ {
+  "week": 737,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 753,
+  "type": "milestone",
+  "message": "Dead Pulse: Season 4 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj207"
+  }
+ },
+ {
+  "week": 753,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 757,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 763,
+  "type": "surplus",
+  "message": "Dead Pulse: Season 4: kept $306,611 of unused advance.",
+  "data": {
+   "projectId": "proj207",
+   "surplus": 306611.07
+  }
+ },
+ {
+  "week": 763,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Dead Pulse: Season 4).",
+  "data": {
+   "awardId": "rel:rel213:meters_all_70",
+   "releaseId": "rel213",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 763,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Dead Pulse: Season 4).",
+  "data": {
+   "awardId": "rel:rel213:audience_7_5",
+   "releaseId": "rel213",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 763,
+  "type": "release",
+  "message": "Dead Pulse: Season 4 released: Audience 9.19 / Critics 7.87 (avg 8.53). Opening pool 359,478, opening 107,843. Renewable (season average 8.53).",
+  "data": {
+   "releaseId": "rel213"
+  }
+ },
+ {
+  "week": 763,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 763,
+  "type": "announce",
+  "message": "Announced Dead Pulse season 5: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip185",
+   "season": 5
+  }
+ },
+ {
+  "week": 763,
+  "type": "train",
+  "message": "Trained Eli Fox: +3 to all stats."
+ },
+ {
+  "week": 763,
+  "type": "train",
+  "message": "Trained Dee Park: +3 to all stats."
+ },
+ {
+  "week": 763,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Pirates (season): wolf $588,000 @ 29%; meridian $776,000 @ 44%."
+ },
+ {
+  "week": 763,
+  "type": "project_start",
+  "message": "Started Dead Pulse: Season 5 (tv, 20 episodes, Horror + Pirates, season) with meridian advance $776,000 @ 44%.",
+  "data": {
+   "projectId": "proj214"
+  }
+ },
+ {
+  "week": 764,
+  "type": "feedback",
+  "message": "Dead Pulse: Season 4 opens to 179,739 viewers.",
+  "data": {
+   "releaseId": "rel213",
+   "prev": 0,
+   "now": 179739,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 765,
+  "type": "feedback",
+  "message": "Critics are raving about Dead Pulse: Season 4. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel213",
+   "prev": 179739,
+   "now": 223813,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 765,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 767,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Dead Pulse: Season 4. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel213",
+   "prev": 251217,
+   "now": 291091,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 768,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Dead Pulse: Season 4 is still climbing (291,091 → 319,850).",
+  "data": {
+   "releaseId": "rel213",
+   "prev": 291091,
+   "now": 319850,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 771,
+  "type": "prestige",
+  "message": "Prestige +150: ip_gross_5m (Dead Pulse: Season 4).",
+  "data": {
+   "awardId": "ip:ip185:ip_gross_5m",
+   "releaseId": "rel213",
+   "milestone": "ip_gross_5m",
+   "amount": 150
+  }
+ },
+ {
+  "week": 775,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ }
+]

@@ -1,7 +1,8 @@
 // Human-readable Markdown + CSV/JSON output. Every report states ruleset, config hash, seeds, strategies,
 // and modelled features, and labels numbers as provisional.
 import { greatTable, progressTable, WINDOWS, filmLabel, bestOf, filmRefs } from "./greatness";
-import { g3FormatTable, g3TradeoffTable } from "./gate3metrics";
+import { careerG3, g3FormatTable, g3TradeoffTable } from "./gate3metrics";
+import { renewalStatus } from "../core/formats";
 import type { Config } from "../core/config";
 import { configHash } from "../core/config";
 import { FEATURES_MODELLED, FEATURES_NOT_MODELLED } from "../core/simulation";
@@ -104,6 +105,19 @@ export function careerReport(state: StudioState, cfg: Config, strategy: string, 
     const c = (f: (x: (typeof films)[number]) => boolean) => `${films.filter(f).length}/${n}`;
     out.push(`- Great films: Hall of Fame ${c((f) => f.hallOfFame)} · avg ≥9.0 ${c((f) => f.avg >= 9)} · avg >9.0 ${c((f) => f.avg > 9)} · Audience ≥9 ${c((f) => f.audience >= 9)} · Critic ≥9 ${c((f) => f.critic >= 9)} · 8+ ${c((f) => f.avg >= 8)}`);
     out.push(`- Best film: ${filmLabel(bestOf(films))} · best Audience: ${filmLabel(bestOf(films, "audience"))} · best Critic: ${filmLabel(bestOf(films, "critic"))}`);
+  }
+  if (cfg.formats.limitedSeries || cfg.formats.tv || cfg.formats.streaming) {
+    const g = careerG3(state.seed, strategy, state, cfg);
+    out.push("", "## Formats, TV and streaming (Gate 3)", "");
+    out.push(`- Releases by format: ${Object.entries(g.byFormat).map(([k, x]) => `${k} ${x.n} (avg ${x.avg}, HoF ${x.hof}, net/production-week $${Math.round(x.net / Math.max(1, x.prodWeeks)).toLocaleString()})`).join("; ")}`);
+    out.push(`- TV: ${g.tvUnlockWeek === null ? "never unlocked" : `unlocked week ${g.tvUnlockWeek} (year ${(g.tvUnlockWeek / 52).toFixed(1)})`} · shows ${g.shows}, seasons ${g.seasons}, longest ${g.maxSeasons} · ended by a score below ${cfg.tv.renewalThreshold}: ${g.showsEndedByScore}`);
+    for (const ip of Object.values(state.ips).filter((i) => i.format === "tv")) {
+      const ss = state.releases.filter((r) => r.ipId === ip.id);
+      out.push(`  - ${ip.name}: seasons ${ss.map((r) => `S${r.seasonNumber} ${r.episodes}ep ${r.avgScore}${(r.trace.tv as { twistTheme?: string | null } | undefined)?.twistTheme ? ` (twist ${(r.trace.tv as { twistTheme: string }).twistTheme})` : ""}`).join(" → ")} · fans ${ip.fans.toLocaleString()} · ${renewalStatus(state, cfg, ip).reason}`);
+    }
+    out.push(`- Streaming: ${state.platform ? `${state.platform.status}; build started week ${g.buildStartWeek}, launched week ${g.launchWeek ?? "—"}; subscribers now ${g.subsEnd.toLocaleString()} (peak ${g.subsPeak.toLocaleString()}); by year-end ${g.subsByYear.map((x, i) => `y${i + 1} ${x.toLocaleString()}`).join(", ")}; subscription gross $${Math.round(g.platformGross).toLocaleString()} − operating $${Math.round(g.platformOpex).toLocaleString()}; build $${state.platform.buildCost.toLocaleString()} paid back ${g.paybackWeek ? `week ${g.paybackWeek}` : "not yet"}; catalog ${g.catalog} titles; Originals ${g.originals}` : "not built"}`);
+    out.push(`- Last 12 months: traditional studio take $${g.last12.traditional.toLocaleString()} · subscriptions $${g.last12.subscriptions.toLocaleString()} · platform cost $${g.last12.opex.toLocaleString()} · kept surplus $${g.last12.surplus.toLocaleString()}`);
+    out.push(`- Prestige by source: ${Object.entries(g.prestigeBySource).map(([k, v]) => `${k} ${v}`).join(", ")} · by format: ${Object.entries(g.prestigeByFormat).map(([k, v]) => `${k} ${v}`).join(", ")}`);
   }
   out.push("");
   out.push("## Releases (full causal trace)", "");

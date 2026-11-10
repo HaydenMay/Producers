@@ -51,6 +51,10 @@ Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = ha
 | G12 | Memory | Experiments keep slim release records (`slimRelease`) and drop per-release data after each batch; summaries are unaffected. | — | — | Harness only. |
 | G13 | Debug | `debug.injectBug` deliberately breaks one rule so tests can prove the invariants catch it. | `"none"` | `"none"` | Test-only. |
 
+## Gate 3 assumptions
+
+Gate 3 (formats, TV, streaming) has its own expanded register: **`docs/gate-3-assumptions.md`** (T1–T19, S1–S8, P1–P4, provisional flag thresholds). All Gate 3 fields default to disabled in `config/baseline.json`; `config/gate3.json` enables them.
+
 ## Gate 2.6 assumptions (critic generations, audience eras, great-film metrics)
 
 All Gate 2.6 numbers are **TEST ASSUMPTIONS**. With `expectations.critics.enabled` and `expectations.audience.enabled` false (the baseline and the Gate 2.5 candidate), results are byte-identical to Gate 2.5.
@@ -72,7 +76,7 @@ Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming
 
 ## Full parameter listing (`config/baseline.json`)
 
-Regenerated for Gate 2.6. Candidate overrides are in `config/candidate.json`; expectation variants are in `config/experiments/G26_expectations.json`.
+Regenerated for Gate 3. Candidate overrides: `config/candidate.json`; Gate 3 mixed-format config: `config/gate3.json`; experiment variants: `config/experiments/`.
 
 | Path | Value |
 |---|---|
@@ -343,8 +347,9 @@ Regenerated for Gate 2.6. Candidate overrides are in `config/candidate.json`; ex
 | `staffCapacity.ladder` | [999] |
 | `staffCapacity.upgradeCosts` | [] |
 | `staffCapacity.upgradePrestige` | [] |
-| `agents._label` | "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire)." |
+| `agents._label` | "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number)." |
 | `agents.legacyHeuristicStaffCaps` | true |
+| `agents.tvOrderPreference` | "max" |
 | `expectations._label` | "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS." |
 | `expectations.method` | "scale" |
 | `expectations.critics.enabled` | false |
@@ -356,3 +361,98 @@ Regenerated for Gate 2.6. Candidate overrides are in `config/candidate.json`; ex
 | `expectations.audience.eraYears` | 10 |
 | `expectations.audience.toughnessPerEra` | 0.02 |
 | `expectations.audience.maxToughness` | 0.06 |
+| `formats._label` | "Gate 3. LOCKED direction: movies + limited series first, TV via a studio upgrade (money + Prestige), streaming later. All false = the Gate 2.6 movie-only kernel, byte-identical." |
+| `formats.limitedSeries` | false |
+| `formats.tv` | false |
+| `formats.streaming` | false |
+| `limitedSeries._label` | "TEST ASSUMPTIONS. Self-contained, NON-renewable series: fixed episode package, weekly airing + short tail." |
+| `limitedSeries.availableAfterProductions` | 1 |
+| `limitedSeries.episodes` | 6 |
+| `limitedSeries.baseCost` | 90000 |
+| `limitedSeries.durationWeeks` | 18 |
+| `limitedSeries.pacing` | "weekly" |
+| `limitedSeries.grossPerEpisodeViewer` | 0.57 |
+| `limitedSeries.tailWeeks` | 3 |
+| `limitedSeries.tailShare` | 0.4 |
+| `limitedSeries.decliningGrossPerViewer` | 2.4 |
+| `tv._label` | "TEST ASSUMPTIONS for renewable TV (one IP, separately produced seasons). LOCKED: renewal by season average (4.0 renewable, 9.0 HoF), episode caps by studio Prestige (not show history), genre locked, twist changes theme, hiatus affects anticipation only, announcement = show-specific fading hype." |
+| `tv.unlock.prestige` | 300 |
+| `tv.unlock.cost` | 150000 |
+| `tv.setupCost` | 15000 |
+| `tv.perEpisodeCost` | 15000 |
+| `tv.durationBaseWeeks` | 6 |
+| `tv.weeksPerEpisode` | 2.0 |
+| `tv.orderSizes` | [5, 10, 15, 20] |
+| `tv.episodeCaps[0].maxEpisodes` | 5 |
+| `tv.episodeCaps[0].prestige` | 0 |
+| `tv.episodeCaps[1].maxEpisodes` | 10 |
+| `tv.episodeCaps[1].prestige` | 600 |
+| `tv.episodeCaps[2].maxEpisodes` | 15 |
+| `tv.episodeCaps[2].prestige` | 1800 |
+| `tv.episodeCaps[3].maxEpisodes` | 20 |
+| `tv.episodeCaps[3].prestige` | 3500 |
+| `tv.renewalThreshold` | 4.0 |
+| `tv.renewalInclusive` | true |
+| `tv.grossPerEpisodeViewer` | 0.32 |
+| `tv.episodeModel.premiereShare` | 0.5 |
+| `tv.episodeModel.baseRetention` | 0.88 |
+| `tv.episodeModel.retentionWeight` | 0.3 |
+| `tv.episodeModel.retentionMin` | 0.5 |
+| `tv.episodeModel.retentionMax` | 1.0 |
+| `tv.episodeModel.criticWeeks` | 2 |
+| `tv.episodeModel.buzzRate` | 0.06 |
+| `tv.episodeModel.womPerViewer` | 0.35 |
+| `tv.episodeModel.interestDecay` | 0.15 |
+| `tv.episodeModel.watchRate` | 0.25 |
+| `tv.episodeModel.watchRateQualityWeight` | 0.25 |
+| `tv.tailWeeks` | 2 |
+| `tv.tailShare` | 0.35 |
+| `tv.fatigue.perSeason` | 0.012 |
+| `tv.fatigue.exponent` | 1.6 |
+| `tv.fatigue.max` | 0.35 |
+| `tv.fatigue.qualitySlow` | 0.4 |
+| `tv.twist.goodGradeMin` | 0.5 |
+| `tv.twist.badGradeMax` | -0.5 |
+| `tv.twist.goodFatigueReset` | 2 |
+| `tv.twist.badFanLoss` | 0.25 |
+| `tv.hiatus.graceWeeks` | 78 |
+| `tv.hiatus.penaltyPerYear` | 0.35 |
+| `tv.hiatus.minMult` | 0.4 |
+| `tv.announce.cost` | 15000 |
+| `tv.announce.boost` | 0.35 |
+| `tv.announce.decayPerWeek` | 0.04 |
+| `tv.contract._label` | "OPEN designer decision. A = every season is a new pitch (fixed offers). B = continuing partner: same distributor + royalty; per-season advance = baseCost x clamp(baseCover + roiWeight x (lastRoi-1), minCover, maxCover) x trust factor." |
+| `tv.contract.variant` | "A" |
+| `tv.contract.B.baseCover` | 0.9 |
+| `tv.contract.B.roiWeight` | 0.3 |
+| `tv.contract.B.minCover` | 0.5 |
+| `tv.contract.B.maxCover` | 1.4 |
+| `streaming._label` | "TEST ASSUMPTIONS for the studio streaming service (one aggregate subscriber business; no per-title payouts)." |
+| `streaming.unlock.prestige` | 2500 |
+| `streaming.unlock.minCatalog` | 8 |
+| `streaming.engineer.hireCost` | 25000 |
+| `streaming.engineer.wage` | 1500 |
+| `streaming.engineer.statRange` | [18, 35] |
+| `streaming.buildCost` | 600000 |
+| `streaming.buildWeeks` | 30 |
+| `streaming.reachableMarket` | 120000 |
+| `streaming.feePerSubWeek` | 0.5 |
+| `streaming.opex.fixedPerWeek` | 8000 |
+| `streaming.opex.perSubPerWeek` | 0.15 |
+| `streaming.originalReach` | 0.55 |
+| `streaming.originalConversion` | 0.35 |
+| `streaming.catalogJoinConversion` | 0.04 |
+| `streaming.launchPerAppeal` | 1500 |
+| `streaming.launchMax` | 15000 |
+| `streaming.churn.basePerWeek` | 0.012 |
+| `streaming.churn.retentionMax` | 0.65 |
+| `streaming.churn.catalogScale` | 6.0 |
+| `streaming.churn.hofEvergreen` | 2.5 |
+| `streaming.churn.freshnessHalfLifeWeeks` | 104 |
+| `streaming.churn.evergreenFloor` | 0.35 |
+| `streaming.churn.diversityPerGenre` | 0.02 |
+| `streaming.churn.diversityMax` | 0.1 |
+| `streaming.churn.quietGraceWeeks` | 26 |
+| `streaming.churn.quietPenaltyPer26Weeks` | 0.5 |
+| `streaming.churn.quietMax` | 2.0 |
+| `streaming.originalTvPacing` | "weekly" |

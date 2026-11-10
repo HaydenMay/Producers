@@ -1,0 +1,49 @@
+{
+ "_label": "Season-order size: agents order the largest allowed season up to the preference (cost/return/cadence trade-off). One dimension changes.",
+ "reference": "order_max",
+ "seeds": 200,
+ "productions": [],
+ "years": [
+  10,
+  20
+ ],
+ "strategies": [
+  "tv-first",
+  "renewal-franchise",
+  "traditional-holdout"
+ ],
+ "variants": [
+  {
+   "name": "order_5",
+   "overrides": {
+    "agents": {
+     "tvOrderPreference": 5
+    }
+   }
+  },
+  {
+   "name": "order_10",
+   "overrides": {
+    "agents": {
+     "tvOrderPreference": 10
+    }
+   }
+  },
+  {
+   "name": "order_20",
+   "overrides": {
+    "agents": {
+     "tvOrderPreference": 20
+    }
+   }
+  },
+  {
+   "name": "order_max",
+   "overrides": {
+    "agents": {
+     "tvOrderPreference": "max"
+    }
+   }
+  }
+ ]
+}

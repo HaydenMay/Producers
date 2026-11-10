@@ -462,8 +462,9 @@
     "upgradePrestige": []
   },
   "agents": {
-    "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire).",
-    "legacyHeuristicStaffCaps": true
+    "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number).",
+    "legacyHeuristicStaffCaps": true,
+    "tvOrderPreference": "max"
   },
   "expectations": {
     "_label": "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS.",
@@ -613,7 +614,7 @@
     "launchPerAppeal": 1500,
     "launchMax": 15000,
     "churn": {
-      "basePerWeek": 0.03,
+      "basePerWeek": 0.012,
       "retentionMax": 0.65,
       "catalogScale": 6.0,
       "hofEvergreen": 2.5,

@@ -1,0 +1,61 @@
+{
+ "_label": "Gate 2.6 critic curves on the mixed-format economy (still NOT approved): control (off) vs combo_B vs combo_D.",
+ "reference": "curves_off",
+ "seeds": 200,
+ "productions": [],
+ "years": [
+  15,
+  30
+ ],
+ "strategies": [
+  "balanced",
+  "tv-first",
+  "mixed",
+  "streaming-pivot",
+  "limited-focus"
+ ],
+ "variants": [
+  {
+   "name": "curves_off",
+   "overrides": {}
+  },
+  {
+   "name": "combo_B",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 6,
+      "toughnessPerGeneration": 0.04,
+      "maxToughness": 0.12
+     },
+     "audience": {
+      "enabled": true,
+      "eraYears": 10,
+      "toughnessPerEra": 0.02,
+      "maxToughness": 0.06
+     }
+    }
+   }
+  },
+  {
+   "name": "combo_D",
+   "overrides": {
+    "expectations": {
+     "critics": {
+      "enabled": true,
+      "generationYears": 6,
+      "toughnessPerGeneration": 0.08,
+      "maxToughness": 0.12
+     },
+     "audience": {
+      "enabled": true,
+      "eraYears": 10,
+      "toughnessPerEra": 0.02,
+      "maxToughness": 0.06
+     }
+    }
+   }
+  }
+ ]
+}

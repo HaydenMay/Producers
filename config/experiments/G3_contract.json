@@ -1,0 +1,39 @@
+{
+ "_label": "OPEN contract question: A = per-season pitch; B = continuing partner with explicit per-season advance function. Same seeds/strategies; only tv.contract.variant changes.",
+ "reference": "A_per_season",
+ "seeds": 200,
+ "productions": [],
+ "years": [
+  10,
+  20
+ ],
+ "strategies": [
+  "tv-first",
+  "renewal-franchise",
+  "traditional-holdout",
+  "mixed",
+  "tv-duds"
+ ],
+ "variants": [
+  {
+   "name": "A_per_season",
+   "overrides": {
+    "tv": {
+     "contract": {
+      "variant": "A"
+     }
+    }
+   }
+  },
+  {
+   "name": "B_partner",
+   "overrides": {
+    "tv": {
+     "contract": {
+      "variant": "B"
+     }
+    }
+   }
+  }
+ ]
+}

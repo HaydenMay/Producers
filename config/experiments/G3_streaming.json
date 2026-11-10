@@ -1,0 +1,58 @@
+{
+ "_label": "Streaming sensitivity: acquisition vs churn vs catalog retention vs price, one dimension at a time (all TEST ASSUMPTIONS).",
+ "reference": "stream_control",
+ "seeds": 200,
+ "productions": [],
+ "years": [
+  15,
+  25
+ ],
+ "strategies": [
+  "streaming-pivot",
+  "mixed",
+  "traditional-holdout",
+  "balanced"
+ ],
+ "variants": [
+  {
+   "name": "stream_control",
+   "overrides": {}
+  },
+  {
+   "name": "acquisition_x1.5",
+   "overrides": {
+    "streaming": {
+     "originalConversion": 0.525
+    }
+   }
+  },
+  {
+   "name": "churn_x1.5",
+   "overrides": {
+    "streaming": {
+     "churn": {
+      "basePerWeek": 0.018
+     }
+    }
+   }
+  },
+  {
+   "name": "catalog_retention_0.8",
+   "overrides": {
+    "streaming": {
+     "churn": {
+      "retentionMax": 0.8
+     }
+    }
+   }
+  },
+  {
+   "name": "fee_x1.5",
+   "overrides": {
+    "streaming": {
+     "feePerSubWeek": 0.75
+    }
+   }
+  }
+ ]
+}

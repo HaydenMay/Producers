@@ -14,6 +14,7 @@ import { selfFundRegret, selfFundReport } from "../batch/selfFund";
 import { earlyReport, type EarlyScenario } from "../batch/early";
 import { greatCsv } from "../batch/greatness";
 import { fixedReport } from "../batch/eras";
+import { counterfactualReport, runCounterfactuals } from "../batch/counterfactuals";
 import { experimentJson, experimentGreatCsv, experimentCareerBestCsv, experimentReport, runExperiment, type ExperimentSpec } from "../batch/experiment";
 import type { Decision } from "../core/types";
 
@@ -147,6 +148,13 @@ function main() {
     case "early": {
       const spec = JSON.parse(readFileSync(one(a, "spec", "config/experiments/E_start_economy.json"), "utf8")) as { seeds: number; strategies: string[]; scenarios: EarlyScenario[] };
       const p = out(dir, "early-economy.md", earlyReport(cfg, spec.scenarios, Number(one(a, "seeds", String(spec.seeds))), spec.strategies));
+      console.log(`report: ${p}`);
+      break;
+    }
+    case "counterfactuals": {
+      const cases = runCounterfactuals(cfg);
+      const p = out(dir, "counterfactuals.md", counterfactualReport(cases, cfg, configHash(cfg)));
+      out(dir, "counterfactuals.json", JSON.stringify(cases, null, 1));
       console.log(`report: ${p}`);
       break;
     }
