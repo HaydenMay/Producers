@@ -9,6 +9,7 @@ import { compareBatches, runBatch } from "../batch/batch";
 import { checkInvariants } from "../batch/diagnostics";
 import { batchReport, careerReport, compareReport, metricsCsv, releasesCsv } from "../batch/report";
 import type { CareerMetrics } from "../batch/metrics";
+import { experimentJson, experimentReport, runExperiment, type ExperimentSpec } from "../batch/experiment";
 import type { Decision } from "../core/types";
 
 function args(argv: string[]) {
@@ -96,6 +97,20 @@ function main() {
       const p = out(dir, `compare-${label.replace(/[^a-z0-9]+/gi, "_")}-s${seeds}-p${productions}.md`, compareReport(rows, A, B, label, candCfg));
       console.log(`baseline ${A.meta.configHash} vs candidate ${B.meta.configHash} · ${seeds} paired seeds · ${A.meta.runtimeMs + B.meta.runtimeMs} ms`);
       for (const r of rows.filter((r) => ["endCash", "prestige", "shareLate8plus"].includes(r.metric))) console.log(`  ${r.strategy.padEnd(18)} ${r.metric.padEnd(16)} ${r.baselineMedian} → ${r.candidateMedian} (paired Δ ${r.medianPairedDelta}, higher in ${(r.shareImproved * 100).toFixed(0)}%)`);
+      console.log(`report: ${p}`);
+      break;
+    }
+    case "experiment": {
+      const specPath = one(a, "spec", "");
+      const spec = JSON.parse(readFileSync(specPath, "utf8")) as ExperimentSpec;
+      if (a.seeds) spec.seeds = Number(one(a, "seeds", "100"));
+      if (a.productions) spec.productions = one(a, "productions", "20").split(",").map(Number);
+      const name = specPath.replace(/^.*\//, "").replace(/\.json$/, "");
+      const res = runExperiment(spec, cfg);
+      const p = out(dir, `${name}.md`, experimentReport(res, `Experiment: ${name}`));
+      out(dir, `${name}.json`, JSON.stringify(experimentJson(res), null, 1));
+      const viol = res.runs.reduce((x, r) => x + r.batch.violations.length, 0);
+      console.log(`experiment ${name}: ${res.runs.length} runs · ${res.runs.reduce((x, r) => x + r.batch.meta.careers, 0)} careers · ${res.runs.reduce((x, r) => x + r.batch.meta.runtimeMs, 0)} ms · invariant violations ${viol}`);
       console.log(`report: ${p}`);
       break;
     }

@@ -287,7 +287,18 @@
     "fanConversion": 0.08,
     "backlashRate": 0.35,
     "spinoffFanShare": 0.5,
-    "fanDecayPerYear": 0.1
+    "fanDecayPerYear": 0.1,
+    "legsModel": "geometric",
+    "diffusion": {
+      "_label": "WORKING ASSUMPTION (Gate 2.5 candidate): finite awareness diffusion. Used only when legsModel = 'diffusion'.",
+      "openWatchShare": 0.3,
+      "watchRate": 0.3,
+      "watchRateQualityWeight": 0.25,
+      "criticBuzzRate": 0.12,
+      "womPerViewer": 1.4,
+      "interestDecay": 0.12,
+      "badInterestDecay": 0.35
+    }
   },
   "distribution": {
     "roster": [
@@ -441,5 +452,17 @@
   "debug": {
     "injectBug": "none",
     "_note": "TEST-ONLY regression injection: none | advanceAsRevenue | fameIntoScore. Must be 'none' for real runs."
+  },
+  "staffCapacity": {
+    "_label": "EXPERIMENTAL (Gate 2.5). Studio-wide max employees; NOT a per-project crew cap. Baseline keeps the historical uncapped behavior for comparison.",
+    "ladder": [
+      999
+    ],
+    "upgradeCosts": [],
+    "upgradePrestige": []
+  },
+  "agents": {
+    "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire).",
+    "legacyHeuristicStaffCaps": true
   }
 }

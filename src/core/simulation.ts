@@ -5,7 +5,7 @@ import { configHash } from "./config";
 import { emit, ledger } from "./events";
 import { initRng } from "./rng";
 import { canCancel, cancelRepay, spendableCash } from "./economy";
-import { hireStaff, payroll, trainStaff } from "./staff";
+import { canHire, hireStaff, payroll, trainStaff } from "./staff";
 import { generateOffers, driftTrust } from "./distribution";
 import { generateWorld, researchTheme, updateTrends } from "./progression";
 import { campaignOptions, canSelfFund, castStar, chooseCampaign, finalizeRelease, productionWeek, startProject } from "./production";
@@ -41,6 +41,9 @@ export function createStudio(seed: number, cfg: Config): StudioState {
     genreXp: {},
     trends: {},
     studioBuzz: 0,
+    maxStaff: cfg.staffCapacity.ladder[0],
+    capacityLevel: 0,
+    upgrades: [],
     rng: initRng(seed),
     ledger: [],
     events: [],
@@ -76,11 +79,21 @@ function reinvestOptions(state: StudioState, cfg: Config): Decision[] {
   const out: Decision[] = [];
   const cash = spendableCash(state);
   if (state.cash < 0) return out; // LOCKED: in the red you can't hire, train, advertise or self-fund
-  if (cash >= cfg.staffGrowth.hireCost) out.push({ type: "hire" });
+  if (cash >= cfg.staffGrowth.hireCost && canHire(state)) out.push({ type: "hire" });
+  const up = nextUpgrade(state, cfg);
+  if (up && cash >= up.cost && state.prestige >= up.prestige) out.push({ type: "upgrade_studio" });
   if (cash >= cfg.staffGrowth.trainCost) for (const s of state.staff) out.push({ type: "train", staffId: s.id });
   if (cash >= cfg.marketing.studioAdsCost) out.push({ type: "studio_ads" });
   if (cash >= cfg.research.themeCost) for (const t of cfg.world.themes) if (!state.unlockedThemes.includes(t)) out.push({ type: "research_theme", theme: t });
   return out;
+}
+
+/** EXPERIMENTAL studio upgrade: next capacity step, its cost and Prestige requirement (test-only trigger rules). */
+export function nextUpgrade(state: StudioState, cfg: Config): { to: number; cost: number; prestige: number } | null {
+  const lad = cfg.staffCapacity.ladder;
+  const i = state.capacityLevel;
+  if (i + 1 >= lad.length) return null;
+  return { to: lad[i + 1], cost: cfg.staffCapacity.upgradeCosts[i] ?? Infinity, prestige: cfg.staffCapacity.upgradePrestige[i] ?? Infinity };
 }
 
 export function getChoices(state: StudioState, cfg: Config): Choices {
@@ -147,6 +160,15 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
     case "hire":
       hireStaff(state, cfg);
       return;
+    case "upgrade_studio": {
+      const up = nextUpgrade(state, cfg)!;
+      ledger(state, { kind: "upgrade", amount: -up.cost, note: `studio capacity ${state.maxStaff} -> ${up.to}` });
+      state.upgrades.push({ week: state.week, from: state.maxStaff, to: up.to, cost: up.cost, prestigeAtUpgrade: state.prestige });
+      emit(state, "upgrade", `Studio upgraded: employee capacity ${state.maxStaff} → ${up.to} (cost $${up.cost.toLocaleString()}).`);
+      state.maxStaff = up.to;
+      state.capacityLevel += 1;
+      return;
+    }
     case "train":
       return trainStaff(state, cfg, d.staffId);
     case "studio_ads":
@@ -199,6 +221,7 @@ export function getSnapshot(state: StudioState) {
     year: +(state.week / 52).toFixed(2),
     cash: Math.round(state.cash),
     prestige: state.prestige,
+    staffOccupancy: `${state.staff.length} / ${state.maxStaff >= 999 ? "uncapped" : state.maxStaff}`,
     staff: state.staff.map((s) => ({ name: s.name, stats: Object.fromEntries(Object.entries(s.stats).map(([k, v]) => [k, +v.toFixed(1)])) })),
     releases: state.releases.length,
     activeReleases: state.releases.filter((r) => r.active).length,

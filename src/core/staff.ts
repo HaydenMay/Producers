@@ -47,7 +47,12 @@ export function randomName(state: StudioState): string {
   return `${pick(state.rng, "names", FIRST)} ${pick(state.rng, "names", LAST)}`;
 }
 
+export function canHire(state: StudioState): boolean {
+  return state.staff.length < state.maxStaff;
+}
+
 export function hireStaff(state: StudioState, cfg: Config): Staff {
+  if (!canHire(state)) throw new Error(`Studio is at capacity (${state.staff.length}/${state.maxStaff}); hiring is not allowed`);
   const [lo, hi] = cfg.staffGrowth.hireStatRange;
   const stats = {} as Record<Meter, number>;
   for (const m of METERS) stats[m] = int(state.rng, "staff", lo, hi);

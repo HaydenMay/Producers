@@ -164,7 +164,8 @@ export interface LedgerEntry {
     | "hire"
     | "train"
     | "studio_ads"
-    | "research";
+    | "research"
+    | "upgrade";
   amount: number; // + into studio cash, - out of studio cash. advance_* entries track the project reserve.
   projectId?: string;
   note?: string;
@@ -201,6 +202,10 @@ export interface StudioState {
   genreXp: Record<string, number>; // studio exact-genre experience
   trends: Record<string, { stage: TrendStage; weeksInStage: number }>;
   studioBuzz: number;
+  /** EXPERIMENTAL: studio-wide employee capacity (not a per-project crew cap). */
+  maxStaff: number;
+  capacityLevel: number; // index into cfg.staffCapacity.ladder
+  upgrades: { week: number; from: number; to: number; cost: number; prestigeAtUpgrade: number }[];
   rng: RngState;
   ledger: LedgerEntry[];
   events: SimEvent[];
@@ -225,6 +230,7 @@ export type Decision =
   | { type: "hire" }
   | { type: "train"; staffId: string }
   | { type: "studio_ads" }
+  | { type: "upgrade_studio" }
   | { type: "research_theme"; theme: string }
   | { type: "wait" };
 

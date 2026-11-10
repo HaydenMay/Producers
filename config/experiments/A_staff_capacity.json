@@ -1,0 +1,16 @@
+{
+  "_label": "Gate 2.5 item A: studio-wide staff capacity. Agents use real engine caps (legacy strategy cutoffs OFF) in every variant except 'historical'.",
+  "reference": "ladder_4_6_8",
+  "seeds": 300,
+  "productions": [5, 20, 50],
+  "strategies": ["balanced", "quality-first", "cheap-duds", "famous-star", "self-funder", "experimenter", "franchise-builder"],
+  "variants": [
+    { "name": "historical", "note": "pre-Gate-2.5 behavior: no studio cap; strategy heuristic cutoffs (balanced 4, quality-first 5, others never hire)", "overrides": {} },
+    { "name": "uncapped", "note": "no studio cap; strategies hire whenever their cash rule says so", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [999] } } },
+    { "name": "fixed_4", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [4] } } },
+    { "name": "fixed_6", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [6] } } },
+    { "name": "fixed_8", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [8] } } },
+    { "name": "ladder_4_6_8", "note": "PRIMARY PROPOSAL: start 2/4; upgrade to 6 ($250K + 200 Prestige), then 8 ($750K + 1,000 Prestige). Costs/thresholds are TEST ASSUMPTIONS.", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [4, 6, 8], "upgradeCosts": [250000, 750000], "upgradePrestige": [200, 1000] } } },
+    { "name": "ladder_4_5_6_7_8", "note": "sensitivity: gradual ladder", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [4, 5, 6, 7, 8], "upgradeCosts": [150000, 300000, 500000, 750000], "upgradePrestige": [100, 300, 600, 1000] } } }
+  ]
+}

@@ -67,10 +67,30 @@ function campaign(choices: Choices, prefs: string[]): Decision {
   return { type: "market", campaign: "none" };
 }
 
-function reinvest(state: StudioState, cfg: Config, choices: Choices, ctx: AgentCtx, rules: { hireAbove?: number; maxStaff?: number; trainAbove?: number; adsAbove?: number; researchAbove?: number }): Decision | null {
+interface ReinvestRules {
+  hireAbove?: number;
+  /** Pre-Gate-2.5 strategy heuristic cutoff, used only when cfg.agents.legacyHeuristicStaffCaps is true. */
+  legacyMaxStaff?: number;
+  /** Hiring added in Gate 2.5; ignored in legacy mode (these strategies never hired before). */
+  newHiring?: boolean;
+  /** Buy a studio capacity upgrade when cash exceeds its cost by this buffer (never in legacy mode). */
+  upgradeBuffer?: number;
+  trainAbove?: number;
+  adsAbove?: number;
+  researchAbove?: number;
+}
+
+function reinvest(state: StudioState, cfg: Config, choices: Choices, ctx: AgentCtx, rules: ReinvestRules): Decision | null {
   if (ctx.reinvestsThisStop >= 2) return null;
   const has = (t: string) => choices.options.some((o) => o.type === t);
-  if (rules.hireAbove !== undefined && has("hire") && state.cash > rules.hireAbove && state.staff.length < (rules.maxStaff ?? 4)) return { type: "hire" };
+  const legacy = cfg.agents.legacyHeuristicStaffCaps;
+  // The ENGINE enforces the studio cap (hire only appears in choices when below it). Strategy cutoffs are heuristics.
+  const wantsHire = rules.hireAbove !== undefined && (!legacy || !rules.newHiring) && state.cash > rules.hireAbove && (!legacy || state.staff.length < (rules.legacyMaxStaff ?? 4));
+  if (wantsHire && has("hire")) return { type: "hire" };
+  if (!legacy && rules.upgradeBuffer !== undefined && has("upgrade_studio") && state.staff.length >= state.maxStaff) {
+    const up = choices.options.find((o) => o.type === "upgrade_studio");
+    if (up && state.cash > upgradeCost(state, cfg) + rules.upgradeBuffer) return up;
+  }
   if (rules.trainAbove !== undefined && has("train") && state.cash > rules.trainAbove) {
     const weakest = [...state.staff].sort((a, b) => Object.values(a.stats).reduce((x, y) => x + y, 0) - Object.values(b.stats).reduce((x, y) => x + y, 0))[0];
     return { type: "train", staffId: weakest.id };
@@ -81,6 +101,10 @@ function reinvest(state: StudioState, cfg: Config, choices: Choices, ctx: AgentC
     if (r) return r;
   }
   return null;
+}
+
+function upgradeCost(state: StudioState, cfg: Config): number {
+  return cfg.staffCapacity.upgradeCosts[state.capacityLevel] ?? Infinity;
 }
 
 const G = 220000; // agents' rough expectation of a full-reach run's gross (visible heuristic, not hidden info)
@@ -98,7 +122,7 @@ export const STRATEGIES: Record<string, Strategy> = {
     decide(state, cfg, ch, rng, ctx) {
       switch (ch.phase) {
         case "planning": {
-          const r = reinvest(state, cfg, ch, ctx, { hireAbove: 140000, maxStaff: 4, trainAbove: 80000 });
+          const r = reinvest(state, cfg, ch, ctx, { hireAbove: 140000, legacyMaxStaff: 4, upgradeBuffer: 150000, trainAbove: 80000 });
           if (r) return r;
           const seq = franchiseSequel(state, ch, 7.0);
           if (seq && rng() < 0.3) return seq;
@@ -121,7 +145,7 @@ export const STRATEGIES: Record<string, Strategy> = {
     decide(state, cfg, ch, rng, ctx) {
       switch (ch.phase) {
         case "planning": {
-          const r = reinvest(state, cfg, ch, ctx, { trainAbove: 45000, hireAbove: 110000, maxStaff: 5 });
+          const r = reinvest(state, cfg, ch, ctx, { trainAbove: 45000, hireAbove: 110000, legacyMaxStaff: 5, upgradeBuffer: 100000 });
           if (r) return r;
           return bestBy(newPlans(ch), (p) => planScore(state, p, 0.1), rng);
         }
@@ -214,7 +238,7 @@ export const STRATEGIES: Record<string, Strategy> = {
     decide(state, cfg, ch, rng, ctx) {
       switch (ch.phase) {
         case "planning": {
-          const r = reinvest(state, cfg, ch, ctx, { researchAbove: 60000 });
+          const r = reinvest(state, cfg, ch, ctx, { researchAbove: 60000, hireAbove: 160000, newHiring: true, upgradeBuffer: 200000 });
           if (r) return r;
           const untried = newPlans(ch).filter((p) => knownValue(state, p.genre, p.theme) === null);
           if (untried.length) return untried[Math.floor(rng() * untried.length)];
@@ -237,7 +261,7 @@ export const STRATEGIES: Record<string, Strategy> = {
     decide(state, cfg, ch, rng, ctx) {
       switch (ch.phase) {
         case "planning": {
-          const r = reinvest(state, cfg, ch, ctx, { trainAbove: 90000 });
+          const r = reinvest(state, cfg, ch, ctx, { trainAbove: 90000, hireAbove: 160000, newHiring: true, upgradeBuffer: 200000 });
           if (r) return r;
           const seq = franchiseSequel(state, ch, 6.0);
           if (seq) return seq;

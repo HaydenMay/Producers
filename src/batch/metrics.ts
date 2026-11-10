@@ -30,6 +30,14 @@ export interface CareerMetrics {
   meanCritic: number;
   hofCount: number;
   share9plus: number;
+  share8plus: number;
+  maxStaffEnd: number;
+  hires: number;
+  upgrades: number;
+  firstUpgradeWeek: number | null;
+  lastUpgradeWeek: number | null;
+  prestigePerRelease: number;
+  hofShare: number;
   shareLate8plus: number; // releases in the last 40% of the career with avg >= 8
   combosExplored: number;
   meanGross: number;
@@ -117,6 +125,14 @@ export function careerMetrics(r: CareerResult, cfg: Config): CareerMetrics {
     meanCritic: +mean(rels.map((x) => x.critic)).toFixed(2),
     hofCount: rels.filter((x) => x.hallOfFame).length,
     share9plus: rels.length ? avgs.filter((a) => a >= 9).length / rels.length : 0,
+    share8plus: rels.length ? avgs.filter((a) => a >= 8).length / rels.length : 0,
+    maxStaffEnd: s.maxStaff,
+    hires: s.ledger.filter((l) => l.kind === "hire").length,
+    upgrades: s.upgrades.length,
+    firstUpgradeWeek: s.upgrades[0]?.week ?? null,
+    lastUpgradeWeek: s.upgrades.at(-1)?.week ?? null,
+    prestigePerRelease: rels.length ? +(s.prestige / rels.length).toFixed(1) : 0,
+    hofShare: rels.length ? rels.filter((x) => x.hallOfFame).length / rels.length : 0,
     shareLate8plus: late.length ? late.filter((x) => x.avgScore >= 8).length / late.length : 0,
     combosExplored: Object.keys(s.comboBook).length,
     meanGross: Math.round(mean(rels.map((x) => x.grossTotal))),
