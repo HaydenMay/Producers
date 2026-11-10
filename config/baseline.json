@@ -462,9 +462,13 @@
     "upgradePrestige": []
   },
   "agents": {
-    "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number).",
+    "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number). useFiring / economicRenewal (Gate 3 follow-up, Gate 3 policies only): dismiss the weakest employee to make room for the Software Engineer or when cash < fireDebtThreshold; renew a show only while its last finished season netted >= renewMinNetPerWeek per production week (replaces the old fixed policy season limits). Both false = the original Gate 3 policies.",
     "legacyHeuristicStaffCaps": true,
-    "tvOrderPreference": "max"
+    "tvOrderPreference": "max",
+    "useFiring": false,
+    "economicRenewal": false,
+    "fireDebtThreshold": -100000,
+    "renewMinNetPerWeek": 15000
   },
   "expectations": {
     "_label": "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS.",
@@ -559,6 +563,19 @@
       "max": 0.35,
       "qualitySlow": 0.4
     },
+    "viewerFatigue": {
+      "_label": "EXPERIMENT (Gate 3 follow-up), default OFF. Returning-viewer / season-opening interest fatigue: multiplies ONLY the returning-audience opening inputs (IP fans + announcement anticipation; optionally the premiere share). Never touches Audience/Critic scores, ratings or sales directly. Separate from review fatigue (tv.fatigue), IP fans and hiatus. Offset by: previous-season quality (qualitySlow), a good twist (goodTwistReset units), and every additive opening input it does not touch (marketing, Star Fame, trends, studio buzz) plus in-run critic buzz / word of mouth. basis: seasons = seasons aired; episodes = episodes aired / episodesPerStep. All numbers TEST ASSUMPTIONS.",
+      "enabled": false,
+      "basis": "seasons",
+      "episodesPerStep": 10,
+      "onset": 3,
+      "perStep": 0.03,
+      "exponent": 1.3,
+      "max": 0.45,
+      "qualitySlow": 0.5,
+      "goodTwistReset": 2,
+      "appliesTo": "returning"
+    },
     "twist": {
       "goodGradeMin": 0.5,
       "badGradeMax": -0.5,
@@ -627,5 +644,25 @@
       "quietMax": 2.0
     },
     "originalTvPacing": "weekly"
+  },
+  "staffing": {
+    "_label": "Gate 3 follow-up. LOCKED: employees can be fired to free a capacity slot (4/6/8 unchanged; the Software Engineer uses a normal slot). Harness UX ASSUMPTIONS: dismissal only between productions; the engineer cannot be dismissed while building; minStaff and fireCost are OPEN (smallest rule protecting the 'production always progresses' invariant).",
+    "firingEnabled": true,
+    "betweenProductionsOnly": true,
+    "minStaff": 2,
+    "fireCost": 0
+  },
+  "events": {
+    "breakthrough": {
+      "_label": "EXPERIMENT (Gate 3 follow-up), default OFF. Rare seeded creative breakthrough DURING production: one draw from the dedicated 'events' RNG stream when a production first enters each listed stage; on success, bonus meter points = bonusShare x that meter's half-point (meterHalfPointPerWeek x duration x era bar), so the effect saturates on already-strong meters and flows to scores only through the normal meter -> score formula. Never edits a result. At most maxPerProduction per production. All numbers TEST ASSUMPTIONS.",
+      "enabled": false,
+      "chancePerCheck": 0.02,
+      "stages": ["writing", "filming", "editing"],
+      "stageMeters": { "writing": ["plot", "writing"], "filming": ["filming"], "editing": ["editing"] },
+      "bonusShare": 0.6,
+      "maxPerProduction": 1,
+      "formats": ["movie", "limited_series", "tv"],
+      "minSeason": 0
+    }
   }
 }

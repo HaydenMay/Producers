@@ -10,11 +10,29 @@ A headless, deterministic simulation and balance tool for the **Entertainment St
 |---|---|---|
 | **1 — Deterministic movie kernel** | ✅ Done | Staff, phases, ledger, advances/royalties/surplus/overruns/cancel, Stars (families, budgets, pre-display free fallback, callbacks, relationships), $0 campaign, scores, legs, finite runs, Prestige, IP fans, studio genre levels, trends. Exact replay. |
 | **2 — Strategies, batch, diagnostics** | ✅ Done | 7 policies, batch runner, paired-seed compare, 13 diagnostic flags, invariant checker, CSV/JSON/Markdown, regression seed bank. Catches injected bugs. |
-| **3 — TV + streaming** | ❌ **Not built** | Limited series, TV seasons, renewals, hiatus, streaming subscribers and Originals are **not modelled**. Every result covers movies only. |
+| **3 — TV + streaming** | ✅ Built (pending designer review) | Limited series, renewable TV, streaming; config-gated (`config/gate3.json`). Follow-up: staff firing, no season cap, viewer-fatigue and breakthrough experiments (default off). |
 | **4 — Thin browser UI** | ✅ Done (minimal) | Manual step-through career, strategy auto-step, batch runner, config editor, replay. Same core; no rules in the UI. |
 
-**Tests:** 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
+**Tests:** 106 passing (Gate 3 follow-up); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
+
+## Gate 3 follow-up: staff firing and organic TV longevity (pending designer review)
+
+- **Firing (LOCKED, on):** `{ type: "fire", staffId }` between productions. It frees a slot and stops payroll. Timing, minimum team (2) and severance ($0) are OPEN config (`staffing.*`).
+- **No season cap (LOCKED):** renewal needs only last season ≥ 4.0. `TV_SEASON_TOO_LONG` is replaced by `TV_LONG_RUNNER` and `TV_IRRATIONAL_RENEWAL`.
+- **Experiments (default off):**
+  - returning-viewer fatigue: `tv.viewerFatigue`;
+  - creative breakthroughs: `events.breakthrough`, using a lazy `events` RNG stream.
+- **Docs:** `docs/gate-3-followup-findings.md`, `docs/gate-3-followup-open-decisions.md`; register entries FU1–FU10.
+
+```bash
+npm test                                   # 106 tests (firing: tests/integration/firing.test.ts; seasons/fatigue/events: followup.test.ts)
+npx tsx scripts/fu-firing-probe.ts         # firing before/after probe (200 seeds, 25 years)
+npx tsx scripts/fu-matrix.ts --seeds 200 --out reports/gate3_followup/matrix            # full stress matrix (~10 min on 2 cores)
+npx tsx scripts/fu-matrix.ts --seeds 200 --variants A_control,C_mildViewer_lessReview   # a subset
+npx tsx scripts/fu-report.ts > reports/gate3_followup/matrix-tables.md                  # tables
+npx tsx scripts/fu-traces.ts A_control tv-first 31 show ip242 "Trace 3"                  # render a seeded trace
+```
 
 ## Gate 3: limited series, renewable TV and streaming (pending designer review)
 

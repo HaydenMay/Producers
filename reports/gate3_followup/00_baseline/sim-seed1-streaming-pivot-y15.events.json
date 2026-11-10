@@ -1,0 +1,5860 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 1) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "lifeline_offer",
+  "message": "Bargain Pictures offers a lifeline deal (poor terms) so the studio can always make its cheapest format."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Superheroes (new): starlight $39,000 @ 8%; wolf $57,000 @ 33%; bargain $63,000 @ 55%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Hollow Edge (Comedy + Superheroes, new) with wolf advance $57,000 @ 33%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 1,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 3,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 5,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Hollow Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Bo Hart for $5,621.04.",
+  "data": {
+   "starId": "star7",
+   "price": 5621.04
+  }
+ },
+ {
+  "week": 9,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 10,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Hollow Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Comedy level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Hollow Edge released: Audience 4.8 / Critics 4.35 (avg 4.57). Opening pool 101,255, opening 30,377.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Sports (new): wolf $100,000 @ 31%; starlight $57,000 @ 8%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Dead Night (Horror + Sports, new) with wolf advance $100,000 @ 31%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Hollow Edge opens to 30,377 viewers.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 0,
+   "now": 30377,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 18,
+  "type": "feedback",
+  "message": "Harsh reviews are scaring off audiences for Hollow Edge.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 30377,
+   "now": 17168,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 21,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 23,
+  "type": "milestone",
+  "message": "Dead Night hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 23,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 23,
+  "type": "cast",
+  "message": "Cast Sam Imai for $42,005.22.",
+  "data": {
+   "starId": "star12",
+   "price": 42005.22
+  }
+ },
+ {
+  "week": 25,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 26,
+  "type": "ip_fans",
+  "message": "Hollow Edge fans: 0 → 0 (avg score 4.57, 73,228 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 26,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 8.0 → 7.3, relationship -0.50 (worked together (+); project hurt their career: Fame fell (-)).",
+  "data": {
+   "starId": "star7",
+   "fameDelta": -0.71,
+   "relDelta": -0.5,
+   "grow": 6
+  }
+ },
+ {
+  "week": 26,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 85% of its $57,000 advance on Hollow Edge and reviews were poor. Trust 2.50 → 2.28.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.85,
+   "step": -0.22
+  }
+ },
+ {
+  "week": 26,
+  "type": "run_end",
+  "message": "Hollow Edge run ended after 10 weeks: 73,228 viewers, gross $146,456, studio take $98,126.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 29,
+  "type": "milestone",
+  "message": "Dead Night hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 29,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 29,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 30,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 31,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 32,
+  "type": "genre_level",
+  "message": "Studio Horror level 0 → 1."
+ },
+ {
+  "week": 32,
+  "type": "release",
+  "message": "Dead Night released: Audience 6.25 / Critics 6.23 (avg 6.24). Opening pool 209,731, opening 62,919.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 32,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Sports (new): wolf $95,000 @ 31%; starlight $61,000 @ 8%."
+ },
+ {
+  "week": 32,
+  "type": "project_start",
+  "message": "Started Dead Pulse (Horror + Sports, new) with wolf advance $95,000 @ 31%.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 33,
+  "type": "feedback",
+  "message": "Dead Night opens to 62,919 viewers.",
+  "data": {
+   "releaseId": "rel16",
+   "prev": 0,
+   "now": 62919,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 35,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 39,
+  "type": "milestone",
+  "message": "Dead Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 39,
+  "type": "cast",
+  "message": "Cast Sam Imai for $42,005.22.",
+  "data": {
+   "starId": "star12",
+   "price": 42005.22
+  }
+ },
+ {
+  "week": 45,
+  "type": "milestone",
+  "message": "Dead Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 45,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 47,
+  "type": "ip_fans",
+  "message": "Dead Night fans: 0 → 4,109 (avg score 6.24, 207,121 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 47,
+  "type": "star_career",
+  "message": "Sam Imai: Fame 47.0 → 50.6, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 3.6,
+   "relDelta": 0.75,
+   "grow": 3
+  }
+ },
+ {
+  "week": 47,
+  "type": "trust",
+  "message": "Wolf Pictures earned 128% of its advance back on Dead Night. Trust 2.40 → 2.67.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.28,
+   "step": 0.27
+  }
+ },
+ {
+  "week": 47,
+  "type": "run_end",
+  "message": "Dead Night run ended after 15 weeks: 207,121 viewers, gross $414,242, studio take $285,827.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 48,
+  "type": "release",
+  "message": "Dead Pulse released: Audience 6.12 / Critics 6.13 (avg 6.13). Opening pool 210,891, opening 63,267.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 48,
+  "type": "hire",
+  "message": "Hired Gus Novak (plot 27, writing 20, filming 28, editing 30)."
+ },
+ {
+  "week": 48,
+  "type": "hire",
+  "message": "Hired Bo Diaz (plot 26, writing 28, filming 30, editing 17)."
+ },
+ {
+  "week": 48,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Zombies (new): starlight $55,000 @ 8%; wolf $104,000 @ 30%."
+ },
+ {
+  "week": 48,
+  "type": "project_start",
+  "message": "Started Broken Legacy (Comedy + Zombies, new) with wolf advance $104,000 @ 30%.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 49,
+  "type": "feedback",
+  "message": "Dead Pulse opens to 63,267 viewers.",
+  "data": {
+   "releaseId": "rel24",
+   "prev": 0,
+   "now": 63267,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 50,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 51,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 55,
+  "type": "milestone",
+  "message": "Broken Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 55,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 55,
+  "type": "cast",
+  "message": "Cast Ari Reyes for $5,050.06.",
+  "data": {
+   "starId": "star29",
+   "price": 5050.06
+  }
+ },
+ {
+  "week": 61,
+  "type": "milestone",
+  "message": "Broken Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 61,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 61,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 63,
+  "type": "ip_fans",
+  "message": "Dead Pulse fans: 0 → 3,648 (avg score 6.13, 201,774 viewers).",
+  "data": {
+   "ipId": "ip17"
+  }
+ },
+ {
+  "week": 63,
+  "type": "star_career",
+  "message": "Sam Imai: Fame 50.6 → 53.8, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 3.24,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 63,
+  "type": "trust",
+  "message": "Wolf Pictures earned 132% of its advance back on Dead Pulse. Trust 2.65 → 2.92.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.32,
+   "step": 0.27
+  }
+ },
+ {
+  "week": 63,
+  "type": "run_end",
+  "message": "Dead Pulse run ended after 15 weeks: 201,774 viewers, gross $403,548, studio take $278,448.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 63,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 64,
+  "type": "surplus",
+  "message": "Broken Legacy: kept $18,950 of unused advance.",
+  "data": {
+   "projectId": "proj28",
+   "surplus": 18949.94
+  }
+ },
+ {
+  "week": 64,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Broken Legacy).",
+  "data": {
+   "awardId": "rel:rel34:audience_7_5",
+   "releaseId": "rel34",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 64,
+  "type": "release",
+  "message": "Broken Legacy released: Audience 8.29 / Critics 6.62 (avg 7.46). Opening pool 155,340, opening 46,602.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): orbit $80,000 @ 36%; wolf $93,000 @ 31%; starlight $51,000 @ 8%."
+ },
+ {
+  "week": 64,
+  "type": "project_start",
+  "message": "Started Red Shadow (Action + Sports, new) with wolf advance $93,000 @ 31%.",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 65,
+  "type": "feedback",
+  "message": "Broken Legacy opens to 46,602 viewers.",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 0,
+   "now": 46602,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 65,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 68,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Broken Legacy. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 20277,
+   "now": 22311,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 69,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Broken Legacy is still climbing (22,311 → 23,032).",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 22311,
+   "now": 23032,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 69,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 70,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 70,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 71,
+  "type": "milestone",
+  "message": "Red Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 71,
+  "type": "cast",
+  "message": "Cast Alex Sato for $17,993.37.",
+  "data": {
+   "starId": "star38",
+   "price": 17993.37
+  }
+ },
+ {
+  "week": 77,
+  "type": "milestone",
+  "message": "Red Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 77,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 79,
+  "type": "ip_fans",
+  "message": "Broken Legacy fans: 0 → 9,309 (avg score 7.46, 236,503 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 79,
+  "type": "star_career",
+  "message": "Ari Reyes: Fame 7.0 → 14.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star29",
+   "fameDelta": 7.53,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 79,
+  "type": "trust",
+  "message": "Wolf Pictures earned 136% of its advance back on Broken Legacy with strong reviews. Trust 2.90 → 3.38.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.36,
+   "step": 0.48
+  }
+ },
+ {
+  "week": 79,
+  "type": "run_end",
+  "message": "Broken Legacy run ended after 15 weeks: 236,503 viewers, gross $473,006, studio take $331,104.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 80,
+  "type": "genre_level",
+  "message": "Studio Action level 0 → 1."
+ },
+ {
+  "week": 80,
+  "type": "release",
+  "message": "Red Shadow released: Audience 6.66 / Critics 6.79 (avg 6.73). Opening pool 180,408, opening 54,122.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 80,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 80,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 80,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Zombies (new): starlight $45,000 @ 8%; orbit $87,000 @ 36%."
+ },
+ {
+  "week": 80,
+  "type": "project_start",
+  "message": "Started Hollow Code (Comedy + Zombies, new) with orbit advance $87,000 @ 36%.",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 81,
+  "type": "feedback",
+  "message": "Red Shadow opens to 54,122 viewers.",
+  "data": {
+   "releaseId": "rel42",
+   "prev": 0,
+   "now": 54122,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 81,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 87,
+  "type": "milestone",
+  "message": "Hollow Code hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 87,
+  "type": "cast",
+  "message": "Cast Dee Grant for $34,827.01.",
+  "data": {
+   "starId": "star47",
+   "price": 34827.01
+  }
+ },
+ {
+  "week": 90,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 91,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 93,
+  "type": "milestone",
+  "message": "Hollow Code hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 93,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 95,
+  "type": "ip_fans",
+  "message": "Red Shadow fans: 0 → 5,675 (avg score 6.73, 205,004 viewers).",
+  "data": {
+   "ipId": "ip35"
+  }
+ },
+ {
+  "week": 95,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 25.0 → 30.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 5,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 95,
+  "type": "trust",
+  "message": "Wolf Pictures earned 137% of its advance back on Red Shadow. Trust 3.36 → 3.74.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.37,
+   "step": 0.38
+  }
+ },
+ {
+  "week": 95,
+  "type": "run_end",
+  "message": "Red Shadow run ended after 15 weeks: 205,004 viewers, gross $410,008, studio take $282,906.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 95,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 96,
+  "type": "genre_level",
+  "message": "Studio Comedy level 1 → 2."
+ },
+ {
+  "week": 96,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Code).",
+  "data": {
+   "awardId": "rel:rel50:audience_7_5",
+   "releaseId": "rel50",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 96,
+  "type": "release",
+  "message": "Hollow Code released: Audience 8.24 / Critics 6.59 (avg 7.42). Opening pool 237,070, opening 71,121.",
+  "data": {
+   "releaseId": "rel50"
+  }
+ },
+ {
+  "week": 96,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 96,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 96,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (new): orbit $73,000 @ 36%; wolf $86,000 @ 31%; starlight $43,000 @ 8%."
+ },
+ {
+  "week": 96,
+  "type": "project_start",
+  "message": "Started Hollow Edge (Comedy + Spies, new) with orbit advance $73,000 @ 36%.",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 97,
+  "type": "feedback",
+  "message": "Hollow Code opens to 71,121 viewers.",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 0,
+   "now": 71121,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 100,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Code. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 30213,
+   "now": 33000,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 101,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Hollow Code is still climbing (33,000 → 33,826).",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 33000,
+   "now": 33826,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 101,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 103,
+  "type": "milestone",
+  "message": "Hollow Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 103,
+  "type": "cast",
+  "message": "Cast Kai Moreau for $21,206.45.",
+  "data": {
+   "starId": "star55",
+   "price": 21206.45
+  }
+ },
+ {
+  "week": 109,
+  "type": "milestone",
+  "message": "Hollow Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 109,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 110,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 110,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 111,
+  "type": "ip_fans",
+  "message": "Hollow Code fans: 0 → 12,700 (avg score 7.42, 328,005 viewers).",
+  "data": {
+   "ipId": "ip43"
+  }
+ },
+ {
+  "week": 111,
+  "type": "star_career",
+  "message": "Dee Grant: Fame 42.0 → 50.3, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star47",
+   "fameDelta": 8.3,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 111,
+  "type": "trust",
+  "message": "Orbit Releasing earned 271% of its advance back on Hollow Code with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.71,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 111,
+  "type": "run_end",
+  "message": "Hollow Code run ended after 15 weeks: 328,005 viewers, gross $656,010, studio take $419,846.",
+  "data": {
+   "releaseId": "rel50"
+  }
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Edge).",
+  "data": {
+   "awardId": "rel:rel58:meters_all_70",
+   "releaseId": "rel58",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Edge).",
+  "data": {
+   "awardId": "rel:rel58:audience_7_5",
+   "releaseId": "rel58",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 112,
+  "type": "release",
+  "message": "Hollow Edge released: Audience 7.74 / Critics 6.14 (avg 6.94). Opening pool 255,969, opening 76,791.",
+  "data": {
+   "releaseId": "rel58"
+  }
+ },
+ {
+  "week": 112,
+  "type": "upgrade",
+  "message": "Studio upgraded: employee capacity 4 → 6 (cost $250,000)."
+ },
+ {
+  "week": 112,
+  "type": "hire",
+  "message": "Hired Jo Moreau (plot 31, writing 25, filming 27, editing 16)."
+ },
+ {
+  "week": 112,
+  "type": "hire",
+  "message": "Hired Eli Quinn (plot 21, writing 19, filming 15, editing 32)."
+ },
+ {
+  "week": 112,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): orbit $90,000 @ 34%; starlight $55,000 @ 8%; xyz $113,000 @ 43%."
+ },
+ {
+  "week": 112,
+  "type": "project_start",
+  "message": "Started Iron Legacy (Action + Spies, new) with xyz advance $113,000 @ 43%.",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 113,
+  "type": "feedback",
+  "message": "Hollow Edge opens to 76,791 viewers.",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 0,
+   "now": 76791,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 116,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Edge. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 31272,
+   "now": 31906,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 119,
+  "type": "milestone",
+  "message": "Iron Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 119,
+  "type": "cast",
+  "message": "Cast Alex Sato for $20,758.35.",
+  "data": {
+   "starId": "star38",
+   "price": 20758.35
+  }
+ },
+ {
+  "week": 125,
+  "type": "milestone",
+  "message": "Iron Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 125,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 127,
+  "type": "ip_fans",
+  "message": "Hollow Edge fans: 0 → 10,170 (avg score 6.94, 327,639 viewers).",
+  "data": {
+   "ipId": "ip51"
+  }
+ },
+ {
+  "week": 127,
+  "type": "star_career",
+  "message": "Kai Moreau: Fame 29.0 → 35.6, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star55",
+   "fameDelta": 6.65,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 127,
+  "type": "trust",
+  "message": "Orbit Releasing earned 323% of its advance back on Hollow Edge. Trust 3.23 → 3.98.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 3.23,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 127,
+  "type": "run_end",
+  "message": "Hollow Edge run ended after 15 weeks: 327,639 viewers, gross $655,278, studio take $419,378.",
+  "data": {
+   "releaseId": "rel58"
+  }
+ },
+ {
+  "week": 128,
+  "type": "surplus",
+  "message": "Iron Legacy: kept $12,242 of unused advance.",
+  "data": {
+   "projectId": "proj62",
+   "surplus": 12241.65
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Iron Legacy).",
+  "data": {
+   "awardId": "rel:rel68:meters_all_70",
+   "releaseId": "rel68",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Iron Legacy).",
+  "data": {
+   "awardId": "rel:rel68:audience_7_5",
+   "releaseId": "rel68",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Iron Legacy).",
+  "data": {
+   "awardId": "rel:rel68:critic_8_5",
+   "releaseId": "rel68",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 128,
+  "type": "release",
+  "message": "Iron Legacy released: Audience 8.62 / Critics 8.78 (avg 8.7). Opening pool 290,408, opening 87,122.",
+  "data": {
+   "releaseId": "rel68"
+  }
+ },
+ {
+  "week": 128,
+  "type": "unlock",
+  "message": "Studio upgrade: TV series unlocked (Prestige 485, cost $150,000). Season orders up to 5 episodes at this Prestige."
+ },
+ {
+  "week": 128,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 128,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 128,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): wolf $125,000 @ 29%; starlight $54,000 @ 8%; xyz $121,000 @ 43%."
+ },
+ {
+  "week": 128,
+  "type": "project_start",
+  "message": "Started Last Edge (Action + Spies, new) with xyz advance $121,000 @ 43%.",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 129,
+  "type": "feedback",
+  "message": "Iron Legacy opens to 87,122 viewers.",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 0,
+   "now": 87122,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 130,
+  "type": "feedback",
+  "message": "Critics love Iron Legacy, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 87122,
+   "now": 66580,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 132,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Iron Legacy. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 40999,
+   "now": 44087,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 133,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Iron Legacy is still climbing (44,087 → 45,198).",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 44087,
+   "now": 45198,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 135,
+  "type": "milestone",
+  "message": "Last Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 135,
+  "type": "cast",
+  "message": "Cast Alex Sato for $20,263.46.",
+  "data": {
+   "starId": "star38",
+   "price": 20263.46
+  }
+ },
+ {
+  "week": 137,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 141,
+  "type": "milestone",
+  "message": "Last Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 141,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 141,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 143,
+  "type": "ip_fans",
+  "message": "Iron Legacy fans: 0 → 22,085 (avg score 8.7, 373,062 viewers).",
+  "data": {
+   "ipId": "ip61"
+  }
+ },
+ {
+  "week": 143,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 30.0 → 43.2, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 13.19,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 143,
+  "type": "trust",
+  "message": "XYZ Network earned 284% of its advance back on Iron Legacy with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.84,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 143,
+  "type": "run_end",
+  "message": "Iron Legacy run ended after 15 weeks: 373,062 viewers, gross $746,124, studio take $425,291.",
+  "data": {
+   "releaseId": "rel68"
+  }
+ },
+ {
+  "week": 144,
+  "type": "surplus",
+  "message": "Last Edge: kept $20,737 of unused advance.",
+  "data": {
+   "projectId": "proj70",
+   "surplus": 20736.54
+  }
+ },
+ {
+  "week": 144,
+  "type": "genre_level",
+  "message": "Studio Action level 1 → 2."
+ },
+ {
+  "week": 144,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge).",
+  "data": {
+   "awardId": "rel:rel76:meters_all_70",
+   "releaseId": "rel76",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 144,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge).",
+  "data": {
+   "awardId": "rel:rel76:audience_7_5",
+   "releaseId": "rel76",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 144,
+  "type": "release",
+  "message": "Last Edge released: Audience 8.27 / Critics 7.58 (avg 7.93). Opening pool 269,254, opening 80,776.",
+  "data": {
+   "releaseId": "rel76"
+  }
+ },
+ {
+  "week": 144,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Robots."
+ },
+ {
+  "week": 144,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 144,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 144,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (new): meridian $97,000 @ 50%; xyz $87,000 @ 44%; starlight $46,000 @ 8%."
+ },
+ {
+  "week": 144,
+  "type": "project_start",
+  "message": "Started Hollow Legacy (Horror + Superheroes, new) with meridian advance $97,000 @ 50%.",
+  "data": {
+   "projectId": "proj78"
+  }
+ },
+ {
+  "week": 145,
+  "type": "feedback",
+  "message": "Last Edge opens to 80,776 viewers.",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 0,
+   "now": 80776,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 146,
+  "type": "feedback",
+  "message": "Critics love Last Edge, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 80776,
+   "now": 58416,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 148,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 36569,
+   "now": 38627,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 149,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge is still climbing (38,627 → 39,763).",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 38627,
+   "now": 39763,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 150,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 151,
+  "type": "milestone",
+  "message": "Hollow Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj78"
+  }
+ },
+ {
+  "week": 151,
+  "type": "cast",
+  "message": "Cast Sam Imai for $39,919.45.",
+  "data": {
+   "starId": "star12",
+   "price": 39919.45
+  }
+ },
+ {
+  "week": 157,
+  "type": "milestone",
+  "message": "Hollow Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj78"
+  }
+ },
+ {
+  "week": 157,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 157,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 159,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 0 → 17,436 (avg score 7.93, 371,920 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 159,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 43.2 → 53.6, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 10.44,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 159,
+  "type": "trust",
+  "message": "XYZ Network earned 264% of its advance back on Last Edge with strong reviews. Trust 3.23 → 3.98.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.64,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 159,
+  "type": "run_end",
+  "message": "Last Edge run ended after 15 weeks: 371,920 viewers, gross $743,840, studio take $423,989.",
+  "data": {
+   "releaseId": "rel76"
+  }
+ },
+ {
+  "week": 160,
+  "type": "genre_level",
+  "message": "Studio Horror level 1 → 2."
+ },
+ {
+  "week": 160,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Legacy).",
+  "data": {
+   "awardId": "rel:rel84:meters_all_70",
+   "releaseId": "rel84",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 160,
+  "type": "release",
+  "message": "Hollow Legacy released: Audience 7.44 / Critics 7.59 (avg 7.52). Opening pool 321,081, opening 96,324.",
+  "data": {
+   "releaseId": "rel84"
+  }
+ },
+ {
+  "week": 160,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 160,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 160,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): xyz $141,000 @ 41%; wolf $123,000 @ 29%; orbit $95,000 @ 33%."
+ },
+ {
+  "week": 160,
+  "type": "project_start",
+  "message": "Started Last Protocol (Action + Superheroes, new) with xyz advance $141,000 @ 41%.",
+  "data": {
+   "projectId": "proj86"
+  }
+ },
+ {
+  "week": 161,
+  "type": "feedback",
+  "message": "Hollow Legacy opens to 96,324 viewers.",
+  "data": {
+   "releaseId": "rel84",
+   "prev": 0,
+   "now": 96324,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 162,
+  "type": "feedback",
+  "message": "Critics love Hollow Legacy, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel84",
+   "prev": 96324,
+   "now": 68682,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 164,
+  "type": "feedback",
+  "message": "Word of mouth on Hollow Legacy is good, but its audience is winding down.",
+  "data": {
+   "releaseId": "rel84",
+   "prev": 42087,
+   "now": 38151,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 165,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 167,
+  "type": "milestone",
+  "message": "Last Protocol hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj86"
+  }
+ },
+ {
+  "week": 167,
+  "type": "cast",
+  "message": "Cast Alex Sato for $37,763.08.",
+  "data": {
+   "starId": "star38",
+   "price": 37763.08
+  }
+ },
+ {
+  "week": 170,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 173,
+  "type": "milestone",
+  "message": "Last Protocol hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj86"
+  }
+ },
+ {
+  "week": 173,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 175,
+  "type": "ip_fans",
+  "message": "Hollow Legacy fans: 0 → 15,929 (avg score 7.52, 395,073 viewers).",
+  "data": {
+   "ipId": "ip77"
+  }
+ },
+ {
+  "week": 175,
+  "type": "star_career",
+  "message": "Sam Imai: Fame 53.8 → 63.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 9.13,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 175,
+  "type": "trust",
+  "message": "Meridian Global earned 407% of its advance back on Hollow Legacy with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 4.07,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 175,
+  "type": "run_end",
+  "message": "Hollow Legacy run ended after 15 weeks: 395,073 viewers, gross $790,146, studio take $395,073.",
+  "data": {
+   "releaseId": "rel84"
+  }
+ },
+ {
+  "week": 176,
+  "type": "surplus",
+  "message": "Last Protocol: kept $23,237 of unused advance.",
+  "data": {
+   "projectId": "proj86",
+   "surplus": 23236.92
+  }
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Protocol).",
+  "data": {
+   "awardId": "rel:rel92:meters_all_70",
+   "releaseId": "rel92",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Protocol).",
+  "data": {
+   "awardId": "rel:rel92:audience_7_5",
+   "releaseId": "rel92",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Last Protocol).",
+  "data": {
+   "awardId": "rel:rel92:critic_8_5",
+   "releaseId": "rel92",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Last Protocol).",
+  "data": {
+   "awardId": "rel:rel92:hall_of_fame",
+   "releaseId": "rel92",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 176,
+  "type": "prestige",
+  "message": "Prestige +100: first_hall_of_fame (Last Protocol).",
+  "data": {
+   "awardId": "career:first_hall_of_fame",
+   "releaseId": "rel92",
+   "milestone": "first_hall_of_fame",
+   "amount": 100
+  }
+ },
+ {
+  "week": 176,
+  "type": "release",
+  "message": "Last Protocol released: Audience 9.65 / Critics 8.55 (avg 9.1, HALL OF FAME). Opening pool 301,722, opening 90,517.",
+  "data": {
+   "releaseId": "rel92"
+  }
+ },
+ {
+  "week": 176,
+  "type": "upgrade",
+  "message": "Studio upgraded: employee capacity 6 → 8 (cost $750,000)."
+ },
+ {
+  "week": 176,
+  "type": "hire",
+  "message": "Hired Lee Okafor (plot 33, writing 35, filming 21, editing 31)."
+ },
+ {
+  "week": 176,
+  "type": "train",
+  "message": "Trained Lee Okafor: +3 to all stats."
+ },
+ {
+  "week": 176,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): xyz $139,000 @ 41%; meridian $138,000 @ 47%; orbit $96,000 @ 33%."
+ },
+ {
+  "week": 176,
+  "type": "project_start",
+  "message": "Started Silver Code (Action + Superheroes, new) with meridian advance $138,000 @ 47%.",
+  "data": {
+   "projectId": "proj95"
+  }
+ },
+ {
+  "week": 177,
+  "type": "feedback",
+  "message": "Last Protocol opens to 90,517 viewers.",
+  "data": {
+   "releaseId": "rel92",
+   "prev": 0,
+   "now": 90517,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 178,
+  "type": "feedback",
+  "message": "Critics love Last Protocol, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel92",
+   "prev": 90517,
+   "now": 67891,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 180,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Protocol. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel92",
+   "prev": 41447,
+   "now": 53196,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 183,
+  "type": "milestone",
+  "message": "Silver Code hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj95"
+  }
+ },
+ {
+  "week": 183,
+  "type": "cast",
+  "message": "Cast Alex Sato for $36,253.05.",
+  "data": {
+   "starId": "star38",
+   "price": 36253.05
+  }
+ },
+ {
+  "week": 184,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 185,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 189,
+  "type": "milestone",
+  "message": "Silver Code hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj95"
+  }
+ },
+ {
+  "week": 189,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 190,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 191,
+  "type": "ip_fans",
+  "message": "Last Protocol fans: 0 → 24,524 (avg score 9.1, 373,843 viewers).",
+  "data": {
+   "ipId": "ip85"
+  }
+ },
+ {
+  "week": 191,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 53.6 → 68.3, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 14.63,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 191,
+  "type": "trust",
+  "message": "XYZ Network earned 217% of its advance back on Last Protocol with strong reviews. Trust 3.93 → 4.68.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.17,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 191,
+  "type": "run_end",
+  "message": "Last Protocol run ended after 15 weeks: 373,843 viewers, gross $747,686, studio take $441,135.",
+  "data": {
+   "releaseId": "rel92"
+  }
+ },
+ {
+  "week": 192,
+  "type": "surplus",
+  "message": "Silver Code: kept $21,747 of unused advance.",
+  "data": {
+   "projectId": "proj95",
+   "surplus": 21746.95
+  }
+ },
+ {
+  "week": 192,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Code).",
+  "data": {
+   "awardId": "rel:rel101:meters_all_70",
+   "releaseId": "rel101",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 192,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Code).",
+  "data": {
+   "awardId": "rel:rel101:audience_7_5",
+   "releaseId": "rel101",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 192,
+  "type": "release",
+  "message": "Silver Code released: Audience 9.35 / Critics 8.27 (avg 8.81). Opening pool 360,384, opening 108,115.",
+  "data": {
+   "releaseId": "rel101"
+  }
+ },
+ {
+  "week": 192,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Dinosaurs."
+ },
+ {
+  "week": 192,
+  "type": "train",
+  "message": "Trained Lee Okafor: +3 to all stats."
+ },
+ {
+  "week": 192,
+  "type": "train",
+  "message": "Trained Lee Okafor: +3 to all stats."
+ },
+ {
+  "week": 192,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): orbit $95,000 @ 33%; starlight $55,000 @ 8%."
+ },
+ {
+  "week": 192,
+  "type": "project_start",
+  "message": "Started Wild Horizon (Action + Superheroes, new) with orbit advance $95,000 @ 33%.",
+  "data": {
+   "projectId": "proj103"
+  }
+ },
+ {
+  "week": 193,
+  "type": "feedback",
+  "message": "Silver Code opens to 108,115 viewers.",
+  "data": {
+   "releaseId": "rel101",
+   "prev": 0,
+   "now": 108115,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 194,
+  "type": "feedback",
+  "message": "Critics love Silver Code, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel101",
+   "prev": 108115,
+   "now": 79669,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 196,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Code. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel101",
+   "prev": 48476,
+   "now": 59866,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 197,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 199,
+  "type": "milestone",
+  "message": "Wild Horizon hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj103"
+  }
+ },
+ {
+  "week": 199,
+  "type": "cast",
+  "message": "Cast Fin Fox for $7,712.48.",
+  "data": {
+   "starId": "star104",
+   "price": 7712.48
+  }
+ },
+ {
+  "week": 201,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 204,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 205,
+  "type": "milestone",
+  "message": "Wild Horizon hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj103"
+  }
+ },
+ {
+  "week": 205,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 207,
+  "type": "ip_fans",
+  "message": "Silver Code fans: 0 → 26,659 (avg score 8.81, 437,320 viewers).",
+  "data": {
+   "ipId": "ip94"
+  }
+ },
+ {
+  "week": 207,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 68.3 → 82.4, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 14.18,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 207,
+  "type": "trust",
+  "message": "Meridian Global earned 298% of its advance back on Silver Code with strong reviews. Trust 3.20 → 3.95.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.98,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 207,
+  "type": "run_end",
+  "message": "Silver Code run ended after 15 weeks: 437,320 viewers, gross $874,640, studio take $463,559.",
+  "data": {
+   "releaseId": "rel101"
+  }
+ },
+ {
+  "week": 208,
+  "type": "surplus",
+  "message": "Wild Horizon: kept $7,288 of unused advance.",
+  "data": {
+   "projectId": "proj103",
+   "surplus": 7287.52
+  }
+ },
+ {
+  "week": 208,
+  "type": "genre_level",
+  "message": "Studio Action level 2 → 3."
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Wild Horizon).",
+  "data": {
+   "awardId": "rel:rel109:meters_all_70",
+   "releaseId": "rel109",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 208,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Wild Horizon).",
+  "data": {
+   "awardId": "rel:rel109:audience_7_5",
+   "releaseId": "rel109",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 208,
+  "type": "release",
+  "message": "Wild Horizon released: Audience 8.9 / Critics 7.09 (avg 8). Opening pool 197,303, opening 59,191.",
+  "data": {
+   "releaseId": "rel109"
+  }
+ },
+ {
+  "week": 208,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 208,
+  "type": "train",
+  "message": "Trained Lee Okafor: +3 to all stats."
+ },
+ {
+  "week": 208,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Zombies (new): meridian $144,000 @ 45%; xyz $151,000 @ 39%; starlight $60,000 @ 8%."
+ },
+ {
+  "week": 208,
+  "type": "project_start",
+  "message": "Started Red Night (Comedy + Zombies, new) with xyz advance $151,000 @ 39%.",
+  "data": {
+   "projectId": "proj111"
+  }
+ },
+ {
+  "week": 209,
+  "type": "feedback",
+  "message": "Wild Horizon opens to 59,191 viewers.",
+  "data": {
+   "releaseId": "rel109",
+   "prev": 0,
+   "now": 59191,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 210,
+  "type": "feedback",
+  "message": "Critics love Wild Horizon, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel109",
+   "prev": 59191,
+   "now": 41979,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 212,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Wild Horizon. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel109",
+   "prev": 26597,
+   "now": 31807,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 213,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Wild Horizon is still climbing (31,807 → 35,744).",
+  "data": {
+   "releaseId": "rel109",
+   "prev": 31807,
+   "now": 35744,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 215,
+  "type": "milestone",
+  "message": "Red Night hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj111"
+  }
+ },
+ {
+  "week": 215,
+  "type": "cast",
+  "message": "Cast Fin Fox for $7,703.63.",
+  "data": {
+   "starId": "star104",
+   "price": 7703.63
+  }
+ },
+ {
+  "week": 221,
+  "type": "milestone",
+  "message": "Red Night hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj111"
+  }
+ },
+ {
+  "week": 221,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 221,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 221,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 223,
+  "type": "ip_fans",
+  "message": "Wild Horizon fans: 0 → 14,250 (avg score 8, 296,870 viewers).",
+  "data": {
+   "ipId": "ip102"
+  }
+ },
+ {
+  "week": 223,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 12.0 → 22.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 9.96,
+   "relDelta": 0.75,
+   "grow": 4
+  }
+ },
+ {
+  "week": 223,
+  "type": "trust",
+  "message": "Orbit Releasing earned 206% of its advance back on Wild Horizon with strong reviews. Trust 3.84 → 4.59.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.06,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 223,
+  "type": "run_end",
+  "message": "Wild Horizon run ended after 15 weeks: 296,870 viewers, gross $593,740, studio take $397,806.",
+  "data": {
+   "releaseId": "rel109"
+  }
+ },
+ {
+  "week": 224,
+  "type": "surplus",
+  "message": "Red Night: kept $63,296 of unused advance.",
+  "data": {
+   "projectId": "proj111",
+   "surplus": 63296.37
+  }
+ },
+ {
+  "week": 224,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Red Night).",
+  "data": {
+   "awardId": "rel:rel117:meters_all_70",
+   "releaseId": "rel117",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 224,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Red Night).",
+  "data": {
+   "awardId": "rel:rel117:audience_7_5",
+   "releaseId": "rel117",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 224,
+  "type": "release",
+  "message": "Red Night released: Audience 8.94 / Critics 7.91 (avg 8.43). Opening pool 286,178, opening 85,853.",
+  "data": {
+   "releaseId": "rel117"
+  }
+ },
+ {
+  "week": 224,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 224,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 224,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Zombies (new): starlight $50,000 @ 8%; meridian $131,000 @ 47%."
+ },
+ {
+  "week": 224,
+  "type": "project_start",
+  "message": "Started Last Shadow (Horror + Zombies, new) with meridian advance $131,000 @ 47%.",
+  "data": {
+   "projectId": "proj119"
+  }
+ },
+ {
+  "week": 225,
+  "type": "feedback",
+  "message": "Red Night opens to 85,853 viewers.",
+  "data": {
+   "releaseId": "rel117",
+   "prev": 0,
+   "now": 85853,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 225,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 226,
+  "type": "feedback",
+  "message": "Critics love Red Night, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel117",
+   "prev": 85853,
+   "now": 62736,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 228,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Red Night. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel117",
+   "prev": 38818,
+   "now": 45398,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 229,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Red Night is still climbing (45,398 → 47,930).",
+  "data": {
+   "releaseId": "rel117",
+   "prev": 45398,
+   "now": 47930,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 230,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 231,
+  "type": "milestone",
+  "message": "Last Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj119"
+  }
+ },
+ {
+  "week": 231,
+  "type": "cast",
+  "message": "Cast Sam Imai for $43,690.67.",
+  "data": {
+   "starId": "star12",
+   "price": 43690.67
+  }
+ },
+ {
+  "week": 235,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 237,
+  "type": "milestone",
+  "message": "Last Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj119"
+  }
+ },
+ {
+  "week": 237,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 239,
+  "type": "ip_fans",
+  "message": "Red Night fans: 0 → 20,477 (avg score 8.43, 373,127 viewers).",
+  "data": {
+   "ipId": "ip110"
+  }
+ },
+ {
+  "week": 239,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 22.0 → 34.2, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 12.23,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 239,
+  "type": "trust",
+  "message": "XYZ Network earned 193% of its advance back on Red Night with strong reviews. Trust 4.61 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.93,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 239,
+  "type": "run_end",
+  "message": "Red Night run ended after 15 weeks: 373,127 viewers, gross $746,254, studio take $455,215.",
+  "data": {
+   "releaseId": "rel117"
+  }
+ },
+ {
+  "week": 240,
+  "type": "surplus",
+  "message": "Last Shadow: kept $7,309 of unused advance.",
+  "data": {
+   "projectId": "proj119",
+   "surplus": 7309.33
+  }
+ },
+ {
+  "week": 240,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Shadow).",
+  "data": {
+   "awardId": "rel:rel125:meters_all_70",
+   "releaseId": "rel125",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 240,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Shadow).",
+  "data": {
+   "awardId": "rel:rel125:audience_7_5",
+   "releaseId": "rel125",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 240,
+  "type": "release",
+  "message": "Last Shadow released: Audience 8.68 / Critics 7.15 (avg 7.92). Opening pool 299,149, opening 89,745.",
+  "data": {
+   "releaseId": "rel125"
+  }
+ },
+ {
+  "week": 240,
+  "type": "train",
+  "message": "Trained Lee Okafor: +3 to all stats."
+ },
+ {
+  "week": 240,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 240,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): meridian $157,000 @ 45%; orbit $122,000 @ 31%."
+ },
+ {
+  "week": 240,
+  "type": "project_start",
+  "message": "Started Lost Shadow (Comedy + Sports, new) with meridian advance $157,000 @ 45%.",
+  "data": {
+   "projectId": "proj127"
+  }
+ },
+ {
+  "week": 241,
+  "type": "feedback",
+  "message": "Last Shadow opens to 89,745 viewers.",
+  "data": {
+   "releaseId": "rel125",
+   "prev": 0,
+   "now": 89745,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 241,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 242,
+  "type": "feedback",
+  "message": "Critics love Last Shadow, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel125",
+   "prev": 89745,
+   "now": 62955,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 244,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Shadow. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel125",
+   "prev": 39064,
+   "now": 44965,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 244,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 245,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Shadow is still climbing (44,965 → 49,024).",
+  "data": {
+   "releaseId": "rel125",
+   "prev": 44965,
+   "now": 49024,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 247,
+  "type": "milestone",
+  "message": "Lost Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj127"
+  }
+ },
+ {
+  "week": 247,
+  "type": "cast",
+  "message": "Cast Fin Fox for $21,527.15.",
+  "data": {
+   "starId": "star104",
+   "price": 21527.15
+  }
+ },
+ {
+  "week": 251,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 253,
+  "type": "milestone",
+  "message": "Lost Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj127"
+  }
+ },
+ {
+  "week": 253,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 255,
+  "type": "ip_fans",
+  "message": "Last Shadow fans: 0 → 18,520 (avg score 7.92, 396,413 viewers).",
+  "data": {
+   "ipId": "ip118"
+  }
+ },
+ {
+  "week": 255,
+  "type": "star_career",
+  "message": "Sam Imai: Fame 63.0 → 73.6, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 10.59,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 255,
+  "type": "trust",
+  "message": "Meridian Global earned 284% of its advance back on Last Shadow with strong reviews. Trust 3.88 → 4.63.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.84,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 255,
+  "type": "run_end",
+  "message": "Last Shadow run ended after 15 weeks: 396,413 viewers, gross $792,826, studio take $420,198.",
+  "data": {
+   "releaseId": "rel125"
+  }
+ },
+ {
+  "week": 255,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 256,
+  "type": "surplus",
+  "message": "Lost Shadow: kept $55,473 of unused advance.",
+  "data": {
+   "projectId": "proj127",
+   "surplus": 55472.85
+  }
+ },
+ {
+  "week": 256,
+  "type": "genre_level",
+  "message": "Studio Comedy level 2 → 3."
+ },
+ {
+  "week": 256,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Shadow).",
+  "data": {
+   "awardId": "rel:rel133:meters_all_70",
+   "releaseId": "rel133",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 256,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Shadow).",
+  "data": {
+   "awardId": "rel:rel133:audience_7_5",
+   "releaseId": "rel133",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 256,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Lost Shadow).",
+  "data": {
+   "awardId": "rel:rel133:hall_of_fame",
+   "releaseId": "rel133",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 256,
+  "type": "release",
+  "message": "Lost Shadow released: Audience 10 / Critics 8.46 (avg 9.23, HALL OF FAME). Opening pool 280,140, opening 84,042.",
+  "data": {
+   "releaseId": "rel133"
+  }
+ },
+ {
+  "week": 256,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Pirates."
+ },
+ {
+  "week": 256,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 256,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 256,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Robots (new): wolf $96,000 @ 31%; meridian $128,000 @ 46%."
+ },
+ {
+  "week": 256,
+  "type": "project_start",
+  "message": "Started Iron Run (Action + Robots, new) with meridian advance $128,000 @ 46%.",
+  "data": {
+   "projectId": "proj135"
+  }
+ },
+ {
+  "week": 257,
+  "type": "feedback",
+  "message": "Lost Shadow opens to 84,042 viewers.",
+  "data": {
+   "releaseId": "rel133",
+   "prev": 0,
+   "now": 84042,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 258,
+  "type": "feedback",
+  "message": "Critics love Lost Shadow, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel133",
+   "prev": 84042,
+   "now": 64229,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 258,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 260,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Shadow. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel133",
+   "prev": 40531,
+   "now": 55031,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 261,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 263,
+  "type": "milestone",
+  "message": "Iron Run hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj135"
+  }
+ },
+ {
+  "week": 263,
+  "type": "cast",
+  "message": "Cast Fin Fox for $21,405.21.",
+  "data": {
+   "starId": "star104",
+   "price": 21405.21
+  }
+ },
+ {
+  "week": 269,
+  "type": "milestone",
+  "message": "Iron Run hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj135"
+  }
+ },
+ {
+  "week": 269,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 271,
+  "type": "ip_fans",
+  "message": "Lost Shadow fans: 0 → 26,901 (avg score 9.23, 397,472 viewers).",
+  "data": {
+   "ipId": "ip126"
+  }
+ },
+ {
+  "week": 271,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 34.2 → 49.5, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 15.36,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 271,
+  "type": "trust",
+  "message": "Meridian Global earned 228% of its advance back on Lost Shadow with strong reviews. Trust 4.61 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.28,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 271,
+  "type": "run_end",
+  "message": "Lost Shadow run ended after 15 weeks: 397,472 viewers, gross $794,944, studio take $437,219.",
+  "data": {
+   "releaseId": "rel133"
+  }
+ },
+ {
+  "week": 271,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 272,
+  "type": "surplus",
+  "message": "Iron Run: kept $26,595 of unused advance.",
+  "data": {
+   "projectId": "proj135",
+   "surplus": 26594.79
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Iron Run).",
+  "data": {
+   "awardId": "rel:rel141:meters_all_70",
+   "releaseId": "rel141",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 272,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Iron Run).",
+  "data": {
+   "awardId": "rel:rel141:audience_7_5",
+   "releaseId": "rel141",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 272,
+  "type": "release",
+  "message": "Iron Run released: Audience 7.9 / Critics 6.26 (avg 7.08). Opening pool 319,762, opening 95,929.",
+  "data": {
+   "releaseId": "rel141"
+  }
+ },
+ {
+  "week": 272,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 272,
+  "type": "train",
+  "message": "Trained Lee Okafor: +3 to all stats."
+ },
+ {
+  "week": 272,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 272,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Dinosaurs (new): wolf $96,000 @ 31%; meridian $135,000 @ 45%."
+ },
+ {
+  "week": 272,
+  "type": "project_start",
+  "message": "Started Broken Storm (Action + Dinosaurs, new) with meridian advance $135,000 @ 45%.",
+  "data": {
+   "projectId": "proj143"
+  }
+ },
+ {
+  "week": 273,
+  "type": "feedback",
+  "message": "Iron Run opens to 95,929 viewers.",
+  "data": {
+   "releaseId": "rel141",
+   "prev": 0,
+   "now": 95929,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 276,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Iron Run. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel141",
+   "prev": 39728,
+   "now": 41478,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 278,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 279,
+  "type": "milestone",
+  "message": "Broken Storm hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj143"
+  }
+ },
+ {
+  "week": 279,
+  "type": "cast",
+  "message": "Cast Fin Fox for $31,804.28.",
+  "data": {
+   "starId": "star104",
+   "price": 31804.28
+  }
+ },
+ {
+  "week": 281,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 285,
+  "type": "milestone",
+  "message": "Broken Storm hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj143"
+  }
+ },
+ {
+  "week": 285,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 287,
+  "type": "ip_fans",
+  "message": "Iron Run fans: 0 → 14,438 (avg score 7.08, 433,845 viewers).",
+  "data": {
+   "ipId": "ip134"
+  }
+ },
+ {
+  "week": 287,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 49.5 → 57.3, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 8.",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 7.73,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 287,
+  "type": "trust",
+  "message": "Meridian Global earned 312% of its advance back on Iron Run with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 3.12,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 287,
+  "type": "run_end",
+  "message": "Iron Run run ended after 15 weeks: 433,845 viewers, gross $867,690, studio take $468,553.",
+  "data": {
+   "releaseId": "rel141"
+  }
+ },
+ {
+  "week": 288,
+  "type": "surplus",
+  "message": "Broken Storm: kept $23,196 of unused advance.",
+  "data": {
+   "projectId": "proj143",
+   "surplus": 23195.72
+  }
+ },
+ {
+  "week": 288,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Broken Storm).",
+  "data": {
+   "awardId": "rel:rel149:meters_all_70",
+   "releaseId": "rel149",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 288,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Broken Storm).",
+  "data": {
+   "awardId": "rel:rel149:audience_7_5",
+   "releaseId": "rel149",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 288,
+  "type": "release",
+  "message": "Broken Storm released: Audience 8.8 / Critics 6.98 (avg 7.89). Opening pool 354,962, opening 106,489.",
+  "data": {
+   "releaseId": "rel149"
+  }
+ },
+ {
+  "week": 288,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 288,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 288,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): starlight $57,000 @ 8%; wolf $104,000 @ 30%."
+ },
+ {
+  "week": 288,
+  "type": "project_start",
+  "message": "Started Silver Frequency (Comedy + Sports, new) with wolf advance $104,000 @ 30%.",
+  "data": {
+   "projectId": "proj151"
+  }
+ },
+ {
+  "week": 289,
+  "type": "feedback",
+  "message": "Broken Storm opens to 106,489 viewers.",
+  "data": {
+   "releaseId": "rel149",
+   "prev": 0,
+   "now": 106489,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 292,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Broken Storm. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel149",
+   "prev": 45046,
+   "now": 53215,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 292,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 293,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Broken Storm is still climbing (53,215 → 53,666).",
+  "data": {
+   "releaseId": "rel149",
+   "prev": 53215,
+   "now": 53666,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 295,
+  "type": "milestone",
+  "message": "Silver Frequency hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj151"
+  }
+ },
+ {
+  "week": 295,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 295,
+  "type": "cast",
+  "message": "Cast Kai Moreau for $23,476.98.",
+  "data": {
+   "starId": "star55",
+   "price": 23476.98
+  }
+ },
+ {
+  "week": 301,
+  "type": "milestone",
+  "message": "Silver Frequency hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj151"
+  }
+ },
+ {
+  "week": 301,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 303,
+  "type": "ip_fans",
+  "message": "Broken Storm fans: 0 → 20,191 (avg score 7.89, 436,656 viewers).",
+  "data": {
+   "ipId": "ip142"
+  }
+ },
+ {
+  "week": 303,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 57.3 → 68.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 10.76,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 303,
+  "type": "trust",
+  "message": "Meridian Global earned 291% of its advance back on Broken Storm with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 2.91,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 303,
+  "type": "run_end",
+  "message": "Broken Storm run ended after 15 weeks: 436,656 viewers, gross $873,312, studio take $480,322.",
+  "data": {
+   "releaseId": "rel149"
+  }
+ },
+ {
+  "week": 304,
+  "type": "surplus",
+  "message": "Silver Frequency: kept $523 of unused advance.",
+  "data": {
+   "projectId": "proj151",
+   "surplus": 523.02
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Silver Frequency).",
+  "data": {
+   "awardId": "rel:rel157:meters_all_70",
+   "releaseId": "rel157",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Silver Frequency).",
+  "data": {
+   "awardId": "rel:rel157:audience_7_5",
+   "releaseId": "rel157",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Silver Frequency).",
+  "data": {
+   "awardId": "rel:rel157:critic_8_5",
+   "releaseId": "rel157",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 304,
+  "type": "prestige",
+  "message": "Prestige +200: hall_of_fame (Silver Frequency).",
+  "data": {
+   "awardId": "rel:rel157:hall_of_fame",
+   "releaseId": "rel157",
+   "milestone": "hall_of_fame",
+   "amount": 200
+  }
+ },
+ {
+  "week": 304,
+  "type": "release",
+  "message": "Silver Frequency released: Audience 9.64 / Critics 9.03 (avg 9.34, HALL OF FAME). Opening pool 161,214, opening 48,364.",
+  "data": {
+   "releaseId": "rel157"
+  }
+ },
+ {
+  "week": 304,
+  "type": "hire",
+  "message": "Hired Software Engineer Max Grant. They can build a streaming service; until then they work on productions like anyone else."
+ },
+ {
+  "week": 304,
+  "type": "streaming",
+  "message": "Max Grant starts building the streaming service (30 weeks, in the background). They are off productions until it launches."
+ },
+ {
+  "week": 304,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 304,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 304,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Dinosaurs (new): xyz $128,000 @ 39%; orbit $108,000 @ 32%."
+ },
+ {
+  "week": 304,
+  "type": "project_start",
+  "message": "Started Wild Legacy (Horror + Dinosaurs, new) with xyz advance $128,000 @ 39%.",
+  "data": {
+   "projectId": "proj160"
+  }
+ },
+ {
+  "week": 305,
+  "type": "feedback",
+  "message": "Silver Frequency opens to 48,364 viewers.",
+  "data": {
+   "releaseId": "rel157",
+   "prev": 0,
+   "now": 48364,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 306,
+  "type": "feedback",
+  "message": "Critics love Silver Frequency, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel157",
+   "prev": 48364,
+   "now": 38542,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 308,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Silver Frequency. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel157",
+   "prev": 24645,
+   "now": 31128,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 309,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Silver Frequency is still climbing (31,128 → 33,615).",
+  "data": {
+   "releaseId": "rel157",
+   "prev": 31128,
+   "now": 33615,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 311,
+  "type": "milestone",
+  "message": "Wild Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj160"
+  }
+ },
+ {
+  "week": 311,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 311,
+  "type": "cast",
+  "message": "Cast Sam Imai for $49,030.63.",
+  "data": {
+   "starId": "star12",
+   "price": 49030.63
+  }
+ },
+ {
+  "week": 317,
+  "type": "milestone",
+  "message": "Wild Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj160"
+  }
+ },
+ {
+  "week": 317,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 317,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 318,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 319,
+  "type": "ip_fans",
+  "message": "Silver Frequency fans: 0 → 16,548 (avg score 9.34, 238,308 viewers).",
+  "data": {
+   "ipId": "ip150"
+  }
+ },
+ {
+  "week": 319,
+  "type": "star_career",
+  "message": "Kai Moreau: Fame 35.6 → 49.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 5.",
+  "data": {
+   "starId": "star55",
+   "fameDelta": 13.32,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 319,
+  "type": "trust",
+  "message": "Wolf Pictures earned 137% of its advance back on Silver Frequency with strong reviews. Trust 3.42 → 4.04.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.37,
+   "step": 0.62
+  }
+ },
+ {
+  "week": 319,
+  "type": "run_end",
+  "message": "Silver Frequency run ended after 15 weeks: 238,308 viewers, gross $476,616, studio take $333,631.",
+  "data": {
+   "releaseId": "rel157"
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Wild Legacy).",
+  "data": {
+   "awardId": "rel:rel166:meters_all_70",
+   "releaseId": "rel166",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Wild Legacy).",
+  "data": {
+   "awardId": "rel:rel166:audience_7_5",
+   "releaseId": "rel166",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 320,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Wild Legacy).",
+  "data": {
+   "awardId": "rel:rel166:critic_8_5",
+   "releaseId": "rel166",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 320,
+  "type": "release",
+  "message": "Wild Legacy released: Audience 8.81 / Critics 8.54 (avg 8.68). Opening pool 259,554, opening 77,866.",
+  "data": {
+   "releaseId": "rel166"
+  }
+ },
+ {
+  "week": 320,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 320,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 320,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): starlight $52,000 @ 8%; xyz $146,000 @ 40%; orbit $104,000 @ 32%."
+ },
+ {
+  "week": 320,
+  "type": "project_start",
+  "message": "Started Last Pulse (Comedy + Sports, new) with xyz advance $146,000 @ 40%.",
+  "data": {
+   "projectId": "proj168"
+  }
+ },
+ {
+  "week": 321,
+  "type": "feedback",
+  "message": "Wild Legacy opens to 77,866 viewers.",
+  "data": {
+   "releaseId": "rel166",
+   "prev": 0,
+   "now": 77866,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 322,
+  "type": "feedback",
+  "message": "Critics love Wild Legacy, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel166",
+   "prev": 77866,
+   "now": 58869,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 324,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Wild Legacy. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel166",
+   "prev": 36375,
+   "now": 40743,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 325,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Wild Legacy is still climbing (40,743 → 41,910).",
+  "data": {
+   "releaseId": "rel166",
+   "prev": 40743,
+   "now": 41910,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 327,
+  "type": "milestone",
+  "message": "Last Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj168"
+  }
+ },
+ {
+  "week": 327,
+  "type": "cast",
+  "message": "Cast Kai Moreau for $32,528.7.",
+  "data": {
+   "starId": "star55",
+   "price": 32528.7
+  }
+ },
+ {
+  "week": 332,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 333,
+  "type": "milestone",
+  "message": "Last Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj168"
+  }
+ },
+ {
+  "week": 333,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 334,
+  "type": "streaming",
+  "message": "Streaming service launched with 19 catalog titles and 15,000 launch subscribers (one-time, from catalog appeal 13.97). Max Grant is back on productions.",
+  "data": {
+   "launch": 15000,
+   "catalog": 19
+  }
+ },
+ {
+  "week": 335,
+  "type": "ip_fans",
+  "message": "Wild Legacy fans: 0 → 19,866 (avg score 8.68, 337,400 viewers).",
+  "data": {
+   "ipId": "ip159"
+  }
+ },
+ {
+  "week": 335,
+  "type": "star_career",
+  "message": "Sam Imai: Fame 73.6 → 86.3, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 12.74,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 335,
+  "type": "trust",
+  "message": "XYZ Network earned 206% of its advance back on Wild Legacy with strong reviews. Trust 4.86 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.06,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 335,
+  "type": "run_end",
+  "message": "Wild Legacy run ended after 15 weeks: 337,400 viewers, gross $674,800, studio take $411,628.",
+  "data": {
+   "releaseId": "rel166"
+  }
+ },
+ {
+  "week": 335,
+  "type": "catalog",
+  "message": "Wild Legacy finished its commercial run and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel166"
+  }
+ },
+ {
+  "week": 336,
+  "type": "surplus",
+  "message": "Last Pulse: kept $33,471 of unused advance.",
+  "data": {
+   "projectId": "proj168",
+   "surplus": 33471.3
+  }
+ },
+ {
+  "week": 336,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Pulse).",
+  "data": {
+   "awardId": "rel:rel174:meters_all_70",
+   "releaseId": "rel174",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 336,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Pulse).",
+  "data": {
+   "awardId": "rel:rel174:audience_7_5",
+   "releaseId": "rel174",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 336,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Last Pulse).",
+  "data": {
+   "awardId": "rel:rel174:critic_8_5",
+   "releaseId": "rel174",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 336,
+  "type": "release",
+  "message": "Last Pulse released: Audience 9.18 / Critics 8.58 (avg 8.88). Opening pool 262,049, opening 78,615.",
+  "data": {
+   "releaseId": "rel174"
+  }
+ },
+ {
+  "week": 336,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Time Travel."
+ },
+ {
+  "week": 336,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 336,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 336,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Sports (new): meridian $149,000 @ 44%; xyz $152,000 @ 39%."
+ },
+ {
+  "week": 336,
+  "type": "project_start",
+  "message": "Started Broken Signal (Comedy + Sports, new) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj176"
+  }
+ },
+ {
+  "week": 337,
+  "type": "feedback",
+  "message": "Last Pulse opens to 78,615 viewers.",
+  "data": {
+   "releaseId": "rel174",
+   "prev": 0,
+   "now": 78615,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 337,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 338,
+  "type": "feedback",
+  "message": "Critics love Last Pulse, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel174",
+   "prev": 78615,
+   "now": 60558,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 340,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Pulse. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel174",
+   "prev": 38276,
+   "now": 45535,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 341,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Pulse is still climbing (45,535 → 52,017).",
+  "data": {
+   "releaseId": "rel174",
+   "prev": 45535,
+   "now": 52017,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 343,
+  "type": "milestone",
+  "message": "Broken Signal hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj176"
+  }
+ },
+ {
+  "week": 343,
+  "type": "cast",
+  "message": "Cast Kai Moreau for $32,453.9.",
+  "data": {
+   "starId": "star55",
+   "price": 32453.9
+  }
+ },
+ {
+  "week": 349,
+  "type": "milestone",
+  "message": "Broken Signal hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj176"
+  }
+ },
+ {
+  "week": 349,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 351,
+  "type": "ip_fans",
+  "message": "Last Pulse fans: 0 → 23,161 (avg score 8.88, 373,083 viewers).",
+  "data": {
+   "ipId": "ip167"
+  }
+ },
+ {
+  "week": 351,
+  "type": "star_career",
+  "message": "Kai Moreau: Fame 49.0 → 62.8, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star55",
+   "fameDelta": 13.84,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 351,
+  "type": "trust",
+  "message": "XYZ Network earned 204% of its advance back on Last Pulse with strong reviews. Trust 4.98 → 5.00.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 2.04,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 351,
+  "type": "run_end",
+  "message": "Last Pulse run ended after 15 weeks: 373,083 viewers, gross $746,166, studio take $447,700.",
+  "data": {
+   "releaseId": "rel174"
+  }
+ },
+ {
+  "week": 351,
+  "type": "catalog",
+  "message": "Last Pulse finished its commercial run and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel174"
+  }
+ },
+ {
+  "week": 352,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Broken Signal).",
+  "data": {
+   "awardId": "rel:rel182:meters_all_70",
+   "releaseId": "rel182",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 352,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Broken Signal).",
+  "data": {
+   "awardId": "rel:rel182:audience_7_5",
+   "releaseId": "rel182",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 352,
+  "type": "release",
+  "message": "Broken Signal released: Audience 8.74 / Critics 8.17 (avg 8.46). Opening pool 158,639, opening 47,592.",
+  "data": {
+   "releaseId": "rel182"
+  }
+ },
+ {
+  "week": 352,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Mythology."
+ },
+ {
+  "week": 352,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 352,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 352,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): wolf $123,000 @ 29%; meridian $163,000 @ 43%."
+ },
+ {
+  "week": 352,
+  "type": "project_start",
+  "message": "Started Broken Code (Action + Superheroes, new) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj184"
+  }
+ },
+ {
+  "week": 353,
+  "type": "feedback",
+  "message": "Broken Signal opens to 47,592 viewers.",
+  "data": {
+   "releaseId": "rel182",
+   "prev": 0,
+   "now": 47592,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 354,
+  "type": "feedback",
+  "message": "Critics love Broken Signal, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel182",
+   "prev": 47592,
+   "now": 35586,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 356,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Broken Signal. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel182",
+   "prev": 22283,
+   "now": 24979,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 357,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Broken Signal is still climbing (24,979 → 27,461).",
+  "data": {
+   "releaseId": "rel182",
+   "prev": 24979,
+   "now": 27461,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 359,
+  "type": "milestone",
+  "message": "Broken Code hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj184"
+  }
+ },
+ {
+  "week": 359,
+  "type": "cast",
+  "message": "Cast Fin Fox for $41,718.15.",
+  "data": {
+   "starId": "star104",
+   "price": 41718.15
+  }
+ },
+ {
+  "week": 365,
+  "type": "milestone",
+  "message": "Broken Code hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj184"
+  }
+ },
+ {
+  "week": 365,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 367,
+  "type": "ip_fans",
+  "message": "Broken Signal fans: 0 → 12,072 (avg score 8.46, 218,070 viewers).",
+  "data": {
+   "ipId": "ip175"
+  }
+ },
+ {
+  "week": 367,
+  "type": "star_career",
+  "message": "Kai Moreau: Fame 62.8 → 73.1, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star55",
+   "fameDelta": 10.25,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 367,
+  "type": "run_end",
+  "message": "Broken Signal run ended after 15 weeks: 218,070 viewers (218,070 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel182"
+  }
+ },
+ {
+  "week": 367,
+  "type": "catalog",
+  "message": "Broken Signal finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel182"
+  }
+ },
+ {
+  "week": 368,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Broken Code).",
+  "data": {
+   "awardId": "rel:rel190:meters_all_70",
+   "releaseId": "rel190",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 368,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Broken Code).",
+  "data": {
+   "awardId": "rel:rel190:audience_7_5",
+   "releaseId": "rel190",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 368,
+  "type": "release",
+  "message": "Broken Code released: Audience 8.76 / Critics 7.72 (avg 8.24). Opening pool 180,139, opening 54,042.",
+  "data": {
+   "releaseId": "rel190"
+  }
+ },
+ {
+  "week": 368,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Vampires."
+ },
+ {
+  "week": 368,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 368,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 368,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (new): starlight $241,000 @ 8%; xyz $636,000 @ 39%."
+ },
+ {
+  "week": 368,
+  "type": "project_start",
+  "message": "Started Lost Legacy (tv, 15 episodes, Action + Superheroes, new) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj192"
+  }
+ },
+ {
+  "week": 369,
+  "type": "feedback",
+  "message": "Broken Code opens to 54,042 viewers.",
+  "data": {
+   "releaseId": "rel190",
+   "prev": 0,
+   "now": 54042,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 370,
+  "type": "feedback",
+  "message": "Critics love Broken Code, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel190",
+   "prev": 54042,
+   "now": 38704,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 372,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Broken Code. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel190",
+   "prev": 23617,
+   "now": 26987,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 374,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 377,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 383,
+  "type": "ip_fans",
+  "message": "Broken Code fans: 0 → 11,322 (avg score 8.24, 218,399 viewers).",
+  "data": {
+   "ipId": "ip183"
+  }
+ },
+ {
+  "week": 383,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 68.0 → 77.6, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 9.",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 9.6,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 383,
+  "type": "run_end",
+  "message": "Broken Code run ended after 15 weeks: 218,399 viewers (218,399 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel190"
+  }
+ },
+ {
+  "week": 383,
+  "type": "catalog",
+  "message": "Broken Code finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel190"
+  }
+ },
+ {
+  "week": 383,
+  "type": "milestone",
+  "message": "Lost Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj192"
+  }
+ },
+ {
+  "week": 383,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 383,
+  "type": "cast",
+  "message": "Cast Fin Fox for $48,290.75.",
+  "data": {
+   "starId": "star104",
+   "price": 48290.75
+  }
+ },
+ {
+  "week": 392,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 394,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 397,
+  "type": "milestone",
+  "message": "Lost Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj192"
+  }
+ },
+ {
+  "week": 397,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 401,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 403,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 404,
+  "type": "genre_level",
+  "message": "Studio Action level 3 → 4."
+ },
+ {
+  "week": 404,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Legacy).",
+  "data": {
+   "awardId": "rel:rel198:meters_all_70",
+   "releaseId": "rel198",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 404,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Legacy).",
+  "data": {
+   "awardId": "rel:rel198:audience_7_5",
+   "releaseId": "rel198",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 404,
+  "type": "release",
+  "message": "Lost Legacy released: Audience 8.27 / Critics 6.54 (avg 7.4). Opening pool 169,206, opening 50,762. Renewable (season average 7.4).",
+  "data": {
+   "releaseId": "rel198"
+  }
+ },
+ {
+  "week": 404,
+  "type": "announce",
+  "message": "Announced Lost Legacy season 2: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip191",
+   "season": 2
+  }
+ },
+ {
+  "week": 404,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 404,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 404,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (season): orbit $389,000 @ 33%; xyz $537,000 @ 40%."
+ },
+ {
+  "week": 404,
+  "type": "project_start",
+  "message": "Started Lost Legacy: Season 2 (tv, 15 episodes, Action + Superheroes, season) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj199"
+  }
+ },
+ {
+  "week": 405,
+  "type": "feedback",
+  "message": "Lost Legacy opens to 84,603 viewers.",
+  "data": {
+   "releaseId": "rel198",
+   "prev": 0,
+   "now": 84603,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 408,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Legacy. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel198",
+   "prev": 111566,
+   "now": 127379,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 409,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Legacy is still climbing (127,379 → 145,391).",
+  "data": {
+   "releaseId": "rel198",
+   "prev": 127379,
+   "now": 145391,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 409,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 411,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 412,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 413,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 419,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj199"
+  }
+ },
+ {
+  "week": 419,
+  "type": "cast",
+  "message": "Cast Fin Fox for $48,193.92.",
+  "data": {
+   "starId": "star104",
+   "price": 48193.92
+  }
+ },
+ {
+  "week": 421,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 422,
+  "type": "ip_fans",
+  "message": "Lost Legacy fans: 0 → 8,308 (avg score 7.4, 2,628,493 viewers).",
+  "data": {
+   "ipId": "ip191"
+  }
+ },
+ {
+  "week": 422,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 77.6 → 84.7, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 7.09,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 422,
+  "type": "run_end",
+  "message": "Lost Legacy run ended after 18 weeks: 2,628,493 viewer-episodes (216,356 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel198"
+  }
+ },
+ {
+  "week": 422,
+  "type": "catalog",
+  "message": "Lost Legacy finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel198"
+  }
+ },
+ {
+  "week": 429,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 431,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 433,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj199"
+  }
+ },
+ {
+  "week": 433,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 433,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 434,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 440,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Legacy: Season 2).",
+  "data": {
+   "awardId": "rel:rel205:meters_all_70",
+   "releaseId": "rel205",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 440,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Legacy: Season 2).",
+  "data": {
+   "awardId": "rel:rel205:audience_7_5",
+   "releaseId": "rel205",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 440,
+  "type": "release",
+  "message": "Lost Legacy: Season 2 released: Audience 8.19 / Critics 7.21 (avg 7.7). Opening pool 172,766, opening 51,830. Renewable (season average 7.7).",
+  "data": {
+   "releaseId": "rel205"
+  }
+ },
+ {
+  "week": 440,
+  "type": "announce",
+  "message": "Announced Lost Legacy season 3: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip191",
+   "season": 3
+  }
+ },
+ {
+  "week": 440,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 440,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 440,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (season): orbit $501,000 @ 33%; starlight $288,000 @ 8%; wolf $591,000 @ 30%."
+ },
+ {
+  "week": 440,
+  "type": "project_start",
+  "message": "Started Lost Legacy: Season 3 (tv, 20 episodes, Action + Superheroes, season) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj206"
+  }
+ },
+ {
+  "week": 441,
+  "type": "feedback",
+  "message": "Lost Legacy: Season 2 opens to 86,383 viewers.",
+  "data": {
+   "releaseId": "rel205",
+   "prev": 0,
+   "now": 86383,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 442,
+  "type": "feedback",
+  "message": "Critics are raving about Lost Legacy: Season 2. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel205",
+   "prev": 86383,
+   "now": 107116,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 443,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 444,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Legacy: Season 2. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel205",
+   "prev": 120280,
+   "now": 136505,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 445,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Legacy: Season 2 is still climbing (136,505 → 155,135).",
+  "data": {
+   "releaseId": "rel205",
+   "prev": 136505,
+   "now": 155135,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 452,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 458,
+  "type": "ip_fans",
+  "message": "Lost Legacy fans: 7,752 → 17,107 (avg score 7.7, 2,728,319 viewers).",
+  "data": {
+   "ipId": "ip191"
+  }
+ },
+ {
+  "week": 458,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 84.7 → 92.7, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 10.",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 7.98,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 458,
+  "type": "run_end",
+  "message": "Lost Legacy: Season 2 run ended after 18 weeks: 2,728,319 viewer-episodes (216,544 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel205"
+  }
+ },
+ {
+  "week": 458,
+  "type": "catalog",
+  "message": "Lost Legacy: Season 2 finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel205"
+  }
+ },
+ {
+  "week": 459,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 3 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj206"
+  }
+ },
+ {
+  "week": 459,
+  "type": "cast",
+  "message": "Cast Fin Fox for $60,316.74.",
+  "data": {
+   "starId": "star104",
+   "price": 60316.74
+  }
+ },
+ {
+  "week": 461,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 469,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 471,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 473,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 477,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 3 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj206"
+  }
+ },
+ {
+  "week": 477,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 485,
+  "type": "streaming",
+  "message": "Subscribers are getting restless: nothing new for 27 weeks. Cancellations are rising (catalog retention 51% softens it)."
+ },
+ {
+  "week": 487,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Legacy: Season 3).",
+  "data": {
+   "awardId": "rel:rel212:meters_all_70",
+   "releaseId": "rel212",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 487,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Legacy: Season 3).",
+  "data": {
+   "awardId": "rel:rel212:audience_7_5",
+   "releaseId": "rel212",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 487,
+  "type": "release",
+  "message": "Lost Legacy: Season 3 released: Audience 8.03 / Critics 7.04 (avg 7.54). Opening pool 175,909, opening 52,773. Renewable (season average 7.54).",
+  "data": {
+   "releaseId": "rel212"
+  }
+ },
+ {
+  "week": 487,
+  "type": "announce",
+  "message": "Announced Lost Legacy season 4: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip191",
+   "season": 4
+  }
+ },
+ {
+  "week": 487,
+  "type": "train",
+  "message": "Trained Lee Okafor: +3 to all stats."
+ },
+ {
+  "week": 487,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 487,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (season): meridian $786,000 @ 45%; wolf $567,000 @ 30%."
+ },
+ {
+  "week": 487,
+  "type": "project_start",
+  "message": "Started Lost Legacy: Season 4 (tv, 20 episodes, Action + Superheroes, season) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj213"
+  }
+ },
+ {
+  "week": 488,
+  "type": "feedback",
+  "message": "Lost Legacy: Season 3 opens to 87,955 viewers.",
+  "data": {
+   "releaseId": "rel212",
+   "prev": 0,
+   "now": 87955,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 488,
+  "type": "prestige",
+  "message": "Prestige +150: ip_viewers_500k (Lost Legacy: Season 3).",
+  "data": {
+   "awardId": "ip:ip191:ip_viewers_500k",
+   "releaseId": "rel212",
+   "milestone": "ip_viewers_500k",
+   "amount": 150
+  }
+ },
+ {
+  "week": 489,
+  "type": "feedback",
+  "message": "Critics are raving about Lost Legacy: Season 3. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel212",
+   "prev": 87955,
+   "now": 108849,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 491,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Legacy: Season 3. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel212",
+   "prev": 122095,
+   "now": 138074,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 492,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Legacy: Season 3 is still climbing (138,074 → 156,176).",
+  "data": {
+   "releaseId": "rel212",
+   "prev": 138074,
+   "now": 156176,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 506,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 4 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj213"
+  }
+ },
+ {
+  "week": 506,
+  "type": "cast",
+  "message": "Cast Fin Fox for $60,049.",
+  "data": {
+   "starId": "star104",
+   "price": 60049
+  }
+ },
+ {
+  "week": 510,
+  "type": "ip_fans",
+  "message": "Lost Legacy fans: 15,477 → 24,385 (avg score 7.54, 3,830,864 viewers).",
+  "data": {
+   "ipId": "ip191"
+  }
+ },
+ {
+  "week": 510,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 92.7 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 7.54,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 510,
+  "type": "run_end",
+  "message": "Lost Legacy: Season 3 run ended after 23 weeks: 3,830,864 viewer-episodes (219,185 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel212"
+  }
+ },
+ {
+  "week": 510,
+  "type": "catalog",
+  "message": "Lost Legacy: Season 3 finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel212"
+  }
+ },
+ {
+  "week": 521,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 522,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 524,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 4 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj213"
+  }
+ },
+ {
+  "week": 524,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 531,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 532,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 534,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Legacy: Season 4).",
+  "data": {
+   "awardId": "rel:rel219:meters_all_70",
+   "releaseId": "rel219",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 534,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Lost Legacy: Season 4).",
+  "data": {
+   "awardId": "rel:rel219:audience_7_5",
+   "releaseId": "rel219",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 534,
+  "type": "release",
+  "message": "Lost Legacy: Season 4 released: Audience 7.73 / Critics 6.78 (avg 7.26). Opening pool 185,253, opening 55,576. Renewable (season average 7.26).",
+  "data": {
+   "releaseId": "rel219"
+  }
+ },
+ {
+  "week": 534,
+  "type": "announce",
+  "message": "Announced Lost Legacy season 5: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip191",
+   "season": 5
+  }
+ },
+ {
+  "week": 534,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 534,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 534,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (season): meridian $876,000 @ 44%; wolf $633,000 @ 29%; starlight $305,000 @ 8%."
+ },
+ {
+  "week": 534,
+  "type": "project_start",
+  "message": "Started Lost Legacy: Season 5 (tv, 20 episodes, Action + Superheroes, season) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj220"
+  }
+ },
+ {
+  "week": 535,
+  "type": "feedback",
+  "message": "Lost Legacy: Season 4 opens to 92,627 viewers.",
+  "data": {
+   "releaseId": "rel219",
+   "prev": 0,
+   "now": 92627,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 538,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Legacy: Season 4. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel219",
+   "prev": 125212,
+   "now": 140831,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 539,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Legacy: Season 4 is still climbing (140,831 → 157,981).",
+  "data": {
+   "releaseId": "rel219",
+   "prev": 140831,
+   "now": 157981,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 541,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 542,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 551,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 552,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 553,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 5 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj220"
+  }
+ },
+ {
+  "week": 553,
+  "type": "cast",
+  "message": "Cast Fin Fox for $66,049.83.",
+  "data": {
+   "starId": "star104",
+   "price": 66049.83
+  }
+ },
+ {
+  "week": 557,
+  "type": "ip_fans",
+  "message": "Lost Legacy fans: 22,276 → 30,202 (avg score 7.26, 3,815,378 viewers).",
+  "data": {
+   "ipId": "ip191"
+  }
+ },
+ {
+  "week": 557,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 6.71,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 557,
+  "type": "run_end",
+  "message": "Lost Legacy: Season 4 run ended after 23 weeks: 3,815,378 viewer-episodes (219,188 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel219"
+  }
+ },
+ {
+  "week": 557,
+  "type": "catalog",
+  "message": "Lost Legacy: Season 4 finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel219"
+  }
+ },
+ {
+  "week": 571,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 5 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj220"
+  }
+ },
+ {
+  "week": 571,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 581,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Legacy: Season 5).",
+  "data": {
+   "awardId": "rel:rel226:meters_all_70",
+   "releaseId": "rel226",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 581,
+  "type": "release",
+  "message": "Lost Legacy: Season 5 released: Audience 7.21 / Critics 6.33 (avg 6.77). Opening pool 193,862, opening 58,159. Renewable (season average 6.77).",
+  "data": {
+   "releaseId": "rel226"
+  }
+ },
+ {
+  "week": 581,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 581,
+  "type": "announce",
+  "message": "Announced Lost Legacy season 6: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip191",
+   "season": 6
+  }
+ },
+ {
+  "week": 581,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 581,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 581,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Superheroes (season): meridian $884,000 @ 44%; xyz $879,000 @ 39%."
+ },
+ {
+  "week": 581,
+  "type": "project_start",
+  "message": "Started Lost Legacy: Season 6 (tv, 20 episodes, Action + Superheroes, season) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj227"
+  }
+ },
+ {
+  "week": 582,
+  "type": "feedback",
+  "message": "Lost Legacy: Season 5 opens to 96,931 viewers.",
+  "data": {
+   "releaseId": "rel226",
+   "prev": 0,
+   "now": 96931,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 582,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 585,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Lost Legacy: Season 5. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel226",
+   "prev": 124420,
+   "now": 138808,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 586,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Legacy: Season 5 is still climbing (138,808 → 153,604).",
+  "data": {
+   "releaseId": "rel226",
+   "prev": 138808,
+   "now": 153604,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 591,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 592,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 600,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 6 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj227"
+  }
+ },
+ {
+  "week": 600,
+  "type": "cast",
+  "message": "Cast Fin Fox for $65,999.58.",
+  "data": {
+   "starId": "star104",
+   "price": 65999.58
+  }
+ },
+ {
+  "week": 604,
+  "type": "ip_fans",
+  "message": "Lost Legacy fans: 27,589 → 33,794 (avg score 6.77, 3,724,327 viewers).",
+  "data": {
+   "ipId": "ip191"
+  }
+ },
+ {
+  "week": 604,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 5.25,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 604,
+  "type": "run_end",
+  "message": "Lost Legacy: Season 5 run ended after 23 weeks: 3,724,327 viewer-episodes (219,116 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel226"
+  }
+ },
+ {
+  "week": 604,
+  "type": "catalog",
+  "message": "Lost Legacy: Season 5 finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel226"
+  }
+ },
+ {
+  "week": 605,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 618,
+  "type": "milestone",
+  "message": "Lost Legacy: Season 6 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj227"
+  }
+ },
+ {
+  "week": 618,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 625,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 628,
+  "type": "genre_level",
+  "message": "Studio Action level 4 → 5."
+ },
+ {
+  "week": 628,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Lost Legacy: Season 6).",
+  "data": {
+   "awardId": "rel:rel233:meters_all_70",
+   "releaseId": "rel233",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 628,
+  "type": "release",
+  "message": "Lost Legacy: Season 6 released: Audience 6.69 / Critics 5.28 (avg 5.99). Opening pool 185,466, opening 55,640. Renewable (season average 5.99).",
+  "data": {
+   "releaseId": "rel233"
+  }
+ },
+ {
+  "week": 628,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 628,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 628,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): orbit $104,000 @ 32%; starlight $60,000 @ 8%; meridian $163,000 @ 44%."
+ },
+ {
+  "week": 628,
+  "type": "project_start",
+  "message": "Started Last Frequency (Action + Spies, new) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj235"
+  }
+ },
+ {
+  "week": 629,
+  "type": "feedback",
+  "message": "Lost Legacy: Season 6 opens to 92,733 viewers.",
+  "data": {
+   "releaseId": "rel233",
+   "prev": 0,
+   "now": 92733,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 633,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Lost Legacy: Season 6 is still climbing (115,328 → 124,330).",
+  "data": {
+   "releaseId": "rel233",
+   "prev": 115328,
+   "now": 124330,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 635,
+  "type": "milestone",
+  "message": "Last Frequency hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj235"
+  }
+ },
+ {
+  "week": 635,
+  "type": "cast",
+  "message": "Cast Alex Sato for $52,514.04.",
+  "data": {
+   "starId": "star38",
+   "price": 52514.04
+  }
+ },
+ {
+  "week": 641,
+  "type": "milestone",
+  "message": "Last Frequency hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj235"
+  }
+ },
+ {
+  "week": 641,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 644,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Frequency).",
+  "data": {
+   "awardId": "rel:rel241:meters_all_70",
+   "releaseId": "rel241",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 644,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Frequency).",
+  "data": {
+   "awardId": "rel:rel241:audience_7_5",
+   "releaseId": "rel241",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 644,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Last Frequency).",
+  "data": {
+   "awardId": "rel:rel241:critic_8_5",
+   "releaseId": "rel241",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 644,
+  "type": "release",
+  "message": "Last Frequency released: Audience 8.68 / Critics 8.78 (avg 8.73). Opening pool 183,439, opening 55,032.",
+  "data": {
+   "releaseId": "rel241"
+  }
+ },
+ {
+  "week": 644,
+  "type": "train",
+  "message": "Trained Lee Okafor: +3 to all stats."
+ },
+ {
+  "week": 644,
+  "type": "train",
+  "message": "Trained Max Grant: +3 to all stats."
+ },
+ {
+  "week": 644,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (new): starlight $277,000 @ 8%; xyz $708,000 @ 40%."
+ },
+ {
+  "week": 644,
+  "type": "project_start",
+  "message": "Started Midnight Echo (tv, 20 episodes, Horror + Spies, new) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj243"
+  }
+ },
+ {
+  "week": 645,
+  "type": "feedback",
+  "message": "Last Frequency opens to 55,032 viewers.",
+  "data": {
+   "releaseId": "rel241",
+   "prev": 0,
+   "now": 55032,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 646,
+  "type": "feedback",
+  "message": "Critics love Last Frequency, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel241",
+   "prev": 55032,
+   "now": 41490,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 648,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Frequency. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel241",
+   "prev": 25062,
+   "now": 27232,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 651,
+  "type": "ip_fans",
+  "message": "Lost Legacy fans: 30,870 → 34,331 (avg score 5.99, 2,947,561 viewers).",
+  "data": {
+   "ipId": "ip191"
+  }
+ },
+ {
+  "week": 651,
+  "type": "star_career",
+  "message": "Fin Fox: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star104",
+   "fameDelta": 2.94,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 651,
+  "type": "run_end",
+  "message": "Lost Legacy: Season 6 run ended after 23 weeks: 2,947,561 viewer-episodes (218,523 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel233"
+  }
+ },
+ {
+  "week": 651,
+  "type": "catalog",
+  "message": "Lost Legacy: Season 6 finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel233"
+  }
+ },
+ {
+  "week": 654,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 655,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 659,
+  "type": "ip_fans",
+  "message": "Last Frequency fans: 0 → 13,039 (avg score 8.73, 218,485 viewers).",
+  "data": {
+   "ipId": "ip234"
+  }
+ },
+ {
+  "week": 659,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 82.4 → 93.5, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 8.",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 11.06,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 659,
+  "type": "run_end",
+  "message": "Last Frequency run ended after 15 weeks: 218,485 viewers (218,485 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel241"
+  }
+ },
+ {
+  "week": 659,
+  "type": "catalog",
+  "message": "Last Frequency finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel241"
+  }
+ },
+ {
+  "week": 663,
+  "type": "milestone",
+  "message": "Midnight Echo hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj243"
+  }
+ },
+ {
+  "week": 663,
+  "type": "cast",
+  "message": "Cast Dee Reyes for $5,924.3.",
+  "data": {
+   "starId": "star248",
+   "price": 5924.3
+  }
+ },
+ {
+  "week": 665,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 666,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 666,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 669,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 674,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 675,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 677,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 681,
+  "type": "milestone",
+  "message": "Midnight Echo hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj243"
+  }
+ },
+ {
+  "week": 681,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 682,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 686,
+  "type": "streaming",
+  "message": "Subscribers are getting restless: nothing new for 27 weeks. Cancellations are rising (catalog retention 42% softens it)."
+ },
+ {
+  "week": 686,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 686,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 689,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 689,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 691,
+  "type": "genre_level",
+  "message": "Studio Horror level 2 → 3."
+ },
+ {
+  "week": 691,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Midnight Echo).",
+  "data": {
+   "awardId": "rel:rel249:meters_all_70",
+   "releaseId": "rel249",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 691,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Midnight Echo).",
+  "data": {
+   "awardId": "rel:rel249:audience_7_5",
+   "releaseId": "rel249",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 691,
+  "type": "release",
+  "message": "Midnight Echo released: Audience 9.61 / Critics 7.41 (avg 8.51). Opening pool 143,321, opening 42,996. Renewable (season average 8.51).",
+  "data": {
+   "releaseId": "rel249"
+  }
+ },
+ {
+  "week": 691,
+  "type": "announce",
+  "message": "Announced Midnight Echo season 2: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip242",
+   "season": 2
+  }
+ },
+ {
+  "week": 691,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 691,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 691,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (season): starlight $216,000 @ 8%; meridian $596,000 @ 46%."
+ },
+ {
+  "week": 691,
+  "type": "project_start",
+  "message": "Started Midnight Echo: Season 2 (tv, 20 episodes, Horror + Spies, season) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj250"
+  }
+ },
+ {
+  "week": 692,
+  "type": "feedback",
+  "message": "Midnight Echo opens to 71,661 viewers.",
+  "data": {
+   "releaseId": "rel249",
+   "prev": 0,
+   "now": 71661,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 693,
+  "type": "feedback",
+  "message": "Critics are raving about Midnight Echo. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel249",
+   "prev": 71661,
+   "now": 89345,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 695,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Echo. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel249",
+   "prev": 100856,
+   "now": 118603,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 696,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Midnight Echo is still climbing (118,603 → 140,821).",
+  "data": {
+   "releaseId": "rel249",
+   "prev": 118603,
+   "now": 140821,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 697,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 702,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 709,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 710,
+  "type": "milestone",
+  "message": "Midnight Echo: Season 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj250"
+  }
+ },
+ {
+  "week": 710,
+  "type": "cast",
+  "message": "Cast Dee Reyes for $5,923.6.",
+  "data": {
+   "starId": "star248",
+   "price": 5923.6
+  }
+ },
+ {
+  "week": 714,
+  "type": "ip_fans",
+  "message": "Midnight Echo fans: 0 → 12,315 (avg score 8.51, 3,714,381 viewers).",
+  "data": {
+   "ipId": "ip242"
+  }
+ },
+ {
+  "week": 714,
+  "type": "star_career",
+  "message": "Dee Reyes: Fame 9.0 → 19.4, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star248",
+   "fameDelta": 10.42,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 714,
+  "type": "run_end",
+  "message": "Midnight Echo run ended after 23 weeks: 3,714,381 viewer-episodes (219,293 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel249"
+  }
+ },
+ {
+  "week": 714,
+  "type": "catalog",
+  "message": "Midnight Echo finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel249"
+  }
+ },
+ {
+  "week": 714,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 715,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 726,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 726,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 728,
+  "type": "milestone",
+  "message": "Midnight Echo: Season 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj250"
+  }
+ },
+ {
+  "week": 728,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ },
+ {
+  "week": 729,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 737,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 738,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Midnight Echo: Season 2).",
+  "data": {
+   "awardId": "rel:rel256:meters_all_70",
+   "releaseId": "rel256",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 738,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Midnight Echo: Season 2).",
+  "data": {
+   "awardId": "rel:rel256:audience_7_5",
+   "releaseId": "rel256",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 738,
+  "type": "release",
+  "message": "Midnight Echo: Season 2 released: Audience 9.54 / Critics 8.17 (avg 8.86). Opening pool 149,641, opening 44,892. Renewable (season average 8.86).",
+  "data": {
+   "releaseId": "rel256"
+  }
+ },
+ {
+  "week": 738,
+  "type": "announce",
+  "message": "Announced Midnight Echo season 3: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip242",
+   "season": 3
+  }
+ },
+ {
+  "week": 738,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 738,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 738,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (season): meridian $637,000 @ 46%; wolf $481,000 @ 31%; xyz $543,000 @ 41%."
+ },
+ {
+  "week": 738,
+  "type": "project_start",
+  "message": "Started Midnight Echo: Season 3 (tv, 20 episodes, Horror + Spies, season) with self-funding as a Streaming Original.",
+  "data": {
+   "projectId": "proj257"
+  }
+ },
+ {
+  "week": 739,
+  "type": "feedback",
+  "message": "Midnight Echo: Season 2 opens to 74,821 viewers.",
+  "data": {
+   "releaseId": "rel256",
+   "prev": 0,
+   "now": 74821,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 740,
+  "type": "feedback",
+  "message": "Critics are raving about Midnight Echo: Season 2. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel256",
+   "prev": 74821,
+   "now": 94015,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 742,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Midnight Echo: Season 2. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel256",
+   "prev": 106474,
+   "now": 124822,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 742,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 743,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Midnight Echo: Season 2 is still climbing (124,822 → 147,802).",
+  "data": {
+   "releaseId": "rel256",
+   "prev": 124822,
+   "now": 147802,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 749,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 757,
+  "type": "milestone",
+  "message": "Midnight Echo: Season 3 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj257"
+  }
+ },
+ {
+  "week": 757,
+  "type": "cast",
+  "message": "Cast Dee Reyes for $11,758.33.",
+  "data": {
+   "starId": "star248",
+   "price": 11758.33
+  }
+ },
+ {
+  "week": 761,
+  "type": "ip_fans",
+  "message": "Midnight Echo fans: 11,250 → 24,797 (avg score 8.86, 3,757,937 viewers).",
+  "data": {
+   "ipId": "ip242"
+  }
+ },
+ {
+  "week": 761,
+  "type": "star_career",
+  "message": "Dee Reyes: Fame 19.4 → 30.9, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 8.",
+  "data": {
+   "starId": "star248",
+   "fameDelta": 11.46,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 761,
+  "type": "run_end",
+  "message": "Midnight Echo: Season 2 run ended after 23 weeks: 3,757,937 viewer-episodes (219,342 distinct people), gross $0, studio take $0.",
+  "data": {
+   "releaseId": "rel256"
+  }
+ },
+ {
+  "week": 761,
+  "type": "catalog",
+  "message": "Midnight Echo: Season 2 finished its debut window and joined your streaming catalog (retention value only; no new payouts).",
+  "data": {
+   "releaseId": "rel256"
+  }
+ },
+ {
+  "week": 775,
+  "type": "milestone",
+  "message": "Midnight Echo: Season 3 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj257"
+  }
+ },
+ {
+  "week": 775,
+  "type": "campaign",
+  "message": "Campaign: medium ($20,000)."
+ }
+]

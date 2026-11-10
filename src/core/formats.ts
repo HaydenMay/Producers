@@ -76,6 +76,25 @@ export function showFatigue(cfg: Config, fatigueSeasons: number, prevAvg: number
   return { fatigue: Math.round(base * (1 - slow) * 1000) / 1000, base: Math.round(base * 1000) / 1000, slow: Math.round(slow * 1000) / 1000 };
 }
 
+/**
+ * EXPERIMENT (Gate 3 follow-up, default off): returning-viewer interest fatigue for the next season's opening.
+ * Exposure = seasons aired (basis "seasons") or episodes aired / episodesPerStep ("episodes"), minus good-twist resets.
+ * Fatigue grows past the onset, is capped, and a great previous season slows it. Returns null when disabled or not a renewal.
+ */
+export function viewerFatigue(state: StudioState, cfg: Config, ip: IpLine): { mult: number; units: number; base: number; slow: number; basis: string } | null {
+  const v = cfg.tv.viewerFatigue;
+  if (!v.enabled || formatOf(ip) !== "tv") return null;
+  const prior = seasonsOf(state, ip.id);
+  if (!prior.length) return null;
+  const raw = v.basis === "episodes" ? prior.reduce((a, r) => a + (r.episodes ?? 0), 0) / v.episodesPerStep : prior.length;
+  const units = Math.max(0, raw - v.goodTwistReset * (ip.viewerTwistResets ?? 0));
+  const base = Math.min(v.max, v.perStep * Math.pow(Math.max(0, units - v.onset), v.exponent));
+  const prevAvg = prior.at(-1)!.avgScore;
+  const slow = v.qualitySlow * Math.max(0, Math.min(1, (prevAvg - 7) / 3));
+  const r3 = (x: number) => Math.round(x * 1000) / 1000;
+  return { mult: r3(1 - base * (1 - slow)), units: r3(units), base: r3(base), slow: r3(slow), basis: v.basis };
+}
+
 /** Twist outcome from the twist combo's grades (revealed at release, like any first use). */
 export function twistOutcome(state: StudioState, cfg: Config, genre: string, theme: string): "good" | "bad" | "neutral" {
   const g = state.world.comboGrades[comboKey(genre, theme)];

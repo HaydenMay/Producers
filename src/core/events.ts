@@ -25,6 +25,7 @@ export const CASH_KINDS: ReadonlySet<LedgerEntry["kind"]> = new Set([
   "platform_build",
   "subscriptions",
   "platform_opex",
+  "fire",
 ]);
 
 export function ledger(state: StudioState, entry: Omit<LedgerEntry, "week">): void {

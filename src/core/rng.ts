@@ -2,7 +2,12 @@
 import type { RngState } from "./types";
 
 export const STREAMS = ["world", "trends", "talent", "work", "staff", "distributors", "names"] as const;
-export type StreamName = (typeof STREAMS)[number];
+/** "events" is a LAZY stream (Gate 3 follow-up experiments): created on first use only, so other streams and old states are untouched. */
+export type StreamName = (typeof STREAMS)[number] | "events";
+
+export function ensureStream(rng: RngState, seed: number, name: string): void {
+  if (rng[name] === undefined) rng[name] = hashString(`${seed}:${name}`) || 1;
+}
 
 function hashString(s: string): number {
   // FNV-1a 32-bit

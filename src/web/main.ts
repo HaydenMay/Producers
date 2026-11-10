@@ -81,7 +81,7 @@ function tvLine(): string {
 function reinvestButtons(ch: ReturnType<typeof getChoices>): string {
   const r = ch.options.filter((o) => REINVEST.includes(o.type));
   if (!r.length) return `<p class="muted">No reinvestment available${s.cash < 0 ? " (cash is negative: no hiring/training/ads/self-funding)" : ""}.</p>`;
-  return `<div class="row">${r.map((o, i) => `<button data-reinvest="${i}">${o.type === "train" ? `train ${s.staff.find((x) => x.id === (o as { staffId: string }).staffId)?.name}` : o.type === "research_theme" ? `research ${(o as { theme: string }).theme}` : o.type === "upgrade_studio" ? `upgrade studio capacity (${s.maxStaff} → ${cfg.staffCapacity.ladder[s.capacityLevel + 1]}, $${((cfg.staffCapacity.upgradeCosts as number[])[s.capacityLevel] ?? 0).toLocaleString()})` : o.type === "announce_season" ? `announce next season of ${esc(s.ips[(o as { ipId: string }).ipId].name)} ($${cfg.tv.announce.cost.toLocaleString()})` : o.type === "unlock_tv" ? `unlock TV ($${cfg.tv.unlock.cost.toLocaleString()})` : o.type === "build_streaming" ? `build streaming service ($${cfg.streaming.buildCost.toLocaleString()}, ${cfg.streaming.buildWeeks} wks)` : o.type.replace("_", " ")}</button>`).join("")}</div>`;
+  return `<div class="row">${r.map((o, i) => `<button data-reinvest="${i}">${o.type === "train" ? `train ${s.staff.find((x) => x.id === (o as { staffId: string }).staffId)?.name}` : o.type === "research_theme" ? `research ${(o as { theme: string }).theme}` : o.type === "upgrade_studio" ? `upgrade studio capacity (${s.maxStaff} → ${cfg.staffCapacity.ladder[s.capacityLevel + 1]}, $${((cfg.staffCapacity.upgradeCosts as number[])[s.capacityLevel] ?? 0).toLocaleString()})` : o.type === "announce_season" ? `announce next season of ${esc(s.ips[(o as { ipId: string }).ipId].name)} ($${cfg.tv.announce.cost.toLocaleString()})` : o.type === "unlock_tv" ? `unlock TV ($${cfg.tv.unlock.cost.toLocaleString()})` : o.type === "fire" ? (() => { const st = s.staff.find((x) => x.id === (o as { staffId: string }).staffId)!; return `dismiss ${esc(st.name)} (−${$(st.wage)}/wk payroll, frees a slot)`; })() : o.type === "build_streaming" ? `build streaming service ($${cfg.streaming.buildCost.toLocaleString()}, ${cfg.streaming.buildWeeks} wks)` : o.type.replace("_", " ")}</button>`).join("")}</div>`;
 }
 
 function renderCareer() {
@@ -176,7 +176,7 @@ function renderCareer() {
   });
 }
 
-const REINVEST = ["hire", "train", "studio_ads", "research_theme", "upgrade_studio", "unlock_tv", "announce_season", "hire_engineer", "build_streaming"];
+const REINVEST = ["hire", "train", "studio_ads", "research_theme", "upgrade_studio", "unlock_tv", "announce_season", "hire_engineer", "build_streaming", "fire"];
 
 function download(name: string, text: string) {
   const a = document.createElement("a");

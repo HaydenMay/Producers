@@ -1,0 +1,1124 @@
+{
+ "fadingVoluntary": {
+  "count": 532,
+  "first": [
+   {
+    "seed": 1,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "seasons": 9,
+    "best": 8.375,
+    "last": 5.595
+   },
+   {
+    "seed": 1,
+    "strategy": "tv-first",
+    "ipId": "ip156",
+    "seasons": 10,
+    "best": 9.335,
+    "last": 4.665
+   },
+   {
+    "seed": 1,
+    "strategy": "tv-first",
+    "ipId": "ip255",
+    "seasons": 11,
+    "best": 8.095,
+    "last": 5.25
+   },
+   {
+    "seed": 2,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "seasons": 12,
+    "best": 7.995,
+    "last": 5.825
+   },
+   {
+    "seed": 2,
+    "strategy": "tv-first",
+    "ipId": "ip171",
+    "seasons": 11,
+    "best": 9.555,
+    "last": 4.055
+   },
+   {
+    "seed": 2,
+    "strategy": "tv-first",
+    "ipId": "ip249",
+    "seasons": 13,
+    "best": 9.095,
+    "last": 5.825
+   },
+   {
+    "seed": 4,
+    "strategy": "tv-first",
+    "ipId": "ip164",
+    "seasons": 17,
+    "best": 9.26,
+    "last": 5.835
+   },
+   {
+    "seed": 4,
+    "strategy": "tv-first",
+    "ipId": "ip235",
+    "seasons": 8,
+    "best": 7.68,
+    "last": 5.54
+   },
+   {
+    "seed": 5,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "seasons": 10,
+    "best": 8.71,
+    "last": 5.565
+   },
+   {
+    "seed": 5,
+    "strategy": "tv-first",
+    "ipId": "ip157",
+    "seasons": 11,
+    "best": 8.96,
+    "last": 5.81
+   },
+   {
+    "seed": 5,
+    "strategy": "tv-first",
+    "ipId": "ip235",
+    "seasons": 11,
+    "best": 9.815,
+    "last": 5.565
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip69",
+    "seasons": 9,
+    "best": 8.585,
+    "last": 5.685
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip135",
+    "seasons": 32,
+    "best": 9.485,
+    "last": 5.96
+   },
+   {
+    "seed": 7,
+    "strategy": "tv-first",
+    "ipId": "ip69",
+    "seasons": 9,
+    "best": 8.545,
+    "last": 5.925
+   },
+   {
+    "seed": 7,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "seasons": 13,
+    "best": 9.14,
+    "last": 5.805
+   },
+   {
+    "seed": 7,
+    "strategy": "tv-first",
+    "ipId": "ip227",
+    "seasons": 9,
+    "best": 8.96,
+    "last": 4.76
+   },
+   {
+    "seed": 7,
+    "strategy": "tv-first",
+    "ipId": "ip291",
+    "seasons": 11,
+    "best": 9.025,
+    "last": 5.985
+   },
+   {
+    "seed": 8,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "seasons": 11,
+    "best": 7.725,
+    "last": 5.935
+   },
+   {
+    "seed": 8,
+    "strategy": "tv-first",
+    "ipId": "ip141",
+    "seasons": 11,
+    "best": 9.51,
+    "last": 4.25
+   },
+   {
+    "seed": 9,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "seasons": 10,
+    "best": 8.375,
+    "last": 5.75
+   },
+   {
+    "seed": 9,
+    "strategy": "tv-first",
+    "ipId": "ip99",
+    "seasons": 10,
+    "best": 8.55,
+    "last": 4.86
+   },
+   {
+    "seed": 9,
+    "strategy": "tv-first",
+    "ipId": "ip228",
+    "seasons": 9,
+    "best": 8.865,
+    "last": 5.995
+   },
+   {
+    "seed": 9,
+    "strategy": "tv-first",
+    "ipId": "ip271",
+    "seasons": 9,
+    "best": 8.69,
+    "last": 5.735
+   },
+   {
+    "seed": 10,
+    "strategy": "tv-first",
+    "ipId": "ip76",
+    "seasons": 10,
+    "best": 8.68,
+    "last": 5.73
+   },
+   {
+    "seed": 10,
+    "strategy": "tv-first",
+    "ipId": "ip149",
+    "seasons": 10,
+    "best": 8.915,
+    "last": 5.935
+   },
+   {
+    "seed": 10,
+    "strategy": "tv-first",
+    "ipId": "ip220",
+    "seasons": 11,
+    "best": 9.41,
+    "last": 5.82
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "seasons": 22,
+    "best": 8.355,
+    "last": 5.815
+   },
+   {
+    "seed": 12,
+    "strategy": "tv-first",
+    "ipId": "ip92",
+    "seasons": 10,
+    "best": 8.505,
+    "last": 5.875
+   },
+   {
+    "seed": 12,
+    "strategy": "tv-first",
+    "ipId": "ip165",
+    "seasons": 13,
+    "best": 9.325,
+    "last": 5.83
+   },
+   {
+    "seed": 12,
+    "strategy": "tv-first",
+    "ipId": "ip257",
+    "seasons": 8,
+    "best": 8.165,
+    "last": 5.715
+   },
+   {
+    "seed": 14,
+    "strategy": "tv-first",
+    "ipId": "ip69",
+    "seasons": 10,
+    "best": 8.52,
+    "last": 5.275
+   },
+   {
+    "seed": 14,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "seasons": 7,
+    "best": 7.96,
+    "last": 5.27
+   },
+   {
+    "seed": 14,
+    "strategy": "tv-first",
+    "ipId": "ip192",
+    "seasons": 10,
+    "best": 8.98,
+    "last": 5.36
+   },
+   {
+    "seed": 14,
+    "strategy": "tv-first",
+    "ipId": "ip263",
+    "seasons": 10,
+    "best": 9.44,
+    "last": 4.865
+   },
+   {
+    "seed": 15,
+    "strategy": "tv-first",
+    "ipId": "ip76",
+    "seasons": 12,
+    "best": 8.83,
+    "last": 5.84
+   },
+   {
+    "seed": 15,
+    "strategy": "tv-first",
+    "ipId": "ip93",
+    "seasons": 13,
+    "best": 7.77,
+    "last": 5.975
+   },
+   {
+    "seed": 15,
+    "strategy": "tv-first",
+    "ipId": "ip255",
+    "seasons": 9,
+    "best": 7.95,
+    "last": 5.51
+   },
+   {
+    "seed": 16,
+    "strategy": "tv-first",
+    "ipId": "ip69",
+    "seasons": 10,
+    "best": 8.86,
+    "last": 5.78
+   },
+   {
+    "seed": 16,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "seasons": 8,
+    "best": 8.465,
+    "last": 5.45
+   },
+   {
+    "seed": 17,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "seasons": 26,
+    "best": 7.51,
+    "last": 5.815
+   }
+  ]
+ },
+ "longStrong": {
+  "count": 0,
+  "first": []
+ },
+ "comeback": {
+  "count": 36,
+  "first": [
+   {
+    "seed": 5,
+    "strategy": "tv-first",
+    "ipId": "ip313",
+    "season": 11,
+    "avg": 7.435,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip83",
+    "season": 16,
+    "avg": 7.195,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 15,
+    "strategy": "tv-first",
+    "ipId": "ip76",
+    "season": 10,
+    "avg": 7.395,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 15,
+    "strategy": "tv-first",
+    "ipId": "ip93",
+    "season": 9,
+    "avg": 7.48,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 17,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 22,
+    "avg": 7.43,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 49,
+    "strategy": "tv-first",
+    "ipId": "ip76",
+    "season": 11,
+    "avg": 7.6,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 49,
+    "strategy": "tv-first",
+    "ipId": "ip76",
+    "season": 15,
+    "avg": 7.66,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 80,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 34,
+    "avg": 7.47,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 85,
+    "strategy": "tv-first",
+    "ipId": "ip94",
+    "season": 9,
+    "avg": 7.485,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 134,
+    "strategy": "tv-first",
+    "ipId": "ip69",
+    "season": 11,
+    "avg": 7.57,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 149,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 24,
+    "avg": 7.465,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 155,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "season": 10,
+    "avg": 7.67,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 187,
+    "strategy": "tv-first",
+    "ipId": "ip76",
+    "season": 11,
+    "avg": 7.4,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 187,
+    "strategy": "tv-first",
+    "ipId": "ip76",
+    "season": 19,
+    "avg": 7.435,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 198,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 8,
+    "avg": 8.175,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 27,
+    "avg": 7.005,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 43,
+    "avg": 7,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 19,
+    "strategy": "renewal-franchise",
+    "ipId": "ip69",
+    "season": 12,
+    "avg": 7,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 35,
+    "strategy": "renewal-franchise",
+    "ipId": "ip69",
+    "season": 14,
+    "avg": 7.35,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 65,
+    "strategy": "renewal-franchise",
+    "ipId": "ip77",
+    "season": 12,
+    "avg": 7,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 97,
+    "strategy": "renewal-franchise",
+    "ipId": "ip53",
+    "season": 45,
+    "avg": 7.3,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 103,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 15,
+    "avg": 7.455,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 126,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 13,
+    "avg": 7.21,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 126,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 17,
+    "avg": 7.24,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 126,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 25,
+    "avg": 7.275,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 126,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 33,
+    "avg": 7.275,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 148,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 11,
+    "avg": 7.18,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 148,
+    "strategy": "renewal-franchise",
+    "ipId": "ip61",
+    "season": 15,
+    "avg": 7.225,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 157,
+    "strategy": "renewal-franchise",
+    "ipId": "ip69",
+    "season": 12,
+    "avg": 7,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 159,
+    "strategy": "renewal-franchise",
+    "ipId": "ip77",
+    "season": 11,
+    "avg": 7.385,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 159,
+    "strategy": "renewal-franchise",
+    "ipId": "ip77",
+    "season": 15,
+    "avg": 7.44,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 162,
+    "strategy": "renewal-franchise",
+    "ipId": "ip53",
+    "season": 12,
+    "avg": 7.055,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 164,
+    "strategy": "renewal-franchise",
+    "ipId": "ip69",
+    "season": 15,
+    "avg": 7.45,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 164,
+    "strategy": "renewal-franchise",
+    "ipId": "ip69",
+    "season": 19,
+    "avg": 7.475,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 169,
+    "strategy": "renewal-franchise",
+    "ipId": "ip53",
+    "season": 11,
+    "avg": 7.395,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 188,
+    "strategy": "renewal-franchise",
+    "ipId": "ip69",
+    "season": 12,
+    "avg": 7,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   }
+  ]
+ },
+ "failedComeback": {
+  "count": 1455,
+  "first": [
+   {
+    "seed": 1,
+    "strategy": "tv-first",
+    "ipId": "ip156",
+    "season": 10,
+    "avg": 4.665,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 1,
+    "strategy": "tv-first",
+    "ipId": "ip255",
+    "season": 8,
+    "avg": 7.175,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 2,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 8,
+    "avg": 7.32,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 2,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 11,
+    "avg": 6.415,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 2,
+    "strategy": "tv-first",
+    "ipId": "ip171",
+    "season": 11,
+    "avg": 4.055,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 5,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 10,
+    "avg": 5.565,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 5,
+    "strategy": "tv-first",
+    "ipId": "ip157",
+    "season": 9,
+    "avg": 6.91,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 5,
+    "strategy": "tv-first",
+    "ipId": "ip235",
+    "season": 11,
+    "avg": 5.565,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 5,
+    "strategy": "tv-first",
+    "ipId": "ip313",
+    "season": 10,
+    "avg": 6.185,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip135",
+    "season": 11,
+    "avg": 6.025,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip135",
+    "season": 15,
+    "avg": 6.045,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip135",
+    "season": 18,
+    "avg": 6.71,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip135",
+    "season": 20,
+    "avg": 7.095,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip135",
+    "season": 23,
+    "avg": 6.05,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip135",
+    "season": 27,
+    "avg": 6.045,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 6,
+    "strategy": "tv-first",
+    "ipId": "ip135",
+    "season": 31,
+    "avg": 6.05,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 7,
+    "strategy": "tv-first",
+    "ipId": "ip227",
+    "season": 9,
+    "avg": 4.76,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 7,
+    "strategy": "tv-first",
+    "ipId": "ip291",
+    "season": 10,
+    "avg": 6.68,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 8,
+    "strategy": "tv-first",
+    "ipId": "ip141",
+    "season": 11,
+    "avg": 4.25,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 8,
+    "strategy": "tv-first",
+    "ipId": "ip219",
+    "season": 11,
+    "avg": 6.035,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 8,
+    "strategy": "tv-first",
+    "ipId": "ip219",
+    "season": 15,
+    "avg": 6.045,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 8,
+    "strategy": "tv-first",
+    "ipId": "ip219",
+    "season": 19,
+    "avg": 6.05,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 8,
+    "strategy": "tv-first",
+    "ipId": "ip219",
+    "season": 23,
+    "avg": 5.74,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 9,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 9,
+    "avg": 6.275,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 9,
+    "strategy": "tv-first",
+    "ipId": "ip99",
+    "season": 10,
+    "avg": 4.86,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 9,
+    "strategy": "tv-first",
+    "ipId": "ip271",
+    "season": 9,
+    "avg": 5.735,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "season": 9,
+    "avg": 6.595,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "season": 11,
+    "avg": 6.905,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "season": 13,
+    "avg": 6.325,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "season": 17,
+    "avg": 6.685,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "season": 19,
+    "avg": 6.98,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip61",
+    "season": 21,
+    "avg": 6.705,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip83",
+    "season": 11,
+    "avg": 6.035,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip83",
+    "season": 15,
+    "avg": 6.045,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip83",
+    "season": 19,
+    "avg": 6.05,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 11,
+    "strategy": "tv-first",
+    "ipId": "ip83",
+    "season": 22,
+    "avg": 6.715,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 12,
+    "strategy": "tv-first",
+    "ipId": "ip314",
+    "season": 10,
+    "avg": 6.37,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 14,
+    "strategy": "tv-first",
+    "ipId": "ip69",
+    "season": 10,
+    "avg": 5.275,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 14,
+    "strategy": "tv-first",
+    "ipId": "ip84",
+    "season": 7,
+    "avg": 5.27,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   },
+   {
+    "seed": 14,
+    "strategy": "tv-first",
+    "ipId": "ip192",
+    "season": 10,
+    "avg": 5.36,
+    "breakthrough": 0,
+    "twist": "good",
+    "starChanged": false
+   }
+  ]
+ },
+ "firingRecovery": {
+  "count": 2,
+  "first": [
+   {
+    "seed": 54,
+    "strategy": "renewal-franchise",
+    "fires": 4,
+    "minCash": -237744,
+    "endCash": 74504,
+    "engineerWeek": null,
+    "launchWeek": null
+   },
+   {
+    "seed": 83,
+    "strategy": "renewal-franchise",
+    "fires": 6,
+    "minCash": -193995,
+    "endCash": 2771574,
+    "engineerWeek": null,
+    "launchWeek": null
+   }
+  ]
+ }
+}

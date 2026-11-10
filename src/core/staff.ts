@@ -66,6 +66,25 @@ export function hireStaff(state: StudioState, cfg: Config): Staff {
   return s;
 }
 
+/** LOCKED (Gate 3 follow-up): employees can be fired. Harness rules: between productions only, never the engineer while building, keep >= minStaff (OPEN). */
+export function fireOptions(state: StudioState, cfg: Config): string[] {
+  const f = cfg.staffing;
+  if (!f.firingEnabled) return [];
+  if (f.betweenProductionsOnly && (state.project || state.pendingOffers)) return [];
+  if (state.staff.length <= f.minStaff) return [];
+  if (f.fireCost > 0 && Math.max(0, state.cash) < f.fireCost) return [];
+  return state.staff.filter((s) => !s.assignment).map((s) => s.id);
+}
+
+export function fireStaff(state: StudioState, cfg: Config, staffId: string): void {
+  if (!fireOptions(state, cfg).includes(staffId)) throw new Error(`Cannot dismiss ${staffId} now`);
+  const s = state.staff.find((x) => x.id === staffId)!;
+  state.staff = state.staff.filter((x) => x.id !== staffId);
+  (state.formerStaff ??= []).push({ ...structuredClone(s), firedWeek: state.week });
+  if (cfg.staffing.fireCost > 0) ledger(state, { kind: "fire", amount: -cfg.staffing.fireCost, note: s.name });
+  emit(state, "fire", `Dismissed ${s.name}${s.role ? " (Software Engineer)" : ""}: payroll −$${s.wage.toLocaleString()}/week; a staff slot is free (${state.staff.length}/${state.maxStaff}).`, { staffId, wage: s.wage });
+}
+
 export function trainStaff(state: StudioState, cfg: Config, staffId: string): void {
   const s = state.staff.find((x) => x.id === staffId);
   if (!s) throw new Error(`No staff ${staffId}`);

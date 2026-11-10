@@ -15,6 +15,8 @@ export interface AgentCtx {
   reinvestsThisStop: number;
   /** Gate 3 agents: alternation memory (visible own history) */
   lastFormat?: string;
+  /** Gate 3 follow-up: at most one dismissal per planning stop */
+  lastFireWeek?: number;
 }
 
 export const TREND_VALUE: Record<string, number> = { none: 0, rising: 0.4, hot: 0.8, saturated: -0.3, cooled: 0 };

@@ -10,10 +10,10 @@ import { avgScore, computeScores, isHallOfFame, meterQuality, eraBar, expectatio
 import { openingTrace, updateIpFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { awardGenreXp, genreBonus, genreLevel, maybeStaffPitch } from "./progression";
-import { pick } from "./rng";
-import { formatOf, formatSpec, hiatusMultiplier, seasonsOf, showFatigue, twistOutcome } from "./formats";
+import { ensureStream, next, pick } from "./rng";
+import { formatOf, formatSpec, hiatusMultiplier, seasonsOf, showFatigue, twistOutcome, viewerFatigue } from "./formats";
 import { onRunEnded } from "./streaming";
-import type { Offer, PlanDecision, Project, Release, ReleaseRoute, StudioState } from "./types";
+import type { Breakthrough, Meter, Offer, PlanDecision, Project, Release, ReleaseRoute, StudioState } from "./types";
 
 const TITLE_WORDS = ["Frequency", "Night", "Signal", "Protocol", "Run", "Echo", "Legacy", "Rising", "Code", "Storm", "Shadow", "Horizon", "Pulse", "Edge"];
 
@@ -99,6 +99,7 @@ export function productionWeek(state: StudioState, cfg: Config): void {
   if (!p || p.pendingDecision) return;
   const bonus = genreBonus(state, cfg, p.genre);
   staffWorkWeek(state, p, cfg, bonus);
+  if (cfg.events.breakthrough.enabled) breakthroughCheck(state, cfg, p);
   if (phaseOf(p.progress) === "filming" && p.starId) {
     p.starPoints = round2(p.starPoints + cfg.production.starFilmingWeight * starFit(state.stars[p.starId], p.genre, cfg) * (1 + bonus));
   }
@@ -114,6 +115,32 @@ export function productionWeek(state: StudioState, cfg: Config): void {
   } else if (p.progress >= 100) {
     completeProject(state, cfg);
   }
+}
+
+/**
+ * EXPERIMENT (follow-up, default off): one seeded draw when the production first works in each listed stage.
+ * Success adds bonus meter POINTS (never a score). Logged with the draw, the meter and the size.
+ */
+function breakthroughCheck(state: StudioState, cfg: Config, p: Project): void {
+  const b = cfg.events.breakthrough;
+  const stage = phaseOf(p.progress);
+  if (!b.stages.includes(stage) || (p.breakthroughChecks ?? []).includes(stage)) return;
+  if (!b.formats.includes(formatOf(p)) || (p.seasonNumber ?? 0) < b.minSeason) return;
+  (p.breakthroughChecks ??= []).push(stage);
+  if ((p.breakthroughs?.length ?? 0) >= b.maxPerProduction) return;
+  ensureStream(state.rng, state.seed, "events");
+  const draw = next(state.rng, "events");
+  if (draw >= b.chancePerCheck) return;
+  const meters = (b.stageMeters as Record<string, Meter[]>)[stage];
+  const meterDraw = next(state.rng, "events");
+  const meter = meters[Math.min(meters.length - 1, Math.floor(meterDraw * meters.length))];
+  const half = (cfg.production.meterHalfPointPerWeek as Record<Meter, number>)[meter] * p.durationWeeks * eraBar(state, cfg);
+  const points = round2(b.bonusShare * half);
+  const before = meterQuality(p, state, cfg)[meter];
+  p.meterPoints[meter] = round2(p.meterPoints[meter] + points);
+  const ev: Breakthrough = { type: "creative_breakthrough", source: stage === "filming" && p.starId ? "star" : "staff", stage, week: state.week, progress: p.progress, draw: Math.round(draw * 1e6) / 1e6, meterDraw: Math.round(meterDraw * 1e6) / 1e6, meter, points };
+  (p.breakthroughs ??= []).push(ev);
+  emit(state, "breakthrough", `Creative breakthrough on ${p.title} (${stage}, week ${state.week}): ${meter} +${points.toLocaleString()} points (draw ${ev.draw} < ${b.chancePerCheck}; meter so far ${before} → ${meterQuality(p, state, cfg)[meter]}).`, { ...ev, projectId: p.id });
 }
 
 export function castStar(state: StudioState, cfg: Config, starId: string): void {
@@ -174,6 +201,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
     if (p.twistTheme) {
       twist = twistOutcome(state, cfg, p.genre, p.twistTheme);
       if (twist === "good") ip.fatigueSeasons = Math.max(0, (ip.fatigueSeasons ?? 0) - cfg.tv.twist.goodFatigueReset);
+      if (twist === "good" && cfg.tv.viewerFatigue.enabled) ip.viewerTwistResets = (ip.viewerTwistResets ?? 0) + 1;
       ip.showTheme = p.twistTheme;
     }
     show = showFatigue(cfg, ip.fatigueSeasons ?? 0, seasonsOf(state, ip.id).at(-1)?.avgScore ?? null);
@@ -181,11 +209,18 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const fatigue = Math.min(0.6, fatigueFor(state, cfg, p) + (show?.fatigue ?? 0));
   const saturated = state.trends[p.theme]?.stage === "saturated";
   const sc = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+  let breakthrough: { events: Breakthrough[]; audienceWithout: number; criticWithout: number; avgWithout: number } | null = null;
+  if (p.breakthroughs?.length) {
+    const q = { ...p, meterPoints: { ...p.meterPoints } };
+    for (const e of p.breakthroughs) q.meterPoints[e.meter] = round2(q.meterPoints[e.meter] - e.points);
+    const w = computeScores(meterQuality(q, state, cfg), grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+    breakthrough = { events: p.breakthroughs, audienceWithout: w.audience, criticWithout: w.critic, avgWithout: avgScore(w.audience, w.critic) };
+  }
   const avg = avgScore(sc.audience, sc.critic);
   const star = p.starId ? state.stars[p.starId] : null;
   const hiatus = formatOf(p) === "tv" && p.ipRelation === "season" ? hiatusMultiplier(state, cfg, ip) : null;
-  const op = openingTrace(
-    {
+  const vf = formatOf(p) === "tv" && p.ipRelation === "season" ? viewerFatigue(state, cfg, ip) : null;
+  const opIn = (returningMult?: number) => ({
       reach: p.reach,
       campaignAwareness: (cfg.marketing.campaigns as Record<string, { awareness: number }>)[p.campaign ?? "none"].awareness,
       studioBuzz: state.studioBuzz,
@@ -193,9 +228,12 @@ function completeProject(state: StudioState, cfg: Config): Release {
       trend: state.trends[p.theme]?.stage ?? "none",
       ipFans: ip.fans,
       ...(formatOf(p) === "tv" ? { anticipation: round2((ip.anticipation ?? 0) * (hiatus?.mult ?? 1)), fanAnticipationMult: hiatus?.mult ?? 1 } : {}),
-    },
-    cfg,
-  );
+      ...(returningMult !== undefined ? { returningMult } : {}),
+    });
+  const op = openingTrace(opIn(vf ? vf.mult : undefined), cfg);
+  const vfTrace = vf
+    ? { ...vf, appliesTo: cfg.tv.viewerFatigue.appliesTo, openingWithout: openingTrace(opIn(), cfg), premiereMult: cfg.tv.viewerFatigue.appliesTo === "returningAndPremiere" ? vf.mult : 1 }
+    : null;
   const surplus = transferSurplus(state, p);
   // TEST-ONLY regression injection (cfg.debug.injectBug). Default "none". Used to prove diagnostics catch bugs.
   const bug = cfg.debug.injectBug;
@@ -248,6 +286,8 @@ function completeProject(state: StudioState, cfg: Config): Release {
       fundsAtCasting: p.auditionCards.length ? "see audition cards" : null,
       auditionCards: p.auditionCards,
       ...(show || twist || hiatus ? { tv: { showFatigue: show, twist, twistTheme: p.twistTheme ?? null, hiatus, anticipationUsed: ip.anticipation ?? 0, fatigueSeasons: ip.fatigueSeasons } } : {}),
+      ...(breakthrough ? { breakthrough } : {}),
+      ...(vfTrace ? { viewerFatigue: vfTrace, ...(vfTrace.premiereMult !== 1 ? { premiereMult: vfTrace.premiereMult } : {}) } : {}),
     },
   };
   if (bug === "advanceAsRevenue") rel.grossTotal = round2(rel.grossTotal + p.advance);

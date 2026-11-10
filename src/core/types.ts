@@ -85,6 +85,8 @@ export interface IpLine {
   showTheme?: string;
   /** TV: seasons counted toward show-age fatigue (a good twist lowers it) */
   fatigueSeasons?: number;
+  /** TV (follow-up experiment, only when tv.viewerFatigue is enabled): good twists that reset viewer-fatigue exposure */
+  viewerTwistResets?: number;
   /** TV: temporary, fading show-specific anticipation from a season announcement */
   anticipation?: number;
   /** TV: season number already announced (one announcement per upcoming season) */
@@ -98,6 +100,18 @@ export interface IpLine {
 export interface ComboKnowledge {
   // hidden grades live in world.comboGrades; this is what the player has seen
   [key: string]: { audience: Grade; critic: Grade };
+}
+
+export interface Breakthrough {
+  type: "creative_breakthrough";
+  source: "staff" | "star";
+  stage: string;
+  week: number;
+  progress: number;
+  draw: number;
+  meterDraw: number;
+  meter: Meter;
+  points: number;
 }
 
 export interface Project {
@@ -135,6 +149,9 @@ export interface Project {
   auditionCards: StarCard[];
   casted: boolean;
   marketed: boolean;
+  /** follow-up experiment (events.breakthrough): stages already checked, and breakthroughs that happened */
+  breakthroughChecks?: string[];
+  breakthroughs?: Breakthrough[];
 }
 
 export interface Release {
@@ -210,7 +227,8 @@ export interface LedgerEntry {
     | "announce"
     | "platform_build"
     | "subscriptions"
-    | "platform_opex";
+    | "platform_opex"
+    | "fire";
   amount: number; // + into studio cash, - out of studio cash. advance_* entries track the project reserve.
   projectId?: string;
   note?: string;
@@ -258,6 +276,8 @@ export interface StudioState {
   /** Gate 3 (optional so pre-Gate-3 states/replays stay valid) */
   tvUnlocked?: boolean;
   platform?: PlatformState | null;
+  /** Gate 3 follow-up: dismissed employees, kept for the historical record (never revived) */
+  formerStaff?: (Staff & { firedWeek: number })[];
   world: { comboGrades: Record<string, { audience: Grade; critic: Grade }> };
 }
 
@@ -303,6 +323,7 @@ export type Decision =
   | { type: "unlock_tv" }
   | { type: "announce_season"; ipId: string }
   | { type: "hire_engineer" }
+  | { type: "fire"; staffId: string }
   | { type: "build_streaming" }
   | { type: "wait" };
 

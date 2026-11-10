@@ -33,8 +33,22 @@ function bestNew(state: StudioState, cfg: Config, ch: Choices, f: Fmt, rng: () =
   return bestBy(ps, (p) => planScore(state, p, explore), rng);
 }
 
-/** Renew a show if its last season met `minAvg`; twist when it is tiring (visible: score trend + season count). */
-function renewal(state: StudioState, cfg: Config, ch: Choices, minAvg: number, maxSeasons: number, twistBelow: number, rng: () => number): PlanDecision | null {
+/** Visible: net per production week of the show's most recent FINISHED season (null if none finished yet). */
+function lastFinishedNetPerWeek(state: StudioState, cfg: Config, ipId: string): number | null {
+  const done = state.releases.filter((r) => r.ipId === ipId && !r.active).at(-1);
+  if (!done || done.route === "original") return null; // Originals are judged by subscribers, not box office: no money test
+  const weeks = Math.round(cfg.tv.durationBaseWeeks + cfg.tv.weeksPerEpisode * (done.episodes ?? 0));
+  return (done.studioTake + done.surplusKept - done.cashOverrun) / weeks;
+}
+
+/**
+ * Renew a show if its last season met `minAvg`; twist when it is tiring (visible: score trend + season count).
+ * Follow-up: with cfg.agents.economicRenewal, sensible policies ignore their old fixed season limit and instead stop
+ * when the last finished season stopped paying (`stubborn` policies renew anything renewable).
+ */
+function renewal(state: StudioState, cfg: Config, ch: Choices, minAvg: number, maxSeasons: number, twistBelow: number, rng: () => number, stubborn = false): PlanDecision | null {
+  const econ = (cfg.agents as { economicRenewal?: boolean }).economicRenewal && !stubborn;
+  if (econ) maxSeasons = Infinity;
   const seasons = plansOf(ch, "tv", "season");
   if (!seasons.length) return null;
   const ips = [...new Set(seasons.map((p) => p.parentIpId!))];
@@ -46,6 +60,10 @@ function renewal(state: StudioState, cfg: Config, ch: Choices, minAvg: number, m
     const last = rels.at(-1)!;
     if (last.avgScore < minAvg || rels.length >= maxSeasons) continue;
     if (state.project) continue;
+    if (econ) {
+      const net = lastFinishedNetPerWeek(state, cfg, ipId);
+      if (net !== null && net < (cfg.agents as { renewMinNetPerWeek?: number }).renewMinNetPerWeek!) continue; // voluntarily stop: it no longer pays
+    }
     const mine = seasons.filter((p) => p.parentIpId === ipId);
     const n = orderPick(cfg, mine);
     let pick = mine.find((p) => p.episodes === n && !p.twistTheme)!;
@@ -103,6 +121,23 @@ function expansions(state: StudioState, cfg: Config, ch: Choices, wantStreaming:
   return null;
 }
 
+/**
+ * Follow-up policy rule (visible info only): dismiss the weakest non-engineer employee (lowest stat total; ties by id)
+ * (a) to make room for the Software Engineer when the studio is full and ready for streaming, or
+ * (b) when cash is below cfg.agents.fireDebtThreshold (cost cutting).
+ */
+function firingDecision(state: StudioState, cfg: Config, ch: Choices, wantsEngineerSlot: boolean): Decision | null {
+  const fires = ch.options.filter((o): o is { type: "fire"; staffId: string } => o.type === "fire");
+  if (!fires.length) return null;
+  const ready = wantsEngineerSlot && state.staff.length >= state.maxStaff && state.prestige >= cfg.streaming.unlock.prestige && state.cash > cfg.streaming.buildCost * 0.5;
+  const debt = state.cash < ((cfg.agents as { fireDebtThreshold?: number }).fireDebtThreshold ?? -Infinity);
+  if (!ready && !debt) return null;
+  const sum = (id: string) => Object.values(state.staff.find((s) => s.id === id)!.stats).reduce((a, b) => a + b, 0);
+  const cands = fires.filter((f) => state.staff.find((s) => s.id === f.staffId)!.role !== "software_engineer");
+  if (!cands.length) return null;
+  return [...cands].sort((a, b) => sum(a.staffId) - sum(b.staffId) || (a.staffId < b.staffId ? -1 : 1))[0];
+}
+
 interface G3Policy {
   id: string;
   description: string;
@@ -122,10 +157,18 @@ function makeStrategy(p: G3Policy): Strategy {
         case "planning": {
           const x = expansions(state, cfg, ch, p.wantStreaming, 120000);
           if (x && ctx.reinvestsThisStop < 3) return x;
-          // a studio that wants streaming keeps one slot free at its top capacity for the Software Engineer
-          // (there is no firing in the rules; the engineer occupies a normal staff slot)
           const lastLevel = state.capacityLevel >= (cfg.staffCapacity.ladder as number[]).length - 1;
-          const reserve = p.wantStreaming && !state.platform && !state.staff.some((s) => s.role === "software_engineer") && lastLevel && state.staff.length + 1 >= state.maxStaff;
+          const noEngineer = !state.platform && !state.staff.some((s) => s.role === "software_engineer");
+          const useFiring = !!(cfg.agents as { useFiring?: boolean }).useFiring;
+          if (useFiring && ctx.lastFireWeek !== state.week) {
+            const f = firingDecision(state, cfg, ch, p.wantStreaming && noEngineer && lastLevel);
+            if (f) {
+              ctx.lastFireWeek = state.week;
+              return f;
+            }
+          }
+          // without firing, a studio that wants streaming keeps one slot free at its top capacity for the engineer
+          const reserve = !useFiring && p.wantStreaming && noEngineer && lastLevel && state.staff.length + 1 >= state.maxStaff;
           const r = reinvest(state, cfg, ch, ctx, { hireAbove: reserve ? undefined : 140000, newHiring: true, upgradeBuffer: 150000, trainAbove: 80000 });
           if (r) return r;
           const plan = p.plan(state, cfg, ch, rng, ctx) ?? bestNew(state, cfg, ch, "movie", rng)!;
@@ -172,7 +215,7 @@ const POLICIES: G3Policy[] = [
     marketing: ["small"],
     original: () => false,
     plan(state, cfg, ch, rng) {
-      return renewal(state, cfg, ch, cfg.tv.renewalThreshold, 99, 6.0, rng) ?? bestNew(state, cfg, ch, "tv", rng);
+      return renewal(state, cfg, ch, cfg.tv.renewalThreshold, 99, 6.0, rng, true) ?? bestNew(state, cfg, ch, "tv", rng);
     },
   },
   {

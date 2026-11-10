@@ -55,6 +55,23 @@ Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = ha
 
 Gate 3 (formats, TV, streaming) has its own expanded register: **`docs/gate-3-assumptions.md`** (T1–T19, S1–S8, P1–P4, provisional flag thresholds). All Gate 3 fields default to disabled in `config/baseline.json`; `config/gate3.json` enables them.
 
+## Gate 3 follow-up assumptions (firing, organic TV longevity)
+
+Evidence: `docs/gate-3-followup-findings.md`; decisions: `docs/gate-3-followup-open-decisions.md`. All numbers are **TEST ASSUMPTIONS**.
+
+| # | Area | Assumption | Default | Tested | Notes |
+|---|---|---|---|---|---|
+| FU1 | Firing (LOCKED that it exists) | Decision `fire`: frees one slot; payroll, contribution and XP stop; kept in `formerStaff` with `firedWeek`; history untouched. | `staffing.firingEnabled: true` | — | Tests: `tests/integration/firing.test.ts`. |
+| FU2 | Firing timing | Only in the planning phase (between productions); never the engineer while building. | `staffing.betweenProductionsOnly: true` | — | **OPEN** (harness UX choice). |
+| FU3 | Firing floor / cost | Can't go below `minStaff`; severance `fireCost` (ledger kind `fire`). | 2 / $0 | — | **OPEN.** |
+| FU4 | Agent firing (agents only) | Fire the weakest non-engineer (stat sum, ties by id) when (a) 8/8, Prestige ≥ streaming unlock, cash > ½ build cost and the policy wants streaming, or (b) cash < `agents.fireDebtThreshold`. | off in baseline; on in `config/gate3.json` (−$100K) | before/after (A0 vs A) | Replaces the Gate 3 "keep one slot free" hack when on. |
+| FU5 | Money-aware renewal (agents only) | Sensible policies drop their old season caps and stop renewing when the last finished season netted < `agents.renewMinNetPerWeek` per production week (Originals exempt); `renewal-franchise` stays stubborn. | off in baseline; on in gate3 ($15K/wk) | A0 vs A | In practice never fires: no TV season lost money (F2). |
+| FU6 | No season cap (LOCKED) | Renewal needs only last season avg ≥ 4.0. `TV_SEASON_TOO_LONG` replaced by `TV_LONG_RUNNER` (≥ 12 seasons, last 3 avg ≥ 7; informational) and `TV_IRRATIONAL_RENEWAL` (season ordered after 2 consecutive money-losing traditional seasons, judged at release). | — | — | |
+| FU7 | Returning-viewer fatigue | mult = 1 − min(max, perStep × max(0, units − onset)^exponent) × (1 − qualitySlow × clamp((prevAvg − 7)/3, 0, 1)); units = seasons aired (or episodes / episodesPerStep) − goodTwistReset × good twists. Multiplies IP-fan and announcement opening inputs (and the premiere share if `appliesTo: returningAndPremiere`). Never scores, ratings, review fatigue or sales. | **off**; onset 3, 3%, ^1.3, cap 45%, qualitySlow 0.5, twist reset 2, seasons basis | B mild (onset 4, 2%, ^1.2, cap 35%), B_ep (episode basis), D strong (onset 2, 4%, ^1.3, cap 60%), D + premiere | Trace: `trace.viewerFatigue` with the opening without it. Barely bites (F3). |
+| FU8 | Review fatigue (Gate 3 T-value) | Unchanged default: min(35%, 1.2% × n^1.6) × quality slow. | 35% / 1.2% | C: 20% / 0.8% | The real longevity lever (F4). Not replaced. |
+| FU9 | Creative breakthroughs | One draw from the lazy `events` RNG stream the first week a production works in each listed stage; success (< chance) adds `bonusShare` × that meter's half-point (meterHalfPointPerWeek × duration × era bar) to one meter of the stage (writing → plot/writing by a second draw; filming; editing). Max 1 per production. Logged (event `breakthrough`, `trace.breakthrough` with draws, points and the scores without it). | **off**; 2% per check, 3 stages, bonusShare 0.6, all formats | A_events, C_events, A_eventsBig (bonusShare 3.0) | Scores follow meters (`SCORE_NOT_CAUSAL` holds). Too small to feel (F5). |
+| FU10 | Feel metrics | Season bands 1–3/4–6/7–10/11–15/16+; return rate = premiere ÷ previous season's last-episode viewers; voluntary end = still renewable, not renewed for ≥ 52 weeks; comeback = S7+ after two seasons ≥ 1.0 below the earlier peak, +1.0 and ≥ 7.0; failed attempt = same slump + a twist / new Star / breakthrough, gain < 0.5; successful / mediocre show = S1–3 avg ≥ 7.5 / < 6.5. Horizons are prefixes of one 25-year run. | — | — | `src/batch/seasonfeel.ts`. |
+
 ## Gate 2.6 assumptions (critic generations, audience eras, great-film metrics)
 
 All Gate 2.6 numbers are **TEST ASSUMPTIONS**. With `expectations.critics.enabled` and `expectations.audience.enabled` false (the baseline and the Gate 2.5 candidate), results are byte-identical to Gate 2.5.
@@ -72,29 +89,18 @@ All Gate 2.6 numbers are **TEST ASSUMPTIONS**. With `expectations.critics.enable
 
 ## Not modelled (deliberately absent, not guessed)
 
-Limited series, TV seasons/renewals/hiatus/announcements/episode caps, streaming (subscribers, churn, Originals, platform build), eras beyond the quality bar (Gate 2.6 adds only a calendar proxy for critic generations / audience eras; no era news, theme waves or named critics), studio upgrades other than the Gate 2.5 staff-capacity ladder, format unlock gates, genre unlocks, late-game concurrency, Star bio lines, budget tiers (shelved in the design).
+Gate 3 now models limited series, TV and streaming (see `docs/gate-3-assumptions.md`). Still absent: severance/morale/transfer for dismissed staff, named critics, binge release, spinoffs of TV shows, eras beyond the quality bar (Gate 2.6 adds only a calendar proxy for critic generations / audience eras; no era news, theme waves or named critics), studio upgrades other than the Gate 2.5 staff-capacity ladder, format unlock gates, genre unlocks, late-game concurrency, Star bio lines, budget tiers (shelved in the design).
 
 ## Full parameter listing (`config/baseline.json`)
 
-Regenerated for Gate 3. Candidate overrides: `config/candidate.json`; Gate 3 mixed-format config: `config/gate3.json`; experiment variants: `config/experiments/`.
+Regenerated for the Gate 3 follow-up. Candidate overrides: `config/candidate.json`; Gate 3 mixed-format config: `config/gate3.json`; experiment variants: `config/experiments/` (follow-up matrix: `FU_matrix.json`).
 
 | Path | Value |
 |---|---|
 | `_label` | "baseline \u2014 PROVISIONAL TESTING VALUES. Simulation assumptions, NOT design locks." |
 | `name` | "baseline" |
 | `start.cash` | 40000 |
-| `start.staff[0].name` | "Sam" |
-| `start.staff[0].stats.plot` | 32 |
-| `start.staff[0].stats.writing` | 28 |
-| `start.staff[0].stats.filming` | 22 |
-| `start.staff[0].stats.editing` | 20 |
-| `start.staff[0].wage` | 900 |
-| `start.staff[1].name` | "Alex" |
-| `start.staff[1].stats.plot` | 20 |
-| `start.staff[1].stats.writing` | 22 |
-| `start.staff[1].stats.filming` | 30 |
-| `start.staff[1].stats.editing` | 30 |
-| `start.staff[1].wage` | 900 |
+| `start.staff` | [{"name": "Sam", "stats": {"plot": 32, "writing": 28, "filming": 22, "editing": 20}, "wage": 900}, {"name": "Alex", "stats": {"plot": 20, "writing": 22, "filming": 30, "editing": 30}, "wage": 900}] |
 | `start.upkeepPerWeek` | 600 |
 | `start.unlockedGenres` | ["Action", "Comedy", "Horror"] |
 | `start.unlockedThemes` | ["Zombies", "Superheroes", "Spies", "Sports"] |
@@ -247,41 +253,7 @@ Regenerated for Gate 3. Candidate overrides: `config/candidate.json`; Gate 3 mix
 | `audience.diffusion.womPerViewer` | 2.0 |
 | `audience.diffusion.interestDecay` | 0.12 |
 | `audience.diffusion.badInterestDecay` | 0.35 |
-| `distribution.roster[0].id` | "wolf" |
-| `distribution.roster[0].name` | "Wolf Pictures" |
-| `distribution.roster[0].reach` | 0.6 |
-| `distribution.roster[0].generosity` | 1.25 |
-| `distribution.roster[0].royaltyBase` | 0.32 |
-| `distribution.roster[0].favoredFamilies` | ["Scary", "Action"] |
-| `distribution.roster[0].minPrestige` | 0 |
-| `distribution.roster[1].id` | "starlight" |
-| `distribution.roster[1].name` | "Starlight Indie" |
-| `distribution.roster[1].reach` | 0.35 |
-| `distribution.roster[1].generosity` | 0.75 |
-| `distribution.roster[1].royaltyBase` | 0.08 |
-| `distribution.roster[1].favoredFamilies` | ["Dramatic", "Romantic"] |
-| `distribution.roster[1].minPrestige` | 0 |
-| `distribution.roster[2].id` | "xyz" |
-| `distribution.roster[2].name` | "XYZ Network" |
-| `distribution.roster[2].reach` | 0.85 |
-| `distribution.roster[2].generosity` | 1.45 |
-| `distribution.roster[2].royaltyBase` | 0.45 |
-| `distribution.roster[2].favoredFamilies` | ["Funny", "Action"] |
-| `distribution.roster[2].minPrestige` | 150 |
-| `distribution.roster[3].id` | "orbit" |
-| `distribution.roster[3].name` | "Orbit Releasing" |
-| `distribution.roster[3].reach` | 0.75 |
-| `distribution.roster[3].generosity` | 1.15 |
-| `distribution.roster[3].royaltyBase` | 0.36 |
-| `distribution.roster[3].favoredFamilies` | ["Scary", "Funny"] |
-| `distribution.roster[3].minPrestige` | 60 |
-| `distribution.roster[4].id` | "meridian" |
-| `distribution.roster[4].name` | "Meridian Global" |
-| `distribution.roster[4].reach` | 1.0 |
-| `distribution.roster[4].generosity` | 1.6 |
-| `distribution.roster[4].royaltyBase` | 0.5 |
-| `distribution.roster[4].favoredFamilies` | ["Action", "Dramatic"] |
-| `distribution.roster[4].minPrestige` | 400 |
+| `distribution.roster` | [{"id": "wolf", "name": "Wolf Pictures", "reach": 0.6, "generosity": 1.25, "royaltyBase": 0.32, "favoredFamilies": ["Scary", "Action"], "minPrestige": 0}, {"id": "starlight", "name": "Starlight Indie", "reach": 0.35, "generosity": 0.75, "royaltyBase": 0.08, "favoredFamilies": ["Dramatic", "Romantic"], "minPrestige": 0}, {"id": "xyz", "name": "XYZ Network", "reach": 0.85, "generosity": 1.45, "royaltyBase": 0.45, "favoredFamilies": ["Funny", "Action"], "minPrestige": 150}, {"id": "orbit", "name": "Orbit Releasing", "reach": 0.75, "generosity": 1.15, "royaltyBase": 0.36, "favoredFamilies": ["Scary", "Funny"], "minPrestige": 60}, {"id": "meridian", "name": "Meridian Global", "reach": 1.0, "generosity": 1.6, "royaltyBase": 0.5, "favoredFamilies": ["Action", "Dramatic"], "minPrestige": 400}] |
 | `distribution.lifeline.id` | "bargain" |
 | `distribution.lifeline.name` | "Bargain Pictures" |
 | `distribution.lifeline.reach` | 0.3 |
@@ -309,31 +281,8 @@ Regenerated for Gate 3. Candidate overrides: `config/candidate.json`; Gate 3 mix
 | `distribution.offerJitter` | 0.08 |
 | `distribution.selfFundReach` | 0.22 |
 | `prestige.repeatScope` | "perIP" |
-| `prestige._repeatScopeNote` | "WORKING ASSUMPTION (Open in v9.61): each milestone pays once per IP. Options: perRelease \\| perIP \\| career" |
-| `prestige.milestones[0].id` | "meters_all_70" |
-| `prestige.milestones[0].kind` | "allMeters" |
-| `prestige.milestones[0].threshold` | 70 |
-| `prestige.milestones[0].amount` | 50 |
-| `prestige.milestones[1].id` | "audience_7_5" |
-| `prestige.milestones[1].kind` | "audience" |
-| `prestige.milestones[1].threshold` | 7.5 |
-| `prestige.milestones[1].amount` | 75 |
-| `prestige.milestones[2].id` | "critic_8_5" |
-| `prestige.milestones[2].kind` | "critic" |
-| `prestige.milestones[2].threshold` | 8.5 |
-| `prestige.milestones[2].amount` | 85 |
-| `prestige.milestones[3].id` | "hall_of_fame" |
-| `prestige.milestones[3].kind` | "hallOfFame" |
-| `prestige.milestones[3].threshold` | 9.0 |
-| `prestige.milestones[3].amount` | 200 |
-| `prestige.milestones[4].id` | "gross_1m" |
-| `prestige.milestones[4].kind` | "lifetimeGross" |
-| `prestige.milestones[4].threshold` | 1000000 |
-| `prestige.milestones[4].amount` | 100 |
-| `prestige.milestones[5].id` | "viewers_500k" |
-| `prestige.milestones[5].kind` | "lifetimeViewers" |
-| `prestige.milestones[5].threshold` | 500000 |
-| `prestige.milestones[5].amount` | 150 |
+| `prestige._repeatScopeNote` | "WORKING ASSUMPTION (Open in v9.61): each milestone pays once per IP. Options: perRelease / perIP / career" |
+| `prestige.milestones` | [{"id": "meters_all_70", "kind": "allMeters", "threshold": 70, "amount": 50}, {"id": "audience_7_5", "kind": "audience", "threshold": 7.5, "amount": 75}, {"id": "critic_8_5", "kind": "critic", "threshold": 8.5, "amount": 85}, {"id": "hall_of_fame", "kind": "hallOfFame", "threshold": 9.0, "amount": 200}, {"id": "gross_1m", "kind": "lifetimeGross", "threshold": 1000000, "amount": 100}, {"id": "viewers_500k", "kind": "lifetimeViewers", "threshold": 500000, "amount": 150}] |
 | `trends.riseChancePerWeek` | 0.012 |
 | `trends.risingWeeks` | 20 |
 | `trends.hotWeeks` | 40 |
@@ -342,14 +291,18 @@ Regenerated for Gate 3. Candidate overrides: `config/candidate.json`; Gate 3 mix
 | `research.themeCost` | 25000 |
 | `time.weeksPerYear` | 52 |
 | `debug.injectBug` | "none" |
-| `debug._note` | "TEST-ONLY regression injection: none \\| advanceAsRevenue \\| fameIntoScore. Must be 'none' for real runs." |
+| `debug._note` | "TEST-ONLY regression injection: none / advanceAsRevenue / fameIntoScore. Must be 'none' for real runs." |
 | `staffCapacity._label` | "EXPERIMENTAL (Gate 2.5). Studio-wide max employees; NOT a per-project crew cap. Baseline keeps the historical uncapped behavior for comparison." |
 | `staffCapacity.ladder` | [999] |
 | `staffCapacity.upgradeCosts` | [] |
 | `staffCapacity.upgradePrestige` | [] |
-| `agents._label` | "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number)." |
+| `agents._label` | "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number). useFiring / economicRenewal (Gate 3 follow-up, Gate 3 policies only): dismiss the weakest employee to make room for the Software Engineer or when cash < fireDebtThreshold; renew a show only while its last finished season netted >= renewMinNetPerWeek per production week (replaces the old fixed policy season limits). Both false = the original Gate 3 policies." |
 | `agents.legacyHeuristicStaffCaps` | true |
 | `agents.tvOrderPreference` | "max" |
+| `agents.useFiring` | false |
+| `agents.economicRenewal` | false |
+| `agents.fireDebtThreshold` | -100000 |
+| `agents.renewMinNetPerWeek` | 15000 |
 | `expectations._label` | "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS." |
 | `expectations.method` | "scale" |
 | `expectations.critics.enabled` | false |
@@ -383,14 +336,7 @@ Regenerated for Gate 3. Candidate overrides: `config/candidate.json`; Gate 3 mix
 | `tv.durationBaseWeeks` | 6 |
 | `tv.weeksPerEpisode` | 2.0 |
 | `tv.orderSizes` | [5, 10, 15, 20] |
-| `tv.episodeCaps[0].maxEpisodes` | 5 |
-| `tv.episodeCaps[0].prestige` | 0 |
-| `tv.episodeCaps[1].maxEpisodes` | 10 |
-| `tv.episodeCaps[1].prestige` | 600 |
-| `tv.episodeCaps[2].maxEpisodes` | 15 |
-| `tv.episodeCaps[2].prestige` | 1800 |
-| `tv.episodeCaps[3].maxEpisodes` | 20 |
-| `tv.episodeCaps[3].prestige` | 3500 |
+| `tv.episodeCaps` | [{"maxEpisodes": 5, "prestige": 0}, {"maxEpisodes": 10, "prestige": 600}, {"maxEpisodes": 15, "prestige": 1800}, {"maxEpisodes": 20, "prestige": 3500}] |
 | `tv.renewalThreshold` | 4.0 |
 | `tv.renewalInclusive` | true |
 | `tv.grossPerEpisodeViewer` | 0.32 |
@@ -411,6 +357,17 @@ Regenerated for Gate 3. Candidate overrides: `config/candidate.json`; Gate 3 mix
 | `tv.fatigue.exponent` | 1.6 |
 | `tv.fatigue.max` | 0.35 |
 | `tv.fatigue.qualitySlow` | 0.4 |
+| `tv.viewerFatigue._label` | "EXPERIMENT (Gate 3 follow-up), default OFF. Returning-viewer / season-opening interest fatigue: multiplies ONLY the returning-audience opening inputs (IP fans + announcement anticipation; optionally the premiere share). Never touches Audience/Critic scores, ratings or sales directly. Separate from review fatigue (tv.fatigue), IP fans and hiatus. Offset by: previous-season quality (qualitySlow), a good twist (goodTwistReset units), and every additive opening input it does not touch (marketing, Star Fame, trends, studio buzz) plus in-run critic buzz / word of mouth. basis: seasons = seasons aired; episodes = episodes aired / episodesPerStep. All numbers TEST ASSUMPTIONS." |
+| `tv.viewerFatigue.enabled` | false |
+| `tv.viewerFatigue.basis` | "seasons" |
+| `tv.viewerFatigue.episodesPerStep` | 10 |
+| `tv.viewerFatigue.onset` | 3 |
+| `tv.viewerFatigue.perStep` | 0.03 |
+| `tv.viewerFatigue.exponent` | 1.3 |
+| `tv.viewerFatigue.max` | 0.45 |
+| `tv.viewerFatigue.qualitySlow` | 0.5 |
+| `tv.viewerFatigue.goodTwistReset` | 2 |
+| `tv.viewerFatigue.appliesTo` | "returning" |
 | `tv.twist.goodGradeMin` | 0.5 |
 | `tv.twist.badGradeMax` | -0.5 |
 | `tv.twist.goodFatigueReset` | 2 |
@@ -456,3 +413,19 @@ Regenerated for Gate 3. Candidate overrides: `config/candidate.json`; Gate 3 mix
 | `streaming.churn.quietPenaltyPer26Weeks` | 0.5 |
 | `streaming.churn.quietMax` | 2.0 |
 | `streaming.originalTvPacing` | "weekly" |
+| `staffing._label` | "Gate 3 follow-up. LOCKED: employees can be fired to free a capacity slot (4/6/8 unchanged; the Software Engineer uses a normal slot). Harness UX ASSUMPTIONS: dismissal only between productions; the engineer cannot be dismissed while building; minStaff and fireCost are OPEN (smallest rule protecting the 'production always progresses' invariant)." |
+| `staffing.firingEnabled` | true |
+| `staffing.betweenProductionsOnly` | true |
+| `staffing.minStaff` | 2 |
+| `staffing.fireCost` | 0 |
+| `events.breakthrough._label` | "EXPERIMENT (Gate 3 follow-up), default OFF. Rare seeded creative breakthrough DURING production: one draw from the dedicated 'events' RNG stream when a production first enters each listed stage; on success, bonus meter points = bonusShare x that meter's half-point (meterHalfPointPerWeek x duration x era bar), so the effect saturates on already-strong meters and flows to scores only through the normal meter -> score formula. Never edits a result. At most maxPerProduction per production. All numbers TEST ASSUMPTIONS." |
+| `events.breakthrough.enabled` | false |
+| `events.breakthrough.chancePerCheck` | 0.02 |
+| `events.breakthrough.stages` | ["writing", "filming", "editing"] |
+| `events.breakthrough.stageMeters.writing` | ["plot", "writing"] |
+| `events.breakthrough.stageMeters.filming` | ["filming"] |
+| `events.breakthrough.stageMeters.editing` | ["editing"] |
+| `events.breakthrough.bonusShare` | 0.6 |
+| `events.breakthrough.maxPerProduction` | 1 |
+| `events.breakthrough.formats` | ["movie", "limited_series", "tv"] |
+| `events.breakthrough.minSeason` | 0 |

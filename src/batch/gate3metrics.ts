@@ -42,6 +42,10 @@ export interface CareerG3 {
   tvSeasonPerWeek: number[];
   movieNet: number;
   movieWeeks: number;
+  /** follow-up: shows that reached tvTooLongSeasons seasons with a recent 3-season average >= 7 (interesting long-runners) */
+  longRunners: number;
+  /** follow-up: seasons ordered after >= 2 consecutive traditional seasons that lost money (financially irrational renewals) */
+  irrationalRenewals: number;
 }
 
 const prodWeeks = (cfg: Config, r: Release) =>
@@ -115,6 +119,18 @@ export function careerG3(seed: number, strategy: string, s: StudioState, cfg: Co
   }
   const tvSeasonPerWeek = s.releases.filter((r) => r.format === "tv" && !r.active && r.route !== "original").map((r) => Math.round((r.studioTake + r.surplusKept - r.cashOverrun) / prodWeeks(cfg, r)));
   const doneMovies = s.releases.filter((r) => !r.format && !r.route && !r.active);
+  const net = (r: Release) => r.studioTake + r.surplusKept - r.cashOverrun;
+  let longRunners = 0;
+  let irrationalRenewals = 0;
+  for (const i of tvIps) {
+    const ss = s.releases.filter((r) => r.ipId === i.id && r.format === "tv");
+    const last3 = ss.slice(-3);
+    if (ss.length >= DEFAULT_G3_THRESHOLDS.tvTooLongSeasons && last3.reduce((a, r) => a + r.avgScore, 0) / last3.length >= 7) longRunners++;
+    for (let k = 2; k < ss.length; k++) {
+      const a = ss[k - 2], b = ss[k - 1];
+      if (a.route !== "original" && b.route !== "original" && !a.active && b.releaseWeek < ss[k].releaseWeek && net(a) < 0 && net(b) < 0 && (b.runEndWeek ?? Infinity) <= ss[k].releaseWeek) irrationalRenewals++;
+    }
+  }
   const lastRel = s.releases.at(-1);
   return {
     seed,
@@ -152,6 +168,8 @@ export function careerG3(seed: number, strategy: string, s: StudioState, cfg: Co
     hof: s.releases.filter((r) => r.hallOfFame).length,
     weeksSinceLastRelease: lastRel ? s.week - lastRel.releaseWeek : s.week,
     tvSeasonPerWeek,
+    longRunners,
+    irrationalRenewals,
     movieNet: doneMovies.reduce((a, r) => a + r.studioTake + r.surplusKept - r.cashOverrun, 0),
     movieWeeks: doneMovies.length * cfg.production.movie.durationWeeks,
   };
@@ -300,8 +318,11 @@ export function g3Flags(cs: CareerG3[], cfg: Config, th: G3Thresholds = DEFAULT_
   const seasons = cs.flatMap((c) => c.tvSeasonPerWeek);
   const tooProf = seasons.filter((x) => movieRef > 0 && x > 2 * movieRef);
   f("TV_SEASON_TOO_PROFITABLE", seasons.length > 0 && tooProf.length / seasons.length > th.tvTooProfitableShare, `${tooProf.length}/${seasons.length} finished traditional TV seasons netted >2× the batch's pooled movie net per production week ($${Math.round(movieRef).toLocaleString()})`);
-  const long = cs.filter((c) => c.maxSeasons >= th.tvTooLongSeasons);
-  f("TV_SEASON_TOO_LONG", long.length > 0, `${long.length} careers kept one show running ≥${th.tvTooLongSeasons} seasons (fatigue cap ${cfg.tv.fatigue.max} may allow endless renewals)`);
+  // follow-up: long shows are legal (LOCKED: no season cap). Flag the INTERESTING ones and the IRRATIONAL renewals instead.
+  const longR = cs.filter((c) => c.longRunners > 0);
+  f("TV_LONG_RUNNER", longR.length > 0, `${longR.length}/${cs.length} careers have a show at ≥${th.tvTooLongSeasons} seasons whose last 3 seasons still average ≥ 7 (informational: an interesting long-running show)`);
+  const irr = cs.filter((c) => c.irrationalRenewals > 0);
+  f("TV_IRRATIONAL_RENEWAL", irr.length > 0, `${irr.length}/${cs.length} careers ordered a season after 2+ consecutive money-losing traditional seasons (${cs.reduce((a, c) => a + c.irrationalRenewals, 0)} such seasons)`);
   const noRenew = tvCareers.filter((c) => c.shows > 0 && c.seasons === c.shows && c.years >= 8);
   f("TV_NO_RENEWAL_PATH", tvCareers.length > 0 && noRenew.length / tvCareers.length > 0.5, `${noRenew.length}/${tvCareers.length} TV careers never made a second season`);
   const soft = cs.filter((c) => c.negativeCashWeeks >= th.softlockYears * 52);

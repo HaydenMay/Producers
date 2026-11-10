@@ -1,8 +1,10 @@
 {
   "name": "gate3_mixed",
-  "_label": "Gate 3 mixed-format TEST config = config/candidate.json (Gate 2.5 candidate: ladder 4-6-8, diffusion legs, hybrid Prestige) + limited series + TV + streaming enabled. Gate 2.6 expectation curves stay OFF. Not an approved balance config.",
+  "_label": "Gate 3 mixed-format TEST config = config/candidate.json (Gate 2.5 candidate: ladder 4-6-8, diffusion legs, hybrid Prestige) + limited series + TV + streaming enabled. Gate 2.6 expectation curves stay OFF. Not an approved balance config. Gate 3 follow-up: Gate 3 policies use firing and economic renewal decisions (agents.useFiring / agents.economicRenewal).",
   "agents": {
-    "legacyHeuristicStaffCaps": false
+    "legacyHeuristicStaffCaps": false,
+    "useFiring": true,
+    "economicRenewal": true
   },
   "staffCapacity": {
     "ladder": [

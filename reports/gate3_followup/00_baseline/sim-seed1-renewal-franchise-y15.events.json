@@ -1,0 +1,5083 @@
+[
+ {
+  "week": 0,
+  "type": "start",
+  "message": "New studio (seed 1) with 2 staff and $40,000."
+ },
+ {
+  "week": 0,
+  "type": "lifeline_offer",
+  "message": "Bargain Pictures offers a lifeline deal (poor terms) so the studio can always make its cheapest format."
+ },
+ {
+  "week": 0,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Superheroes (new): starlight $39,000 @ 8%; wolf $57,000 @ 33%; bargain $63,000 @ 55%."
+ },
+ {
+  "week": 0,
+  "type": "project_start",
+  "message": "Started Hollow Edge (Comedy + Superheroes, new) with wolf advance $57,000 @ 33%.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 1,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 3,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 5,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 7,
+  "type": "milestone",
+  "message": "Hollow Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 7,
+  "type": "cast",
+  "message": "Cast Bo Hart for $5,621.04.",
+  "data": {
+   "starId": "star7",
+   "price": 5621.04
+  }
+ },
+ {
+  "week": 9,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 10,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 13,
+  "type": "milestone",
+  "message": "Hollow Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj2"
+  }
+ },
+ {
+  "week": 13,
+  "type": "campaign",
+  "message": "Campaign: none ($0)."
+ },
+ {
+  "week": 16,
+  "type": "genre_level",
+  "message": "Studio Comedy level 0 → 1."
+ },
+ {
+  "week": 16,
+  "type": "release",
+  "message": "Hollow Edge released: Audience 4.8 / Critics 4.35 (avg 4.57). Opening pool 101,255, opening 30,377.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 16,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Zombies (new): wolf $85,000 @ 32%; starlight $48,000 @ 8%."
+ },
+ {
+  "week": 16,
+  "type": "project_start",
+  "message": "Started Dead Night (Horror + Zombies, new) with wolf advance $85,000 @ 32%.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 17,
+  "type": "feedback",
+  "message": "Hollow Edge opens to 30,377 viewers.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 0,
+   "now": 30377,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 18,
+  "type": "feedback",
+  "message": "Harsh reviews are scaring off audiences for Hollow Edge.",
+  "data": {
+   "releaseId": "rel8",
+   "prev": 30377,
+   "now": 17168,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 21,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 23,
+  "type": "milestone",
+  "message": "Dead Night hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 23,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 23,
+  "type": "cast",
+  "message": "Cast Sam Imai for $42,005.22.",
+  "data": {
+   "starId": "star12",
+   "price": 42005.22
+  }
+ },
+ {
+  "week": 25,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 26,
+  "type": "ip_fans",
+  "message": "Hollow Edge fans: 0 → 0 (avg score 4.57, 73,228 viewers).",
+  "data": {
+   "ipId": "ip1"
+  }
+ },
+ {
+  "week": 26,
+  "type": "star_career",
+  "message": "Bo Hart: Fame 8.0 → 7.3, relationship -0.50 (worked together (+); project hurt their career: Fame fell (-)).",
+  "data": {
+   "starId": "star7",
+   "fameDelta": -0.71,
+   "relDelta": -0.5,
+   "grow": 6
+  }
+ },
+ {
+  "week": 26,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 85% of its $57,000 advance on Hollow Edge and reviews were poor. Trust 2.50 → 2.28.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.85,
+   "step": -0.22
+  }
+ },
+ {
+  "week": 26,
+  "type": "run_end",
+  "message": "Hollow Edge run ended after 10 weeks: 73,228 viewers, gross $146,456, studio take $98,126.",
+  "data": {
+   "releaseId": "rel8"
+  }
+ },
+ {
+  "week": 29,
+  "type": "milestone",
+  "message": "Dead Night hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj10"
+  }
+ },
+ {
+  "week": 29,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 29,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 30,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 31,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 32,
+  "type": "genre_level",
+  "message": "Studio Horror level 0 → 1."
+ },
+ {
+  "week": 32,
+  "type": "release",
+  "message": "Dead Night released: Audience 5.9 / Critics 5.29 (avg 5.6). Opening pool 190,745, opening 57,224.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 32,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Superheroes (new): wolf $77,000 @ 32%; starlight $50,000 @ 8%."
+ },
+ {
+  "week": 32,
+  "type": "project_start",
+  "message": "Started Dead Pulse (Horror + Superheroes, new) with wolf advance $77,000 @ 32%.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 33,
+  "type": "feedback",
+  "message": "Dead Night opens to 57,224 viewers.",
+  "data": {
+   "releaseId": "rel16",
+   "prev": 0,
+   "now": 57224,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 35,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 39,
+  "type": "milestone",
+  "message": "Dead Pulse hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 39,
+  "type": "cast",
+  "message": "Cast Sam Imai for $42,005.22.",
+  "data": {
+   "starId": "star12",
+   "price": 42005.22
+  }
+ },
+ {
+  "week": 45,
+  "type": "milestone",
+  "message": "Dead Pulse hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj18"
+  }
+ },
+ {
+  "week": 45,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 47,
+  "type": "ip_fans",
+  "message": "Dead Night fans: 0 → 1,652 (avg score 5.6, 172,063 viewers).",
+  "data": {
+   "ipId": "ip9"
+  }
+ },
+ {
+  "week": 47,
+  "type": "star_career",
+  "message": "Sam Imai: Fame 47.0 → 48.6, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 1.6,
+   "relDelta": 0.75,
+   "grow": 3
+  }
+ },
+ {
+  "week": 47,
+  "type": "trust",
+  "message": "Wolf Pictures earned 130% of its advance back on Dead Night. Trust 2.40 → 2.59.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.3,
+   "step": 0.19
+  }
+ },
+ {
+  "week": 47,
+  "type": "run_end",
+  "message": "Dead Night run ended after 15 weeks: 172,063 viewers, gross $344,126, studio take $234,006.",
+  "data": {
+   "releaseId": "rel16"
+  }
+ },
+ {
+  "week": 48,
+  "type": "release",
+  "message": "Dead Pulse released: Audience 5.47 / Critics 5.48 (avg 5.48). Opening pool 191,445, opening 57,434.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 48,
+  "type": "hire",
+  "message": "Hired Gus Novak (plot 27, writing 20, filming 28, editing 30)."
+ },
+ {
+  "week": 48,
+  "type": "hire",
+  "message": "Hired Bo Diaz (plot 26, writing 28, filming 30, editing 17)."
+ },
+ {
+  "week": 48,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Zombies (new): starlight $55,000 @ 8%; wolf $114,000 @ 31%."
+ },
+ {
+  "week": 48,
+  "type": "project_start",
+  "message": "Started Broken Legacy (Action + Zombies, new) with wolf advance $114,000 @ 31%.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 49,
+  "type": "feedback",
+  "message": "Dead Pulse opens to 57,434 viewers.",
+  "data": {
+   "releaseId": "rel24",
+   "prev": 0,
+   "now": 57434,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 50,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 51,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 55,
+  "type": "milestone",
+  "message": "Broken Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 55,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 55,
+  "type": "cast",
+  "message": "Cast Fin Quinn for $35,970.17.",
+  "data": {
+   "starId": "star30",
+   "price": 35970.17
+  }
+ },
+ {
+  "week": 61,
+  "type": "ip_fans",
+  "message": "Dead Pulse fans: 0 → 1,233 (avg score 5.48, 160,535 viewers).",
+  "data": {
+   "ipId": "ip17"
+  }
+ },
+ {
+  "week": 61,
+  "type": "star_career",
+  "message": "Sam Imai: Fame 48.6 → 49.8, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star12",
+   "fameDelta": 1.24,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 61,
+  "type": "trust",
+  "message": "Wolf Pictures earned 133% of its advance back on Dead Pulse. Trust 2.57 → 2.77.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.33,
+   "step": 0.2
+  }
+ },
+ {
+  "week": 61,
+  "type": "run_end",
+  "message": "Dead Pulse run ended after 13 weeks: 160,535 viewers, gross $321,070, studio take $218,328.",
+  "data": {
+   "releaseId": "rel24"
+  }
+ },
+ {
+  "week": 61,
+  "type": "milestone",
+  "message": "Broken Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj28"
+  }
+ },
+ {
+  "week": 61,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 61,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 63,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 64,
+  "type": "surplus",
+  "message": "Broken Legacy: kept $10,030 of unused advance.",
+  "data": {
+   "projectId": "proj28",
+   "surplus": 10029.83
+  }
+ },
+ {
+  "week": 64,
+  "type": "genre_level",
+  "message": "Studio Action level 0 → 1."
+ },
+ {
+  "week": 64,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Broken Legacy).",
+  "data": {
+   "awardId": "rel:rel34:audience_7_5",
+   "releaseId": "rel34",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 64,
+  "type": "release",
+  "message": "Broken Legacy released: Audience 8.23 / Critics 6.57 (avg 7.4). Opening pool 162,104, opening 48,631.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 64,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Sports (new): orbit $80,000 @ 36%; wolf $91,000 @ 31%; starlight $51,000 @ 8%."
+ },
+ {
+  "week": 64,
+  "type": "project_start",
+  "message": "Started Red Shadow (Action + Sports, new) with wolf advance $91,000 @ 31%.",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 65,
+  "type": "feedback",
+  "message": "Broken Legacy opens to 48,631 viewers.",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 0,
+   "now": 48631,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 65,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 68,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Broken Legacy. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 21333,
+   "now": 23281,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 69,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Broken Legacy is still climbing (23,281 → 23,829).",
+  "data": {
+   "releaseId": "rel34",
+   "prev": 23281,
+   "now": 23829,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 69,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 70,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 70,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 71,
+  "type": "milestone",
+  "message": "Red Shadow hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 71,
+  "type": "cast",
+  "message": "Cast Alex Sato for $17,993.37.",
+  "data": {
+   "starId": "star38",
+   "price": 17993.37
+  }
+ },
+ {
+  "week": 77,
+  "type": "milestone",
+  "message": "Red Shadow hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj36"
+  }
+ },
+ {
+  "week": 77,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 79,
+  "type": "ip_fans",
+  "message": "Broken Legacy fans: 0 → 9,961 (avg score 7.4, 259,399 viewers).",
+  "data": {
+   "ipId": "ip27"
+  }
+ },
+ {
+  "week": 79,
+  "type": "star_career",
+  "message": "Fin Quinn: Fame 42.0 → 49.6, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star30",
+   "fameDelta": 7.6,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 79,
+  "type": "trust",
+  "message": "Wolf Pictures earned 141% of its advance back on Broken Legacy with strong reviews. Trust 2.74 → 3.24.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.41,
+   "step": 0.5
+  }
+ },
+ {
+  "week": 79,
+  "type": "run_end",
+  "message": "Broken Legacy run ended after 15 weeks: 259,399 viewers, gross $518,798, studio take $357,971.",
+  "data": {
+   "releaseId": "rel34"
+  }
+ },
+ {
+  "week": 80,
+  "type": "surplus",
+  "message": "Red Shadow: kept $5,007 of unused advance.",
+  "data": {
+   "projectId": "proj36",
+   "surplus": 5006.63
+  }
+ },
+ {
+  "week": 80,
+  "type": "release",
+  "message": "Red Shadow released: Audience 6.71 / Critics 6.84 (avg 6.78). Opening pool 151,162, opening 45,349.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 80,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 80,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 80,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Zombies (new): starlight $45,000 @ 8%; orbit $79,000 @ 36%."
+ },
+ {
+  "week": 80,
+  "type": "project_start",
+  "message": "Started Hollow Code (Action + Zombies, new) with orbit advance $79,000 @ 36%.",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 81,
+  "type": "feedback",
+  "message": "Red Shadow opens to 45,349 viewers.",
+  "data": {
+   "releaseId": "rel42",
+   "prev": 0,
+   "now": 45349,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 81,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 87,
+  "type": "milestone",
+  "message": "Hollow Code hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 87,
+  "type": "cast",
+  "message": "Cast Alex Sato for $17,993.37.",
+  "data": {
+   "starId": "star38",
+   "price": 17993.37
+  }
+ },
+ {
+  "week": 90,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 91,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 93,
+  "type": "milestone",
+  "message": "Hollow Code hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj44"
+  }
+ },
+ {
+  "week": 93,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 95,
+  "type": "ip_fans",
+  "message": "Red Shadow fans: 0 → 5,127 (avg score 6.78, 180,022 viewers).",
+  "data": {
+   "ipId": "ip35"
+  }
+ },
+ {
+  "week": 95,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 25.0 → 29.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 4.85,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 95,
+  "type": "trust",
+  "message": "Wolf Pictures earned 123% of its advance back on Red Shadow. Trust 3.22 → 3.53.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.23,
+   "step": 0.31
+  }
+ },
+ {
+  "week": 95,
+  "type": "run_end",
+  "message": "Red Shadow run ended after 15 weeks: 180,022 viewers, gross $360,044, studio take $248,430.",
+  "data": {
+   "releaseId": "rel42"
+  }
+ },
+ {
+  "week": 95,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 96,
+  "type": "genre_level",
+  "message": "Studio Action level 1 → 2."
+ },
+ {
+  "week": 96,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Code).",
+  "data": {
+   "awardId": "rel:rel50:audience_7_5",
+   "releaseId": "rel50",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 96,
+  "type": "release",
+  "message": "Hollow Code released: Audience 8.26 / Critics 6.6 (avg 7.43). Opening pool 175,453, opening 52,636.",
+  "data": {
+   "releaseId": "rel50"
+  }
+ },
+ {
+  "week": 96,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 96,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 96,
+  "type": "pitch",
+  "message": "Pitch meeting for Horror + Spies (new): orbit $83,000 @ 36%; wolf $104,000 @ 30%; starlight $48,000 @ 8%."
+ },
+ {
+  "week": 96,
+  "type": "project_start",
+  "message": "Started Hollow Edge (Horror + Spies, new) with wolf advance $104,000 @ 30%.",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 97,
+  "type": "feedback",
+  "message": "Hollow Code opens to 52,636 viewers.",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 0,
+   "now": 52636,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 100,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Code. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 23427,
+   "now": 25665,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 101,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Hollow Code is still climbing (25,665 → 26,382).",
+  "data": {
+   "releaseId": "rel50",
+   "prev": 25665,
+   "now": 26382,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 101,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 103,
+  "type": "milestone",
+  "message": "Hollow Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 103,
+  "type": "cast",
+  "message": "Cast Liv Reyes for $23,963.49.",
+  "data": {
+   "starId": "star54",
+   "price": 23963.49
+  }
+ },
+ {
+  "week": 109,
+  "type": "milestone",
+  "message": "Hollow Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj52"
+  }
+ },
+ {
+  "week": 109,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 110,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 110,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 111,
+  "type": "ip_fans",
+  "message": "Hollow Code fans: 0 → 11,441 (avg score 7.43, 294,275 viewers).",
+  "data": {
+   "ipId": "ip43"
+  }
+ },
+ {
+  "week": 111,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 29.9 → 37.9, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 6.",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 8.05,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 111,
+  "type": "trust",
+  "message": "Orbit Releasing earned 268% of its advance back on Hollow Code with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 2.68,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 111,
+  "type": "run_end",
+  "message": "Hollow Code run ended after 15 weeks: 294,275 viewers, gross $588,550, studio take $376,672.",
+  "data": {
+   "releaseId": "rel50"
+  }
+ },
+ {
+  "week": 112,
+  "type": "surplus",
+  "message": "Hollow Edge: kept $12,037 of unused advance.",
+  "data": {
+   "projectId": "proj52",
+   "surplus": 12036.51
+  }
+ },
+ {
+  "week": 112,
+  "type": "genre_level",
+  "message": "Studio Horror level 1 → 2."
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Hollow Edge).",
+  "data": {
+   "awardId": "rel:rel58:meters_all_70",
+   "releaseId": "rel58",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 112,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Hollow Edge).",
+  "data": {
+   "awardId": "rel:rel58:audience_7_5",
+   "releaseId": "rel58",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 112,
+  "type": "release",
+  "message": "Hollow Edge released: Audience 8.15 / Critics 7.05 (avg 7.6). Opening pool 183,846, opening 55,154.",
+  "data": {
+   "releaseId": "rel58"
+  }
+ },
+ {
+  "week": 112,
+  "type": "upgrade",
+  "message": "Studio upgraded: employee capacity 4 → 6 (cost $250,000)."
+ },
+ {
+  "week": 112,
+  "type": "hire",
+  "message": "Hired Jo Moreau (plot 31, writing 25, filming 27, editing 16)."
+ },
+ {
+  "week": 112,
+  "type": "hire",
+  "message": "Hired Eli Quinn (plot 21, writing 19, filming 15, editing 32)."
+ },
+ {
+  "week": 112,
+  "type": "pitch",
+  "message": "Pitch meeting for Comedy + Spies (new): orbit $80,000 @ 35%; starlight $45,000 @ 8%; xyz $92,000 @ 45%."
+ },
+ {
+  "week": 112,
+  "type": "project_start",
+  "message": "Started Iron Legacy (Comedy + Spies, new) with xyz advance $92,000 @ 45%.",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 113,
+  "type": "feedback",
+  "message": "Hollow Edge opens to 55,154 viewers.",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 0,
+   "now": 55154,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 114,
+  "type": "feedback",
+  "message": "Critics love Hollow Edge, but turnout is easing off after the opening.",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 55154,
+   "now": 38761,
+   "direction": "down"
+  }
+ },
+ {
+  "week": 116,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Hollow Edge. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 24320,
+   "now": 25678,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 117,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Hollow Edge is still climbing (25,678 → 25,985).",
+  "data": {
+   "releaseId": "rel58",
+   "prev": 25678,
+   "now": 25985,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 119,
+  "type": "milestone",
+  "message": "Iron Legacy hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 119,
+  "type": "cast",
+  "message": "Cast Dee Sato for $35,075.66.",
+  "data": {
+   "starId": "star64",
+   "price": 35075.66
+  }
+ },
+ {
+  "week": 125,
+  "type": "milestone",
+  "message": "Iron Legacy hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj62"
+  }
+ },
+ {
+  "week": 125,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 127,
+  "type": "ip_fans",
+  "message": "Hollow Edge fans: 0 → 10,841 (avg score 7.6, 260,608 viewers).",
+  "data": {
+   "ipId": "ip51"
+  }
+ },
+ {
+  "week": 127,
+  "type": "star_career",
+  "message": "Liv Reyes: Fame 32.0 → 40.3, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star54",
+   "fameDelta": 8.25,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 127,
+  "type": "trust",
+  "message": "Wolf Pictures earned 150% of its advance back on Hollow Edge with strong reviews. Trust 3.48 → 4.06.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 1.5,
+   "step": 0.58
+  }
+ },
+ {
+  "week": 127,
+  "type": "run_end",
+  "message": "Hollow Edge run ended after 15 weeks: 260,608 viewers, gross $521,216, studio take $364,851.",
+  "data": {
+   "releaseId": "rel58"
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Iron Legacy).",
+  "data": {
+   "awardId": "rel:rel68:meters_all_70",
+   "releaseId": "rel68",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 128,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Iron Legacy).",
+  "data": {
+   "awardId": "rel:rel68:audience_7_5",
+   "releaseId": "rel68",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 128,
+  "type": "release",
+  "message": "Iron Legacy released: Audience 8.1 / Critics 6.45 (avg 7.28). Opening pool 269,772, opening 80,932.",
+  "data": {
+   "releaseId": "rel68"
+  }
+ },
+ {
+  "week": 128,
+  "type": "unlock",
+  "message": "Studio upgrade: TV series unlocked (Prestige 400, cost $150,000). Season orders up to 5 episodes at this Prestige."
+ },
+ {
+  "week": 128,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 128,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 128,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (new): wolf $195,000 @ 29%; starlight $81,000 @ 8%; xyz $182,000 @ 43%."
+ },
+ {
+  "week": 128,
+  "type": "project_start",
+  "message": "Started Last Edge (tv, 5 episodes, Action + Spies, new) with xyz advance $182,000 @ 43%.",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 129,
+  "type": "feedback",
+  "message": "Iron Legacy opens to 80,932 viewers.",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 0,
+   "now": 80932,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 132,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Iron Legacy. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 34025,
+   "now": 36489,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 133,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Iron Legacy is still climbing (36,489 → 36,662).",
+  "data": {
+   "releaseId": "rel68",
+   "prev": 36489,
+   "now": 36662,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 135,
+  "type": "milestone",
+  "message": "Last Edge hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 135,
+  "type": "cast",
+  "message": "Cast Alex Sato for $26,113.83.",
+  "data": {
+   "starId": "star38",
+   "price": 26113.83
+  }
+ },
+ {
+  "week": 137,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 141,
+  "type": "milestone",
+  "message": "Last Edge hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj70"
+  }
+ },
+ {
+  "week": 141,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 141,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 143,
+  "type": "ip_fans",
+  "message": "Iron Legacy fans: 0 → 13,539 (avg score 7.28, 371,142 viewers).",
+  "data": {
+   "ipId": "ip61"
+  }
+ },
+ {
+  "week": 143,
+  "type": "star_career",
+  "message": "Dee Sato: Fame 44.0 → 52.1, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star64",
+   "fameDelta": 8.12,
+   "relDelta": 0.75,
+   "grow": 6
+  }
+ },
+ {
+  "week": 143,
+  "type": "trust",
+  "message": "XYZ Network earned 363% of its advance back on Iron Legacy with strong reviews. Trust 2.50 → 3.25.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 3.63,
+   "step": 0.75
+  }
+ },
+ {
+  "week": 143,
+  "type": "run_end",
+  "message": "Iron Legacy run ended after 15 weeks: 371,142 viewers, gross $742,284, studio take $408,256.",
+  "data": {
+   "releaseId": "rel68"
+  }
+ },
+ {
+  "week": 144,
+  "type": "surplus",
+  "message": "Last Edge: kept $57,886 of unused advance.",
+  "data": {
+   "projectId": "proj70",
+   "surplus": 57886.17
+  }
+ },
+ {
+  "week": 144,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge).",
+  "data": {
+   "awardId": "rel:rel76:meters_all_70",
+   "releaseId": "rel76",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 144,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge).",
+  "data": {
+   "awardId": "rel:rel76:audience_7_5",
+   "releaseId": "rel76",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 144,
+  "type": "release",
+  "message": "Last Edge released: Audience 8.75 / Critics 8.02 (avg 8.39). Opening pool 227,262, opening 68,179. Renewable (season average 8.39).",
+  "data": {
+   "releaseId": "rel76"
+  }
+ },
+ {
+  "week": 144,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Robots."
+ },
+ {
+  "week": 144,
+  "type": "announce",
+  "message": "Announced Last Edge season 2: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 2
+  }
+ },
+ {
+  "week": 144,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 144,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 144,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): meridian $179,000 @ 49%; xyz $161,000 @ 43%; starlight $77,000 @ 8%."
+ },
+ {
+  "week": 144,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 2 (tv, 5 episodes, Action + Spies, season) with meridian advance $179,000 @ 49%.",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 145,
+  "type": "feedback",
+  "message": "Last Edge opens to 113,631 viewers.",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 0,
+   "now": 113631,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 146,
+  "type": "feedback",
+  "message": "Critics are raving about Last Edge. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 113631,
+   "now": 142975,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 148,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 162413,
+   "now": 187211,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 149,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge is still climbing (187,211 → 216,621).",
+  "data": {
+   "releaseId": "rel76",
+   "prev": 187211,
+   "now": 216621,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 150,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 151,
+  "type": "milestone",
+  "message": "Last Edge: Season 2 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 151,
+  "type": "cast",
+  "message": "Cast Alex Sato for $25,721.89.",
+  "data": {
+   "starId": "star38",
+   "price": 25721.89
+  }
+ },
+ {
+  "week": 152,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 0 → 11,750 (avg score 8.39, 925,204 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 152,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 37.9 → 47.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 10.02,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 152,
+  "type": "trust",
+  "message": "XYZ Network earned back 70% of its $182,000 advance on Last Edge. Trust 3.24 → 3.45.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 0.7,
+   "step": 0.21
+  }
+ },
+ {
+  "week": 152,
+  "type": "run_end",
+  "message": "Last Edge run ended after 8 weeks: 925,204 viewer-episodes (216,621 distinct people), gross $296,065, studio take $168,757.",
+  "data": {
+   "releaseId": "rel76"
+  }
+ },
+ {
+  "week": 157,
+  "type": "milestone",
+  "message": "Last Edge: Season 2 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj77"
+  }
+ },
+ {
+  "week": 157,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 157,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 160,
+  "type": "surplus",
+  "message": "Last Edge: Season 2: kept $55,278 of unused advance.",
+  "data": {
+   "projectId": "proj77",
+   "surplus": 55278.11
+  }
+ },
+ {
+  "week": 160,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 2).",
+  "data": {
+   "awardId": "rel:rel83:meters_all_70",
+   "releaseId": "rel83",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 160,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge: Season 2).",
+  "data": {
+   "awardId": "rel:rel83:audience_7_5",
+   "releaseId": "rel83",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 160,
+  "type": "release",
+  "message": "Last Edge: Season 2 released: Audience 8.72 / Critics 8 (avg 8.36). Opening pool 313,918, opening 94,175. Renewable (season average 8.36).",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 160,
+  "type": "announce",
+  "message": "Announced Last Edge season 3: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 3
+  }
+ },
+ {
+  "week": 160,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 160,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 160,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): xyz $312,000 @ 43%; wolf $300,000 @ 30%; orbit $204,000 @ 35%."
+ },
+ {
+  "week": 160,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 3 (tv, 10 episodes, Action + Spies, season) with xyz advance $312,000 @ 43%.",
+  "data": {
+   "projectId": "proj84"
+  }
+ },
+ {
+  "week": 161,
+  "type": "feedback",
+  "message": "Last Edge: Season 2 opens to 156,959 viewers.",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 0,
+   "now": 156959,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 162,
+  "type": "feedback",
+  "message": "Critics are raving about Last Edge: Season 2. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 156959,
+   "now": 196621,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 164,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge: Season 2. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 222143,
+   "now": 255235,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 165,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 2 is still climbing (255,235 → 294,729).",
+  "data": {
+   "releaseId": "rel83",
+   "prev": 255235,
+   "now": 294729,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 165,
+  "type": "prestige",
+  "message": "Prestige +150: ip_viewers_500k (Last Edge: Season 2).",
+  "data": {
+   "awardId": "ip:ip69:ip_viewers_500k",
+   "releaseId": "rel83",
+   "milestone": "ip_viewers_500k",
+   "amount": 150
+  }
+ },
+ {
+  "week": 165,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 168,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 11,395 → 27,240 (avg score 8.36, 1,264,946 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 168,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 47.9 → 59.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 7.",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 11.13,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 168,
+  "type": "trust",
+  "message": "Meridian Global earned 111% of its advance back on Last Edge: Season 2 with strong reviews. Trust 2.50 → 2.95.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.11,
+   "step": 0.45
+  }
+ },
+ {
+  "week": 168,
+  "type": "run_end",
+  "message": "Last Edge: Season 2 run ended after 8 weeks: 1,264,946 viewer-episodes (294,729 distinct people), gross $404,783, studio take $206,439.",
+  "data": {
+   "releaseId": "rel83"
+  }
+ },
+ {
+  "week": 170,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 171,
+  "type": "milestone",
+  "message": "Last Edge: Season 3 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj84"
+  }
+ },
+ {
+  "week": 171,
+  "type": "cast",
+  "message": "Cast Alex Sato for $40,265.84.",
+  "data": {
+   "starId": "star38",
+   "price": 40265.84
+  }
+ },
+ {
+  "week": 181,
+  "type": "milestone",
+  "message": "Last Edge: Season 3 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj84"
+  }
+ },
+ {
+  "week": 181,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 184,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 185,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 186,
+  "type": "surplus",
+  "message": "Last Edge: Season 3: kept $98,734 of unused advance.",
+  "data": {
+   "projectId": "proj84",
+   "surplus": 98734.16
+  }
+ },
+ {
+  "week": 186,
+  "type": "genre_level",
+  "message": "Studio Action level 2 → 3."
+ },
+ {
+  "week": 186,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 3).",
+  "data": {
+   "awardId": "rel:rel90:meters_all_70",
+   "releaseId": "rel90",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 186,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge: Season 3).",
+  "data": {
+   "awardId": "rel:rel90:audience_7_5",
+   "releaseId": "rel90",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 186,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Last Edge: Season 3).",
+  "data": {
+   "awardId": "rel:rel90:critic_8_5",
+   "releaseId": "rel90",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 186,
+  "type": "release",
+  "message": "Last Edge: Season 3 released: Audience 8.64 / Critics 8.78 (avg 8.71). Opening pool 268,140, opening 80,442. Renewable (season average 8.71).",
+  "data": {
+   "releaseId": "rel90"
+  }
+ },
+ {
+  "week": 186,
+  "type": "announce",
+  "message": "Announced Last Edge season 4: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 4
+  }
+ },
+ {
+  "week": 186,
+  "type": "upgrade",
+  "message": "Studio upgraded: employee capacity 6 → 8 (cost $750,000)."
+ },
+ {
+  "week": 186,
+  "type": "hire",
+  "message": "Hired Mo Vale (plot 33, writing 35, filming 21, editing 31)."
+ },
+ {
+  "week": 186,
+  "type": "hire",
+  "message": "Hired Ari Kerr (plot 17, writing 30, filming 30, editing 31)."
+ },
+ {
+  "week": 186,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): xyz $327,000 @ 42%; meridian $332,000 @ 48%; orbit $220,000 @ 34%."
+ },
+ {
+  "week": 186,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 4 (tv, 10 episodes, Action + Spies, season) with meridian advance $332,000 @ 48%.",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 187,
+  "type": "feedback",
+  "message": "Last Edge: Season 3 opens to 134,070 viewers.",
+  "data": {
+   "releaseId": "rel90",
+   "prev": 0,
+   "now": 134070,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 188,
+  "type": "feedback",
+  "message": "Critics are raving about Last Edge: Season 3. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel90",
+   "prev": 134070,
+   "now": 169399,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 190,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge: Season 3. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel90",
+   "prev": 192162,
+   "now": 220147,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 190,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 191,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 3 is still climbing (220,147 → 253,481).",
+  "data": {
+   "releaseId": "rel90",
+   "prev": 220147,
+   "now": 253481,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 191,
+  "type": "prestige",
+  "message": "Prestige +100: ip_gross_1m (Last Edge: Season 3).",
+  "data": {
+   "awardId": "ip:ip69:ip_gross_1m",
+   "releaseId": "rel90",
+   "milestone": "ip_gross_1m",
+   "amount": 100
+  }
+ },
+ {
+  "week": 197,
+  "type": "milestone",
+  "message": "Last Edge: Season 4 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 197,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 197,
+  "type": "cast",
+  "message": "Cast Alex Sato for $39,225.15.",
+  "data": {
+   "starId": "star38",
+   "price": 39225.15
+  }
+ },
+ {
+  "week": 199,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 25,662 → 46,368 (avg score 8.71, 2,744,172 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 199,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 59.0 → 72.0, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 12.97,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 199,
+  "type": "trust",
+  "message": "XYZ Network earned 121% of its advance back on Last Edge: Season 3 with strong reviews. Trust 3.38 → 3.91.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 1.21,
+   "step": 0.53
+  }
+ },
+ {
+  "week": 199,
+  "type": "run_end",
+  "message": "Last Edge: Season 3 run ended after 13 weeks: 2,744,172 viewer-episodes (348,813 distinct people), gross $878,135, studio take $500,537.",
+  "data": {
+   "releaseId": "rel90"
+  }
+ },
+ {
+  "week": 201,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 204,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 207,
+  "type": "milestone",
+  "message": "Last Edge: Season 4 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj93"
+  }
+ },
+ {
+  "week": 207,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 212,
+  "type": "surplus",
+  "message": "Last Edge: Season 4: kept $119,775 of unused advance.",
+  "data": {
+   "projectId": "proj93",
+   "surplus": 119774.85
+  }
+ },
+ {
+  "week": 212,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 4).",
+  "data": {
+   "awardId": "rel:rel99:meters_all_70",
+   "releaseId": "rel99",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 212,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge: Season 4).",
+  "data": {
+   "awardId": "rel:rel99:audience_7_5",
+   "releaseId": "rel99",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 212,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Last Edge: Season 4).",
+  "data": {
+   "awardId": "rel:rel99:critic_8_5",
+   "releaseId": "rel99",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 212,
+  "type": "release",
+  "message": "Last Edge: Season 4 released: Audience 8.77 / Critics 8.89 (avg 8.83). Opening pool 336,247, opening 100,874. Renewable (season average 8.83).",
+  "data": {
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 212,
+  "type": "announce",
+  "message": "Announced Last Edge season 5: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 5
+  }
+ },
+ {
+  "week": 212,
+  "type": "train",
+  "message": "Trained Ari Kerr: +3 to all stats."
+ },
+ {
+  "week": 212,
+  "type": "train",
+  "message": "Trained Mo Vale: +3 to all stats."
+ },
+ {
+  "week": 212,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): orbit $224,000 @ 34%; starlight $139,000 @ 8%."
+ },
+ {
+  "week": 212,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 5 (tv, 10 episodes, Action + Spies, season) with orbit advance $224,000 @ 34%.",
+  "data": {
+   "projectId": "proj100"
+  }
+ },
+ {
+  "week": 213,
+  "type": "feedback",
+  "message": "Last Edge: Season 4 opens to 168,124 viewers.",
+  "data": {
+   "releaseId": "rel99",
+   "prev": 0,
+   "now": 168124,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 214,
+  "type": "feedback",
+  "message": "Critics are raving about Last Edge: Season 4. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel99",
+   "prev": 168124,
+   "now": 212245,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 216,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge: Season 4. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel99",
+   "prev": 240279,
+   "now": 275749,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 217,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 4 is still climbing (275,749 → 318,562).",
+  "data": {
+   "releaseId": "rel99",
+   "prev": 275749,
+   "now": 318562,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 221,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 221,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 223,
+  "type": "milestone",
+  "message": "Last Edge: Season 5 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj100"
+  }
+ },
+ {
+  "week": 223,
+  "type": "cast",
+  "message": "Cast Alex Sato for $47,671.75.",
+  "data": {
+   "starId": "star38",
+   "price": 47671.75
+  }
+ },
+ {
+  "week": 225,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 44,106 → 69,418 (avg score 8.83, 3,341,215 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 225,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 72.0 → 86.1, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 8.",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 14.05,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 225,
+  "type": "trust",
+  "message": "Meridian Global earned 155% of its advance back on Last Edge: Season 4 with strong reviews. Trust 2.87 → 3.60.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.55,
+   "step": 0.73
+  }
+ },
+ {
+  "week": 225,
+  "type": "run_end",
+  "message": "Last Edge: Season 4 run ended after 13 weeks: 3,341,215 viewer-episodes (413,061 distinct people), gross $1,069,189, studio take $555,978.",
+  "data": {
+   "releaseId": "rel99"
+  }
+ },
+ {
+  "week": 225,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 230,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 233,
+  "type": "milestone",
+  "message": "Last Edge: Season 5 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj100"
+  }
+ },
+ {
+  "week": 233,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 235,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 238,
+  "type": "surplus",
+  "message": "Last Edge: Season 5: kept $3,328 of unused advance.",
+  "data": {
+   "projectId": "proj100",
+   "surplus": 3328.25
+  }
+ },
+ {
+  "week": 238,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 5).",
+  "data": {
+   "awardId": "rel:rel106:meters_all_70",
+   "releaseId": "rel106",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 238,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge: Season 5).",
+  "data": {
+   "awardId": "rel:rel106:audience_7_5",
+   "releaseId": "rel106",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 238,
+  "type": "prestige",
+  "message": "Prestige +85: critic_8_5 (Last Edge: Season 5).",
+  "data": {
+   "awardId": "rel:rel106:critic_8_5",
+   "releaseId": "rel106",
+   "milestone": "critic_8_5",
+   "amount": 85
+  }
+ },
+ {
+  "week": 238,
+  "type": "release",
+  "message": "Last Edge: Season 5 released: Audience 8.55 / Critics 8.66 (avg 8.61). Opening pool 243,502, opening 73,051. Renewable (season average 8.61).",
+  "data": {
+   "releaseId": "rel106"
+  }
+ },
+ {
+  "week": 238,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Dinosaurs."
+ },
+ {
+  "week": 238,
+  "type": "announce",
+  "message": "Announced Last Edge season 6: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 6
+  }
+ },
+ {
+  "week": 238,
+  "type": "train",
+  "message": "Trained Ari Kerr: +3 to all stats."
+ },
+ {
+  "week": 238,
+  "type": "train",
+  "message": "Trained Mo Vale: +3 to all stats."
+ },
+ {
+  "week": 238,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): meridian $395,000 @ 46%; xyz $362,000 @ 41%; starlight $156,000 @ 8%."
+ },
+ {
+  "week": 238,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 6 (tv, 10 episodes, Action + Spies, season) with meridian advance $395,000 @ 46%.",
+  "data": {
+   "projectId": "proj107"
+  }
+ },
+ {
+  "week": 239,
+  "type": "feedback",
+  "message": "Last Edge: Season 5 opens to 121,751 viewers.",
+  "data": {
+   "releaseId": "rel106",
+   "prev": 0,
+   "now": 121751,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 240,
+  "type": "feedback",
+  "message": "Critics are raving about Last Edge: Season 5. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel106",
+   "prev": 121751,
+   "now": 153092,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 241,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 242,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge: Season 5. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel106",
+   "prev": 172792,
+   "now": 197170,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 243,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 5 is still climbing (197,170 → 224,860).",
+  "data": {
+   "releaseId": "rel106",
+   "prev": 197170,
+   "now": 224860,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 244,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 249,
+  "type": "milestone",
+  "message": "Last Edge: Season 6 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj107"
+  }
+ },
+ {
+  "week": 249,
+  "type": "cast",
+  "message": "Cast Alex Sato for $58,558.99.",
+  "data": {
+   "starId": "star38",
+   "price": 58558.99
+  }
+ },
+ {
+  "week": 251,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 66,032 → 82,379 (avg score 8.61, 2,335,243 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 251,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 86.1 → 97.9, relationship +0.75 (worked together (+); project boosted their career (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 11.8,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 251,
+  "type": "trust",
+  "message": "Orbit Releasing earned 113% of its advance back on Last Edge: Season 5 with strong reviews. Trust 3.05 → 3.53.",
+  "data": {
+   "distributorId": "orbit",
+   "roi": 1.13,
+   "step": 0.48
+  }
+ },
+ {
+  "week": 251,
+  "type": "run_end",
+  "message": "Last Edge: Season 5 run ended after 13 weeks: 2,335,243 viewer-episodes (283,016 distinct people), gross $747,278, studio take $493,203.",
+  "data": {
+   "releaseId": "rel106"
+  }
+ },
+ {
+  "week": 251,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 255,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 258,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 259,
+  "type": "milestone",
+  "message": "Last Edge: Season 6 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj107"
+  }
+ },
+ {
+  "week": 259,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 261,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 264,
+  "type": "surplus",
+  "message": "Last Edge: Season 6: kept $163,441 of unused advance.",
+  "data": {
+   "projectId": "proj107",
+   "surplus": 163441.01
+  }
+ },
+ {
+  "week": 264,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 6).",
+  "data": {
+   "awardId": "rel:rel113:meters_all_70",
+   "releaseId": "rel113",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 264,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge: Season 6).",
+  "data": {
+   "awardId": "rel:rel113:audience_7_5",
+   "releaseId": "rel113",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 264,
+  "type": "release",
+  "message": "Last Edge: Season 6 released: Audience 8.22 / Critics 8.33 (avg 8.28). Opening pool 378,600, opening 113,580. Renewable (season average 8.28).",
+  "data": {
+   "releaseId": "rel113"
+  }
+ },
+ {
+  "week": 264,
+  "type": "announce",
+  "message": "Announced Last Edge season 7: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 7
+  }
+ },
+ {
+  "week": 264,
+  "type": "train",
+  "message": "Trained Ari Kerr: +3 to all stats."
+ },
+ {
+  "week": 264,
+  "type": "train",
+  "message": "Trained Mo Vale: +3 to all stats."
+ },
+ {
+  "week": 264,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): starlight $165,000 @ 8%; meridian $454,000 @ 46%."
+ },
+ {
+  "week": 264,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 7 (tv, 10 episodes, Action + Spies, season) with meridian advance $454,000 @ 46%.",
+  "data": {
+   "projectId": "proj114"
+  }
+ },
+ {
+  "week": 265,
+  "type": "feedback",
+  "message": "Last Edge: Season 6 opens to 189,300 viewers.",
+  "data": {
+   "releaseId": "rel113",
+   "prev": 0,
+   "now": 189300,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 266,
+  "type": "feedback",
+  "message": "Critics are raving about Last Edge: Season 6. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel113",
+   "prev": 189300,
+   "now": 236939,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 268,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge: Season 6. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel113",
+   "prev": 266642,
+   "now": 301886,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 269,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 6 is still climbing (301,886 → 338,221).",
+  "data": {
+   "releaseId": "rel113",
+   "prev": 301886,
+   "now": 338221,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 271,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 272,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 275,
+  "type": "milestone",
+  "message": "Last Edge: Season 7 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj114"
+  }
+ },
+ {
+  "week": 275,
+  "type": "cast",
+  "message": "Cast Alex Sato for $69,032.76.",
+  "data": {
+   "starId": "star38",
+   "price": 69032.76
+  }
+ },
+ {
+  "week": 277,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 78,357 → 100,212 (avg score 8.28, 3,499,416 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 277,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 97.9 → 100.0, relationship +0.75 (worked together (+); project boosted their career (+)), reached Level 9.",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 12.06,
+   "relDelta": 0.75,
+   "grow": 0
+  }
+ },
+ {
+  "week": 277,
+  "type": "trust",
+  "message": "Meridian Global earned 130% of its advance back on Last Edge: Season 6 with strong reviews. Trust 3.53 → 4.08.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.3,
+   "step": 0.55
+  }
+ },
+ {
+  "week": 277,
+  "type": "run_end",
+  "message": "Last Edge: Season 6 run ended after 13 weeks: 3,499,416 viewer-episodes (416,438 distinct people), gross $1,119,813, studio take $604,699.",
+  "data": {
+   "releaseId": "rel113"
+  }
+ },
+ {
+  "week": 278,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 281,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 285,
+  "type": "milestone",
+  "message": "Last Edge: Season 7 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj114"
+  }
+ },
+ {
+  "week": 285,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 290,
+  "type": "surplus",
+  "message": "Last Edge: Season 7: kept $211,967 of unused advance.",
+  "data": {
+   "projectId": "proj114",
+   "surplus": 211967.24
+  }
+ },
+ {
+  "week": 290,
+  "type": "genre_level",
+  "message": "Studio Action level 3 → 4."
+ },
+ {
+  "week": 290,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 7).",
+  "data": {
+   "awardId": "rel:rel120:meters_all_70",
+   "releaseId": "rel120",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 290,
+  "type": "prestige",
+  "message": "Prestige +75: audience_7_5 (Last Edge: Season 7).",
+  "data": {
+   "awardId": "rel:rel120:audience_7_5",
+   "releaseId": "rel120",
+   "milestone": "audience_7_5",
+   "amount": 75
+  }
+ },
+ {
+  "week": 290,
+  "type": "release",
+  "message": "Last Edge: Season 7 released: Audience 7.79 / Critics 7.89 (avg 7.84). Opening pool 397,652, opening 119,296. Renewable (season average 7.84).",
+  "data": {
+   "releaseId": "rel120"
+  }
+ },
+ {
+  "week": 290,
+  "type": "announce",
+  "message": "Announced Last Edge season 8: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 8
+  }
+ },
+ {
+  "week": 290,
+  "type": "train",
+  "message": "Trained Ari Kerr: +3 to all stats."
+ },
+ {
+  "week": 290,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 290,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): meridian $504,000 @ 44%; orbit $286,000 @ 33%."
+ },
+ {
+  "week": 290,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 8 (tv, 10 episodes, Action + Spies, season) with meridian advance $504,000 @ 44%.",
+  "data": {
+   "projectId": "proj121"
+  }
+ },
+ {
+  "week": 291,
+  "type": "feedback",
+  "message": "Last Edge: Season 7 opens to 198,826 viewers.",
+  "data": {
+   "releaseId": "rel120",
+   "prev": 0,
+   "now": 198826,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 292,
+  "type": "feedback",
+  "message": "Critics are raving about Last Edge: Season 7. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel120",
+   "prev": 198826,
+   "now": 247602,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 292,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 294,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge: Season 7. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel120",
+   "prev": 277900,
+   "now": 311666,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 295,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 7 is still climbing (311,666 → 344,603).",
+  "data": {
+   "releaseId": "rel120",
+   "prev": 311666,
+   "now": 344603,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 295,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 296,
+  "type": "prestige",
+  "message": "Prestige +150: ip_gross_5m (Last Edge: Season 7).",
+  "data": {
+   "awardId": "ip:ip69:ip_gross_5m",
+   "releaseId": "rel120",
+   "milestone": "ip_gross_5m",
+   "amount": 150
+  }
+ },
+ {
+  "week": 301,
+  "type": "milestone",
+  "message": "Last Edge: Season 8 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj121"
+  }
+ },
+ {
+  "week": 301,
+  "type": "cast",
+  "message": "Cast Alex Sato for $69,952.49.",
+  "data": {
+   "starId": "star38",
+   "price": 69952.49
+  }
+ },
+ {
+  "week": 303,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 95,319 → 114,277 (avg score 7.84, 3,558,562 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 303,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 10.44,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 303,
+  "type": "trust",
+  "message": "Meridian Global earned 115% of its advance back on Last Edge: Season 7 with strong reviews. Trust 4.04 → 4.44.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 1.15,
+   "step": 0.4
+  }
+ },
+ {
+  "week": 303,
+  "type": "run_end",
+  "message": "Last Edge: Season 7 run ended after 13 weeks: 3,558,562 viewer-episodes (417,214 distinct people), gross $1,138,740, studio take $614,920.",
+  "data": {
+   "releaseId": "rel120"
+  }
+ },
+ {
+  "week": 311,
+  "type": "milestone",
+  "message": "Last Edge: Season 8 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj121"
+  }
+ },
+ {
+  "week": 311,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 311,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 316,
+  "type": "surplus",
+  "message": "Last Edge: Season 8: kept $261,048 of unused advance.",
+  "data": {
+   "projectId": "proj121",
+   "surplus": 261047.51
+  }
+ },
+ {
+  "week": 316,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 8).",
+  "data": {
+   "awardId": "rel:rel127:meters_all_70",
+   "releaseId": "rel127",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 316,
+  "type": "release",
+  "message": "Last Edge: Season 8 released: Audience 7.18 / Critics 7.27 (avg 7.23). Opening pool 401,131, opening 120,339. Renewable (season average 7.23).",
+  "data": {
+   "releaseId": "rel127"
+  }
+ },
+ {
+  "week": 316,
+  "type": "announce",
+  "message": "Announced Last Edge season 9: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 9
+  }
+ },
+ {
+  "week": 316,
+  "type": "train",
+  "message": "Trained Mo Vale: +3 to all stats."
+ },
+ {
+  "week": 316,
+  "type": "train",
+  "message": "Trained Ari Kerr: +3 to all stats."
+ },
+ {
+  "week": 316,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): wolf $577,000 @ 28%; meridian $727,000 @ 43%."
+ },
+ {
+  "week": 316,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 9 (tv, 15 episodes, Action + Spies, season) with meridian advance $727,000 @ 43%.",
+  "data": {
+   "projectId": "proj128"
+  }
+ },
+ {
+  "week": 317,
+  "type": "feedback",
+  "message": "Last Edge: Season 8 opens to 200,566 viewers.",
+  "data": {
+   "releaseId": "rel127",
+   "prev": 0,
+   "now": 200566,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 317,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 318,
+  "type": "feedback",
+  "message": "Critics are raving about Last Edge: Season 8. Curious viewers are tuning in!",
+  "data": {
+   "releaseId": "rel127",
+   "prev": 200566,
+   "now": 248318,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 318,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 320,
+  "type": "feedback",
+  "message": "Fans can't stop talking about Last Edge: Season 8. Viewership is climbing!",
+  "data": {
+   "releaseId": "rel127",
+   "prev": 278123,
+   "now": 308098,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 321,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 8 is still climbing (308,098 → 339,548).",
+  "data": {
+   "releaseId": "rel127",
+   "prev": 308098,
+   "now": 339548,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 329,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 108,699 → 123,505 (avg score 7.23, 3,535,447 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 329,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)), reached Level 10.",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 8.19,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 329,
+  "type": "trust",
+  "message": "Meridian Global earned back 99% of its $504,000 advance on Last Edge: Season 8. Trust 4.40 → 4.62.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 0.99,
+   "step": 0.22
+  }
+ },
+ {
+  "week": 329,
+  "type": "run_end",
+  "message": "Last Edge: Season 8 run ended after 13 weeks: 3,535,447 viewer-episodes (414,974 distinct people), gross $1,131,343, studio take $633,552.",
+  "data": {
+   "releaseId": "rel127"
+  }
+ },
+ {
+  "week": 331,
+  "type": "milestone",
+  "message": "Last Edge: Season 9 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj128"
+  }
+ },
+ {
+  "week": 331,
+  "type": "cast",
+  "message": "Cast Alex Sato for $69,777.08.",
+  "data": {
+   "starId": "star38",
+   "price": 69777.08
+  }
+ },
+ {
+  "week": 332,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 337,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 345,
+  "type": "milestone",
+  "message": "Last Edge: Season 9 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj128"
+  }
+ },
+ {
+  "week": 345,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 352,
+  "type": "surplus",
+  "message": "Last Edge: Season 9: kept $409,223 of unused advance.",
+  "data": {
+   "projectId": "proj128",
+   "surplus": 409222.92
+  }
+ },
+ {
+  "week": 352,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 9).",
+  "data": {
+   "awardId": "rel:rel134:meters_all_70",
+   "releaseId": "rel134",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 352,
+  "type": "release",
+  "message": "Last Edge: Season 9 released: Audience 6.44 / Critics 5.87 (avg 6.16). Opening pool 387,105, opening 116,132. Renewable (season average 6.16).",
+  "data": {
+   "releaseId": "rel134"
+  }
+ },
+ {
+  "week": 352,
+  "type": "announce",
+  "message": "Announced Last Edge season 10: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 10
+  }
+ },
+ {
+  "week": 352,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 352,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 352,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): wolf $466,000 @ 29%; meridian $617,000 @ 44%."
+ },
+ {
+  "week": 352,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 10 (tv, 15 episodes, Action + Spies, season) with meridian advance $617,000 @ 44%.",
+  "data": {
+   "projectId": "proj135"
+  }
+ },
+ {
+  "week": 353,
+  "type": "feedback",
+  "message": "Last Edge: Season 9 opens to 193,553 viewers.",
+  "data": {
+   "releaseId": "rel134",
+   "prev": 0,
+   "now": 193553,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 357,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 9 is still climbing (251,669 → 264,925).",
+  "data": {
+   "releaseId": "rel134",
+   "prev": 251669,
+   "now": 264925,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 367,
+  "type": "milestone",
+  "message": "Last Edge: Season 10 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj135"
+  }
+ },
+ {
+  "week": 367,
+  "type": "cast",
+  "message": "Cast Alex Sato for $69,608.9.",
+  "data": {
+   "starId": "star38",
+   "price": 69608.9
+  }
+ },
+ {
+  "week": 370,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 114,132 → 122,101 (avg score 6.16, 4,264,559 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 370,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 4.3,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 370,
+  "type": "trust",
+  "message": "Meridian Global earned back 81% of its $727,000 advance on Last Edge: Season 9. Trust 4.56 → 4.53.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 0.81,
+   "step": -0.03
+  }
+ },
+ {
+  "week": 370,
+  "type": "run_end",
+  "message": "Last Edge: Season 9 run ended after 18 weeks: 4,264,559 viewer-episodes (429,373 distinct people), gross $1,364,659, studio take $777,856.",
+  "data": {
+   "releaseId": "rel134"
+  }
+ },
+ {
+  "week": 374,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 377,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 381,
+  "type": "milestone",
+  "message": "Last Edge: Season 10 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj135"
+  }
+ },
+ {
+  "week": 381,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 383,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 388,
+  "type": "surplus",
+  "message": "Last Edge: Season 10: kept $299,391 of unused advance.",
+  "data": {
+   "projectId": "proj135",
+   "surplus": 299391.1
+  }
+ },
+ {
+  "week": 388,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 10).",
+  "data": {
+   "awardId": "rel:rel141:meters_all_70",
+   "releaseId": "rel141",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 388,
+  "type": "release",
+  "message": "Last Edge: Season 10 released: Audience 6.18 / Critics 6.25 (avg 6.22). Opening pool 381,465, opening 114,440. Renewable (season average 6.22).",
+  "data": {
+   "releaseId": "rel141"
+  }
+ },
+ {
+  "week": 388,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Mythology."
+ },
+ {
+  "week": 388,
+  "type": "announce",
+  "message": "Announced Last Edge season 11: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 11
+  }
+ },
+ {
+  "week": 388,
+  "type": "train",
+  "message": "Trained Mo Vale: +3 to all stats."
+ },
+ {
+  "week": 388,
+  "type": "train",
+  "message": "Trained Ari Kerr: +3 to all stats."
+ },
+ {
+  "week": 388,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): starlight $244,000 @ 8%; wolf $506,000 @ 29%."
+ },
+ {
+  "week": 388,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 11 (tv, 15 episodes, Action + Spies, season) with wolf advance $506,000 @ 29%.",
+  "data": {
+   "projectId": "proj142"
+  }
+ },
+ {
+  "week": 389,
+  "type": "feedback",
+  "message": "Last Edge: Season 10 opens to 190,733 viewers.",
+  "data": {
+   "releaseId": "rel141",
+   "prev": 0,
+   "now": 190733,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 392,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 393,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 10 is still climbing (253,069 → 260,111).",
+  "data": {
+   "releaseId": "rel141",
+   "prev": 253069,
+   "now": 260111,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 394,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 401,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 403,
+  "type": "milestone",
+  "message": "Last Edge: Season 11 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj142"
+  }
+ },
+ {
+  "week": 403,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 403,
+  "type": "cast",
+  "message": "Cast Alex Sato for $69,447.5.",
+  "data": {
+   "starId": "star38",
+   "price": 69447.5
+  }
+ },
+ {
+  "week": 406,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 113,926 → 122,237 (avg score 6.22, 3,973,547 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 406,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 4.51,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 406,
+  "type": "trust",
+  "message": "Meridian Global earned back 91% of its $617,000 advance on Last Edge: Season 10. Trust 4.48 → 4.52.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 0.91,
+   "step": 0.04
+  }
+ },
+ {
+  "week": 406,
+  "type": "run_end",
+  "message": "Last Edge: Season 10 run ended after 18 weeks: 3,973,547 viewer-episodes (425,789 distinct people), gross $1,271,535, studio take $712,060.",
+  "data": {
+   "releaseId": "rel141"
+  }
+ },
+ {
+  "week": 409,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 411,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 412,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 413,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 417,
+  "type": "milestone",
+  "message": "Last Edge: Season 11 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj142"
+  }
+ },
+ {
+  "week": 417,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 421,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 424,
+  "type": "surplus",
+  "message": "Last Edge: Season 11: kept $188,553 of unused advance.",
+  "data": {
+   "projectId": "proj142",
+   "surplus": 188552.5
+  }
+ },
+ {
+  "week": 424,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 11).",
+  "data": {
+   "awardId": "rel:rel148:meters_all_70",
+   "releaseId": "rel148",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 424,
+  "type": "release",
+  "message": "Last Edge: Season 11 released: Audience 6.19 / Critics 6.26 (avg 6.23). Opening pool 240,477, opening 72,143. Renewable (season average 6.23).",
+  "data": {
+   "releaseId": "rel148"
+  }
+ },
+ {
+  "week": 424,
+  "type": "announce",
+  "message": "Announced Last Edge season 12: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 12
+  }
+ },
+ {
+  "week": 424,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 424,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 424,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): xyz $580,000 @ 40%; orbit $406,000 @ 33%."
+ },
+ {
+  "week": 424,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 12 (tv, 15 episodes, Action + Spies, season) with xyz advance $580,000 @ 40%.",
+  "data": {
+   "projectId": "proj149"
+  }
+ },
+ {
+  "week": 425,
+  "type": "feedback",
+  "message": "Last Edge: Season 11 opens to 120,239 viewers.",
+  "data": {
+   "releaseId": "rel148",
+   "prev": 0,
+   "now": 120239,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 429,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 11 is still climbing (159,642 → 164,191).",
+  "data": {
+   "releaseId": "rel148",
+   "prev": 159642,
+   "now": 164191,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 429,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 431,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 433,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 434,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 439,
+  "type": "milestone",
+  "message": "Last Edge: Season 12 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj149"
+  }
+ },
+ {
+  "week": 439,
+  "type": "cast",
+  "message": "Cast Alex Sato for $69,292.47.",
+  "data": {
+   "starId": "star38",
+   "price": 69292.47
+  }
+ },
+ {
+  "week": 442,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 114,053 → 119,123 (avg score 6.23, 2,465,803 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 442,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 3.89,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 442,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 45% of its $506,000 advance on Last Edge: Season 11. Trust 3.61 → 3.38.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.45,
+   "step": -0.23
+  }
+ },
+ {
+  "week": 442,
+  "type": "run_end",
+  "message": "Last Edge: Season 11 run ended after 18 weeks: 2,465,803 viewer-episodes (257,644 distinct people), gross $789,057, studio take $560,230.",
+  "data": {
+   "releaseId": "rel148"
+  }
+ },
+ {
+  "week": 443,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 452,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 453,
+  "type": "milestone",
+  "message": "Last Edge: Season 12 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj149"
+  }
+ },
+ {
+  "week": 453,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 460,
+  "type": "surplus",
+  "message": "Last Edge: Season 12: kept $262,708 of unused advance.",
+  "data": {
+   "projectId": "proj149",
+   "surplus": 262707.53
+  }
+ },
+ {
+  "week": 460,
+  "type": "genre_level",
+  "message": "Studio Action level 4 → 5."
+ },
+ {
+  "week": 460,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 12).",
+  "data": {
+   "awardId": "rel:rel155:meters_all_70",
+   "releaseId": "rel155",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 460,
+  "type": "release",
+  "message": "Last Edge: Season 12 released: Audience 6.21 / Critics 5.65 (avg 5.93). Opening pool 329,918, opening 98,975. Renewable (season average 5.93).",
+  "data": {
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 460,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 460,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 460,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Zombies (season): starlight $224,000 @ 8%; xyz $544,000 @ 41%; orbit $355,000 @ 34%."
+ },
+ {
+  "week": 460,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 13 (tv, 15 episodes, Action + Zombies, season, TWIST theme Zombies) with xyz advance $544,000 @ 41%.",
+  "data": {
+   "projectId": "proj156"
+  }
+ },
+ {
+  "week": 461,
+  "type": "feedback",
+  "message": "Last Edge: Season 12 opens to 164,959 viewers.",
+  "data": {
+   "releaseId": "rel155",
+   "prev": 0,
+   "now": 164959,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 461,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 465,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 12 is still climbing (205,718 → 212,646).",
+  "data": {
+   "releaseId": "rel155",
+   "prev": 205718,
+   "now": 212646,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 469,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 471,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 473,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 475,
+  "type": "milestone",
+  "message": "Last Edge: Season 13 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj156"
+  }
+ },
+ {
+  "week": 475,
+  "type": "cast",
+  "message": "Cast Alex Sato for $69,143.46.",
+  "data": {
+   "starId": "star38",
+   "price": 69143.46
+  }
+ },
+ {
+  "week": 478,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 111,148 → 116,565 (avg score 5.93, 3,299,817 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 478,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 3.29,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 478,
+  "type": "trust",
+  "message": "XYZ Network earned back 73% of its $580,000 advance on Last Edge: Season 12. Trust 3.51 → 3.40.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 0.73,
+   "step": -0.11
+  }
+ },
+ {
+  "week": 478,
+  "type": "run_end",
+  "message": "Last Edge: Season 12 run ended after 18 weeks: 3,299,817 viewer-episodes (364,041 distinct people), gross $1,055,941, studio take $633,565.",
+  "data": {
+   "releaseId": "rel155"
+  }
+ },
+ {
+  "week": 489,
+  "type": "milestone",
+  "message": "Last Edge: Season 13 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj156"
+  }
+ },
+ {
+  "week": 489,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 496,
+  "type": "surplus",
+  "message": "Last Edge: Season 13: kept $226,857 of unused advance.",
+  "data": {
+   "projectId": "proj156",
+   "surplus": 226856.54
+  }
+ },
+ {
+  "week": 496,
+  "type": "twist",
+  "message": "Last Edge is reborn! The Zombies twist eased show fatigue (genre stays Action).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 496,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 13).",
+  "data": {
+   "awardId": "rel:rel162:meters_all_70",
+   "releaseId": "rel162",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 496,
+  "type": "release",
+  "message": "Last Edge: Season 13 released: Audience 5.72 / Critics 5.03 (avg 5.38). Opening pool 319,971, opening 95,991. Renewable (season average 5.38).",
+  "data": {
+   "releaseId": "rel162"
+  }
+ },
+ {
+  "week": 496,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Time Travel."
+ },
+ {
+  "week": 496,
+  "type": "train",
+  "message": "Trained Mo Vale: +3 to all stats."
+ },
+ {
+  "week": 496,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 496,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): meridian $665,000 @ 44%; xyz $553,000 @ 42%."
+ },
+ {
+  "week": 496,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 14 (tv, 15 episodes, Action + Spies, season, TWIST theme Spies) with meridian advance $665,000 @ 44%.",
+  "data": {
+   "projectId": "proj163"
+  }
+ },
+ {
+  "week": 497,
+  "type": "feedback",
+  "message": "Last Edge: Season 13 opens to 159,986 viewers.",
+  "data": {
+   "releaseId": "rel162",
+   "prev": 0,
+   "now": 159986,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 511,
+  "type": "milestone",
+  "message": "Last Edge: Season 14 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj163"
+  }
+ },
+ {
+  "week": 511,
+  "type": "cast",
+  "message": "Cast Alex Sato for $69,000.11.",
+  "data": {
+   "starId": "star38",
+   "price": 69000.11
+  }
+ },
+ {
+  "week": 514,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 108,761 → 110,667 (avg score 5.38, 2,437,791 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 514,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 1.28,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 514,
+  "type": "trust",
+  "message": "XYZ Network earned back 59% of its $544,000 advance on Last Edge: Season 13. Trust 3.35 → 3.09.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 0.59,
+   "step": -0.26
+  }
+ },
+ {
+  "week": 514,
+  "type": "run_end",
+  "message": "Last Edge: Season 13 run ended after 18 weeks: 2,437,791 viewer-episodes (313,414 distinct people), gross $780,093, studio take $460,255.",
+  "data": {
+   "releaseId": "rel162"
+  }
+ },
+ {
+  "week": 521,
+  "type": "trend",
+  "message": "Buzz is building around Vampires stories (Rising)."
+ },
+ {
+  "week": 522,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 525,
+  "type": "milestone",
+  "message": "Last Edge: Season 14 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj163"
+  }
+ },
+ {
+  "week": 525,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 531,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 532,
+  "type": "surplus",
+  "message": "Last Edge: Season 14: kept $348,000 of unused advance.",
+  "data": {
+   "projectId": "proj163",
+   "surplus": 347999.89
+  }
+ },
+ {
+  "week": 532,
+  "type": "twist",
+  "message": "Last Edge is reborn! The Spies twist eased show fatigue (genre stays Action).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 532,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 14).",
+  "data": {
+   "awardId": "rel:rel169:meters_all_70",
+   "releaseId": "rel169",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 532,
+  "type": "release",
+  "message": "Last Edge: Season 14 released: Audience 6.25 / Critics 6.31 (avg 6.28). Opening pool 372,057, opening 111,617. Renewable (season average 6.28).",
+  "data": {
+   "releaseId": "rel169"
+  }
+ },
+ {
+  "week": 532,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Pirates."
+ },
+ {
+  "week": 532,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 532,
+  "type": "announce",
+  "message": "Announced Last Edge season 15: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 15
+  }
+ },
+ {
+  "week": 532,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 532,
+  "type": "train",
+  "message": "Trained Ari Kerr: +3 to all stats."
+ },
+ {
+  "week": 532,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): wolf $447,000 @ 30%; meridian $605,000 @ 45%."
+ },
+ {
+  "week": 532,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 15 (tv, 15 episodes, Action + Spies, season) with meridian advance $605,000 @ 45%.",
+  "data": {
+   "projectId": "proj170"
+  }
+ },
+ {
+  "week": 533,
+  "type": "feedback",
+  "message": "Last Edge: Season 14 opens to 186,029 viewers.",
+  "data": {
+   "releaseId": "rel169",
+   "prev": 0,
+   "now": 186029,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 537,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 14 is still climbing (249,935 → 258,374).",
+  "data": {
+   "releaseId": "rel169",
+   "prev": 249935,
+   "now": 258374,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 541,
+  "type": "trend",
+  "message": "Vampires craze is HOT!"
+ },
+ {
+  "week": 542,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 547,
+  "type": "milestone",
+  "message": "Last Edge: Season 15 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj170"
+  }
+ },
+ {
+  "week": 547,
+  "type": "cast",
+  "message": "Cast Alex Sato for $68,862.11.",
+  "data": {
+   "starId": "star38",
+   "price": 68862.11
+  }
+ },
+ {
+  "week": 550,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 103,258 → 111,967 (avg score 6.28, 4,032,218 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 550,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 4.73,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 550,
+  "type": "trust",
+  "message": "Meridian Global earned back 85% of its $665,000 advance on Last Edge: Season 14. Trust 4.31 → 4.33.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 0.85,
+   "step": 0.02
+  }
+ },
+ {
+  "week": 550,
+  "type": "run_end",
+  "message": "Last Edge: Season 14 run ended after 18 weeks: 4,032,218 viewer-episodes (425,253 distinct people), gross $1,290,310, studio take $722,573.",
+  "data": {
+   "releaseId": "rel169"
+  }
+ },
+ {
+  "week": 551,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 552,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 561,
+  "type": "milestone",
+  "message": "Last Edge: Season 15 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj170"
+  }
+ },
+ {
+  "week": 561,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 568,
+  "type": "surplus",
+  "message": "Last Edge: Season 15: kept $288,138 of unused advance.",
+  "data": {
+   "projectId": "proj170",
+   "surplus": 288137.89
+  }
+ },
+ {
+  "week": 568,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 15).",
+  "data": {
+   "awardId": "rel:rel176:meters_all_70",
+   "releaseId": "rel176",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 568,
+  "type": "release",
+  "message": "Last Edge: Season 15 released: Audience 6.25 / Critics 6.32 (avg 6.29). Opening pool 377,772, opening 113,332. Renewable (season average 6.29).",
+  "data": {
+   "releaseId": "rel176"
+  }
+ },
+ {
+  "week": 568,
+  "type": "unlock",
+  "message": "Your best idea person pitched a new theme: Vampires."
+ },
+ {
+  "week": 568,
+  "type": "announce",
+  "message": "Announced Last Edge season 16: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 16
+  }
+ },
+ {
+  "week": 568,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 568,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 568,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): starlight $238,000 @ 8%; xyz $512,000 @ 42%."
+ },
+ {
+  "week": 568,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 16 (tv, 15 episodes, Action + Spies, season) with xyz advance $512,000 @ 42%.",
+  "data": {
+   "projectId": "proj177"
+  }
+ },
+ {
+  "week": 569,
+  "type": "feedback",
+  "message": "Last Edge: Season 15 opens to 188,886 viewers.",
+  "data": {
+   "releaseId": "rel176",
+   "prev": 0,
+   "now": 188886,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 573,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 15 is still climbing (253,942 → 262,491).",
+  "data": {
+   "releaseId": "rel176",
+   "prev": 253942,
+   "now": 262491,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 581,
+  "type": "trend",
+  "message": "Vampires stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 582,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 583,
+  "type": "milestone",
+  "message": "Last Edge: Season 16 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj177"
+  }
+ },
+ {
+  "week": 583,
+  "type": "cast",
+  "message": "Cast Alex Sato for $68,729.16.",
+  "data": {
+   "starId": "star38",
+   "price": 68729.16
+  }
+ },
+ {
+  "week": 586,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 104,472 → 113,272 (avg score 6.29, 4,072,862 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 586,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 4.77,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 586,
+  "type": "trust",
+  "message": "Meridian Global earned back 97% of its $605,000 advance on Last Edge: Season 15. Trust 4.28 → 4.37.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 0.97,
+   "step": 0.09
+  }
+ },
+ {
+  "week": 586,
+  "type": "run_end",
+  "message": "Last Edge: Season 15 run ended after 18 weeks: 4,072,862 viewer-episodes (426,369 distinct people), gross $1,303,316, studio take $716,824.",
+  "data": {
+   "releaseId": "rel176"
+  }
+ },
+ {
+  "week": 591,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 592,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 597,
+  "type": "milestone",
+  "message": "Last Edge: Season 16 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj177"
+  }
+ },
+ {
+  "week": 597,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 604,
+  "type": "surplus",
+  "message": "Last Edge: Season 16: kept $195,271 of unused advance.",
+  "data": {
+   "projectId": "proj177",
+   "surplus": 195270.84
+  }
+ },
+ {
+  "week": 604,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 16).",
+  "data": {
+   "awardId": "rel:rel183:meters_all_70",
+   "releaseId": "rel183",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 604,
+  "type": "release",
+  "message": "Last Edge: Season 16 released: Audience 6.26 / Critics 6.32 (avg 6.29). Opening pool 323,240, opening 96,972. Renewable (season average 6.29).",
+  "data": {
+   "releaseId": "rel183"
+  }
+ },
+ {
+  "week": 604,
+  "type": "announce",
+  "message": "Announced Last Edge season 17: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 17
+  }
+ },
+ {
+  "week": 604,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 604,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 604,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): orbit $399,000 @ 34%; xyz $517,000 @ 42%."
+ },
+ {
+  "week": 604,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 17 (tv, 15 episodes, Action + Spies, season) with xyz advance $517,000 @ 42%.",
+  "data": {
+   "projectId": "proj184"
+  }
+ },
+ {
+  "week": 605,
+  "type": "feedback",
+  "message": "Last Edge: Season 16 opens to 161,620 viewers.",
+  "data": {
+   "releaseId": "rel183",
+   "prev": 0,
+   "now": 161620,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 605,
+  "type": "trend",
+  "message": "Buzz is building around Spies stories (Rising)."
+ },
+ {
+  "week": 609,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 16 is still climbing (217,450 → 224,960).",
+  "data": {
+   "releaseId": "rel183",
+   "prev": 217450,
+   "now": 224960,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 619,
+  "type": "milestone",
+  "message": "Last Edge: Season 17 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj184"
+  }
+ },
+ {
+  "week": 619,
+  "type": "cast",
+  "message": "Cast Alex Sato for $68,601.",
+  "data": {
+   "starId": "star38",
+   "price": 68601
+  }
+ },
+ {
+  "week": 622,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 105,688 → 113,213 (avg score 6.29, 3,495,686 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 622,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 4.57,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 622,
+  "type": "trust",
+  "message": "XYZ Network earned back 92% of its $512,000 advance on Last Edge: Season 16. Trust 2.93 → 2.99.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 0.92,
+   "step": 0.06
+  }
+ },
+ {
+  "week": 622,
+  "type": "run_end",
+  "message": "Last Edge: Season 16 run ended after 18 weeks: 3,495,686 viewer-episodes (364,563 distinct people), gross $1,118,620, studio take $648,799.",
+  "data": {
+   "releaseId": "rel183"
+  }
+ },
+ {
+  "week": 625,
+  "type": "trend",
+  "message": "Spies craze is HOT!"
+ },
+ {
+  "week": 633,
+  "type": "milestone",
+  "message": "Last Edge: Season 17 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj184"
+  }
+ },
+ {
+  "week": 633,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 640,
+  "type": "surplus",
+  "message": "Last Edge: Season 17: kept $200,399 of unused advance.",
+  "data": {
+   "projectId": "proj184",
+   "surplus": 200399
+  }
+ },
+ {
+  "week": 640,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 17).",
+  "data": {
+   "awardId": "rel:rel190:meters_all_70",
+   "releaseId": "rel190",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 640,
+  "type": "release",
+  "message": "Last Edge: Season 17 released: Audience 6.26 / Critics 6.33 (avg 6.3). Opening pool 340,621, opening 102,186. Renewable (season average 6.3).",
+  "data": {
+   "releaseId": "rel190"
+  }
+ },
+ {
+  "week": 640,
+  "type": "announce",
+  "message": "Announced Last Edge season 18: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 18
+  }
+ },
+ {
+  "week": 640,
+  "type": "train",
+  "message": "Trained Sam: +3 to all stats."
+ },
+ {
+  "week": 640,
+  "type": "train",
+  "message": "Trained Mo Vale: +3 to all stats."
+ },
+ {
+  "week": 640,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): orbit $414,000 @ 33%; starlight $274,000 @ 8%; wolf $517,000 @ 29%."
+ },
+ {
+  "week": 640,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 18 (tv, 15 episodes, Action + Spies, season) with wolf advance $517,000 @ 29%.",
+  "data": {
+   "projectId": "proj191"
+  }
+ },
+ {
+  "week": 641,
+  "type": "feedback",
+  "message": "Last Edge: Season 17 opens to 170,311 viewers.",
+  "data": {
+   "releaseId": "rel190",
+   "prev": 0,
+   "now": 170311,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 645,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 17 is still climbing (229,082 → 236,943).",
+  "data": {
+   "releaseId": "rel190",
+   "prev": 229082,
+   "now": 236943,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 654,
+  "type": "trend",
+  "message": "Buzz is building around Pirates stories (Rising)."
+ },
+ {
+  "week": 655,
+  "type": "milestone",
+  "message": "Last Edge: Season 18 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj191"
+  }
+ },
+ {
+  "week": 655,
+  "type": "trend",
+  "message": "Buzz is building around Sports stories (Rising)."
+ },
+ {
+  "week": 655,
+  "type": "cast",
+  "message": "Cast Alex Sato for $68,477.36.",
+  "data": {
+   "starId": "star38",
+   "price": 68477.36
+  }
+ },
+ {
+  "week": 658,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 105,633 → 113,274 (avg score 6.3, 3,604,427 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 658,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 4.62,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 658,
+  "type": "trust",
+  "message": "XYZ Network earned back 94% of its $517,000 advance on Last Edge: Season 17. Trust 2.94 → 3.01.",
+  "data": {
+   "distributorId": "xyz",
+   "roi": 0.94,
+   "step": 0.07
+  }
+ },
+ {
+  "week": 658,
+  "type": "run_end",
+  "message": "Last Edge: Season 17 run ended after 18 weeks: 3,604,427 viewer-episodes (367,335 distinct people), gross $1,153,417, studio take $668,982.",
+  "data": {
+   "releaseId": "rel190"
+  }
+ },
+ {
+  "week": 665,
+  "type": "trend",
+  "message": "Spies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 666,
+  "type": "trend",
+  "message": "Buzz is building around Dinosaurs stories (Rising)."
+ },
+ {
+  "week": 666,
+  "type": "trend",
+  "message": "Buzz is building around Mythology stories (Rising)."
+ },
+ {
+  "week": 669,
+  "type": "milestone",
+  "message": "Last Edge: Season 18 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj191"
+  }
+ },
+ {
+  "week": 669,
+  "type": "trend",
+  "message": "Buzz is building around Robots stories (Rising)."
+ },
+ {
+  "week": 669,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 674,
+  "type": "trend",
+  "message": "Pirates craze is HOT!"
+ },
+ {
+  "week": 675,
+  "type": "trend",
+  "message": "Sports craze is HOT!"
+ },
+ {
+  "week": 676,
+  "type": "surplus",
+  "message": "Last Edge: Season 18: kept $200,523 of unused advance.",
+  "data": {
+   "projectId": "proj191",
+   "surplus": 200522.64
+  }
+ },
+ {
+  "week": 676,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 18).",
+  "data": {
+   "awardId": "rel:rel197:meters_all_70",
+   "releaseId": "rel197",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 676,
+  "type": "release",
+  "message": "Last Edge: Season 18 released: Audience 6.27 / Critics 5.7 (avg 5.99). Opening pool 230,481, opening 69,144. Renewable (season average 5.99).",
+  "data": {
+   "releaseId": "rel197"
+  }
+ },
+ {
+  "week": 676,
+  "type": "train",
+  "message": "Trained Bo Diaz: +3 to all stats."
+ },
+ {
+  "week": 676,
+  "type": "train",
+  "message": "Trained Ari Kerr: +3 to all stats."
+ },
+ {
+  "week": 676,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Zombies (season): meridian $631,000 @ 45%; wolf $440,000 @ 30%."
+ },
+ {
+  "week": 676,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 19 (tv, 15 episodes, Action + Zombies, season, TWIST theme Zombies) with meridian advance $631,000 @ 45%.",
+  "data": {
+   "projectId": "proj198"
+  }
+ },
+ {
+  "week": 677,
+  "type": "feedback",
+  "message": "Last Edge: Season 18 opens to 115,241 viewers.",
+  "data": {
+   "releaseId": "rel197",
+   "prev": 0,
+   "now": 115241,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 677,
+  "type": "trend",
+  "message": "Buzz is building around Time Travel stories (Rising)."
+ },
+ {
+  "week": 681,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 18 is still climbing (145,191 → 150,807).",
+  "data": {
+   "releaseId": "rel197",
+   "prev": 145191,
+   "now": 150807,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 682,
+  "type": "trend",
+  "message": "Buzz is building around Superheroes stories (Rising)."
+ },
+ {
+  "week": 686,
+  "type": "trend",
+  "message": "Dinosaurs craze is HOT!"
+ },
+ {
+  "week": 686,
+  "type": "trend",
+  "message": "Mythology craze is HOT!"
+ },
+ {
+  "week": 689,
+  "type": "trend",
+  "message": "Buzz is building around Zombies stories (Rising)."
+ },
+ {
+  "week": 689,
+  "type": "trend",
+  "message": "Robots craze is HOT!"
+ },
+ {
+  "week": 691,
+  "type": "milestone",
+  "message": "Last Edge: Season 19 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj198"
+  }
+ },
+ {
+  "week": 691,
+  "type": "cast",
+  "message": "Cast Alex Sato for $68,358.02.",
+  "data": {
+   "starId": "star38",
+   "price": 68358.02
+  }
+ },
+ {
+  "week": 694,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 105,690 → 109,745 (avg score 5.99, 2,369,406 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 694,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 3.12,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 694,
+  "type": "trust",
+  "message": "Wolf Pictures earned back 43% of its $517,000 advance on Last Edge: Season 18. Trust 3.02 → 2.74.",
+  "data": {
+   "distributorId": "wolf",
+   "roi": 0.43,
+   "step": -0.28
+  }
+ },
+ {
+  "week": 694,
+  "type": "run_end",
+  "message": "Last Edge: Season 18 run ended after 18 weeks: 2,369,406 viewer-episodes (256,004 distinct people), gross $758,210, studio take $538,329.",
+  "data": {
+   "releaseId": "rel197"
+  }
+ },
+ {
+  "week": 697,
+  "type": "trend",
+  "message": "Time Travel craze is HOT!"
+ },
+ {
+  "week": 702,
+  "type": "trend",
+  "message": "Superheroes craze is HOT!"
+ },
+ {
+  "week": 705,
+  "type": "milestone",
+  "message": "Last Edge: Season 19 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj198"
+  }
+ },
+ {
+  "week": 705,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 709,
+  "type": "trend",
+  "message": "Zombies craze is HOT!"
+ },
+ {
+  "week": 712,
+  "type": "surplus",
+  "message": "Last Edge: Season 19: kept $314,642 of unused advance.",
+  "data": {
+   "projectId": "proj198",
+   "surplus": 314641.98
+  }
+ },
+ {
+  "week": 712,
+  "type": "twist",
+  "message": "Last Edge is reborn! The Zombies twist eased show fatigue (genre stays Action).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 712,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 19).",
+  "data": {
+   "awardId": "rel:rel204:meters_all_70",
+   "releaseId": "rel204",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 712,
+  "type": "release",
+  "message": "Last Edge: Season 19 released: Audience 5.76 / Critics 5.06 (avg 5.41). Opening pool 394,203, opening 118,261. Renewable (season average 5.41).",
+  "data": {
+   "releaseId": "rel204"
+  }
+ },
+ {
+  "week": 712,
+  "type": "train",
+  "message": "Trained Jo Moreau: +3 to all stats."
+ },
+ {
+  "week": 712,
+  "type": "train",
+  "message": "Trained Alex: +3 to all stats."
+ },
+ {
+  "week": 712,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): meridian $647,000 @ 45%; wolf $438,000 @ 31%; starlight $236,000 @ 8%."
+ },
+ {
+  "week": 712,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 20 (tv, 15 episodes, Action + Spies, season, TWIST theme Spies) with meridian advance $647,000 @ 45%.",
+  "data": {
+   "projectId": "proj205"
+  }
+ },
+ {
+  "week": 713,
+  "type": "feedback",
+  "message": "Last Edge: Season 19 opens to 197,102 viewers.",
+  "data": {
+   "releaseId": "rel204",
+   "prev": 0,
+   "now": 197102,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 714,
+  "type": "trend",
+  "message": "Pirates stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 715,
+  "type": "trend",
+  "message": "Sports stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 726,
+  "type": "trend",
+  "message": "Dinosaurs stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 726,
+  "type": "trend",
+  "message": "Mythology stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 727,
+  "type": "milestone",
+  "message": "Last Edge: Season 20 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj205"
+  }
+ },
+ {
+  "week": 727,
+  "type": "cast",
+  "message": "Cast Alex Sato for $68,242.75.",
+  "data": {
+   "starId": "star38",
+   "price": 68242.75
+  }
+ },
+ {
+  "week": 729,
+  "type": "trend",
+  "message": "Robots stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 730,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 102,398 → 104,969 (avg score 5.41, 3,069,829 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 730,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 1.48,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 730,
+  "type": "trust",
+  "message": "Meridian Global earned back 70% of its $631,000 advance on Last Edge: Season 19. Trust 4.16 → 3.97.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 0.7,
+   "step": -0.19
+  }
+ },
+ {
+  "week": 730,
+  "type": "run_end",
+  "message": "Last Edge: Season 19 run ended after 18 weeks: 3,069,829 viewer-episodes (391,935 distinct people), gross $982,345, studio take $540,290.",
+  "data": {
+   "releaseId": "rel204"
+  }
+ },
+ {
+  "week": 737,
+  "type": "trend",
+  "message": "Time Travel stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 741,
+  "type": "milestone",
+  "message": "Last Edge: Season 20 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj205"
+  }
+ },
+ {
+  "week": 741,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ },
+ {
+  "week": 742,
+  "type": "trend",
+  "message": "Superheroes stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 748,
+  "type": "surplus",
+  "message": "Last Edge: Season 20: kept $330,757 of unused advance.",
+  "data": {
+   "projectId": "proj205",
+   "surplus": 330757.25
+  }
+ },
+ {
+  "week": 748,
+  "type": "twist",
+  "message": "Last Edge is reborn! The Spies twist eased show fatigue (genre stays Action).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 748,
+  "type": "prestige",
+  "message": "Prestige +50: meters_all_70 (Last Edge: Season 20).",
+  "data": {
+   "awardId": "rel:rel211:meters_all_70",
+   "releaseId": "rel211",
+   "milestone": "meters_all_70",
+   "amount": 50
+  }
+ },
+ {
+  "week": 748,
+  "type": "release",
+  "message": "Last Edge: Season 20 released: Audience 6.27 / Critics 6.33 (avg 6.3). Opening pool 369,680, opening 110,904. Renewable (season average 6.3).",
+  "data": {
+   "releaseId": "rel211"
+  }
+ },
+ {
+  "week": 748,
+  "type": "announce",
+  "message": "Announced Last Edge season 21: show-specific anticipation 0.35 (fades 4%/week; does not reset the hiatus clock).",
+  "data": {
+   "ipId": "ip69",
+   "season": 21
+  }
+ },
+ {
+  "week": 748,
+  "type": "train",
+  "message": "Trained Gus Novak: +3 to all stats."
+ },
+ {
+  "week": 748,
+  "type": "train",
+  "message": "Trained Eli Quinn: +3 to all stats."
+ },
+ {
+  "week": 748,
+  "type": "pitch",
+  "message": "Pitch meeting for Action + Spies (season): meridian $603,000 @ 45%; xyz $530,000 @ 43%."
+ },
+ {
+  "week": 748,
+  "type": "project_start",
+  "message": "Started Last Edge: Season 21 (tv, 15 episodes, Action + Spies, season) with meridian advance $603,000 @ 45%.",
+  "data": {
+   "projectId": "proj212"
+  }
+ },
+ {
+  "week": 749,
+  "type": "feedback",
+  "message": "Last Edge: Season 20 opens to 184,840 viewers.",
+  "data": {
+   "releaseId": "rel211",
+   "prev": 0,
+   "now": 184840,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 749,
+  "type": "trend",
+  "message": "Zombies stories are everywhere; critics are getting tired (Saturated)."
+ },
+ {
+  "week": 753,
+  "type": "feedback",
+  "message": "Word of mouth keeps spreading: Last Edge: Season 20 is still climbing (249,299 → 258,137).",
+  "data": {
+   "releaseId": "rel211",
+   "prev": 249299,
+   "now": 258137,
+   "direction": "up"
+  }
+ },
+ {
+  "week": 763,
+  "type": "milestone",
+  "message": "Last Edge: Season 21 hit 40%: the audition results are back!",
+  "data": {
+   "projectId": "proj212"
+  }
+ },
+ {
+  "week": 763,
+  "type": "cast",
+  "message": "Cast Alex Sato for $68,131.35.",
+  "data": {
+   "starId": "star38",
+   "price": 68131.35
+  }
+ },
+ {
+  "week": 766,
+  "type": "ip_fans",
+  "message": "Last Edge fans: 97,942 → 106,786 (avg score 6.3, 4,052,069 viewers).",
+  "data": {
+   "ipId": "ip69"
+  }
+ },
+ {
+  "week": 766,
+  "type": "star_career",
+  "message": "Alex Sato: Fame 100.0 → 100.0, relationship +0.25 (worked together (+)).",
+  "data": {
+   "starId": "star38",
+   "fameDelta": 4.8,
+   "relDelta": 0.25,
+   "grow": 0
+  }
+ },
+ {
+  "week": 766,
+  "type": "trust",
+  "message": "Meridian Global earned back 90% of its $647,000 advance on Last Edge: Season 20. Trust 3.92 → 3.97.",
+  "data": {
+   "distributorId": "meridian",
+   "roi": 0.9,
+   "step": 0.05
+  }
+ },
+ {
+  "week": 766,
+  "type": "run_end",
+  "message": "Last Edge: Season 20 run ended after 18 weeks: 4,052,069 viewer-episodes (425,174 distinct people), gross $1,296,662, studio take $713,164.",
+  "data": {
+   "releaseId": "rel211"
+  }
+ },
+ {
+  "week": 777,
+  "type": "milestone",
+  "message": "Last Edge: Season 21 hit 80%: time to choose a release campaign.",
+  "data": {
+   "projectId": "proj212"
+  }
+ },
+ {
+  "week": 777,
+  "type": "campaign",
+  "message": "Campaign: small ($8,000)."
+ }
+]

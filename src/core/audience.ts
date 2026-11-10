@@ -17,6 +17,8 @@ export interface OpeningInputs {
   anticipation?: number;
   /** Gate 3 TV: hiatus multiplier on the anticipation carried by the show's fans (1 = no effect) */
   fanAnticipationMult?: number;
+  /** Gate 3 follow-up experiment: returning-viewer fatigue multiplier on the fans + announcement inputs (1 = none) */
+  returningMult?: number;
 }
 
 export function openingTrace(inp: OpeningInputs, cfg: Config) {
@@ -27,8 +29,8 @@ export function openingTrace(inp: OpeningInputs, cfg: Config) {
     studioBuzz: inp.studioBuzz,
     starFame: a.fameAwareness * (inp.starFame / 100),
     trend: (a.trendAwareness as Record<string, number>)[inp.trend] ?? 0,
-    ipFans: a.fanAwareness * (inp.ipFans / cfg.world.marketSize) * (inp.fanAnticipationMult ?? 1),
-    ...(inp.anticipation !== undefined ? { announcement: inp.anticipation } : {}),
+    ipFans: a.fanAwareness * (inp.ipFans / cfg.world.marketSize) * (inp.fanAnticipationMult ?? 1) * (inp.returningMult ?? 1),
+    ...(inp.anticipation !== undefined ? { announcement: inp.anticipation * (inp.returningMult ?? 1) } : {}),
   };
   const exponent = Object.values(parts).reduce((x, y) => x + y, 0);
   const awareness = 1 - Math.exp(-exponent);
@@ -106,7 +108,8 @@ function episodicStep(cfg: Config, rel: Release): { viewers: number; driver: str
   if (k === 0) {
     const pool = rel.trace.pool as number;
     // premiere: a larger share of the aware pool tunes in to episode 1 than to a movie's opening week
-    const v = Math.min(Math.round(pool * e.premiereShare), rel.reachCap);
+    const pm = (rel.trace.premiereMult as number | undefined) ?? 1; // follow-up experiment (viewer fatigue on the premiere share)
+    const v = Math.min(Math.round(pool * e.premiereShare * pm), rel.reachCap);
     rel.openingViewers = v;
     rel.aware = Math.max(0, pool - v);
     rel.uniqueViewers = v;

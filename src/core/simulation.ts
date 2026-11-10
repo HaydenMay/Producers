@@ -5,7 +5,7 @@ import { configHash } from "./config";
 import { emit, ledger } from "./events";
 import { initRng } from "./rng";
 import { canCancel, cancelRepay, spendableCash } from "./economy";
-import { canHire, hireStaff, payroll, trainStaff } from "./staff";
+import { canHire, fireOptions, fireStaff, hireStaff, payroll, trainStaff } from "./staff";
 import { generateOffers, driftTrust } from "./distribution";
 import { generateWorld, researchTheme, updateTrends } from "./progression";
 import { campaignOptions, canSelfFund, castStar, chooseCampaign, finalizeRelease, productionWeek, startProject } from "./production";
@@ -165,7 +165,7 @@ export function getChoices(state: StudioState, cfg: Config): Choices {
     }
     return { ...base, phase: "pitch", offers: state.pendingOffers, options: opts };
   }
-  return { ...base, phase: "planning", options: [...planOptions(state, cfg), ...reinvestOptions(state, cfg), { type: "wait" }] };
+  return { ...base, phase: "planning", options: [...planOptions(state, cfg), ...reinvestOptions(state, cfg), ...fireOptions(state, cfg).map((staffId) => ({ type: "fire" as const, staffId })), { type: "wait" }] };
 }
 
 function sameDecision(a: Decision, b: Decision): boolean {
@@ -242,6 +242,9 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
     }
     case "hire_engineer":
       hireEngineer(state, cfg);
+      return;
+    case "fire":
+      fireStaff(state, cfg, d.staffId);
       return;
     case "build_streaming":
       buildStreaming(state, cfg);
