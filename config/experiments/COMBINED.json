@@ -1,0 +1,11 @@
+{
+  "_label": "Gate 2.5 combined: historical baseline vs the full candidate (config/candidate.json contents inlined). 1,000 paired seeds.",
+  "reference": "historical",
+  "seeds": 1000,
+  "productions": [5, 20, 50],
+  "strategies": ["balanced", "quality-first", "cheap-duds", "famous-star", "self-funder", "selective-self-funder", "experimenter", "franchise-builder", "repeat-farmer"],
+  "variants": [
+    { "name": "historical", "note": "Gate 2 behavior", "overrides": {} },
+    { "name": "candidate", "note": "ladder 4-6-8 + diffusion legs + hybrid Prestige", "overrides": "@config/candidate.json" }
+  ]
+}

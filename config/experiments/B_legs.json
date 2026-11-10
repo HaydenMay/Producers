@@ -1,0 +1,12 @@
+{
+  "_label": "Gate 2.5 item B in isolation: only the weekly-legs model differs (historical staffing + perIP Prestige in both).",
+  "reference": "geometric",
+  "seeds": 300,
+  "productions": [5, 20, 50],
+  "strategies": ["balanced", "quality-first", "cheap-duds", "famous-star", "self-funder", "experimenter", "franchise-builder"],
+  "metrics": ["endCash", "prestige", "meanAudience", "share8plus", "meanLegs", "maxIpFans", "meanTrustEnd", "meanDistributorRoi", "negativeCashWeeks", "years"],
+  "variants": [
+    { "name": "geometric", "note": "Gate 2 model: weekly retention multiplier (strong films still always decline)", "overrides": {} },
+    { "name": "diffusion", "note": "candidate: finite awareness diffusion (critic buzz early, audience word of mouth later)", "overrides": { "audience": { "legsModel": "diffusion" } } }
+  ]
+}

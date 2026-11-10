@@ -284,6 +284,64 @@ export const STRATEGIES: Record<string, Strategy> = {
   },
 };
 
+/** Adversarial: once any IP scores avg >= 7.5, keep making the cheapest possible sequels of it to farm per-release Prestige. */
+const repeatFarmer: Strategy = {
+  id: "repeat-farmer",
+  description: "ADVERSARIAL: farms Prestige with low-cost repeat sequels of its best IP",
+  decide(state, cfg, ch, rng, ctx) {
+    const farming = state.releases.some((r) => r.avgScore >= 7.5);
+    switch (ch.phase) {
+      case "planning": {
+        const r = reinvest(state, cfg, ch, ctx, { trainAbove: 45000, hireAbove: 110000, legacyMaxStaff: 5, upgradeBuffer: 100000 });
+        if (r) return r;
+        if (farming) {
+          const best = [...state.releases].filter((x) => !x.active || true).sort((a, b) => b.avgScore - a.avgScore)[0];
+          const seq = ch.options.find((o): o is PlanDecision => o.type === "plan" && o.ipRelation === "sequel" && o.parentIpId === best.ipId);
+          if (seq) return seq;
+        }
+        return bestBy(newPlans(ch), (p) => planScore(state, p, 0.1), rng);
+      }
+      case "pitch":
+        return offerDecision(ch, (o) => (farming ? o.advance : o.advance + (1 - o.royalty) * o.reach * G * 1.2), rng, false);
+      case "casting": {
+        if (farming) return { type: "cast", starId: bestBy(affordableCards(ch), (c) => -c.price, rng).starId };
+        const genre = state.project!.genre;
+        return { type: "cast", starId: bestBy(affordableCards(ch), (c) => starFit(state.stars[c.starId], genre, cfg) * 2 - c.price / 4000, rng).starId };
+      }
+      case "marketing":
+        return farming ? { type: "market", campaign: "none" } : campaign(ch, ["small"]);
+      default:
+        return { type: "wait" };
+    }
+  },
+};
+STRATEGIES["repeat-farmer"] = repeatFarmer;
+
+/**
+ * Gate 2.5 D: self-funds ONLY when its own visible estimate says it pays. Estimate = gross per unit of reach seen
+ * on its own finished releases (a prior before any history). Compares, for the same project:
+ *   offer:  advance + (1 - royalty) * Ghat * offer.reach      self: Ghat * selfFundReach (shown by the game)
+ * Costs (base, Star, campaign) are the same either way, so they cancel. Otherwise plays like balanced.
+ */
+const selectiveSelfFunder: Strategy = {
+  id: "selective-self-funder",
+  description: "Self-funds only when visible expected economics favor it; otherwise takes the best offer",
+  decide(state, cfg, ch, rng, ctx) {
+    if (ch.phase === "pitch") {
+      const done = state.releases.filter((r) => !r.active && r.reachCap > 0);
+      const perReach = done.length ? done.reduce((a, r) => a + r.grossTotal / (r.reachCap / cfg.world.marketSize), 0) / done.length : G;
+      const offerVal = (o: Offer) => o.advance + (1 - o.royalty) * perReach * o.reach;
+      const best = bestBy(ch.offers ?? [], offerVal, rng);
+      const selfVal = perReach * cfg.distribution.selfFundReach;
+      const canSelf = ch.options.some((o) => o.type === "choose_offer" && o.distributorId === null);
+      if (canSelf && selfVal > offerVal(best) && state.cash >= cfg.production.movie.baseCost + 80000) return { type: "choose_offer", distributorId: null };
+      return { type: "choose_offer", distributorId: best.distributorId };
+    }
+    return STRATEGIES.balanced.decide(state, cfg, ch, rng, ctx);
+  },
+};
+STRATEGIES["selective-self-funder"] = selectiveSelfFunder;
+
 function franchiseSequel(state: StudioState, ch: Choices, minAvg: number): Decision | null {
   const seqs = ch.options.filter((o): o is PlanDecision => o.type === "plan" && o.ipRelation === "sequel");
   let best: PlanDecision | null = null;
@@ -300,4 +358,6 @@ function franchiseSequel(state: StudioState, ch: Choices, minAvg: number): Decis
   return best;
 }
 
-export const STRATEGY_IDS = Object.keys(STRATEGIES);
+/** The original seven policies (default batch set). Extra Gate 2.5 policies are opt-in via --strategies. */
+export const STRATEGY_IDS = ["balanced", "quality-first", "cheap-duds", "famous-star", "self-funder", "experimenter", "franchise-builder"];
+export const ALL_STRATEGY_IDS = Object.keys(STRATEGIES);

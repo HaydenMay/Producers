@@ -10,6 +10,8 @@ import { checkInvariants } from "../batch/diagnostics";
 import { batchReport, careerReport, compareReport, metricsCsv, releasesCsv } from "../batch/report";
 import type { CareerMetrics } from "../batch/metrics";
 import { legsReport } from "../batch/legs";
+import { selfFundRegret, selfFundReport } from "../batch/selfFund";
+import { earlyReport, type EarlyScenario } from "../batch/early";
 import { experimentJson, experimentReport, runExperiment, type ExperimentSpec } from "../batch/experiment";
 import type { Decision } from "../core/types";
 
@@ -73,7 +75,7 @@ function main() {
       const start = Number(one(a, "seed-start", "1"));
       const productions = Number(one(a, "productions", "20"));
       const strategies = one(a, "strategies", STRATEGY_IDS.join(",")).split(",");
-      const b = runBatch(start, seeds, strategies, cfg, { productions, drain: true });
+      const b = runBatch(start, seeds, strategies, cfg, { productions, drain: true }, one(a, "releases-csv", "false") === "true" ? "full" : true);
       const base = `batch-${cfg.name.replace(/[^a-z0-9]+/gi, "_")}-s${seeds}-p${productions}`;
       out(dir, `${base}.md`, batchReport(b, cfg));
       out(dir, `${base}.careers.csv`, metricsCsv(b.metrics));
@@ -104,6 +106,7 @@ function main() {
     case "experiment": {
       const specPath = one(a, "spec", "");
       const spec = JSON.parse(readFileSync(specPath, "utf8")) as ExperimentSpec;
+      for (const v of spec.variants) if (typeof v.overrides === "string") v.overrides = JSON.parse(readFileSync(String(v.overrides).replace(/^@/, ""), "utf8"));
       if (a.seeds) spec.seeds = Number(one(a, "seeds", "100"));
       if (a.productions) spec.productions = one(a, "productions", "20").split(",").map(Number);
       const name = specPath.replace(/^.*\//, "").replace(/\.json$/, "");
@@ -112,6 +115,27 @@ function main() {
       out(dir, `${name}.json`, JSON.stringify(experimentJson(res), null, 1));
       const viol = res.runs.reduce((x, r) => x + r.batch.violations.length, 0);
       console.log(`experiment ${name}: ${res.runs.length} runs · ${res.runs.reduce((x, r) => x + r.batch.meta.careers, 0)} careers · ${res.runs.reduce((x, r) => x + r.batch.meta.runtimeMs, 0)} ms · invariant violations ${viol}`);
+      console.log(`report: ${p}`);
+      break;
+    }
+    case "selffund": {
+      const seeds = Number(one(a, "seeds", "100"));
+      const productions = Number(one(a, "productions", "10"));
+      const strategy = one(a, "strategy", "balanced");
+      const reaches = one(a, "reaches", String(cfg.distribution.selfFundReach)).split(",").map(Number);
+      const parts = [`# Self-funding regret analysis (Gate 2.5 D)`, "", "> Branch analysis on real pitch meetings. **Simulation assumptions, not design locks.**", "", `Config ${cfg.name} (${configHash(cfg)}) · seeds 1–${seeds} · first ${productions} productions · policy ${strategy}`, ""];
+      for (const r of reaches) {
+        const c = setPath(cfg, "distribution.selfFundReach", r);
+        const pts = selfFundRegret(Array.from({ length: seeds }, (_, i) => i + 1), strategy, c, productions);
+        parts.push(selfFundReport(pts, strategy, `selfFundReach = ${r}`));
+        console.log(`selfFundReach ${r}: self-fund best in ${pts.filter((p) => p.selfWins).length}/${pts.length} pitches`);
+      }
+      console.log(`report: ${out(dir, `selffund-${strategy}-s${seeds}.md`, parts.join("\n"))}`);
+      break;
+    }
+    case "early": {
+      const spec = JSON.parse(readFileSync(one(a, "spec", "config/experiments/E_start_economy.json"), "utf8")) as { seeds: number; strategies: string[]; scenarios: EarlyScenario[] };
+      const p = out(dir, "early-economy.md", earlyReport(cfg, spec.scenarios, Number(one(a, "seeds", String(spec.seeds))), spec.strategies));
       console.log(`report: ${p}`);
       break;
     }

@@ -48,6 +48,8 @@ export function runExperiment(spec: ExperimentSpec, base: Config): ExperimentRes
       const cfg = withOverrides(base, v.overrides);
       cfg.name = v.name;
       const b = runBatch(spec.seedStart ?? 1, spec.seeds, spec.strategies, cfg, { productions: P, drain: true }, true);
+      b.releases = []; // flags already computed; free memory for large experiments
+      for (const m of b.metrics) m.scoresByIndex = []; // trends already computed
       runs.push({ variant: v.name, productions: P, configHash: configHash(cfg), batch: b });
     }
   }

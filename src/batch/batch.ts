@@ -16,7 +16,12 @@ export interface BatchResult {
   releases: { seed: number; strategy: string; releases: Release[] }[];
 }
 
-export function runBatch(seedStart: number, seedCount: number, strategies: string[], cfg: Config, opts: CareerOptions, keepReleases = true): BatchResult {
+/** Slim release record: enough for diagnostics, far less memory than full releases (weekly arrays, traces, cards). */
+function slimRelease(r: Release): Release {
+  return { ...r, weekly: r.weekly.length ? [r.weekly[r.weekly.length - 1]] : [], trace: { opening: { awareness: (r.trace.opening as { awareness: number }).awareness } } } as Release;
+}
+
+export function runBatch(seedStart: number, seedCount: number, strategies: string[], cfg: Config, opts: CareerOptions, keepReleases: boolean | "full" = true): BatchResult {
   const t0 = performance.now();
   const metrics: CareerMetrics[] = [];
   const violations: Violation[] = [];
@@ -26,7 +31,7 @@ export function runBatch(seedStart: number, seedCount: number, strategies: strin
       const r = runCareer(seed, strat, cfg, opts);
       metrics.push(careerMetrics(r, cfg));
       violations.push(...checkInvariants(r, cfg));
-      if (keepReleases) releases.push({ seed, strategy: strat, releases: r.state.releases });
+      if (keepReleases) releases.push({ seed, strategy: strat, releases: keepReleases === "full" ? r.state.releases : r.state.releases.map(slimRelease) });
     }
   }
   const runtimeMs = Math.round(performance.now() - t0);

@@ -1,1 +1,17 @@
-{ "name": "candidate-eraBar-0.08", "production": { "eraBarPerYear": 0.08 } }
+{
+  "name": "gate25-candidate",
+  "_label": "Gate 2.5 combined candidate (PENDING DESIGNER APPROVAL): studio capacity 4->6->8, diffusion legs, hybrid Prestige. Numbers are TEST ASSUMPTIONS.",
+  "agents": { "legacyHeuristicStaffCaps": false },
+  "staffCapacity": { "ladder": [4, 6, 8], "upgradeCosts": [250000, 750000], "upgradePrestige": [200, 1000] },
+  "audience": { "legsModel": "diffusion" },
+  "prestige": { "repeatScope": "explicit", "milestones": [
+    { "id": "meters_all_70", "kind": "allMeters", "threshold": 70, "amount": 50, "scope": "release" },
+    { "id": "audience_7_5", "kind": "audience", "threshold": 7.5, "amount": 75, "scope": "release" },
+    { "id": "critic_8_5", "kind": "critic", "threshold": 8.5, "amount": 85, "scope": "release" },
+    { "id": "hall_of_fame", "kind": "hallOfFame", "threshold": 9.0, "amount": 200, "scope": "release" },
+    { "id": "first_hall_of_fame", "kind": "hallOfFame", "threshold": 9.0, "amount": 100, "scope": "career" },
+    { "id": "ip_gross_1m", "kind": "ipLifetimeGross", "threshold": 1000000, "amount": 100, "scope": "ip" },
+    { "id": "ip_gross_5m", "kind": "ipLifetimeGross", "threshold": 5000000, "amount": 150, "scope": "ip" },
+    { "id": "ip_viewers_500k", "kind": "ipLifetimeViewers", "threshold": 500000, "amount": 150, "scope": "ip" }
+  ] }
+}

@@ -2,7 +2,7 @@
 import { baselineConfig, configHash, setPath, type Config } from "../core/config";
 import { advanceWeek, applyDecision, createStudio, getChoices, replay, FEATURES_NOT_MODELLED } from "../core/simulation";
 import type { Decision, PlanDecision, StudioState } from "../core/types";
-import { STRATEGIES, STRATEGY_IDS } from "../agents/strategies";
+import { STRATEGIES, ALL_STRATEGY_IDS as STRATEGY_IDS } from "../agents/strategies";
 import { makeAgentRng } from "../core/rng";
 import { runBatch } from "../batch/batch";
 import { releaseTrace, metricsCsv } from "../batch/report";
@@ -61,9 +61,9 @@ function planForm(ch: ReturnType<typeof getChoices>): string {
 }
 
 function reinvestButtons(ch: ReturnType<typeof getChoices>): string {
-  const r = ch.options.filter((o) => ["hire", "train", "studio_ads", "research_theme"].includes(o.type));
+  const r = ch.options.filter((o) => ["hire", "train", "studio_ads", "research_theme", "upgrade_studio"].includes(o.type));
   if (!r.length) return `<p class="muted">No reinvestment available${s.cash < 0 ? " (cash is negative: no hiring/training/ads/self-funding)" : ""}.</p>`;
-  return `<div class="row">${r.map((o, i) => `<button data-reinvest="${i}">${o.type === "train" ? `train ${s.staff.find((x) => x.id === (o as { staffId: string }).staffId)?.name}` : o.type === "research_theme" ? `research ${(o as { theme: string }).theme}` : o.type.replace("_", " ")}</button>`).join("")}</div>`;
+  return `<div class="row">${r.map((o, i) => `<button data-reinvest="${i}">${o.type === "train" ? `train ${s.staff.find((x) => x.id === (o as { staffId: string }).staffId)?.name}` : o.type === "research_theme" ? `research ${(o as { theme: string }).theme}` : o.type === "upgrade_studio" ? `upgrade studio capacity (${s.maxStaff} → ${cfg.staffCapacity.ladder[s.capacityLevel + 1]}, $${((cfg.staffCapacity.upgradeCosts as number[])[s.capacityLevel] ?? 0).toLocaleString()})` : o.type.replace("_", " ")}</button>`).join("")}</div>`;
 }
 
 function renderCareer() {
@@ -96,7 +96,7 @@ function renderCareer() {
       <label>Strategy <select id="strat">${STRATEGY_IDS.map((x) => `<option>${x}</option>`).join("")}</select></label><button id="agent">Let strategy decide once</button><button id="agent20">…until 1 release</button>
       <button id="dlLog">Download decision log</button>
     </div>
-    <div class="card"><b>Week ${s.week}</b> (year ${(s.week / 52).toFixed(1)}) · Cash <b>${$(s.cash)}</b> · Prestige <b>${s.prestige}</b> · Phase <b>${ch.phase}</b> · Releases ${s.releases.length} (${s.releases.filter((r) => r.active).length} running) · Config ${cfg.name} (${configHash(cfg)})
+    <div class="card"><b>Week ${s.week}</b> (year ${(s.week / 52).toFixed(1)}) · Cash <b>${$(s.cash)}</b> · Prestige <b>${s.prestige}</b> · Staff <b>${s.staff.length} / ${s.maxStaff >= 999 ? "uncapped" : s.maxStaff}</b> · Phase <b>${ch.phase}</b> · Releases ${s.releases.length} (${s.releases.filter((r) => r.active).length} running) · Config ${cfg.name} (${configHash(cfg)})
       <div class="muted">Staff: ${s.staff.map((x) => `${esc(x.name)} [P ${x.stats.plot.toFixed(0)} W ${x.stats.writing.toFixed(0)} F ${x.stats.filming.toFixed(0)} E ${x.stats.editing.toFixed(0)}]`).join(" · ")}<br/>Trust: ${s.distributors.map((d) => `${d.id} ${d.trust.toFixed(2)}`).join(", ")} · Not modelled: ${FEATURES_NOT_MODELLED.join(", ")}</div></div>
     ${body}
     <div class="grid2"><div class="card"><h3>Releases (newest first)</h3>${rels.map((r) => `<details><summary>${esc(r.title)} — A ${r.audience} / C ${r.critic} · gross ${$(r.grossTotal)} ${r.active ? "(running)" : ""}</summary><pre>${esc(releaseTrace(r, s))}</pre></details>`).join("") || "<p class='muted'>none yet</p>"}</div>
@@ -119,7 +119,7 @@ function renderCareer() {
   root.querySelectorAll<HTMLButtonElement>("[data-offer]").forEach((b) => (b.onclick = () => act({ type: "choose_offer", distributorId: b.dataset.offer === "__self" ? null : b.dataset.offer! })));
   root.querySelectorAll<HTMLButtonElement>("[data-cast]").forEach((b) => (b.onclick = () => act({ type: "cast", starId: b.dataset.cast! })));
   root.querySelectorAll<HTMLButtonElement>("[data-camp]").forEach((b) => (b.onclick = () => act({ type: "market", campaign: b.dataset.camp! })));
-  const reinvest = ch.options.filter((o) => ["hire", "train", "studio_ads", "research_theme"].includes(o.type));
+  const reinvest = ch.options.filter((o) => ["hire", "train", "studio_ads", "research_theme", "upgrade_studio"].includes(o.type));
   root.querySelectorAll<HTMLButtonElement>("[data-reinvest]").forEach((b) => (b.onclick = () => act(reinvest[Number(b.dataset.reinvest)])));
   document.getElementById("wait1")?.addEventListener("click", () => act({ type: "wait" }));
   document.getElementById("toNext")?.addEventListener("click", toNextDecision);
@@ -164,6 +164,7 @@ function renderBatch() {
 
 const CURATED: [string, string][] = [
   ["start.cash", "Starting cash"],
+  ["staffCapacity.ladder.0", "Starting staff capacity (EXPERIMENTAL)"],
   ["production.movie.baseCost", "Movie base cost"],
   ["production.movie.durationWeeks", "Movie duration (weeks)"],
   ["production.eraBarPerYear", "Era quality bar growth / year"],
@@ -172,8 +173,10 @@ const CURATED: [string, string][] = [
   ["studioGenre.qualityBonusPerLevel", "Studio genre bonus / level"],
   ["stars.feePerFame", "Star fee per Fame^k"],
   ["stars.growthPerProject", "Star skill growth / project"],
-  ["audience.baseRetention", "Base weekly retention"],
-  ["audience.audienceRetentionWeight", "Word-of-mouth strength"],
+  ["audience.baseRetention", "Base weekly retention (geometric model)"],
+  ["audience.audienceRetentionWeight", "Word-of-mouth strength (geometric model)"],
+  ["audience.diffusion.womPerViewer", "Word of mouth per viewer (diffusion model)"],
+  ["audience.diffusion.criticBuzzRate", "Critic buzz rate (diffusion model)"],
   ["audience.fanAwareness", "IP fan → awareness"],
   ["world.grossPerViewer", "Gross per viewer"],
   ["distribution.selfFundReach", "Self-fund reach (pre-streaming)"],

@@ -1,0 +1,13 @@
+{
+  "_label": "Gate 2.5 item E: starting-economy scenarios for the first film. All scenarios include the Gate 2.5 candidate (ladder 4-6-8, diffusion legs, hybrid Prestige). Values are TEST ASSUMPTIONS.",
+  "seeds": 300,
+  "strategies": ["balanced", "quality-first", "cheap-duds", "famous-star", "selective-self-funder"],
+  "scenarios": [
+    { "name": "S0 current numbers", "note": "start $40K, $2.00 gross/viewer, wages $900/wk x2 + $600 upkeep", "overrides": {} },
+    { "name": "S1 lower gross ($1.50/viewer)", "overrides": { "world": { "grossPerViewer": 1.5 } } },
+    { "name": "S2 lower gross ($1.25) + higher upkeep ($1,200/wk)", "overrides": { "world": { "grossPerViewer": 1.25 }, "start": { "upkeepPerWeek": 1200 } } },
+    { "name": "S3 lean start ($20K cash)", "overrides": { "start": { "cash": 20000 } } },
+    { "name": "S4 lean start + lower gross ($20K, $1.50)", "overrides": { "start": { "cash": 20000 }, "world": { "grossPerViewer": 1.5 } } },
+    { "name": "S5 broke start ($0 cash, $1.25 gross)", "note": "stress test: must still finish the first film (lifeline + free fallback Star + no-campaign)", "overrides": { "start": { "cash": 0 }, "world": { "grossPerViewer": 1.25 } } }
+  ]
+}
