@@ -1,0 +1,22 @@
+{
+  "_label": "Gate 2.5 item C: Prestige repeat scope. Staff cap ladder 4-6-8 and diffusion legs ON in every variant (so only the Prestige rule differs). Includes the repeat-farmer adversarial policy.",
+  "reference": "perIP",
+  "seeds": 300,
+  "productions": [5, 20, 50],
+  "strategies": ["balanced", "quality-first", "franchise-builder", "experimenter", "cheap-duds", "repeat-farmer"],
+  "metrics": ["endCash", "prestige", "prestigePerRelease", "share8plus", "hofShare", "maxIpFans", "meanAudience", "years"],
+  "variants": [
+    { "name": "perIP", "note": "Gate 2 default: every milestone once per IP", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [4, 6, 8], "upgradeCosts": [250000, 750000], "upgradePrestige": [200, 1000] }, "audience": { "legsModel": "diffusion" }, "prestige": { "repeatScope": "perIP" } } },
+    { "name": "perRelease", "note": "every milestone once per qualifying release (commercial milestones per title)", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [4, 6, 8], "upgradeCosts": [250000, 750000], "upgradePrestige": [200, 1000] }, "audience": { "legsModel": "diffusion" }, "prestige": { "repeatScope": "perRelease" } } },
+    { "name": "hybrid", "note": "quality/review per release; career firsts once; IP-cumulative commercial once when crossed", "overrides": { "agents": { "legacyHeuristicStaffCaps": false }, "staffCapacity": { "ladder": [4, 6, 8], "upgradeCosts": [250000, 750000], "upgradePrestige": [200, 1000] }, "audience": { "legsModel": "diffusion" }, "prestige": { "repeatScope": "explicit", "milestones": [
+      { "id": "meters_all_70", "kind": "allMeters", "threshold": 70, "amount": 50, "scope": "release" },
+      { "id": "audience_7_5", "kind": "audience", "threshold": 7.5, "amount": 75, "scope": "release" },
+      { "id": "critic_8_5", "kind": "critic", "threshold": 8.5, "amount": 85, "scope": "release" },
+      { "id": "hall_of_fame", "kind": "hallOfFame", "threshold": 9.0, "amount": 200, "scope": "release" },
+      { "id": "first_hall_of_fame", "kind": "hallOfFame", "threshold": 9.0, "amount": 100, "scope": "career" },
+      { "id": "ip_gross_1m", "kind": "ipLifetimeGross", "threshold": 1000000, "amount": 100, "scope": "ip" },
+      { "id": "ip_gross_5m", "kind": "ipLifetimeGross", "threshold": 5000000, "amount": 150, "scope": "ip" },
+      { "id": "ip_viewers_500k", "kind": "ipLifetimeViewers", "threshold": 500000, "amount": 150, "scope": "ip" }
+    ] } } }
+  ]
+}

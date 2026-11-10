@@ -34,6 +34,14 @@ export function checkInvariants(r: CareerResult, cfg: Config): Violation[] {
   }
   if (new Set(s.prestigeAwards).size !== s.prestigeAwards.length) v("PRESTIGE_DOUBLE_AWARD", "duplicate award id");
   for (const rel of s.releases) checkRelease(rel, s, cfg, v);
+  // feedback popups must describe what actually happened
+  const UP = ["tuning in", "climbing", "holding on", "finding a few"];
+  const DOWN = ["easing off", "winding down", "dropping fast", "scaring off"];
+  for (const e of s.events.filter((x) => x.type === "feedback" && x.data?.direction)) {
+    const dir = e.data!.direction;
+    if (UP.some((w) => e.message.includes(w)) && dir !== "up") v("FEEDBACK_UNTRUE", `${e.message} (viewers ${e.data!.prev} → ${e.data!.now})`);
+    if (DOWN.some((w) => e.message.includes(w)) && dir === "up") v("FEEDBACK_UNTRUE", `${e.message} (viewers ${e.data!.prev} → ${e.data!.now})`);
+  }
   for (const id of Object.keys(s.stars)) {
     const st = s.stars[id];
     if (skillTotal(st) > budgetFor(st.level, cfg) + 1e-9 && !st.fallback) v("STAR_BUDGET", `${st.name} ${skillTotal(st)} > ${budgetFor(st.level, cfg)}`);
@@ -51,6 +59,7 @@ function checkRelease(rel: Release, s: StudioState, cfg: Config, v: (rule: strin
   if (Math.abs(avgScore(rel.audience, rel.critic) - rel.avgScore) > 0.011) v("AVG_MISMATCH", rel.title);
   if (!rel.active && rel.weekly.length && rel.weekly.at(-1)!.viewers !== 0) v("RUN_NOT_TERMINATED", rel.title);
   if (rel.weekly.length > cfg.audience.maxRunWeeks + 2) v("RUN_TOO_LONG", `${rel.title}: ${rel.weekly.length} weeks`);
+  if (rel.totalViewers > rel.reachCap) v("REACH_EXCEEDED", `${rel.title}: ${rel.totalViewers} viewers > reach cap ${rel.reachCap}`);
 }
 
 function round(x: number) {

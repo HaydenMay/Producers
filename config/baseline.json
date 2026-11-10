@@ -295,7 +295,7 @@
       "watchRate": 0.3,
       "watchRateQualityWeight": 0.25,
       "criticBuzzRate": 0.12,
-      "womPerViewer": 1.4,
+      "womPerViewer": 2.0,
       "interestDecay": 0.12,
       "badInterestDecay": 0.35
     }

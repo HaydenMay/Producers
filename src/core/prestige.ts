@@ -1,18 +1,38 @@
 // Prestige: permanent, cumulative, milestone-driven only. Award ids prevent double payment.
-// Never per week, never for finishing, never from advances. Repeat scope configurable (Open in v9.61).
+// Never per week, never for finishing, never from advances.
+// Scope (Open in v9.61) is set per milestone (`scope`), or globally via `repeatScope`:
+//   release = once per qualifying release · ip = once per IP · career = once per studio career.
 import type { Config } from "./config";
 import { emit } from "./events";
 import type { Release, StudioState } from "./types";
 
-type Milestone = Config["prestige"]["milestones"][number];
+export type MilestoneScope = "release" | "ip" | "career";
+export interface Milestone {
+  id: string;
+  kind: string;
+  threshold: number;
+  amount: number;
+  scope?: MilestoneScope;
+}
 
-function awardId(m: Milestone, rel: Release, scope: string): string {
+const GLOBAL_SCOPE: Record<string, MilestoneScope> = { perRelease: "release", perIP: "ip", career: "career" };
+
+export function scopeOf(m: Milestone, cfg: Config): MilestoneScope {
+  if (m.scope) return m.scope;
+  const g = GLOBAL_SCOPE[cfg.prestige.repeatScope];
+  if (!g) throw new Error(`Milestone ${m.id} has no scope and repeatScope '${cfg.prestige.repeatScope}' is not perRelease|perIP|career`);
+  return g;
+}
+
+function awardId(m: Milestone, rel: Release, scope: MilestoneScope): string {
   if (scope === "career") return `career:${m.id}`;
-  if (scope === "perIP") return `ip:${rel.ipId}:${m.id}`;
+  if (scope === "ip") return `ip:${rel.ipId}:${m.id}`;
   return `rel:${rel.id}:${m.id}`;
 }
 
-function qualifies(m: Milestone, rel: Release): boolean {
+const REVIEW_KINDS = new Set(["allMeters", "audience", "critic", "hallOfFame"]);
+
+function qualifies(m: Milestone, rel: Release, state: StudioState): boolean {
   switch (m.kind) {
     case "allMeters":
       return Object.values(rel.meters).every((v) => v >= m.threshold);
@@ -23,23 +43,26 @@ function qualifies(m: Milestone, rel: Release): boolean {
     case "hallOfFame":
       return rel.hallOfFame;
     case "lifetimeGross":
-      return rel.grossTotal >= m.threshold; // gross only: the advance/surplus is never revenue
+      return rel.grossTotal >= m.threshold; // gross only: advances/surplus are never revenue
     case "lifetimeViewers":
       return rel.totalViewers >= m.threshold;
+    case "ipLifetimeGross":
+      return state.releases.filter((r) => r.ipId === rel.ipId).reduce((a, r) => a + r.grossTotal, 0) >= m.threshold;
+    case "ipLifetimeViewers":
+      return state.releases.filter((r) => r.ipId === rel.ipId).reduce((a, r) => a + r.totalViewers, 0) >= m.threshold;
     default:
-      return false;
+      throw new Error(`Unknown milestone kind ${m.kind}`);
   }
 }
 
-/** Check milestones. `phase` = "scored" (quality/review kinds) or "run" (commercial kinds). Returns awards made. */
+/** `phase` = "scored" (quality/review kinds, checked once at release) or "run" (commercial kinds, checked weekly, pay once when crossed). */
 export function evaluatePrestige(state: StudioState, cfg: Config, rel: Release, phase: "scored" | "run"): { id: string; amount: number }[] {
-  const reviewKinds = new Set(["allMeters", "audience", "critic", "hallOfFame"]);
   const out: { id: string; amount: number }[] = [];
-  for (const m of cfg.prestige.milestones) {
-    const isReview = reviewKinds.has(m.kind);
+  for (const m of cfg.prestige.milestones as Milestone[]) {
+    const isReview = REVIEW_KINDS.has(m.kind);
     if ((phase === "scored") !== isReview) continue;
-    if (!qualifies(m, rel)) continue;
-    const id = awardId(m, rel, cfg.prestige.repeatScope);
+    if (!qualifies(m, rel, state)) continue;
+    const id = awardId(m, rel, scopeOf(m, cfg));
     if (state.prestigeAwards.includes(id)) continue;
     state.prestigeAwards.push(id);
     state.prestige += m.amount;

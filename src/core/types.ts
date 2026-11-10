@@ -132,6 +132,8 @@ export interface Release {
   openingViewers: number;
   weekIndex: number; // weeks since release
   lastViewers: number;
+  /** diffusion legs model: people aware of the title who haven't watched yet */
+  aware?: number;
   totalViewers: number;
   grossTotal: number;
   distributorTake: number;

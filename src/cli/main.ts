@@ -9,6 +9,7 @@ import { compareBatches, runBatch } from "../batch/batch";
 import { checkInvariants } from "../batch/diagnostics";
 import { batchReport, careerReport, compareReport, metricsCsv, releasesCsv } from "../batch/report";
 import type { CareerMetrics } from "../batch/metrics";
+import { legsReport } from "../batch/legs";
 import { experimentJson, experimentReport, runExperiment, type ExperimentSpec } from "../batch/experiment";
 import type { Decision } from "../core/types";
 
@@ -111,6 +112,13 @@ function main() {
       out(dir, `${name}.json`, JSON.stringify(experimentJson(res), null, 1));
       const viol = res.runs.reduce((x, r) => x + r.batch.violations.length, 0);
       console.log(`experiment ${name}: ${res.runs.length} runs · ${res.runs.reduce((x, r) => x + r.batch.meta.careers, 0)} careers · ${res.runs.reduce((x, r) => x + r.batch.meta.runtimeMs, 0)} ms · invariant violations ${viol}`);
+      console.log(`report: ${p}`);
+      break;
+    }
+    case "legs": {
+      const diff = withOverrides(cfg, { audience: { legsModel: "diffusion" } });
+      const geo = withOverrides(cfg, { audience: { legsModel: "geometric" } });
+      const p = out(dir, "legs-worked-cases.md", legsReport([{ name: "geometric (Gate 2)", cfg: geo }, { name: "diffusion (candidate)", cfg: diff }]));
       console.log(`report: ${p}`);
       break;
     }
