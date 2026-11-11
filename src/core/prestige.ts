@@ -4,6 +4,8 @@
 //   release = once per qualifying release · ip = once per IP · career = once per studio career.
 import type { Config } from "./config";
 import { emit } from "./events";
+import { formatOf } from "./formats";
+import { formatExperience } from "./progression";
 import type { Release, StudioState } from "./types";
 
 export type MilestoneScope = "release" | "ip" | "career";
@@ -79,10 +81,12 @@ export function evaluatePrestige(state: StudioState, cfg: Config, rel: Release, 
     if (!qualifies(m, rel, state)) continue;
     const id = awardId(m, rel, scopeOf(m, cfg));
     if (state.prestigeAwards.includes(id)) continue;
+    // review milestones scale with format experience (a 30-week movie counts double); legacy weight 1
+    const amount = isReview ? Math.round(m.amount * formatExperience(cfg, formatOf(rel))) : m.amount;
     state.prestigeAwards.push(id);
-    state.prestige += m.amount;
-    out.push({ id, amount: m.amount });
-    emit(state, "prestige", `Prestige +${m.amount}: ${m.id} (${rel.title}).`, { awardId: id, releaseId: rel.id, milestone: m.id, amount: m.amount });
+    state.prestige += amount;
+    out.push({ id, amount });
+    emit(state, "prestige", `Prestige +${amount}: ${m.id} (${rel.title}).`, { awardId: id, releaseId: rel.id, milestone: m.id, amount });
   }
   return out;
 }

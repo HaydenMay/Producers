@@ -2,7 +2,8 @@
   "_label": "baseline \u2014 PROVISIONAL TESTING VALUES. Simulation assumptions, NOT design locks.",
   "name": "baseline",
   "start": {
-    "cash": 120000,
+    "_cashLabel": "Producers default (test): $160K covers the first studio-funded 30-week movie ($60K base + ~$72K payroll for 2 staff + a cheap Star). Legacy overlay: $40K.",
+    "cash": 160000,
     "staff": [
       {
         "name": "Sam",
@@ -147,13 +148,17 @@
           "breakoutGrade": "A"
     },
     "marketSize": 400000,
-    "grossPerViewer": 2.0
+    "_grossPerViewerLabel": "Movie ticket price. Designer 2026-11-11: movies take 30 weeks now, so tickets went $2 → $4 *(test)* to keep a movie's money per production-week in line with TV and limited series (reports/formats/summary.md). Legacy overlay: $2.",
+    "grossPerViewer": 4.0
   },
   "production": {
+    "_formatTimeLabel": "Designer 2026-11-11: production time fastest → slowest is limited series (12 wks), TV season (8 + 1.2/episode: 14/20/26/32 wks for 5/10/15/20), movie (30 wks). Money per production-week is evened out via ticket / per-episode prices (reports/formats/summary.md). TEST VALUES. Legacy overlay restores 16 / 18 / 6 + 2.",
     "movie": {
       "baseCost": 60000,
-      "durationWeeks": 16
+      "durationWeeks": 30
     },
+    "_formatExperienceLabel": "Designer 2026-11-11: experience per release by format (Star level progress + per-film practice growth, studio genre XP). A 30-week movie teaches 2x a short series. Legacy overlay: null (1 for everything).",
+    "formatExperience": { "movie": 2, "tv": 1, "limited_series": 1 },
     "phaseEmphasis": {
       "writing": {
         "plot": 1.0,
@@ -641,9 +646,10 @@
     "availableAfterProductions": 1,
     "episodes": 6,
     "baseCost": 90000,
-    "durationWeeks": 18,
+    "durationWeeks": 12,
     "pacing": "weekly",
-    "grossPerEpisodeViewer": 0.57,
+    "_grossPerEpisodeViewerLabel": "Designer 2026-11-11: limited series take 12 weeks now; 0.57 → 0.40 *(test)* keeps them from out-earning everything per week. Legacy overlay: 0.57.",
+    "grossPerEpisodeViewer": 0.4,
     "tailWeeks": 3,
     "tailShare": 0.4,
     "decliningGrossPerViewer": 2.4
@@ -656,8 +662,8 @@
     },
     "setupCost": 15000,
     "perEpisodeCost": 15000,
-    "durationBaseWeeks": 6,
-    "weeksPerEpisode": 2.0,
+    "durationBaseWeeks": 8,
+    "weeksPerEpisode": 1.2,
     "orderSizes": [
       5,
       10,
@@ -684,8 +690,8 @@
     ],
     "renewalThreshold": 4.0,
     "renewalInclusive": true,
-    "_grossPerEpisodeViewerLabel": "Designer 2026-11-11 (PROD-209): a healthy TV season should pay about like a movie per week of production. 0.32 → 0.42 *(test)*: TV ~$15K/production-week vs movies ~$13K, limited series ~$15K (reports/tv/summary.md). Legacy overlay keeps 0.32.",
-    "grossPerEpisodeViewer": 0.42,
+    "_grossPerEpisodeViewerLabel": "Designer 2026-11-11 (PROD-209): a healthy TV season should pay about like a movie per week of production. 0.32 → 0.42 *(test)*, then 0.46 after the 2026-11-11 production-time change (TV ~$15K per production-week vs movies ~$16K, limited series ~$18K; reports/formats/summary.md). Legacy overlay keeps 0.32.",
+    "grossPerEpisodeViewer": 0.46,
     "episodeModel": {
       "premiereShare": 0.5,
       "baseRetention": 0.88,

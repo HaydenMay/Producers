@@ -360,7 +360,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   state.comboBook[key] = { audience: grades.audience, critic: grades.critic }; // the stable BASELINE, never a cult title's reception
   if (cult?.happened) emit(state, "cult", `Unexpected cult appeal: audiences embraced ${rel.title} despite the odd ${p.genre} + ${p.theme} pairing (${cult.tier === "breakout" ? "a true breakout" : "a small lift"}: audience ${cult.audienceWithout} → ${rel.audience}; critics unmoved at ${rel.critic}). Why: ${cult.reasons.join("; ")}. The pairing itself is still graded ${grades.audience}/${grades.critic}.`, { releaseId: rel.id, ...cult });
   state.comboHistory[key] = (state.comboHistory[key] ?? 0) + 1;
-  awardGenreXp(state, cfg, p.genre);
+  awardGenreXp(state, cfg, p.genre, formatOf(p));
   ip.titles.push(rel.id);
   if (p.starId) {
     ip.establishedStarId = p.starId;

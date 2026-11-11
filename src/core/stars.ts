@@ -7,6 +7,8 @@ import { emit, newId, round2 } from "./events";
 import { int, next, range, weighted, pick } from "./rng";
 import { randomName } from "./staff";
 import type { Project, Release, Star, StarCard, StudioState } from "./types";
+import { formatExperience } from "./progression";
+import { formatOf } from "./formats";
 import { addByWeights, drawFromPool, generateFocusedFallback, levelUpGrowth, originalLead, poolEnabled, updateCatalogUnlock, type Tier } from "./talent";
 
 export function budgetFor(level: number, cfg: Config): number {
@@ -188,8 +190,9 @@ export function applyStarCareer(state: StudioState, cfg: Config, star: Star, rel
   const fameDelta = round2(cfg.stars.fameGainScale * ((rel.avgScore - 5) / 5) * exposure);
   const oldFame = star.fame;
   star.fame = Math.max(0, Math.min(100, round2(star.fame + fameDelta)));
-  // level
-  star.levelXp += 1;
+  // level (a movie counts for more experience than a short series: production.formatExperience)
+  const xpW = formatExperience(cfg, formatOf(rel));
+  star.levelXp += xpW;
   let leveled = false;
   if (star.levelXp >= cfg.stars.projectsPerLevel && star.level < cfg.stars.maxLevel) {
     star.level += 1;
@@ -203,9 +206,9 @@ export function applyStarCareer(state: StudioState, cfg: Config, star: Star, rel
   if (Object.keys(fw).length === 1) {
     const family = Object.keys(fw)[0];
     const room = budgetFor(star.level, cfg) - skillTotal(star);
-    grow = Math.max(0, Math.min(cfg.stars.growthPerProject, room, 100 - (star.skills[family] ?? 0)));
+    grow = Math.max(0, Math.min(cfg.stars.growthPerProject * xpW, room, 100 - (star.skills[family] ?? 0)));
     star.skills[family] = (star.skills[family] ?? 0) + grow;
-  } else grow = addByWeights(star, fw, cfg.stars.growthPerProject, budgetFor(star.level, cfg) - skillTotal(star));
+  } else grow = addByWeights(star, fw, cfg.stars.growthPerProject * xpW, budgetFor(star.level, cfg) - skillTotal(star));
   // relationship (causal reasons)
   let relDelta = cfg.stars.relPerProject;
   const reasons = ["worked together (+)"];

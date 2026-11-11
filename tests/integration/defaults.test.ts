@@ -7,11 +7,12 @@ import { runBatch } from "../../src/batch/batch";
 import { createStudio } from "../../src/core/simulation";
 
 describe("Producers default economy", () => {
-  it("baseline = late distribution + contracts + $120K; legacyConfig() restores the advance model", () => {
+  it("baseline = late distribution + contracts + $160K; legacyConfig() restores the advance model", () => {
     const d = baselineConfig();
     expect(d.economy.mode).toBe("late_distribution");
     expect(d.economy.contracts.enabled).toBe(true);
-    expect(d.start.cash).toBe(120_000);
+    expect(d.start.cash).toBe(160_000);
+    expect(d.production.movie.durationWeeks).toBe(30);
     expect(d.audience.legsModel).toBe("diffusion");
     expect(d.audience.movieQualityPivot).toBe(6.5);
     expect(d.audience.diffusion.movieBadInterestDecay).toBe(1.0);
@@ -50,6 +51,13 @@ describe("Producers default economy", () => {
       delete x.prestige.tvMilestones;
       delete x.formats.limitedSeries;
       delete x.formats.tv;
+      delete x.production.movie.durationWeeks;
+      delete x.production.formatExperience;
+      delete x.limitedSeries.durationWeeks;
+      delete x.limitedSeries.grossPerEpisodeViewer;
+      delete x.tv.durationBaseWeeks;
+      delete x.tv.weeksPerEpisode;
+      delete x.world.grossPerViewer;
       delete x._overlay;
       return x;
     };

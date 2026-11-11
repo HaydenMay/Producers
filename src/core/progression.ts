@@ -15,9 +15,14 @@ export function genreBonus(state: StudioState, cfg: Config, genre: string): numb
 }
 
 /** WORKING ASSUMPTION: genre XP awarded once on production completion. Per exact genre, never per family. */
-export function awardGenreXp(state: StudioState, cfg: Config, genre: string): void {
+/** Experience weight of a format (designer 2026-11-11): a 30-week movie teaches more than a 12-week series. Legacy: 1. */
+export function formatExperience(cfg: Config, format: string): number {
+  return ((cfg.production as { formatExperience?: Record<string, number> | null }).formatExperience ?? {})[format] ?? 1;
+}
+
+export function awardGenreXp(state: StudioState, cfg: Config, genre: string, format = "movie"): void {
   const before = genreLevel(state, cfg, genre);
-  state.genreXp[genre] = (state.genreXp[genre] ?? 0) + cfg.studioGenre.xpPerRelease;
+  state.genreXp[genre] = (state.genreXp[genre] ?? 0) + cfg.studioGenre.xpPerRelease * formatExperience(cfg, format);
   const after = genreLevel(state, cfg, genre);
   if (after > before) emit(state, "genre_level", `Studio ${genre} level ${before} → ${after}.`);
 }

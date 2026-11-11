@@ -70,3 +70,25 @@ describe("genre unlocks", () => {
     expect(getChoices(l, legacyConfig()).options.some((o) => o.type === "research_theme")).toBe(true);
   });
 });
+
+describe("production times and format experience (designer 2026-11-11)", () => {
+  it("fastest → slowest: limited series < 10-episode TV season < movie", async () => {
+    const { formatSpec } = await import("../../src/core/formats");
+    const ls = formatSpec(D, "limited_series").durationWeeks, tv = formatSpec(D, "tv", 10).durationWeeks, mv = formatSpec(D, "movie").durationWeeks;
+    expect([ls, tv, mv]).toEqual([12, 20, 30]);
+  });
+  it("a movie counts double: Star level progress, practice growth, genre XP, review Prestige", async () => {
+    const { applyStarCareer } = await import("../../src/core/stars");
+    const { evaluatePrestige } = await import("../../src/core/prestige");
+    const s = createStudio(1, D);
+    const star = Object.values(s.stars)[0];
+    const mk = (format?: string) => ({ id: "r", ipId: "x", genre: "Comedy", avgScore: 7, audience: 8, critic: 6, totalViewers: 1000, ...(format ? { format } : {}), meters: { plot: 80, writing: 80, filming: 80, editing: 80 }, hallOfFame: false }) as never;
+    const lx = star.levelXp, lv = star.level;
+    applyStarCareer(s, D, star, mk());
+    expect(star.level * 2 + star.levelXp).toBe(lv * 2 + lx + 2);
+    const a = evaluatePrestige(s, D, mk(), "scored").find((x) => x.id.includes("audience_7_5"))!;
+    const t = createStudio(1, D);
+    const b = evaluatePrestige(t, D, { ...(mk("limited_series") as object), id: "r2" } as never, "scored").find((x) => x.id.includes("audience_7_5"))!;
+    expect(a.amount).toBe(2 * b.amount);
+  });
+});
