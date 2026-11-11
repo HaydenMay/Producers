@@ -10,8 +10,8 @@ import { emit, ledger, round2 } from "./events";
 import { next, range } from "./rng";
 import { comboKey, GRADE_VALUE } from "./distribution";
 import { meterQuality } from "./scoring";
-import { formatOf } from "./formats";
-import { METERS, type ActiveContract, type ContractOffer, type DistributionBid, type Meter, type Project, type StudioState } from "./types";
+import { formatOf, formatSpec } from "./formats";
+import { METERS, type ActiveContract, type ContractOffer, type DistributionBid, type Meter, type PlanDecision, type Project, type StudioState } from "./types";
 
 export const isLateDistribution = (cfg: Config) => cfg.economy.mode === "late_distribution";
 export const contractsEnabled = (cfg: Config) => cfg.economy.contracts.enabled;
@@ -171,4 +171,33 @@ export function contractWeek(state: StudioState, cfg: Config): void {
     state.contract = null;
     emit(state, "contract", `Delivered ${c.name}: +$${c.fee.toLocaleString()} fee (labor covered $${Math.round(c.laborCovered).toLocaleString()}). No Prestige, IP or release.`, { contractId: c.id, fee: c.fee });
   }
+}
+
+/**
+ * Planning-screen cost estimate (designer 2026-11-11, PROD-224): what a production costs over its WHOLE run at
+ * today's wages, vs cash on hand. Pure read; never part of a decision. Star range = a cheap newcomer to a big name
+ * (Fame 80) at today's Prestige premium. Distributor ad spend is not the studio's money and is not included.
+ */
+export function planCostEstimate(state: StudioState, cfg: Config, plan: PlanDecision) {
+  const spec = formatSpec(cfg, formatOf(plan), plan.episodes);
+  const weeks = spec.durationWeeks;
+  const perWeek = weeklyLabor(state, cfg);
+  const crewPay = Math.round(perWeek * weeks);
+  const fee = (fame: number) => {
+    const base = cfg.stars.feeBase + cfg.stars.feePerFame * Math.pow(fame, cfg.stars.fameExponent);
+    const shrink = 1 - state.prestige / (state.prestige + cfg.stars.prestigeHalf);
+    return Math.round(base + base * cfg.stars.prestigePremiumMax * (fame / 100) * shrink);
+  };
+  const star = { low: fee(5), high: fee(80) };
+  const totalLow = spec.baseCost + crewPay + star.low;
+  const totalHigh = spec.baseCost + crewPay + star.high;
+  const cash = Math.round(state.cash);
+  const risk: "ok" | "tight" | "short" = cash >= totalHigh ? "ok" : cash >= totalLow ? "tight" : "short";
+  const note =
+    risk === "ok"
+      ? "Covered, even with a big-name Star."
+      : risk === "tight"
+        ? `Covered with a cheaper Star; a big name would put you about $${Math.round((totalHigh - cash) / 1000)}K in the red before release.`
+        : `About $${Math.round((totalLow - cash) / 1000)}K short even with a cheap Star: consider a shorter format or a contract first.`;
+  return { weeks, baseCost: spec.baseCost, crewPerWeek: Math.round(perWeek), crewPay, star, totalLow, totalHigh, cash, risk, note };
 }

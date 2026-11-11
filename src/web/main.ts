@@ -1,4 +1,5 @@
 // Thin UI over the same core. No game rules here: everything goes through getChoices/applyDecision/advanceWeek.
+import { planCostEstimate } from "../core/latedist";
 import { baselineConfig, legacyConfig, configHash, setPath, withOverrides, type Config } from "../core/config";
 import gate3Overrides from "../../config/gate3.json";
 import gate4Overrides from "../../config/gate4.json";
@@ -52,6 +53,21 @@ function newStudio(seed: number) {
   renderCareer();
 }
 
+/** PROD-224: what each format would cost over its whole run vs cash on hand (first matching plan per format/order). */
+function costPanel(plans: PlanDecision[]): string {
+  const seen = new Set<string>();
+  const rows: string[] = [];
+  for (const p of plans) {
+    const key = `${p.format ?? "movie"}${p.episodes ? `-${p.episodes}` : ""}`;
+    if (seen.has(key) || p.route === "original") continue;
+    seen.add(key);
+    const e = planCostEstimate(s, cfg, p);
+    const icon = e.risk === "ok" ? "✅" : e.risk === "tight" ? "⚠️" : "⛔";
+    rows.push(`<tr><td>${key.replace("_", " ")}</td><td>${e.weeks} wks</td><td>${$(e.baseCost)}</td><td>${$(e.crewPay)} (${$(e.crewPerWeek)}/wk)</td><td>${$(e.star.low)}–${$(e.star.high)}</td><td><b>${$(e.totalLow)}–${$(e.totalHigh)}</b></td><td>${icon} ${esc(e.note)}</td></tr>`);
+  }
+  return rows.length ? `<h3>Cost over the whole run (you have ${$(s.cash)})</h3><table><tr><th>Format</th><th>Time</th><th>Production</th><th>Crew pay</th><th>Star</th><th>Total</th><th></th></tr>${rows.join("")}</table>` : "";
+}
+
 function planForm(ch: ReturnType<typeof getChoices>): string {
   const plans = ch.options.filter((o): o is PlanDecision => o.type === "plan");
   const genres = [...new Set(plans.map((p) => p.genre))];
@@ -71,6 +87,7 @@ function planForm(ch: ReturnType<typeof getChoices>): string {
       ${plans.some((p) => p.route === "original") ? `<label><input type="checkbox" id="asOriginal"/> as Streaming Original</label>` : ""}
       <button class="primary" id="doPlan">${cfg.economy.mode === "late_distribution" ? "Start it (studio pays the base cost)" : "Pitch it"}</button>
     </div>
+    ${costPanel(plans)}
     ${(ch.notes ?? []).map((n) => `<p><b>${esc(n)}</b></p>`).join("")}
     ${ch.contracts ? `<h3>Work-for-hire (money + staff XP, never Prestige)</h3><div class="row">${ch.contracts.map((c) => `<button data-contract="${c.id}" ${c.available ? "" : "disabled"} title="${esc(c.why)}">${esc(c.name)}: ${c.weeks} wks, ${$(c.fee)} fee + payroll covered</button>`).join("")}</div><p class="muted">${ch.contracts.map((c) => `${esc(c.name)}: ${esc(c.why)}`).join(" · ")}</p>` : ""}
     <p class="muted">Combo book: ${esc(book)}<br/>Trends: ${esc(trends)}<br/>Sequels/reboots keep the IP's genre + theme; spinoffs keep the genre. TV seasons keep the show's genre; a twist changes its theme. Limited series never renew.<br/>${tvLine()}</p></div>`;

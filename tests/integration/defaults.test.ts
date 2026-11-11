@@ -118,3 +118,23 @@ describe("critic generations: harder on arrival, then the studio adapts (designe
   });
 });
 
+
+describe("planning-screen cost estimate (PROD-224)", () => {
+  it("first movie: base + 30 weeks of crew pay + a Star range, vs $160K cash", async () => {
+    const { planCostEstimate } = await import("../../src/core/latedist");
+    const D = baselineConfig();
+    const s = createStudio(1, D);
+    const e = planCostEstimate(s, D, { type: "plan", genre: "Comedy", theme: "Sports", ipRelation: "new" });
+    expect(e.weeks).toBe(30);
+    expect(e.baseCost).toBe(60_000);
+    expect(e.crewPay).toBe(30 * (900 + 900 + 600));
+    expect(e.star.low).toBeLessThan(5_000);
+    expect(e.star.high).toBeGreaterThan(85_000);
+    expect(e.risk).toBe("tight");
+    expect(e.note).toContain("big name");
+    const ls = planCostEstimate(s, D, { type: "plan", format: "limited_series", genre: "Comedy", theme: "Sports", ipRelation: "new" });
+    expect(ls.crewPay).toBe(12 * 2400);
+    s.cash = 50_000;
+    expect(planCostEstimate(s, D, { type: "plan", genre: "Comedy", theme: "Sports", ipRelation: "new" }).risk).toBe("short");
+  });
+});
