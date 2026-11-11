@@ -1,5 +1,8 @@
 # Assumptions register
 
+> **Harness parameter register, NOT design authority.** It lists the numbers and formula shapes the simulation currently uses. The canonical game design is [`DESIGN_LEDGER.md`](DESIGN_LEDGER.md). "LOCKED (v9.61)" labels below refer to the old v9.6 handoff and may be superseded there (e.g. the two combo grades, the upfront advance model).
+
+
 > **Every number in `config/baseline.json` is PROVISIONAL.** These are testing values chosen to get measurable results, not design locks. Formula shapes marked WORKING ASSUMPTION fill gaps that v9.61 leaves Open. Change them freely; rerun the same seed bank with `npm run compare`.
 
 Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = harness choice for an Open rule. **NOT MODELLED** = absent, not guessed.

@@ -1,8 +1,29 @@
-# Entertainment Studio Tycoon — Balance Harness
+# Producers
 
-A headless, deterministic simulation and balance tool for the **Entertainment Studio Tycoon** design (`entertainment_studio_handoff_v9_61.md`). **This is not the game.** It's a testing instrument for comparing strategies, finding exploits and checking that the locked rules hold, before an engine is chosen.
+**Producers** (working game name; formerly "Entertainment Studio Tycoon") is a *Game Dev Story*–inspired entertainment-studio tycoon: start tiny making movies and limited series, grow into TV, and eventually launch your own streaming service.
 
-> **Simulation assumptions, not design locks.** Every number in `config/` is provisional. Results are evidence for design discussion, never "official balance."
+> **What this repository is today:** a headless, deterministic **balance / simulation harness** written in TypeScript, plus a thin browser debug UI. **It is not a playable game** and nothing has shipped. The harness compares strategies, finds exploits and checks that the designed rules hold, before any engine is chosen.
+
+## Where to look
+
+| You want… | Read |
+|---|---|
+| **The game design** (the only authority) | [`docs/DESIGN_LEDGER.md`](docs/DESIGN_LEDGER.md): every decision with a stable `PROD-###` id, design status and what the code currently does |
+| Rules for coding agents (Claude, Codex, …) | [`AGENTS.md`](AGENTS.md) (Claude also reads [`CLAUDE.md`](CLAUDE.md)) |
+| Harness parameters (test assumptions, not design) | [`docs/assumptions-register.md`](docs/assumptions-register.md) |
+| History: old handoffs, gate prompts and gate findings | [`docs/archive/`](docs/archive/README.md) (context only, **not** authority) |
+| Generated evidence | `reports/` (regenerable; some folders are regression baselines, so don't delete) |
+
+> **Simulation assumptions, not design locks.** Every number in `config/` is provisional. Results are evidence for design discussion, never "official balance." Candidate configs (`config/gate3.json`, `gate4.json`, `gate4q.json`) are experiments; `config/baseline.json` is the legacy regression baseline.
+
+## Setup
+
+```bash
+npm ci            # Node 20+
+npm run typecheck
+npm test          # ≈ 15 s, all tests
+npm run ledger:check   # design-ledger hygiene + audit crosswalk (docs/ledger-crosswalk.md)
+```
 
 ## Validation loops (use these; big matrices are optional)
 
@@ -27,7 +48,7 @@ The 200-seed / 25-year matrices from earlier gates (`scripts/fu-matrix.ts`, expe
 - **Severity:** the candidate (`config/gate4q.json`) steepens D/F to 0.80 / 0.55.
 - **Cult appeal:** rare, audience-only "Unexpected cult appeal" events (`world.cult`).
 - **Policy names:** `cheap-duds` is reported as **`low-budget-random-combo`** (exact alias). A `poor-fit-chooser` diagnostic policy was added.
-- **Docs:** `docs/gate-4-quality-findings.md`, `docs/gate-4-quality-open-decisions.md`; register entries Q-1…Q-6.
+- **Docs:** `docs/archive/gates/gate-4-quality-findings.md`, `docs/archive/gates/gate-4-quality-open-decisions.md`; register entries Q-1…Q-6.
 
 ## Gate 4: studio-risk economy (EXPERIMENT, pending designer review)
 
@@ -38,7 +59,7 @@ The 200-seed / 25-year matrices from earlier gates (`scripts/fu-matrix.ts`, expe
   - at 80%, 2–3 distributors bid their **own** ad spend + reach for a share of gross (no cash to the studio), or the studio self-distributes;
   - work-for-hire contracts (`economy.contracts`) give a zero-cost, zero-Prestige recovery route; the client covers payroll + upkeep and pays a fixed fee.
 
-Docs: `docs/gate-4-economy-findings.md`, `docs/gate-4-economy-open-decisions.md`; register entries G4-1…G4-12. The web UI has a "Load Gate 4 candidate economy" button (contracts, distribution meeting).
+Docs: `docs/archive/gates/gate-4-economy-findings.md`, `docs/archive/gates/gate-4-economy-open-decisions.md`; register entries G4-1…G4-12. The web UI has a "Load Gate 4 candidate economy" button (contracts, distribution meeting).
 
 ## Status
 
@@ -61,7 +82,7 @@ Docs: `docs/gate-4-economy-findings.md`, `docs/gate-4-economy-open-decisions.md`
 - **Experiments (default off):**
   - returning-viewer fatigue: `tv.viewerFatigue`;
   - creative breakthroughs: `events.breakthrough`, using a lazy `events` RNG stream.
-- **Docs:** `docs/gate-3-followup-findings.md`, `docs/gate-3-followup-open-decisions.md`; register entries FU1–FU10.
+- **Docs:** `docs/archive/gates/gate-3-followup-findings.md`, `docs/archive/gates/gate-3-followup-open-decisions.md`; register entries FU1–FU10.
 
 ```bash
 npm test                                   # 106 tests (firing: tests/integration/firing.test.ts; seasons/fatigue/events: followup.test.ts)
@@ -75,10 +96,10 @@ npx tsx scripts/fu-traces.ts A_control tv-first 31 show ip242 "Trace 3"         
 ## Gate 3: limited series, renewable TV and streaming (pending designer review)
 
 Everything is **config-gated**: `config/baseline.json` keeps every Gate 3 feature off (the movie kernel, byte-identical); `config/gate3.json` = the Gate 2.5 candidate + limited series + TV + streaming (Gate 2.6 critic curves stay off). Docs:
-- `docs/gate-3-architecture.md`: modules, weekly order, schema changes, invariants.
-- `docs/gate-3-assumptions.md`: every Gate 3 number, labelled.
-- `docs/gate-3-findings.md`: results.
-- `docs/gate-3-open-decisions.md`: ranked designer calls.
+- `docs/archive/gates/gate-3-architecture.md`: modules, weekly order, schema changes, invariants.
+- `docs/archive/gates/gate-3-assumptions.md`: every Gate 3 number, labelled.
+- `docs/archive/gates/gate-3-findings.md`: results.
+- `docs/archive/gates/gate-3-open-decisions.md`: ranked designer calls.
 
 ```bash
 # one mixed career (movies + limited series + TV + streaming), 15 in-game years, with full traces + decision log
@@ -118,7 +139,7 @@ npx tsx scripts/g3-econ.ts    # per-format net per production week (calibration 
   - breakdowns by release window (1–5, 6–20, 21–50, 51–100), in-game year band and critic generation
 - **Prestige progression:** for each Prestige-gated upgrade, the share of careers meeting the gate and buying it, the film # when that happened, "cash-rich but Prestige-locked" careers, and purchases below the gate (must be 0; also an invariant). Milestones awarded per career.
 - **Fixed-quality cases:** the same production scored at years 0–36 under each variant (`npm run eras`).
-- Docs: `docs/gate-2-6-findings.md` (results + designer decision table), new assumptions G14–G21 in `docs/assumptions-register.md`.
+- Docs: `docs/archive/gates/gate-2-6-findings.md` (results + designer decision table), new assumptions G14–G21 in `docs/assumptions-register.md`.
 
 ```bash
 # full Gate 2.6 matrix (13 variants x 9 strategies x 300 seeds; ~70 min total on one core) + follow-up (combo_D; ~17 min)
@@ -139,7 +160,7 @@ python3 -I scripts/g26_decision_table.py reports/gate2_6/followup G26_followup
 - **Weekly legs model** (`audience.legsModel`): `geometric` (Gate 2, baseline) or `diffusion` (candidate: finite awareness diffusion where critic buzz and audience word of mouth can grow weekly viewers, capped by reach). Feedback popups now state the actual direction, and an invariant checks it.
 - **Prestige scopes:** each milestone may carry `scope: release | ip | career`; global `repeatScope` = `perRelease | perIP | career | explicit`. New kinds: `ipLifetimeGross`, `ipLifetimeViewers`.
 - **New policies:** `selective-self-funder` (self-funds only when its visible estimate favors it), `repeat-farmer` (adversarial Prestige farming). Opt in with `--strategies`.
-- **Docs:** results in `docs/gate-2-5-findings.md`; approvals and open items in `docs/gate-2-5-open-decisions.md`; new assumptions G1–G13 in `docs/assumptions-register.md`.
+- **Docs:** results in `docs/archive/gates/gate-2-5-findings.md`; approvals and open items in `docs/archive/gates/gate-2-5-open-decisions.md`; new assumptions G1–G13 in `docs/assumptions-register.md`.
 - **Reports:** `reports/gate2_5/` (`00_pre_change/` = the untouched Gate 2 baseline, A/B/C/COMBINED experiments, legs worked cases, self-fund regret incl. `selffund_fine/`, early economy, five-film candidate traces in `traces/`).
 - **Memory:** experiments keep slim release records, so a 1,000-seed × 9-strategy × 3-length run (54,000 careers) fits in normal Node memory (~9 min).
 - **New commands:**
@@ -207,7 +228,7 @@ src/batch/   runner, metrics, diagnostics, batch + compare, report writers
 src/cli/     main.ts (sim | batch | compare | replay | scenarios)
 src/web/     thin UI (index.html, main.ts, styles.css)
 tests/       unit · integration (counterfactual scenarios, UI smoke) · regression
-docs/        assumptions-register.md · open-decisions.md · balance-findings.md
+docs/        DESIGN_LEDGER.md (canonical) · assumptions-register.md (harness params) · archive/ (history)
 reports/     generated by commands (no hand-written results)
 ```
 
@@ -217,7 +238,7 @@ Core API: `createStudio(seed, config)`, `getChoices(state, config)`, `applyDecis
 
 - **LOCKED (v9.61):** implemented as the design states: e.g. two starting staff, XP only while working, no individual genre XP, base cost always charged, unused advance kept once at completion, overruns from cash, wages never from advances, cancel only if affordable, lifeline offer, pre-display $0 Level 0 fallback Star, $0 "No campaign", Fame → viewers only, family skill → Filming, Fame-based Star price, relationship drops on career-hurting flops and direct-sequel recasts only, 4.0 / 9.0 thresholds, IP-level fans, milestone-only Prestige, causal outcomes.
 - **WORKING ASSUMPTION:** every formula shape and number filling an Open rule. All are listed in `docs/assumptions-register.md`.
-- **NOT MODELLED:** see Gate 3 and `docs/open-decisions.md` §B.
+- **NOT MODELLED:** see Gate 3 and `docs/archive/gates/open-decisions.md` §B.
 
 ## Diagnostic flags
 
@@ -227,4 +248,4 @@ Core API: `createStudio(seed, config)`, `getChoices(state, config)`, `applyDecis
 
 ## Known limitations
 
-Movies only; strategies are heuristics; no genre unlocks, studio upgrades or eras beyond a quality bar; titles can repeat. See `docs/open-decisions.md`.
+Movies only; strategies are heuristics; no genre unlocks, studio upgrades or eras beyond a quality bar; titles can repeat. See `docs/archive/gates/open-decisions.md`.

@@ -1,0 +1,353 @@
+# Producers — Design Ledger (THE canonical game design)
+
+> **This is the one authoritative living design document for Producers** (working game name; formerly "Entertainment Studio Tycoon"). Everything in `docs/archive/` and `reports/` is history or evidence, **not** authority. The code in this repo is a **balance/simulation harness**, not a finished game, and its behaviour is **not** design approval.
+>
+> **Reconciled:** 2026-11-10, from the designer's decision audit (`docs/archive/handoffs/Entertainment_Studio_Tycoon_Decision_Audit_2026-11-10.md`, 207 entries), handoff v9.6, the Gate 2.5–4Q findings and the designer's 2026-11-10 corrections. Implementation states were checked against the source on branch `main` (= Gate 4Q code) the same day.
+> **Missing evidence:** `reversals_summary.md` was not supplied. Nothing below relies on it; where it might have mattered the item is marked `OPEN`.
+> **Change log:** use git history (`git log -p docs/DESIGN_LEDGER.md`). Don't write new master handoffs.
+
+## How to read this
+
+**Design status** (what the designer decided):
+
+| Status | Meaning |
+|---|---|
+| `LOCKED` | Explicit designer decision. Change only with explicit human approval. |
+| `TESTING` | Chosen direction or candidate under experiment; numbers and final shape **not** ratified. |
+| `OPEN` | Undecided. Don't infer an answer from code or agent recommendations. |
+| `LATER` | Deliberately deferred or shelved. |
+| `SUPERSEDED` | Old rule kept for history; never copy forward. Points to its replacement. |
+
+**Implementation** (what the code does today): `Implemented` · `Implemented differently` (code contradicts the design) · `Partial` · `Not implemented` · `Unknown`. "Candidate" means the behaviour exists only behind a non-default config (`config/gate3.json`, `config/gate4.json`, `config/gate4q.json`). `config/baseline.json` defaults are the **legacy** model, kept for regression.
+
+**Authority order:**
+1. The designer's latest explicit decisions.
+2. Earlier explicit approvals that haven't been changed.
+3. Older handoffs (v9.6 etc.) for topics not superseded.
+4. Gate findings (evidence) and candidate code (implementation state).
+5. Agent suggestions, illustrative numbers and test knobs (non-binding).
+
+**Numbers:** a number marked *(test)* is a harness assumption, **never** a designer decision.
+
+---
+
+## Dashboard — current decisions vs implementation (biggest mismatches first)
+
+| # | Severity | Mismatch | Ledger IDs |
+|---|---|---|---|
+| 1 | **CRITICAL** | **One combo grade vs two.** The design says ONE shared compatibility grade per exact genre + theme (two final review scores). Code has **two** grades: random in baseline, editorial audience/critic pairs in the Gate 4Q candidate. *Implemented differently.* Not corrected in this milestone. | PROD-062, 074, 075, 193 |
+| 2 | **CRITICAL** | **When distributors come in.** The direction under test is a studio-funded production plus a ~80% ad/reach bid. The **default code is still the v9.6 upfront-advance pitch**; the new model is only in `config/gate4.json` / `gate4q.json` (`economy.mode: late_distribution`). | PROD-100…108, 115 |
+| 3 | **CRITICAL** | **First-hour safety.** The v9.6 lifeline was a production advance, which doesn't exist under late distribution. Contracts are the new recovery route (candidate only). Starting cash ($40K legacy / $120K candidate *(test)*) and the tutorial film need revalidating. | PROD-114, 118…124, 203 |
+| 4 | HIGH | **80% decision.** Traditional releases get a distribution meeting (candidate); Originals keep a studio-paid campaign *(test)*. The final UX is undecided; avoid two redundant decisions. | PROD-111 |
+| 5 | HIGH | **Star family fit and studio genre XP barely affect scores** (Gate 4Q: +0.01–0.13 avg points). Wired correctly, but much weaker than intended; their target weight isn't decided. | PROD-026, 051 |
+| 6 | HIGH | **Real duds exist (candidate) but are still profitable:** sub-4 films net a median +$50K, 0% lose (Gate 4Q). The audience model saturates reach. The fix isn't approved; tune movies and TV separately. | PROD-069, 092, 105 |
+| 7 | HIGH | **TV renewal viability.** No season cap (correct), but money rarely gives a reason to stop. Under legacy no TV season loses money; viewer fatigue didn't bite. | PROD-127, 136, 139 |
+| 8 | HIGH | **Genres never unlock in the harness.** Only themes unlock (pitches, research); careers stay on Action/Comedy/Horror. Training, level-up and era unlocks are missing. | PROD-091 |
+| 9 | MEDIUM | **TV Prestige pace:** TV-heavy careers earn far less Prestige. | PROD-140 |
+| 10 | MEDIUM | **Critics:** named critic panel not built; Gate 2.6 era knobs are proxies, off by default. HoF rounding edge (8.995 → 9.00) is open. | PROD-078, 160…164 |
+| 11 | MEDIUM | **Contract/financing details** (fees, reimbursement, cancellation, negative cash, self-distribution, per-season TV terms) are test values. | PROD-108, 112, 123, 125 |
+| 12 | MEDIUM | **Tutorial** text still describes the old pre-production pitch and free 80% marketing. Not built at all in code. | PROD-174 |
+| 13 | MEDIUM | **Flags vs approvals:** Gate 4/4Q candidate settings are off in the baseline. A green test suite is not design sign-off. | PROD-185 |
+| 14 | LOW | **HoF visibility boost** for related titles not implemented (evergreen retention and fatigue softening are). Bio lines, portraits, review-site %, assistant and tutorial are not built. | PROD-055, 090, 159, 165…172 |
+
+---
+
+## 1. Identity, scope and progression
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-001 | Accessible, fast *Game Dev Story*–style entertainment-studio tycoon; **not** a film-finance spreadsheet; original names and art. | LOCKED | Partial (harness only, no playable game) | v9.6 §1–2 | A1.1 |
+| PROD-002 | Start as a tiny production studio: movies + limited series, then renewable TV, then your own streaming platform. | LOCKED | Implemented (limited series after 1 production; TV after studio upgrade; streaming build) | v9.6 §1; Gate 3 | A1.2 |
+| PROD-003 | Core fun: discovering genre/theme combos, a recognizable small staff, cultivating Stars and IP, growing from unknown to major. | LOCKED | Partial | v9.6 §1 | A1.3 |
+| PROD-004 | Real decisions are meaningful but infrequent. Avoid micromanagement, contract administration and overlapping payout streams. | LOCKED | Partial | v9.6 §1, §19B | A1.4 |
+| PROD-005 | Three distinct, non-interchangeable economies: employee XP, studio Prestige, cash. | LOCKED | Implemented | v9.6 §3 | A1.5 |
+| PROD-006 | Employee XP is earned **while working**; no second XP payout for good reviews. | LOCKED | Implemented (`staffGrowth.xpPerWeek` *(test)*) | v9.6 §3 | A1.6 |
+| PROD-007 | Prestige = specific achievements/milestones; not completion, weekly income or money; never decreases after flops. | LOCKED | Implemented | v9.6 §3, §9 | A1.7 |
+| PROD-008 | Cash pays for projects, salaries, training, promotion, upgrades and streaming. Success can pay well **but with genuine financial risk**. | LOCKED | Partial (risk is weak: see PROD-102) | v9.6; Gate 4 / 4Q findings | A1.8 |
+| PROD-009 | Studio upgrades and format access need **money + Prestige**; TV episode capacity is gated by studio Prestige, not by a show's success. | LOCKED | Implemented (TV unlock 300 Prestige + $150K *(test)*; episode caps by Prestige) | v9.6 §3, §13 | A1.9 |
+| PROD-010 | One main production at a time; released titles keep earning during their finite run. | LOCKED | Implemented | v9.6 §3 | A1.10 |
+| PROD-011 | Time advances in weeks; one TV episode airs per week. | LOCKED | Implemented | v9.6 §3 | A1.11 |
+| PROD-012 | Getting rich without Prestige is possible; an unprestigious studio can't unlock the most prestigious expansions. | LOCKED | Implemented (low-budget / contract-farmer careers) | Gate 4 | A1.12 |
+| PROD-013 | Typical career length, end credits, endgame arc. Harness 10–30-year runs are stress horizons only. | OPEN | Not implemented | audit | A1.13 |
+| PROD-014 | Optional replay variants / challenges (Balatro-inspired identities, objectives, harder stakes; sandbox after winning). Standard mode stays open-ended. **Don't build yet.** | LATER | Not implemented | audit | A1.14 |
+| PROD-015 | Optional hard bankruptcy, fail states, stricter challenge modes. The default game stays recoverable. | LATER | Not implemented | audit | A1.15, A14.18 |
+| PROD-016 | Late-game multiple simultaneous productions, only if one slot proves limiting. | LATER | Not implemented | v9.6 §3 | A1.16, A14.18 |
+| PROD-017 | No theme parks or unrelated business lines; soap operas shelved. | LATER | Not implemented | v9.6 §1, §7 | A1.17 |
+| PROD-018 | No loans, overlapping royalty contracts, legal detail or hundreds of lingering per-title payments. | LOCKED | Implemented | v9.6 §1 | A14.17 |
+
+## 2. Staff, capacity and jobs
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-019 | A new studio starts with **exactly two employees**, competent enough for a mediocre first movie. Don't re-debate the count. | LOCKED | Implemented (Sam, Alex) | v9.6 §14 | A2.1 |
+| PROD-020 | Staff capacity 4, upgraded to 6 then 8 (money + Prestige). | LOCKED (ladder); costs TESTING | Partial (candidate configs: $250K / 200 Prestige, $750K / 1,000 Prestige *(test)*; `baseline.json` is uncapped for legacy comparison) | Gate 2.5 | A2.1 |
+| PROD-021 | Staff are permanent, named and levelable, with exactly four stats = the four production meters: **Plot, Writing, Filming, Editing**. | LOCKED | Implemented | v9.6 §4 | A2.2, A14.2 |
+| PROD-022 | Plot = story idea; Writing = script/dialogue/structure; Filming = shooting/performance (incl. Star); Editing = effects/sound/music/final cut. | LOCKED | Implemented | v9.6 §4 | A2.3 |
+| PROD-023 | **Every available worker contributes to all four meters**, weighted by ability; no per-project crew cap or per-worker diminishing returns. | LOCKED | Implemented (`staffWorkWeek`; an engineer building streaming is excluded) | v9.6 §4 | A2.4 |
+| PROD-024 | Staff improve only the four general stats (XP through work; training exists); no personal genre/theme experience. | LOCKED | Implemented | v9.5 / v9.6 §5 | A2.5, A14.1 |
+| PROD-025 | **The studio** gains levels per **exact genre** (not family) with a small quality bonus in that genre. | LOCKED | Implemented (levels after 1/3/6/10/15 releases, +3% work points per level *(test)*) | v9.5 / v9.6 §5 | A2.6 |
+| PROD-026 | Genre-level cap and bonus size. Gate 4Q measured only +0.03–0.13 average-score points, much weaker than intended. **Don't silently lock a larger bonus.** | OPEN | Implemented (weak) | Gate 4Q findings §3 | A2.14, A15.5 |
+| PROD-027 | Jobs shape strengths and growth, never forbid work; advanced jobs combine simpler ones (e.g. Director = Plot + Filming). | LOCKED (direction) | Not implemented (the only role is Software Engineer) | v9.6 §5 | A2.7 |
+| PROD-028 | Job list (Writer, Editor, Director, Showrunner, Auteur are placeholders), XP rates, training, wage progression, job unlocks. | OPEN | Partial (XP 10/wk, +0.35 stat/wk, training $15K for +3, hires $20K at $1,100/wk *(test)*) | v9.6 §5, §16 | A2.13 |
+| PROD-029 | A **Software Engineer** is required to build streaming; occupies a normal staff slot; is off productions while building. | LOCKED | Implemented | v8 / v9.6 §12 | A2.8, A11.1 |
+| PROD-030 | **Employees can be fired**: to cut wages, replace underperformers, or free a slot for the engineer. | LOCKED | Implemented (`fire` decision; frees the slot, stops payroll and XP, keeps history) | designer 2026-11; Gate 3 follow-up | A2.9 |
+| PROD-031 | Firing constraints: only between productions, keep ≥ 2 staff, $0 severance. | TESTING | Implemented (`staffing.*` *(test)*) | Gate 3 follow-up | A2.10 |
+| PROD-032 | Salaries and upkeep are studio expenses (never automatic rewards) and are counted when judging whether a project made money. | LOCKED | Implemented (`src/batch/econ.ts` all-in net) | v9.6 §5; Gate 4 | A2.11 |
+| PROD-033 | Staff with high Plot can **pitch new themes**. Whether pitches lean toward the studio's strongest genres is OPEN. | LOCKED (source); lean OPEN | Implemented (Plot ≥ 45, 25% chance per completed production *(test)*; no lean) | v9.5 | A2.12, A2.13 |
+
+## 3. Production flow
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-034 | At planning choose **format, exact genre, theme** and the IP relation: new / sequel / season / reboot / spinoff. | LOCKED | Implemented (movie sequels/reboots/spinoffs; TV seasons) | v9.6 §3 | A3.1 |
+| PROD-035 | Unavoidable **base cost** set by format (and TV episode order). **No Small/Medium/Large budget tiers.** | LOCKED | Implemented (movie $60K, limited series $90K, TV $15K + $15K/episode *(test)*) | v8 / v9.6 §7 | A3.2, A7.13, A14.5 |
+| PROD-036 | Three phases: 0–40% concept/writing, 40–80% filming, 80–100% editing/post. | LOCKED | Implemented | v9.6 §4 | A3.3 |
+| PROD-037 | At **40%** cast one lead Star; supporting cast abstracted into cost. | LOCKED | Implemented | v9.6 §6 | A3.4 |
+| PROD-038 | After 80% staff keep producing Editing automatically; no CGI/sound/marketing allocation minigame. | LOCKED | Implemented | v7 / v9.6 §4 | A3.5, A14.3 |
+| PROD-039 | **Causal outcomes:** choices change economics, audience or craft for understandable reasons. No independent final-result dice roll; any randomness acts on a visible upstream cause and is seeded and traced. | LOCKED | Implemented (breakthrough and cult draws are logged with chance and draw) | v9 / v9.6 §3; Gate 3 follow-up | A3.6 |
+| PROD-040 | Marketing and Fame affect **awareness/viewership**, never review scores. | LOCKED | Implemented | v9.6 §8 | A3.7, A14.12 |
+| PROD-041 | Final cost isn't fully known at planning: the Star fee comes at ~40% and distribution/marketing later. | LOCKED | Implemented | v9 | A3.8 |
+| PROD-042 | Exact durations and prices of each format, Star fees, salaried labor, starting cash. | OPEN | Partial (all *(test)*) | v9.6 §16 | A3.9 |
+| PROD-043 | Cancellation under the new direction: everything spent is sunk; no advance to repay. *(Legacy: repay the advance, cancel only if you can repay.)* | TESTING | Partial (candidate only) | Gate 4 | A7.19 |
+
+## 4. Stars and casting
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-044 | One featured Star per production or TV season, with name, portrait, career history, Fame, Level, fee and genre-family skills. | LOCKED | Partial (no portraits) | v9.6 §6 | A4.1 |
+| PROD-045 | Star skills use broad **genre families** (e.g. Scary, Funny, Romantic, Action, Dramatic). Each exact genre maps to one family (Horror and Thriller → Scary). Harness mapping: Action→Action, Comedy→Funny, Horror→Scary, Thriller→Scary, Romance→Romantic, Drama→Dramatic, SciFi→Action, RomCom→Funny *(test; final family list OPEN)*. | LOCKED (principle); list OPEN | Implemented (Gate 4Q tests) | v9.5 | A4.2, A14.8 |
+| PROD-046 | **Themes never influence Star skills.** Horror + Zombies and Horror + Pirates both check Scary; the theme only drives compatibility, trends, fatigue and twists. | LOCKED | Implemented (Gate 4Q test) | v9.5 | A4.3 |
+| PROD-047 | Star **Level = one total skill-point budget** across families. Nobody can max everything, even at the top level. | LOCKED | Implemented | v9.5 | A4.4, A14.9 |
+| PROD-048 | Skill spread is random at generation (balanced / two-focus / specialist shapes **internally**); cards show only numbers, never shape labels. | LOCKED | Implemented (`hiddenShape`) | v9.5 | A4.5 |
+| PROD-049 | A Star's worked family skill grows within their level budget; Level rises with career experience. | LOCKED | Implemented | v9.4–9.5 | A4.6 |
+| PROD-050 | Fame draws opening viewers; matched skill improves Filming/quality; **Fame alone never boosts reviews**. | LOCKED | Implemented | v9.6 §6 | A4.7 |
+| PROD-051 | **How much Star fit should move reviews.** Gate 4Q measured only +0.01–0.08 average points, even for a fit-77 Star (Filming saturates). | OPEN | Implemented (weak) | Gate 4Q findings §3, traces | A4.16, A5.16, A15.5 |
+| PROD-052 | **Price = Fame-based fee − studio-Prestige discount − relationship discount**, breakdown shown; Level/skill never set price. | LOCKED | Implemented (framed as a Fame fee plus a Prestige premium that shrinks as studio Prestige rises, minus relationship discount) | v9.2 / v9.4 | A4.8, A14.16 |
+| PROD-053 | Affordable skilled unknowns ("hidden gems") exist but are rare; developing your own Newcomer stays the main path. | LOCKED (tuning intent) | Unknown (not measured) | v9.5 | A4.9 |
+| PROD-054 | Any Star may audition regardless of Prestige; 4–5 cards spread Newcomer / mid-tier / big name, weighted to genre fit; big names never refuse (price limits them). | LOCKED | Implemented | v9.2 | A4.10 |
+| PROD-055 | Cards show **exact skills, Fame and fee** (no hidden/ranged skills). A short bio line is generated fresh from current stats/history and never contradicts them. | LOCKED | Partial (exact stats yes; bio lines not implemented) | v9.6 §6 | A4.11, A14.15 |
+| PROD-056 | If none of the 4–5 normal candidates is affordable, **replace one card before display** with a free **$0 Level-0 Newcomer**: a real, developable Star, not a forced bad movie. | LOCKED | Implemented (Gate 4 / 4Q tests) | v9.3 | A4.12 |
+| PROD-057 | A scrollable **Call back** list of every Star the studio has employed, at current fee. | LOCKED | Implemented | v9.5 | A4.13 |
+| PROD-058 | Relationship rises with positive career impact and repeated work; **drops** when a project with them flops / lowers Fame, or when you **recast an established lead for a new season or direct sequel**. | LOCKED | Implemented | v9.6 | A4.14 |
+| PROD-059 | Not picking a Star from auditions, or casting someone else in an unrelated project, never lowers the relationship. | LOCKED | Implemented | v9.6 | A4.15 |
+| PROD-060 | Open Star questions: reboot recasting, level budgets, family count, relationship step/discount sizes, whether script quality changes who auditions. | OPEN | Partial | v9.6 §6, §19A | A4.16 |
+| PROD-061 | Star personalities, complex long-term contracts; overexposure only as a tuning fallback if testing shows repeat casting needs it. | LATER | Not implemented | v9.5 | A4.17 |
+
+## 5. Genre/theme compatibility and scoring
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-062 | **Each exact genre + theme pair has ONE shared compatibility grade.** Audience and critics still give **two separate final scores** with different craft/expectation weights. Overrides v9.6 and Gate 4Q. | LOCKED (designer correction 2026-11-10) | **Implemented differently**: baseline = two random grades; Gate 4Q candidate = two editorial grades (`world.compatibility`). Needs a refactor of grade storage, combo book, twists and scoring. | designer 2026-11-10 | A5.1, A15.1 |
+| PROD-063 | Compatibility follows **editorial / common-sense logic per exact genre** (Horror + Zombies naturally beats Horror + Sports), not purely random hidden grades. | LOCKED | Partial (Gate 4Q editorial matrix, candidate only, dual-grade) | Gate 4Q prompt; designer | A5.2 |
+| PROD-064 | A weak pairing **seriously** harms expected quality, especially for a two-person novice studio; an experienced production can sometimes overcome it. | LOCKED | Partial (candidate D/F severity: veterans ≈ 5.9 vs rookies ≈ 3.8 on poor pairs; baseline is mild) | Gate 4Q findings | A5.3 |
+| PROD-065 | **Unusual ≠ automatically poor:** a workable mash-up can have a strong grade. | LOCKED | Partial (draft matrix rates e.g. Comedy + Zombies B) | designer | A5.4 |
+| PROD-066 | The grade is **hidden until first use**, then stored in the player's combo book. Distributors and agents can't see undiscovered grades. | LOCKED | Implemented (tests mutate hidden grades; bids unchanged) | v9.6 §10; Gate 4 / 4Q | A5.5 |
+| PROD-067 | Audience scores favour **Filming + Editing**; critic scores favour **Plot + Writing**; both read all four meters. | LOCKED | Implemented | v9.6 §9 | A5.6 |
+| PROD-068 | **Weak-meter penalty** when one meter is far below the others (Plot/Writing hurts critics most; Filming/Editing hurts audiences most). Four mediocre meters = a mediocre score, not a disaster. | LOCKED | Implemented | v9.6 §9 | A5.7 |
+| PROD-069 | Early play can produce **real 2/10, 3/10, 4/10 films** through ordinary choices and small crews: no forced floors, no fake dud mode. | LOCKED | Partial: only with candidate severity (rookie poor pairs 73% below 4; min 2.95). Legacy floor ≈ 4.5. | Gate 4Q findings | A5.8 |
+| PROD-070 | Low spend ≠ low quality (a cheap film can be good, an expensive one can flop). Judge by **actual score**, never a strategy label. | LOCKED | Implemented (diagnostics; `cheap-duds` reported as `low-budget-random-combo`) | Gate 4Q | A5.9, A13.4 |
+| PROD-071 | **Cult hit:** rarely, a poor-combination title resonates with **audiences** while critics stay unimpressed. Explainable, title-specific, never rewrites the underlying grade. | LOCKED (concept) | Partial (Gate 4Q `world.cult`, candidate only) | designer; Gate 4Q | A5.10 |
+| PROD-072 | Reviews are stored at release; later critic turnover or era changes **never retroactively change** old scores. | LOCKED | Implemented | Gate 2.6 | A5.11 |
+| PROD-073 | Poor-fit multipliers **D × 0.80 / F × 0.55**: promising, not locked. | TESTING | Partial (`config/gate4q.json`; baseline D 0.90 / F 0.78) | Gate 4Q | A5.12 |
+| PROD-074 | The Gate 4Q 80-pair matrix is a **first draft**: it must become single-grade; 13 contested pairs and further edits are open. | TESTING | Implemented differently (dual grades) | Gate 4Q findings | A5.13 |
+| PROD-075 | Between-world one-step grade shifts (Gate 4Q: 20% of sides, stable hash). Amount, probability and disclosure are OPEN; must be refactored to one grade. | TESTING | Implemented differently (shifts each of two grades) | Gate 4Q | A5.14 |
+| PROD-076 | Cult appeal: the pattern is promising (~0.6% of releases). Rates and eligibility are open. Starting crews currently can't qualify (craft ≥ 60 *(test)*); the designer wants early surprises possible. | TESTING | Partial (candidate) | Gate 4Q findings | A5.15 |
+| PROD-077 | Final compatibility matrix, combo multipliers, staff and Star weights, score noise/variation range, how much craft can rescue an F pairing. | OPEN | — | audit | A5.16 |
+| PROD-078 | Hall of Fame at the 8.995 → 9.00 rounding edge (raw vs rounded average). | OPEN | Implemented (code compares the 2-decimal rounded average) | Gate 2.6 metrics | A5.17 |
+| PROD-079 | Combo grades **multiply** scores. | LOCKED | Implemented | v9.6 §9–10 | — |
+
+## 6. Audience, trends, feed and unlocks
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-080 | **Viewership ≠ scores.** Viewership drives cash; scores drive legs, Prestige milestones, renewability and IP fan movement. | LOCKED | Implemented | v9.6 §8 | A6.1 |
+| PROD-081 | Opening awareness comes from distributor reach/promotion, Star Fame, IP fans, trends, title hype (announcements) and studio buzz. None of these adds to reviews. | LOCKED | Implemented | v9.6 §8 | A6.2 |
+| PROD-082 | Critics influence the early release (≈ weeks 1–2); audience word of mouth drives later viewing. Sleeper hits and hyped collapses follow from this. | LOCKED | Implemented | v9.6 §8 | A6.3 |
+| PROD-083 | Feedback news explains **actual** trends and causes. No independent random "sales went bad". | LOCKED | Partial (event log; no turning-point popups) | v9.6 §8 | A6.4 |
+| PROD-084 | Good reviews aren't guaranteed high sales when a visible limit exists (e.g. poor reach); bad reviews can still open big on marketing. | LOCKED | Implemented | v9.6 §3, §8 | A6.5 |
+| PROD-085 | Studio advertising = **fading hype for the next release** (no permanent studio fans). A season announcement = fading show-specific anticipation; doesn't use the production slot; not spammable. | LOCKED | Implemented | v7–v8 / v9.6 §13 | A6.8, A9.11 |
+| PROD-086 | Repetition fatigue: full for the same combo as a new project, lighter for direct sequels, softened by a Hall of Fame entry in the line. TV adds age fatigue. | LOCKED | Implemented | v9.6 §10 | A6.9 |
+| PROD-087 | Trends cycle **Rising → Hot → Saturated → Cooled** in semi-random waves. Hot aids awareness; Saturated makes critics more demanding. | LOCKED | Implemented | v9.6 §10–11 | A6.10 |
+| PROD-088 | No simulated rival studios or film output; trend saturation abstracts the industry. | LOCKED | Implemented | v8 | A6.11, A14.17 |
+| PROD-089 | Feed: an in-game newspaper that later evolves into an original social feed; concise event messages; an original critic-score aggregator. | LOCKED | Partial (plain text event log) | v9.6 §8, §10 | A6.12 |
+| PROD-090 | A review site's % = **Critic score × 10** (never a third rating). | LOCKED | Not implemented | v8 | A6.13 |
+| PROD-091 | Genre/theme unlocks come from high-Plot staff pitches, training/level-ups, era shifts, and research/purchase. | LOCKED | **Partial**: themes unlock via pitches and research only. **Genres never unlock** (careers stay on Action/Comedy/Horror). No level-up or era unlocks. | v9.6 §10; code | A6.14 |
+| PROD-092 | The Gate 4 audience model fills distributor reach almost regardless of reception, so genuine 2–3/10 films are profitable. Test sensitivity **by actual score band**; don't lock one blanket movie + TV change. Candidate levers (info only): word-of-mouth pivot 6.5, bad-reception decay 1.0. | TESTING | Implemented (problem present; levers exist as config knobs, default off) | Gate 4 / 4Q findings | A6.15, A15.6 |
+| PROD-093 | How sharply poor reception cuts box office vs TV viewership; how reach caps, buzz and word-of-mouth turning points behave per format. | OPEN | — | audit | A6.16 |
+| PROD-094 | Turning-point-only feedback popups (opening, critic swing, word-of-mouth turn, end of run), with the rest in a quiet ticker. | OPEN (v9.6 proposal) | Not implemented | v9.6 §8 | — |
+| PROD-095 | Condition-triggered viral moments, retention-only catalog "rediscovery", reboot demand. | OPEN (v9.6 proposals) | Not implemented | v9.6 §13 | — |
+
+## 7. IP and fans
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-096 | **Fans belong to the IP/title line.** Seasons, sequels and reboots keep all; spinoffs inherit some; new IP starts at zero. **No studio-wide fan counter.** | LOCKED | Implemented | v6–v8 | A6.6, A14.11 |
+| PROD-097 | One title's backlash lowers **its own** fans only, never other IPs or studio Prestige. | LOCKED | Implemented | v9.6 §8 | A6.7 |
+| PROD-098 | The studio **owns all its IP and titles** whatever the distribution path; distributors never buy the IP. | LOCKED | Implemented | v8 | A7.10 |
+| PROD-099 | Movie sequels are always allowed (no score gate; a weak original's small fanbase is risk enough). | OPEN (v9.6 proposal) | Implemented (harness allows sequel/reboot/spinoff of any movie IP) | v9.6 §9 | — |
+
+## 8. Finances and distributors
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-100 | The studio **pays for its own productions** (base cost, Star fee, wages) from cash, risking its own money before any distributor. | TESTING (newer than v9.6) | Partial (candidate `economy.mode: late_distribution`; **default code = legacy advances**) | Gate 4 | A7.1, A15.2 |
+| PROD-101 | At **~80%**, the nearly finished movie / limited series / TV season goes to **2–3 distributors** for fixed **advertising-and-distribution bids** (no production advances). | TESTING | Partial (candidate) | Gate 4 | A7.2 |
+| PROD-102 | Bids compete on **ad spend, reach and the distributor's share** of gross. Choose one or self-distribute. **No stacking, endless negotiation, auctions or loan-like mechanics.** | TESTING (no-stacking/no-loans part LOCKED since v8) | Partial (candidate) | Gate 4; v9.6 §7 | A7.3, A14.17 |
+| PROD-103 | Distributor ad money is **spent by the distributor** and **never** deposited as studio cash. Reach = the ceiling of potential viewers; ads = opening awareness. | TESTING | Partial (candidate; tested: nothing booked at signing) | Gate 4 | A7.4 |
+| PROD-104 | Distributors see only the **observable** near-finished project (progress, Star Fame, genre/trend, known combos, a prior season's public record), never hidden scores or undiscovered grades. A strong bid is a market signal, not a guarantee. | TESTING | Partial (candidate; tested) | Gate 4 | A7.5 |
+| PROD-105 | The studio earns its share of finite returns against its own investment; **a genuine commercial flop can lose the studio money.** | TESTING | Partial: mechanics exist, but Gate 4Q measured 0% of movies losing, even sub-4 films | Gate 4 / 4Q | A7.6, A15.6 |
+| PROD-106 | Distributors risk their **ad money** and judge results by realized return / trust. 100%-profitable distributors (current candidate) are **not** assumed desirable. | TESTING | Partial (trust uses share ÷ ad spend; distributors never lose in current data) | Gate 4 | A7.7 |
+| PROD-107 | Traditional TV gets a **fresh distribution meeting each new season** (simple per-season choice, no multi-season licences). Final sign-off pending. | TESTING | Partial (candidate) | Gate 4 | A7.8 |
+| PROD-108 | Self-distribution: keep full gross with low reach. Viability and scaling OPEN. | TESTING | Partial (candidate reach 0.22 *(test)*; never chosen by agents) | Gate 4 | A7.9 |
+| PROD-109 | **Finite traditional runs:** movies open then taper; limited series run finitely; TV earns per aired episode plus a short tail. No residuals. | LOCKED | Implemented | v9.6 §7 | A7.11, A14.4 |
+| PROD-110 | Actual profit includes **payroll, upkeep and project costs**, not just sales minus direct spend. | LOCKED | Implemented (`econ.ts`) | Gate 4 | A7.12 |
+| PROD-111 | Does the 80% distribution meeting **fully replace** the old 80% title campaign? (Gate 4: yes for traditional; Originals keep a studio-paid campaign *(test)*.) Clarify UX and timing; keep optional studio-wide buzz. | OPEN | Partial | Gate 4 | A7.14, A15.4 |
+| PROD-112 | Distributor roster, bid formulas, commissions, ad budgets, fixed distribution costs, trust dynamics, TV deal details, whether a distributor may decline to bid. | OPEN | Partial (5 distributors with test terms; bids can be empty) | Gate 4 | A7.15, A15.10 |
+| PROD-113 | Can the studio self-promote / self-distribute with its own money, and how does that interact with paid studio buzz? | OPEN | — | audit | A7.16 |
+| PROD-114 | Starting cash, and whether the tutorial's first film is affordable before any contract. | OPEN | Partial ($40K legacy; $120K candidate *(test)*) | Gate 4 | A7.17, A12.11, A15.3 |
+| PROD-115 | **v9.6 upfront-advance model:** advance at the pitch funds base/Star/marketing; studio keeps the unused surplus; repay on cancel (only if you can); lifeline advance covers the cheapest base cost; cheap-dud surplus pocketing "allowed but inefficient". | SUPERSEDED (as the preferred direction) → PROD-100…108; recovery → PROD-118…124 | Implemented (**still the default code**, `economy.mode: legacy_advance`, kept for regression) | v9–v9.6 §7; designer 2026-11 | A7.18, A14.6, A14.7 |
+| PROD-116 | Per-distributor trust driven by the explainable outcome of backed projects; one flop doesn't erase a relationship. | LOCKED (direction); formula OPEN | Implemented | v9 | — |
+| PROD-117 | Cash may dip below $0 (no interest, no game over). In the red: no hiring, training, ads or self-funding until earnings clear it. The floor is OPEN; the policy under the new economy is OPEN (PROD-125). | LOCKED (legacy); new-economy policy OPEN | Implemented | v9.1 | — |
+
+## 9. Commissioned contracts and default-mode safety
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-118 | The studio can take **commissioned work for another company**: low-risk, no-upfront-investment income and a way back after flops. | LOCKED | Partial (candidate `economy.contracts.enabled`) | designer; Gate 4 | A8.1 |
+| PROD-119 | Contracts pay **cash only**: **zero Studio Prestige**, no owned IP, no IP fans, no standalone release, no Hall of Fame, no residuals. Employees still earn ordinary XP. | LOCKED | Partial (candidate; tested over a whole farming career) | designer | A8.2 |
+| PROD-120 | Contracts use the same staff skills and **occupy the one production slot** while running. | LOCKED | Partial (candidate) | designer | A8.3 |
+| PROD-121 | Contracts are reachable when the studio can't afford its own film. They are the safety net, **not** the best route to wealth or milestones. | LOCKED | Partial (candidate; a farmer earns ≈ $1K/wk vs $9–10K/wk for movie studios) | Gate 4 | A8.4 |
+| PROD-122 | **No bankruptcy, game over or irrecoverable soft-lock** in standard play; losses slow you down but there's always a practical way back. | LOCKED | Implemented (legacy: lifeline; candidate: contracts; 0 stuck saves) | v9.1; Gate 4 | A8.5 |
+| PROD-123 | Current contract set: Commercial edit / Script polish / Network pilot services / Full production services at $9K / $12K / $30K / $56K. The **client reimburses payroll + upkeep weekly** and pays the fee on delivery, so the starter job costs $0 even at zero cash. | TESTING | Partial (candidate) | Gate 4 | A8.6, A15.10 |
+| PROD-124 | Invariant to keep: a $0 (or negative) studio can take a starter contract, earn, and eventually restart its own production. | TESTING (preserve as invariant) | Implemented (`tests/integration/gate4.test.ts`) | Gate 4 | A8.7 |
+| PROD-125 | Contract deadlines, requirement thresholds, fee scaling, failure (forfeit pay?), negative-cash policy/floor under the new financing. Avoid a grind-optimal farm. | OPEN | — | audit | A8.8 |
+
+## 10. Television
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-126 | Renewable TV = separate **seasons** of one IP; one episode per week; bigger orders take more production time and cost. | LOCKED | Implemented (6 + 2 weeks/episode, $15K + $15K/episode *(test)*) | v9.6 §13 | A9.3 |
+| PROD-127 | **No fixed maximum number of seasons.** A show continues while viable and renewed. (The user declined 8/12/16 caps.) | LOCKED (latest) | Implemented (Season 20+ legality tested) | designer 2026-11; Gate 3 follow-up | A9.7, A14.14 |
+| PROD-128 | Season **episode order** capped by studio Prestige (≈ 5/10/15/20). This is a per-season cap, **not** a season-count cap. | LOCKED (gating); thresholds TESTING | Implemented (`tv.episodeCaps` *(test)*) | v7–v8 | A9.4 |
+| PROD-129 | A new show may pick any order size already unlocked; it needn't earn longer seasons by succeeding at 5 episodes. | LOCKED | Implemented | v7 | A9.5, A14.13 |
+| PROD-130 | Renewal by season average: **< 4.0 can't renew; ≥ 4.0 renewable; ≥ 9.0 Hall of Fame** (exactly 4.0 / 9.0 count). | LOCKED | Implemented | v8 / v9.6 §9 | A9.6 |
+| PROD-131 | Older shows get **organic show-age fatigue** (maybe also fading audience enthusiasm), but **late comebacks stay possible**, including a very strong Season 7+. | LOCKED | Implemented (review fatigue min(35%, 1.2% × n^1.6) *(test)*; natural good-twist comebacks measured) | Gate 3 follow-up | A9.8 |
+| PROD-132 | Genre stays fixed across seasons. A **theme twist** can revive a show: a good twist reduces fatigue, a bad one hurts fans/reviews. | LOCKED | Implemented | v9.6 §13 | A9.9 |
+| PROD-133 | A twist season is scored with the twist combo's grade and reveals it in the combo book; the twist theme must already be unlocked. | TESTING (v9.6 proposal) | Implemented | v9.6 §13; Gate 3 | — |
+| PROD-134 | Normal hiatus is unpenalized; an unusually long one lowers **anticipation** only, never past reviews or IP fans. | LOCKED | Implemented | v7 / v9.6 §13 | A9.10 |
+| PROD-135 | No automatic Prestige per episode; a 20-episode order can't earn 4× Prestige just from airtime. | LOCKED | Implemented | v9.6 §9 | A9.12 |
+| PROD-136 | **Viewer-side fatigue on the reachable audience** is worth testing. The opening-only prototype did almost nothing because seasons still filled 91–99% of reach. | TESTING | Partial (`tv.viewerFatigue`, opening-only, off) | Gate 3 follow-up F3 | A9.13 |
+| PROD-137 | **Creative breakthroughs** may raise production quality and help comebacks, but must be cause-linked and visible. The first prototype's effect was nearly invisible; off by default. | TESTING | Partial (`events.breakthrough`, off) | Gate 3 follow-up F5 | A9.14 |
+| PROD-138 | Keep the current review-fatigue formula while the audience model is explored. Reducing it produced endless good shows and suppressed fresh Hall of Fame entries. | TESTING (keep) | Implemented | Gate 3 follow-up F4 | A9.15 |
+| PROD-139 | Should viewership/revenue (not just ≥ 4 reviews) create real reasons to stop renewing? Exact audience fatigue, comeback frequency, economics. (Legacy: TV seasons never lose money; studio-funded candidate: 6–8% of seasons lose.) | OPEN | — | Gate 3 follow-up D5; Gate 4 | A9.16, A15.7 |
+| PROD-140 | **TV Prestige pace:** TV-heavy careers earn far less Prestige. Consider TV-specific significant achievements, never passive per-episode rewards. | OPEN | — | Gate 3 follow-up D6 | A9.17, A15.8 |
+| PROD-141 | LATER TV: voluntary Final Season announcement; TV spinoffs and reboots; genre shift within a Star family; event seasons and big shake-ups (new lead, guest star; shake-ups weaken with repetition); binge drops (esp. Originals); advanced finale marketing. | LATER | Not implemented | v9.6 §13 | A9.19, A14.18 |
+
+## 11. Limited series
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-142 | Limited series are **self-contained**: never renewable, finite episodes, a limited tail, no show-age fatigue. | LOCKED | Implemented | v9.6 §16 | A9.1 |
+| PROD-143 | Harness limited series = **6 episodes** (18 weeks, $90K). An implementation assumption, not the final length. | TESTING | Implemented *(test)* | Gate 3 | A9.2 |
+| PROD-144 | Limited series vs a 5-episode TV season: economics and differentiation (the limited series can be much stronger early); the exact episode-order ladder; announcement and hiatus effect sizes. | OPEN | — | Gate 3 | A9.18 |
+| PROD-145 | Limited series available right after the first production; the tutorial project is a Movie. | TESTING (v9.6 proposal) | Implemented (`limitedSeries.availableAfterProductions: 1`) | v9.6 §14 | — |
+
+## 12. Streaming
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-146 | Streaming unlocks from **Prestige + cash + owned catalog + a Software Engineer**. Construction runs **in the background**; production continues without the engineer's work. | LOCKED | Implemented (2,500 Prestige, 8 catalog titles, $600K, 30 weeks *(test)*) | v8 / v9.6 §12 | A11.1 |
+| PROD-147 | Income = **total subscribers**; no per-title views, royalties or payouts. | LOCKED | Implemented | v9.6 §12 | A11.2 |
+| PROD-148 | **New content attracts** subscribers; catalog quality, volume, variety, freshness and Hall of Fame evergreens **retain** them. The passive catalog never recruits on its own. | LOCKED | Implemented | v9.6 §12 | A11.3 |
+| PROD-149 | Going quiet causes gradual, visible churn; the platform has operating costs. | LOCKED | Implemented | v9.6 §12 | A11.4 |
+| PROD-150 | Every studio-owned traditional film/limited series joins the catalog **automatically after its run**; each TV season joins after its own run. No window-management minigame. | LOCKED | Implemented | v9.6 §12 | A11.5 |
+| PROD-151 | Traditional releases continue after streaming launches: normal commercial cash, then catalog value. | LOCKED | Implemented | v9.6 §12 | A11.6 |
+| PROD-152 | **Streaming Originals:** studio-funded, platform-only, **no** traditional box-office/broadcast revenue; a bigger immediate subscriber pulse plus catalog value. | LOCKED | Implemented | v9.6 §12 | A11.7 |
+| PROD-153 | Mixed traditional + streaming can succeed without streaming-only automatically winning. Keep that a strategy choice. | TESTING | Implemented (Gate 3 evidence) | Gate 3 findings | A11.8 |
+| PROD-154 | Subscriber fee, reachable market, acquisition/conversion, churn, retention, freshness, library effects, operating costs, Original-vs-traditional balance, streaming marketing. | OPEN | Partial (all *(test)*) | Gate 3 | A11.9 |
+| PROD-155 | Platform upgrades, binge drops, extra platform systems, competing-service simulation. | LATER | Not implemented | v9.6 §12 | A11.10 |
+
+## 13. Prestige, Hall of Fame and critics
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-156 | Prestige follows recognizable quality, reception and commercial **milestones**; never automatic for completion, episode count, client contracts or Fame. | LOCKED | Implemented | v9.6 §9 | A10.1 |
+| PROD-157 | **Hybrid repeat rule:** repeatable per-release quality achievements; IP-wide commercial milestones pay once. Amounts experimental. | TESTING | Partial (`prestige.repeatScope`: baseline `perIP`, candidate configs use the Gate 2.5 hybrid) | Gate 2.5 | A10.2 |
+| PROD-158 | Strong sales without Prestige, and acclaimed niche work without box office, are both possible; Fame/viewership and reviews are separate. | LOCKED | Implemented | v9.6 §3 | A10.3 |
+| PROD-159 | **Hall of Fame** = review average ≥ 9.0. It raises future related-title visibility and makes the title a streaming retention evergreen. | LOCKED | **Partial**: evergreen retention and fatigue softening implemented; the related-title visibility boost is **not** | v9.6 §9, §12; code | A10.4 |
+| PROD-160 | Critics get more demanding with eras and **named critic replacements**; audiences rise more gently. | LOCKED | Partial (Gate 2.6 proxy knobs, off by default; no named critics) | v9.6 §11; Gate 2.6 | A10.5, A15.9 |
+| PROD-161 | A named critic panel with visible tastes and retirements; saturated trends draw harsher reviews; no personal vendettas. | LOCKED | Partial (saturation harshness only) | v9.6 §11 | A10.6 |
+| PROD-162 | Gate 2.6 era/critic knobs are stand-ins for the unbuilt named-critic system; the stronger combo_D curve punishes long-running TV. Not ratified. | TESTING | Implemented (off by default) | Gate 2.6; Gate 3 | A10.7 |
+| PROD-163 | Prestige amounts, thresholds, caps; whether repeated high-quality seasons are rewarded enough; HoF rounding. | OPEN | Partial (test milestones) | audit | A10.8 |
+| PROD-164 | Number and pace of critic generations; raising audience difficulty without an inevitable late-game collapse; how many eras and what each unlocks. | OPEN | Partial (proxy) | v9.6 §16 | A10.9 |
+
+## 14. Tutorial, presentation and UI
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-165 | Players **name their studio** (with a random-name button); the backstory stays deliberately vague. | LOCKED | Not implemented | v9.6 §14 | A12.1 |
+| PROD-166 | An **assistant character** (name TBD), separate from paid staff, gives guidance, commentary and reminders all game. | LOCKED | Not implemented | v9.6 §14 | A12.2 |
+| PROD-167 | The assistant offers an **optional tutorial on a fresh save**, during **only the first production**, then unrestricted free play. | LOCKED | Not implemented | v7 / v9.6 §14 | A12.3 |
+| PROD-168 | Tutorials use the **real screens with normal choices visible**; explain the reasoning; suggest, don't force; no wall of 17 modals. | LOCKED | Not implemented | v9.6 §14 | A12.4 |
+| PROD-169 | Tutorial completion carries across saves; a returning player gets **"Welcome back, boss!"** and can jump in or replay. | LOCKED | Not implemented | v7 | A12.5 |
+| PROD-170 | Skipping the tutorial still gives **brief, dismissible contextual tips** at later unlocks (not a repeated full tutorial). | LOCKED | Not implemented | v7 | A12.6 |
+| PROD-171 | The first tutorial production is **financially forgiving but not guaranteed great**; mediocre or bad films remain possible through real play. | LOCKED | Not implemented (harness: rookie first films ≈ 5.5–6.2 on natural pairs, ≈ 3–5 on poor pairs under the candidate) | v9.6 §14; Gate 4Q | A12.7 |
+| PROD-172 | Staff, Stars, critics, distributors and the assistant have **names and portraits**. Style and platform not locked. | LOCKED | Partial (names only) | v9.6 §15 | A12.8 |
+| PROD-173 | The UI explains the key differences (reviews vs audience size vs money vs fans vs Prestige; combo grades vs Star genres) without flooding the player with bars. | LOCKED | Partial (harness debug UI only) | v9.6 §19B | A12.9 |
+| PROD-174 | **Rewrite the tutorial's old pre-production pitch and 80% marketing steps** for studio-funded production + 80% distributor bids. Don't teach the abandoned advance model. | OPEN (important drift) | Not implemented | audit | A12.10, A15.11 |
+| PROD-175 | Starting cash; initial unlocked set (≈ 3 genres × 4 themes; harness: Action/Comedy/Horror × Zombies/Superheroes/Spies/Sports *(test)*); first-project guidance; limited series unlock timing; first Prestige award (not "finished a movie"); assistant's name. | OPEN | Partial | v9.6 §14, §16 | A12.11 |
+| PROD-176 | Engine, platform, full art direction, assets, production architecture. The browser/rectangle prototype is a convenience, not a binding engine decision. | LATER | Not implemented | v9.6 §15, §20 | A12.12 |
+| PROD-177 | Entertainment-era spoofing (theaters → home video → cable → streaming), final social-feed brand, score-% presentation, career Hall of Fame archive. | LATER | Not implemented | v9.6 §2 | A12.13 |
+
+## 15. Engineering, simulation and testing
+
+| ID | Rule / question | Status | Implementation | Evidence | Audit |
+|---|---|---|---|---|---|
+| PROD-178 | Keep a **seeded, deterministic, replayable TypeScript harness** with clear scenarios, comparisons, traceable causes and invariants. It doesn't commit the project to a game engine. | LOCKED | Implemented | build spec; all gates | A13.1 |
+| PROD-179 | **Tiny, fast deterministic smoke tests first**, then targeted paired comparisons; big stress matrices only at major gates or for a specific risk. | LOCKED | Implemented (`economy:smoke` ≈ 5 s, `quality:smoke` ≈ 8 s, `economy:compare` ≈ 20 s, `quality:compare` ≈ 14 s) | Gate 4 / 4Q | A13.2 |
+| PROD-180 | Don't run 200 seeds × every strategy × 25–30 years for small tweaks. | LOCKED | Implemented (matrix scripts are opt-in) | Gate 4 | A13.3 |
+| PROD-181 | Report **actual outcomes**, never strategy labels: `cheap-duds` averaged 6.24/10 and is reported as `low-budget-random-combo`. A real sub-4 diagnostic (`poor-fit-chooser`) exists. | LOCKED | Implemented | Gate 4Q | A13.4 |
+| PROD-182 | **Quality and revenue tuning are separate experiments**: never change both at once and credit one. | LOCKED | Process | Gate 4Q | A13.5 |
+| PROD-183 | All-in P&L includes wages, upkeep and direct cost. Analyse score bands **0–<4, 4–<6, 6–<8, 8–10** for movies **and** TV; report Studio vs Distributor P&L separately. | LOCKED | Partial (movies by band in `scripts/quality.ts`; TV bands in `scripts/economy.ts`) | Gate 4 / 4Q | A13.6 |
+| PROD-184 | Build normal-play cases (rookies, good/poor pairings, proficient and elite staff) alongside adversarial probes; never manufacture fake low scores. | LOCKED | Implemented | Gate 4Q | A13.7 |
+| PROD-185 | Keep legacy regression tests and reproducibility while candidates are under review. **A green test suite ≠ designer approval** of candidate values. | LOCKED | Implemented (byte-identity proofs each gate) | Gates 3–4Q | A13.8, A15.12 |
+| PROD-186 | Final economy approval criterion: interesting-but-fair loss rate and depth, how weak/average/great productions scale, no rich contract grinders, TV Prestige balance, late streaming runaway. | OPEN | — | audit | A13.9 |
+
+## 16. Superseded — do not resurrect
+
+| ID | Old rule | Status | Replaced by | Audit |
+|---|---|---|---|---|
+| PROD-187 | Individual staff genre XP | SUPERSEDED | PROD-024, PROD-025 | A14.1 |
+| PROD-188 | Alternative meter names; early two-stat staff | SUPERSEDED | PROD-021 | A14.2 |
+| PROD-189 | Post-production CGI/sound/marketing allocation; "80% = patch your weakest meter" | SUPERSEDED | PROD-038 | A14.3 |
+| PROD-190 | Upfront payment + endless per-title catalog royalty tail | SUPERSEDED | PROD-109, PROD-147 | A14.4 |
+| PROD-191 | Small/Medium/Large budget tiers | SUPERSEDED (shelved; revisit only with a clear concept) | PROD-035 | A14.5 |
+| PROD-192 | Distributor covers a % of a fixed budget → later an absolute upfront advance | SUPERSEDED | PROD-100…108 (late bids under test) | A14.6 |
+| PROD-193 | Two hidden compatibility grades (audience + critic) per pair (v9.6 §10; Gate 4Q) | SUPERSEDED | PROD-062 | A14.10 |
+| PROD-194 | Keeping unused distributor advances as an intentional farming path | SUPERSEDED (legacy code only) | PROD-100, PROD-115 | A14.7 |
+| PROD-195 | Genre-by-genre Star skills | SUPERSEDED | PROD-045 | A14.8 |
+| PROD-196 | Star Level gives an independent cap on every skill | SUPERSEDED | PROD-047 | A14.9 |
+| PROD-197 | Studio-wide permanent fans | SUPERSEDED | PROD-096, PROD-085 | A14.11 |
+| PROD-198 | Money or Fame adding directly to review scores ("Star fame and marketing add to the Audience score") | SUPERSEDED | PROD-040 | A14.12 |
+| PROD-199 | Guaranteed / blanket first-season 5- or 10-episode limit | SUPERSEDED | PROD-129 | A14.13 |
+| PROD-200 | Hard cap on total TV seasons (8/12/16) | SUPERSEDED | PROD-127 | A14.14 |
+| PROD-201 | Hidden Star skills or ranged audition guesses | SUPERSEDED | PROD-055 | A14.15 |
+| PROD-202 | Fixed Star "raise after a hit" event; "eager to redeem" pricing | SUPERSEDED | PROD-052 | A14.16 |
+| PROD-203 | **v9.1 lifeline distributor advance** as the no-bankruptcy guarantee | SUPERSEDED (direction; legacy code keeps it) | PROD-118…124 (contracts) | A15.3 |
+| PROD-204 | Rival-studio output simulation; per-title streaming royalties; stackable/multi-partner distributors, blended royalties, money pots, split refunds; loans; theme parks; soap operas (initial scope) | SUPERSEDED | PROD-088, 147, 102, 018, 017 | A14.17 |
+| PROD-205 | v8 rules "Star fee and marketing always from studio cash" and "no refunds or overruns" (later replaced by the v9 advance model, itself now superseded) | SUPERSEDED | PROD-100, PROD-115 | — |
+| PROD-206 | v9.6 tutorial step 6 ("pitch meeting" before production) and step 10 (studio-paid 80% marketing) as current tutorial content | SUPERSEDED (pending rewrite) | PROD-174 | A12.10 |
+| PROD-207 | Old LATER bundle: advanced season-finale marketing, harder bankruptcy challenges, TV genre shifts, full show-reboot arcs, post-launch platform upgrades, multi-project concurrency. **Not authorized** just because old notes mention them. | LATER | PROD-014…016, 141, 155 | A14.18 |
+
+---
+
+## Next decisions to review (ranked by impact)
+
+1. **Combo grade refactor to ONE grade** (PROD-062/074/075): approve the single-grade matrix (rule on the 13 contested pairs, PROD-074) and how audience/critic differences arise without two grades (craft weights only? a small genre-level audience/critic lean?). This blocks further scoring work.
+2. **Adopt the studio-funded / 80% bid economy as the default candidate?** (PROD-100…108, 111): including whether Originals keep a paid campaign, starting cash (PROD-114) and the negative-cash floor (PROD-125).
+3. **Dud economics, movies first** (PROD-092/105): test the word-of-mouth pivot (6.5) + bad-reception decay (1.0) on the single-grade matrix by score band; then TV separately (PROD-139).
+4. **What Stars and studio genre levels should be worth** (PROD-026/051): pick target effect sizes before tuning.
+5. **Genre unlock path** (PROD-091): genres currently never unlock in the harness.
+6. **TV economics and Prestige** (PROD-139, PROD-140): reasons to stop renewing, and a TV achievement path.
+7. Cult-appeal eligibility for rookies (PROD-076) and world-variation disclosure (PROD-075).
+8. Tutorial rewrite for the new economy (PROD-174), once 1–2 are decided.

@@ -1,9 +1,9 @@
 {
-  "name": "entertainment-studio-balance-harness",
+  "name": "producers-balance-harness",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Headless deterministic balance harness for Entertainment Studio Tycoon (design v9.61). Not the game.",
+  "description": "Producers (working game name): headless deterministic balance/simulation harness. Not the game. Canonical design: docs/DESIGN_LEDGER.md.",
   "scripts": {
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
@@ -24,7 +24,8 @@
     "economy:compare": "tsx scripts/economy.ts compare",
     "economy:gate": "tsx scripts/economy.ts gate",
     "quality:smoke": "tsc --noEmit && vitest run tests/integration/gate4q.test.ts && tsx scripts/quality.ts",
-    "quality:compare": "tsx scripts/quality.ts --seeds 16 --years 10 --out reports/gate4q/compare --quiet"
+    "quality:compare": "tsx scripts/quality.ts --seeds 16 --years 10 --out reports/gate4q/compare --quiet",
+    "ledger:check": "tsx scripts/ledger-check.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
