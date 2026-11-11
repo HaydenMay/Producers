@@ -260,7 +260,7 @@
 |---|---|---|---|---|---|
 | PROD-142 | Limited series are **self-contained**: never renewable, finite episodes, a limited tail, no show-age fatigue. | LOCKED | Implemented | v9.6 §16 | A9.1 |
 | PROD-143 | Harness limited series = **6 episodes** (18 weeks, $90K). An implementation assumption, not the final length. | TESTING | Implemented *(test)* | Gate 3 | A9.2 |
-| PROD-144 | Limited series vs a 5-episode TV season: economics and differentiation (the limited series can be much stronger early); the exact episode-order ladder; announcement and hiatus effect sizes. | OPEN | Measured 2026-11-11 (default, TV + limited series on): limited series are the **best-paying format** (~$15–16.6K per production-week vs movies ~$13K, TV ~$15K); a limited-series-only studio ends richest ($7.8M vs balanced movies $6.4M). Decide whether that's intended. | Gate 3 | A9.18 |
+| PROD-144 | Limited series vs a 5-episode TV season: economics and differentiation (the limited series can be much stronger early); the exact episode-order ladder; announcement and hiatus effect sizes. **Measured 2026-11-11** (default, TV + limited series on): limited series are the **best-paying format** (~$15–16.6K per production-week vs movies ~$13K, TV ~$15K); a limited-series-only studio ends richest ($7.8M vs balanced movies $6.4M). Decide whether that's intended. | OPEN | Implemented (both formats; economics *(test)*) | Gate 3 | A9.18 |
 | PROD-145 | Limited series available right after the first production; the tutorial project is a Movie. | TESTING (v9.6 proposal) | Implemented (`limitedSeries.availableAfterProductions: 1`) | v9.6 §14 | — |
 
 ## 12. Streaming
