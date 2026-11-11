@@ -1,5 +1,5 @@
 {
-  "_overlay": "REGRESSION ONLY. Restores the pre-Producers economy on top of config/baseline.json: distributor advances at the pitch, lifeline, surplus (economy.mode legacy_advance), no work-for-hire contracts, $40K start cash, 16-week movies / 18-week limited series / 6+2 TV weeks, $2 tickets, random two-grade combos, no critic generations, geometric legs, no movie-only dud levers no Stars rework (pool off) no Star score bonus no genre unlocks one Star family per genre, paid theme research without trend inspiration, and movie-only formats, the pre-Producers TV rules (no show health, no TV milestones, old TV pay). Every legacy byte-identity proof and every older gate overlay (candidate.json, gate3.json) layers on this. Not a design option (PROD-115 SUPERSEDED).",
+  "_overlay": "REGRESSION ONLY. Restores the pre-Producers economy on top of config/baseline.json: distributor advances at the pitch, lifeline, surplus (economy.mode legacy_advance), no work-for-hire contracts, $40K start cash, 16-week movies / 18-week limited series / 6+2 TV weeks, $2 tickets, random two-grade combos, no critic generations, weekly payroll without raises, geometric legs, no movie-only dud levers no Stars rework (pool off) no Star score bonus no genre unlocks one Star family per genre, paid theme research without trend inspiration, and movie-only formats, the pre-Producers TV rules (no show health, no TV milestones, old TV pay). Every legacy byte-identity proof and every older gate overlay (candidate.json, gate3.json) layers on this. Not a design option (PROD-115 SUPERSEDED).",
   "economy": {
     "mode": "legacy_advance",
     "contracts": {
@@ -83,5 +83,13 @@
       "prestige": 2500
     },
     "feePerSubWeek": 0.5
+  },
+  "staffGrowth": {
+    "payrollPeriodWeeks": 1,
+    "raisePerLevel": 0,
+    "hireWageBySkill": false
+  },
+  "agents": {
+    "runwayStarReserve": false
   }
 }

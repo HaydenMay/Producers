@@ -60,7 +60,10 @@ function bestContract(ch: Choices): Decision | null {
 /** "runway" rule: only start an original you can fully fund (base cost + payroll for its whole production). */
 function m0(state: StudioState, cfg: Config): number {
   const m = formatSpec(cfg, "movie");
-  return m.baseCost + weeklyLabor(state, cfg) * m.durationWeeks;
+  // harness agents (2026-11-11): also keep a typical mid-tier Star fee (Fame 40) in reserve, so the 30-week first
+  // movie doesn't run the studio into the red at casting. Legacy overlay turns this off (`agents.runwayStarReserve`).
+  const reserve = (cfg.agents as { runwayStarReserve?: boolean }).runwayStarReserve ? cfg.stars.feeBase + cfg.stars.feePerFame * Math.pow(40, cfg.stars.fameExponent) : 0;
+  return m.baseCost + weeklyLabor(state, cfg) * m.durationWeeks + reserve;
 }
 function runwayOk(state: StudioState, cfg: Config): boolean {
   return state.cash >= m0(state, cfg);

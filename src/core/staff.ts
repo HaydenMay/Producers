@@ -35,10 +35,47 @@ export function staffLevel(s: Staff): number {
   return Math.floor(s.totalXp / 200);
 }
 
+type PayCfg = { payrollPeriodWeeks?: number; raisePerLevel?: number; maxRaise?: number; raiseEventEveryLevels?: number };
+const payCfg = (cfg: Config) => cfg.staffGrowth as unknown as PayCfg;
+
+/**
+ * Raises (designer 2026-11-11): wage = base x (1 + raisePerLevel x level), capped at +maxRaise. Level comes every
+ * 200 XP (~20 working weeks). Engineers keep their fixed wage. Legacy: raisePerLevel 0 → no change, no event.
+ */
+function applyRaises(state: StudioState, cfg: Config): void {
+  const pc = payCfg(cfg);
+  if (!pc.raisePerLevel) return;
+  for (const s of state.staff) {
+    if (s.role) continue;
+    s.baseWage ??= s.wage;
+    const lvl = staffLevel(s);
+    const target = Math.round(s.baseWage * (1 + Math.min(pc.maxRaise ?? 1, pc.raisePerLevel * lvl)));
+    if (target > s.wage) {
+      s.wage = target;
+      const every = pc.raiseEventEveryLevels ?? 5;
+      if (lvl > 0 && lvl % every === 0) emit(state, "raise", `${s.name} reached level ${lvl} and got a raise: now $${target.toLocaleString()}/week.`, { staffId: s.id, wage: target, level: lvl });
+    }
+  }
+}
+
+/** Payroll + upkeep. Weekly by default (legacy); with staffGrowth.payrollPeriodWeeks = 4 it accrues weekly and is paid monthly. */
 export function payroll(state: StudioState, cfg: Config): void {
+  applyRaises(state, cfg);
   const wages = state.staff.reduce((a, s) => a + s.wage, 0);
-  ledger(state, { kind: "payroll", amount: -wages, note: `${state.staff.length} staff` });
-  ledger(state, { kind: "upkeep", amount: -cfg.start.upkeepPerWeek });
+  const period = payCfg(cfg).payrollPeriodWeeks ?? 1;
+  if (period <= 1) {
+    ledger(state, { kind: "payroll", amount: -wages, note: `${state.staff.length} staff` });
+    ledger(state, { kind: "upkeep", amount: -cfg.start.upkeepPerWeek });
+    return;
+  }
+  const due = (state.payrollDue ??= { wages: 0, upkeep: 0 });
+  due.wages = Math.round((due.wages + wages) * 100) / 100;
+  due.upkeep = Math.round((due.upkeep + cfg.start.upkeepPerWeek) * 100) / 100;
+  if (state.week % period !== 0) return;
+  ledger(state, { kind: "payroll", amount: -due.wages, note: `monthly payroll, ${state.staff.length} staff` });
+  ledger(state, { kind: "upkeep", amount: -due.upkeep, note: "monthly upkeep" });
+  due.wages = 0;
+  due.upkeep = 0;
 }
 
 export const FIRST = ["Sam", "Alex", "Jo", "Max", "Rae", "Kit", "Lee", "Noa", "Ari", "Bo", "Cam", "Dee", "Eli", "Fin", "Gus", "Ivy", "Jay", "Kai", "Liv", "Mo"];
@@ -59,10 +96,14 @@ export function hireStaff(state: StudioState, cfg: Config): Staff {
   for (const m of METERS) stats[m] = int(state.rng, "staff", lo, hi);
   let id = newId(state, "staff");
   if (state.staff.some((x) => x.id === id)) id = `emp${state.counters.nextId}`; // Gate 3 fix: never collide with starting staff ids (only triggers on a collision)
-  const s: Staff = { id, name: randomName(state), stats, totalXp: 0, wage: cfg.staffGrowth.hireWage };
+  // designer 2026-11-11: a skilled hire asks for more (wage scales with average stat vs 25); legacy: flat hireWage
+  const bySkill = (cfg.staffGrowth as unknown as { hireWageBySkill?: boolean }).hireWageBySkill;
+  const avg = METERS.reduce((a, m) => a + stats[m], 0) / METERS.length;
+  const wage = bySkill ? Math.round((cfg.staffGrowth.hireWage * avg) / 25 / 10) * 10 : cfg.staffGrowth.hireWage;
+  const s: Staff = { id, name: randomName(state), stats, totalXp: 0, wage, ...(bySkill ? { baseWage: wage } : {}) };
   ledger(state, { kind: "hire", amount: -cfg.staffGrowth.hireCost, note: s.name });
   state.staff.push(s);
-  emit(state, "hire", `Hired ${s.name} (${METERS.map((m) => `${m} ${stats[m]}`).join(", ")}).`);
+  emit(state, "hire", `Hired ${s.name} (${METERS.map((m) => `${m} ${stats[m]}`).join(", ")})${bySkill ? `, asking $${wage.toLocaleString()}/week` : ""}.`);
   return s;
 }
 

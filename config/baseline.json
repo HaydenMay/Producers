@@ -205,7 +205,13 @@
     "hireStatRange": [
       15,
       35
-    ]
+    ],
+    "_payLabel": "Designer 2026-11-11, TEST VALUES: payroll + upkeep are paid MONTHLY (accrued weekly, paid every payrollPeriodWeeks; same total). Raises: wage = base x (1 + raisePerLevel x staff level), capped at +maxRaise; a staff level comes every 200 XP (~20 working weeks), so ~+40% by year 5 and ~+80% by year 10. Hires ask more when skilled (hireWage x average stat / 25). Engineers keep a fixed wage. Legacy overlay: weekly, no raises, flat hire wage.",
+    "payrollPeriodWeeks": 4,
+    "raisePerLevel": 0.03,
+    "maxRaise": 1.0,
+    "raiseEventEveryLevels": 5,
+    "hireWageBySkill": true
   },
   "studioGenre": {
     "xpPerRelease": 1,
@@ -612,6 +618,8 @@
     "upgradePrestige": []
   },
   "agents": {
+    "_runwayStarReserveLabel": "Harness agents only (2026-11-11): the runway rule also reserves a typical mid-tier Star fee before starting a movie. Legacy overlay: false.",
+    "runwayStarReserve": true,
     "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number). useFiring / economicRenewal (Gate 3 follow-up, Gate 3 policies only): dismiss the weakest employee to make room for the Software Engineer or when cash < fireDebtThreshold; renew a show only while its last finished season netted >= renewMinNetPerWeek per production week (replaces the old fixed policy season limits). Both false = the original Gate 3 policies.",
     "legacyHeuristicStaffCaps": true,
     "tvOrderPreference": "max",

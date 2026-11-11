@@ -65,6 +65,10 @@ describe("Producers default economy", () => {
       delete x.formats.streaming;
       delete x.streaming.unlock.prestige;
       delete x.streaming.feePerSubWeek;
+      delete x.staffGrowth.payrollPeriodWeeks;
+      delete x.staffGrowth.raisePerLevel;
+      delete x.staffGrowth.hireWageBySkill;
+      delete x.agents.runwayStarReserve;
       delete x._overlay;
       return x;
     };

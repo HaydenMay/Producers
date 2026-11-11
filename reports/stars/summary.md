@@ -14,23 +14,23 @@ Shipped default (`config/baseline.json`), seeds 1–6, 10-year careers. TEST VAL
 | 11–15 | 8 | 75.8 | 5.6 |
 | 16–20 | 16 | 86.6 | 6.6 |
 
-Seed 1 after 10 years (balanced): 300 Stars ever, 279 still working. Tiers: newcomer 126 · mid 127 · big 26.
+Seed 1 after 10 years (balanced): 300 Stars ever, 272 still working. Tiers: newcomer 122 · mid 130 · big 20.
 
 ## 2. Careers (medians would hide little here; these are means per career)
 
 | Policy | Films | Hired | Stars seen at 2+ auditions | Original-lead cards (cast) | Catalog unlock year | Retired (of yours) | Perfect-fit flags (cast) | Invariant violations |
 |---|---|---|---|---|---|---|---|---|
-| balanced | 15.2 | 5.8 | 16.0 | 3.2 (1.8) | 2.4 (6/6 careers) | 26.0 (0.7) | 18.0 (7.3) | 0 |
-| quality-first | 15.0 | 5.3 | 14.0 | 0.0 (0.0) | 2.1 (6/6 careers) | 28.5 (0.7) | 20.3 (9.7) | 0 |
-| franchise-builder | 16.0 | 2.2 | 16.7 | 13.8 (13.8) | 4.2 (6/6 careers) | 28.8 (0.2) | 10.2 (0.0) | 0 |
+| balanced | 16.0 | 6.5 | 15.7 | 4.3 (3.0) | 2.4 (6/6 careers) | 26.7 (0.7) | 17.7 (6.0) | 0 |
+| quality-first | 15.7 | 6.7 | 16.5 | 0.0 (0.0) | 2.3 (6/6 careers) | 29.3 (1.7) | 20.5 (8.5) | 0 |
+| franchise-builder | 16.0 | 2.3 | 16.7 | 13.7 (13.7) | 4.5 (6/6 careers) | 29.3 (0.2) | 10.3 (0.0) | 0 |
 | famous-star | 16.0 | 7.8 | 15.8 | 0.0 (0.0) | 5.3 (6/6 careers) | 28.8 (4.7) | 14.2 (2.8) | 0 |
-| cheap-duds | 16.0 | 14.0 | 17.3 | 0.0 (0.0) | 5.6 (4/6 careers) | 29.0 (0.0) | 6.8 (0.2) | 0 |
+| cheap-duds | 16.0 | 13.7 | 17.3 | 0.0 (0.0) | 5.6 (4/6 careers) | 29.0 (0.0) | 6.8 (0.2) | 0 |
 
 Catalog unlock: the default config has no staff-capacity ladder, so it opens at 200 Prestige (the gate3 ladder's first-step Prestige).
 
 ## 3. Catalog unlock with a real 4/6/8 staff ladder (`config/gate3.json` on the default)
 
-balanced year 2.7 (6/6) · quality-first year 2.4 (6/6) · mixed year 2.7 (6/6) · tv-first year 2.7 (6/6)
+balanced year 2.8 (6/6) · quality-first year 2.9 (6/6) · mixed year 2.8 (6/6) · tv-first year 3.0 (6/6)
 
 ## 4. Hidden growth weights (seed 3 pool): same template, different Stars
 
@@ -45,19 +45,19 @@ balanced year 2.7 (6/6) · quality-first year 2.4 (6/6) · mixed year 2.7 (6/6) 
 
 ## 5. Free fallback vs paid newcomers
 
-Average paid newcomer audition card, skill in the production's family: **46.9** (n 556). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
+Average paid newcomer audition card, skill in the production's family: **47.8** (n 564). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
 
 ## 6. Catalog snapshot: balanced seed 1 at year 10
 
 | Star | Status | Films with you | Years active | Fame | Level | Best family |
 |---|---|---|---|---|---|---|
-| Noa Fox | active | 1 | 14 | 78 | 3 | Funny 71 |
-| Kit Hart | active | 4 | 10 | 76 | 7 | Funny 100 |
-| Sam Lowe | active | 1 | 11 | 39 | 4 | Scary 100 |
-| Bo Sato | active | 2 | 18 | 91 | 9 | Funny 100 |
-| Kai Quinn | active | 2 | 19 | 100 | 10 | Scary 100 |
-| Max Kerr | active | 1 | 10 | 32 | 5 | Scary 100 |
-| Mo Park | active | 4 | 9 | 89 | 10 | Funny 100 |
-| Kai Lind | active | 1 | 9 | 50 | 6 | Dramatic 100 |
+| Noa Fox | active | 1 | 14 | 63 | 3 | Funny 71 |
+| Kit Vale | active | 1 | 19 | 71 | 5 | Funny 100 |
+| Kit Hart | active | 6 | 9 | 100 | 8 | Funny 100 |
+| Rae Sato | active | 2 | 14 | 48 | 4 | Scary 100 |
+| Lee Grant | retired | 3 | 17 | 100 | 8 | Action 100 |
+| Liv Quinn | active | 1 | 9 | 42 | 4 | Romantic 100 |
+| Bo Lind | active | 1 | 7 | 36 | 3 | Romantic 100 |
+| Bo Imai U. | active | 1 | 3 | 9 | 1 | Action 77 |
 
-Elapsed 2.7 s.
+Elapsed 2.8 s.

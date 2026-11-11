@@ -24,6 +24,8 @@ export interface Staff {
   stats: Record<Meter, number>; // 0..100, fractional
   totalXp: number;
   wage: number; // $/week
+  /** wage before level raises (set when raises are on) */
+  baseWage?: number;
   /** Gate 3 special job. Software Engineers build the streaming service. */
   role?: "software_engineer";
   /** while set, this employee is OFF the active production (special-role rule) */
@@ -269,7 +271,9 @@ export interface StudioState {
   staff: Staff[];
   stars: Record<string, Star>;
   hiredStarIds: string[]; // callback catalog
-  catalogUnlocked?: boolean; // Stars rework: catalog opens with the first studio upgrade (PROD-216)
+  catalogUnlocked?: boolean;
+  /** monthly payroll accrual (designer 2026-11-11), present only when staffGrowth.payrollPeriodWeeks > 1 */
+  payrollDue?: { wages: number; upkeep: number }; // Stars rework: catalog opens with the first studio upgrade (PROD-216)
   distributors: Distributor[];
   ips: Record<string, IpLine>;
   releases: Release[];
