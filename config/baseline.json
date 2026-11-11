@@ -410,7 +410,7 @@
     "fanDecayPerYear": 0.1,
     "legsModel": "diffusion",
     "diffusion": {
-      "_label": "WORKING ASSUMPTION (Gate 2.5 candidate): finite awareness diffusion. Used only when legsModel = 'diffusion' (the Producers default since 2026-11-10; legacy overlay = geometric). movieBadInterestDecay = MOVIE-only override of badInterestDecay (null = global).",
+      "_label": "WORKING ASSUMPTION (Gate 2.5 candidate): finite awareness diffusion. Used only when legsModel = 'diffusion' (the Producers default since 2026-11-10; legacy overlay = geometric). movieBadInterestDecay = MOVIE-only override of badInterestDecay (null = global). Designer 2026-11-11 'cliff dive': 1.0 → 3.0 *(test)*, so a mediocre movie keeps a fine opening but its audience falls off a cliff (week-2 drop ~93–97% for 4–6 scores vs ~32–44% for 6+), leaving it near break-even.",
       "openWatchShare": 0.3,
       "watchRate": 0.3,
       "watchRateQualityWeight": 0.25,
@@ -418,7 +418,7 @@
       "womPerViewer": 2.0,
       "interestDecay": 0.12,
       "badInterestDecay": 0.35,
-      "movieBadInterestDecay": 1.0
+      "movieBadInterestDecay": 3.0
     }
   },
   "distribution": {

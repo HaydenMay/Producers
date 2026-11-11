@@ -15,7 +15,7 @@ describe("Producers default economy", () => {
     expect(d.production.movie.durationWeeks).toBe(30);
     expect(d.audience.legsModel).toBe("diffusion");
     expect(d.audience.movieQualityPivot).toBe(6.5);
-    expect(d.audience.diffusion.movieBadInterestDecay).toBe(1.0);
+    expect(d.audience.diffusion.movieBadInterestDecay).toBe(3.0);
     expect(d.formats.tv && d.formats.limitedSeries).toBe(true);
     expect(d.formats.streaming).toBe(false);
     const l = legacyConfig();
@@ -83,7 +83,7 @@ describe("Producers default economy", () => {
     const tv = rels.find((r) => formatOf(r) !== "movie")!;
     expect(movie && tv).toBeTruthy();
     expect(moviePivotOf(g3, movie)).toBe(6.5);
-    expect(movieBadDecayOf(g3, movie)).toBe(1.0);
+    expect(movieBadDecayOf(g3, movie)).toBe(3.0);
     expect(moviePivotOf(g3, tv)).toBe(5);
     expect(movieBadDecayOf(g3, tv)).toBe(0.35);
   });
