@@ -8,7 +8,7 @@ import { initRng } from "./rng";
 import { canCancel, cancelRepay, spendableCash } from "./economy";
 import { canHire, fireOptions, fireStaff, hireStaff, payroll, trainStaff } from "./staff";
 import { generateOffers, driftTrust } from "./distribution";
-import { generateWorld, researchTheme, updateTrends } from "./progression";
+import { checkGenreUnlocks, generateWorld, researchTheme, updateTrends } from "./progression";
 import { campaignOptions, canSelfFund, castStar, chooseCampaign, finalizeRelease, productionWeek, startProject } from "./production";
 import { allowedOrders, cheapestBaseCost, formatOf, limitedSeriesAvailable, partnerAdvance, planBaseCost, renewalStatus, tvAvailable } from "./formats";
 import { buildStreaming, canBuildStreaming, canHireEngineer, decayAnticipation, hireEngineer, streamingWeek } from "./streaming";
@@ -317,6 +317,7 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
   driftTrust(state, cfg);
   decayFans(state, cfg);
   if (poolEnabled(cfg) && state.week % cfg.time.weeksPerYear === 0) talentYear(state, cfg); // PROD-214
+  checkGenreUnlocks(state, cfg); // PROD-091
   if (state.cash < 0) state.counters.negativeCashWeeks += 1;
 }
 

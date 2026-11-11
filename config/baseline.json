@@ -551,6 +551,18 @@
   "research": {
     "themeCost": 25000
   },
+  "genreUnlocks": {
+    "_label": "PROD-091 (designer 2026-11-11). Genres open through the CREW, not money: when any staff member reaches a stat threshold, the matching genre opens (Game Dev Story-style staff growth). RomCom is a combo unlock (release at least one of each listed genre). Era safety net: anything still locked at eraSafetyNetYear arrives 'with the times'. No paid genre research (designer rejected it). Checked weekly, no RNG. THRESHOLDS ARE TEST VALUES. legacy-advance.json turns it off.",
+    "enabled": true,
+    "skill": {
+      "Thriller": { "stat": "plot", "min": 50, "why": "twisty stories" },
+      "Romance": { "stat": "filming", "min": 50, "why": "performances" },
+      "Drama": { "stat": "writing", "min": 60, "why": "serious scripts" },
+      "SciFi": { "stat": "editing", "min": 60, "why": "effects work" }
+    },
+    "combos": { "RomCom": ["Comedy", "Romance"] },
+    "eraSafetyNetYear": 6
+  },
   "time": {
     "weeksPerYear": 52
   },
