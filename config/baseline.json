@@ -511,6 +511,12 @@
     "selfFundReach": 0.22
   },
   "prestige": {
+    "_tvMilestonesLabel": "TV achievements (designer 2026-11-11, PROD-140), TEST VALUES. Earned by quality across seasons, never by episodes or airtime (PROD-135). Kept apart from 'milestones' so overlays that replace the main list keep them. Acclaimed season: a season averaging 8.5+ (each such season). Hit show: Season 3+ with a show average of 8+ (once per show). Long-runner: Season 5+ with every season 7+ (once per show). Amounts 200/300/400 were sized so TV-heavy careers reach ~60–90% of a movie career's Prestige instead of ~40% (reports/tv/summary.md). Legacy overlay sets [].",
+    "tvMilestones": [
+      { "id": "tv_acclaimed_season", "kind": "tvSeasonAvg", "threshold": 8.5, "amount": 200, "scope": "release" },
+      { "id": "tv_hit_show", "kind": "tvShowAvg", "threshold": 8.0, "minSeason": 3, "amount": 300, "scope": "ip" },
+      { "id": "tv_long_runner", "kind": "tvShowAllAtLeast", "threshold": 7.0, "minSeason": 5, "amount": 400, "scope": "ip" }
+    ],
     "repeatScope": "perIP",
     "_repeatScopeNote": "WORKING ASSUMPTION (Open in v9.61): each milestone pays once per IP. Options: perRelease | perIP | career",
     "milestones": [
@@ -677,7 +683,8 @@
     ],
     "renewalThreshold": 4.0,
     "renewalInclusive": true,
-    "grossPerEpisodeViewer": 0.32,
+    "_grossPerEpisodeViewerLabel": "Designer 2026-11-11 (PROD-209): a healthy TV season should pay about like a movie per week of production. 0.32 → 0.42 *(test)*: TV ~$15K/production-week vs movies ~$13K, limited series ~$15K (reports/tv/summary.md). Legacy overlay keeps 0.32.",
+    "grossPerEpisodeViewer": 0.42,
     "episodeModel": {
       "premiereShare": 0.5,
       "baseRetention": 0.88,
@@ -698,6 +705,13 @@
       "exponent": 1.6,
       "max": 0.35,
       "qualitySlow": 0.4
+    },
+    "showHealth": {
+      "_label": "Designer 2026-11-11 (PROD-139): bad seasons drive viewers away. Each prior season multiplies the show's returning audience (its reach cap) by 1 + slope x (season avg - pivot)/5, kept between floor and 1 (a great season can win viewers back up to full, never above). Pivot 7.5, slope 1.0: a 6.5 season keeps 80% of the audience, 7.0 keeps 90%, 7.5+ keeps everyone; two 6.5 seasons → 0.64. TEST VALUES. Legacy overlay turns it off.",
+      "enabled": true,
+      "pivot": 7.5,
+      "slope": 1.0,
+      "floor": 0.3
     },
     "viewerFatigue": {
       "_label": "EXPERIMENT (Gate 3 follow-up), default OFF. Returning-viewer / season-opening interest fatigue: multiplies ONLY the returning-audience opening inputs (IP fans + announcement anticipation; optionally the premiere share). Never touches Audience/Critic scores, ratings or sales directly. Separate from review fatigue (tv.fatigue), IP fans and hiatus. Offset by: previous-season quality (qualitySlow), a good twist (goodTwistReset units), and every additive opening input it does not touch (marketing, Star Fame, trends, studio buzz) plus in-run critic buzz / word of mouth. basis: seasons = seasons aired; episodes = episodes aired / episodesPerStep. All numbers TEST ASSUMPTIONS.",

@@ -95,6 +95,25 @@ export function viewerFatigue(state: StudioState, cfg: Config, ip: IpLine): { mu
   return { mult: r3(1 - base * (1 - slow)), units: r3(units), base: r3(base), slow: r3(slow), basis: v.basis };
 }
 
+/**
+ * Show health (designer 2026-11-11, PROD-139): how many of last season's viewers come back depends on how good
+ * each earlier season was. health = product over prior seasons of clamp(1 + slope x (avg - pivot)/5), kept in
+ * [floor, 1]; a great season can recover up to full health, never above. Multiplies the season's reach cap.
+ */
+export function showHealth(state: StudioState, cfg: Config, ip: IpLine): { mult: number; seasons: { n: number; avg: number; step: number }[] } | null {
+  const h = (cfg.tv as { showHealth?: { enabled?: boolean; pivot: number; slope: number; floor: number } }).showHealth;
+  if (!h?.enabled || formatOf(ip) !== "tv") return null;
+  const prior = seasonsOf(state, ip.id);
+  if (!prior.length) return null;
+  let mult = 1;
+  const seasons = prior.map((r, i) => {
+    const step = 1 + (h.slope * (r.avgScore - h.pivot)) / 5;
+    mult = Math.max(h.floor, Math.min(1, mult * step));
+    return { n: i + 1, avg: r.avgScore, step: Math.round(step * 1000) / 1000 };
+  });
+  return { mult: Math.round(mult * 1000) / 1000, seasons };
+}
+
 /** Twist outcome from the twist combo's grades (revealed at release, like any first use). */
 export function twistOutcome(state: StudioState, cfg: Config, genre: string, theme: string): "good" | "bad" | "neutral" {
   const g = state.world.comboGrades[comboKey(genre, theme)];

@@ -42,7 +42,7 @@ export function checkInvariants(r: CareerResult, cfg: Config): Violation[] {
   });
   if (s.ledger.filter((l) => l.kind === "upgrade").length !== s.upgrades.length) v("UPGRADE_UNPAID", "upgrade count differs from upgrade ledger entries");
   // Prestige only from configured milestones; never passive accrual
-  const ids = new Set((cfg.prestige.milestones as { id: string }[]).map((m) => m.id));
+  const ids = new Set([...(cfg.prestige.milestones as { id: string }[]), ...(((cfg.prestige as { tvMilestones?: { id: string }[] }).tvMilestones ?? []) as { id: string }[])].map((m) => m.id));
   let psum = 0;
   for (const e of s.events.filter((x) => x.type === "prestige")) {
     const d = e.data as { milestone?: string; amount?: number } | undefined;

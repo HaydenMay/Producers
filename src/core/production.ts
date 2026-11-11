@@ -12,7 +12,7 @@ import { evaluatePrestige } from "./prestige";
 import { awardGenreXp, genreBonus, genreLevel, maybeStaffPitch } from "./progression";
 import { ensureStream, next, pick } from "./rng";
 import type { Grade } from "./types";
-import { formatOf, formatSpec, hiatusMultiplier, seasonsOf, showFatigue, twistOutcome, viewerFatigue } from "./formats";
+import { formatOf, formatSpec, hiatusMultiplier, seasonsOf, showFatigue, showHealth, twistOutcome, viewerFatigue } from "./formats";
 import { onRunEnded } from "./streaming";
 import { generateBids, investedSoFar, isLateDistribution } from "./latedist";
 import type { Breakthrough, Meter, Offer, PlanDecision, Project, Release, ReleaseRoute, StudioState } from "./types";
@@ -267,8 +267,9 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const star = p.starId ? state.stars[p.starId] : null;
   const hiatus = formatOf(p) === "tv" && p.ipRelation === "season" ? hiatusMultiplier(state, cfg, ip) : null;
   const vf = formatOf(p) === "tv" && p.ipRelation === "season" ? viewerFatigue(state, cfg, ip) : null;
+  const health = formatOf(p) === "tv" && p.ipRelation === "season" ? showHealth(state, cfg, ip) : null; // PROD-139
   const opIn = (returningMult?: number) => ({
-      reach: p.reach,
+      reach: health ? round2(p.reach * health.mult) : p.reach,
       campaignAwareness: p.distribution ? p.distribution.adAwareness : (cfg.marketing.campaigns as Record<string, { awareness: number }>)[p.campaign ?? "none"].awareness,
       studioBuzz: state.studioBuzz,
       starFame: star ? star.fame : 0,
@@ -337,6 +338,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
       ...(breakthrough ? { breakthrough } : {}),
       ...(cult ? { cult } : {}),
       ...(p.distribution ? { distribution: { ...p.distribution, bids: p.distributionBids ?? [], investedAtMeeting: p.investedAtMeeting ?? 0 } } : {}),
+      ...(health ? { showHealth: health } : {}),
       ...(vfTrace ? { viewerFatigue: vfTrace, ...(vfTrace.premiereMult !== 1 ? { premiereMult: vfTrace.premiereMult } : {}) } : {}),
     },
   };
