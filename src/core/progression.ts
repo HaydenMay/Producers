@@ -116,8 +116,8 @@ export function maybeStaffPitch(state: StudioState, cfg: Config): void {
 }
 
 /**
- * Genre unlocks (PROD-091, designer 2026-11-11): the crew opens genres (stat thresholds), RomCom-style combo
- * unlocks after releasing each listed genre, and an era safety net. No money path, no RNG. Checked weekly.
+ * Genre unlocks (PROD-091, designer 2026-11-11): the crew opens genres (stat thresholds that ease over time),
+ * RomCom-style combo unlocks after releasing each listed genre. Nothing is handed out. No money path, no RNG. Checked weekly.
  */
 export function checkGenreUnlocks(state: StudioState, cfg: Config): void {
   const gu = (cfg as { genreUnlocks?: { enabled?: boolean } }).genreUnlocks as Config["genreUnlocks"] | undefined;
@@ -126,15 +126,17 @@ export function checkGenreUnlocks(state: StudioState, cfg: Config): void {
     state.unlockedGenres.push(g);
     emit(state, "unlock", msg, { genre: g, ...data });
   };
+  const ez = (gu as { easing?: { fromYear: number; perYear: number; floor: number } }).easing;
+  const steps = ez ? Math.max(0, Math.floor(state.week / cfg.time.weeksPerYear) - ez.fromYear) : 0;
   for (const [g, r] of Object.entries(gu.skill as Record<string, { stat: string; min: number; why: string }>)) {
     if (state.unlockedGenres.includes(g)) continue;
-    const who = state.staff.find((s) => (s.stats as Record<string, number>)[r.stat] >= r.min);
-    if (who) open(g, `${who.name}'s ${r.why} (${r.stat} ${Math.floor((who.stats as Record<string, number>)[r.stat])}) opened a new genre: ${g}.`, { via: "staff", staff: who.name, stat: r.stat });
+    const min = ez ? Math.max(Math.min(r.min, ez.floor), r.min - steps * ez.perYear) : r.min;
+    const who = state.staff.find((s) => (s.stats as Record<string, number>)[r.stat] >= min);
+    if (who) open(g, `${who.name}'s ${r.why} (${r.stat} ${Math.floor((who.stats as Record<string, number>)[r.stat])}${min < r.min ? `; the bar has eased to ${min}` : ""}) opened a new genre: ${g}.`, { via: min < r.min ? "staff_eased" : "staff", staff: who.name, stat: r.stat, min });
   }
   for (const [g, need] of Object.entries(gu.combos as Record<string, string[]>)) {
     if (state.unlockedGenres.includes(g)) continue;
     if (need.every((n) => state.releases.some((rel) => rel.genre === n))) open(g, `Having made both ${need.join(" and ")}, your studio found a new genre: ${g}.`, { via: "combo", need });
   }
-  if (state.week >= gu.eraSafetyNetYear * cfg.time.weeksPerYear)
-    for (const g of Object.keys(cfg.world.genres)) if (!state.unlockedGenres.includes(g)) open(g, `Times change: ${g} is now a genre every studio makes.`, { via: "era" });
+
 }

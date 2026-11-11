@@ -20,11 +20,11 @@ Seed 1 after 10 years (balanced): 300 Stars ever, 273 still working. Tiers: newc
 
 | Policy | Films | Hired | Stars seen at 2+ auditions | Original-lead cards (cast) | Catalog unlock year | Retired (of yours) | Perfect-fit flags (cast) | Invariant violations |
 |---|---|---|---|---|---|---|---|---|
-| balanced | 30.7 | 10.7 | 41.8 | 8.8 (6.3) | 1.9 (6/6 careers) | 25.8 (1.0) | 40.5 (13.3) | 0 |
-| quality-first | 29.5 | 9.8 | 37.7 | 0.0 (0.0) | 1.8 (6/6 careers) | 26.2 (1.8) | 41.8 (19.0) | 0 |
-| franchise-builder | 30.8 | 3.3 | 33.7 | 27.2 (27.2) | 9.3 (2/6 careers) | 26.7 (0.2) | 0.7 (0.2) | 0 |
-| famous-star | 30.0 | 14.0 | 37.7 | 0.0 (0.0) | 5.9 (6/6 careers) | 24.7 (4.7) | 23.2 (5.2) | 0 |
-| cheap-duds | 31.2 | 26.5 | 43.8 | 0.0 (0.0) | 6.9 (3/6 careers) | 29.2 (0.0) | 7.8 (0.0) | 0 |
+| balanced | 30.7 | 11.3 | 41.8 | 8.5 (5.8) | 1.9 (6/6 careers) | 25.8 (1.2) | 40.3 (13.0) | 0 |
+| quality-first | 29.5 | 10.3 | 37.2 | 0.0 (0.0) | 1.8 (6/6 careers) | 26.2 (2.3) | 42.2 (18.8) | 0 |
+| franchise-builder | 30.8 | 3.5 | 33.5 | 27.2 (27.2) | 9.3 (2/6 careers) | 26.7 (0.2) | 0.7 (0.0) | 0 |
+| famous-star | 30.0 | 14.3 | 37.2 | 0.0 (0.0) | 5.3 (5/6 careers) | 25.8 (4.8) | 21.5 (5.0) | 0 |
+| cheap-duds | 31.2 | 28.7 | 40.7 | 0.0 (0.0) | 8.4 (2/6 careers) | 29.7 (0.0) | 2.7 (0.2) | 0 |
 
 Catalog unlock: the default config has no staff-capacity ladder, so it opens at 200 Prestige (the gate3 ladder's first-step Prestige).
 
@@ -45,7 +45,7 @@ balanced year 2.4 (6/6) · quality-first year 2.7 (6/6) · mixed year 2.4 (6/6) 
 
 ## 5. Free fallback vs paid newcomers
 
-Average paid newcomer audition card, skill in the production's family: **43.3** (n 991). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
+Average paid newcomer audition card, skill in the production's family: **44.5** (n 1017). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
 
 ## 6. Catalog snapshot: balanced seed 1 at year 10
 
@@ -64,4 +64,4 @@ Average paid newcomer audition card, skill in the production's family: **43.3** 
 | Jo Quinn | retired | 1 | 18 | 81 | 3 | Scary 74 |
 | Jo Fox | active | 6 | 16 | 99 | 7 | Scary 100 |
 
-Elapsed 3.8 s.
+Elapsed 3.6 s.

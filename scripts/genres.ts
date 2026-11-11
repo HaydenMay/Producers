@@ -17,7 +17,7 @@ const NEW = ["Thriller", "Romance", "Drama", "SciFi", "RomCom"];
 const med = (x: number[]) => (x.length ? [...x].sort((a, b) => a - b)[Math.floor((x.length - 1) / 2)] : NaN);
 const f1 = (x: number) => (Number.isNaN(x) ? "—" : x.toFixed(1));
 const t0 = Date.now();
-const L = ["# Genre unlocks (PROD-091)", "", `Shipped default, seeds 1–${seeds}, ${years}-year careers. Cells: **median unlock year** (route: staff / combo / era). Thresholds *(test)*: Thriller Plot 50, Romance Filming 50, Drama Writing 60, SciFi Editing 60, RomCom = released Comedy + Romance, era safety net year ${ON.genreUnlocks.eraSafetyNetYear}.`, "", `| Policy | ${NEW.join(" | ")} | Films in new genres | Median avg (off → on) | End cash p50 (off → on) | Violations |`, `|---|${NEW.map(() => "---").join("|")}|---|---|---|---|`];
+const L = ["# Genre unlocks (PROD-091)", "", `Shipped default, seeds 1–${seeds}, ${years}-year careers. Cells: **median unlock year** (route: staff / staff_eased / combo). Thresholds *(test)*: Thriller Plot 50, Romance Filming 50, Drama Writing 60, SciFi Editing 60, RomCom = released Comedy + Romance; thresholds ease 5/yr from year 4 (floor 40). Route \"staff_eased\" = opened on an eased bar.`, "", `| Policy | ${NEW.join(" | ")} | Films in new genres | Median avg (off → on) | End cash p50 (off → on) | Violations |`, `|---|${NEW.map(() => "---").join("|")}|---|---|---|---|`];
 for (const st of POL) {
   const when: Record<string, number[]> = {}, via: Record<string, Record<string, number>> = {};
   let newFilms = 0, films = 0, viol = 0;

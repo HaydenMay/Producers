@@ -26,11 +26,21 @@ describe("genre unlocks", () => {
     checkGenreUnlocks(s, D);
     expect(s.unlockedGenres).toContain("RomCom");
   });
-  it("the era safety net opens everything still locked at year 6", () => {
+  it("thresholds ease from year 4 (5/yr, floor 40) so a weak crew still opens genres itself; nothing is handed out", () => {
     const s = createStudio(1, D);
-    s.week = D.genreUnlocks.eraSafetyNetYear * 52;
+    for (const st of s.staff) st.stats.editing = 52;
+    s.week = 5 * 52; // year 5: SciFi needs 55
     checkGenreUnlocks(s, D);
-    expect([...s.unlockedGenres].sort()).toEqual(Object.keys(D.world.genres).sort());
+    expect(s.unlockedGenres).not.toContain("SciFi");
+    s.week = 6 * 52; // year 6: 50
+    checkGenreUnlocks(s, D);
+    expect(s.unlockedGenres).toContain("SciFi");
+    expect(s.events.at(-1)!.message).toContain("eased to 50");
+    const t = createStudio(1, D);
+    t.week = 30 * 52; // even decades later, a crew below the floor (40) opens nothing
+    for (const st of t.staff) for (const k of Object.keys(st.stats)) (st.stats as Record<string, number>)[k] = 39;
+    checkGenreUnlocks(t, D);
+    expect(t.unlockedGenres).toEqual(D.start.unlockedGenres);
   });
   it("there is no paid genre research option", () => {
     const s = createStudio(1, D);
@@ -39,7 +49,7 @@ describe("genre unlocks", () => {
   });
   it("real careers open new genres and make films in them; legacy never unlocks", () => {
     const r = runCareer(1, "balanced", D, { productions: 0, years: 6 }).state;
-    expect(r.unlockedGenres.length).toBe(8);
+    expect(r.unlockedGenres.length).toBeGreaterThanOrEqual(7);
     expect(r.releases.some((x) => !D.start.unlockedGenres.includes(x.genre))).toBe(true);
     const l = runCareer(1, "balanced", legacyConfig(), { productions: 0, years: 6 }).state;
     expect(l.unlockedGenres).toEqual(legacyConfig().start.unlockedGenres);

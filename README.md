@@ -54,7 +54,7 @@ Ledger PROD-213…218, config `stars.pool` (the legacy overlay turns it off; leg
 - **Fallback:** the free Star is focused on the production's family (about an average paid newcomer).
 - Fast loop: `npm run stars:smoke` → `reports/stars/summary.md`.
 
-**Genre unlocks (default on, *(test)*):** the crew opens genres (Thriller Plot 50, Romance Filming 50, Drama Writing 60, SciFi Editing 60), RomCom after releasing a Comedy and a Romance, and anything still locked opens at year 6. No paid genre research. Check: `npx tsx scripts/genres.ts` → `reports/genres/summary.md`.
+**Genre unlocks (default on, *(test)*):** the crew opens genres (Thriller Plot 50, Romance Filming 50, Drama Writing 60, SciFi Editing 60), RomCom after releasing a Comedy and a Romance; from year 4 the thresholds ease 5 points a year (floor 40) so a weak crew still gets there. Nothing is bought or gifted. Themes: staff pitches + trend inspiration (no purchase). Check: `npx tsx scripts/genres.ts` → `reports/genres/summary.md`.
 
 ## Gate 4Q: logical combinations and real duds (EXPERIMENT, pending designer review)
 

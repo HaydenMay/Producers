@@ -570,7 +570,7 @@
     "chance": 0.25
   },
   "genreUnlocks": {
-    "_label": "PROD-091 (designer 2026-11-11). Genres open through the CREW, not money: when any staff member reaches a stat threshold, the matching genre opens (Game Dev Story-style staff growth). RomCom is a combo unlock (release at least one of each listed genre). Era safety net: anything still locked at eraSafetyNetYear arrives 'with the times'. No paid genre research (designer rejected it). Checked weekly, no RNG. THRESHOLDS ARE TEST VALUES. legacy-advance.json turns it off.",
+    "_label": "PROD-091 (designer 2026-11-11). Genres open through the CREW, not money: when any staff member reaches a stat threshold, the matching genre opens (Game Dev Story-style staff growth). RomCom is a combo unlock (release at least one of each listed genre). Thresholds ease over time (easing) so nobody is stuck; nothing is ever handed out. No paid genre research (designer rejected it). Checked weekly, no RNG. THRESHOLDS ARE TEST VALUES. legacy-advance.json turns it off.",
     "enabled": true,
     "skill": {
       "Thriller": { "stat": "plot", "min": 50, "why": "twisty stories" },
@@ -579,7 +579,8 @@
       "SciFi": { "stat": "editing", "min": 60, "why": "effects work" }
     },
     "combos": { "RomCom": ["Comedy", "Romance"] },
-    "eraSafetyNetYear": 6
+    "_easingLabel": "Designer 2026-11-11 (replaces the year-6 free unlock): from fromYear on, every skill threshold drops perYear points per full year, never below floor, so a struggling crew still opens genres itself (SciFi: Editing 60, 55 in year 5, 50 in year 6, ...).",
+    "easing": { "fromYear": 4, "perYear": 5, "floor": 40 }
   },
   "time": {
     "weeksPerYear": 52
