@@ -57,15 +57,20 @@ function newStudio(seed: number) {
 function costPanel(plans: PlanDecision[]): string {
   const seen = new Set<string>();
   const rows: string[] = [];
+  const atRisk: string[] = [];
   for (const p of plans) {
     const key = `${p.format ?? "movie"}${p.episodes ? `-${p.episodes}` : ""}`;
     if (seen.has(key) || p.route === "original") continue;
     seen.add(key);
     const e = planCostEstimate(s, cfg, p);
     const icon = e.risk === "ok" ? "✅" : e.risk === "tight" ? "⚠️" : "⛔";
+    if (e.risk !== "ok") atRisk.push(key.replace("_", " "));
     rows.push(`<tr><td>${key.replace("_", " ")}</td><td>${e.weeks} wks</td><td>${$(e.baseCost)}</td><td>${$(e.crewPay)} (${$(e.crewPerWeek)}/wk)</td><td>${$(e.star.low)}–${$(e.star.high)}</td><td><b>${$(e.totalLow)}–${$(e.totalHigh)}</b></td><td>${icon} ${esc(e.note)}</td></tr>`);
   }
-  return rows.length ? `<h3>Cost over the whole run (you have ${$(s.cash)})</h3><table><tr><th>Format</th><th>Time</th><th>Production</th><th>Crew pay</th><th>Star</th><th>Total</th><th></th></tr>${rows.join("")}</table>` : "";
+  const risky = atRisk.length ? (atRisk.length === rows.length ? "every format" : atRisk.join(", ")) : "";
+  // designer 2026-11-11: warn only when a production could outrun the budget; details stay one click away
+  if (!rows.length || !risky) return "";
+  return `<p><b>⚠️ Heads up: ${risky} could put you in the red before release.</b></p><details><summary>Cost over the whole run (you have ${$(s.cash)})</summary><table><tr><th>Format</th><th>Time</th><th>Production</th><th>Crew pay</th><th>Star</th><th>Total</th><th></th></tr>${rows.join("")}</table></details>`;
 }
 
 function planForm(ch: ReturnType<typeof getChoices>): string {
