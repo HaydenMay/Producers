@@ -23,6 +23,7 @@
     "economy:smoke": "tsc --noEmit && vitest run tests/integration/gate4.test.ts && tsx scripts/economy.ts smoke",
     "economy:compare": "tsx scripts/economy.ts compare",
     "economy:gate": "tsx scripts/economy.ts gate",
+    "stars:smoke": "tsc --noEmit && vitest run tests/integration/stars.test.ts && tsx scripts/stars.ts",
     "quality:smoke": "tsc --noEmit && vitest run tests/integration/gate4q.test.ts && tsx scripts/quality.ts",
     "quality:compare": "tsx scripts/quality.ts --seeds 16 --years 10 --out reports/gate4q/compare --quiet",
     "ledger:check": "tsx scripts/ledger-check.ts"

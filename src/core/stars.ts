@@ -7,6 +7,7 @@ import { emit, newId, round2 } from "./events";
 import { int, next, range, weighted, pick } from "./rng";
 import { randomName } from "./staff";
 import type { Project, Release, Star, StarCard, StudioState } from "./types";
+import { drawFromPool, generateFocusedFallback, levelUpGrowth, originalLead, poolEnabled, updateCatalogUnlock, type Tier } from "./talent";
 
 export function budgetFor(level: number, cfg: Config): number {
   return cfg.stars.budgetBase + cfg.stars.budgetPerLevel * level;
@@ -90,6 +91,7 @@ export function priceStar(star: Star, state: StudioState, cfg: Config): StarCard
  * affordable, one card is replaced by a free Level 0 Newcomer (price exactly $0).
  */
 export function buildAuditions(state: StudioState, cfg: Config, project: Project, funds: number): StarCard[] {
+  if (poolEnabled(cfg)) return buildPoolAuditions(state, cfg, project, funds);
   const family = cfg.world.genres[project.genre as keyof typeof cfg.world.genres];
   const n = cfg.stars.auditionCount;
   const tiers: ("newcomer" | "mid" | "big")[] = ["newcomer", "mid", "mid", "big", n >= 5 ? "newcomer" : "mid"].slice(0, n) as ("newcomer" | "mid" | "big")[];
@@ -115,6 +117,51 @@ export function buildAuditions(state: StudioState, cfg: Config, project: Project
   return cards;
 }
 
+const cardFor = (state: StudioState, cfg: Config, s: Star, source: StarCard["source"], funds: number): StarCard => {
+  const p = priceStar(s, state, cfg);
+  return { starId: s.id, price: p.price, breakdown: { fameFee: p.fameFee, prestigePremium: p.prestigePremium, relationshipDiscount: p.relationshipDiscount }, source, affordable: p.price <= funds };
+};
+
+/**
+ * Stars rework (PROD-213/216/218): 4–5 auditions PULLED from the persistent pool by tier, the catalog (once
+ * unlocked) with "perfect for this role" flags, and the established lead as an extra card on sequels/new seasons.
+ */
+function buildPoolAuditions(state: StudioState, cfg: Config, project: Project, funds: number): StarCard[] {
+  const family = cfg.world.genres[project.genre as keyof typeof cfg.world.genres];
+  const n = cfg.stars.auditionCount;
+  const tiers = (["newcomer", "mid", "mid", "big", n >= 5 ? "newcomer" : "mid"] as Tier[]).slice(0, n);
+  const unlocked = updateCatalogUnlock(state, cfg);
+  const lead = originalLead(state, project);
+  const used = new Set<string>(lead ? [lead.id] : []);
+  if (unlocked) for (const id of state.hiredStarIds) used.add(id); // catalog Stars appear as catalog cards
+  const cards: StarCard[] = [];
+  for (const tier of tiers) {
+    const s = drawFromPool(state, cfg, tier, family, used);
+    used.add(s.id);
+    cards.push(cardFor(state, cfg, s, "audition", funds));
+  }
+  if (unlocked) {
+    const cat = state.hiredStarIds.map((id) => state.stars[id]).filter((s) => !s.retired && s.id !== lead?.id);
+    const pc = cfg.stars.pool.catalog;
+    const top = new Set(
+      [...cat]
+        .filter((s) => (s.skills[family] ?? 0) >= pc.perfectFitMin)
+        .sort((a, b) => (b.skills[family] ?? 0) - (a.skills[family] ?? 0))
+        .slice(0, pc.perfectFitTop)
+        .map((s) => s.id),
+    );
+    for (const s of cat) cards.push({ ...cardFor(state, cfg, s, "callback", funds), ...(top.has(s.id) ? { perfectFit: true } : {}) });
+  }
+  if (lead) cards.push(cardFor(state, cfg, lead, "original_lead", funds));
+  if (!cards.some((c) => c.affordable)) {
+    const fb = generateFocusedFallback(state, cfg, family);
+    const card: StarCard = { starId: fb.id, price: 0, breakdown: { fameFee: 0, prestigePremium: 0, relationshipDiscount: 0 }, source: "audition", affordable: true, fallbackInserted: true };
+    cards[cards.findIndex((c) => c.source === "audition")] = card;
+    emit(state, "fallback_star", `No affordable Star in the lineup; a free newcomer suited to ${family} roles (${fb.name}) was included before auditions were shown.`, { starId: fb.id, funds });
+  }
+  return cards;
+}
+
 /** Star Filming contribution comes from genre-FAMILY skill only. Themes never matter. Fame never matters. */
 export function starFit(star: Star, genre: string, cfg: Config): number {
   const family = cfg.world.genres[genre as keyof typeof cfg.world.genres];
@@ -135,6 +182,7 @@ export function applyStarCareer(state: StudioState, cfg: Config, star: Star, rel
     star.level += 1;
     star.levelXp = 0;
     leveled = true;
+    if (poolEnabled(cfg)) levelUpGrowth(star, cfg, cfg.stars.pool.growth.levelUpPoints); // PROD-217
   }
   // growth in the worked family, within the budget
   const family = cfg.world.genres[rel.genre as keyof typeof cfg.world.genres];
@@ -161,7 +209,7 @@ export function applyRecastPenalty(state: StudioState, cfg: Config, project: Pro
   if (project.ipRelation !== "sequel" && project.ipRelation !== "season") return;
   const ip = state.ips[project.ipId];
   const prev = ip?.establishedStarId;
-  if (prev && prev !== chosenStarId && state.stars[prev]) {
+  if (prev && prev !== chosenStarId && state.stars[prev] && !state.stars[prev].retired) {
     const s = state.stars[prev];
     s.relationship = Math.max(0, round2(s.relationship - cfg.stars.relRecast));
     emit(state, "star_recast", `${s.name} was replaced in their established role in ${ip.name}; relationship -${cfg.stars.relRecast}.`, { starId: prev });

@@ -1,5 +1,6 @@
 // Single source of truth for the rules: createStudio / getChoices / applyDecision / advanceWeek.
 // CLI, batch runner, agents and the web UI all go through these functions.
+import { initTalentPool, poolEnabled, talentYear } from "./talent";
 import type { Config } from "./config";
 import { configHash } from "./config";
 import { emit, ledger } from "./events";
@@ -17,7 +18,7 @@ import { audienceEraAt, criticGenerationAt, expectationsAt } from "./scoring";
 import { chooseDistribution, contractOffers, contractWeek, contractsEnabled, investedSoFar, isLateDistribution, startContract } from "./latedist";
 import { RULESET_VERSION, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
 
-export const FEATURES_MODELLED = ["movies", "limited series (config-gated)", "renewable TV seasons: orders, renewal, fatigue, twist, hiatus, announcements, contract variants A/B (config-gated)", "studio streaming service: engineer build, aggregate subscribers, catalog, Originals (config-gated)", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "theme research + staff pitches"];
+export const FEATURES_MODELLED = ["movies", "limited series (config-gated)", "renewable TV seasons: orders, renewal, fatigue, twist, hiatus, announcements, contract variants A/B (config-gated)", "studio streaming service: engineer build, aggregate subscribers, catalog, Originals (config-gated)", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships; default: persistent pool, years active, offscreen careers/retirement, catalog, original-lead card, hidden growth weights)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "theme research + staff pitches"];
 export const FEATURES_NOT_MODELLED = ["soap operas (shelved)", "named critics (Gate 2.6 proxy only)", "eras beyond a gentle quality bar", "studio upgrades other than staff capacity + TV unlock", "genre unlocks", "late-game concurrency", "TV spinoffs/reboots, Final Season announcements, other show shake-ups", "binge drops", "platform upgrades", "challenge modes"];
 
 export function createStudio(seed: number, cfg: Config): StudioState {
@@ -58,6 +59,7 @@ export function createStudio(seed: number, cfg: Config): StudioState {
   };
   ledger(state, { kind: "start_cash", amount: cfg.start.cash });
   generateWorld(state, cfg);
+  if (poolEnabled(cfg)) initTalentPool(state, cfg); // PROD-213: after the world, on its own stream
   emit(state, "start", `New studio (seed ${seed}) with ${state.staff.length} staff and $${cfg.start.cash.toLocaleString()}.`);
   return state;
 }
@@ -314,6 +316,7 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
   if (cfg.formats.tv) decayAnticipation(state, cfg);
   driftTrust(state, cfg);
   decayFans(state, cfg);
+  if (poolEnabled(cfg) && state.week % cfg.time.weeksPerYear === 0) talentYear(state, cfg); // PROD-214
   if (state.cash < 0) state.counters.negativeCashWeeks += 1;
 }
 

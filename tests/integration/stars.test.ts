@@ -1,0 +1,157 @@
+// Stars rework (PROD-213…218). Shipped default config; legacy overlay keeps it off.
+import { describe, expect, it } from "vitest";
+import { readFileSync } from "node:fs";
+import { baselineConfig, legacyConfig, withOverrides } from "../../src/core/config";
+import { createStudio } from "../../src/core/simulation";
+import { runCareer } from "../../src/batch/runner";
+import { buildAuditions, budgetFor, skillTotal } from "../../src/core/stars";
+import { addByWeights, levelUpGrowth, talentYear, tierOf, updateCatalogUnlock } from "../../src/core/talent";
+import type { Project, StarCard, Star } from "../../src/core/types";
+
+const D = baselineConfig();
+const project = (genre = "Horror", extra: Partial<Project> = {}) => ({ id: "p", genre, theme: "Zombies", ipRelation: "new", ipId: "ip1", ...extra }) as unknown as Project;
+
+describe("PROD-213 persistent pool", () => {
+  it("is generated once at creation, deterministic, and off in the legacy overlay", () => {
+    const a = createStudio(5, D), b = createStudio(5, D);
+    expect(Object.keys(a.stars).length).toBe(D.stars.pool.initialSize);
+    expect(JSON.stringify(a.stars)).toBe(JSON.stringify(b.stars));
+    const l = createStudio(5, legacyConfig());
+    expect(Object.keys(l.stars).length).toBe(0);
+    expect("catalogUnlocked" in l).toBe(false);
+  });
+  it("leaves every legacy stream untouched (own 'pool' stream): world and staff are identical to the pool-off run", () => {
+    const off = withOverrides(D, { stars: { pool: { enabled: false } } });
+    const a = createStudio(9, D), b = createStudio(9, off);
+    expect(a.world).toEqual(b.world);
+    expect(a.staff).toEqual(b.staff);
+    for (const k of Object.keys(b.rng)) expect(a.rng[k], k).toBe(b.rng[k]);
+  });
+  it("auditions pull existing pool Stars, and a passed-on Star can audition again", () => {
+    const s = createStudio(2, D);
+    const before = new Set(Object.keys(s.stars));
+    const cards = buildAuditions(s, D, project(), 1e6);
+    expect(cards.filter((c) => c.source === "audition").every((c) => before.has(c.starId))).toBe(true);
+    const r = runCareer(2, "balanced", D, { productions: 0, years: 6 }).state;
+    const seen: Record<string, number> = {};
+    for (const rel of r.releases) for (const c of rel.trace.auditionCards as StarCard[]) seen[c.starId] = (seen[c.starId] ?? 0) + 1;
+    expect(Object.values(seen).some((v) => v > 1)).toBe(true);
+  });
+});
+
+describe("PROD-214/215 years active, offscreen careers, retirement", () => {
+  it("more years active → generally more Fame", () => {
+    const st = Object.values(createStudio(1, D).stars);
+    const fame = (lo: number, hi: number) => {
+      const g = st.filter((s) => s.yearsActive! >= lo && s.yearsActive! <= hi);
+      return g.reduce((a, s) => a + s.fame, 0) / g.length;
+    };
+    expect(fame(0, 2)).toBeLessThan(fame(3, 10));
+    expect(fame(3, 10)).toBeLessThan(fame(11, 20));
+  });
+  it("a year adds a debut class, ages everyone, and veterans can retire", () => {
+    const s = createStudio(4, D);
+    const n0 = Object.keys(s.stars).length;
+    const y0 = Object.values(s.stars).map((x) => x.yearsActive!);
+    for (let y = 0; y < 8; y++) talentYear(s, D);
+    expect(Object.keys(s.stars).length).toBe(n0 + 8 * D.stars.pool.debutPerYear);
+    const orig = Object.values(s.stars).slice(0, n0);
+    expect(orig.every((x, i) => x.retired || x.yearsActive! === y0[i] + 8)).toBe(true); // nobody is busy: everyone aged 8 years
+    const ret = orig.filter((x) => x.retired);
+    expect(ret.length).toBeGreaterThan(0);
+    expect(ret.every((x) => x.yearsActive! > D.stars.pool.retirement.startYears)).toBe(true);
+  });
+  it("retired Stars never appear on a casting list", () => {
+    const s = runCareer(7, "balanced", D, { productions: 0, years: 10 }).state;
+    for (const rel of s.releases)
+      for (const c of rel.trace.auditionCards as StarCard[]) {
+        const st = s.stars[c.starId];
+        if (st.retired) expect(st.retiredWeek!, st.name).toBeGreaterThanOrEqual(rel.releaseWeek - 30);
+      }
+  });
+  it("the big-name tier doesn't empty out over a career", () => {
+    const s = runCareer(1, "balanced", D, { productions: 0, years: 10 }).state;
+    expect(Object.values(s.stars).filter((x) => !x.retired && tierOf(x, D) === "big").length).toBeGreaterThanOrEqual(15);
+  });
+});
+
+describe("PROD-216 catalog + original lead", () => {
+  it("is locked at the start: no catalog cards until unlocked", () => {
+    const s = createStudio(3, D);
+    s.hiredStarIds.push(Object.keys(s.stars)[0]);
+    expect(buildAuditions(s, D, project(), 1e6).some((c) => c.source === "callback")).toBe(false);
+    s.prestige = D.stars.pool.catalog.unlockPrestigeWithoutLadder;
+    expect(buildAuditions(s, D, project(), 1e6).some((c) => c.source === "callback")).toBe(true);
+  });
+  it("with a capacity ladder it opens on the first studio upgrade, not on Prestige", () => {
+    const L = withOverrides(D, { staffCapacity: JSON.parse(readFileSync("config/gate3.json", "utf8")).staffCapacity });
+    const s = createStudio(3, L);
+    s.prestige = 5000;
+    expect(updateCatalogUnlock(s, L)).toBe(false);
+    s.upgrades.push({ week: 1, from: 4, to: 6, cost: 1, prestigeAtUpgrade: 200 });
+    expect(updateCatalogUnlock(s, L)).toBe(true);
+  });
+  it("flags the best catalog fits as 'perfect for this role'", () => {
+    const s = createStudio(3, D);
+    s.prestige = 1000;
+    const ids = Object.keys(s.stars).slice(0, 6);
+    s.hiredStarIds.push(...ids);
+    s.stars[ids[2]].skills.Scary = 95;
+    const cards = buildAuditions(s, D, project("Horror"), 1e6);
+    expect(cards.find((c) => c.starId === ids[2])!.perfectFit).toBe(true);
+    expect(cards.filter((c) => c.perfectFit).length).toBeLessThanOrEqual(D.stars.pool.catalog.perfectFitTop);
+  });
+  it("sequels always show the established lead as an extra card, even before unlock; not if retired", () => {
+    const s = createStudio(3, D);
+    const lead = Object.keys(s.stars)[10];
+    s.ips.ip1 = { establishedStarId: lead } as never;
+    const cards = buildAuditions(s, D, project("Horror", { ipRelation: "sequel" }), 1e6);
+    expect(cards.filter((c) => c.source === "original_lead").map((c) => c.starId)).toEqual([lead]);
+    expect(cards.length).toBe(D.stars.auditionCount + 1);
+    s.stars[lead].retired = true;
+    expect(buildAuditions(s, D, project("Horror", { ipRelation: "sequel" }), 1e6).some((c) => c.source === "original_lead")).toBe(false);
+  });
+  it("franchise careers really get (and use) the original-lead card", () => {
+    const s = runCareer(1, "franchise-builder", D, { productions: 0, years: 8 }).state;
+    expect(s.releases.some((r) => (r.trace.auditionCards as StarCard[]).some((c) => c.source === "original_lead"))).toBe(true);
+  });
+});
+
+describe("PROD-217 hidden per-Star growth weights", () => {
+  it("two Stars from the same template have different weights", () => {
+    const st = Object.values(createStudio(3, D).stars).filter((s) => s.growthTemplate === "scary_funny");
+    expect(st.length).toBeGreaterThan(1);
+    expect(JSON.stringify(st[0].growthWeights)).not.toBe(JSON.stringify(st[1].growthWeights));
+  });
+  it("level-up points follow the weights and every Star gets the same points (budget permitting)", () => {
+    const mk = (w: Record<string, number>): Star => ({ id: "x", name: "x", level: 3, levelXp: 0, skills: { Scary: 0, Funny: 0, Romantic: 0, Action: 0, Dramatic: 0 }, fame: 0, relationship: 1, credits: [], hiddenShape: "twoFocus", fallback: false, growthWeights: w });
+    const a = mk({ Scary: 0.5, Funny: 0.3, Romantic: 0.1, Action: 0.05, Dramatic: 0.05 });
+    const b = mk({ Scary: 0.05, Funny: 0.05, Romantic: 0.1, Action: 0.5, Dramatic: 0.3 });
+    expect(levelUpGrowth(a, D, 18)).toBe(18);
+    expect(levelUpGrowth(b, D, 18)).toBe(18);
+    expect(a.skills.Scary).toBeGreaterThan(a.skills.Action);
+    expect(b.skills.Action).toBeGreaterThan(b.skills.Scary);
+    const c = mk({ Scary: 1, Funny: 0, Romantic: 0, Action: 0, Dramatic: 0 });
+    c.skills.Scary = 95;
+    expect(addByWeights(c, { ...c.growthWeights!, Funny: 0.01 }, 10)).toBe(10); // cap 100 overflows to the next family
+    expect(c.skills.Scary).toBe(100);
+  });
+  it("whole careers keep every Star within its budget and 0..100", () => {
+    const s = runCareer(2, "balanced", D, { productions: 0, years: 10 }).state;
+    for (const st of Object.values(s.stars)) {
+      if (!st.fallback) expect(skillTotal(st)).toBeLessThanOrEqual(budgetFor(st.level, D));
+      for (const v of Object.values(st.skills)) expect(v).toBeLessThanOrEqual(100);
+    }
+  });
+});
+
+describe("PROD-218 fallback", () => {
+  it("a broke studio gets a free Star focused on the production's family", () => {
+    const s = createStudio(6, D);
+    const cards = buildAuditions(s, D, project("Comedy"), 0);
+    const fb = cards.find((c) => c.fallbackInserted)!;
+    expect(fb.price).toBe(0);
+    expect(s.stars[fb.starId].skills.Funny).toBe(D.stars.pool.fallback.focusSkill);
+    expect(Math.max(...Object.entries(s.stars[fb.starId].skills).filter(([f]) => f !== "Funny").map(([, v]) => v))).toBe(D.stars.pool.fallback.otherSkill);
+  });
+});

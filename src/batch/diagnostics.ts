@@ -62,6 +62,7 @@ export function checkInvariants(r: CareerResult, cfg: Config): Violation[] {
   for (const id of Object.keys(s.stars)) {
     const st = s.stars[id];
     if (skillTotal(st) > budgetFor(st.level, cfg) + 1e-9 && !st.fallback) v("STAR_BUDGET", `${st.name} ${skillTotal(st)} > ${budgetFor(st.level, cfg)}`);
+    if (Object.values(st.skills).some((x) => x > 100 || x < 0)) v("STAR_SKILL_RANGE", `${st.name} ${JSON.stringify(st.skills)}`);
   }
   return out;
 }

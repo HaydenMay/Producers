@@ -230,6 +230,51 @@
     "renewThreshold": 4.0
   },
   "stars": {
+    "pool": {
+      "_label": "Stars rework (PROD-213…218). Persistent talent pool generated ONCE at game creation from the seed (own 'pool' RNG stream, so no other draw moves), a yearly debut class, offscreen careers + retirement, years active (Fame correlates with career length), per-Star hidden growth weights rolled from internal templates, a catalog that unlocks with the first studio upgrade, an 'original lead' card on sequels/new seasons, and a useful free fallback Star. ALL NUMBERS ARE TEST VALUES. legacy-advance.json turns the whole block off (legacy byte-identical).",
+      "enabled": true,
+      "initialSize": 150,
+      "tierShares": { "newcomer": 0.45, "mid": 0.35, "big": 0.2 },
+      "yearsActive": { "newcomer": [0, 2], "mid": [3, 10], "big": [8, 20] },
+      "_fameLabel": "Fame inside the tier band = lo + (hi - lo) x (fameByYears x yearsPosition + (1 - fameByYears) x random): more years active -> generally more Fame.",
+      "fameByYears": 0.7,
+      "debutAge": [18, 28],
+      "tierByFame": { "midFrom": 20, "bigFrom": 60 },
+      "debutPerYear": 15,
+      "offscreen": {
+        "_label": "Once a year every non-retired Star not cast in your current production ages one year, may retire, then may rise (Fame up, maybe a level) or fade (Fame down). 'young' = fewer than youngYears years active. Tuned so the big-name tier holds ~30 active Stars over 10 years (reports/stars/summary.md).",
+        "youngYears": 8,
+        "riseChance": { "young": 0.4, "veteran": 0.25 },
+        "fadeChance": { "young": 0.08, "veteran": 0.2 },
+        "riseFame": [4, 12],
+        "fadeFame": [3, 10],
+        "levelUpChance": { "young": 0.35, "veteran": 0.1 }
+      },
+      "retirement": { "startYears": 15, "chancePerYear": 0.03, "max": 0.6 },
+      "growth": {
+        "_label": "Per-Star hidden growth weights: a template (internal only, never shown) + per-family jitter, normalised. Level-up points go by these weights; per-film practice still adds growthPerProject to the worked family. levelUpPoints + 2 films x practice = budgetPerLevel, so the budget stays the limit.",
+        "levelUpPoints": 18,
+        "offscreenLevelUpPoints": 30,
+        "jitter": [0.6, 1.4],
+        "templates": {
+          "scary_funny": { "chance": 1, "weights": { "Scary": 0.45, "Funny": 0.3 } },
+          "action_funny": { "chance": 1, "weights": { "Action": 0.5, "Funny": 0.2 } },
+          "funny_romantic": { "chance": 1, "weights": { "Funny": 0.4, "Romantic": 0.35 } },
+          "dramatic_romantic": { "chance": 1, "weights": { "Dramatic": 0.4, "Romantic": 0.35 } },
+          "dramatic_scary": { "chance": 1, "weights": { "Dramatic": 0.4, "Scary": 0.35 } },
+          "action_dramatic": { "chance": 1, "weights": { "Action": 0.4, "Dramatic": 0.3 } },
+          "specialist": { "chance": 1.5, "weights": { "*": 0.6 } },
+          "even": { "chance": 1, "weights": {} }
+        }
+      },
+      "catalog": {
+        "_label": "Unlocks with the first studio upgrade (staff-capacity ladder). If the config has no ladder, it unlocks at unlockPrestigeWithoutLadder Prestige instead (the first ladder step's Prestige in gate3.json). Flags up to perfectFitTop catalog Stars with family skill >= perfectFitMin as 'perfect for this role'.",
+        "unlockPrestigeWithoutLadder": 200,
+        "perfectFitMin": 60,
+        "perfectFitTop": 2
+      },
+      "fallback": { "_label": "Free fallback Star: skill focused on the production's family, about an average paid newcomer (measured in reports/stars).", "focusSkill": 45, "otherSkill": 6 }
+    },
     "budgetBase": 100,
     "budgetPerLevel": 30,
     "maxLevel": 10,

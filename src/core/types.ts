@@ -41,15 +41,23 @@ export interface Star {
   credits: string[]; // release ids
   hiddenShape: "balanced" | "twoFocus" | "specialist" | "fallback"; // internal only, never shown
   fallback: boolean;
+  // Stars rework (PROD-213…218), present only when cfg.stars.pool.enabled
+  yearsActive?: number; // career length; Fame generally follows it
+  age?: number;
+  retired?: boolean;
+  retiredWeek?: number;
+  growthWeights?: Record<string, number>; // hidden per-Star level-up weights (sum 1), never shown
+  growthTemplate?: string; // internal template the weights were rolled from, never shown
 }
 
 export interface StarCard {
   starId: string;
   price: number;
   breakdown: { fameFee: number; prestigePremium: number; relationshipDiscount: number };
-  source: "audition" | "callback";
+  source: "audition" | "callback" | "original_lead"; // callback = catalog entry (PROD-216)
   affordable: boolean;
   fallbackInserted?: boolean;
+  perfectFit?: boolean; // catalog flag: "perfect for this role" (PROD-216)
 }
 
 export interface Distributor {
@@ -261,6 +269,7 @@ export interface StudioState {
   staff: Staff[];
   stars: Record<string, Star>;
   hiredStarIds: string[]; // callback catalog
+  catalogUnlocked?: boolean; // Stars rework: catalog opens with the first studio upgrade (PROD-216)
   distributors: Distributor[];
   ips: Record<string, IpLine>;
   releases: Release[];

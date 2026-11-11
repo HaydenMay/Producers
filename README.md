@@ -43,6 +43,17 @@ Overrides for every mode: `-- --seeds N --years N --strategies a,b --variants le
 
 The 200-seed / 25-year matrices from earlier gates (`scripts/fu-matrix.ts`, experiment specs) are **opt-in stress tests**, not a prerequisite for progress.
 
+## Stars rework (default on, numbers *(test)*)
+
+Ledger PROD-213…218, config `stars.pool` (the legacy overlay turns it off; legacy batches stay byte-identical).
+- **Persistent talent pool:** 150 Stars made once at game creation from the seed (own `pool` RNG stream), plus a 15-face debut class every year. Auditions pull from it by Fame tier, so a Star you pass on can come back later, older and maybe famous.
+- **Years active:** more years generally means more Fame; retirement odds climb after 15 years.
+- **Offscreen careers:** once a year Stars rise, fade or retire on their own.
+- **Catalog:** everyone you've worked with (active/retired). Unlocks with the first studio upgrade (or 200 Prestige when the config has no staff ladder) and flags "perfect for this role". Sequels/new seasons always add an "original lead" card.
+- **Hidden growth weights:** each Star rolls their own; level-ups follow them (never shown).
+- **Fallback:** the free Star is focused on the production's family (about an average paid newcomer).
+- Fast loop: `npm run stars:smoke` → `reports/stars/summary.md`.
+
 ## Gate 4Q: logical combinations and real duds (EXPERIMENT, pending designer review)
 
 - **`world.compatibility.mode`:** `random` (default, byte-identical to every earlier gate) or `editorial`. The editorial matrix grades audience and critics separately for each **exact** genre × theme pair, and each world shifts a few pairs by at most one grade step.
@@ -73,7 +84,7 @@ Docs: `docs/archive/gates/gate-4-economy-findings.md`, `docs/archive/gates/gate-
 | **Gate 4 economy experiment** | ✅ Default (values still *(test)*) | `economy.mode` late_distribution + contracts are the baseline; legacy_advance kept as a regression overlay; FAST/COMPARE/GATE loops. Default legs = diffusion + movie-only dud levers. Dud economics: `npx tsx scripts/duds.ts`. |
 | **4 — Thin browser UI** | ✅ Done (minimal) | Manual step-through career, strategy auto-step, batch runner, config editor, replay. Same core; no rules in the UI. |
 
-**Tests:** 139 (single grade + default economy + movie dud levers); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
+**Tests:** 155 (single grade + default economy + movie dud levers + Stars rework); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
 ## Gate 3 follow-up: staff firing and organic TV longevity (pending designer review)

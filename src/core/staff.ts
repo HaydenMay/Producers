@@ -41,8 +41,8 @@ export function payroll(state: StudioState, cfg: Config): void {
   ledger(state, { kind: "upkeep", amount: -cfg.start.upkeepPerWeek });
 }
 
-const FIRST = ["Sam", "Alex", "Jo", "Max", "Rae", "Kit", "Lee", "Noa", "Ari", "Bo", "Cam", "Dee", "Eli", "Fin", "Gus", "Ivy", "Jay", "Kai", "Liv", "Mo"];
-const LAST = ["Reyes", "Park", "Vale", "Okafor", "Lind", "Moreau", "Hart", "Quinn", "Sato", "Novak", "Diaz", "Fox", "Grant", "Imai", "Kerr", "Lowe"];
+export const FIRST = ["Sam", "Alex", "Jo", "Max", "Rae", "Kit", "Lee", "Noa", "Ari", "Bo", "Cam", "Dee", "Eli", "Fin", "Gus", "Ivy", "Jay", "Kai", "Liv", "Mo"];
+export const LAST = ["Reyes", "Park", "Vale", "Okafor", "Lind", "Moreau", "Hart", "Quinn", "Sato", "Novak", "Diaz", "Fox", "Grant", "Imai", "Kerr", "Lowe"];
 
 export function randomName(state: StudioState): string {
   return `${pick(state.rng, "names", FIRST)} ${pick(state.rng, "names", LAST)}`;
