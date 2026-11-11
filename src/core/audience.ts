@@ -83,6 +83,9 @@ export function releaseWeek(state: StudioState, cfg: Config, rel: Release): { gr
 /** Money per viewer by format and route. Streaming Originals earn NO traditional revenue (subscribers only). */
 /** Gate 4 SENSITIVITY knob (default 5 = every earlier gate): the score at which in-run word of mouth turns from bad to good. */
 const pivotOf = (cfg: Config) => (cfg.audience as { qualityPivot?: number }).qualityPivot ?? 5;
+/** Producers dud fix (PROD-092/208): MOVIE-only overrides of the pivot and bad-reception decay. null = use the global knob. */
+export const moviePivotOf = (cfg: Config, rel: Release) => (formatOf(rel) === "movie" ? ((cfg.audience as { movieQualityPivot?: number | null }).movieQualityPivot ?? null) : null) ?? pivotOf(cfg);
+export const movieBadDecayOf = (cfg: Config, rel: Release) => (formatOf(rel) === "movie" ? ((cfg.audience.diffusion as { movieBadInterestDecay?: number | null }).movieBadInterestDecay ?? null) : null) ?? cfg.audience.diffusion.badInterestDecay;
 
 export function grossPerViewer(cfg: Config, rel: Release): number {
   if (rel.route === "original") return 0;
@@ -177,13 +180,14 @@ function diffusionStep(cfg: Config, rel: Release): { viewers: number; driver: st
     return { viewers, driver: "opening (aware people watching)" };
   }
   const early = rel.weekIndex <= a.criticWeeks;
-  const qC = (rel.critic - pivotOf(cfg)) / 5;
-  const qA = (rel.audience - pivotOf(cfg)) / 5;
+  const pivot = moviePivotOf(cfg, rel);
+  const qC = (rel.critic - pivot) / 5;
+  const qA = (rel.audience - pivot) / 5;
   const q = early ? qC : qA;
   const aware = rel.aware ?? 0;
   const unaware = Math.max(0, rel.reachCap - rel.totalViewers - aware);
   const newlyAware = early ? unaware * d.criticBuzzRate * Math.max(0, qC) : Math.min(unaware, d.womPerViewer * Math.max(0, qA) * rel.lastViewers);
-  const decay = Math.min(0.95, d.interestDecay + d.badInterestDecay * Math.max(0, -q));
+  const decay = Math.min(0.95, d.interestDecay + movieBadDecayOf(cfg, rel) * Math.max(0, -q));
   const pool = aware * (1 - decay) + newlyAware;
   const watchRate = Math.max(0.02, Math.min(0.95, d.watchRate * (1 + d.watchRateQualityWeight * q)));
   const viewers = Math.round(pool * watchRate);

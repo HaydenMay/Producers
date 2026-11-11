@@ -1,5 +1,5 @@
 {
-  "_overlay": "REGRESSION ONLY. Restores the pre-Producers economy on top of config/baseline.json: distributor advances at the pitch, lifeline, surplus (economy.mode legacy_advance), no work-for-hire contracts, $40K start cash. Every legacy byte-identity proof and every older gate overlay (candidate.json, gate3.json) layers on this. Not a design option (PROD-115 SUPERSEDED).",
+  "_overlay": "REGRESSION ONLY. Restores the pre-Producers economy on top of config/baseline.json: distributor advances at the pitch, lifeline, surplus (economy.mode legacy_advance), no work-for-hire contracts, $40K start cash, geometric legs and no movie-only dud levers. Every legacy byte-identity proof and every older gate overlay (candidate.json, gate3.json) layers on this. Not a design option (PROD-115 SUPERSEDED).",
   "economy": {
     "mode": "legacy_advance",
     "contracts": {
@@ -8,5 +8,12 @@
   },
   "start": {
     "cash": 40000
+  },
+  "audience": {
+    "movieQualityPivot": null,
+    "legsModel": "geometric",
+    "diffusion": {
+      "movieBadInterestDecay": null
+    }
   }
 }

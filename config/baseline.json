@@ -319,6 +319,8 @@
   },
   "audience": {
     "qualityPivot": 5,
+    "movieQualityPivot": 6.5,
+    "_movieDudLabel": "Producers dud fix (PROD-092/208), TEST VALUES: MOVIE-only word-of-mouth pivot (diffusion legs only); null = use qualityPivot. TV/limited series keep the global pivot (PROD-209). Legacy overlay sets null.",
     "_qualityPivotLabel": "Gate 4 SENSITIVITY knob: score where in-run buzz / word of mouth / episode retention turn from negative to positive (weekly diffusion + episodic models only). 5 = every earlier gate.",
     "baseAwareness": 0.35,
     "fameAwareness": 0.6,
@@ -343,16 +345,17 @@
     "backlashRate": 0.35,
     "spinoffFanShare": 0.5,
     "fanDecayPerYear": 0.1,
-    "legsModel": "geometric",
+    "legsModel": "diffusion",
     "diffusion": {
-      "_label": "WORKING ASSUMPTION (Gate 2.5 candidate): finite awareness diffusion. Used only when legsModel = 'diffusion'.",
+      "_label": "WORKING ASSUMPTION (Gate 2.5 candidate): finite awareness diffusion. Used only when legsModel = 'diffusion' (the Producers default since 2026-11-10; legacy overlay = geometric). movieBadInterestDecay = MOVIE-only override of badInterestDecay (null = global).",
       "openWatchShare": 0.3,
       "watchRate": 0.3,
       "watchRateQualityWeight": 0.25,
       "criticBuzzRate": 0.12,
       "womPerViewer": 2.0,
       "interestDecay": 0.12,
-      "badInterestDecay": 0.35
+      "badInterestDecay": 0.35,
+      "movieBadInterestDecay": 1.0
     }
   },
   "distribution": {

@@ -70,10 +70,10 @@ Docs: `docs/archive/gates/gate-4-economy-findings.md`, `docs/archive/gates/gate-
 | **2 — Strategies, batch, diagnostics** | ✅ Done | 7 policies, batch runner, paired-seed compare, 13 diagnostic flags, invariant checker, CSV/JSON/Markdown, regression seed bank. Catches injected bugs. |
 | **3 — TV + streaming** | ✅ Built (pending designer review) | Limited series, renewable TV, streaming; config-gated (`config/gate3.json`). Follow-up: staff firing, no season cap, viewer-fatigue and breakthrough experiments (default off). |
 | **Gate 4Q scoring experiment** | 🧪 Candidate built (pending designer review) | **single-grade** editorial combo matrix (one grade per pair, both scores), D/F severity, cult appeal; `quality:smoke` / `quality:compare`. |
-| **Gate 4 economy experiment** | ✅ Default (values still *(test)*) | `economy.mode` late_distribution + contracts are the baseline; legacy_advance kept as a regression overlay; FAST/COMPARE/GATE loops. Dud economics: `npx tsx scripts/duds.ts`. |
+| **Gate 4 economy experiment** | ✅ Default (values still *(test)*) | `economy.mode` late_distribution + contracts are the baseline; legacy_advance kept as a regression overlay; FAST/COMPARE/GATE loops. Default legs = diffusion + movie-only dud levers. Dud economics: `npx tsx scripts/duds.ts`. |
 | **4 — Thin browser UI** | ✅ Done (minimal) | Manual step-through career, strategy auto-step, batch runner, config editor, replay. Same core; no rules in the UI. |
 
-**Tests:** 138 passing (single grade + default economy); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
+**Tests:** 139 (single grade + default economy + movie dud levers); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
 ## Gate 3 follow-up: staff firing and organic TV longevity (pending designer review)
@@ -158,7 +158,7 @@ python3 -I scripts/g26_decision_table.py reports/gate2_6/followup G26_followup
 ## Gate 2.5 additions (movie system iteration, pending designer approval)
 
 - **Studio-wide employee capacity** (`staffCapacity`): the engine refuses hires above `maxStaff` (choices, `applyDecision` and `hireStaff` all enforce it). Every employed staff member still works on the one production. Upgrades are an explicit legal action, `upgrade_studio`, with cost + Prestige test triggers. The baseline keeps the historical uncapped behavior; `config/candidate.json` uses **2 / 4 → 6 → 8**.
-- **Weekly legs model** (`audience.legsModel`): `geometric` (Gate 2, baseline) or `diffusion` (candidate: finite awareness diffusion where critic buzz and audience word of mouth can grow weekly viewers, capped by reach). Feedback popups now state the actual direction, and an invariant checks it.
+- **Weekly legs model** (`audience.legsModel`): `geometric` (Gate 2; now legacy overlay only) or `diffusion` (**the Producers default**: finite awareness diffusion where critic buzz and audience word of mouth can grow weekly viewers, capped by reach). Movie-only dud levers `audience.movieQualityPivot` 6.5 and `audience.diffusion.movieBadInterestDecay` 1.0 *(test)* make bad movies lose money; TV keeps the global knobs. Feedback popups now state the actual direction, and an invariant checks it.
 - **Prestige scopes:** each milestone may carry `scope: release | ip | career`; global `repeatScope` = `perRelease | perIP | career | explicit`. New kinds: `ipLifetimeGross`, `ipLifetimeViewers`.
 - **New policies:** `selective-self-funder` (self-funds only when its visible estimate favors it), `repeat-farmer` (adversarial Prestige farming). Opt in with `--strategies`.
 - **Docs:** results in `docs/archive/gates/gate-2-5-findings.md`; approvals and open items in `docs/archive/gates/gate-2-5-open-decisions.md`; new assumptions G1–G13 in `docs/assumptions-register.md`.

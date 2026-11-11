@@ -18,8 +18,10 @@ const BASES: Record<string, Config> = {
   default: baselineConfig(),
   quality: withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4q.json", "utf8"))),
 };
+const OFF = { audience: { movieQualityPivot: null, diffusion: { movieBadInterestDecay: null } } };
 const LEVERS: Record<string, Record<string, unknown>> = {
   none: {},
+  "movie-only both": { audience: { movieQualityPivot: 6.5, diffusion: { movieBadInterestDecay: 1.0 } } },
   pivot: { audience: { qualityPivot: 6.5 } },
   decay: { audience: { diffusion: { badInterestDecay: 1.0 } } },
   both: { audience: { qualityPivot: 6.5, diffusion: { badInterestDecay: 1.0 } } },
@@ -54,20 +56,34 @@ const L = [
   "",
   `Seeds 1–${seeds}, ${years}-year careers. Each cell = **share of finished releases losing money all-in · median all-in net (n)**. All-in = studio take + surplus − overruns − payroll/upkeep during production. Quality rules are fixed per base; only revenue levers move. TEST ASSUMPTIONS.`,
   "",
-  "Levers: **pivot** = word-of-mouth pivot 5 → 6.5; **decay** = bad-reception interest decay 0.35 → 1.0; **both** = the pair.",
+  "Levers: **pivot** = word-of-mouth pivot 5 → 6.5; **decay** = bad-reception interest decay 0.35 → 1.0; **both** = the pair, all formats; **movie-only both** = the pair for movies only (\`audience.movieQualityPivot\`, \`audience.diffusion.movieBadInterestDecay\`), TV keeps the global knobs.",
   "",
   "## 1. Movies",
   "",
 ];
-for (const [bname, base] of Object.entries(BASES)) {
-  L.push(`### Base: ${bname === "default" ? "shipped default (`config/baseline.json`)" : "quality candidate (`config/gate4q.json`, single grade)"}`, "", `| Levers | ${BANDS.map((b) => `${b}`).join(" | ")} | End cash p50: ${MOVIE_POLICIES.join(" / ")} |`, `|---|${BANDS.map(() => "---").join("|")}|---|`);
+{
+  L.push("### Shipped default (`config/baseline.json`): the three steps", "", `| Setup | ${BANDS.join(" | ")} | End cash p50: ${MOVIE_POLICIES.join(" / ")} |`, `|---|${BANDS.map(() => "---").join("|")}|---|`);
+  const steps: [string, Config][] = [
+    ["old default: geometric legs, no levers", withOverrides(BASES.default, { ...OFF, audience: { ...OFF.audience, legsModel: "geometric" } })],
+    ["diffusion legs, no levers", withOverrides(BASES.default, OFF)],
+    ["**NEW DEFAULT**: diffusion + movie-only levers", BASES.default],
+  ];
+  for (const [label, cfg] of steps) {
+    const { rel, end } = run(cfg, MOVIE_POLICIES, ["movie"]);
+    L.push(`| ${label} | ${BANDS.map((b) => cell(rel.filter((x) => x.band === b))).join(" | ")} | ${MOVIE_POLICIES.map((p) => $(end[p])).join(" / ")} |`);
+  }
+  L.push("");
+}
+for (const [bname, base] of Object.entries(BASES).filter(([k]) => k !== "default")) {
+  L.push(`### Base: quality candidate (\`config/gate4q.json\`, single grade)`, "", `| Levers | ${BANDS.map((b) => `${b}`).join(" | ")} | End cash p50: ${MOVIE_POLICIES.join(" / ")} |`, `|---|${BANDS.map(() => "---").join("|")}|---|`);
+  void bname;
   for (const [lname, lev] of Object.entries(LEVERS)) {
     const { rel, end } = run(withOverrides(base, lev), MOVIE_POLICIES, ["movie"]);
     L.push(`| ${lname} | ${BANDS.map((b) => cell(rel.filter((x) => x.band === b))).join(" | ")} | ${MOVIE_POLICIES.map((p) => $(end[p])).join(" / ")} |`);
   }
   L.push("");
 }
-L.push("## 2. TV (separate; quality candidate only, the shipped default has TV off)", "", "Seasons (`tv`) and limited series (`limited_series`) are reported apart because their cost and reach differ.", "");
+L.push("## 2. TV (separate; quality candidate only, the shipped default has TV off). The movie-only knobs never touch a TV/limited release (unit test in `tests/integration/defaults.test.ts`); `movie-only both` still differs from `none` because these policies also make movies (before TV unlocks, or when no show is renewable), and those movies now earn less, which changes cash and later choices.", "", "Seasons (`tv`) and limited series (`limited_series`) are reported apart because their cost and reach differ.", "");
 const base = BASES.quality;
 for (const fmt of ["tv", "limited_series"]) {
   L.push(`### ${fmt}`, "", `| Levers | ${BANDS.join(" | ")} | End cash p50: ${TV_POLICIES.join(" / ")} |`, `|---|${BANDS.map(() => "---").join("|")}|---|`);

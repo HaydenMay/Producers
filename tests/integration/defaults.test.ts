@@ -12,15 +12,21 @@ describe("Producers default economy", () => {
     expect(d.economy.mode).toBe("late_distribution");
     expect(d.economy.contracts.enabled).toBe(true);
     expect(d.start.cash).toBe(120_000);
+    expect(d.audience.legsModel).toBe("diffusion");
+    expect(d.audience.movieQualityPivot).toBe(6.5);
+    expect(d.audience.diffusion.movieBadInterestDecay).toBe(1.0);
     const l = legacyConfig();
     expect(l.economy.mode).toBe("legacy_advance");
     expect(l.economy.contracts.enabled).toBe(false);
     expect(l.start.cash).toBe(40_000);
+    expect(l.audience.legsModel).toBe("geometric");
+    expect(l.audience.movieQualityPivot).toBeNull();
+    expect(l.audience.diffusion.movieBadInterestDecay).toBeNull();
   });
   it("legacyConfig keeps the baseline name (legacy outputs stay comparable)", () => {
     expect(legacyConfig().name).toBe("baseline");
   });
-  it("legacy overlay touches ONLY the economy mode, contracts switch and start cash", () => {
+  it("legacy overlay touches ONLY economy mode, contracts, start cash, legs model and the movie dud levers", () => {
     const d = baselineConfig() as unknown as Record<string, unknown>;
     const l = legacyConfig() as unknown as Record<string, unknown>;
     const strip = (c: Record<string, unknown>) => {
@@ -28,6 +34,9 @@ describe("Producers default economy", () => {
       delete x.economy.mode;
       delete x.economy.contracts.enabled;
       delete x.start.cash;
+      delete x.audience.legsModel;
+      delete x.audience.movieQualityPivot;
+      delete x.audience.diffusion.movieBadInterestDecay;
       delete x._overlay;
       return x;
     };
@@ -42,6 +51,20 @@ describe("Producers default economy", () => {
     const b = runBatch(1, 6, ["balanced", "cheap-duds", "famous-star", "franchise-builder"], baselineConfig(), { productions: 6, drain: true });
     expect(b.violations).toEqual([]);
     expect(b.metrics.every((c) => c.releases > 0)).toBe(true);
+  });
+  it("movie dud levers are movie-only: TV and limited series keep the global knobs", async () => {
+    const { moviePivotOf, movieBadDecayOf } = await import("../../src/core/audience");
+    const { runCareer } = await import("../../src/batch/runner");
+    const { formatOf } = await import("../../src/core/formats");
+    const g3 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
+    const rels = runCareer(3, "mixed", g3, { productions: 0, years: 6 }).state.releases;
+    const movie = rels.find((r) => formatOf(r) === "movie")!;
+    const tv = rels.find((r) => formatOf(r) !== "movie")!;
+    expect(movie && tv).toBeTruthy();
+    expect(moviePivotOf(g3, movie)).toBe(6.5);
+    expect(movieBadDecayOf(g3, movie)).toBe(1.0);
+    expect(moviePivotOf(g3, tv)).toBe(5);
+    expect(movieBadDecayOf(g3, tv)).toBe(0.35);
   });
   it("a new default studio can afford its first studio-funded movie", () => {
     const s = createStudio(1, baselineConfig());
