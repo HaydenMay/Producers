@@ -10,4 +10,4 @@ Shipped default, seeds 1–8, 10-year careers. **off** = bonus 0 / 0; **on** = A
 | franchise-builder | 6.88 → 7.15 | 6.80 → 6.99 | 6.51 → 6.69 | 0% → 0% | 0% → 0% | +0.33 | 0% → 0% | 0% → 0% | $4.67M → $6.45M |
 | cheap-duds | 6.63 → 6.78 | 6.35 → 6.44 | 6.91 → 7.02 | 0% → 0% | 0% → 0% | +0.12 | 0% → 0% | 0% → 0% | $3.86M → $4.69M |
 
-Invariant violations (both runs): 0. Elapsed 2.7 s.
+Invariant violations (both runs): 0. Elapsed 3.0 s.

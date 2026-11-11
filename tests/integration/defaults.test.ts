@@ -17,7 +17,7 @@ describe("Producers default economy", () => {
     expect(d.audience.movieQualityPivot).toBe(6.5);
     expect(d.audience.diffusion.movieBadInterestDecay).toBe(3.0);
     expect(d.formats.tv && d.formats.limitedSeries).toBe(true);
-    expect(d.formats.streaming).toBe(false);
+    expect(d.formats.streaming).toBe(true);
     expect(d.world.compatibility.mode).toBe("editorial");
     expect(d.expectations.critics.enabled).toBe(true);
     const l = legacyConfig();
@@ -62,6 +62,9 @@ describe("Producers default economy", () => {
       delete x.world.grossPerViewer;
       delete x.world.compatibility.mode;
       delete x.expectations.critics;
+      delete x.formats.streaming;
+      delete x.streaming.unlock.prestige;
+      delete x.streaming.feePerSubWeek;
       delete x._overlay;
       return x;
     };

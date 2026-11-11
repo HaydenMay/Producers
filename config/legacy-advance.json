@@ -77,5 +77,11 @@
       "maxToughness": 0.12,
       "adaptYears": null
     }
+  },
+  "streaming": {
+    "unlock": {
+      "prestige": 2500
+    },
+    "feePerSubWeek": 0.5
   }
 }

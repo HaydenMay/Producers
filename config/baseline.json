@@ -642,10 +642,10 @@
   },
   "formats": {
     "_label": "Gate 3. LOCKED direction: movies + limited series first, TV via a studio upgrade (money + Prestige), streaming later. All false = the Gate 2.6 movie-only kernel, byte-identical.",
-    "_defaultLabel": "Designer 2026-11-11: limited series and TV ship ON in the Producers default (TV still unlocks via the studio upgrade: Prestige + cash). Streaming stays off until reviewed. legacy-advance.json restores all false.",
+    "_defaultLabel": "Designer 2026-11-11: limited series and TV ship ON in the Producers default (TV still unlocks via the studio upgrade: Prestige + cash). Streaming ON since 2026-11-11 after the payback review (reports/streaming/summary.md). legacy-advance.json restores all false.",
     "limitedSeries": true,
     "tv": true,
-    "streaming": false
+    "streaming": true
   },
   "limitedSeries": {
     "_label": "TEST ASSUMPTIONS. Self-contained, NON-renewable series: fixed episode package, weekly airing + short tail.",
@@ -768,8 +768,9 @@
   },
   "streaming": {
     "_label": "TEST ASSUMPTIONS for the studio streaming service (one aggregate subscriber business; no per-title payouts).",
+    "_reviewLabel": "Designer 2026-11-11 review: after movies went to 30 weeks / $4 tickets, a platform never paid back (−$1.5M to −$8.8M by year 20). Subscription $0.50 → $0.75/sub/week and unlock Prestige 2,500 → 2,000 *(test)*: mixed studios launch ~year 7.4 and pay back in ~2.5 years (+$4.8M by year 15, +$10.7M by year 20); a streaming-focused studio pays back in ~4 years. Legacy overlay: $0.50, 2,500.",
     "unlock": {
-      "prestige": 2500,
+      "prestige": 2000,
       "minCatalog": 8
     },
     "engineer": {
@@ -783,7 +784,7 @@
     "buildCost": 600000,
     "buildWeeks": 30,
     "reachableMarket": 120000,
-    "feePerSubWeek": 0.5,
+    "feePerSubWeek": 0.75,
     "opex": {
       "fixedPerWeek": 8000,
       "perSubPerWeek": 0.15

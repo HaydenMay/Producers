@@ -60,4 +60,4 @@ Average paid newcomer audition card, skill in the production's family: **46.9** 
 | Mo Park | active | 4 | 9 | 89 | 10 | Funny 100 |
 | Kai Lind | active | 1 | 9 | 50 | 6 | Dramatic 100 |
 
-Elapsed 2.9 s.
+Elapsed 2.6 s.

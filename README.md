@@ -56,7 +56,7 @@ Ledger PROD-213…218, config `stars.pool` (the legacy overlay turns it off; leg
 
 **Genre unlocks (default on, *(test)*):** the crew opens genres (Thriller Plot 50, Romance Filming 50, Drama Writing 60, SciFi Editing 60), RomCom after releasing a Comedy and a Romance; from year 4 the thresholds ease 5 points a year (floor 40) so a weak crew still gets there. Nothing is bought or gifted. Themes: staff pitches + trend inspiration (no purchase). Check: `npx tsx scripts/genres.ts` → `reports/genres/summary.md`.
 
-**Formats:** limited series and TV ship ON by default (TV unlocks via the studio upgrade); streaming is off until reviewed. Production time: limited series 12 wks < TV season 14–32 wks < movie 30 wks; tickets $4, limited series $0.40 / TV $0.46 per episode viewer; a movie counts double experience. Check: `npx tsx scripts/formats.ts` → `reports/formats/summary.md`. **TV rules:** TV pays about like movies per production-week (`tv.grossPerEpisodeViewer` 0.42), bad seasons drive viewers away (`tv.showHealth`), and TV earns Prestige from achievements (acclaimed season, hit show, long-runner), never airtime. Check: `npx tsx scripts/tv.ts` → `reports/tv/summary.md`.
+**Formats:** limited series, TV and streaming ship ON by default (TV unlocks via the studio upgrade; streaming at 2,000 Prestige + 8 catalog titles + $600K). Streaming payback: `npx tsx scripts/streaming.ts` → `reports/streaming/summary.md`. Production time: limited series 12 wks < TV season 14–32 wks < movie 30 wks; tickets $4, limited series $0.40 / TV $0.46 per episode viewer; a movie counts double experience. Check: `npx tsx scripts/formats.ts` → `reports/formats/summary.md`. **TV rules:** TV pays about like movies per production-week (`tv.grossPerEpisodeViewer` 0.42), bad seasons drive viewers away (`tv.showHealth`), and TV earns Prestige from achievements (acclaimed season, hit show, long-runner), never airtime. Check: `npx tsx scripts/tv.ts` → `reports/tv/summary.md`.
 
 ## Gate 4Q: logical combinations and real duds (EXPERIMENT, pending designer review)
 
@@ -88,7 +88,7 @@ Docs: `docs/archive/gates/gate-4-economy-findings.md`, `docs/archive/gates/gate-
 | **Gate 4 economy experiment** | ✅ Default (values still *(test)*) | `economy.mode` late_distribution + contracts are the baseline; legacy_advance kept as a regression overlay; FAST/COMPARE/GATE loops. Default legs = diffusion + movie-only dud levers. Dud economics: `npx tsx scripts/duds.ts`. |
 | **4 — Thin browser UI** | ✅ Done (minimal) | Manual step-through career, strategy auto-step, batch runner, config editor, replay. Same core; no rules in the UI. |
 
-**Tests:** 174 passing (full suite, 2026-11-11); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
+**Tests:** 177 passing (full suite, 2026-11-11); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
 ## Gate 3 follow-up: staff firing and organic TV longevity (pending designer review)
