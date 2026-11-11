@@ -172,10 +172,13 @@ describe("PROD-051 option B: flat Star score bonus", () => {
     expect(on.critic - off.critic).toBeCloseTo(0.16, 5);
     expect(off.starBonus).toBeUndefined();
   });
-  it("is the same size for a rookie film and a veteran film (no saturation)", () => {
-    const rookie = { plot: 50, writing: 50, filming: 50, editing: 50 }, vet = { plot: 85, writing: 85, filming: 85, editing: 85 };
-    const d = (x: typeof m) => computeScores(x, { audience: "C", critic: "C" }, 0, false, D, undefined, 80).audience - computeScores(x, { audience: "C", critic: "C" }, 0, false, D, undefined, 0).audience;
-    expect(d(rookie)).toBeCloseTo(d(vet), 5);
+  const d = (x: typeof m) => computeScores(x, { audience: "C", critic: "C" }, 0, false, D, undefined, 80).audience - computeScores(x, { audience: "C", critic: "C" }, 0, false, D, undefined, 0).audience;
+  it("is the same size at any skill level below the taper (no meter saturation)", () => {
+    expect(d({ plot: 50, writing: 50, filming: 50, editing: 50 })).toBeCloseTo(d({ plot: 78, writing: 78, filming: 78, editing: 78 }), 5);
+  });
+  it("tapers above 8: half at 9, nothing at 10 (a good actor can't carry a film to perfection)", () => {
+    expect(d({ plot: 90, writing: 90, filming: 90, editing: 90 })).toBeCloseTo(0.2, 5);
+    expect(d({ plot: 100, writing: 100, filming: 100, editing: 100 })).toBeCloseTo(0, 5);
   });
   it("is off in the legacy overlay", () => {
     const L = legacyConfig();
