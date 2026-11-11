@@ -130,7 +130,11 @@ export function computeScores(
   audience = audience * comboAudienceMult * fatigueMult;
   critic = critic * comboCriticMult * fatigueMult * saturationMult;
   const sb = (cfg.scoring as { starScoreBonus?: { audience: number; critic: number } }).starScoreBonus;
-  const starBonus = sb && starFit > 0 && (sb.audience || sb.critic) ? { audience: round2((sb.audience * starFit) / 100), critic: round2((sb.critic * starFit) / 100) } : null;
+  // critics only credit the Star as far as the story holds up (designer 2026-11-11): Plot + Writing gate
+  const gate = (sb as { criticStoryGate?: { zeroAt: number; fullAt: number } | null } | undefined)?.criticStoryGate;
+  const story = (meters.plot + meters.writing) / 2;
+  const storyFactor = gate ? Math.max(0, Math.min(1, (story - gate.zeroAt) / (gate.fullAt - gate.zeroAt))) : 1;
+  const starBonus = sb && starFit > 0 && (sb.audience || sb.critic) ? { audience: round2((sb.audience * starFit) / 100), critic: round2((sb.critic * starFit * storyFactor) / 100) } : null;
   if (starBonus) {
     // optional taper near the top (protects the 9.0 Hall of Fame line): full below taperFrom, fading to 0 at 10
     const tf = (sb as { taperFrom?: number | null }).taperFrom;

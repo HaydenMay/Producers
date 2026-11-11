@@ -164,8 +164,8 @@ describe("PROD-218 fallback", () => {
 });
 
 describe("PROD-051 option B: flat Star score bonus", () => {
-  const m = { plot: 70, writing: 70, filming: 70, editing: 70 };
-  it("fit 80 adds +0.40 Audience / +0.16 Critic after the meter curve; fit 0 adds nothing", () => {
+  const m = { plot: 76, writing: 76, filming: 76, editing: 76 };
+  it("fit 80 adds +0.40 Audience / +0.16 Critic after the meter curve (strong story); fit 0 adds nothing", () => {
     const off = computeScores(m, { audience: "C", critic: "C" }, 0, false, D, undefined, 0);
     const on = computeScores(m, { audience: "C", critic: "C" }, 0, false, D, undefined, 80);
     expect(on.audience - off.audience).toBeCloseTo(0.4, 5);
@@ -179,6 +179,16 @@ describe("PROD-051 option B: flat Star score bonus", () => {
   it("tapers above 8: half at 9, nothing at 10 (a good actor can't carry a film to perfection)", () => {
     expect(d({ plot: 90, writing: 90, filming: 90, editing: 90 })).toBeCloseTo(0.2, 5);
     expect(d({ plot: 100, writing: 100, filming: 100, editing: 100 })).toBeCloseTo(0, 5);
+  });
+  it("critics discount a great Star on a weak script; audiences don't", () => {
+    const bonus = (x: typeof m) => computeScores(x, { audience: "C", critic: "C" }, 0, false, D, undefined, 80).starBonus!;
+    const weak = bonus({ plot: 45, writing: 45, filming: 75, editing: 75 });
+    const mid = bonus({ plot: 62.5, writing: 62.5, filming: 75, editing: 75 });
+    const strong = bonus({ plot: 76, writing: 76, filming: 70, editing: 70 });
+    expect(weak.critic).toBe(0);
+    expect(mid.critic).toBeCloseTo(0.08, 5);
+    expect(strong.critic).toBeCloseTo(0.16, 5);
+    expect(weak.audience).toBeCloseTo(0.4, 5);
   });
   it("is off in the legacy overlay", () => {
     const L = legacyConfig();

@@ -201,8 +201,8 @@
     "_awardTiming": "WORKING ASSUMPTION: genre XP awarded on production completion"
   },
   "scoring": {
-    "_starScoreBonusLabel": "PROD-051 option B (designer 2026-11-11), TEST VALUES: a flat Star bonus AFTER the meter curve, sized by skill fit (never Fame): Audience += audience x fit/100, Critic += critic x fit/100. Fit 80 = +0.40 / +0.16 = about +0.3 average, the same all career. The Star's Filming points (production.starFilmingWeight) still apply on top. taperFrom (8 by default, designer 2026-11-11; null = off) fades the bonus to 0 between that score and 10, to protect the 9.0 Hall of Fame line (reports/star-xp/bonus-check.md). Legacy overlay sets 0.",
-    "starScoreBonus": { "audience": 0.5, "critic": 0.2, "taperFrom": 8 },
+    "_starScoreBonusLabel": "PROD-051 option B (designer 2026-11-11), TEST VALUES: a flat Star bonus AFTER the meter curve, sized by skill fit (never Fame): Audience += audience x fit/100, Critic += critic x fit/100. Fit 80 = +0.40 / +0.16 = about +0.3 average, the same all career. The Star's Filming points (production.starFilmingWeight) still apply on top. taperFrom (8 by default, designer 2026-11-11; null = off) fades the bonus to 0 between that score and 10, to protect the 9.0 Hall of Fame line (reports/star-xp/bonus-check.md). criticStoryGate: critics credit the Star only as far as the story holds up: the critic part scales from 0 at a Plot+Writing average of zeroAt to full at fullAt (default 50 → 75; story meters: early-film median ~62, career median ~74). null = off. Legacy overlay sets 0.",
+    "starScoreBonus": { "audience": 0.5, "critic": 0.2, "taperFrom": 8, "criticStoryGate": { "zeroAt": 50, "fullAt": 75 } },
     "audienceWeights": {
       "plot": 0.15,
       "writing": 0.15,
