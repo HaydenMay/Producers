@@ -1,5 +1,5 @@
 {
-  "_overlay": "REGRESSION ONLY. Restores the pre-Producers economy on top of config/baseline.json: distributor advances at the pitch, lifeline, surplus (economy.mode legacy_advance), no work-for-hire contracts, $40K start cash, geometric legs, no movie-only dud levers no Stars rework (pool off) no Star score bonus and no genre unlocks. Every legacy byte-identity proof and every older gate overlay (candidate.json, gate3.json) layers on this. Not a design option (PROD-115 SUPERSEDED).",
+  "_overlay": "REGRESSION ONLY. Restores the pre-Producers economy on top of config/baseline.json: distributor advances at the pitch, lifeline, surplus (economy.mode legacy_advance), no work-for-hire contracts, $40K start cash, geometric legs, no movie-only dud levers no Stars rework (pool off) no Star score bonus no genre unlocks and one Star family per genre. Every legacy byte-identity proof and every older gate overlay (candidate.json, gate3.json) layers on this. Not a design option (PROD-115 SUPERSEDED).",
   "economy": {
     "mode": "legacy_advance",
     "contracts": {
@@ -29,5 +29,8 @@
   },
   "genreUnlocks": {
     "enabled": false
+  },
+  "world": {
+    "genreFamilyWeights": null
   }
 }

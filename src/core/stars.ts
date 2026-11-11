@@ -7,7 +7,7 @@ import { emit, newId, round2 } from "./events";
 import { int, next, range, weighted, pick } from "./rng";
 import { randomName } from "./staff";
 import type { Project, Release, Star, StarCard, StudioState } from "./types";
-import { drawFromPool, generateFocusedFallback, levelUpGrowth, originalLead, poolEnabled, updateCatalogUnlock, type Tier } from "./talent";
+import { addByWeights, drawFromPool, generateFocusedFallback, levelUpGrowth, originalLead, poolEnabled, updateCatalogUnlock, type Tier } from "./talent";
 
 export function budgetFor(level: number, cfg: Config): number {
   return cfg.stars.budgetBase + cfg.stars.budgetPerLevel * level;
@@ -130,13 +130,15 @@ function buildPoolAuditions(state: StudioState, cfg: Config, project: Project, f
   const family = cfg.world.genres[project.genre as keyof typeof cfg.world.genres];
   const n = cfg.stars.auditionCount;
   const tiers = (["newcomer", "mid", "mid", "big", n >= 5 ? "newcomer" : "mid"] as Tier[]).slice(0, n);
+  const fw = familyWeights(cfg, project.genre);
+  const mainFamilies = Object.keys(fw).filter((f) => fw[f] >= 0.5); // audition bias: Stars whose best family is a main one
   const unlocked = updateCatalogUnlock(state, cfg);
   const lead = originalLead(state, project);
   const used = new Set<string>(lead ? [lead.id] : []);
   if (unlocked) for (const id of state.hiredStarIds) used.add(id); // catalog Stars appear as catalog cards
   const cards: StarCard[] = [];
   for (const tier of tiers) {
-    const s = drawFromPool(state, cfg, tier, family, used);
+    const s = drawFromPool(state, cfg, tier, mainFamilies, used);
     used.add(s.id);
     cards.push(cardFor(state, cfg, s, "audition", funds));
   }
@@ -145,8 +147,8 @@ function buildPoolAuditions(state: StudioState, cfg: Config, project: Project, f
     const pc = cfg.stars.pool.catalog;
     const top = new Set(
       [...cat]
-        .filter((s) => (s.skills[family] ?? 0) >= pc.perfectFitMin)
-        .sort((a, b) => (b.skills[family] ?? 0) - (a.skills[family] ?? 0))
+        .filter((s) => starFit(s, project.genre, cfg) >= pc.perfectFitMin)
+        .sort((a, b) => starFit(b, project.genre, cfg) - starFit(a, project.genre, cfg))
         .slice(0, pc.perfectFitTop)
         .map((s) => s.id),
     );
@@ -154,7 +156,7 @@ function buildPoolAuditions(state: StudioState, cfg: Config, project: Project, f
   }
   if (lead) cards.push(cardFor(state, cfg, lead, "original_lead", funds));
   if (!cards.some((c) => c.affordable)) {
-    const fb = generateFocusedFallback(state, cfg, family);
+    const fb = generateFocusedFallback(state, cfg, family, familyWeights(cfg, project.genre));
     const card: StarCard = { starId: fb.id, price: 0, breakdown: { fameFee: 0, prestigePremium: 0, relationshipDiscount: 0 }, source: "audition", affordable: true, fallbackInserted: true };
     cards[cards.findIndex((c) => c.source === "audition")] = card;
     emit(state, "fallback_star", `No affordable Star in the lineup; a free newcomer suited to ${family} roles (${fb.name}) was included before auditions were shown.`, { starId: fb.id, funds });
@@ -162,10 +164,21 @@ function buildPoolAuditions(state: StudioState, cfg: Config, project: Project, f
   return cards;
 }
 
-/** Star Filming contribution comes from genre-FAMILY skill only. Themes never matter. Fame never matters. */
+/**
+ * Family weights for a genre. Legacy: one family (weight 1). With `world.genreFamilyWeights` (designer
+ * 2026-11-11): each genre leans on TWO families, e.g. RomCom = 50% Funny + 50% Romantic.
+ */
+export function familyWeights(cfg: Config, genre: string): Record<string, number> {
+  const blend = (cfg.world as unknown as { genreFamilyWeights?: Record<string, Record<string, number>> | null }).genreFamilyWeights?.[genre];
+  return blend ?? { [cfg.world.genres[genre as keyof typeof cfg.world.genres]]: 1 };
+}
+
+/** Star fit = weighted genre-FAMILY skill. Themes never matter. Fame never matters. */
 export function starFit(star: Star, genre: string, cfg: Config): number {
-  const family = cfg.world.genres[genre as keyof typeof cfg.world.genres];
-  return star.skills[family] ?? 0;
+  const w = familyWeights(cfg, genre);
+  const keys = Object.keys(w);
+  if (keys.length === 1) return star.skills[keys[0]] ?? 0; // legacy path, byte-identical
+  return Math.round(keys.reduce((a, f) => a + w[f] * (star.skills[f] ?? 0), 0) * 100) / 100;
 }
 
 /** After a release finishes: Fame change (causal), skill growth within budget, level, relationship. */
@@ -184,11 +197,15 @@ export function applyStarCareer(state: StudioState, cfg: Config, star: Star, rel
     leveled = true;
     if (poolEnabled(cfg)) levelUpGrowth(star, cfg, cfg.stars.pool.growth.levelUpPoints); // PROD-217
   }
-  // growth in the worked family, within the budget
-  const family = cfg.world.genres[rel.genre as keyof typeof cfg.world.genres];
-  const room = budgetFor(star.level, cfg) - skillTotal(star);
-  const grow = Math.max(0, Math.min(cfg.stars.growthPerProject, room, 100 - (star.skills[family] ?? 0)));
-  star.skills[family] = (star.skills[family] ?? 0) + grow;
+  // growth in the worked family (or families, by the genre's weights), within the budget
+  const fw = familyWeights(cfg, rel.genre);
+  let grow = 0;
+  if (Object.keys(fw).length === 1) {
+    const family = Object.keys(fw)[0];
+    const room = budgetFor(star.level, cfg) - skillTotal(star);
+    grow = Math.max(0, Math.min(cfg.stars.growthPerProject, room, 100 - (star.skills[family] ?? 0)));
+    star.skills[family] = (star.skills[family] ?? 0) + grow;
+  } else grow = addByWeights(star, fw, cfg.stars.growthPerProject, budgetFor(star.level, cfg) - skillTotal(star));
   // relationship (causal reasons)
   let relDelta = cfg.stars.relPerProject;
   const reasons = ["worked together (+)"];

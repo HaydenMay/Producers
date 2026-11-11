@@ -156,11 +156,12 @@ export function tierOf(star: Star, cfg: Config): Tier {
 const bestFamily = (s: Star) => Object.entries(s.skills).sort((a, b) => b[1] - a[1])[0]?.[0];
 
 /** PROD-213: pull one audition Star of `tier` from the active pool, biased to the production's family. */
-export function drawFromPool(state: StudioState, cfg: Config, tier: Tier, family: string, exclude: Set<string>): Star {
+export function drawFromPool(state: StudioState, cfg: Config, tier: Tier, family: string | string[], exclude: Set<string>): Star {
+  const fams = Array.isArray(family) ? family : [family];
   const active = Object.values(state.stars).filter((s) => !s.retired && !exclude.has(s.id));
   let cands = active.filter((s) => tierOf(s, cfg) === tier);
   if (cands.length && u(state) < cfg.stars.genreFitBias) {
-    const fit = cands.filter((s) => bestFamily(s) === family);
+    const fit = cands.filter((s) => fams.includes(bestFamily(s)));
     if (fit.length) cands = fit;
   }
   if (!cands.length) cands = active; // thin tier: anyone available
@@ -188,8 +189,15 @@ export function catalogEntries(state: StudioState, cfg: Config, family?: string)
   });
 }
 
+/** Fallback skill per family: the genre's families scale with their weight (RomCom 50/50 → 45 / 45), others low. */
+function focusedSkill(f: string, family: string, fb: { focusSkill: number; otherSkill: number }, blend?: Record<string, number>): number {
+  if (!blend || Object.keys(blend).length < 2) return f === family ? fb.focusSkill : fb.otherSkill;
+  const top = Math.max(...Object.values(blend));
+  return blend[f] ? Math.max(fb.otherSkill, Math.round((fb.focusSkill * blend[f]) / top)) : fb.otherSkill;
+}
+
 /** PROD-218: a useful free Star, focused on this production's family. Joins the pool for good. */
-export function generateFocusedFallback(state: StudioState, cfg: Config, family: string): Star {
+export function generateFocusedFallback(state: StudioState, cfg: Config, family: string, blend?: Record<string, number>): Star {
   const fb = P(cfg).fallback;
   const { weights, template } = rollGrowthWeights(state, cfg, family);
   const star: Star = {
@@ -197,7 +205,7 @@ export function generateFocusedFallback(state: StudioState, cfg: Config, family:
     name: poolName(state),
     level: 0,
     levelXp: 0,
-    skills: Object.fromEntries(cfg.world.families.map((f) => [f, f === family ? fb.focusSkill : fb.otherSkill])),
+    skills: Object.fromEntries(cfg.world.families.map((f) => [f, focusedSkill(f, family, fb, blend)])),
     fame: 0,
     relationship: cfg.stars.relationshipStart,
     credits: [],

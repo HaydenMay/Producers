@@ -82,6 +82,17 @@
       "D": 0.9,
       "F": 0.78
     },
+    "genreFamilyWeights": {
+      "_label": "Designer 2026-11-11: Star fit leans on TWO families per genre, so a Funny+Romantic Star beats a Funny+Scary Star in a RomCom at equal Funny. Fit = weighted skill; per-film practice is split the same way. The first family listed is the genre's main family (world.genres). Secondary pairings and weights are CLAUDE'S PICKS for review *(test)*. legacy-advance.json sets null (one family per genre).",
+      "Action": { "Action": 0.8, "Funny": 0.2 },
+      "Comedy": { "Funny": 0.8, "Romantic": 0.2 },
+      "Horror": { "Scary": 0.8, "Dramatic": 0.2 },
+      "Thriller": { "Scary": 0.6, "Dramatic": 0.4 },
+      "Romance": { "Romantic": 0.8, "Dramatic": 0.2 },
+      "Drama": { "Dramatic": 0.8, "Romantic": 0.2 },
+      "SciFi": { "Action": 0.6, "Dramatic": 0.4 },
+      "RomCom": { "Funny": 0.5, "Romantic": 0.5 }
+    },
     "compatibility": {
           "_label": "Combo fit. ONE shared grade per EXACT genre+theme pair, applied identically to Audience and Critic scores (PROD-062). Audience/Critic differences come only from craft weights (audienceWeights 35% Filming + 35% Editing vs criticWeights 35% Plot + 35% Writing). mode random = legacy regression only: two independent weighted grades from the world stream (every earlier gate). mode editorial = the designer-editable matrix below, optionally shifted by a bounded per-pair variation from a stable hash of (seed, pair), never a shared RNG stream. The random draws are still consumed in editorial mode so every other world/talent draw is unchanged. Grades are EDITORIAL PROPOSALS for designer review; 'contestable' pairs carry the pick and the reason.",
           "mode": "random",

@@ -159,7 +159,8 @@ describe("PROD-218 fallback", () => {
     const fb = cards.find((c) => c.fallbackInserted)!;
     expect(fb.price).toBe(0);
     expect(s.stars[fb.starId].skills.Funny).toBe(D.stars.pool.fallback.focusSkill);
-    expect(Math.max(...Object.entries(s.stars[fb.starId].skills).filter(([f]) => f !== "Funny").map(([, v]) => v))).toBe(D.stars.pool.fallback.otherSkill);
+    expect(s.stars[fb.starId].skills.Romantic).toBe(11); // Comedy's 20% second family: 45 x 0.2 / 0.8
+    expect(Math.max(...Object.entries(s.stars[fb.starId].skills).filter(([f]) => f !== "Funny" && f !== "Romantic").map(([, v]) => v))).toBe(D.stars.pool.fallback.otherSkill);
   });
 });
 
@@ -199,5 +200,29 @@ describe("PROD-051 option B: flat Star score bonus", () => {
     const r = runCareer(4, "quality-first", D, { productions: 0, years: 6 });
     expect(checkInvariants(r, D)).toEqual([]);
     expect(r.state.releases.some((x) => (x.trace.quality as { score: { starBonus?: unknown } }).score.starBonus)).toBe(true);
+  });
+});
+
+describe("two-family Star fit (designer 2026-11-11)", () => {
+  const mk = (skills: Record<string, number>): Star => ({ id: "x", name: "x", level: 5, levelXp: 0, skills: { Scary: 0, Funny: 0, Romantic: 0, Action: 0, Dramatic: 0, ...skills }, fame: 0, relationship: 1, credits: [], hiddenShape: "twoFocus", fallback: false });
+  it("RomCom: Funny+Romantic beats Funny+Scary at the same Funny", async () => {
+    const { starFit } = await import("../../src/core/stars");
+    const romcomType = mk({ Funny: 80, Romantic: 70 }), scaryType = mk({ Funny: 80, Scary: 70 });
+    expect(starFit(romcomType, "RomCom", D)).toBe(75);
+    expect(starFit(scaryType, "RomCom", D)).toBe(40);
+    expect(starFit(romcomType, "RomCom", legacyConfig())).toBe(80); // legacy: Funny only
+  });
+  it("each genre's main family dominates; weights sum to 1", () => {
+    for (const [g, w] of Object.entries(D.world.genreFamilyWeights as unknown as Record<string, Record<string, number>>)) {
+      if (g.startsWith("_")) continue;
+      expect(Object.values(w).reduce((a, b) => a + b, 0), g).toBeCloseTo(1, 9);
+      expect(Math.max(...Object.values(w)), g).toBe(w[D.world.genres[g as keyof typeof D.world.genres]]);
+    }
+  });
+  it("a RomCom fallback Star is good at both halves", () => {
+    const s = createStudio(6, D);
+    const fb = buildAuditions(s, D, project("RomCom"), 0).find((c) => c.fallbackInserted)!;
+    expect(s.stars[fb.starId].skills.Funny).toBe(D.stars.pool.fallback.focusSkill);
+    expect(s.stars[fb.starId].skills.Romantic).toBe(D.stars.pool.fallback.focusSkill);
   });
 });
