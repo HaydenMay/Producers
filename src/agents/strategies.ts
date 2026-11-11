@@ -379,4 +379,7 @@ STRATEGIES["contract-farmer"] = CONTRACT_FARMER;
 STRATEGIES["low-budget-random-combo"] = STRATEGIES["cheap-duds"];
 import { POOR_FIT_CHOOSER } from "./diagnostic";
 STRATEGIES["poor-fit-chooser"] = POOR_FIT_CHOOSER;
+import { makeWarningHeeder } from "./economy";
+STRATEGIES["heeds-warning"] = makeWarningHeeder(STRATEGIES.balanced, "heeds-warning");
+STRATEGIES["heeds-short"] = makeWarningHeeder(STRATEGIES.balanced, "heeds-short");
 export const DISPLAY_NAME: Record<string, string> = { "cheap-duds": "low-budget-random-combo" };

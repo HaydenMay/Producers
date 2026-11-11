@@ -4,13 +4,13 @@
 // and keeps each strategy's own planning / casting / reinvestment logic.
 import type { Config } from "../core/config";
 import { openingTrace } from "../core/audience";
-import { contractsEnabled, isLateDistribution, weeklyLabor } from "../core/latedist";
+import { contractsEnabled, isLateDistribution, planCostEstimate, weeklyLabor } from "../core/latedist";
 import { planBaseCost, formatSpec } from "../core/formats";
 import type { Choices, ContractOffer, Decision, PlanDecision, StudioState } from "../core/types";
 import type { AgentCtx, Strategy } from "./strategies";
 
 type DistPick = "value" | "maxAd" | "selfLean";
-type ContractRule = "runway" | "onlyWhenBroke" | "always";
+type ContractRule = "runway" | "onlyWhenBroke" | "always" | "estimateWarning" | "estimateShort";
 interface EconProfile {
   dist: DistPick;
   contract: ContractRule;
@@ -24,6 +24,9 @@ const PROFILES: Record<string, EconProfile> = {
   "selective-self-funder": { dist: "selfLean", contract: "runway" },
   "tv-duds": { dist: "maxAd", contract: "onlyWhenBroke" },
   "contract-farmer": { dist: "value", contract: "always" },
+  // designer 2026-11-11: test agents that obey the planning-screen cost warning (PROD-224) by taking a contract first
+  "heeds-warning": { dist: "value", contract: "estimateWarning" }, // any warning (⚠️ or ⛔)
+  "heeds-short": { dist: "value", contract: "estimateShort" }, // only the ⛔ "short even with a cheap Star" warning
 };
 const profileOf = (id: string): EconProfile => PROFILES[id] ?? { dist: "value", contract: "runway" };
 
@@ -117,7 +120,18 @@ export function decideFor(strat: Strategy, state: StudioState, cfg: Config, ch: 
   }
   // Runway-minded policies don't spend the money they need to fund their next production (the legacy
   // reinvest thresholds assumed a distributor advance would pay for it).
-  const keep = late && prof.contract === "runway" ? m0(state, cfg) : -Infinity;
+  // warning-heeders never spend below what clearing the warning needs for a movie (otherwise they train/hire the
+  // moment they can and the warning never clears)
+  const movieEst = () => planCostEstimate(state, cfg, { type: "plan", genre: state.unlockedGenres[0], theme: state.unlockedThemes[0], ipRelation: "new" });
+  const keep = !late
+    ? -Infinity
+    : prof.contract === "runway"
+      ? m0(state, cfg)
+      : prof.contract === "estimateWarning"
+        ? movieEst().totalHigh
+        : prof.contract === "estimateShort"
+          ? movieEst().totalLow
+          : -Infinity;
   const view: Choices = { ...ch, options: ch.options.filter((o) => !(o.type === "plan" && o.route) && (costOf(state, cfg, o) === 0 || state.cash - costOf(state, cfg, o) >= keep)) };
   let d: Decision | undefined;
   try {
@@ -129,7 +143,13 @@ export function decideFor(strat: Strategy, state: StudioState, cfg: Config, ch: 
     const o = { ...d, route: "original" as const };
     if (legal(ch, o)) return o;
   }
-  if (legal(ch, d)) return d;
+  if (legal(ch, d)) {
+    if (contract && d.type === "plan" && (prof.contract === "estimateWarning" || prof.contract === "estimateShort")) {
+      const risk = planCostEstimate(state, cfg, d).risk;
+      if (risk === "short" || (risk === "tight" && prof.contract === "estimateWarning")) return contract;
+    }
+    return d;
+  }
   if (contract) return contract;
   const movie = plans.filter((p) => !p.format).sort((a, b) => planBaseCost(cfg, a) - planBaseCost(cfg, b))[0];
   return movie ?? { type: "wait" };
@@ -151,3 +171,10 @@ export const CONTRACT_FARMER: Strategy = {
     return { type: "wait" };
   },
 };
+
+/** Balanced planning/casting, but obeys the cost warning by doing a contract first (PROD-224). */
+export const makeWarningHeeder = (base: Strategy, id: "heeds-warning" | "heeds-short"): Strategy => ({
+  id,
+  description: id === "heeds-warning" ? "Balanced, but takes a contract whenever the plan screen shows a cost warning (⚠️ or ⛔)." : "Balanced, but takes a contract only when the plan screen says it is short even with a cheap Star (⛔).",
+  decide: (state, cfg, ch, rng, ctx) => base.decide(state, cfg, ch, rng, ctx),
+});
