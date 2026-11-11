@@ -55,6 +55,19 @@ Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = ha
 
 Gate 3 (formats, TV, streaming) has its own expanded register: **`docs/gate-3-assumptions.md`** (T1–T19, S1–S8, P1–P4, provisional flag thresholds). All Gate 3 fields default to disabled in `config/baseline.json`; `config/gate3.json` enables them.
 
+## Gate 4Q assumptions (logical combinations, quality range, dud tests; EXPERIMENT)
+
+Evidence: `docs/gate-4-quality-findings.md`; decisions: `docs/gate-4-quality-open-decisions.md`. Defaults keep every earlier gate byte-identical. The candidate is `config/gate4q.json`. All numbers are **TEST ASSUMPTIONS**.
+
+| # | Area | Assumption | Value | Notes |
+|---|---|---|---|---|
+| Q-1 | Compatibility source | `world.compatibility.mode` random (legacy) or editorial matrix per exact genre × theme, separate audience/critic | random (baseline), editorial (gate4q) | matrix in config, 13 pairs flagged contestable (D1) |
+| Q-2 | World variation | each side moves 1 grade step with 20% chance (direction 50/50, clamped), from a stable hash of (seed, pair); old random draws still consumed | `variation.chance` 0.2, `maxSteps` 1 | D5 |
+| Q-3 | Severity | gradeMultiplier D 0.80, F 0.55 (A/B/C unchanged) | gate4q only | D2 |
+| Q-4 | Cult appeal | eligible: audience grade D/F + never-released pair + (Filming + Editing)/2 ≥ 60; chance 0.10 + rising 0.05 / hot 0.10; lazy `reception` stream; 25% breakout (audience grade A) else lift (+2 steps); audience only, this title only; combo book keeps the baseline | `world.cult.*` (off in baseline, on in gate4q) | D4 |
+| Q-5 | Policies | `low-budget-random-combo` = exact alias of `cheap-duds`; `poor-fit-chooser` uses only its revealed combo book | agents only | D7 |
+| Q-6 | Diagnostic bins | 0–<4 poor, 4–<6 mediocre, 6–<8 good, 8–10 excellent (published average) | — | `scripts/quality.ts` |
+
 ## Gate 4 assumptions (studio-risk economy, late distribution, contracts; EXPERIMENT)
 
 Evidence: `docs/gate-4-economy-findings.md`; decisions: `docs/gate-4-economy-open-decisions.md`. Baseline keeps `economy.mode: "legacy_advance"` (byte-identical to every earlier gate). The candidate is `config/gate4.json`. All numbers are **TEST ASSUMPTIONS**.
@@ -112,7 +125,7 @@ Gate 3 now models limited series, TV and streaming (see `docs/gate-3-assumptions
 
 ## Full parameter listing (`config/baseline.json`)
 
-Regenerated for Gate 4. Candidate overrides: `config/candidate.json`; Gate 3 mixed-format config: `config/gate3.json`; Gate 4 candidate economy: `config/gate4.json`; experiment variants: `config/experiments/`.
+Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mixed-format: `config/gate3.json`; Gate 4 economy candidate: `config/gate4.json`; Gate 4Q scoring candidate: `config/gate4q.json`; experiment variants: `config/experiments/`.
 
 | Path | Value |
 |---|---|
@@ -143,6 +156,183 @@ Regenerated for Gate 4. Candidate overrides: `config/candidate.json`; Gate 3 mix
 | `world.gradeMultiplier.C` | 1.0 |
 | `world.gradeMultiplier.D` | 0.9 |
 | `world.gradeMultiplier.F` | 0.78 |
+| `world.compatibility._label` | "Gate 4Q EXPERIMENT. mode random = every earlier gate (two independent weighted grades per exact genre/theme pair from the world stream). mode editorial = the designer-editable baseline below (audience/critic per EXACT genre, not family), optionally shifted by a bounded per-pair variation from a stable hash of (seed, pair) - never from a shared RNG stream. The random draws are still consumed in editorial mode so every other world/talent draw is unchanged (clean paired comparisons). All grades are EDITORIAL PROPOSALS for designer review." |
+| `world.compatibility.mode` | "random" |
+| `world.compatibility.variation._label` | "bounded world-to-world variation: each side of each pair independently shifts one grade step with this chance (direction 50/50, clamped A..F). Pairs at A or F never move more than one step, so a natural fit can't become a disaster." |
+| `world.compatibility.variation.enabled` | true |
+| `world.compatibility.variation.chance` | 0.2 |
+| `world.compatibility.variation.maxSteps` | 1 |
+| `world.compatibility.contestable` | ["Comedy/Zombies", "Romance/Zombies", "RomCom/Zombies", "Romance/Vampires", "Horror/Spies", "Action/Dinosaurs", "Thriller/Time Travel", "Romance/Robots", "Drama/Zombies", "SciFi/Dinosaurs", "Horror/Pirates", "RomCom/Spies", "Comedy/Sports"] |
+| `world.compatibility.matrix.Action.Zombies.audience` | "B" |
+| `world.compatibility.matrix.Action.Zombies.critic` | "C" |
+| `world.compatibility.matrix.Action.Superheroes.audience` | "A" |
+| `world.compatibility.matrix.Action.Superheroes.critic` | "B" |
+| `world.compatibility.matrix.Action.Spies.audience` | "A" |
+| `world.compatibility.matrix.Action.Spies.critic` | "B" |
+| `world.compatibility.matrix.Action.Sports.audience` | "C" |
+| `world.compatibility.matrix.Action.Sports.critic` | "C" |
+| `world.compatibility.matrix.Action.Vampires.audience` | "B" |
+| `world.compatibility.matrix.Action.Vampires.critic` | "C" |
+| `world.compatibility.matrix.Action.Time Travel.audience` | "B" |
+| `world.compatibility.matrix.Action.Time Travel.critic` | "B" |
+| `world.compatibility.matrix.Action.Pirates.audience` | "A" |
+| `world.compatibility.matrix.Action.Pirates.critic` | "B" |
+| `world.compatibility.matrix.Action.Robots.audience` | "B" |
+| `world.compatibility.matrix.Action.Robots.critic` | "C" |
+| `world.compatibility.matrix.Action.Dinosaurs.audience` | "A" |
+| `world.compatibility.matrix.Action.Dinosaurs.critic` | "C" |
+| `world.compatibility.matrix.Action.Mythology.audience` | "B" |
+| `world.compatibility.matrix.Action.Mythology.critic` | "B" |
+| `world.compatibility.matrix.Comedy.Zombies.audience` | "B" |
+| `world.compatibility.matrix.Comedy.Zombies.critic` | "B" |
+| `world.compatibility.matrix.Comedy.Superheroes.audience` | "B" |
+| `world.compatibility.matrix.Comedy.Superheroes.critic` | "C" |
+| `world.compatibility.matrix.Comedy.Spies.audience` | "B" |
+| `world.compatibility.matrix.Comedy.Spies.critic` | "C" |
+| `world.compatibility.matrix.Comedy.Sports.audience` | "A" |
+| `world.compatibility.matrix.Comedy.Sports.critic` | "B" |
+| `world.compatibility.matrix.Comedy.Vampires.audience` | "B" |
+| `world.compatibility.matrix.Comedy.Vampires.critic` | "B" |
+| `world.compatibility.matrix.Comedy.Time Travel.audience` | "B" |
+| `world.compatibility.matrix.Comedy.Time Travel.critic` | "B" |
+| `world.compatibility.matrix.Comedy.Pirates.audience` | "C" |
+| `world.compatibility.matrix.Comedy.Pirates.critic` | "D" |
+| `world.compatibility.matrix.Comedy.Robots.audience` | "C" |
+| `world.compatibility.matrix.Comedy.Robots.critic` | "C" |
+| `world.compatibility.matrix.Comedy.Dinosaurs.audience` | "C" |
+| `world.compatibility.matrix.Comedy.Dinosaurs.critic` | "D" |
+| `world.compatibility.matrix.Comedy.Mythology.audience` | "C" |
+| `world.compatibility.matrix.Comedy.Mythology.critic` | "D" |
+| `world.compatibility.matrix.Horror.Zombies.audience` | "A" |
+| `world.compatibility.matrix.Horror.Zombies.critic` | "B" |
+| `world.compatibility.matrix.Horror.Superheroes.audience` | "D" |
+| `world.compatibility.matrix.Horror.Superheroes.critic` | "D" |
+| `world.compatibility.matrix.Horror.Spies.audience` | "D" |
+| `world.compatibility.matrix.Horror.Spies.critic` | "F" |
+| `world.compatibility.matrix.Horror.Sports.audience` | "F" |
+| `world.compatibility.matrix.Horror.Sports.critic` | "F" |
+| `world.compatibility.matrix.Horror.Vampires.audience` | "A" |
+| `world.compatibility.matrix.Horror.Vampires.critic` | "B" |
+| `world.compatibility.matrix.Horror.Time Travel.audience` | "C" |
+| `world.compatibility.matrix.Horror.Time Travel.critic` | "C" |
+| `world.compatibility.matrix.Horror.Pirates.audience` | "C" |
+| `world.compatibility.matrix.Horror.Pirates.critic` | "D" |
+| `world.compatibility.matrix.Horror.Robots.audience` | "C" |
+| `world.compatibility.matrix.Horror.Robots.critic` | "C" |
+| `world.compatibility.matrix.Horror.Dinosaurs.audience` | "B" |
+| `world.compatibility.matrix.Horror.Dinosaurs.critic` | "C" |
+| `world.compatibility.matrix.Horror.Mythology.audience` | "B" |
+| `world.compatibility.matrix.Horror.Mythology.critic` | "B" |
+| `world.compatibility.matrix.Thriller.Zombies.audience` | "B" |
+| `world.compatibility.matrix.Thriller.Zombies.critic` | "C" |
+| `world.compatibility.matrix.Thriller.Superheroes.audience` | "C" |
+| `world.compatibility.matrix.Thriller.Superheroes.critic` | "C" |
+| `world.compatibility.matrix.Thriller.Spies.audience` | "A" |
+| `world.compatibility.matrix.Thriller.Spies.critic` | "A" |
+| `world.compatibility.matrix.Thriller.Sports.audience` | "D" |
+| `world.compatibility.matrix.Thriller.Sports.critic` | "D" |
+| `world.compatibility.matrix.Thriller.Vampires.audience` | "C" |
+| `world.compatibility.matrix.Thriller.Vampires.critic` | "C" |
+| `world.compatibility.matrix.Thriller.Time Travel.audience` | "B" |
+| `world.compatibility.matrix.Thriller.Time Travel.critic` | "A" |
+| `world.compatibility.matrix.Thriller.Pirates.audience` | "C" |
+| `world.compatibility.matrix.Thriller.Pirates.critic` | "C" |
+| `world.compatibility.matrix.Thriller.Robots.audience` | "B" |
+| `world.compatibility.matrix.Thriller.Robots.critic` | "B" |
+| `world.compatibility.matrix.Thriller.Dinosaurs.audience` | "C" |
+| `world.compatibility.matrix.Thriller.Dinosaurs.critic` | "D" |
+| `world.compatibility.matrix.Thriller.Mythology.audience` | "C" |
+| `world.compatibility.matrix.Thriller.Mythology.critic` | "C" |
+| `world.compatibility.matrix.Romance.Zombies.audience` | "D" |
+| `world.compatibility.matrix.Romance.Zombies.critic` | "F" |
+| `world.compatibility.matrix.Romance.Superheroes.audience` | "C" |
+| `world.compatibility.matrix.Romance.Superheroes.critic` | "D" |
+| `world.compatibility.matrix.Romance.Spies.audience` | "C" |
+| `world.compatibility.matrix.Romance.Spies.critic` | "C" |
+| `world.compatibility.matrix.Romance.Sports.audience` | "C" |
+| `world.compatibility.matrix.Romance.Sports.critic` | "C" |
+| `world.compatibility.matrix.Romance.Vampires.audience` | "B" |
+| `world.compatibility.matrix.Romance.Vampires.critic` | "D" |
+| `world.compatibility.matrix.Romance.Time Travel.audience` | "B" |
+| `world.compatibility.matrix.Romance.Time Travel.critic` | "B" |
+| `world.compatibility.matrix.Romance.Pirates.audience` | "C" |
+| `world.compatibility.matrix.Romance.Pirates.critic` | "C" |
+| `world.compatibility.matrix.Romance.Robots.audience` | "D" |
+| `world.compatibility.matrix.Romance.Robots.critic` | "C" |
+| `world.compatibility.matrix.Romance.Dinosaurs.audience` | "F" |
+| `world.compatibility.matrix.Romance.Dinosaurs.critic` | "F" |
+| `world.compatibility.matrix.Romance.Mythology.audience` | "C" |
+| `world.compatibility.matrix.Romance.Mythology.critic` | "C" |
+| `world.compatibility.matrix.Drama.Zombies.audience` | "D" |
+| `world.compatibility.matrix.Drama.Zombies.critic` | "C" |
+| `world.compatibility.matrix.Drama.Superheroes.audience` | "D" |
+| `world.compatibility.matrix.Drama.Superheroes.critic` | "C" |
+| `world.compatibility.matrix.Drama.Spies.audience` | "B" |
+| `world.compatibility.matrix.Drama.Spies.critic` | "A" |
+| `world.compatibility.matrix.Drama.Sports.audience` | "A" |
+| `world.compatibility.matrix.Drama.Sports.critic` | "A" |
+| `world.compatibility.matrix.Drama.Vampires.audience` | "D" |
+| `world.compatibility.matrix.Drama.Vampires.critic` | "D" |
+| `world.compatibility.matrix.Drama.Time Travel.audience` | "C" |
+| `world.compatibility.matrix.Drama.Time Travel.critic` | "B" |
+| `world.compatibility.matrix.Drama.Pirates.audience` | "C" |
+| `world.compatibility.matrix.Drama.Pirates.critic` | "C" |
+| `world.compatibility.matrix.Drama.Robots.audience` | "C" |
+| `world.compatibility.matrix.Drama.Robots.critic` | "B" |
+| `world.compatibility.matrix.Drama.Dinosaurs.audience` | "F" |
+| `world.compatibility.matrix.Drama.Dinosaurs.critic` | "F" |
+| `world.compatibility.matrix.Drama.Mythology.audience` | "C" |
+| `world.compatibility.matrix.Drama.Mythology.critic` | "B" |
+| `world.compatibility.matrix.SciFi.Zombies.audience` | "C" |
+| `world.compatibility.matrix.SciFi.Zombies.critic` | "C" |
+| `world.compatibility.matrix.SciFi.Superheroes.audience` | "B" |
+| `world.compatibility.matrix.SciFi.Superheroes.critic` | "C" |
+| `world.compatibility.matrix.SciFi.Spies.audience` | "C" |
+| `world.compatibility.matrix.SciFi.Spies.critic` | "C" |
+| `world.compatibility.matrix.SciFi.Sports.audience` | "D" |
+| `world.compatibility.matrix.SciFi.Sports.critic` | "D" |
+| `world.compatibility.matrix.SciFi.Vampires.audience` | "D" |
+| `world.compatibility.matrix.SciFi.Vampires.critic` | "D" |
+| `world.compatibility.matrix.SciFi.Time Travel.audience` | "A" |
+| `world.compatibility.matrix.SciFi.Time Travel.critic` | "A" |
+| `world.compatibility.matrix.SciFi.Pirates.audience` | "C" |
+| `world.compatibility.matrix.SciFi.Pirates.critic` | "D" |
+| `world.compatibility.matrix.SciFi.Robots.audience` | "A" |
+| `world.compatibility.matrix.SciFi.Robots.critic` | "A" |
+| `world.compatibility.matrix.SciFi.Dinosaurs.audience` | "B" |
+| `world.compatibility.matrix.SciFi.Dinosaurs.critic` | "C" |
+| `world.compatibility.matrix.SciFi.Mythology.audience` | "C" |
+| `world.compatibility.matrix.SciFi.Mythology.critic` | "C" |
+| `world.compatibility.matrix.RomCom.Zombies.audience` | "D" |
+| `world.compatibility.matrix.RomCom.Zombies.critic` | "F" |
+| `world.compatibility.matrix.RomCom.Superheroes.audience` | "C" |
+| `world.compatibility.matrix.RomCom.Superheroes.critic` | "D" |
+| `world.compatibility.matrix.RomCom.Spies.audience` | "B" |
+| `world.compatibility.matrix.RomCom.Spies.critic` | "D" |
+| `world.compatibility.matrix.RomCom.Sports.audience` | "B" |
+| `world.compatibility.matrix.RomCom.Sports.critic` | "C" |
+| `world.compatibility.matrix.RomCom.Vampires.audience` | "C" |
+| `world.compatibility.matrix.RomCom.Vampires.critic` | "D" |
+| `world.compatibility.matrix.RomCom.Time Travel.audience` | "B" |
+| `world.compatibility.matrix.RomCom.Time Travel.critic` | "C" |
+| `world.compatibility.matrix.RomCom.Pirates.audience` | "D" |
+| `world.compatibility.matrix.RomCom.Pirates.critic` | "D" |
+| `world.compatibility.matrix.RomCom.Robots.audience` | "D" |
+| `world.compatibility.matrix.RomCom.Robots.critic` | "D" |
+| `world.compatibility.matrix.RomCom.Dinosaurs.audience` | "F" |
+| `world.compatibility.matrix.RomCom.Dinosaurs.critic` | "F" |
+| `world.compatibility.matrix.RomCom.Mythology.audience` | "D" |
+| `world.compatibility.matrix.RomCom.Mythology.critic` | "D" |
+| `world.cult._label` | "Gate 4Q EXPERIMENT, default OFF. Rare audience-only reception exception at release ('Unexpected cult appeal'). Eligible only when: the pair's audience grade is in eligibleAudienceGrades, the studio has never released this exact pair before (novelty), and audience-side craft (mean Filming+Editing quality) >= minAudienceCraft. chance = baseChance + trend bonus; drawn from the lazy 'reception' stream. Success replaces the AUDIENCE grade used in the normal score formula (lift = +liftSteps; breakout = breakoutGrade) for THIS title only; critics, meters, Star, money untouched (money follows the normal audience model). The combo book keeps the true baseline grade." |
+| `world.cult.enabled` | false |
+| `world.cult.eligibleAudienceGrades` | ["D", "F"] |
+| `world.cult.minAudienceCraft` | 60 |
+| `world.cult.baseChance` | 0.1 |
+| `world.cult.trendBonus.rising` | 0.05 |
+| `world.cult.trendBonus.hot` | 0.1 |
+| `world.cult.breakoutShare` | 0.25 |
+| `world.cult.liftSteps` | 2 |
+| `world.cult.breakoutGrade` | "A" |
 | `world.marketSize` | 400000 |
 | `world.grossPerViewer` | 2.0 |
 | `production.movie.baseCost` | 60000 |

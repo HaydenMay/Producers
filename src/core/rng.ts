@@ -3,10 +3,18 @@ import type { RngState } from "./types";
 
 export const STREAMS = ["world", "trends", "talent", "work", "staff", "distributors", "names"] as const;
 /** "events" is a LAZY stream (Gate 3 follow-up experiments): created on first use only, so other streams and old states are untouched. */
-export type StreamName = (typeof STREAMS)[number] | "events";
+export type StreamName = (typeof STREAMS)[number] | "events" | "reception";
 
 export function ensureStream(rng: RngState, seed: number, name: string): void {
   if (rng[name] === undefined) rng[name] = hashString(`${seed}:${name}`) || 1;
+}
+
+/** Stable per-key unit draw in [0,1) that touches no stream (Gate 4Q bounded compatibility variation). */
+export function stableUnit(seed: number, key: string): number {
+  let t = (hashString(`${seed}:${key}`) + 0x6d2b79f5) >>> 0;
+  t = Math.imul(t ^ (t >>> 15), t | 1);
+  t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 }
 
 function hashString(s: string): number {

@@ -11,6 +11,7 @@ import { openingTrace, updateIpFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { awardGenreXp, genreBonus, genreLevel, maybeStaffPitch } from "./progression";
 import { ensureStream, next, pick } from "./rng";
+import type { Grade } from "./types";
 import { formatOf, formatSpec, hiatusMultiplier, seasonsOf, showFatigue, twistOutcome, viewerFatigue } from "./formats";
 import { onRunEnded } from "./streaming";
 import { generateBids, investedSoFar, isLateDistribution } from "./latedist";
@@ -154,6 +155,33 @@ function breakthroughCheck(state: StudioState, cfg: Config, p: Project): void {
   emit(state, "breakthrough", `Creative breakthrough on ${p.title} (${stage}, week ${state.week}): ${meter} +${points.toLocaleString()} points (draw ${ev.draw} < ${b.chancePerCheck}; meter so far ${before} → ${meterQuality(p, state, cfg)[meter]}).`, { ...ev, projectId: p.id });
 }
 
+const GRADE_ORDER: Grade[] = ["A", "B", "C", "D", "F"];
+
+/**
+ * Gate 4Q EXPERIMENT (default off): rare audience-only exception for a poorly matched pairing. Only drawn when
+ * eligible (poor audience grade + never released before + good audience-side craft). Seeded on the lazy
+ * "reception" stream; the trace records the chance, the draw and the score without it.
+ */
+function cultCheck(state: StudioState, cfg: Config, p: Project, key: string, grades: { audience: Grade; critic: Grade }, meters: Record<string, number>) {
+  const c = cfg.world.cult;
+  if (!(c.eligibleAudienceGrades as string[]).includes(grades.audience)) return null;
+  if (state.comboHistory[key]) return null; // novelty: the studio has never released this exact pairing
+  const craft = round2((meters.filming + meters.editing) / 2);
+  if (craft < c.minAudienceCraft) return null;
+  const stage = state.trends[p.theme]?.stage ?? "none";
+  const trend = (c.trendBonus as Record<string, number>)[stage] ?? 0;
+  const chance = round2(c.baseChance + trend);
+  ensureStream(state.rng, state.seed, "reception");
+  const draw = Math.round(next(state.rng, "reception") * 1e6) / 1e6;
+  const happened = draw < chance;
+  const tierDraw = happened ? Math.round(next(state.rng, "reception") * 1e6) / 1e6 : null;
+  const tier: "lift" | "breakout" | null = happened ? (tierDraw! < c.breakoutShare ? "breakout" : "lift") : null;
+  const lifted = GRADE_ORDER[Math.max(0, GRADE_ORDER.indexOf(grades.audience) - c.liftSteps)];
+  const effectiveAudience: Grade = tier === "breakout" ? (c.breakoutGrade as Grade) : tier === "lift" ? lifted : grades.audience;
+  const reasons = [`audience-side craft ${craft} (Filming/Editing) ≥ ${c.minAudienceCraft}`, "a pairing nobody at the studio had tried", ...(trend ? [`${p.theme} is ${stage} (+${trend})`] : [])];
+  return { happened, tier, baselineAudience: grades.audience, effectiveAudience, chance, draw, tierDraw, craft, reasons, audienceWithout: 0, avgWithout: 0 };
+}
+
 export function castStar(state: StudioState, cfg: Config, starId: string): void {
   const p = state.project!;
   const card = p.auditionCards.find((c) => c.starId === starId);
@@ -219,12 +247,19 @@ function completeProject(state: StudioState, cfg: Config): Release {
   }
   const fatigue = Math.min(0.6, fatigueFor(state, cfg, p) + (show?.fatigue ?? 0));
   const saturated = state.trends[p.theme]?.stage === "saturated";
-  const sc = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+  const cult = cfg.world.cult.enabled ? cultCheck(state, cfg, p, key, grades, meters) : null;
+  const scoredGrades = cult?.happened ? { audience: cult.effectiveAudience, critic: grades.critic } : grades;
+  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+  if (cult) {
+    const w = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+    cult.audienceWithout = w.audience;
+    cult.avgWithout = avgScore(w.audience, w.critic);
+  }
   let breakthrough: { events: Breakthrough[]; audienceWithout: number; criticWithout: number; avgWithout: number } | null = null;
   if (p.breakthroughs?.length) {
     const q = { ...p, meterPoints: { ...p.meterPoints } };
     for (const e of p.breakthroughs) q.meterPoints[e.meter] = round2(q.meterPoints[e.meter] - e.points);
-    const w = computeScores(meterQuality(q, state, cfg), grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+    const w = computeScores(meterQuality(q, state, cfg), scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
     breakthrough = { events: p.breakthroughs, audienceWithout: w.audience, criticWithout: w.critic, avgWithout: avgScore(w.audience, w.critic) };
   }
   const avg = avgScore(sc.audience, sc.critic);
@@ -299,6 +334,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
       auditionCards: p.auditionCards,
       ...(show || twist || hiatus ? { tv: { showFatigue: show, twist, twistTheme: p.twistTheme ?? null, hiatus, anticipationUsed: ip.anticipation ?? 0, fatigueSeasons: ip.fatigueSeasons } } : {}),
       ...(breakthrough ? { breakthrough } : {}),
+      ...(cult ? { cult } : {}),
       ...(p.distribution ? { distribution: { ...p.distribution, bids: p.distributionBids ?? [], investedAtMeeting: p.investedAtMeeting ?? 0 } } : {}),
       ...(vfTrace ? { viewerFatigue: vfTrace, ...(vfTrace.premiereMult !== 1 ? { premiereMult: vfTrace.premiereMult } : {}) } : {}),
     },
@@ -318,7 +354,8 @@ function completeProject(state: StudioState, cfg: Config): Release {
   }
   if (p.route === "original" && state.platform?.status === "live") state.platform.lastFreshWeek = state.week;
   // reveal combo, history, genre xp, IP bookkeeping
-  state.comboBook[key] = { audience: grades.audience, critic: grades.critic };
+  state.comboBook[key] = { audience: grades.audience, critic: grades.critic }; // the stable BASELINE, never a cult title's reception
+  if (cult?.happened) emit(state, "cult", `Unexpected cult appeal: audiences embraced ${rel.title} despite the odd ${p.genre} + ${p.theme} pairing (${cult.tier === "breakout" ? "a true breakout" : "a small lift"}: audience ${cult.audienceWithout} → ${rel.audience}; critics unmoved at ${rel.critic}). Why: ${cult.reasons.join("; ")}. The pairing itself is still graded ${grades.audience}/${grades.critic}.`, { releaseId: rel.id, ...cult });
   state.comboHistory[key] = (state.comboHistory[key] ?? 0) + 1;
   awardGenreXp(state, cfg, p.genre);
   ip.titles.push(rel.id);

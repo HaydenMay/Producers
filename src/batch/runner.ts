@@ -25,7 +25,7 @@ export function runCareer(seed: number, strategyId: string, cfg: Config, opts: C
   const strat = STRATEGIES[strategyId];
   if (!strat) throw new Error(`Unknown strategy ${strategyId}`);
   const state = createStudio(seed, cfg);
-  const rng = makeAgentRng(seed, strategyId);
+  const rng = makeAgentRng(seed, strat.id); // alias names (e.g. low-budget-random-combo) replay the original policy exactly
   const decisions: Decision[] = [];
   const maxWeeks = opts.years !== undefined ? Math.round(opts.years * cfg.time.weeksPerYear) : opts.maxWeeks ?? opts.productions * 40 + 104;
   const ctx: AgentCtx = { reinvestsThisStop: 0 };

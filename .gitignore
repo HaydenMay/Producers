@@ -1,3 +1,4 @@
 node_modules/
 dist-web/
 reports/gate4/*/releases.jsonl
+reports/gate4q/*/releases.json

@@ -1,0 +1,120 @@
+{
+  "name": "gate4q_quality",
+  "_label": "Gate 4Q CANDIDATE = config/gate4.json (late distribution + contracts) + editorial genre/theme compatibility with bounded variation + steeper D/F multipliers (D 0.80, F 0.55) + rare audience-only cult appeal. TEST ASSUMPTIONS for designer review; not an approved balance config.",
+  "agents": {
+    "legacyHeuristicStaffCaps": false,
+    "useFiring": true,
+    "economicRenewal": true
+  },
+  "staffCapacity": {
+    "ladder": [
+      4,
+      6,
+      8
+    ],
+    "upgradeCosts": [
+      250000,
+      750000
+    ],
+    "upgradePrestige": [
+      200,
+      1000
+    ]
+  },
+  "audience": {
+    "legsModel": "diffusion"
+  },
+  "prestige": {
+    "repeatScope": "explicit",
+    "milestones": [
+      {
+        "id": "meters_all_70",
+        "kind": "allMeters",
+        "threshold": 70,
+        "amount": 50,
+        "scope": "release"
+      },
+      {
+        "id": "audience_7_5",
+        "kind": "audience",
+        "threshold": 7.5,
+        "amount": 75,
+        "scope": "release"
+      },
+      {
+        "id": "critic_8_5",
+        "kind": "critic",
+        "threshold": 8.5,
+        "amount": 85,
+        "scope": "release"
+      },
+      {
+        "id": "hall_of_fame",
+        "kind": "hallOfFame",
+        "threshold": 9.0,
+        "amount": 200,
+        "scope": "release"
+      },
+      {
+        "id": "first_hall_of_fame",
+        "kind": "hallOfFame",
+        "threshold": 9.0,
+        "amount": 100,
+        "scope": "career"
+      },
+      {
+        "id": "ip_gross_1m",
+        "kind": "ipLifetimeGross",
+        "threshold": 1000000,
+        "amount": 100,
+        "scope": "ip"
+      },
+      {
+        "id": "ip_gross_5m",
+        "kind": "ipLifetimeGross",
+        "threshold": 5000000,
+        "amount": 150,
+        "scope": "ip"
+      },
+      {
+        "id": "ip_viewers_500k",
+        "kind": "ipLifetimeViewers",
+        "threshold": 500000,
+        "amount": 150,
+        "scope": "ip"
+      }
+    ]
+  },
+  "formats": {
+    "limitedSeries": true,
+    "tv": true,
+    "streaming": true
+  },
+  "economy": {
+    "mode": "late_distribution",
+    "contracts": {
+      "enabled": true
+    }
+  },
+  "start": {
+    "cash": 120000
+  },
+  "world": {
+    "compatibility": {
+      "mode": "editorial",
+      "variation": {
+        "enabled": true
+      }
+    },
+    "gradeMultiplier": {
+      "A": 1.15,
+      "B": 1.06,
+      "C": 1.0,
+      "D": 0.8,
+      "F": 0.55
+    },
+    "cult": {
+      "enabled": true
+    }
+  }
+}

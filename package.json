@@ -22,7 +22,9 @@
     "counterfactuals": "tsx src/cli/main.ts counterfactuals",
     "economy:smoke": "tsc --noEmit && vitest run tests/integration/gate4.test.ts && tsx scripts/economy.ts smoke",
     "economy:compare": "tsx scripts/economy.ts compare",
-    "economy:gate": "tsx scripts/economy.ts gate"
+    "economy:gate": "tsx scripts/economy.ts gate",
+    "quality:smoke": "tsc --noEmit && vitest run tests/integration/gate4q.test.ts && tsx scripts/quality.ts",
+    "quality:compare": "tsx scripts/quality.ts --seeds 16 --years 10 --out reports/gate4q/compare --quiet"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",

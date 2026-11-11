@@ -1,7 +1,7 @@
 // Studio exact-genre experience, trends (craze cycle), unlock research, combo world generation.
 import type { Config } from "./config";
 import { emit, ledger } from "./events";
-import { next, weighted } from "./rng";
+import { next, stableUnit, weighted } from "./rng";
 import type { Grade, StudioState, TrendStage } from "./types";
 import { comboKey } from "./distribution";
 
@@ -22,14 +22,44 @@ export function awardGenreXp(state: StudioState, cfg: Config, genre: string): vo
   if (after > before) emit(state, "genre_level", `Studio ${genre} level ${before} → ${after}.`);
 }
 
+const GRADES: Grade[] = ["A", "B", "C", "D", "F"];
+
+/**
+ * Gate 4Q editorial compatibility: the matrix baseline for an EXACT genre + theme, shifted at most
+ * `maxSteps` by a stable per-pair hash (never a shared stream). Exported for tests and reports.
+ */
+export function editorialGrades(seed: number, cfg: Config, genre: string, theme: string): { audience: Grade; critic: Grade; baseline: { audience: Grade; critic: Grade }; shifted: boolean } {
+  const c = cfg.world.compatibility;
+  const row = (c.matrix as Record<string, Record<string, { audience: Grade; critic: Grade }>>)[genre]?.[theme];
+  if (!row) throw new Error(`compatibility matrix has no entry for ${genre} + ${theme}`);
+  const shift = (g: Grade, side: string): Grade => {
+    if (!c.variation.enabled) return g;
+    const u = stableUnit(seed, `combo:${genre}|${theme}:${side}`);
+    if (u >= c.variation.chance) return g;
+    const dir = u < c.variation.chance / 2 ? -1 : 1; // -1 = better grade
+    const steps = Math.max(1, c.variation.maxSteps);
+    const i = Math.max(0, Math.min(GRADES.length - 1, GRADES.indexOf(g) + dir * steps));
+    return GRADES[i];
+  };
+  const audience = shift(row.audience, "audience");
+  const critic = shift(row.critic, "critic");
+  return { audience, critic, baseline: { ...row }, shifted: audience !== row.audience || critic !== row.critic };
+}
+
 export function generateWorld(state: StudioState, cfg: Config): void {
   const genres = Object.keys(cfg.world.genres).sort();
+  const editorial = cfg.world.compatibility.mode === "editorial";
   for (const g of genres) {
     for (const t of cfg.world.themes) {
-      state.world.comboGrades[comboKey(g, t)] = {
+      // the random draws are ALWAYS consumed, so the world stream (and everything after it) is identical in both modes
+      const random = {
         audience: weighted(state.rng, "world", cfg.world.gradeWeights as Record<Grade, number>),
         critic: weighted(state.rng, "world", cfg.world.gradeWeights as Record<Grade, number>),
       };
+      if (editorial) {
+        const e = editorialGrades(state.seed, cfg, g, t);
+        state.world.comboGrades[comboKey(g, t)] = { audience: e.audience, critic: e.critic };
+      } else state.world.comboGrades[comboKey(g, t)] = random;
     }
   }
   for (const t of cfg.world.themes) state.trends[t] = { stage: "none", weeksInStage: 0 };

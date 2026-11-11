@@ -374,3 +374,9 @@ export const ALL_STRATEGY_IDS = Object.keys(STRATEGIES);
 // Gate 4 adversarial policy: registered after ALL_STRATEGY_IDS so default batches (and old reports) are unchanged.
 import { CONTRACT_FARMER } from "./economy";
 STRATEGIES["contract-farmer"] = CONTRACT_FARMER;
+// Gate 4Q: the cost-minimising "cheap-duds" policy is NOT a measured bad-movie maker (its films average ~6). Report name:
+// low-budget-random-combo. The alias runs the identical policy (same id → same agent RNG and profile).
+STRATEGIES["low-budget-random-combo"] = STRATEGIES["cheap-duds"];
+import { POOR_FIT_CHOOSER } from "./diagnostic";
+STRATEGIES["poor-fit-chooser"] = POOR_FIT_CHOOSER;
+export const DISPLAY_NAME: Record<string, string> = { "cheap-duds": "low-budget-random-combo" };

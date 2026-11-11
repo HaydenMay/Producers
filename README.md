@@ -17,7 +17,17 @@ Overrides for every mode: `-- --seeds N --years N --strategies a,b --variants le
 - `npx tsx scripts/economy-traces.ts`: seeded traces, about 1 s.
 - `npm test`: everything, about 15 s.
 
+**Gate 4Q scoring loops:** `npm run quality:smoke` (≈ 8 s: typecheck + 13 tests + 5-seed diagnostic) and `npm run quality:compare` (≈ 14 s: 16 paired seeds × 8 scoring variants). Representative attribution traces: `npx tsx scripts/quality-traces.ts`.
+
 The 200-seed / 25-year matrices from earlier gates (`scripts/fu-matrix.ts`, experiment specs) are **opt-in stress tests**, not a prerequisite for progress.
+
+## Gate 4Q: logical combinations and real duds (EXPERIMENT, pending designer review)
+
+- **`world.compatibility.mode`:** `random` (default, byte-identical to every earlier gate) or `editorial`. The editorial matrix grades audience and critics separately for each **exact** genre × theme pair, and each world shifts a few pairs by at most one grade step.
+- **Severity:** the candidate (`config/gate4q.json`) steepens D/F to 0.80 / 0.55.
+- **Cult appeal:** rare, audience-only "Unexpected cult appeal" events (`world.cult`).
+- **Policy names:** `cheap-duds` is reported as **`low-budget-random-combo`** (exact alias). A `poor-fit-chooser` diagnostic policy was added.
+- **Docs:** `docs/gate-4-quality-findings.md`, `docs/gate-4-quality-open-decisions.md`; register entries Q-1…Q-6.
 
 ## Gate 4: studio-risk economy (EXPERIMENT, pending designer review)
 
@@ -37,10 +47,11 @@ Docs: `docs/gate-4-economy-findings.md`, `docs/gate-4-economy-open-decisions.md`
 | **1 — Deterministic movie kernel** | ✅ Done | Staff, phases, ledger, advances/royalties/surplus/overruns/cancel, Stars (families, budgets, pre-display free fallback, callbacks, relationships), $0 campaign, scores, legs, finite runs, Prestige, IP fans, studio genre levels, trends. Exact replay. |
 | **2 — Strategies, batch, diagnostics** | ✅ Done | 7 policies, batch runner, paired-seed compare, 13 diagnostic flags, invariant checker, CSV/JSON/Markdown, regression seed bank. Catches injected bugs. |
 | **3 — TV + streaming** | ✅ Built (pending designer review) | Limited series, renewable TV, streaming; config-gated (`config/gate3.json`). Follow-up: staff firing, no season cap, viewer-fatigue and breakthrough experiments (default off). |
+| **Gate 4Q scoring experiment** | 🧪 Candidate built (pending designer review) | editorial combo matrix, D/F severity, cult appeal; `quality:smoke` / `quality:compare`. |
 | **Gate 4 economy experiment** | 🧪 Candidate built (pending designer review) | `economy.mode` legacy_advance (default) vs late_distribution; contracts; FAST/COMPARE/GATE loops. |
 | **4 — Thin browser UI** | ✅ Done (minimal) | Manual step-through career, strategy auto-step, batch runner, config editor, replay. Same core; no rules in the UI. |
 
-**Tests:** 118 passing (Gate 4); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
+**Tests:** 131 passing (Gate 4Q); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
 ## Gate 3 follow-up: staff firing and organic TV longevity (pending designer review)
