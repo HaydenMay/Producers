@@ -95,8 +95,8 @@
       "RomCom": { "Funny": 0.5, "Romantic": 0.5 }
     },
     "compatibility": {
-          "_label": "Combo fit. ONE shared grade per EXACT genre+theme pair, applied identically to Audience and Critic scores (PROD-062). Audience/Critic differences come only from craft weights (audienceWeights 35% Filming + 35% Editing vs criticWeights 35% Plot + 35% Writing). mode random = legacy regression only: two independent weighted grades from the world stream (every earlier gate). mode editorial = the designer-editable matrix below, optionally shifted by a bounded per-pair variation from a stable hash of (seed, pair), never a shared RNG stream. The random draws are still consumed in editorial mode so every other world/talent draw is unchanged. Grades are EDITORIAL PROPOSALS for designer review; 'contestable' pairs carry the pick and the reason.",
-          "mode": "random",
+          "_label": "Combo fit. ONE shared grade per EXACT genre+theme pair, applied identically to Audience and Critic scores (PROD-062). Audience/Critic differences come only from craft weights (audienceWeights 35% Filming + 35% Editing vs criticWeights 35% Plot + 35% Writing). mode editorial = DEFAULT since 2026-11-11 (designer approved the matrix). mode random = legacy regression only: two independent weighted grades from the world stream (every earlier gate). mode editorial = the designer-editable matrix below, optionally shifted by a bounded per-pair variation from a stable hash of (seed, pair), never a shared RNG stream. The random draws are still consumed in editorial mode so every other world/talent draw is unchanged. Grades are EDITORIAL PROPOSALS for designer review; 'contestable' pairs carry the pick and the reason.",
+          "mode": "editorial",
           "variation": {
                 "_label": "bounded world-to-world variation: each pair's single grade shifts one step with this chance (direction 50/50, clamped A..F).",
                 "enabled": true,
@@ -111,23 +111,26 @@
                 "Horror|Pirates": "C (draft C/D). Cursed-ship / ghost-crew horror is a real subgenre; middling, not bad.",
                 "Thriller|Time Travel": "A (draft B/A). Loops, paradoxes and countdowns are thriller fuel; one of the best thriller fits.",
                 "Romance|Zombies": "D (draft D/F). Can work as a rare oddball love story; poor, not impossible.",
-                "Romance|Vampires": "B (draft B/D). Brooding immortal romance is a big crowd draw; critic snobbery now comes from craft weights, not the grade.",
                 "Romance|Robots": "C (draft D/C). Lonely-human/AI love stories land often enough; average fit.",
                 "Drama|Zombies": "C (draft D/C). Survival drama with zombies as backdrop is a proven prestige-TV shape; average fit.",
                 "SciFi|Dinosaurs": "B (draft B/C). De-extinction / lost-world sci-fi is the genre's natural home for dinosaurs.",
                 "RomCom|Zombies": "D (draft D/F). Comedy softens the gore a little; still poor.",
-                "RomCom|Spies": "C (draft B/D). Married-spies action romcom is popular but rarely good; split the difference."
+                "RomCom|Spies": "C (draft B/D). Married-spies action romcom is popular but rarely good; split the difference.",
+                "Thriller|Dinosaurs": "B (draft D). Designer 2026-11-11: dinosaurs on the loose is a natural thriller.",
+                "Action|Mythology": "A (draft B). Designer 2026-11-11 asked why Mythology was never good: gods-and-heroes epics are a top action fit.",
+                "Romance|Vampires": "A (draft B/D, first pick B). Designer 2026-11-11: Romance had no A; brooding immortal romance is its biggest crowd fit.",
+                "RomCom|Time Travel": "A (draft B/C). Designer 2026-11-11: RomCom had no A; the time-loop / do-over romcom is a proven sweet spot."
           },
           "_matrixNote": "Collapse rule for the old two-grade draft: crowd genres (Action, Comedy, Horror, Romance, SciFi, RomCom) keep the draft AUDIENCE grade, prestige genres (Drama, Thriller) keep the draft CRITIC grade; contestable pairs use the pick above.",
           "matrix": {
-                "Action": { "Zombies": "B", "Superheroes": "A", "Spies": "A", "Sports": "C", "Vampires": "B", "Time Travel": "B", "Pirates": "A", "Robots": "B", "Dinosaurs": "B", "Mythology": "B" },
+                "Action": { "Zombies": "B", "Superheroes": "A", "Spies": "A", "Sports": "C", "Vampires": "B", "Time Travel": "B", "Pirates": "A", "Robots": "B", "Dinosaurs": "B", "Mythology": "A" },
                 "Comedy": { "Zombies": "B", "Superheroes": "B", "Spies": "B", "Sports": "A", "Vampires": "B", "Time Travel": "B", "Pirates": "C", "Robots": "C", "Dinosaurs": "C", "Mythology": "C" },
                 "Horror": { "Zombies": "A", "Superheroes": "D", "Spies": "D", "Sports": "F", "Vampires": "A", "Time Travel": "C", "Pirates": "C", "Robots": "C", "Dinosaurs": "B", "Mythology": "B" },
-                "Thriller": { "Zombies": "C", "Superheroes": "C", "Spies": "A", "Sports": "D", "Vampires": "C", "Time Travel": "A", "Pirates": "C", "Robots": "B", "Dinosaurs": "D", "Mythology": "C" },
-                "Romance": { "Zombies": "D", "Superheroes": "C", "Spies": "C", "Sports": "C", "Vampires": "B", "Time Travel": "B", "Pirates": "C", "Robots": "C", "Dinosaurs": "F", "Mythology": "C" },
+                "Thriller": { "Zombies": "C", "Superheroes": "C", "Spies": "A", "Sports": "D", "Vampires": "C", "Time Travel": "A", "Pirates": "C", "Robots": "B", "Dinosaurs": "B", "Mythology": "C" },
+                "Romance": { "Zombies": "D", "Superheroes": "C", "Spies": "C", "Sports": "C", "Vampires": "A", "Time Travel": "B", "Pirates": "C", "Robots": "C", "Dinosaurs": "F", "Mythology": "C" },
                 "Drama": { "Zombies": "C", "Superheroes": "C", "Spies": "A", "Sports": "A", "Vampires": "D", "Time Travel": "B", "Pirates": "C", "Robots": "B", "Dinosaurs": "F", "Mythology": "B" },
                 "SciFi": { "Zombies": "C", "Superheroes": "B", "Spies": "C", "Sports": "D", "Vampires": "D", "Time Travel": "A", "Pirates": "C", "Robots": "A", "Dinosaurs": "B", "Mythology": "C" },
-                "RomCom": { "Zombies": "D", "Superheroes": "C", "Spies": "C", "Sports": "B", "Vampires": "C", "Time Travel": "B", "Pirates": "D", "Robots": "D", "Dinosaurs": "F", "Mythology": "D" }
+                "RomCom": { "Zombies": "D", "Superheroes": "C", "Spies": "C", "Sports": "B", "Vampires": "C", "Time Travel": "A", "Pirates": "D", "Robots": "D", "Dinosaurs": "F", "Mythology": "D" }
           }
     },
     "cult": {
