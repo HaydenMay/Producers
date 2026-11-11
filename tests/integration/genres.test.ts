@@ -1,6 +1,6 @@
 // Genre unlocks (PROD-091): crew thresholds, combo unlock, era safety net; no money path; legacy off.
 import { describe, expect, it } from "vitest";
-import { baselineConfig, legacyConfig } from "../../src/core/config";
+import { baselineConfig, legacyConfig, withOverrides } from "../../src/core/config";
 import { createStudio, getChoices } from "../../src/core/simulation";
 import { checkGenreUnlocks } from "../../src/core/progression";
 import { runCareer } from "../../src/batch/runner";
@@ -43,5 +43,20 @@ describe("genre unlocks", () => {
     expect(r.releases.some((x) => !D.start.unlockedGenres.includes(x.genre))).toBe(true);
     const l = runCareer(1, "balanced", legacyConfig(), { productions: 0, years: 6 }).state;
     expect(l.unlockedGenres).toEqual(legacyConfig().start.unlockedGenres);
+  });
+
+  it("themes can't be bought by default; a locked theme turning Hot unlocks it", async () => {
+    const { updateTrends } = await import("../../src/core/progression");
+    const s = createStudio(1, D);
+    s.cash = 1e7;
+    expect(getChoices(s, D).options.some((o) => o.type === "research_theme")).toBe(false);
+    const t = D.world.themes.find((x) => !s.unlockedThemes.includes(x))!;
+    const always = withOverrides(D, { themeUnlocks: { chance: 1 } });
+    s.trends[t] = { stage: "rising", weeksInStage: D.trends.risingWeeks } as never;
+    updateTrends(s, always);
+    expect(s.unlockedThemes).toContain(t);
+    const l = createStudio(1, legacyConfig());
+    l.cash = 1e7;
+    expect(getChoices(l, legacyConfig()).options.some((o) => o.type === "research_theme")).toBe(true);
   });
 });

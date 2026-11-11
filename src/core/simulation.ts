@@ -133,7 +133,7 @@ function reinvestOptions(state: StudioState, cfg: Config): Decision[] {
   if (up && cash >= up.cost && state.prestige >= up.prestige) out.push({ type: "upgrade_studio" });
   if (cash >= cfg.staffGrowth.trainCost) for (const s of state.staff) out.push({ type: "train", staffId: s.id });
   if (cash >= cfg.marketing.studioAdsCost) out.push({ type: "studio_ads" });
-  if (cash >= cfg.research.themeCost) for (const t of cfg.world.themes) if (!state.unlockedThemes.includes(t)) out.push({ type: "research_theme", theme: t });
+  if ((cfg.research as { themePurchase?: boolean }).themePurchase !== false && cash >= cfg.research.themeCost) for (const t of cfg.world.themes) if (!state.unlockedThemes.includes(t)) out.push({ type: "research_theme", theme: t });
   // Gate 3 studio expansions (config-gated). TV = a studio upgrade at money + Prestige (LOCKED direction).
   if (cfg.formats.tv && !state.tvUnlocked && state.prestige >= cfg.tv.unlock.prestige && cash >= cfg.tv.unlock.cost) out.push({ type: "unlock_tv" });
   out.push(...announceOptions(state, cfg));

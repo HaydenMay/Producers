@@ -82,7 +82,14 @@ export function updateTrends(state: StudioState, cfg: Config): void {
     } else if (tr.weeksInStage >= len[tr.stage]) {
       tr.stage = NEXT_STAGE[tr.stage];
       tr.weeksInStage = 0;
-      if (tr.stage === "hot") emit(state, "trend", `${t} craze is HOT!`);
+      if (tr.stage === "hot") {
+        emit(state, "trend", `${t} craze is HOT!`);
+        const tu = (cfg as { themeUnlocks?: { trendInspiration?: boolean; chance?: number } }).themeUnlocks;
+        if (tu?.trendInspiration && !state.unlockedThemes.includes(t) && stableUnit(state.seed, `inspire:${t}:${state.week}`) < (tu.chance ?? 1)) {
+          state.unlockedThemes.push(t);
+          emit(state, "unlock", `Everyone's talking about ${t}, and your team got inspired: new theme ${t}.`, { theme: t, via: "trend" });
+        }
+      }
       if (tr.stage === "saturated") emit(state, "trend", `${t} stories are everywhere; critics are getting tired (Saturated).`);
     }
   }

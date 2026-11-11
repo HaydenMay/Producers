@@ -26,7 +26,7 @@ describe("Producers default economy", () => {
   it("legacyConfig keeps the baseline name (legacy outputs stay comparable)", () => {
     expect(legacyConfig().name).toBe("baseline");
   });
-  it("legacy overlay touches ONLY economy mode, contracts, start cash, legs model, the movie dud levers, the Stars-rework switch, the Star score bonus, genre unlocks and two-family Star fit", () => {
+  it("legacy overlay touches ONLY economy mode, contracts, start cash, legs model, the movie dud levers, the Stars-rework switch, the Star score bonus, genre unlocks, two-family Star fit and the theme unlock routes", () => {
     const d = baselineConfig() as unknown as Record<string, unknown>;
     const l = legacyConfig() as unknown as Record<string, unknown>;
     const strip = (c: Record<string, unknown>) => {
@@ -41,6 +41,8 @@ describe("Producers default economy", () => {
       delete x.scoring.starScoreBonus;
       delete x.genreUnlocks.enabled;
       delete x.world.genreFamilyWeights;
+      delete x.research.themePurchase;
+      delete x.themeUnlocks.trendInspiration;
       delete x._overlay;
       return x;
     };

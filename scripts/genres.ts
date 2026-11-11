@@ -41,6 +41,20 @@ for (const st of POL) {
   const cell = (g: string) => (when[g] ? `${f1(med(when[g]))} (${Object.entries(via[g]).map(([k, v]) => `${k} ${v}`).join(", ")})` : "never");
   L.push(`| ${st} | ${NEW.map(cell).join(" | ")} | ${Math.round((100 * newFilms) / films)}% | ${med(avgOff).toFixed(2)} → ${med(avgOn).toFixed(2)} | $${(med(cashOff) / 1e6).toFixed(2)}M → $${(med(cashOn) / 1e6).toFixed(2)}M | ${viol} |`);
 }
+// themes: old routes (pitch + $25K purchase) vs new (pitch + trend inspiration, no purchase)
+const OLDT = withOverrides(ON, { research: { themePurchase: true }, themeUnlocks: { trendInspiration: false } });
+L.push("", "## Themes: unlocked count (of 10; 4 at start) by year, old routes → new routes", "", "Old = staff pitches + $25K research. New (default) = staff pitches + trend inspiration (a locked theme turning Hot unlocks), no purchase.", "", "| Policy | Year 3 | Year 6 | Year 10 | New-route unlocks by type (per career) | End cash p50 (old → new) |", "|---|---|---|---|---|---|");
+for (const st of POL) {
+  const at = (cfg: typeof ON, y: number) => med(Array.from({ length: seeds }, (_, i) => runCareer(i + 1, st, cfg, { productions: 0, years: y }).state.unlockedThemes.length));
+  const routes: Record<string, number> = {};
+  const cash = (cfg: typeof ON) => med(Array.from({ length: seeds }, (_, i) => runCareer(i + 1, st, cfg, { productions: 0, years }).state.cash));
+  for (let seed = 1; seed <= seeds; seed++)
+    for (const e of runCareer(seed, st, ON, { productions: 0, years }).state.events.filter((e) => e.type === "unlock" && !e.data?.genre)) {
+      const k = e.data?.via === "trend" ? "trend" : e.message.startsWith("Researched") ? "research" : "pitch";
+      routes[k] = (routes[k] ?? 0) + 1 / seeds;
+    }
+  L.push(`| ${st} | ${at(OLDT, 3)} → ${at(ON, 3)} | ${at(OLDT, 6)} → ${at(ON, 6)} | ${at(OLDT, 10)} → ${at(ON, 10)} | ${Object.entries(routes).map(([k, v]) => `${k} ${v.toFixed(1)}`).join(", ")} | $${(cash(OLDT) / 1e6).toFixed(2)}M → $${(cash(ON) / 1e6).toFixed(2)}M |`);
+}
 L.push("", `Elapsed ${((Date.now() - t0) / 1000).toFixed(1)} s.`);
 mkdirSync("reports/genres", { recursive: true });
 writeFileSync("reports/genres/summary.md", L.join("\n") + "\n");

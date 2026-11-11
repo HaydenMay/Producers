@@ -10,9 +10,9 @@ Levers: **pivot** = word-of-mouth pivot 5 → 6.5; **decay** = bad-reception int
 
 | Setup | <4 | 4-6 | 6-8 | 8+ | End cash p50: balanced / quality-first / cheap-duds / poor-fit-chooser |
 |---|---|---|---|---|---|
-| old default: geometric legs, no levers | 0% · $67K (n 12) | 0% · $91K (n 547) | 0% · $170K (n 690) | 0% · $268K (n 703) | $7.10M / $6.56M / $4.95M / $3.00M |
-| diffusion legs, no levers | 0% · $60K (n 12) | 0% · $88K (n 546) | 0% · $211K (n 676) | 0% · $261K (n 711) | $7.36M / $6.35M / $5.87M / $2.89M |
-| **NEW DEFAULT**: diffusion + movie-only levers | 82% · −$4K (n 11) | 23% · $18K (n 542) | 0% · $111K (n 650) | 0% · $260K (n 707) | $6.22M / $5.91M / $3.12M / $673K |
+| old default: geometric legs, no levers | 0% · $58K (n 11) | 0% · $90K (n 539) | 0% · $169K (n 696) | 0% · $267K (n 708) | $7.18M / $6.43M / $4.82M / $3.03M |
+| diffusion legs, no levers | 0% · $60K (n 13) | 0% · $87K (n 541) | 0% · $211K (n 680) | 0% · $261K (n 711) | $7.37M / $6.34M / $5.93M / $2.94M |
+| **NEW DEFAULT**: diffusion + movie-only levers | 80% · −$11K (n 10) | 27% · $14K (n 522) | 0% · $118K (n 667) | 0% · $258K (n 709) | $6.43M / $5.79M / $3.24M / $879K |
 
 ### Base: quality candidate (`config/gate4q.json`, single grade)
 
@@ -48,4 +48,4 @@ Seasons (`tv`) and limited series (`limited_series`) are reported apart because 
 | decay | — | 0% · $54K (n 3) | 0% · $224K (n 49) | 0% · $294K (n 21) | $1.85M / $562K / $5.66M |
 | both | — | 40% · $46K (n 5) | 0% · $139K (n 61) | 0% · $283K (n 18) | $1.20M / $89K / $3.18M |
 
-Elapsed 21.8 s.
+Elapsed 24.5 s.
