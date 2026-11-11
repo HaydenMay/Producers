@@ -70,7 +70,7 @@ export function hireStaff(state: StudioState, cfg: Config): Staff {
 export function fireOptions(state: StudioState, cfg: Config): string[] {
   const f = cfg.staffing;
   if (!f.firingEnabled) return [];
-  if (f.betweenProductionsOnly && (state.project || state.pendingOffers)) return [];
+  if (f.betweenProductionsOnly && (state.project || state.pendingOffers || state.contract)) return [];
   if (state.staff.length <= f.minStaff) return [];
   if (f.fireCost > 0 && Math.max(0, state.cash) < f.fireCost) return [];
   return state.staff.filter((s) => !s.assignment).map((s) => s.id);

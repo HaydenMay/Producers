@@ -64,7 +64,10 @@ export function updateTrust(state: StudioState, cfg: Config, rel: Release): Reco
   if (!rel.distributorId) return null;
   const d = state.distributors.find((x) => x.id === rel.distributorId);
   if (!d || d.lifeline) return null;
-  const roi = rel.advance > 0 ? rel.distributorTake / rel.advance : 1;
+  // Gate 4 candidate: the distributor's stake is its own advertising spend (no advance exists)
+  const stake = rel.financing === "late_distribution" ? rel.adSpend ?? 0 : rel.advance;
+  if (rel.financing === "late_distribution" && stake <= 0) return null;
+  const roi = stake > 0 ? rel.distributorTake / stake : 1;
   const roiSignal = Math.max(-1, Math.min(1, roi - 1));
   const qualitySignal = Math.max(-1, Math.min(1, (rel.avgScore - 5.5) / 3));
   const raw = cfg.distribution.trustRoiWeight * roiSignal + cfg.distribution.trustQualityWeight * qualitySignal;
@@ -73,8 +76,8 @@ export function updateTrust(state: StudioState, cfg: Config, rel: Release): Reco
   d.trust = Math.max(cfg.distribution.trustMin, Math.min(cfg.distribution.trustMax, round2(d.trust + step)));
   const reason =
     roi < 1
-      ? `${d.name} earned back ${(roi * 100).toFixed(0)}% of its $${Math.round(rel.advance).toLocaleString()} advance on ${rel.title}${rel.avgScore < 5 ? " and reviews were poor" : ""}`
-      : `${d.name} earned ${(roi * 100).toFixed(0)}% of its advance back on ${rel.title}${rel.avgScore >= 7 ? " with strong reviews" : ""}`;
+      ? `${d.name} earned back ${(roi * 100).toFixed(0)}% of its $${Math.round(stake).toLocaleString()} ${rel.financing ? "ad spend" : "advance"} on ${rel.title}${rel.avgScore < 5 ? " and reviews were poor" : ""}`
+      : `${d.name} earned ${(roi * 100).toFixed(0)}% of its ${rel.financing ? "ad spend" : "advance"} back on ${rel.title}${rel.avgScore >= 7 ? " with strong reviews" : ""}`;
   emit(state, "trust", `${reason}. Trust ${before.toFixed(2)} → ${d.trust.toFixed(2)}.`, { distributorId: d.id, roi: round2(roi), step });
   return { distributorId: d.id, roi: round2(roi), qualitySignal: round2(qualitySignal), step, before, after: d.trust, reason };
 }

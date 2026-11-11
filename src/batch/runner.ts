@@ -3,6 +3,7 @@ import { makeAgentRng } from "../core/rng";
 import { advanceWeek, applyDecision, createStudio, getChoices } from "../core/simulation";
 import type { Decision, StudioState } from "../core/types";
 import { STRATEGIES, type AgentCtx } from "../agents/strategies";
+import { decideFor } from "../agents/economy";
 
 export interface CareerOptions {
   productions: number;
@@ -45,7 +46,7 @@ export function runCareer(seed: number, strategyId: string, cfg: Config, opts: C
     const ch = getChoices(state, cfg);
     // Every phase goes to the strategy: pre-Gate-3 strategies always wait during production (unchanged behavior);
     // Gate 3 strategies may announce a season or start the streaming build in the background.
-    const d: Decision = strat.decide(state, cfg, ch, rng, ctx);
+    const d: Decision = decideFor(strat, state, cfg, ch, rng, ctx);
     if (d.type === "hire" || d.type === "train" || d.type === "studio_ads" || d.type === "research_theme") ctx.reinvestsThisStop += 1;
     else ctx.reinvestsThisStop = 0;
     applyDecision(state, cfg, d);
@@ -65,7 +66,7 @@ export function runScripted(
   const decisions: Decision[] = [];
   const maxWeeks = opts.maxWeeks ?? opts.productions * 40 + 104;
   while (state.week < maxWeeks) {
-    const done = state.counters.productionsCompleted >= opts.productions && !state.project && !state.pendingOffers;
+    const done = state.counters.productionsCompleted >= opts.productions && !state.project && !state.pendingOffers && !state.contract;
     if (done) {
       if (!opts.drain || !state.releases.some((r) => r.active)) break;
       advanceWeek(state, cfg);
@@ -73,7 +74,7 @@ export function runScripted(
       continue;
     }
     const ch = getChoices(state, cfg);
-    const d = ch.phase === "production" ? { type: "wait" as const } : decide(state, ch);
+    const d = ch.phase === "production" || ch.phase === "contract" ? { type: "wait" as const } : decide(state, ch);
     applyDecision(state, cfg, d);
     decisions.push(d);
   }

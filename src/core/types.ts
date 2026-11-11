@@ -140,7 +140,11 @@ export interface Project {
   campaignCost: number;
   meterPoints: Record<Meter, number>;
   starPoints: number;
-  pendingDecision: "casting" | "marketing" | null;
+  pendingDecision: "casting" | "marketing" | "distribution" | null;
+  /** Gate 4 candidate: the 80% distribution meeting */
+  distributionBids?: DistributionBid[];
+  distribution?: { distributorId: string | null; adSpend: number; adAwareness: number; share: number; reach: number; preview: Record<string, number> };
+  investedAtMeeting?: number;
   /** Gate 3 */
   episodes?: number;
   seasonNumber?: number;
@@ -189,6 +193,9 @@ export interface Release {
   starFee: number;
   campaignCost: number;
   cashOverrun: number;
+  /** Gate 4 candidate only: "late_distribution"; the distributor's own advertising spend (never studio cash) */
+  financing?: "late_distribution";
+  adSpend?: number;
   weekly: { week: number; viewers: number; gross: number; studio: number; distributor: number; retention: number; driver: string; episode?: number }[];
   trace: Record<string, unknown>;
   /** Gate 3 (missing = movie / traditional) */
@@ -228,7 +235,9 @@ export interface LedgerEntry {
     | "platform_build"
     | "subscriptions"
     | "platform_opex"
-    | "fire";
+    | "fire"
+    | "contract_labor"
+    | "contract_fee";
   amount: number; // + into studio cash, - out of studio cash. advance_* entries track the project reserve.
   projectId?: string;
   note?: string;
@@ -278,6 +287,9 @@ export interface StudioState {
   platform?: PlatformState | null;
   /** Gate 3 follow-up: dismissed employees, kept for the historical record (never revived) */
   formerStaff?: (Staff & { firedWeek: number })[];
+  /** Gate 4: active work-for-hire job, and finished ones (only present when contracts are enabled) */
+  contract?: ActiveContract | null;
+  contractHistory?: (ActiveContract & { endWeek: number })[];
   world: { comboGrades: Record<string, { audience: Grade; critic: Grade }> };
 }
 
@@ -292,6 +304,45 @@ export interface PlanDecision {
   episodes?: number;
   /** TV renewal only: approved theme twist (genre stays) */
   twistTheme?: string;
+  /** Gate 4 candidate (late_distribution) only: start as a studio-funded Streaming Original (no distributor meeting) */
+  route?: "original";
+}
+
+/** Gate 4 candidate: one distributor's fixed bid at the 80% distribution meeting. NO cash to the studio. */
+export interface DistributionBid {
+  distributorId: string;
+  name: string;
+  /** advertising the DISTRIBUTOR spends (its own cost); never studio cash */
+  adSpend: number;
+  /** opening awareness that ad spend buys (shown so the player can compare) */
+  adAwareness: number;
+  reach: number;
+  /** distributor's share of every gross dollar */
+  share: number;
+  reasons: string[];
+}
+
+/** Gate 4 candidate: a work-for-hire job offer (zero Prestige). */
+export interface ContractOffer {
+  id: string;
+  name: string;
+  weeks: number;
+  meters: Meter[];
+  fee: number;
+  laborPerWeek: number;
+  available: boolean;
+  why: string;
+}
+
+export interface ActiveContract {
+  id: string;
+  name: string;
+  meters: Meter[];
+  startWeek: number;
+  weeks: number;
+  weeksWorked: number;
+  fee: number;
+  laborCovered: number;
 }
 
 /** Gate 3B: one aggregate streaming business. Never per-title payouts. */
@@ -325,9 +376,11 @@ export type Decision =
   | { type: "hire_engineer" }
   | { type: "fire"; staffId: string }
   | { type: "build_streaming" }
+  | { type: "distribute"; distributorId: string | null } // Gate 4 candidate: one bid or null = self-distribute
+  | { type: "contract"; contractId: string } // Gate 4: work-for-hire
   | { type: "wait" };
 
-export type Phase = "planning" | "pitch" | "production" | "casting" | "marketing";
+export type Phase = "planning" | "pitch" | "production" | "casting" | "marketing" | "distribution" | "contract";
 
 export interface Choices {
   phase: Phase;
@@ -339,4 +392,10 @@ export interface Choices {
   auditionCards?: StarCard[];
   campaigns?: { id: string; cost: number; affordable: boolean }[];
   canCancel?: boolean;
+  /** Gate 4 candidate */
+  bids?: DistributionBid[];
+  selfDistribution?: { reach: number; share: number; adSpend: number };
+  investedSoFar?: number;
+  contracts?: ContractOffer[];
+  notes?: string[];
 }

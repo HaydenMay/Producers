@@ -14,6 +14,7 @@ import { buildStreaming, canBuildStreaming, canHireEngineer, decayAnticipation, 
 import { releaseWeek, decayFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { audienceEraAt, criticGenerationAt, expectationsAt } from "./scoring";
+import { chooseDistribution, contractOffers, contractWeek, contractsEnabled, investedSoFar, isLateDistribution, startContract } from "./latedist";
 import { RULESET_VERSION, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
 
 export const FEATURES_MODELLED = ["movies", "limited series (config-gated)", "renewable TV seasons: orders, renewal, fatigue, twist, hiatus, announcements, contract variants A/B (config-gated)", "studio streaming service: engineer build, aggregate subscribers, catalog, Originals (config-gated)", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "theme research + staff pitches"];
@@ -96,6 +97,13 @@ function planOptions(state: StudioState, cfg: Config): PlanDecision[] {
       }
     }
   }
+  if (isLateDistribution(cfg)) {
+    // Gate 4 candidate: the studio pays the base cost itself, so only affordable plans are legal (no hidden advance).
+    const cash = state.cash < 0 ? 0 : spendableCash(state);
+    const ok = out.filter((p) => planBaseCost(cfg, p) <= cash);
+    if (state.platform?.status === "live") return [...ok, ...ok.map((p) => ({ ...p, route: "original" as const }))];
+    return ok;
+  }
   return out;
 }
 
@@ -146,6 +154,20 @@ export function getChoices(state: StudioState, cfg: Config): Choices {
   if (p?.pendingDecision === "casting") {
     return { ...base, phase: "casting", auditionCards: p.auditionCards, options: p.auditionCards.filter((c) => c.affordable).map((c) => ({ type: "cast", starId: c.starId })) };
   }
+  if (p?.pendingDecision === "distribution") {
+    const bids = p.distributionBids ?? [];
+    return {
+      ...base,
+      phase: "distribution",
+      bids,
+      selfDistribution: { reach: cfg.economy.lateDistribution.selfDistributionReach, share: 0, adSpend: 0 },
+      investedSoFar: p.investedAtMeeting ?? investedSoFar(state, p),
+      options: [...bids.map((b) => ({ type: "distribute" as const, distributorId: b.distributorId })), { type: "distribute", distributorId: null }],
+    };
+  }
+  if (state.contract) {
+    return { ...base, phase: "contract", options: [{ type: "wait" }, ...reinvestOptions(state, cfg).filter((d) => d.type !== "hire" && d.type !== "hire_engineer")] };
+  }
   if (p?.pendingDecision === "marketing") {
     const camps = campaignOptions(state, cfg);
     return { ...base, phase: "marketing", campaigns: camps, options: camps.filter((c) => c.affordable).map((c) => ({ type: "market", campaign: c.id })) };
@@ -165,7 +187,12 @@ export function getChoices(state: StudioState, cfg: Config): Choices {
     }
     return { ...base, phase: "pitch", offers: state.pendingOffers, options: opts };
   }
-  return { ...base, phase: "planning", options: [...planOptions(state, cfg), ...reinvestOptions(state, cfg), ...fireOptions(state, cfg).map((staffId) => ({ type: "fire" as const, staffId })), { type: "wait" }] };
+  const plans = planOptions(state, cfg);
+  const contracts = contractsEnabled(cfg) ? contractOffers(state, cfg) : null;
+  const planning: Choices = { ...base, phase: "planning", options: [...plans, ...reinvestOptions(state, cfg), ...fireOptions(state, cfg).map((staffId) => ({ type: "fire" as const, staffId })), ...(contracts ? contracts.filter((c) => c.available).map((c) => ({ type: "contract" as const, contractId: c.id })) : []), { type: "wait" }] };
+  if (contracts) planning.contracts = contracts;
+  if (isLateDistribution(cfg) && !plans.some((x) => !x.format)) planning.notes = [`Can't start a movie: base cost $${cfg.production.movie.baseCost.toLocaleString()} vs spendable $${Math.round(spendableCash(state)).toLocaleString()}${state.cash < 0 ? " (in the red)" : ""}. Take a work-for-hire contract to recover.`];
+  return planning;
 }
 
 function sameDecision(a: Decision, b: Decision): boolean {
@@ -179,6 +206,12 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
   }
   switch (d.type) {
     case "plan": {
+      if (isLateDistribution(cfg)) {
+        // Gate 4 candidate: no pitch, no advance. The studio starts (and pays for) its own production.
+        const { route, ...plan } = d;
+        startProject(state, cfg, plan, null, route === "original" ? "original" : "traditional");
+        return;
+      }
       state.pendingPlan = d;
       const ipId = d.ipRelation === "new" ? null : d.parentIpId ?? null;
       state.pendingOffers = pitchOffers(state, cfg, d, ipId);
@@ -196,11 +229,15 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
       return castStar(state, cfg, d.starId);
     case "market":
       return chooseCampaign(state, cfg, d.campaign);
+    case "distribute":
+      return chooseDistribution(state, cfg, d.distributorId);
+    case "contract":
+      return startContract(state, cfg, d.contractId);
     case "cancel": {
       const p = state.project!;
       cancelRepay(state, p);
       state.counters.cancellations += 1;
-      emit(state, "cancel", `Cancelled ${p.title}; advance repaid. Sunk costs are not refunded.`, { projectId: p.id });
+      emit(state, "cancel", isLateDistribution(cfg) ? `Cancelled ${p.title}. Everything invested so far is sunk (no advance to repay, nothing refunded).` : `Cancelled ${p.title}; advance repaid. Sunk costs are not refunded.`, { projectId: p.id });
       if (p.ipRelation === "new" || p.ipRelation === "spinoff") delete state.ips[p.ipId];
       state.project = null;
       return;
@@ -262,6 +299,7 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
   state.week += 1;
   expectationEvents(state, cfg);
   payroll(state, cfg);
+  if (contractsEnabled(cfg)) contractWeek(state, cfg);
   for (const rel of state.releases) {
     if (!rel.active) continue;
     const r = releaseWeek(state, cfg, rel);

@@ -54,6 +54,7 @@ export function bestBy<T>(arr: T[], f: (x: T) => number, rng: () => number): T {
 
 export function offerDecision(choices: Choices, pick: (o: Offer) => number, rng: () => number, allowSelf: boolean, selfValue?: number): Decision {
   const offers = choices.offers ?? [];
+  if (!offers.length) return { type: "choose_offer", distributorId: null }; // Gate 4 adapter probe: no offers exist
   const selfAllowed = allowSelf && choices.options.some((o) => o.type === "choose_offer" && o.distributorId === null);
   const best = bestBy(offers, pick, rng);
   if (selfAllowed && selfValue !== undefined && selfValue > pick(best)) return { type: "choose_offer", distributorId: null };
@@ -366,6 +367,10 @@ function franchiseSequel(state: StudioState, ch: Choices, minAvg: number): Decis
 import { registerGate3Strategies } from "./gate3";
 registerGate3Strategies(STRATEGIES);
 
+
 /** The original seven policies (default batch set). Extra Gate 2.5 policies are opt-in via --strategies. */
 export const STRATEGY_IDS = ["balanced", "quality-first", "cheap-duds", "famous-star", "self-funder", "experimenter", "franchise-builder"];
 export const ALL_STRATEGY_IDS = Object.keys(STRATEGIES);
+// Gate 4 adversarial policy: registered after ALL_STRATEGY_IDS so default batches (and old reports) are unchanged.
+import { CONTRACT_FARMER } from "./economy";
+STRATEGIES["contract-farmer"] = CONTRACT_FARMER;

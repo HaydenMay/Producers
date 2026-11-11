@@ -4,6 +4,32 @@ A headless, deterministic simulation and balance tool for the **Entertainment St
 
 > **Simulation assumptions, not design locks.** Every number in `config/` is provisional. Results are evidence for design discussion, never "official balance."
 
+## Validation loops (use these; big matrices are optional)
+
+| Mode | Command | What it runs | Measured time |
+|---|---|---|---|
+| **FAST** — after every substantial change | `npm run economy:smoke` | typecheck + Gate 4 edge-case tests + 4 seeds × 3 policies × 4 years (legacy vs candidate), invariants on every career | ≈ 5 s |
+| **COMPARE** — once a feature works | `npm run economy:compare` | 16 paired seeds × 6 policies × 10 years, legacy vs candidate + 5 sensitivity variants; compact tables + outlier seeds in `reports/gate4/compare/summary.md` | ≈ 20 s |
+| **GATE** — only when asked, to validate a preferred candidate | `npm run economy:gate` | 40 paired seeds × 6 policies × 15 years | not run yet |
+
+Overrides for every mode: `-- --seeds N --years N --strategies a,b --variants legacy,candidate --out dir --quiet`. Results stream to `careers.jsonl` / `releases.jsonl` as they're produced. Also fast:
+- `npx tsx scripts/economy-sens.ts`: sensitivity grid, about 8 s.
+- `npx tsx scripts/economy-traces.ts`: seeded traces, about 1 s.
+- `npm test`: everything, about 15 s.
+
+The 200-seed / 25-year matrices from earlier gates (`scripts/fu-matrix.ts`, experiment specs) are **opt-in stress tests**, not a prerequisite for progress.
+
+## Gate 4: studio-risk economy (EXPERIMENT, pending designer review)
+
+`economy.mode` selects the financing model.
+- **`legacy_advance`** (default in `config/baseline.json`): every earlier gate, byte-identical. Proved against the previous commit and with old decision-log replays.
+- **`late_distribution`** (`config/gate4.json`, the candidate):
+  - the studio funds its own productions;
+  - at 80%, 2–3 distributors bid their **own** ad spend + reach for a share of gross (no cash to the studio), or the studio self-distributes;
+  - work-for-hire contracts (`economy.contracts`) give a zero-cost, zero-Prestige recovery route; the client covers payroll + upkeep and pays a fixed fee.
+
+Docs: `docs/gate-4-economy-findings.md`, `docs/gate-4-economy-open-decisions.md`; register entries G4-1…G4-12. The web UI has a "Load Gate 4 candidate economy" button (contracts, distribution meeting).
+
 ## Status
 
 | Gate | Status | Notes |
@@ -11,9 +37,10 @@ A headless, deterministic simulation and balance tool for the **Entertainment St
 | **1 — Deterministic movie kernel** | ✅ Done | Staff, phases, ledger, advances/royalties/surplus/overruns/cancel, Stars (families, budgets, pre-display free fallback, callbacks, relationships), $0 campaign, scores, legs, finite runs, Prestige, IP fans, studio genre levels, trends. Exact replay. |
 | **2 — Strategies, batch, diagnostics** | ✅ Done | 7 policies, batch runner, paired-seed compare, 13 diagnostic flags, invariant checker, CSV/JSON/Markdown, regression seed bank. Catches injected bugs. |
 | **3 — TV + streaming** | ✅ Built (pending designer review) | Limited series, renewable TV, streaming; config-gated (`config/gate3.json`). Follow-up: staff firing, no season cap, viewer-fatigue and breakthrough experiments (default off). |
+| **Gate 4 economy experiment** | 🧪 Candidate built (pending designer review) | `economy.mode` legacy_advance (default) vs late_distribution; contracts; FAST/COMPARE/GATE loops. |
 | **4 — Thin browser UI** | ✅ Done (minimal) | Manual step-through career, strategy auto-step, batch runner, config editor, replay. Same core; no rules in the UI. |
 
-**Tests:** 106 passing (Gate 3 follow-up); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
+**Tests:** 118 passing (Gate 4); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
 ## Gate 3 follow-up: staff firing and organic TV longevity (pending designer review)

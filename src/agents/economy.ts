@@ -1,0 +1,150 @@
+// Gate 4 agent adapter. Legacy configs: strategies decide exactly as before (this file is a pass-through).
+// Candidate (economy.mode late_distribution) and/or contracts: the adapter answers the NEW decisions
+// (distribution meeting, work-for-hire) with per-strategy profiles that use only visible information,
+// and keeps each strategy's own planning / casting / reinvestment logic.
+import type { Config } from "../core/config";
+import { openingTrace } from "../core/audience";
+import { contractsEnabled, isLateDistribution, weeklyLabor } from "../core/latedist";
+import { planBaseCost, formatSpec } from "../core/formats";
+import type { Choices, ContractOffer, Decision, PlanDecision, StudioState } from "../core/types";
+import type { AgentCtx, Strategy } from "./strategies";
+
+type DistPick = "value" | "maxAd" | "selfLean";
+type ContractRule = "runway" | "onlyWhenBroke" | "always";
+interface EconProfile {
+  dist: DistPick;
+  contract: ContractRule;
+}
+
+/** How each named policy behaves at the two new decisions (TEST ASSUMPTIONS, visible info only). */
+const PROFILES: Record<string, EconProfile> = {
+  "cheap-duds": { dist: "maxAd", contract: "onlyWhenBroke" }, // the bad-movie factory
+  "famous-star": { dist: "value", contract: "onlyWhenBroke" },
+  "self-funder": { dist: "selfLean", contract: "runway" },
+  "selective-self-funder": { dist: "selfLean", contract: "runway" },
+  "tv-duds": { dist: "maxAd", contract: "onlyWhenBroke" },
+  "contract-farmer": { dist: "value", contract: "always" },
+};
+const profileOf = (id: string): EconProfile => PROFILES[id] ?? { dist: "value", contract: "runway" };
+
+const legal = (ch: Choices, d: Decision | undefined): d is Decision => !!d && ch.options.some((o) => JSON.stringify(o) === JSON.stringify(d));
+
+/** Visible estimate of studio gross for a distribution option: (1 − share) × [pool + q × (reach cap − pool)]. */
+export function distributionValue(state: StudioState, cfg: Config, reach: number, adAwareness: number, share: number, preview: number): number {
+  const p = state.project!;
+  const star = p.starId ? state.stars[p.starId] : null;
+  const op = openingTrace({ reach, campaignAwareness: adAwareness, studioBuzz: state.studioBuzz, starFame: star ? star.fame : 0, trend: state.trends[p.theme]?.stage ?? "none", ipFans: state.ips[p.ipId]?.fans ?? 0 }, cfg);
+  const q = Math.max(0, Math.min(1, (preview - 50) / 50));
+  return (1 - share) * (op.pool + q * (op.reachCap - op.pool));
+}
+
+export function pickDistribution(state: StudioState, cfg: Config, ch: Choices, mode: DistPick): Decision {
+  const bids = ch.bids ?? [];
+  const preview = (state.project?.distribution?.preview?.preview as number | undefined) ?? 60;
+  const selfReach = ch.selfDistribution?.reach ?? cfg.economy.lateDistribution.selfDistributionReach;
+  if (!bids.length) return { type: "distribute", distributorId: null };
+  if (mode === "maxAd") return { type: "distribute", distributorId: [...bids].sort((a, b) => b.adSpend - a.adSpend || (a.distributorId < b.distributorId ? -1 : 1))[0].distributorId };
+  const scored = bids.map((b) => ({ id: b.distributorId as string | null, v: distributionValue(state, cfg, b.reach, b.adAwareness, b.share, preview) }));
+  const self = { id: null, v: distributionValue(state, cfg, selfReach, 0, 0, preview) * (mode === "selfLean" ? 1.15 : 1) };
+  const best = [...scored, self].sort((a, b) => b.v - a.v)[0];
+  return { type: "distribute", distributorId: best.id };
+}
+
+function bestContract(ch: Choices): Decision | null {
+  const avail = (ch.contracts ?? []).filter((c) => c.available && ch.options.some((o) => o.type === "contract" && o.contractId === c.id));
+  if (!avail.length) return null;
+  const c = [...avail].sort((a: ContractOffer, b: ContractOffer) => b.fee / b.weeks - a.fee / a.weeks || (a.id < b.id ? -1 : 1))[0];
+  return { type: "contract", contractId: c.id };
+}
+
+/** "runway" rule: only start an original you can fully fund (base cost + payroll for its whole production). */
+function m0(state: StudioState, cfg: Config): number {
+  const m = formatSpec(cfg, "movie");
+  return m.baseCost + weeklyLabor(state, cfg) * m.durationWeeks;
+}
+function runwayOk(state: StudioState, cfg: Config): boolean {
+  return state.cash >= m0(state, cfg);
+}
+
+/** Cash an optional reinvestment would spend (visible prices). */
+function costOf(state: StudioState, cfg: Config, d: Decision): number {
+  switch (d.type) {
+    case "hire": return cfg.staffGrowth.hireCost;
+    case "train": return cfg.staffGrowth.trainCost;
+    case "studio_ads": return cfg.marketing.studioAdsCost;
+    case "research_theme": return cfg.research.themeCost;
+    case "upgrade_studio": return cfg.staffCapacity.upgradeCosts[state.capacityLevel] ?? 0;
+    case "unlock_tv": return cfg.tv.unlock.cost;
+    case "announce_season": return cfg.tv.announce.cost;
+    case "hire_engineer": return cfg.streaming.engineer.hireCost;
+    case "build_streaming": return cfg.streaming.buildCost;
+    default: return 0;
+  }
+}
+
+/** Candidate only: ask the strategy's own pitch logic whether this plan should be a Streaming Original. */
+function wantsOriginal(strat: Strategy, state: StudioState, cfg: Config, plan: PlanDecision, base: Choices, rng: () => number, ctx: AgentCtx): boolean {
+  if (state.platform?.status !== "live") return false;
+  const pitch: Choices = { ...base, phase: "pitch", offers: [], options: [{ type: "choose_offer", distributorId: null }, { type: "choose_offer", distributorId: null, original: true }] };
+  state.pendingPlan = plan;
+  try {
+    const d = strat.decide(state, cfg, pitch, rng, ctx);
+    return d.type === "choose_offer" && !!d.original;
+  } catch {
+    return false; // movie-only policies have no Original logic (their pitch code expects offers)
+  } finally {
+    state.pendingPlan = null;
+  }
+}
+
+export function decideFor(strat: Strategy, state: StudioState, cfg: Config, ch: Choices, rng: () => number, ctx: AgentCtx): Decision {
+  const late = isLateDistribution(cfg);
+  if (!late && !contractsEnabled(cfg)) return strat.decide(state, cfg, ch, rng, ctx);
+  const prof = profileOf(strat.id);
+  if (ch.phase === "distribution") return pickDistribution(state, cfg, ch, prof.dist);
+  if (ch.phase === "contract") return { type: "wait" };
+  if (ch.phase !== "planning") return strat.decide(state, cfg, ch, rng, ctx);
+
+  const plans = ch.options.filter((o): o is PlanDecision => o.type === "plan" && !o.route);
+  const contract = bestContract(ch);
+  if (contract) {
+    if (prof.contract === "always") return contract;
+    if (!plans.some((p) => !p.format)) return contract; // can't afford even a movie
+    if (prof.contract === "runway" && late && !runwayOk(state, cfg)) return contract;
+  }
+  // Runway-minded policies don't spend the money they need to fund their next production (the legacy
+  // reinvest thresholds assumed a distributor advance would pay for it).
+  const keep = late && prof.contract === "runway" ? m0(state, cfg) : -Infinity;
+  const view: Choices = { ...ch, options: ch.options.filter((o) => !(o.type === "plan" && o.route) && (costOf(state, cfg, o) === 0 || state.cash - costOf(state, cfg, o) >= keep)) };
+  let d: Decision | undefined;
+  try {
+    d = strat.decide(state, cfg, view, rng, ctx);
+  } catch {
+    d = undefined; // a strategy that expected plans it can't afford
+  }
+  if (d && d.type === "plan" && late && wantsOriginal(strat, state, cfg, d, ch, rng, ctx)) {
+    const o = { ...d, route: "original" as const };
+    if (legal(ch, o)) return o;
+  }
+  if (legal(ch, d)) return d;
+  if (contract) return contract;
+  const movie = plans.filter((p) => !p.format).sort((a, b) => planBaseCost(cfg, a) - planBaseCost(cfg, b))[0];
+  return movie ?? { type: "wait" };
+}
+
+/** Work-for-hire farmer: never makes originals; hires when it can afford to (tests headcount farming). */
+export const CONTRACT_FARMER: Strategy = {
+  id: "contract-farmer",
+  description: "Gate 4 ADVERSARIAL: only takes work-for-hire contracts; hires and upgrades capacity when it can afford to",
+  decide(state, cfg, ch) {
+    if (ch.phase === "planning") {
+      const hire = ch.options.find((o) => o.type === "hire");
+      if (hire && state.cash > cfg.staffGrowth.hireCost + 20000) return hire;
+      const up = ch.options.find((o) => o.type === "upgrade_studio");
+      if (up) return up;
+      const c = bestContract(ch);
+      if (c) return c;
+    }
+    return { type: "wait" };
+  },
+};

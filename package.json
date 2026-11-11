@@ -19,7 +19,10 @@
     "selffund": "tsx src/cli/main.ts selffund",
     "early": "tsx src/cli/main.ts early",
     "eras": "tsx src/cli/main.ts eras",
-    "counterfactuals": "tsx src/cli/main.ts counterfactuals"
+    "counterfactuals": "tsx src/cli/main.ts counterfactuals",
+    "economy:smoke": "tsc --noEmit && vitest run tests/integration/gate4.test.ts && tsx scripts/economy.ts smoke",
+    "economy:compare": "tsx scripts/economy.ts compare",
+    "economy:gate": "tsx scripts/economy.ts gate"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",

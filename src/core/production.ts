@@ -13,6 +13,7 @@ import { awardGenreXp, genreBonus, genreLevel, maybeStaffPitch } from "./progres
 import { ensureStream, next, pick } from "./rng";
 import { formatOf, formatSpec, hiatusMultiplier, seasonsOf, showFatigue, twistOutcome, viewerFatigue } from "./formats";
 import { onRunEnded } from "./streaming";
+import { generateBids, investedSoFar, isLateDistribution } from "./latedist";
 import type { Breakthrough, Meter, Offer, PlanDecision, Project, Release, ReleaseRoute, StudioState } from "./types";
 
 const TITLE_WORDS = ["Frequency", "Night", "Signal", "Protocol", "Run", "Echo", "Legacy", "Rising", "Code", "Storm", "Shadow", "Horizon", "Pulse", "Edge"];
@@ -64,7 +65,7 @@ export function startProject(state: StudioState, cfg: Config, plan: PlanDecision
     distributorId: offer ? offer.distributorId : null,
     advance: 0,
     royalty: offer ? offer.royalty : 0,
-    reach: offer ? offer.reach : route === "original" ? cfg.streaming.originalReach : cfg.distribution.selfFundReach,
+    reach: offer ? offer.reach : route === "original" ? cfg.streaming.originalReach : isLateDistribution(cfg) ? cfg.economy.lateDistribution.selfDistributionReach : cfg.distribution.selfFundReach,
     unspentAdvance: 0,
     cashOverrun: 0,
     starId: null,
@@ -89,7 +90,7 @@ export function startProject(state: StudioState, cfg: Config, plan: PlanDecision
     receiveAdvance(state, p, offer.advance, dName);
   }
   payProjectExpense(state, p, p.baseCost, "base_cost", "unavoidable base cost");
-  emit(state, "project_start", `Started ${p.title} (${format !== "movie" ? `${format}${p.episodes ? `, ${p.episodes} episodes` : ""}, ` : ""}${p.genre} + ${p.theme}, ${p.ipRelation}${p.twistTheme ? `, TWIST theme ${p.twistTheme}` : ""}) with ${offer ? `${offer.distributorId} advance $${offer.advance.toLocaleString()} @ ${(offer.royalty * 100).toFixed(0)}%` : route === "original" ? "self-funding as a Streaming Original" : "self-funding"}.`, { projectId: p.id });
+  emit(state, "project_start", `Started ${p.title} (${format !== "movie" ? `${format}${p.episodes ? `, ${p.episodes} episodes` : ""}, ` : ""}${p.genre} + ${p.theme}, ${p.ipRelation}${p.twistTheme ? `, TWIST theme ${p.twistTheme}` : ""}) with ${offer ? `${offer.distributorId} advance $${offer.advance.toLocaleString()} @ ${(offer.royalty * 100).toFixed(0)}%` : route === "original" ? "self-funding as a Streaming Original" : isLateDistribution(cfg) ? `studio funding (base cost $${p.baseCost.toLocaleString()} paid now; distributors bid at 80%)` : "self-funding"}.`, { projectId: p.id });
   return p;
 }
 
@@ -110,8 +111,18 @@ export function productionWeek(state: StudioState, cfg: Config): void {
     p.auditionCards = buildAuditions(state, cfg, p, projectFunds(state, p));
     emit(state, "milestone", `${p.title} hit 40%: the audition results are back!`, { projectId: p.id });
   } else if (p.progress >= 80 && !p.marketed) {
-    p.pendingDecision = "marketing";
-    emit(state, "milestone", `${p.title} hit 80%: time to choose a release campaign.`, { projectId: p.id });
+    if (isLateDistribution(cfg) && p.route !== "original") {
+      // Gate 4 candidate: distribution meeting. Bids are for advertising + reach, never cash to the studio.
+      const { bids, signals } = generateBids(state, cfg, p);
+      p.distributionBids = bids;
+      p.investedAtMeeting = investedSoFar(state, p);
+      p.distribution = { distributorId: null, adSpend: 0, adAwareness: 0, share: 0, reach: p.reach, preview: signals };
+      p.pendingDecision = "distribution";
+      emit(state, "milestone", `${p.title} hit 80%: distribution meeting. ${bids.length ? bids.map((b) => `${b.name}: $${b.adSpend.toLocaleString()} ads, reach ${b.reach}, ${(b.share * 100).toFixed(0)}% of gross`).join("; ") : "No distributor bid"}; or self-distribute. Invested so far $${Math.round(p.investedAtMeeting).toLocaleString()}.`, { projectId: p.id, signals });
+    } else {
+      p.pendingDecision = "marketing";
+      emit(state, "milestone", `${p.title} hit 80%: time to choose a release campaign.`, { projectId: p.id });
+    }
   } else if (p.progress >= 100) {
     completeProject(state, cfg);
   }
@@ -222,7 +233,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const vf = formatOf(p) === "tv" && p.ipRelation === "season" ? viewerFatigue(state, cfg, ip) : null;
   const opIn = (returningMult?: number) => ({
       reach: p.reach,
-      campaignAwareness: (cfg.marketing.campaigns as Record<string, { awareness: number }>)[p.campaign ?? "none"].awareness,
+      campaignAwareness: p.distribution ? p.distribution.adAwareness : (cfg.marketing.campaigns as Record<string, { awareness: number }>)[p.campaign ?? "none"].awareness,
       studioBuzz: state.studioBuzz,
       starFame: star ? star.fame : 0,
       trend: state.trends[p.theme]?.stage ?? "none",
@@ -273,6 +284,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
     starFee: p.starFee,
     campaignCost: p.campaignCost,
     cashOverrun: p.cashOverrun,
+    ...(p.distribution ? { financing: "late_distribution" as const, adSpend: p.distribution.adSpend } : {}),
     ...(formatOf(p) !== "movie" ? { format: formatOf(p), episodes: p.episodes, episodesAired: 0, uniqueViewers: 0 } : {}),
     ...(p.seasonNumber ? { seasonNumber: p.seasonNumber } : {}),
     ...(p.route === "original" ? { route: "original" as const, uniqueViewers: 0 } : {}),
@@ -287,6 +299,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
       auditionCards: p.auditionCards,
       ...(show || twist || hiatus ? { tv: { showFatigue: show, twist, twistTheme: p.twistTheme ?? null, hiatus, anticipationUsed: ip.anticipation ?? 0, fatigueSeasons: ip.fatigueSeasons } } : {}),
       ...(breakthrough ? { breakthrough } : {}),
+      ...(p.distribution ? { distribution: { ...p.distribution, bids: p.distributionBids ?? [], investedAtMeeting: p.investedAtMeeting ?? 0 } } : {}),
       ...(vfTrace ? { viewerFatigue: vfTrace, ...(vfTrace.premiereMult !== 1 ? { premiereMult: vfTrace.premiereMult } : {}) } : {}),
     },
   };

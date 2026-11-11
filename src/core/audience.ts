@@ -81,6 +81,9 @@ export function releaseWeek(state: StudioState, cfg: Config, rel: Release): { gr
 }
 
 /** Money per viewer by format and route. Streaming Originals earn NO traditional revenue (subscribers only). */
+/** Gate 4 SENSITIVITY knob (default 5 = every earlier gate): the score at which in-run word of mouth turns from bad to good. */
+const pivotOf = (cfg: Config) => (cfg.audience as { qualityPivot?: number }).qualityPivot ?? 5;
+
 export function grossPerViewer(cfg: Config, rel: Release): number {
   if (rel.route === "original") return 0;
   const f = formatOf(rel);
@@ -118,8 +121,8 @@ function episodicStep(cfg: Config, rel: Release): { viewers: number; driver: str
   }
   if (k < n) {
     const early = k <= e.criticWeeks;
-    const qC = (rel.critic - 5) / 5;
-    const qA = (rel.audience - 5) / 5;
+    const qC = (rel.critic - pivotOf(cfg)) / 5;
+    const qA = (rel.audience - pivotOf(cfg)) / 5;
     const q = early ? qC : qA;
     const retention = Math.max(e.retentionMin, Math.min(e.retentionMax, e.baseRetention + e.retentionWeight * q));
     const retained = rel.lastViewers * retention;
@@ -174,8 +177,8 @@ function diffusionStep(cfg: Config, rel: Release): { viewers: number; driver: st
     return { viewers, driver: "opening (aware people watching)" };
   }
   const early = rel.weekIndex <= a.criticWeeks;
-  const qC = (rel.critic - 5) / 5;
-  const qA = (rel.audience - 5) / 5;
+  const qC = (rel.critic - pivotOf(cfg)) / 5;
+  const qA = (rel.audience - pivotOf(cfg)) / 5;
   const q = early ? qC : qA;
   const aware = rel.aware ?? 0;
   const unaware = Math.max(0, rel.reachCap - rel.totalViewers - aware);

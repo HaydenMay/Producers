@@ -265,6 +265,8 @@
     "buzzDecayPerWeek": 0.12
   },
   "audience": {
+    "qualityPivot": 5,
+    "_qualityPivotLabel": "Gate 4 SENSITIVITY knob: score where in-run buzz / word of mouth / episode retention turn from negative to positive (weekly diffusion + episodic models only). 5 = every earlier gate.",
     "baseAwareness": 0.35,
     "fameAwareness": 0.6,
     "trendAwareness": {
@@ -663,6 +665,48 @@
       "maxPerProduction": 1,
       "formats": ["movie", "limited_series", "tv"],
       "minSeason": 0
+    }
+  },
+  "economy": {
+    "_label": "Gate 4 EXPERIMENT. mode legacy_advance = every earlier gate, byte-identical (distributor advances at the pitch, lifeline, surplus). mode late_distribution = CANDIDATE: the studio funds base cost, Star and payroll itself; at 80% 2-3 distributors bid ADVERTISING spend + reach for a revenue share (ad money is spent by the distributor, never studio cash); self-distribution fallback; no lifeline. All numbers TEST ASSUMPTIONS.",
+    "mode": "legacy_advance",
+    "lateDistribution": {
+      "_label": "Candidate bid formula. appeal = 1 + previewWeight x (preview - previewCenter)/previewSpan + trend + fans + Star Fame + known combo (comboBook only) + last-season delta, clamped. Preview = visible meter quality so far, projected to completion (never final scores or hidden combo grades). adSpend = adBase x format factor x appeal x favored x trust factor x jitter; share = shareBase x (1.15 - 0.15 x appeal) x (1.1 - 0.04 x trust). A distributor only bids when appeal >= its minAppeal.",
+      "previewCenter": 60,
+      "previewSpan": 40,
+      "previewWeight": 0.6,
+      "trendWeight": { "none": 0, "rising": 0.08, "hot": 0.15, "saturated": -0.05, "cooled": 0 },
+      "fansWeight": 0.6,
+      "fameWeight": 0.3,
+      "knownComboWeight": 0.12,
+      "lastSeasonWeight": 0.1,
+      "appealMin": 0.4,
+      "appealMax": 1.8,
+      "favoredAdFactor": 1.15,
+      "formatAdFactor": { "movie": 1.0, "limited_series": 1.2, "tv": 1.0 },
+      "adScale": 40000,
+      "adAwarenessMax": 1.2,
+      "shareMin": 0.05,
+      "shareMax": 0.7,
+      "roster": {
+        "starlight": { "adBase": 10000, "shareBase": 0.15, "minAppeal": 0.4 },
+        "wolf": { "adBase": 30000, "shareBase": 0.35, "minAppeal": 0.7 },
+        "orbit": { "adBase": 40000, "shareBase": 0.38, "minAppeal": 0.8 },
+        "xyz": { "adBase": 55000, "shareBase": 0.45, "minAppeal": 0.9 },
+        "meridian": { "adBase": 80000, "shareBase": 0.5, "minAppeal": 1.0 }
+      },
+      "selfDistributionReach": 0.22,
+      "originalsUseStudioCampaign": true
+    },
+    "contracts": {
+      "_label": "Gate 4 EXPERIMENT: work-for-hire. Zero cost to accept; the client reimburses the studio's payroll + upkeep each contract week (ledger contract_labor) and pays a fixed visible completion fee (contract_fee). Staff gain XP/stats in the contract's meters. Zero Prestige, no IP, fans, release, HoF or catalog entry. One job at a time (uses the production slot). Fees are TEST ASSUMPTIONS.",
+      "enabled": false,
+      "list": [
+        { "id": "commercial_edit", "name": "Commercial edit", "weeks": 6, "meters": ["editing"], "minStaff": 2, "minBestStat": 0, "fee": 9000 },
+        { "id": "script_polish", "name": "Script polish", "weeks": 8, "meters": ["plot", "writing"], "minStaff": 2, "minBestStat": 28, "fee": 12000 },
+        { "id": "pilot_services", "name": "Network pilot production services", "weeks": 12, "meters": ["filming", "editing"], "minStaff": 4, "minBestStat": 45, "fee": 30000 },
+        { "id": "studio_services", "name": "Full production services", "weeks": 16, "meters": ["plot", "writing", "filming", "editing"], "minStaff": 6, "minBestStat": 60, "fee": 56000 }
+      ]
     }
   }
 }

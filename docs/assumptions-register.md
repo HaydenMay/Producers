@@ -55,6 +55,25 @@ Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = ha
 
 Gate 3 (formats, TV, streaming) has its own expanded register: **`docs/gate-3-assumptions.md`** (T1–T19, S1–S8, P1–P4, provisional flag thresholds). All Gate 3 fields default to disabled in `config/baseline.json`; `config/gate3.json` enables them.
 
+## Gate 4 assumptions (studio-risk economy, late distribution, contracts; EXPERIMENT)
+
+Evidence: `docs/gate-4-economy-findings.md`; decisions: `docs/gate-4-economy-open-decisions.md`. Baseline keeps `economy.mode: "legacy_advance"` (byte-identical to every earlier gate). The candidate is `config/gate4.json`. All numbers are **TEST ASSUMPTIONS**.
+
+| # | Area | Assumption | Value | Notes |
+|---|---|---|---|---|
+| G4-1 | Financing | Studio pays base cost at 0%, Star at 40%, payroll throughout; only affordable plans are legal; no advance, no lifeline | `economy.mode` | candidate only |
+| G4-2 | Start cash | Raised so the first studio-funded movie is possible | $120K (`config/gate4.json`) | OPEN (D2) |
+| G4-3 | Bid preview | appeal = 1 + 0.6 × (preview − 60)/40 + trend + 0.6 × fans/market + 0.3 × Fame/100 + 0.12 × known combo + 0.1 × (last season − 7), clamped 0.4–1.8. Preview = mean meter quality projected to completion | `economy.lateDistribution.*` | never hidden grades or final scores |
+| G4-4 | Bid terms | ad = adBase × format factor × appeal × 1.15 if favoured × trust factor × ±8%; share = shareBase × (1.15 − 0.15 × appeal) × (1.1 − 0.04 × trust) in [0.05, 0.7]; reach = roster reach × 1.1 if favoured; bids only if appeal ≥ minAppeal | starlight $10K/15%/0.4 · wolf $30K/35%/0.7 · orbit $40K/38%/0.8 · xyz $55K/45%/0.9 · meridian $80K/50%/1.0 | 2–3 bidders, seeded on the distributors stream |
+| G4-5 | Ads → awareness | 1.2 × (1 − e^(−ad/$40K)) replaces the campaign term | `adAwarenessMax`, `adScale` | |
+| G4-6 | Self-distribution | reach 0.22, no ads, keep 100% | `selfDistributionReach` | OPEN (D5) |
+| G4-7 | Originals | No meeting; keep the studio-paid campaign | `originalsUseStudioCampaign: true` | OPEN (D6) |
+| G4-8 | Trust | Distributor ROI = its share ÷ its ad spend (self-distributed: no trust change) | — | |
+| G4-9 | Contracts | Commercial edit 6 wks $9K (no requirement) · Script polish 8 wks $12K (plot/writing ≥ 28) · Network pilot services 12 wks $30K (4 staff, filming/editing ≥ 45) · Full production services 16 wks $56K (6 staff, any meter ≥ 60). Client reimburses payroll + upkeep weekly; fee on delivery; XP in the job's meters; zero Prestige | `economy.contracts.*` | D7 |
+| G4-10 | Sensitivity knob | `audience.qualityPivot` = score where in-run buzz / word of mouth / episode retention turn positive | 5 (unchanged) | tested 6.5 (D1) |
+| G4-11 | Agents | Adapter profiles: sensible policies keep a runway (base + payroll for a whole movie) and pick the bid with the best visible estimate; the bad-movie factory takes the biggest ad bid and contracts only when broke; `contract-farmer` only contracts | `src/agents/economy.ts` | agent-only |
+| G4-12 | Accounting | all-in net = studio gross + kept advance − studio-paid base/Star/campaign − payroll & upkeep during the production weeks | `src/batch/econ.ts` | same formula for both modes |
+
 ## Gate 3 follow-up assumptions (firing, organic TV longevity)
 
 Evidence: `docs/gate-3-followup-findings.md`; decisions: `docs/gate-3-followup-open-decisions.md`. All numbers are **TEST ASSUMPTIONS**.
@@ -93,7 +112,7 @@ Gate 3 now models limited series, TV and streaming (see `docs/gate-3-assumptions
 
 ## Full parameter listing (`config/baseline.json`)
 
-Regenerated for the Gate 3 follow-up. Candidate overrides: `config/candidate.json`; Gate 3 mixed-format config: `config/gate3.json`; experiment variants: `config/experiments/` (follow-up matrix: `FU_matrix.json`).
+Regenerated for Gate 4. Candidate overrides: `config/candidate.json`; Gate 3 mixed-format config: `config/gate3.json`; Gate 4 candidate economy: `config/gate4.json`; experiment variants: `config/experiments/`.
 
 | Path | Value |
 |---|---|
@@ -223,6 +242,8 @@ Regenerated for the Gate 3 follow-up. Candidate overrides: `config/candidate.jso
 | `marketing.studioAdsCost` | 12000 |
 | `marketing.studioAdsBuzz` | 0.3 |
 | `marketing.buzzDecayPerWeek` | 0.12 |
+| `audience.qualityPivot` | 5 |
+| `audience._qualityPivotLabel` | "Gate 4 SENSITIVITY knob: score where in-run buzz / word of mouth / episode retention turn from negative to positive (weekly diffusion + episodic models only). 5 = every earlier gate." |
 | `audience.baseAwareness` | 0.35 |
 | `audience.fameAwareness` | 0.6 |
 | `audience.trendAwareness.none` | 0 |
@@ -429,3 +450,48 @@ Regenerated for the Gate 3 follow-up. Candidate overrides: `config/candidate.jso
 | `events.breakthrough.maxPerProduction` | 1 |
 | `events.breakthrough.formats` | ["movie", "limited_series", "tv"] |
 | `events.breakthrough.minSeason` | 0 |
+| `economy._label` | "Gate 4 EXPERIMENT. mode legacy_advance = every earlier gate, byte-identical (distributor advances at the pitch, lifeline, surplus). mode late_distribution = CANDIDATE: the studio funds base cost, Star and payroll itself; at 80% 2-3 distributors bid ADVERTISING spend + reach for a revenue share (ad money is spent by the distributor, never studio cash); self-distribution fallback; no lifeline. All numbers TEST ASSUMPTIONS." |
+| `economy.mode` | "legacy_advance" |
+| `economy.lateDistribution._label` | "Candidate bid formula. appeal = 1 + previewWeight x (preview - previewCenter)/previewSpan + trend + fans + Star Fame + known combo (comboBook only) + last-season delta, clamped. Preview = visible meter quality so far, projected to completion (never final scores or hidden combo grades). adSpend = adBase x format factor x appeal x favored x trust factor x jitter; share = shareBase x (1.15 - 0.15 x appeal) x (1.1 - 0.04 x trust). A distributor only bids when appeal >= its minAppeal." |
+| `economy.lateDistribution.previewCenter` | 60 |
+| `economy.lateDistribution.previewSpan` | 40 |
+| `economy.lateDistribution.previewWeight` | 0.6 |
+| `economy.lateDistribution.trendWeight.none` | 0 |
+| `economy.lateDistribution.trendWeight.rising` | 0.08 |
+| `economy.lateDistribution.trendWeight.hot` | 0.15 |
+| `economy.lateDistribution.trendWeight.saturated` | -0.05 |
+| `economy.lateDistribution.trendWeight.cooled` | 0 |
+| `economy.lateDistribution.fansWeight` | 0.6 |
+| `economy.lateDistribution.fameWeight` | 0.3 |
+| `economy.lateDistribution.knownComboWeight` | 0.12 |
+| `economy.lateDistribution.lastSeasonWeight` | 0.1 |
+| `economy.lateDistribution.appealMin` | 0.4 |
+| `economy.lateDistribution.appealMax` | 1.8 |
+| `economy.lateDistribution.favoredAdFactor` | 1.15 |
+| `economy.lateDistribution.formatAdFactor.movie` | 1.0 |
+| `economy.lateDistribution.formatAdFactor.limited_series` | 1.2 |
+| `economy.lateDistribution.formatAdFactor.tv` | 1.0 |
+| `economy.lateDistribution.adScale` | 40000 |
+| `economy.lateDistribution.adAwarenessMax` | 1.2 |
+| `economy.lateDistribution.shareMin` | 0.05 |
+| `economy.lateDistribution.shareMax` | 0.7 |
+| `economy.lateDistribution.roster.starlight.adBase` | 10000 |
+| `economy.lateDistribution.roster.starlight.shareBase` | 0.15 |
+| `economy.lateDistribution.roster.starlight.minAppeal` | 0.4 |
+| `economy.lateDistribution.roster.wolf.adBase` | 30000 |
+| `economy.lateDistribution.roster.wolf.shareBase` | 0.35 |
+| `economy.lateDistribution.roster.wolf.minAppeal` | 0.7 |
+| `economy.lateDistribution.roster.orbit.adBase` | 40000 |
+| `economy.lateDistribution.roster.orbit.shareBase` | 0.38 |
+| `economy.lateDistribution.roster.orbit.minAppeal` | 0.8 |
+| `economy.lateDistribution.roster.xyz.adBase` | 55000 |
+| `economy.lateDistribution.roster.xyz.shareBase` | 0.45 |
+| `economy.lateDistribution.roster.xyz.minAppeal` | 0.9 |
+| `economy.lateDistribution.roster.meridian.adBase` | 80000 |
+| `economy.lateDistribution.roster.meridian.shareBase` | 0.5 |
+| `economy.lateDistribution.roster.meridian.minAppeal` | 1.0 |
+| `economy.lateDistribution.selfDistributionReach` | 0.22 |
+| `economy.lateDistribution.originalsUseStudioCampaign` | true |
+| `economy.contracts._label` | "Gate 4 EXPERIMENT: work-for-hire. Zero cost to accept; the client reimburses the studio's payroll + upkeep each contract week (ledger contract_labor) and pays a fixed visible completion fee (contract_fee). Staff gain XP/stats in the contract's meters. Zero Prestige, no IP, fans, release, HoF or catalog entry. One job at a time (uses the production slot). Fees are TEST ASSUMPTIONS." |
+| `economy.contracts.enabled` | false |
+| `economy.contracts.list` | [{"id": "commercial_edit", "name": "Commercial edit", "weeks": 6, "meters": ["editing"], "minStaff": 2, "minBestStat": 0, "fee": 9000}, {"id": "script_polish", "name": "Script polish", "weeks": 8, "meters": ["plot", "writing"], "minStaff": 2, "minBestStat": 28, "fee": 12000}, {"id": "pilot_services", "name": "Network pilot production services", "weeks": 12, "meters": ["filming", "editing"], "minStaff": 4, "minBestStat": 45, "fee": 30000}, {"id": "studio_services", "name": "Full production services", "weeks": 16, "meters": ["plot", "writing", "filming", "editing"], "minStaff": 6, "minBestStat": 60, "fee": 56000}] |
