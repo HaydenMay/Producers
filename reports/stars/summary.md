@@ -14,23 +14,23 @@ Shipped default (`config/baseline.json`), seeds 1–6, 10-year careers. TEST VAL
 | 11–15 | 8 | 75.8 | 5.6 |
 | 16–20 | 16 | 86.6 | 6.6 |
 
-Seed 1 after 10 years (balanced): 300 Stars ever, 272 still working. Tiers: newcomer 129 · mid 113 · big 30.
+Seed 1 after 10 years (balanced): 300 Stars ever, 269 still working. Tiers: newcomer 128 · mid 120 · big 21.
 
 ## 2. Careers (medians would hide little here; these are means per career)
 
 | Policy | Films | Hired | Stars seen at 2+ auditions | Original-lead cards (cast) | Catalog unlock year | Retired (of yours) | Perfect-fit flags (cast) | Invariant violations |
 |---|---|---|---|---|---|---|---|---|
-| balanced | 30.7 | 13.3 | 42.8 | 8.2 (2.8) | 2.3 (6/6 careers) | 25.5 (0.3) | 46.0 (8.0) | 0 |
-| quality-first | 29.3 | 10.8 | 37.8 | 0.0 (0.0) | 2.2 (6/6 careers) | 26.3 (1.0) | 45.8 (14.2) | 0 |
-| franchise-builder | 30.8 | 4.8 | 38.0 | 25.7 (25.7) | 7.9 (6/6 careers) | 25.5 (0.3) | 7.7 (0.3) | 0 |
-| famous-star | 29.5 | 18.5 | 35.2 | 0.0 (0.0) | 8.4 (3/6 careers) | 27.8 (7.2) | 5.3 (0.5) | 0 |
-| cheap-duds | 31.0 | 28.8 | 34.2 | 0.0 (0.0) | never | 28.5 (0.0) | 0.0 (0.0) | 0 |
+| balanced | 30.8 | 11.8 | 41.3 | 7.7 (3.7) | 2.0 (6/6 careers) | 27.7 (1.0) | 43.7 (12.7) | 0 |
+| quality-first | 30.0 | 11.0 | 39.5 | 0.0 (0.0) | 1.8 (6/6 careers) | 26.5 (1.3) | 46.5 (14.2) | 0 |
+| franchise-builder | 31.0 | 3.2 | 36.2 | 27.7 (27.7) | 9.4 (3/6 careers) | 28.0 (0.0) | 1.0 (0.2) | 0 |
+| famous-star | 29.8 | 13.3 | 39.5 | 0.0 (0.0) | 5.9 (6/6 careers) | 26.5 (5.7) | 25.5 (5.0) | 0 |
+| cheap-duds | 31.2 | 27.3 | 46.3 | 0.0 (0.0) | 8.3 (4/6 careers) | 28.8 (0.0) | 6.0 (0.0) | 0 |
 
 Catalog unlock: the default config has no staff-capacity ladder, so it opens at 200 Prestige (the gate3 ladder's first-step Prestige).
 
 ## 3. Catalog unlock with a real 4/6/8 staff ladder (`config/gate3.json` on the default)
 
-balanced year 3.0 (6/6) · quality-first year 2.8 (6/6) · mixed year 2.3 (6/6) · tv-first year 2.4 (6/6)
+balanced year 2.4 (6/6) · quality-first year 2.3 (6/6) · mixed year 2.2 (6/6) · tv-first year 2.3 (6/6)
 
 ## 4. Hidden growth weights (seed 3 pool): same template, different Stars
 
@@ -45,23 +45,22 @@ balanced year 3.0 (6/6) · quality-first year 2.8 (6/6) · mixed year 2.3 (6/6) 
 
 ## 5. Free fallback vs paid newcomers
 
-Average paid newcomer audition card, skill in the production's family: **43.5** (n 1039). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
+Average paid newcomer audition card, skill in the production's family: **46.2** (n 1023). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
 
 ## 6. Catalog snapshot: balanced seed 1 at year 10
 
 | Star | Status | Films with you | Years active | Fame | Level | Best family |
 |---|---|---|---|---|---|---|
-| Noa Fox | active | 1 | 14 | 50 | 3 | Funny 72 |
-| Liv Hart | active | 1 | 11 | 42 | 1 | Scary 52 |
-| Eli Moreau | active | 1 | 13 | 41 | 3 | Scary 88 |
-| Lee Lowe | retired | 3 | 18 | 94 | 7 | Funny 100 |
-| Liv Lind | active | 1 | 13 | 43 | 2 | Funny 87 |
-| Kai Reyes | active | 3 | 17 | 96 | 6 | Action 100 |
-| Kit Hart | active | 4 | 10 | 73 | 5 | Funny 100 |
-| Lee Quinn | active | 1 | 22 | 86 | 7 | Scary 100 |
-| Jo Fox | active | 1 | 17 | 77 | 5 | Scary 100 |
-| Noa Diaz | active | 6 | 16 | 95 | 7 | Scary 100 |
-| Max Sato | active | 3 | 7 | 64 | 5 | Action 100 |
-| Lee Reyes | active | 6 | 9 | 94 | 6 | Funny 100 |
+| Noa Fox | active | 1 | 14 | 83 | 3 | Funny 72 |
+| Kit Vale | retired | 1 | 18 | 48 | 3 | Funny 82 |
+| Rae Kerr | active | 1 | 18 | 32 | 3 | Funny 83 |
+| Lee Lowe | active | 3 | 18 | 86 | 7 | Funny 100 |
+| Sam Lowe | active | 5 | 11 | 96 | 4 | Scary 100 |
+| Kai Reyes | active | 7 | 15 | 93 | 8 | Action 100 |
+| Jo Reyes | active | 2 | 17 | 70 | 5 | Funny 100 |
+| Jay Imai | active | 8 | 4 | 100 | 6 | Action 100 |
+| Lee Reyes | active | 1 | 11 | 22 | 2 | Funny 100 |
+| Sam Kerr | active | 1 | 11 | 59 | 10 | Action 100 |
+| Kit Park | active | 1 | 2 | 14 | 7 | Scary 100 |
 
-Elapsed 3.3 s.
+Elapsed 3.9 s.

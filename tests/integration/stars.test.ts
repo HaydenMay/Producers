@@ -5,6 +5,7 @@ import { baselineConfig, legacyConfig, withOverrides } from "../../src/core/conf
 import { createStudio } from "../../src/core/simulation";
 import { runCareer } from "../../src/batch/runner";
 import { buildAuditions, budgetFor, skillTotal } from "../../src/core/stars";
+import { computeScores } from "../../src/core/scoring";
 import { addByWeights, levelUpGrowth, talentYear, tierOf, updateCatalogUnlock } from "../../src/core/talent";
 import type { Project, StarCard, Star } from "../../src/core/types";
 
@@ -159,5 +160,31 @@ describe("PROD-218 fallback", () => {
     expect(fb.price).toBe(0);
     expect(s.stars[fb.starId].skills.Funny).toBe(D.stars.pool.fallback.focusSkill);
     expect(Math.max(...Object.entries(s.stars[fb.starId].skills).filter(([f]) => f !== "Funny").map(([, v]) => v))).toBe(D.stars.pool.fallback.otherSkill);
+  });
+});
+
+describe("PROD-051 option B: flat Star score bonus", () => {
+  const m = { plot: 70, writing: 70, filming: 70, editing: 70 };
+  it("fit 80 adds +0.40 Audience / +0.16 Critic after the meter curve; fit 0 adds nothing", () => {
+    const off = computeScores(m, { audience: "C", critic: "C" }, 0, false, D, undefined, 0);
+    const on = computeScores(m, { audience: "C", critic: "C" }, 0, false, D, undefined, 80);
+    expect(on.audience - off.audience).toBeCloseTo(0.4, 5);
+    expect(on.critic - off.critic).toBeCloseTo(0.16, 5);
+    expect(off.starBonus).toBeUndefined();
+  });
+  it("is the same size for a rookie film and a veteran film (no saturation)", () => {
+    const rookie = { plot: 50, writing: 50, filming: 50, editing: 50 }, vet = { plot: 85, writing: 85, filming: 85, editing: 85 };
+    const d = (x: typeof m) => computeScores(x, { audience: "C", critic: "C" }, 0, false, D, undefined, 80).audience - computeScores(x, { audience: "C", critic: "C" }, 0, false, D, undefined, 0).audience;
+    expect(d(rookie)).toBeCloseTo(d(vet), 5);
+  });
+  it("is off in the legacy overlay", () => {
+    const L = legacyConfig();
+    expect(computeScores(m, { audience: "C", critic: "C" }, 0, false, L, undefined, 80).audience).toBe(computeScores(m, { audience: "C", critic: "C" }, 0, false, L, undefined, 0).audience);
+  });
+  it("scores stay reproducible from the trace in full careers (invariant)", async () => {
+    const { checkInvariants } = await import("../../src/batch/diagnostics");
+    const r = runCareer(4, "quality-first", D, { productions: 0, years: 6 });
+    expect(checkInvariants(r, D)).toEqual([]);
+    expect(r.state.releases.some((x) => (x.trace.quality as { score: { starBonus?: unknown } }).score.starBonus)).toBe(true);
   });
 });

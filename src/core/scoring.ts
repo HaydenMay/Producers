@@ -80,6 +80,9 @@ export interface ScoreTrace {
   /** pre-expectation, pre-clamp scores (after combo, weakness, fatigue, saturation) */
   audienceRaw: number;
   criticRaw: number;
+  /** Star score bonus (PROD-051 option B): flat, after the meter curve, from skill fit only (never Fame). */
+  starFit?: number;
+  starBonus?: { audience: number; critic: number };
   expectations: Expectations;
   audience: number;
   critic: number;
@@ -92,6 +95,7 @@ export function computeScores(
   saturated: boolean,
   cfg: Config,
   expectations: Expectations = NO_EXPECTATIONS,
+  starFit = 0,
 ): ScoreTrace {
   const aw = cfg.scoring.audienceWeights as Record<Meter, number>;
   const cw = cfg.scoring.criticWeights as Record<Meter, number>;
@@ -125,6 +129,17 @@ export function computeScores(
   const saturationMult = saturated ? round2(1 - cfg.scoring.saturatedCriticPenalty) : 1;
   audience = audience * comboAudienceMult * fatigueMult;
   critic = critic * comboCriticMult * fatigueMult * saturationMult;
+  const sb = (cfg.scoring as { starScoreBonus?: { audience: number; critic: number } }).starScoreBonus;
+  const starBonus = sb && starFit > 0 && (sb.audience || sb.critic) ? { audience: round2((sb.audience * starFit) / 100), critic: round2((sb.critic * starFit) / 100) } : null;
+  if (starBonus) {
+    // optional taper near the top (protects the 9.0 Hall of Fame line): full below taperFrom, fading to 0 at 10
+    const tf = (sb as { taperFrom?: number | null }).taperFrom;
+    const k = (x: number) => (tf == null ? 1 : Math.max(0, Math.min(1, (10 - x) / (10 - tf))));
+    starBonus.audience = round2(starBonus.audience * k(audience));
+    starBonus.critic = round2(starBonus.critic * k(critic));
+    audience += starBonus.audience;
+    critic += starBonus.critic;
+  }
   const audienceRaw = round2(audience);
   const criticRaw = round2(critic);
   audience = applyExpectation(audience, expectations.audienceToughness, expectations.method);
@@ -142,6 +157,7 @@ export function computeScores(
     saturationMult,
     audienceRaw,
     criticRaw,
+    ...(starBonus ? { starFit, starBonus } : {}),
     expectations,
     audience: round2(Math.max(0, Math.min(10, audience))),
     critic: round2(Math.max(0, Math.min(10, critic))),

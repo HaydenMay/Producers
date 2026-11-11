@@ -249,9 +249,10 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const saturated = state.trends[p.theme]?.stage === "saturated";
   const cult = cfg.world.cult.enabled ? cultCheck(state, cfg, p, key, grades, meters) : null;
   const scoredGrades = cult?.happened ? { audience: cult.effectiveAudience, critic: grades.critic } : grades;
-  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+  const fitNow = p.starId ? starFit(state.stars[p.starId], p.genre, cfg) : 0; // PROD-051: skill fit, never Fame
+  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow);
   if (cult) {
-    const w = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+    const w = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow);
     cult.audienceWithout = w.audience;
     cult.avgWithout = avgScore(w.audience, w.critic);
   }
@@ -259,7 +260,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   if (p.breakthroughs?.length) {
     const q = { ...p, meterPoints: { ...p.meterPoints } };
     for (const e of p.breakthroughs) q.meterPoints[e.meter] = round2(q.meterPoints[e.meter] - e.points);
-    const w = computeScores(meterQuality(q, state, cfg), scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg));
+    const w = computeScores(meterQuality(q, state, cfg), scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow);
     breakthrough = { events: p.breakthroughs, audienceWithout: w.audience, criticWithout: w.critic, avgWithout: avgScore(w.audience, w.critic) };
   }
   const avg = avgScore(sc.audience, sc.critic);
