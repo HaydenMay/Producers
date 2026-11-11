@@ -624,11 +624,14 @@
     "_label": "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS.",
     "method": "scale",
     "critics": {
-      "enabled": false,
-      "generationYears": 6,
-      "toughnessPerGeneration": 0.04,
-      "maxToughness": 0.12,
-      "announceWeeksAhead": 26
+      "enabled": true,
+      "generationYears": 5,
+      "toughnessPerGeneration": 0.06,
+      "maxToughness": 0.18,
+      "announceWeeksAhead": 26,
+      "_adaptLabel": "Designer 2026-11-11: each new critic generation makes things a little harder on arrival, then the studio adapts. A new generation arrives every generationYears (announced 26 weeks ahead) and cuts critic scores by toughnessPerGeneration; only permanentShare of that stays, the rest fades over adaptYears. Measured (15-yr careers): Hall of Fame rate dips after each arrival (yr 5: ~10% vs ~19%), then recovers and keeps rising late (yr 8 ~19%, yr 13 ~21%). TEST VALUES. Legacy overlay: off, and adaptYears null (permanent steps).",
+      "adaptYears": 3,
+      "permanentShare": 0.25
     },
     "audience": {
       "enabled": false,

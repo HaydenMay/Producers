@@ -292,7 +292,7 @@
 | PROD-161 | A named critic panel with visible tastes and retirements; saturated trends draw harsher reviews; no personal vendettas. | LOCKED | Partial (saturation harshness only) | v9.6 §11 | A10.6 |
 | PROD-162 | Gate 2.6 era/critic knobs are stand-ins for the unbuilt named-critic system; the stronger combo_D curve punishes long-running TV. Not ratified. | TESTING | Implemented (off by default) | Gate 2.6; Gate 3 | A10.7 |
 | PROD-163 | Prestige amounts, thresholds, caps; whether repeated high-quality seasons are rewarded enough; HoF rounding. | OPEN | Partial (test milestones) | audit | A10.8 |
-| PROD-164 | Number and pace of critic generations; raising audience difficulty without an inevitable late-game collapse; how many eras and what each unlocks. | OPEN | Partial (proxy) | v9.6 §16 | A10.9 |
+| PROD-164 | Number and pace of critic generations; raising audience difficulty without an inevitable late-game collapse; how many eras and what each unlocks. **Chosen (designer 2026-11-11): "balance both ways"**: late-game Hall of Fame should become *more* common, and each new critic generation makes things a little harder. Built: a new generation every 5 years (announced 26 weeks ahead) cuts critic scores 6% on arrival; the studio adapts over 3 years, keeping a 1.5% permanent step *(test)*. Measured (15-yr careers): Hall of Fame rate dips after each arrival (year 5 ~10% vs ~19% without), then recovers and keeps climbing (~19% yr 8, ~21% yr 13). Audience eras: still off; eras and their unlocks still OPEN. | TESTING (critic-generation shape chosen 2026-11-11; numbers *(test)*) | Implemented (default `expectations.critics` with `adaptYears`/`permanentShare`; legacy overlay off) | designer 2026-11-11 | A10.9 |
 
 ## 14. Tutorial, presentation and UI
 

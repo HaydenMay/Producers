@@ -19,6 +19,7 @@ describe("Producers default economy", () => {
     expect(d.formats.tv && d.formats.limitedSeries).toBe(true);
     expect(d.formats.streaming).toBe(false);
     expect(d.world.compatibility.mode).toBe("editorial");
+    expect(d.expectations.critics.enabled).toBe(true);
     const l = legacyConfig();
     expect(l.economy.mode).toBe("legacy_advance");
     expect(l.economy.contracts.enabled).toBe(false);
@@ -60,6 +61,7 @@ describe("Producers default economy", () => {
       delete x.tv.weeksPerEpisode;
       delete x.world.grossPerViewer;
       delete x.world.compatibility.mode;
+      delete x.expectations.critics;
       delete x._overlay;
       return x;
     };
@@ -94,3 +96,18 @@ describe("Producers default economy", () => {
     expect(s.cash).toBeGreaterThanOrEqual(60_000); // movie base cost; payroll comes on top during production
   });
 });
+
+describe("critic generations: harder on arrival, then the studio adapts (designer 2026-11-11)", () => {
+  it("toughness jumps when a generation arrives, fades over 3 years to a small permanent step", async () => {
+    const { expectationsAt } = await import("../../src/core/scoring");
+    const D = baselineConfig();
+    const t = (y: number) => expectationsAt(Math.round(y * 52), D).criticToughness;
+    expect(t(4.9)).toBe(0);
+    expect(t(5.0)).toBeCloseTo(0.06, 3); // gen 1 arrives
+    expect(t(6.5)).toBeCloseTo(0.06 * (0.25 + 0.75 * 0.5), 2); // halfway through adapting
+    expect(t(8.5)).toBeCloseTo(0.015, 3); // adapted: 25% stays
+    expect(t(10.0)).toBeCloseTo(0.015 + 0.06, 3); // gen 2 arrives on top
+    expect(expectationsAt(10 * 52, legacyConfig()).criticToughness).toBe(0); // legacy: off
+  });
+});
+

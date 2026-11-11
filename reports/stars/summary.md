@@ -20,11 +20,11 @@ Seed 1 after 10 years (balanced): 300 Stars ever, 279 still working. Tiers: newc
 
 | Policy | Films | Hired | Stars seen at 2+ auditions | Original-lead cards (cast) | Catalog unlock year | Retired (of yours) | Perfect-fit flags (cast) | Invariant violations |
 |---|---|---|---|---|---|---|---|---|
-| balanced | 15.2 | 6.0 | 16.0 | 3.2 (1.8) | 2.4 (6/6 careers) | 26.0 (0.7) | 18.0 (7.2) | 0 |
+| balanced | 15.2 | 5.8 | 16.0 | 3.2 (1.8) | 2.4 (6/6 careers) | 26.0 (0.7) | 18.0 (7.3) | 0 |
 | quality-first | 15.0 | 5.3 | 14.0 | 0.0 (0.0) | 2.1 (6/6 careers) | 28.5 (0.7) | 20.3 (9.7) | 0 |
 | franchise-builder | 16.0 | 2.2 | 16.7 | 13.8 (13.8) | 4.2 (6/6 careers) | 28.8 (0.2) | 10.2 (0.0) | 0 |
 | famous-star | 16.0 | 7.8 | 15.8 | 0.0 (0.0) | 5.3 (6/6 careers) | 28.8 (4.7) | 14.2 (2.8) | 0 |
-| cheap-duds | 16.0 | 14.3 | 17.5 | 0.0 (0.0) | 5.6 (4/6 careers) | 29.0 (0.0) | 6.8 (0.2) | 0 |
+| cheap-duds | 16.0 | 14.0 | 17.3 | 0.0 (0.0) | 5.6 (4/6 careers) | 29.0 (0.0) | 6.8 (0.2) | 0 |
 
 Catalog unlock: the default config has no staff-capacity ladder, so it opens at 200 Prestige (the gate3 ladder's first-step Prestige).
 
@@ -45,7 +45,7 @@ balanced year 2.7 (6/6) · quality-first year 2.4 (6/6) · mixed year 2.7 (6/6) 
 
 ## 5. Free fallback vs paid newcomers
 
-Average paid newcomer audition card, skill in the production's family: **46.9** (n 553). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
+Average paid newcomer audition card, skill in the production's family: **46.9** (n 556). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
 
 ## 6. Catalog snapshot: balanced seed 1 at year 10
 
@@ -57,8 +57,7 @@ Average paid newcomer audition card, skill in the production's family: **46.9** 
 | Bo Sato | active | 2 | 18 | 91 | 9 | Funny 100 |
 | Kai Quinn | active | 2 | 19 | 100 | 10 | Scary 100 |
 | Max Kerr | active | 1 | 10 | 32 | 5 | Scary 100 |
-| Mo Park | active | 3 | 9 | 90 | 10 | Funny 100 |
-| Kai Lind | active | 1 | 9 | 51 | 6 | Dramatic 100 |
-| Eli Lind | active | 1 | 13 | 37 | 4 | Action 100 |
+| Mo Park | active | 4 | 9 | 89 | 10 | Funny 100 |
+| Kai Lind | active | 1 | 9 | 50 | 6 | Dramatic 100 |
 
-Elapsed 3.1 s.
+Elapsed 2.9 s.

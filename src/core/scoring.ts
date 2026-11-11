@@ -31,6 +31,24 @@ export function audienceEraAt(week: number, cfg: Config): number {
   if (!a.enabled) return 0;
   return Math.max(0, Math.floor(week / cfg.time.weeksPerYear / a.eraYears));
 }
+/**
+ * Critic toughness. Legacy: permanent steps (perGeneration x g, capped). With `adaptYears` (designer 2026-11-11):
+ * each new generation is tough on arrival and the studio adapts: only `permanentShare` of its step stays, the
+ * rest fades linearly over adaptYears. So each arrival is a visible dip, while the long-run bar rises gently.
+ */
+function criticToughnessAt(week: number, g: number, cfg: Config): number {
+  const c = cfg.expectations.critics as typeof cfg.expectations.critics & { adaptYears?: number | null; permanentShare?: number };
+  if (!c.adaptYears) return Math.min(c.maxToughness, c.toughnessPerGeneration * g);
+  const years = week / cfg.time.weeksPerYear;
+  let t = 0;
+  for (let k = 1; k <= g; k++) {
+    const since = years - k * c.generationYears;
+    const fade = Math.max(0, 1 - since / c.adaptYears);
+    t += c.toughnessPerGeneration * ((c.permanentShare ?? 0) + (1 - (c.permanentShare ?? 0)) * fade);
+  }
+  return Math.min(c.maxToughness, t);
+}
+
 export function expectationsAt(week: number, cfg: Config): Expectations {
   const e = cfg.expectations;
   const g = criticGenerationAt(week, cfg);
@@ -38,7 +56,7 @@ export function expectationsAt(week: number, cfg: Config): Expectations {
   return {
     method: e.method as Expectations["method"],
     criticGeneration: g,
-    criticToughness: Math.round(Math.min(e.critics.maxToughness, e.critics.toughnessPerGeneration * g) * 1000) / 1000,
+    criticToughness: Math.round(criticToughnessAt(week, g, cfg) * 1000) / 1000,
     audienceEra: ae,
     audienceToughness: Math.round(Math.min(e.audience.maxToughness, e.audience.toughnessPerEra * ae) * 1000) / 1000,
   };
