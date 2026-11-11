@@ -1,12 +1,12 @@
 // Controlled counterfactual scenarios: same seed, one variable changed.
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides, type Config } from "../../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../../src/core/config";
 import { applyDecision, createStudio, getChoices } from "../../src/core/simulation";
 import type { Decision, Release, StudioState } from "../../src/core/types";
 import { runScripted } from "../../src/batch/runner";
 import { scriptedDecide, type ScriptPrefs } from "../helpers";
 
-const rich = withOverrides(baselineConfig(), { start: { cash: 600000 } });
+const rich = withOverrides(legacyConfig(), { start: { cash: 600000 } });
 
 function oneMovie(cfg: Config, seed: number, prefs: ScriptPrefs, mutateAtCasting?: (s: StudioState, starId: string) => void): Release {
   const s = createStudio(seed, cfg);

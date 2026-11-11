@@ -1,7 +1,7 @@
 // Gate 2.6 acceptance tests: critic generations + audience eras (harness proxy) and great-film metrics.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { baselineConfig, setPath, withOverrides, type Config } from "../../src/core/config";
+import { legacyConfig, setPath, withOverrides, type Config } from "../../src/core/config";
 import { applyDecision, createStudio, getChoices } from "../../src/core/simulation";
 import { computeScores, expectationsAt, NO_EXPECTATIONS, avgScore } from "../../src/core/scoring";
 import { runCareer } from "../../src/batch/runner";
@@ -10,7 +10,7 @@ import { bestOf, careerProgress, filmRefs, greatness, type FilmRef } from "../..
 import { FIXED_CASES, scoreFixed } from "../../src/batch/eras";
 import type { Meter } from "../../src/core/types";
 
-const candidate = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/candidate.json", "utf8")));
+const candidate = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/candidate.json", "utf8")));
 const spec = JSON.parse(readFileSync("config/experiments/G26_expectations.json", "utf8")) as { variants: { name: string; overrides: Record<string, unknown> }[] };
 const variant = (name: string): Config => withOverrides(candidate, spec.variants.find((v) => v.name === name)!.overrides);
 const W = 52;
@@ -28,7 +28,7 @@ describe("critic generations (calendar-based proxy)", () => {
     expect(expectationsAt(60 * W, cfg).audienceToughness).toBe(0); // audience era off in this variant
   });
   it("is driven by in-game weeks, not film count, and is off by default", () => {
-    const base = baselineConfig();
+    const base = legacyConfig();
     expect(expectationsAt(40 * W, base)).toEqual(NO_EXPECTATIONS);
     const a = runCareer(5, "balanced", cfg, { productions: 25, drain: true });
     for (const r of a.state.releases) expect(r.criticGeneration).toBe(expectationsAt(r.releaseWeek, cfg).criticGeneration);
@@ -94,7 +94,7 @@ describe("scores depend on production quality and era only", () => {
 const film = (o: Partial<FilmRef>): FilmRef => ({ seed: 1, strategy: "s", index: 1, title: "t", ipId: "ip1", ipRelation: "new", week: 0, year: 0, audience: 8, critic: 8, avg: 8, hallOfFame: false, meters, criticGeneration: 0, audienceEra: 0, format: "movie", ...o }) as FilmRef;
 
 describe("great-film metrics", () => {
-  const cfg = baselineConfig();
+  const cfg = legacyConfig();
   it("Hall of Fame counts releases (not IPs) and matches the score rule", () => {
     const fs = [film({ index: 1, avg: 9.2, audience: 9.1, critic: 9.3, hallOfFame: true }), film({ index: 2, avg: 9.0, audience: 9, critic: 9, hallOfFame: true }), film({ index: 3, ipId: "ip2", avg: 8.5 })];
     const rows = greatness([{ seed: 1, strategy: "s", films: fs }], cfg, 5);

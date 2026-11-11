@@ -2,7 +2,7 @@
 //   npx tsx scripts/economy-sens.ts [--seeds 16] [--years 10]
 // Grid: word-of-mouth pivot {5, 6.5} x bad-reception interest decay {0.35, 1.0} x gross per viewer {x1.0, x0.8}.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { baselineConfig, withOverrides } from "../src/core/config";
+import { legacyConfig, withOverrides } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
 import { careerEcon, releaseAccounts } from "../src/batch/econ";
 
@@ -11,7 +11,7 @@ const arg = (k: string, d: number) => {
   return i > 0 ? Number(process.argv[i + 1]) : d;
 };
 const seeds = arg("seeds", 16), years = arg("years", 10);
-const G4 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
+const G4 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
 const q = (xs: number[], p: number) => {
   if (!xs.length) return NaN;
   const s = [...xs].sort((a, b) => a - b);

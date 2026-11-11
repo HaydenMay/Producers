@@ -1,4 +1,5 @@
 import baseline from "../../config/baseline.json";
+import legacyAdvance from "../../config/legacy-advance.json";
 import { hashString } from "./rng";
 
 export type Config = typeof baseline;
@@ -7,8 +8,17 @@ export function cloneConfig(c: Config): Config {
   return JSON.parse(JSON.stringify(c));
 }
 
+/** The Producers default: studio-funded production, 80% distributor bids, work-for-hire contracts (PROD-100/118). */
 export function baselineConfig(): Config {
   return cloneConfig(baseline as Config);
+}
+
+/**
+ * REGRESSION ONLY (PROD-115): the pre-Producers economy (advance at the pitch, lifeline, $40K start, no contracts).
+ * Every earlier gate's byte-identity proof and overlay (candidate.json, gate3.json, gate4*.json) layers on this.
+ */
+export function legacyConfig(): Config {
+  return withOverrides(baselineConfig(), legacyAdvance as Record<string, unknown>);
 }
 
 /** Deep-merge a partial override (e.g. {"audience":{"baseRetention":0.7}}) into a config copy. */

@@ -1,5 +1,5 @@
 // Thin UI over the same core. No game rules here: everything goes through getChoices/applyDecision/advanceWeek.
-import { baselineConfig, configHash, setPath, withOverrides, type Config } from "../core/config";
+import { baselineConfig, legacyConfig, configHash, setPath, withOverrides, type Config } from "../core/config";
 import gate3Overrides from "../../config/gate3.json";
 import gate4Overrides from "../../config/gate4.json";
 import { allowedOrders, renewalStatus } from "../core/formats";
@@ -57,7 +57,7 @@ function planForm(ch: ReturnType<typeof getChoices>): string {
   const genres = [...new Set(plans.map((p) => p.genre))];
   const themes = [...new Set(plans.filter((p) => p.ipRelation === "new").map((p) => p.theme))];
   const ips = Object.values(s.ips).filter((ip) => plans.some((p) => p.parentIpId === ip.id));
-  const book = Object.entries(s.comboBook).map(([k, g]) => `${k.replace("|", " + ")}: A ${g.audience} / C ${g.critic}`).join(" · ") || "nothing revealed yet";
+  const book = Object.entries(s.comboBook).map(([k, g]) => (g.audience === g.critic ? `${k.replace("|", " + ")}: ${g.audience}` : `${k.replace("|", " + ")}: A ${g.audience} / C ${g.critic}`)).join(" · ") || "nothing revealed yet";
   const trends = Object.entries(s.trends).filter(([, t]) => t.stage !== "none").map(([k, t]) => `${k}: ${t.stage}`).join(", ") || "no active crazes";
   return `<div class="card"><h3>Plan the next production</h3>
     <div class="row">
@@ -156,14 +156,14 @@ function renderCareer() {
   };
   el("dlLog").onclick = () => download(`decisions-seed${s.seed}.json`, JSON.stringify({ seed: s.seed, configHash: configHash(cfg), decisions: log }));
   el("g3cfg").onclick = () => {
-    preset = () => withOverrides(baselineConfig(), gate3Overrides as Record<string, unknown>);
+    preset = () => withOverrides(legacyConfig(), gate3Overrides as Record<string, unknown>);
     cfg = preset();
     newStudio(s.seed);
     renderConfig();
   };
   root.querySelectorAll<HTMLButtonElement>("[data-offer]").forEach((b) => (b.onclick = () => act(b.dataset.offer === "__original" ? { type: "choose_offer", distributorId: null, original: true } : { type: "choose_offer", distributorId: b.dataset.offer === "__self" ? null : b.dataset.offer! })));
   document.getElementById("g4cfg")?.addEventListener("click", () => {
-    preset = () => withOverrides(baselineConfig(), gate4Overrides as Record<string, unknown>);
+    preset = () => withOverrides(legacyConfig(), gate4Overrides as Record<string, unknown>);
     cfg = preset();
     newStudio(s.seed);
     renderConfig();

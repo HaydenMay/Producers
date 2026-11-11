@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { baselineConfig, setPath } from "../../src/core/config";
+import { legacyConfig, setPath } from "../../src/core/config";
 import { runBatch, compareBatches } from "../../src/batch/batch";
 import { runCareer } from "../../src/batch/runner";
 import { checkInvariants } from "../../src/batch/diagnostics";
 
-const cfg = baselineConfig();
+const cfg = legacyConfig();
 
 describe("diagnostics catch injected regressions", () => {
   it("advance counted as revenue -> GROSS_NOT_FROM_SALES", () => {

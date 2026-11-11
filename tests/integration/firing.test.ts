@@ -2,13 +2,13 @@
 // active streaming builder; keep >= staffing.minStaff). The engineer uses a normal slot: firing makes room.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides } from "../../src/core/config";
+import { legacyConfig, withOverrides } from "../../src/core/config";
 import { advanceWeek, applyDecision, createStudio, getChoices, replay } from "../../src/core/simulation";
 import { runScripted } from "../../src/batch/runner";
 import { checkInvariants } from "../../src/batch/diagnostics";
 import type { Decision, StudioState } from "../../src/core/types";
 
-const G3 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
+const G3 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
 const BIG = withOverrides(G3, { start: { cash: 5_000_000 }, streaming: { unlock: { prestige: 0, minCatalog: 0 }, buildWeeks: 4 } });
 const has = (s: StudioState, cfg = BIG, t: string) => getChoices(s, cfg).options.some((o) => o.type === t);
 

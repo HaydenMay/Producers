@@ -2,7 +2,7 @@
   "_label": "baseline \u2014 PROVISIONAL TESTING VALUES. Simulation assumptions, NOT design locks.",
   "name": "baseline",
   "start": {
-    "cash": 40000,
+    "cash": 120000,
     "staff": [
       {
         "name": "Sam",
@@ -83,366 +83,39 @@
       "F": 0.78
     },
     "compatibility": {
-          "_label": "Gate 4Q EXPERIMENT. mode random = every earlier gate (two independent weighted grades per exact genre/theme pair from the world stream). mode editorial = the designer-editable baseline below (audience/critic per EXACT genre, not family), optionally shifted by a bounded per-pair variation from a stable hash of (seed, pair) - never from a shared RNG stream. The random draws are still consumed in editorial mode so every other world/talent draw is unchanged (clean paired comparisons). All grades are EDITORIAL PROPOSALS for designer review.",
+          "_label": "Combo fit. ONE shared grade per EXACT genre+theme pair, applied identically to Audience and Critic scores (PROD-062). Audience/Critic differences come only from craft weights (audienceWeights 35% Filming + 35% Editing vs criticWeights 35% Plot + 35% Writing). mode random = legacy regression only: two independent weighted grades from the world stream (every earlier gate). mode editorial = the designer-editable matrix below, optionally shifted by a bounded per-pair variation from a stable hash of (seed, pair), never a shared RNG stream. The random draws are still consumed in editorial mode so every other world/talent draw is unchanged. Grades are EDITORIAL PROPOSALS for designer review; 'contestable' pairs carry the pick and the reason.",
           "mode": "random",
           "variation": {
-                "_label": "bounded world-to-world variation: each side of each pair independently shifts one grade step with this chance (direction 50/50, clamped A..F). Pairs at A or F never move more than one step, so a natural fit can't become a disaster.",
+                "_label": "bounded world-to-world variation: each pair's single grade shifts one step with this chance (direction 50/50, clamped A..F).",
                 "enabled": true,
                 "chance": 0.2,
                 "maxSteps": 1
           },
-          "contestable": [
-                "Comedy|Zombies",
-                "Romance|Zombies",
-                "RomCom|Zombies",
-                "Romance|Vampires",
-                "Horror|Spies",
-                "Action|Dinosaurs",
-                "Thriller|Time Travel",
-                "Romance|Robots",
-                "Drama|Zombies",
-                "SciFi|Dinosaurs",
-                "Horror|Pirates",
-                "RomCom|Spies",
-                "Comedy|Sports"
-          ],
+          "contestable": {
+                "Action|Dinosaurs": "B (draft A/C). Huge crowd concept, but usually dumb fun; B keeps it a strong pick without being a no-brainer A.",
+                "Comedy|Sports": "A (draft A/B). Sports comedy is a proven sweet spot (underdog team + slapstick); deserves top fit.",
+                "Comedy|Zombies": "B (draft B/B). Zombie comedy works (spoof energy) but is a niche; B, not A.",
+                "Horror|Spies": "D (draft D/F). Strange mix, not nonsense; keep F for pairings that fight each other outright.",
+                "Horror|Pirates": "C (draft C/D). Cursed-ship / ghost-crew horror is a real subgenre; middling, not bad.",
+                "Thriller|Time Travel": "A (draft B/A). Loops, paradoxes and countdowns are thriller fuel; one of the best thriller fits.",
+                "Romance|Zombies": "D (draft D/F). Can work as a rare oddball love story; poor, not impossible.",
+                "Romance|Vampires": "B (draft B/D). Brooding immortal romance is a big crowd draw; critic snobbery now comes from craft weights, not the grade.",
+                "Romance|Robots": "C (draft D/C). Lonely-human/AI love stories land often enough; average fit.",
+                "Drama|Zombies": "C (draft D/C). Survival drama with zombies as backdrop is a proven prestige-TV shape; average fit.",
+                "SciFi|Dinosaurs": "B (draft B/C). De-extinction / lost-world sci-fi is the genre's natural home for dinosaurs.",
+                "RomCom|Zombies": "D (draft D/F). Comedy softens the gore a little; still poor.",
+                "RomCom|Spies": "C (draft B/D). Married-spies action romcom is popular but rarely good; split the difference."
+          },
+          "_matrixNote": "Collapse rule for the old two-grade draft: crowd genres (Action, Comedy, Horror, Romance, SciFi, RomCom) keep the draft AUDIENCE grade, prestige genres (Drama, Thriller) keep the draft CRITIC grade; contestable pairs use the pick above.",
           "matrix": {
-                "Action": {
-                      "Zombies": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Superheroes": {
-                            "audience": "A",
-                            "critic": "B"
-                      },
-                      "Spies": {
-                            "audience": "A",
-                            "critic": "B"
-                      },
-                      "Sports": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Vampires": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Time Travel": {
-                            "audience": "B",
-                            "critic": "B"
-                      },
-                      "Pirates": {
-                            "audience": "A",
-                            "critic": "B"
-                      },
-                      "Robots": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Dinosaurs": {
-                            "audience": "A",
-                            "critic": "C"
-                      },
-                      "Mythology": {
-                            "audience": "B",
-                            "critic": "B"
-                      }
-                },
-                "Comedy": {
-                      "Zombies": {
-                            "audience": "B",
-                            "critic": "B"
-                      },
-                      "Superheroes": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Spies": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Sports": {
-                            "audience": "A",
-                            "critic": "B"
-                      },
-                      "Vampires": {
-                            "audience": "B",
-                            "critic": "B"
-                      },
-                      "Time Travel": {
-                            "audience": "B",
-                            "critic": "B"
-                      },
-                      "Pirates": {
-                            "audience": "C",
-                            "critic": "D"
-                      },
-                      "Robots": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Dinosaurs": {
-                            "audience": "C",
-                            "critic": "D"
-                      },
-                      "Mythology": {
-                            "audience": "C",
-                            "critic": "D"
-                      }
-                },
-                "Horror": {
-                      "Zombies": {
-                            "audience": "A",
-                            "critic": "B"
-                      },
-                      "Superheroes": {
-                            "audience": "D",
-                            "critic": "D"
-                      },
-                      "Spies": {
-                            "audience": "D",
-                            "critic": "F"
-                      },
-                      "Sports": {
-                            "audience": "F",
-                            "critic": "F"
-                      },
-                      "Vampires": {
-                            "audience": "A",
-                            "critic": "B"
-                      },
-                      "Time Travel": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Pirates": {
-                            "audience": "C",
-                            "critic": "D"
-                      },
-                      "Robots": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Dinosaurs": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Mythology": {
-                            "audience": "B",
-                            "critic": "B"
-                      }
-                },
-                "Thriller": {
-                      "Zombies": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Superheroes": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Spies": {
-                            "audience": "A",
-                            "critic": "A"
-                      },
-                      "Sports": {
-                            "audience": "D",
-                            "critic": "D"
-                      },
-                      "Vampires": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Time Travel": {
-                            "audience": "B",
-                            "critic": "A"
-                      },
-                      "Pirates": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Robots": {
-                            "audience": "B",
-                            "critic": "B"
-                      },
-                      "Dinosaurs": {
-                            "audience": "C",
-                            "critic": "D"
-                      },
-                      "Mythology": {
-                            "audience": "C",
-                            "critic": "C"
-                      }
-                },
-                "Romance": {
-                      "Zombies": {
-                            "audience": "D",
-                            "critic": "F"
-                      },
-                      "Superheroes": {
-                            "audience": "C",
-                            "critic": "D"
-                      },
-                      "Spies": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Sports": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Vampires": {
-                            "audience": "B",
-                            "critic": "D"
-                      },
-                      "Time Travel": {
-                            "audience": "B",
-                            "critic": "B"
-                      },
-                      "Pirates": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Robots": {
-                            "audience": "D",
-                            "critic": "C"
-                      },
-                      "Dinosaurs": {
-                            "audience": "F",
-                            "critic": "F"
-                      },
-                      "Mythology": {
-                            "audience": "C",
-                            "critic": "C"
-                      }
-                },
-                "Drama": {
-                      "Zombies": {
-                            "audience": "D",
-                            "critic": "C"
-                      },
-                      "Superheroes": {
-                            "audience": "D",
-                            "critic": "C"
-                      },
-                      "Spies": {
-                            "audience": "B",
-                            "critic": "A"
-                      },
-                      "Sports": {
-                            "audience": "A",
-                            "critic": "A"
-                      },
-                      "Vampires": {
-                            "audience": "D",
-                            "critic": "D"
-                      },
-                      "Time Travel": {
-                            "audience": "C",
-                            "critic": "B"
-                      },
-                      "Pirates": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Robots": {
-                            "audience": "C",
-                            "critic": "B"
-                      },
-                      "Dinosaurs": {
-                            "audience": "F",
-                            "critic": "F"
-                      },
-                      "Mythology": {
-                            "audience": "C",
-                            "critic": "B"
-                      }
-                },
-                "SciFi": {
-                      "Zombies": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Superheroes": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Spies": {
-                            "audience": "C",
-                            "critic": "C"
-                      },
-                      "Sports": {
-                            "audience": "D",
-                            "critic": "D"
-                      },
-                      "Vampires": {
-                            "audience": "D",
-                            "critic": "D"
-                      },
-                      "Time Travel": {
-                            "audience": "A",
-                            "critic": "A"
-                      },
-                      "Pirates": {
-                            "audience": "C",
-                            "critic": "D"
-                      },
-                      "Robots": {
-                            "audience": "A",
-                            "critic": "A"
-                      },
-                      "Dinosaurs": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Mythology": {
-                            "audience": "C",
-                            "critic": "C"
-                      }
-                },
-                "RomCom": {
-                      "Zombies": {
-                            "audience": "D",
-                            "critic": "F"
-                      },
-                      "Superheroes": {
-                            "audience": "C",
-                            "critic": "D"
-                      },
-                      "Spies": {
-                            "audience": "B",
-                            "critic": "D"
-                      },
-                      "Sports": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Vampires": {
-                            "audience": "C",
-                            "critic": "D"
-                      },
-                      "Time Travel": {
-                            "audience": "B",
-                            "critic": "C"
-                      },
-                      "Pirates": {
-                            "audience": "D",
-                            "critic": "D"
-                      },
-                      "Robots": {
-                            "audience": "D",
-                            "critic": "D"
-                      },
-                      "Dinosaurs": {
-                            "audience": "F",
-                            "critic": "F"
-                      },
-                      "Mythology": {
-                            "audience": "D",
-                            "critic": "D"
-                      }
-                }
+                "Action": { "Zombies": "B", "Superheroes": "A", "Spies": "A", "Sports": "C", "Vampires": "B", "Time Travel": "B", "Pirates": "A", "Robots": "B", "Dinosaurs": "B", "Mythology": "B" },
+                "Comedy": { "Zombies": "B", "Superheroes": "B", "Spies": "B", "Sports": "A", "Vampires": "B", "Time Travel": "B", "Pirates": "C", "Robots": "C", "Dinosaurs": "C", "Mythology": "C" },
+                "Horror": { "Zombies": "A", "Superheroes": "D", "Spies": "D", "Sports": "F", "Vampires": "A", "Time Travel": "C", "Pirates": "C", "Robots": "C", "Dinosaurs": "B", "Mythology": "B" },
+                "Thriller": { "Zombies": "C", "Superheroes": "C", "Spies": "A", "Sports": "D", "Vampires": "C", "Time Travel": "A", "Pirates": "C", "Robots": "B", "Dinosaurs": "D", "Mythology": "C" },
+                "Romance": { "Zombies": "D", "Superheroes": "C", "Spies": "C", "Sports": "C", "Vampires": "B", "Time Travel": "B", "Pirates": "C", "Robots": "C", "Dinosaurs": "F", "Mythology": "C" },
+                "Drama": { "Zombies": "C", "Superheroes": "C", "Spies": "A", "Sports": "A", "Vampires": "D", "Time Travel": "B", "Pirates": "C", "Robots": "B", "Dinosaurs": "F", "Mythology": "B" },
+                "SciFi": { "Zombies": "C", "Superheroes": "B", "Spies": "C", "Sports": "D", "Vampires": "D", "Time Travel": "A", "Pirates": "C", "Robots": "A", "Dinosaurs": "B", "Mythology": "C" },
+                "RomCom": { "Zombies": "D", "Superheroes": "C", "Spies": "C", "Sports": "B", "Vampires": "C", "Time Travel": "B", "Pirates": "D", "Robots": "D", "Dinosaurs": "F", "Mythology": "D" }
           }
     },
     "cult": {
@@ -1048,8 +721,8 @@
     }
   },
   "economy": {
-    "_label": "Gate 4 EXPERIMENT. mode legacy_advance = every earlier gate, byte-identical (distributor advances at the pitch, lifeline, surplus). mode late_distribution = CANDIDATE: the studio funds base cost, Star and payroll itself; at 80% 2-3 distributors bid ADVERTISING spend + reach for a revenue share (ad money is spent by the distributor, never studio cash); self-distribution fallback; no lifeline. All numbers TEST ASSUMPTIONS.",
-    "mode": "legacy_advance",
+    "_label": "DEFAULT = late_distribution (PROD-100, Producers economy). mode legacy_advance = REGRESSION ONLY, every earlier gate byte-identical (distributor advances at the pitch, lifeline, surplus); select it with config/legacy-advance.json / legacyConfig(). mode late_distribution: the studio funds base cost, Star and payroll itself; at 80% 2-3 distributors bid ADVERTISING spend + reach for a revenue share (ad money is spent by the distributor, never studio cash); self-distribution fallback; no lifeline. All numbers TEST ASSUMPTIONS.",
+    "mode": "late_distribution",
     "lateDistribution": {
       "_label": "Candidate bid formula. appeal = 1 + previewWeight x (preview - previewCenter)/previewSpan + trend + fans + Star Fame + known combo (comboBook only) + last-season delta, clamped. Preview = visible meter quality so far, projected to completion (never final scores or hidden combo grades). adSpend = adBase x format factor x appeal x favored x trust factor x jitter; share = shareBase x (1.15 - 0.15 x appeal) x (1.1 - 0.04 x trust). A distributor only bids when appeal >= its minAppeal.",
       "previewCenter": 60,
@@ -1079,8 +752,8 @@
       "originalsUseStudioCampaign": true
     },
     "contracts": {
-      "_label": "Gate 4 EXPERIMENT: work-for-hire. Zero cost to accept; the client reimburses the studio's payroll + upkeep each contract week (ledger contract_labor) and pays a fixed visible completion fee (contract_fee). Staff gain XP/stats in the contract's meters. Zero Prestige, no IP, fans, release, HoF or catalog entry. One job at a time (uses the production slot). Fees are TEST ASSUMPTIONS.",
-      "enabled": false,
+      "_label": "Gate 4 EXPERIMENT: work-for-hire. Zero cost to accept; the client reimburses the studio's payroll + upkeep each contract week (ledger contract_labor) and pays a fixed visible completion fee (contract_fee). Staff gain XP/stats in the contract's meters. Zero Prestige, no IP, fans, release, HoF or catalog entry. One job at a time (uses the production slot). Fees are TEST ASSUMPTIONS. DEFAULT ON with the Producers economy (PROD-118); legacy-advance.json turns it off.",
+      "enabled": true,
       "list": [
         { "id": "commercial_edit", "name": "Commercial edit", "weeks": 6, "meters": ["editing"], "minStaff": 2, "minBestStat": 0, "fee": 9000 },
         { "id": "script_polish", "name": "Script polish", "weeks": 8, "meters": ["plot", "writing"], "minStaff": 2, "minBestStat": 28, "fee": 12000 },

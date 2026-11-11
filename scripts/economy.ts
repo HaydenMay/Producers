@@ -5,7 +5,7 @@
 // Overrides: --seeds N --years N --strategies a,b --variants v1,v2 --out dir --quiet
 // Writes <out>/careers.jsonl and <out>/releases.jsonl incrementally (one line per career), then <out>/summary.md.
 import { appendFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { baselineConfig, withOverrides, type Config } from "../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
 import { checkInvariants } from "../src/batch/diagnostics";
 import { careerEcon, releaseAccounts, type CareerEcon, type ReleaseAccount } from "../src/batch/econ";
@@ -27,8 +27,8 @@ const variants = arg("variants")?.split(",") ?? DEFAULTS.variants;
 const out = arg("out") ?? `reports/gate4/${mode}`;
 const quiet = process.argv.includes("--quiet");
 
-const G3 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
-const G4 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
+const G3 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
+const G4 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
 /** Sensitivity variants: each a single change on the candidate (TEST ASSUMPTIONS). */
 const VARIANTS: Record<string, { cfg: Config; note: string }> = {
   legacy: { cfg: G3, note: "Gate 3 follow-up rules (legacy_advance; start $40K; no contracts)" },

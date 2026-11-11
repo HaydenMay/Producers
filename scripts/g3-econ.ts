@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
-import { baselineConfig, withOverrides } from "../src/core/config";
+import { legacyConfig, withOverrides } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
-const cfg = withOverrides(withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8"))), process.argv[2] ? JSON.parse(process.argv[2]) : {});
+const cfg = withOverrides(withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8"))), process.argv[2] ? JSON.parse(process.argv[2]) : {});
 const rows: Record<string, { n: number; weeks: number; base: number; gross: number; take: number; total: number; avg: number; adv: number; uniq: number }> = {};
 for (const s of ["balanced", "tv-first", "traditional-holdout", "limited-focus", "mixed"]) for (let seed = 1; seed <= 20; seed++) {
   const st = runCareer(seed, s, cfg, { productions: 0, years: 15 }).state;

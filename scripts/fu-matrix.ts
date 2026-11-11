@@ -3,7 +3,7 @@
 // Each career runs 25 years once; 10/15-year horizons are exact prefixes (agents never read the horizon;
 // verified in the findings). Writes one JSON summary per variant plus trace candidates.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { baselineConfig, withOverrides, type Config } from "../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
 import { checkInvariants } from "../src/batch/diagnostics";
 import { CASH_KINDS } from "../src/core/events";
@@ -15,7 +15,7 @@ const arg = (k: string, d: string) => {
   return i > 0 ? process.argv[i + 1] : d;
 };
 const spec = JSON.parse(readFileSync("config/experiments/FU_matrix.json", "utf8"));
-const G3 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
+const G3 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
 const seeds = Number(arg("seeds", "200"));
 const out = arg("out", "reports/gate3_followup/matrix");
 mkdirSync(out, { recursive: true });

@@ -11,10 +11,11 @@
 | **The game design** (the only authority) | [`docs/DESIGN_LEDGER.md`](docs/DESIGN_LEDGER.md): every decision with a stable `PROD-###` id, design status and what the code currently does |
 | Rules for coding agents (Claude, Codex, …) | [`AGENTS.md`](AGENTS.md) (Claude also reads [`CLAUDE.md`](CLAUDE.md)) |
 | Harness parameters (test assumptions, not design) | [`docs/assumptions-register.md`](docs/assumptions-register.md) |
+| Decision aids awaiting the designer (options + worked examples, not decisions) | [`docs/plans/`](docs/plans/) |
 | History: old handoffs, gate prompts and gate findings | [`docs/archive/`](docs/archive/README.md) (context only, **not** authority) |
 | Generated evidence | `reports/` (regenerable; some folders are regression baselines, so don't delete) |
 
-> **Simulation assumptions, not design locks.** Every number in `config/` is provisional. Results are evidence for design discussion, never "official balance." Candidate configs (`config/gate3.json`, `gate4.json`, `gate4q.json`) are experiments; `config/baseline.json` is the legacy regression baseline.
+> **Simulation assumptions, not design locks.** Every number in `config/` is provisional. Results are evidence for design discussion, never "official balance." Candidate configs (`config/gate3.json`, `gate4.json`, `gate4q.json`) are experiments. `config/baseline.json` is the **Producers default** (studio-funded production, 80% distributor bids, work-for-hire contracts, $120K start *(test)*). The pre-Producers advance economy is the regression-only overlay `config/legacy-advance.json` (`legacyConfig()` in code, `--legacy` on the CLI); every older gate overlay layers on it.
 
 ## Setup
 
@@ -53,11 +54,11 @@ The 200-seed / 25-year matrices from earlier gates (`scripts/fu-matrix.ts`, expe
 ## Gate 4: studio-risk economy (EXPERIMENT, pending designer review)
 
 `economy.mode` selects the financing model.
-- **`legacy_advance`** (default in `config/baseline.json`): every earlier gate, byte-identical. Proved against the previous commit and with old decision-log replays.
-- **`late_distribution`** (`config/gate4.json`, the candidate):
+- **`late_distribution`** (**default** in `config/baseline.json` since 2026-11-10; also `config/gate4.json`):
   - the studio funds its own productions;
   - at 80%, 2–3 distributors bid their **own** ad spend + reach for a share of gross (no cash to the studio), or the studio self-distributes;
   - work-for-hire contracts (`economy.contracts`) give a zero-cost, zero-Prestige recovery route; the client covers payroll + upkeep and pays a fixed fee.
+- **`legacy_advance`** (regression only, `config/legacy-advance.json` / `--legacy`): every earlier gate, byte-identical (batch careers/great CSVs proved against the previous commit).
 
 Docs: `docs/archive/gates/gate-4-economy-findings.md`, `docs/archive/gates/gate-4-economy-open-decisions.md`; register entries G4-1…G4-12. The web UI has a "Load Gate 4 candidate economy" button (contracts, distribution meeting).
 
@@ -68,11 +69,11 @@ Docs: `docs/archive/gates/gate-4-economy-findings.md`, `docs/archive/gates/gate-
 | **1 — Deterministic movie kernel** | ✅ Done | Staff, phases, ledger, advances/royalties/surplus/overruns/cancel, Stars (families, budgets, pre-display free fallback, callbacks, relationships), $0 campaign, scores, legs, finite runs, Prestige, IP fans, studio genre levels, trends. Exact replay. |
 | **2 — Strategies, batch, diagnostics** | ✅ Done | 7 policies, batch runner, paired-seed compare, 13 diagnostic flags, invariant checker, CSV/JSON/Markdown, regression seed bank. Catches injected bugs. |
 | **3 — TV + streaming** | ✅ Built (pending designer review) | Limited series, renewable TV, streaming; config-gated (`config/gate3.json`). Follow-up: staff firing, no season cap, viewer-fatigue and breakthrough experiments (default off). |
-| **Gate 4Q scoring experiment** | 🧪 Candidate built (pending designer review) | editorial combo matrix, D/F severity, cult appeal; `quality:smoke` / `quality:compare`. |
-| **Gate 4 economy experiment** | 🧪 Candidate built (pending designer review) | `economy.mode` legacy_advance (default) vs late_distribution; contracts; FAST/COMPARE/GATE loops. |
+| **Gate 4Q scoring experiment** | 🧪 Candidate built (pending designer review) | **single-grade** editorial combo matrix (one grade per pair, both scores), D/F severity, cult appeal; `quality:smoke` / `quality:compare`. |
+| **Gate 4 economy experiment** | ✅ Default (values still *(test)*) | `economy.mode` late_distribution + contracts are the baseline; legacy_advance kept as a regression overlay; FAST/COMPARE/GATE loops. Dud economics: `npx tsx scripts/duds.ts`. |
 | **4 — Thin browser UI** | ✅ Done (minimal) | Manual step-through career, strategy auto-step, batch runner, config editor, replay. Same core; no rules in the UI. |
 
-**Tests:** 131 passing (Gate 4Q); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
+**Tests:** 138 passing (single grade + default economy); originally 36 passing (unit invariants, counterfactual scenarios, regression + injected-bug detection, UI smoke test via jsdom).
 **Performance (measured on this machine):** 7,000 careers × 20 films in 39 s (~5.6 ms per career); 1,400 × 50 films in 31 s; 7,000 × 5 films in 7.7 s.
 
 ## Gate 3 follow-up: staff firing and organic TV longevity (pending designer review)
@@ -95,7 +96,7 @@ npx tsx scripts/fu-traces.ts A_control tv-first 31 show ip242 "Trace 3"         
 
 ## Gate 3: limited series, renewable TV and streaming (pending designer review)
 
-Everything is **config-gated**: `config/baseline.json` keeps every Gate 3 feature off (the movie kernel, byte-identical); `config/gate3.json` = the Gate 2.5 candidate + limited series + TV + streaming (Gate 2.6 critic curves stay off). Docs:
+Everything is **config-gated**: `config/baseline.json` keeps every Gate 3 feature off (TV, limited series, streaming, diffusion legs) (the movie kernel, byte-identical); `config/gate3.json` = the Gate 2.5 candidate + limited series + TV + streaming (Gate 2.6 critic curves stay off). Docs:
 - `docs/archive/gates/gate-3-architecture.md`: modules, weekly order, schema changes, invariants.
 - `docs/archive/gates/gate-3-assumptions.md`: every Gate 3 number, labelled.
 - `docs/archive/gates/gate-3-findings.md`: results.
@@ -197,7 +198,7 @@ npm run batch -- --seeds 100 --productions 1 --releases-csv     # also writes pe
 
 # paired-seed before/after (same seeds, one change)
 npm run compare -- --set staffGrowth.statGainPerWeek=0.18 --seeds 200 --productions 50
-npm run compare -- --baseline config/baseline.json --candidate config/candidate.json --seeds 1000
+npm run compare -- --legacy --baseline config/baseline.json --candidate config/candidate.json --seeds 1000   # older overlays sit on the legacy economy
 
 # override any value on any command
 npm run batch -- --seeds 200 --productions 20 --set distribution.selfFundReach=0.35

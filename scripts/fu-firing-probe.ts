@@ -1,8 +1,8 @@
 // Gate 3 follow-up probe: firing on/off (policies) — engineer access, debt spiral, dismissals.
 import { readFileSync } from "node:fs";
-import { baselineConfig, withOverrides } from "../src/core/config";
+import { legacyConfig, withOverrides } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
-const G3 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
+const G3 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
 const seeds = Number(process.argv[2] ?? 100);
 for (const [label, over] of [["no firing (Gate 3 policies)", { agents: { useFiring: false, economicRenewal: false } }], ["firing only", { agents: { useFiring: true, economicRenewal: false } }], ["firing + economic renewal", {}]] as const) {
   const cfg = withOverrides(G3, over as Record<string, unknown>);

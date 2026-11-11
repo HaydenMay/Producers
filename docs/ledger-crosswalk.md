@@ -4,7 +4,7 @@
 
 - Audit entries inventoried: **207** (sections 1–14: 195 decisions; section 15: 12 inconsistencies)
 - Mapped to ledger rows: **207**; unmapped: **0**
-- Ledger rows: **207** (LOCKED 123, TESTING 27, OPEN 26, LATER 10, SUPERSEDED 21); 9 rows come from v9.6 / gate evidence with no audit line
+- Ledger rows: **210** (LOCKED 123, TESTING 27, OPEN 29, LATER 10, SUPERSEDED 21); 12 rows come from v9.6 / gate evidence with no audit line
 - Problems: **0**
 
 Several audit entries map to one row where the audit repeated the same decision (e.g. A6.8 + A9.11 season announcements); a few audit entries split across rows.

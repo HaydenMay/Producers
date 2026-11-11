@@ -1,7 +1,7 @@
 // Gate 3 acceptance tests (handoff §F). Named seeds; all through the shared rules API.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides, type Config } from "../../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../../src/core/config";
 import { advanceWeek, applyDecision, createStudio, getChoices, replay } from "../../src/core/simulation";
 import { allowedOrders, hiatusMultiplier, maxEpisodes, partnerAdvance, renewalStatus } from "../../src/core/formats";
 import { catalogRetention, streamingWeek } from "../../src/core/streaming";
@@ -15,7 +15,7 @@ import { greatness, filmRefs } from "../../src/batch/greatness";
 import type { Choices, Decision, PlanDecision, Release, StudioState } from "../../src/core/types";
 
 const read = (f: string) => JSON.parse(readFileSync(f, "utf8"));
-const G3 = withOverrides(baselineConfig(), read("config/gate3.json"));
+const G3 = withOverrides(legacyConfig(), read("config/gate3.json"));
 /** fast-unlock variant for scripted tests (thresholds only; rules unchanged) */
 const FAST = withOverrides(G3, { tv: { unlock: { prestige: 0, cost: 0 } }, streaming: { unlock: { prestige: 0, minCatalog: 1 }, buildWeeks: 6, buildCost: 1000 }, start: { cash: 400000 } });
 
@@ -47,14 +47,14 @@ const tvShow = (n = 5) => (s: StudioState, plans: PlanDecision[]) => plans.find(
 
 describe("F1 movies unaffected; old configs and replays still load", () => {
   it("movie-only careers match the stored Gate 2.6 baseline byte for byte", () => {
-    const cand = withOverrides(baselineConfig(), read("config/candidate.json"));
+    const cand = withOverrides(legacyConfig(), read("config/candidate.json"));
     const b = runBatch(1, 6, ["balanced", "quality-first", "cheap-duds"], cand, { productions: 20, drain: true });
     const mine = metricsCsv(b.metrics).trim().split("\n");
     const stored = readFileSync("reports/gate2_6/00_pre_change/batch-gate25_candidate-s100-p20.careers.csv", "utf8").trim().split("\n");
     for (const row of mine.slice(1)) expect(stored).toContain(row);
   });
   it("a pre-Gate-3 decision log replays to the same result", () => {
-    const cand = withOverrides(baselineConfig(), read("config/candidate.json"));
+    const cand = withOverrides(legacyConfig(), read("config/candidate.json"));
     const log = read("reports/gate2_5/traces/sim-seed42-balanced-5.decisions.json") as { seed: number; decisions: Decision[] };
     const s = replay(log.seed, cand, log.decisions);
     expect(Math.round(s.cash)).toBe(914901);
@@ -62,7 +62,7 @@ describe("F1 movies unaffected; old configs and replays still load", () => {
   });
   it("a Gate 3 config with every format disabled is the movie kernel", () => {
     const off = withOverrides(G3, { formats: { limitedSeries: false, tv: false, streaming: false } });
-    const cand = withOverrides(baselineConfig(), read("config/candidate.json"));
+    const cand = withOverrides(legacyConfig(), read("config/candidate.json"));
     const a = runCareer(3, "balanced", off, { productions: 12, drain: true }).state;
     const b = runCareer(3, "balanced", cand, { productions: 12, drain: true }).state;
     expect(a.releases.map((r) => [r.title, r.audience, r.critic, r.grossTotal])).toEqual(b.releases.map((r) => [r.title, r.audience, r.critic, r.grossTotal]));

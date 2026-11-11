@@ -2,7 +2,7 @@
 // Usage: npx tsx scripts/fu-traces.ts <variant> <strategy> <seed> <kind> [ipId] [title]
 //   kind = show | firing
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { baselineConfig, withOverrides, type Config } from "../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
 import { checkInvariants } from "../src/batch/diagnostics";
 import { CASH_KINDS } from "../src/core/events";
@@ -11,7 +11,7 @@ import { seasonRows } from "../src/batch/seasonfeel";
 const [variant, strategy, seedS, kind, ipId, title] = process.argv.slice(2);
 const spec = JSON.parse(readFileSync("config/experiments/FU_matrix.json", "utf8"));
 const all = [...spec.variants, ...spec.orderVariants];
-const G3 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
+const G3 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
 function cfgFor(name: string): Config {
   const v = all.find((x: { name: string }) => x.name === name);
   const base = v.base ? cfgFor(v.base) : G3;

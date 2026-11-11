@@ -2,7 +2,7 @@
 // creative breakthroughs (EXPERIMENT, off by default). All through the shared rules API, named seeds.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides } from "../../src/core/config";
+import { legacyConfig, withOverrides } from "../../src/core/config";
 import { createStudio, getChoices, replay } from "../../src/core/simulation";
 import { renewalStatus, viewerFatigue } from "../../src/core/formats";
 import { runCareer } from "../../src/batch/runner";
@@ -10,7 +10,7 @@ import { checkInvariants } from "../../src/batch/diagnostics";
 import { careerG3 } from "../../src/batch/gate3metrics";
 import type { Release } from "../../src/core/types";
 
-const G3 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
+const G3 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
 const VF = (o: Record<string, unknown> = {}) => withOverrides(G3, { tv: { viewerFatigue: { enabled: true, ...o } } });
 const BT = (o: Record<string, unknown> = {}) => withOverrides(G3, { events: { breakthrough: { enabled: true, ...o } } });
 const tvSeasons = (rs: Release[], ipId: string) => rs.filter((r) => r.ipId === ipId && r.format === "tv");

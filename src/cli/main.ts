@@ -1,7 +1,7 @@
 // CLI: sim | batch | compare | scenarios | replay. All commands use the same core rules.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
-import { baselineConfig, configHash, setPath, withOverrides, type Config } from "../core/config";
+import { baselineConfig, legacyConfig, configHash, setPath, withOverrides, type Config } from "../core/config";
 import { replay } from "../core/simulation";
 import { STRATEGY_IDS } from "../agents/strategies";
 import { runCareer } from "../batch/runner";
@@ -31,8 +31,10 @@ function args(argv: string[]) {
 }
 const one = (a: Record<string, string[]>, k: string, d: string) => a[k]?.[0] ?? d;
 
+/** --legacy layers overlays on the regression-only legacy-advance economy (PROD-115) instead of the Producers default. */
+let LEGACY = false;
 function loadConfig(path: string | undefined, sets: string[] | undefined): Config {
-  let cfg = baselineConfig();
+  let cfg = LEGACY ? legacyConfig() : baselineConfig();
   if (path && path !== "config/baseline.json") cfg = withOverrides(cfg, JSON.parse(readFileSync(path, "utf8")));
   for (const s of sets ?? []) {
     const [p, raw] = s.split("=");
@@ -54,6 +56,7 @@ function main() {
   const [cmd, ...rest] = process.argv.slice(2);
   const a = args(rest);
   const dir = one(a, "out", "reports");
+  LEGACY = a.legacy?.[0] === "true";
   const cfg = loadConfig(a.config?.[0], a.set);
   switch (cmd) {
     case "sim": {
@@ -195,7 +198,7 @@ function main() {
       break;
     }
     default:
-      console.log("usage: tsx src/cli/main.ts <sim|batch|compare|replay|scenarios> [--seed N] [--strategy id] [--productions N] [--seeds N] [--strategies a,b] [--config file] [--set path=jsonValue] [--baseline file --candidate file] [--out dir]");
+      console.log("usage: tsx src/cli/main.ts <sim|batch|compare|replay|scenarios> [--seed N] [--strategy id] [--productions N] [--seeds N] [--strategies a,b] [--config file] [--legacy] [--set path=jsonValue] [--baseline file --candidate file] [--out dir]");
       console.log(`strategies: ${STRATEGY_IDS.join(", ")}`);
   }
 }

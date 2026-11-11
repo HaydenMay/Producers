@@ -1,13 +1,13 @@
 // Gate 2.5 B acceptance tests: diffusion weekly legs.
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides } from "../../src/core/config";
+import { legacyConfig, withOverrides } from "../../src/core/config";
 import { LEGS_CASES, simulateLegs } from "../../src/batch/legs";
 import { runBatch } from "../../src/batch/batch";
 import { STRATEGY_IDS } from "../../src/agents/strategies";
 import { runCareer } from "../../src/batch/runner";
 import { replay } from "../../src/core/simulation";
 
-const diff = withOverrides(baselineConfig(), { audience: { legsModel: "diffusion" } });
+const diff = withOverrides(legacyConfig(), { audience: { legsModel: "diffusion" } });
 const byId = (id: string) => simulateLegs(diff, LEGS_CASES.find((c) => c.id === id)!);
 
 describe("diffusion legs", () => {

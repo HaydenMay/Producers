@@ -1,8 +1,8 @@
 // Who pays what each season: the same TV-first career (seed 2, 15 years) under contract A and B.
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { baselineConfig, configHash, withOverrides } from "../src/core/config";
+import { legacyConfig, configHash, withOverrides } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
-const G3 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
+const G3 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate3.json", "utf8")));
 const out: string[] = ["# TV financing disclosure: contract A vs B (same seed, same policy)", "", "> TEST ASSUMPTIONS. tv-first, seed 2, 15 in-game years. Advance = distributor money up front (not revenue). Royalty = distributor share of each week's gross. Kept surplus = unused advance at completion. Branches diverge after the first returning-season pitch (different offers → different later choices).", ""];
 for (const v of ["A", "B"]) {
   const cfg = withOverrides(G3, { tv: { contract: { variant: v } } });

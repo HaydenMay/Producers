@@ -1,13 +1,13 @@
 // Gate 2.5 A acceptance tests: studio-wide employee capacity (NOT a per-project crew cap).
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides } from "../../src/core/config";
+import { legacyConfig, withOverrides } from "../../src/core/config";
 import { advanceWeek, applyDecision, createStudio, getChoices, replay } from "../../src/core/simulation";
 import { hireStaff } from "../../src/core/staff";
 import { runCareer } from "../../src/batch/runner";
 import { STRATEGY_IDS } from "../../src/agents/strategies";
 import type { StudioState } from "../../src/core/types";
 
-const ladder = withOverrides(baselineConfig(), {
+const ladder = withOverrides(legacyConfig(), {
   start: { cash: 5_000_000 },
   agents: { legacyHeuristicStaffCaps: false },
   staffCapacity: { ladder: [4, 6, 8], upgradeCosts: [250000, 750000], upgradePrestige: [200, 1000] },

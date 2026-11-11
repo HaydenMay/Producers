@@ -25,25 +25,24 @@ export function awardGenreXp(state: StudioState, cfg: Config, genre: string): vo
 const GRADES: Grade[] = ["A", "B", "C", "D", "F"];
 
 /**
- * Gate 4Q editorial compatibility: the matrix baseline for an EXACT genre + theme, shifted at most
- * `maxSteps` by a stable per-pair hash (never a shared stream). Exported for tests and reports.
+ * Editorial compatibility (PROD-062/074/075): ONE shared grade for an EXACT genre + theme, shifted at
+ * most `maxSteps` by a stable per-pair hash (never a shared stream). The same grade feeds BOTH scores;
+ * Audience vs Critic differ only through craft weights. Exported for tests and reports.
  */
-export function editorialGrades(seed: number, cfg: Config, genre: string, theme: string): { audience: Grade; critic: Grade; baseline: { audience: Grade; critic: Grade }; shifted: boolean } {
+export function editorialGrades(seed: number, cfg: Config, genre: string, theme: string): { grade: Grade; baseline: Grade; shifted: boolean } {
   const c = cfg.world.compatibility;
-  const row = (c.matrix as Record<string, Record<string, { audience: Grade; critic: Grade }>>)[genre]?.[theme];
-  if (!row) throw new Error(`compatibility matrix has no entry for ${genre} + ${theme}`);
-  const shift = (g: Grade, side: string): Grade => {
-    if (!c.variation.enabled) return g;
-    const u = stableUnit(seed, `combo:${genre}|${theme}:${side}`);
-    if (u >= c.variation.chance) return g;
-    const dir = u < c.variation.chance / 2 ? -1 : 1; // -1 = better grade
-    const steps = Math.max(1, c.variation.maxSteps);
-    const i = Math.max(0, Math.min(GRADES.length - 1, GRADES.indexOf(g) + dir * steps));
-    return GRADES[i];
-  };
-  const audience = shift(row.audience, "audience");
-  const critic = shift(row.critic, "critic");
-  return { audience, critic, baseline: { ...row }, shifted: audience !== row.audience || critic !== row.critic };
+  const baseline = (c.matrix as unknown as Record<string, Record<string, Grade>>)[genre]?.[theme];
+  if (!baseline) throw new Error(`compatibility matrix has no entry for ${genre} + ${theme}`);
+  let grade = baseline;
+  if (c.variation.enabled) {
+    const u = stableUnit(seed, `combo:${genre}|${theme}`);
+    if (u < c.variation.chance) {
+      const dir = u < c.variation.chance / 2 ? -1 : 1; // -1 = better grade
+      const steps = Math.max(1, c.variation.maxSteps);
+      grade = GRADES[Math.max(0, Math.min(GRADES.length - 1, GRADES.indexOf(baseline) + dir * steps))];
+    }
+  }
+  return { grade, baseline, shifted: grade !== baseline };
 }
 
 export function generateWorld(state: StudioState, cfg: Config): void {
@@ -58,7 +57,7 @@ export function generateWorld(state: StudioState, cfg: Config): void {
       };
       if (editorial) {
         const e = editorialGrades(state.seed, cfg, g, t);
-        state.world.comboGrades[comboKey(g, t)] = { audience: e.audience, critic: e.critic };
+        state.world.comboGrades[comboKey(g, t)] = { audience: e.grade, critic: e.grade }; // one shared grade
       } else state.world.comboGrades[comboKey(g, t)] = random;
     }
   }

@@ -3,7 +3,7 @@
 // Each release is reproduced from its seed under normal rules; counterfactuals are pure recomputations of the
 // published score formula with one input removed (no re-simulation, so nothing else moves).
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { baselineConfig, withOverrides, type Config } from "../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
 import { releaseAccounts } from "../src/batch/econ";
 import { PAIRS, rookie } from "../src/batch/qualitydiag";
@@ -12,7 +12,7 @@ import { formatSpec, formatOf } from "../src/core/formats";
 import { editorialGrades } from "../src/core/progression";
 import { METERS, type Grade, type Meter, type Release, type StudioState } from "../src/core/types";
 
-const Q = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4q.json", "utf8")));
+const Q = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4q.json", "utf8")));
 const $ = (x: number) => `${x < 0 ? "−" : ""}$${Math.abs(Math.round(x)).toLocaleString()}`;
 
 function attribution(s: StudioState, cfg: Config, rel: Release, label: string, why: string): string[] {
@@ -45,7 +45,7 @@ function attribution(s: StudioState, cfg: Config, rel: Release, label: string, w
     "",
     `- **Published:** Audience **${rel.audience}** / Critics **${rel.critic}** → **${rel.avgScore}**${rel.hallOfFame ? " (Hall of Fame)" : ""}.`,
     `- **Meters (0–100):** plot ${sc.meters.plot} · writing ${sc.meters.writing} · filming ${sc.meters.filming} (incl. Star) · editing ${sc.meters.editing}. Base before pairing: audience ${sc.audienceBase}, critics ${sc.criticBase}${sc.weakMeters.length ? `; weak-meter penalty on ${sc.weakMeters.map((w) => w.meter).join(", ")}` : ""}.`,
-    `- **Pairing:** matrix baseline ${ed.baseline.audience}/${ed.baseline.critic}${ed.shifted ? `, this world's variation → ${ed.audience}/${ed.critic}` : " (no world variation for this pair)"}; scored with ${sc.comboAudience} (×${sc.comboAudienceMult}) / ${sc.comboCritic} (×${sc.comboCriticMult}).${cult ? ` Cult check: chance ${cult.chance}, draw ${cult.draw}, craft ${cult.craft} → ${cult.happened ? `**UNEXPECTED CULT APPEAL (${cult.tier})**: audience grade ${cult.baselineAudience} → ${cult.effectiveAudience} for this title only (audience ${cult.audienceWithout} → ${rel.audience}); critics unchanged; reasons: ${cult.reasons.join("; ")}` : "no event"}.` : ""}`,
+    `- **Pairing:** matrix grade ${ed.baseline}${ed.shifted ? `, this world's variation → ${ed.grade}` : " (no world variation for this pair)"} (one shared grade for both scores); scored with ${sc.comboAudience} (×${sc.comboAudienceMult}) / ${sc.comboCritic} (×${sc.comboCriticMult}).${cult ? ` Cult check: chance ${cult.chance}, draw ${cult.draw}, craft ${cult.craft} → ${cult.happened ? `**UNEXPECTED CULT APPEAL (${cult.tier})**: audience grade ${cult.baselineAudience} → ${cult.effectiveAudience} for this title only (audience ${cult.audienceWithout} → ${rel.audience}); critics unchanged; reasons: ${cult.reasons.join("; ")}` : "no event"}.` : ""}`,
     `- **Star:** ${star ? `${star.name} (level ${star.level}, Fame ${Math.round(star.fame)}), ${Object.entries(star.skills).map(([k, v]) => `${k} ${v}`).join(", ")} → family fit for ${rel.genre} (${cfg.world.genres[rel.genre as keyof typeof cfg.world.genres]}) = **${q.starFit}**, +${Math.round(q.starPoints)} filming points` : "none"}.`,
     `- **Studio exact-genre XP:** ${rel.genre} level ${q.genreLevel} → +${Math.round(q.genreBonus * 100)}% work points. Fatigue ${Math.round(fat * 100)}%${sc.saturationMult < 1 ? ", saturated theme" : ""}${sc.expectations.criticToughness ? `, critic era ${sc.expectations.criticToughness}` : ""}.`,
     "",

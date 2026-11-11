@@ -2,14 +2,14 @@
 // FAST loop: `npm run economy:smoke` runs typecheck + this file + a 4-seed smoke batch.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides, type Config } from "../../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../../src/core/config";
 import { advanceWeek, applyDecision, createStudio, getChoices, replay } from "../../src/core/simulation";
 import { runCareer, runScripted } from "../../src/batch/runner";
 import { checkInvariants } from "../../src/batch/diagnostics";
 import { releaseAccounts } from "../../src/batch/econ";
 import type { Choices, Decision, StudioState } from "../../src/core/types";
 
-const G4 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
+const G4 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
 const at = (cash: number, extra: Record<string, unknown> = {}) => withOverrides(G4, { start: { cash }, ...extra });
 const cashKinds = (s: StudioState) => s.ledger.map((l) => l.kind);
 

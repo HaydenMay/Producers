@@ -1,14 +1,14 @@
 // Gate 2.5 C acceptance tests: Prestige scope variants.
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { baselineConfig, withOverrides, type Config } from "../../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../../src/core/config";
 import { createStudio, replay } from "../../src/core/simulation";
 import { evaluatePrestige } from "../../src/core/prestige";
 import { runCareer } from "../../src/batch/runner";
 import type { Release, StudioState } from "../../src/core/types";
 
 const spec = JSON.parse(readFileSync("config/experiments/C_prestige_scope.json", "utf8")) as { variants: { name: string; overrides: Record<string, unknown> }[] };
-const variant = (n: string): Config => withOverrides(baselineConfig(), spec.variants.find((v) => v.name === n)!.overrides);
+const variant = (n: string): Config => withOverrides(legacyConfig(), spec.variants.find((v) => v.name === n)!.overrides);
 
 function fakeRelease(s: StudioState, id: string, ipId: string, audience: number, critic: number, gross = 0, meter = 80): Release {
   const avg = Math.round(((audience + critic) / 2) * 100) / 100;

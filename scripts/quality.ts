@@ -4,7 +4,7 @@
 //   --variants old,Q1_editorial,...  --quiet
 // Everything runs on the Gate 4 candidate economy (config/gate4.json); only scoring inputs vary.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { baselineConfig, withOverrides, type Config } from "../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../src/core/config";
 import { advanceWeek, applyDecision, createStudio, getChoices } from "../src/core/simulation";
 import { runCareer } from "../src/batch/runner";
 import { checkInvariants } from "../src/batch/diagnostics";
@@ -23,12 +23,12 @@ const seeds = Number(arg("seeds") ?? 5);
 const years = Number(arg("years") ?? 5);
 const out = arg("out") ?? "reports/gate4q/smoke";
 const quiet = process.argv.includes("--quiet");
-const G4 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
+const G4 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
 const ED = { world: { compatibility: { mode: "editorial", variation: { enabled: false } } } };
 const BOUNDED = { world: { compatibility: { mode: "editorial", variation: { enabled: true } } } };
 const SEV = (d: number, f: number) => ({ world: { gradeMultiplier: { A: 1.15, B: 1.06, C: 1.0, D: d, F: f } } });
 const CULT = { world: { cult: { enabled: true } } };
-const Q4Q = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4q.json", "utf8")));
+const Q4Q = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4q.json", "utf8")));
 /** One change at a time, each built on the previous step. */
 const VARIANTS: Record<string, { cfg: Config; note: string }> = {
   old: { cfg: G4, note: "Gate 4 candidate as delivered: two independent random grades per pair; D 0.90 / F 0.78" },

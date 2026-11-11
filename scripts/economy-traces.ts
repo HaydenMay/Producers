@@ -5,7 +5,7 @@
 // 2. A struggling studio that leans on work-for-hire contracts.
 // 3. A TV show's seasons: good seasons and a financial mistake.
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { baselineConfig, withOverrides, type Config } from "../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../src/core/config";
 import { advanceWeek, applyDecision, createStudio, getChoices } from "../src/core/simulation";
 import { makeAgentRng } from "../src/core/rng";
 import { STRATEGIES, type AgentCtx } from "../src/agents/strategies";
@@ -14,7 +14,7 @@ import { cashSeries, releaseAccounts } from "../src/batch/econ";
 import { runCareer } from "../src/batch/runner";
 import type { Decision, StudioState } from "../src/core/types";
 
-const G4 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
+const G4 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
 const LEVERS = withOverrides(G4, { audience: { qualityPivot: 6.5 }, world: { grossPerViewer: 1.6 }, tv: { grossPerEpisodeViewer: 0.256 }, limitedSeries: { grossPerEpisodeViewer: 0.456 } });
 const $ = (x: number) => `${x < 0 ? "−" : ""}$${Math.abs(Math.round(x)).toLocaleString()}`;
 mkdirSync("reports/gate4/traces", { recursive: true });

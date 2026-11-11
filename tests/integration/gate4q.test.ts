@@ -2,7 +2,7 @@
 // Star skill (broad FAMILY), studio experience (EXACT genre) and pairing compatibility stay three separate systems.
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides, type Config } from "../../src/core/config";
+import { legacyConfig, withOverrides, type Config } from "../../src/core/config";
 import { advanceWeek, applyDecision, createStudio, getChoices, replay } from "../../src/core/simulation";
 import { awardGenreXp, editorialGrades, genreBonus } from "../../src/core/progression";
 import { starFit } from "../../src/core/stars";
@@ -12,8 +12,8 @@ import { runCareer } from "../../src/batch/runner";
 import { checkInvariants } from "../../src/batch/diagnostics";
 import type { Grade, PlanDecision, Release, StudioState } from "../../src/core/types";
 
-const G4 = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
-const Q = withOverrides(baselineConfig(), JSON.parse(readFileSync("config/gate4q.json", "utf8")));
+const G4 = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4.json", "utf8")));
+const Q = withOverrides(legacyConfig(), JSON.parse(readFileSync("config/gate4q.json", "utf8")));
 const ORDER: Grade[] = ["A", "B", "C", "D", "F"];
 const meters = (x: number) => ({ plot: x, writing: x, filming: x, editing: x });
 
@@ -64,12 +64,20 @@ describe("Gate 4Q: three distinct systems (family Star skill, exact-genre studio
     expect(genreBonus(s, Q, "Horror")).toBeGreaterThan(0);
     expect(genreBonus(s, Q, "Thriller")).toBe(0);
   });
-  it("compatibility is per EXACT genre: Horror+Zombies and Thriller+Zombies differ even though both are Scary", () => {
-    const m = Q.world.compatibility.matrix as Record<string, Record<string, { audience: Grade; critic: Grade }>>;
-    expect(m.Horror.Zombies).not.toEqual(m.Thriller.Zombies);
-    expect(m.Horror.Zombies.audience).toBe("A");
-    expect(m.SciFi.Robots).toEqual({ audience: "A", critic: "A" });
-    for (const g of Object.keys(Q.world.genres)) for (const t of Q.world.themes) expect(m[g]?.[t], `${g}+${t}`).toBeDefined();
+  it("compatibility is ONE grade per EXACT genre: Horror+Zombies and Thriller+Zombies differ even though both are Scary", () => {
+    const m = Q.world.compatibility.matrix as unknown as Record<string, Record<string, Grade>>;
+    expect(m.Horror.Zombies).not.toBe(m.Thriller.Zombies);
+    expect(m.Horror.Zombies).toBe("A");
+    expect(m.SciFi.Robots).toBe("A");
+    for (const g of Object.keys(Q.world.genres)) for (const t of Q.world.themes) expect(["A", "B", "C", "D", "F"], `${g}+${t}`).toContain(m[g]?.[t]);
+    // every contested pair carries its pick + reason and the pick matches the matrix
+    for (const [k, why] of Object.entries(Q.world.compatibility.contestable as Record<string, string>)) {
+      const [g, t] = k.split("|");
+      expect(why.startsWith(m[g][t]), k).toBe(true);
+    }
+  });
+  it("one shared grade: both stored sides are equal in every editorial world", () => {
+    for (let seed = 1; seed <= 20; seed++) for (const g of Object.values(createStudio(seed, Q).world.comboGrades)) expect(g.audience).toBe(g.critic);
   });
   it("a great crew mitigates a poor pairing without erasing it; a weak crew with a great pairing is still mediocre", () => {
     const sc = (x: number, a: Grade, c: Grade) => {
@@ -84,26 +92,23 @@ describe("Gate 4Q: three distinct systems (family Star skill, exact-genre studio
 });
 
 describe("Gate 4Q editorial compatibility: deterministic, bounded, legacy-safe", () => {
-  it("same seed + config → same grades; variation never moves a side more than one step", () => {
-    const m = Q.world.compatibility.matrix as Record<string, Record<string, { audience: Grade; critic: Grade }>>;
+  it("same seed + config → same grades; variation never moves a pair more than one step", () => {
+    const m = Q.world.compatibility.matrix as unknown as Record<string, Record<string, Grade>>;
     let moved = 0;
     for (let seed = 1; seed <= 200; seed++) {
       const s = createStudio(seed, Q);
       expect(JSON.stringify(createStudio(seed, Q).world.comboGrades)).toBe(JSON.stringify(s.world.comboGrades));
       for (const g of Object.keys(Q.world.genres))
         for (const t of Q.world.themes) {
-          const got = s.world.comboGrades[comboKey(g, t)];
-          for (const side of ["audience", "critic"] as const) {
-            const d = Math.abs(ORDER.indexOf(got[side]) - ORDER.indexOf(m[g][t][side]));
-            expect(d).toBeLessThanOrEqual(1);
-            moved += d;
-          }
+          const d = Math.abs(ORDER.indexOf(s.world.comboGrades[comboKey(g, t)].audience) - ORDER.indexOf(m[g][t]));
+          expect(d).toBeLessThanOrEqual(1);
+          moved += d;
         }
     }
-    const share = moved / (200 * 80 * 2);
+    const share = moved / (200 * 80);
     expect(share).toBeGreaterThan(0.12);
     expect(share).toBeLessThan(0.22); // ~20% chance minus clamped A/F moves
-    expect(editorialGrades(7, Q, "Horror", "Zombies").baseline).toEqual(m.Horror.Zombies);
+    expect(editorialGrades(7, Q, "Horror", "Zombies").baseline).toBe(m.Horror.Zombies);
   });
   it("editorial mode consumes the same world draws: every other stream and draw is unchanged vs random mode", () => {
     const a = createStudio(5, G4);
@@ -112,7 +117,7 @@ describe("Gate 4Q editorial compatibility: deterministic, bounded, legacy-safe",
     expect(JSON.stringify(b.stars)).toBe(JSON.stringify(a.stars));
   });
   it("legacy (mode random) is the default and the Gate 4 config is untouched by the new keys", () => {
-    expect(baselineConfig().world.compatibility.mode).toBe("random");
+    expect(legacyConfig().world.compatibility.mode).toBe("random");
     expect(G4.world.compatibility.mode).toBe("random");
     expect(G4.world.cult.enabled).toBe(false);
     expect(G4.world.gradeMultiplier).toEqual({ A: 1.15, B: 1.06, C: 1.0, D: 0.9, F: 0.78 });

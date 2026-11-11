@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { baselineConfig, withOverrides } from "../../src/core/config";
+import { legacyConfig, withOverrides } from "../../src/core/config";
 import { createStudio, getChoices, applyDecision, advanceWeek, replay } from "../../src/core/simulation";
 import { computeScores, avgScore, isHallOfFame, isRenewable } from "../../src/core/scoring";
 import { budgetFor, generateStar, skillTotal, priceStar, starFit } from "../../src/core/stars";
@@ -9,7 +9,7 @@ import { STRATEGY_IDS } from "../../src/agents/strategies";
 import { scriptedDecide } from "../helpers";
 import type { Decision, StudioState } from "../../src/core/types";
 
-const cfg = baselineConfig();
+const cfg = legacyConfig();
 
 function toPhase(state: StudioState, phase: string, decide: (s: StudioState, ch: ReturnType<typeof getChoices>) => Decision) {
   for (let i = 0; i < 400; i++) {
