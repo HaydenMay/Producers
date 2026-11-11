@@ -61,6 +61,12 @@ describe("PROD-214/215 years active, offscreen careers, retirement", () => {
     expect(ret.length).toBeGreaterThan(0);
     expect(ret.every((x) => x.yearsActive! > D.stars.pool.retirement.startYears)).toBe(true);
   });
+  it("skills never fade: a decade of offscreen careers only ever raises skills", () => {
+    const s = createStudio(8, D);
+    const before = Object.fromEntries(Object.values(s.stars).map((x) => [x.id, { ...x.skills }]));
+    for (let y = 0; y < 10; y++) talentYear(s, D);
+    for (const [id, sk] of Object.entries(before)) for (const [f, v] of Object.entries(sk)) expect(s.stars[id].skills[f]).toBeGreaterThanOrEqual(v);
+  });
   it("retired Stars never appear on a casting list", () => {
     const s = runCareer(7, "balanced", D, { productions: 0, years: 10 }).state;
     for (const rel of s.releases)
