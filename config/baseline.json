@@ -631,8 +631,9 @@
   },
   "formats": {
     "_label": "Gate 3. LOCKED direction: movies + limited series first, TV via a studio upgrade (money + Prestige), streaming later. All false = the Gate 2.6 movie-only kernel, byte-identical.",
-    "limitedSeries": false,
-    "tv": false,
+    "_defaultLabel": "Designer 2026-11-11: limited series and TV ship ON in the Producers default (TV still unlocks via the studio upgrade: Prestige + cash). Streaming stays off until reviewed. legacy-advance.json restores all false.",
+    "limitedSeries": true,
+    "tv": true,
     "streaming": false
   },
   "limitedSeries": {

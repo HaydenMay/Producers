@@ -15,6 +15,8 @@ describe("Producers default economy", () => {
     expect(d.audience.legsModel).toBe("diffusion");
     expect(d.audience.movieQualityPivot).toBe(6.5);
     expect(d.audience.diffusion.movieBadInterestDecay).toBe(1.0);
+    expect(d.formats.tv && d.formats.limitedSeries).toBe(true);
+    expect(d.formats.streaming).toBe(false);
     const l = legacyConfig();
     expect(l.economy.mode).toBe("legacy_advance");
     expect(l.economy.contracts.enabled).toBe(false);
@@ -26,7 +28,7 @@ describe("Producers default economy", () => {
   it("legacyConfig keeps the baseline name (legacy outputs stay comparable)", () => {
     expect(legacyConfig().name).toBe("baseline");
   });
-  it("legacy overlay touches ONLY economy mode, contracts, start cash, legs model, the movie dud levers, the Stars-rework switch, the Star score bonus, genre unlocks, two-family Star fit, the theme unlock routes and the TV rules", () => {
+  it("legacy overlay touches ONLY economy mode, contracts, start cash, legs model, the movie dud levers, the Stars-rework switch, the Star score bonus, genre unlocks, two-family Star fit, the theme unlock routes, the TV rules and the TV/limited-series formats", () => {
     const d = baselineConfig() as unknown as Record<string, unknown>;
     const l = legacyConfig() as unknown as Record<string, unknown>;
     const strip = (c: Record<string, unknown>) => {
@@ -46,6 +48,8 @@ describe("Producers default economy", () => {
       delete x.tv.showHealth.enabled;
       delete x.tv.grossPerEpisodeViewer;
       delete x.prestige.tvMilestones;
+      delete x.formats.limitedSeries;
+      delete x.formats.tv;
       delete x._overlay;
       return x;
     };

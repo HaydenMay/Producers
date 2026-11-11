@@ -56,7 +56,7 @@ Ledger PROD-213…218, config `stars.pool` (the legacy overlay turns it off; leg
 
 **Genre unlocks (default on, *(test)*):** the crew opens genres (Thriller Plot 50, Romance Filming 50, Drama Writing 60, SciFi Editing 60), RomCom after releasing a Comedy and a Romance; from year 4 the thresholds ease 5 points a year (floor 40) so a weak crew still gets there. Nothing is bought or gifted. Themes: staff pitches + trend inspiration (no purchase). Check: `npx tsx scripts/genres.ts` → `reports/genres/summary.md`.
 
-**TV rules (default values; TV itself is on only with `config/gate3.json`):** TV pays about like movies per production-week (`tv.grossPerEpisodeViewer` 0.42), bad seasons drive viewers away (`tv.showHealth`), and TV earns Prestige from achievements (acclaimed season, hit show, long-runner), never airtime. Check: `npx tsx scripts/tv.ts` → `reports/tv/summary.md`.
+**Formats:** limited series and TV ship ON by default (TV unlocks via the studio upgrade); streaming is off until reviewed. **TV rules:** TV pays about like movies per production-week (`tv.grossPerEpisodeViewer` 0.42), bad seasons drive viewers away (`tv.showHealth`), and TV earns Prestige from achievements (acclaimed season, hit show, long-runner), never airtime. Check: `npx tsx scripts/tv.ts` → `reports/tv/summary.md`.
 
 ## Gate 4Q: logical combinations and real duds (EXPERIMENT, pending designer review)
 

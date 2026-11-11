@@ -35,6 +35,11 @@ export interface ReleaseAccount {
   opening: number;
   adSpend: number;
   done: boolean;
+  /** Streaming Originals only: subscribers this title recruited, and their ESTIMATED value (career net per acquired
+   * subscriber = (subscription gross − per-subscriber opex) ÷ subscribers acquired). Originals earn no box office,
+   * so allInNet alone always shows them as a loss. */
+  subsAcquired?: number;
+  subsValueEst?: number;
 }
 
 export const scoreBand = (avg: number) => (avg < 4 ? "<4" : avg < 6 ? "4-6" : avg < 8 ? "6-8" : "8+");
@@ -53,6 +58,18 @@ export function releaseAccounts(s: StudioState, cfg: Config): ReleaseAccount[] {
   const cash = cashSeries(s);
   const labor = new Map<number, number>();
   for (const l of s.ledger) if (l.kind === "payroll" || l.kind === "upkeep" || l.kind === "contract_labor") labor.set(l.week, (labor.get(l.week) ?? 0) - l.amount);
+  const pf = s.platform;
+  const bySource = new Map<string, number>();
+  let perSub = 0;
+  if (pf?.weekly?.length) {
+    let gross = 0, varOpex = 0;
+    for (const w of pf.weekly) {
+      gross += w.gross;
+      varOpex += w.opex - cfg.streaming.opex.fixedPerWeek;
+      for (const [k, v] of Object.entries(w.sources ?? {})) bySource.set(k, (bySource.get(k) ?? 0) + v);
+    }
+    perSub = pf.totals.acquired > 0 ? (gross - varOpex) / pf.totals.acquired : 0;
+  }
   return s.releases.map((r: Release) => {
     const dur = formatSpec(cfg, formatOf(r), r.episodes).durationWeeks;
     const start = r.releaseWeek - dur;
@@ -89,6 +106,7 @@ export function releaseAccounts(s: StudioState, cfg: Config): ReleaseAccount[] {
       opening: r.openingViewers,
       adSpend: r.adSpend ?? 0,
       done: !r.active,
+      ...(r.route === "original" ? { subsAcquired: Math.round(bySource.get(`original:${r.title}`) ?? 0), subsValueEst: Math.round((bySource.get(`original:${r.title}`) ?? 0) * perSub) } : {}),
     };
   });
 }

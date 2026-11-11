@@ -64,4 +64,4 @@ Average paid newcomer audition card, skill in the production's family: **44.5** 
 | Jo Quinn | retired | 1 | 18 | 81 | 3 | Scary 74 |
 | Jo Fox | active | 6 | 16 | 99 | 7 | Scary 100 |
 
-Elapsed 3.5 s.
+Elapsed 3.6 s.

@@ -22,4 +22,4 @@ Old = staff pitches + $25K research. New (default) = staff pitches + trend inspi
 | franchise-builder | 5 → 6 | 9 → 10 | 10 → 10 | trend 0.9, pitch 5.0 | $2.80M → $3.24M |
 | cheap-duds | 4 → 5 | 7 → 8 | 10 → 10 | trend 1.5, pitch 4.4 | $3.23M → $3.14M |
 
-Elapsed 13.3 s.
+Elapsed 13.9 s.
