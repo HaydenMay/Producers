@@ -15,7 +15,7 @@
 | History: old handoffs, gate prompts and gate findings | [`docs/archive/`](docs/archive/README.md) (context only, **not** authority) |
 | Generated evidence | `reports/` (regenerable; some folders are regression baselines, so don't delete) |
 
-> **Simulation assumptions, not design locks.** Every number in `config/` is provisional. Results are evidence for design discussion, never "official balance." Candidate configs (`config/gate3.json`, `gate4.json`, `gate4q.json`) are experiments. `config/baseline.json` is the **Producers default** (studio-funded production, 80% distributor bids, work-for-hire contracts, $120K start *(test)*). The pre-Producers advance economy is the regression-only overlay `config/legacy-advance.json` (`legacyConfig()` in code, `--legacy` on the CLI); every older gate overlay layers on it.
+> **Simulation assumptions, not design locks.** Every number in `config/` is provisional. Results are evidence for design discussion, never "official balance." Candidate configs (`config/gate3.json`, `gate4.json`, `gate4q.json`) are experiments. `config/baseline.json` is the **Producers default** (studio-funded production, 80% distributor bids, work-for-hire contracts, $160K start *(test assumption, not a designer decision; PROD-114 is OPEN)*). The pre-Producers advance economy is the regression-only overlay `config/legacy-advance.json` (`legacyConfig()` in code, `--legacy` on the CLI); every older gate overlay layers on it.
 
 ## Setup
 
@@ -56,11 +56,12 @@ Ledger PROD-213…218, config `stars.pool` (the legacy overlay turns it off; leg
 
 **Genre unlocks (default on, *(test)*):** the crew opens genres (Thriller Plot 50, Romance Filming 50, Drama Writing 60, SciFi Editing 60), RomCom after releasing a Comedy and a Romance; from year 4 the thresholds ease 5 points a year (floor 40) so a weak crew still gets there. Nothing is bought or gifted. Themes: staff pitches + trend inspiration (no purchase). Check: `npx tsx scripts/genres.ts` → `reports/genres/summary.md`.
 
-**Formats:** limited series, TV and streaming ship ON by default (TV unlocks via the studio upgrade; streaming at 2,000 Prestige + 8 catalog titles + $600K). Streaming payback: `npx tsx scripts/streaming.ts` → `reports/streaming/summary.md`. Production time: limited series 12 wks < TV season 14–32 wks < movie 30 wks; tickets $4, limited series $0.40 / TV $0.46 per episode viewer; a movie counts double experience. Check: `npx tsx scripts/formats.ts` → `reports/formats/summary.md`. **TV rules:** TV pays about like movies per production-week (`tv.grossPerEpisodeViewer` 0.42), bad seasons drive viewers away (`tv.showHealth`), and TV earns Prestige from achievements (acclaimed season, hit show, long-runner), never airtime. Check: `npx tsx scripts/tv.ts` → `reports/tv/summary.md`.
+**Formats:** limited series, TV and streaming ship ON by default (TV unlocks via the studio upgrade; streaming needs 3,000 Prestige + 20 finished catalog titles + a Software Engineer + $600K to build; all thresholds *(test, provisional)*, PROD-146/223). Streaming payback: `npx tsx scripts/streaming.ts` → `reports/streaming/summary.md`. Production time: limited series 12 wks < TV season 14–32 wks < movie 30 wks; tickets $4, limited series $0.40 / TV $0.46 per episode viewer; a movie counts double experience. Check: `npx tsx scripts/formats.ts` → `reports/formats/summary.md`. **TV rules:** TV pays about like movies per production-week (`tv.grossPerEpisodeViewer` 0.46 *(test)*), bad seasons drive viewers away (`tv.showHealth`), and TV earns Prestige from achievements (acclaimed season, hit show, long-runner), never airtime. Check: `npx tsx scripts/tv.ts` → `reports/tv/summary.md`.
 
 ## Gate 4Q: logical combinations and real duds (EXPERIMENT, pending designer review)
 
-- **`world.compatibility.mode`:** `random` (default, byte-identical to every earlier gate) or `editorial`. The editorial matrix grades audience and critics separately for each **exact** genre × theme pair, and each world shifts a few pairs by at most one grade step.
+- **`world.compatibility.mode`:** `editorial` is the default since 2026-11-11 (PROD-062, 074). Each **exact** genre × theme pair has **one shared grade** from the editorial matrix, applied identically to the audience and critic scores; each world may shift a pair by at most one grade step (PROD-075, *(test)*). Audience and critic reviews still differ because each side scores the production with its own craft weights (audience leans Filming + Editing, critics Plot + Writing) plus other factors such as the approach, Star bonus and critic generation. `random` (two independently drawn audience/critic grades per pair) survives **only** in the legacy regression overlay `config/legacy-advance.json`.
+- **Still candidate only** (`config/gate4q.json`, not the default): the steeper D/F severity and cult appeal below.
 - **Severity:** the candidate (`config/gate4q.json`) steepens D/F to 0.80 / 0.55.
 - **Cult appeal:** rare, audience-only "Unexpected cult appeal" events (`world.cult`).
 - **Policy names:** `cheap-duds` is reported as **`low-budget-random-combo`** (exact alias). A `poor-fit-chooser` diagnostic policy was added.
@@ -83,8 +84,8 @@ Docs: `docs/archive/gates/gate-4-economy-findings.md`, `docs/archive/gates/gate-
 |---|---|---|
 | **1 — Deterministic movie kernel** | ✅ Done | Staff, phases, ledger, advances/royalties/surplus/overruns/cancel, Stars (families, budgets, pre-display free fallback, callbacks, relationships), $0 campaign, scores, legs, finite runs, Prestige, IP fans, studio genre levels, trends. Exact replay. |
 | **2 — Strategies, batch, diagnostics** | ✅ Done | 7 policies, batch runner, paired-seed compare, 13 diagnostic flags, invariant checker, CSV/JSON/Markdown, regression seed bank. Catches injected bugs. |
-| **3 — TV + streaming** | ✅ Built (pending designer review) | Limited series, renewable TV, streaming; config-gated (`config/gate3.json`). Follow-up: staff firing, no season cap, viewer-fatigue and breakthrough experiments (default off). |
-| **Gate 4Q scoring experiment** | 🧪 Candidate built (pending designer review) | **single-grade** editorial combo matrix (one grade per pair, both scores), D/F severity, cult appeal; `quality:smoke` / `quality:compare`. |
+| **3 — TV + streaming** | ✅ Built; on in the default since 2026-11-11 (values *(test)*) | Limited series, renewable TV, streaming; all three ON in `config/baseline.json`, OFF in the legacy overlay (`config/gate3.json` is the older candidate). Follow-up: staff firing, no season cap, viewer-fatigue and breakthrough experiments (default off). |
+| **Gate 4Q scoring experiment** | ✅ Matrix is the default (designer-reviewed 2026-11-11; grades still tunable) · 🧪 rest candidate | **single-grade** editorial combo matrix (one grade per pair, both scores) ships in the default; D/F severity and cult appeal stay candidate-only (`config/gate4q.json`); `quality:smoke` / `quality:compare`. |
 | **Gate 4 economy experiment** | ✅ Default (values still *(test)*) | `economy.mode` late_distribution + contracts are the baseline; legacy_advance kept as a regression overlay; FAST/COMPARE/GATE loops. Default legs = diffusion + movie-only dud levers. Dud economics: `npx tsx scripts/duds.ts`. |
 | **4 — Thin browser UI** | ✅ Done (minimal) | Manual step-through career, strategy auto-step, batch runner, config editor, replay. Same core; no rules in the UI. |
 
@@ -111,7 +112,7 @@ npx tsx scripts/fu-traces.ts A_control tv-first 31 show ip242 "Trace 3"         
 
 ## Gate 3: limited series, renewable TV and streaming (pending designer review)
 
-Everything is **config-gated**: `config/baseline.json` keeps every Gate 3 feature off (TV, limited series, streaming, diffusion legs) (the movie kernel, byte-identical); `config/gate3.json` = the Gate 2.5 candidate + limited series + TV + streaming (Gate 2.6 critic curves stay off). Docs:
+Everything is **config-gated**. Since 2026-11-11 `config/baseline.json` turns the Gate 3 features ON (limited series, TV, streaming, diffusion legs); the legacy overlay `config/legacy-advance.json` turns them all off (the movie kernel, byte-identical). Historical candidate: `config/gate3.json` = the Gate 2.5 candidate + limited series + TV + streaming (Gate 2.6 critic curves stay off). Docs:
 - `docs/archive/gates/gate-3-architecture.md`: modules, weekly order, schema changes, invariants.
 - `docs/archive/gates/gate-3-assumptions.md`: every Gate 3 number, labelled.
 - `docs/archive/gates/gate-3-findings.md`: results.

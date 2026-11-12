@@ -17,7 +17,7 @@
 ## Ledger rules
 
 3. **Never change a `LOCKED` decision without explicit human approval.**
-4. **Never silently promote** a `TESTING` value or a candidate config (`config/gate*.json`) to `LOCKED`. Numbers marked *(test)* are harness assumptions.
+4. **Never silently promote** a `TESTING` value or a candidate config (`config/gate*.json`) to `LOCKED`. Numbers marked *(test)* are harness assumptions. Shipping in the `config/baseline.json` default is an **implementation state**, not designer approval: a default-on feature can still be `TESTING` (PROD-185).
 5. **When code differs from the design, flag it** (implementation state `Implemented differently` / `Partial`). Don't rewrite the ledger to match the code.
 6. Update the relevant ledger row(s) **in the same commit/PR** as any approved design change: status, implementation state, evidence. Never invent a human approval.
 7. New decisions get a **fresh `PROD-###` id**. Ids are never recycled; superseded rows stay, pointing to their replacements.
