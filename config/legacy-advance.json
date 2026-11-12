@@ -86,7 +86,8 @@
   },
   "streaming": {
     "unlock": {
-      "prestige": 2500
+      "prestige": 2500,
+      "minCatalog": 8
     },
     "feePerSubWeek": 0.5
   },

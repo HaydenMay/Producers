@@ -1,6 +1,6 @@
 # Gate 4 economy — SMOKE
 
-Seeds 1–4 (paired across variants) · 4 in-game years · policies: balanced, cheap-duds, mixed · 24 careers, 262 finished releases · **elapsed 0.4 s** (legacy 0.2s, candidate 0.2s).
+Seeds 1–4 (paired across variants) · 4 in-game years · policies: balanced, cheap-duds, mixed · 24 careers, 262 finished releases · **elapsed 0.3 s** (legacy 0.2s, candidate 0.2s).
 
 > Simulation output under TEST ASSUMPTIONS. Not a design lock.
 

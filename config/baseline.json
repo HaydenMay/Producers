@@ -801,10 +801,10 @@
   },
   "streaming": {
     "_label": "TEST ASSUMPTIONS for the studio streaming service (one aggregate subscriber business; no per-title payouts).",
-    "_reviewLabel": "Designer 2026-11-11 review: after movies went to 30 weeks / $4 tickets, a platform never paid back (−$1.5M to −$8.8M by year 20). Subscription $0.50 → $0.75/sub/week and unlock Prestige 2,500 → 2,000 *(test)*: mixed studios launch ~year 7.4 and pay back in ~2.5 years (+$4.8M by year 15, +$10.7M by year 20); a streaming-focused studio pays back in ~4 years. Legacy overlay: $0.50, 2,500.",
+    "_reviewLabel": "Designer 2026-11-11 review: after movies went to 30 weeks / $4 tickets, a platform never paid back (−$1.5M to −$8.8M by year 20). Subscription $0.50 → $0.75/sub/week *(test)*. Then (same day) the unlock moved later so streaming is the LATE-game milestone (designer: year ~6.6 felt early): 3,000 Prestige + 20 catalog titles *(test)*. Mixed studios launch ~year 9, break even ~year 12, +$3.3M by year 15, +$8.1M by year 20. Legacy overlay: $0.50, 2,500 Prestige, 8 titles.",
     "unlock": {
-      "prestige": 2000,
-      "minCatalog": 8
+      "prestige": 3000,
+      "minCatalog": 20
     },
     "engineer": {
       "hireCost": 25000,
