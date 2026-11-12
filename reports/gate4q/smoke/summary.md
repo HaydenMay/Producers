@@ -1,6 +1,6 @@
 # Gate 4Q quality diagnostic
 
-Seeds 1–5; rookie scenarios = first 5 releases of the starting 2-staff studio on fixed pairings; policies = 5-year careers (finished movies); veterans = a balanced studio after 8 years making one extra movie (seeds 1–5). Economy = Gate 4 candidate (studio-funded, 80% bids). **Elapsed 7.5 s** (old 1.3s, Q1_editorial 0.9s, Q2_bounded 0.8s, Q3_mild 0.8s, Q3_sev 1.1s, Q3_strong 1.0s, Q4_cult 0.8s, Q4_info_G4levers 0.7s). Invariant violations in policy careers: **0**.
+Seeds 1–5; rookie scenarios = first 5 releases of the starting 2-staff studio on fixed pairings; policies = 5-year careers (finished movies); veterans = a balanced studio after 8 years making one extra movie (seeds 1–5). Economy = Gate 4 candidate (studio-funded, 80% bids). **Elapsed 6.5 s** (old 1.0s, Q1_editorial 0.9s, Q2_bounded 0.8s, Q3_mild 1.1s, Q3_sev 0.7s, Q3_strong 0.7s, Q4_cult 0.6s, Q4_info_G4levers 0.8s). Invariant violations in policy careers: **0**.
 
 | Variant | Change |
 |---|---|

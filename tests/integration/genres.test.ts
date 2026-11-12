@@ -93,6 +93,8 @@ describe("production times and format experience (designer 2026-11-11)", () => {
     const a = evaluatePrestige(s, D, mk(), "scored").find((x) => x.id.includes("audience_7_5"))!;
     const t = createStudio(1, D);
     const b = evaluatePrestige(t, D, { ...(mk("limited_series") as object), id: "r2" } as never, "scored").find((x) => x.id.includes("audience_7_5"))!;
-    expect(a.amount).toBe(2 * b.amount);
+    const fe = (D.production as unknown as { formatExperience: Record<string, number> }).formatExperience;
+    expect(fe.movie).toBeGreaterThan(fe.limited_series); // a movie counts more (2 vs 0.8 since the 2026-11-12 format balance)
+    expect(Math.abs(a.amount * fe.limited_series - b.amount * fe.movie)).toBeLessThanOrEqual(fe.movie); // ratio = experience ratio, up to rounding
   });
 });

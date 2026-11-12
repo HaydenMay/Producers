@@ -7,7 +7,7 @@
     "mode": "years",
     "years": 20,
     "productions": 40,
-    "legacyScore": { "prestige": 1, "hallOfFame": 500, "cashPer": 2500 }
+    "legacyScore": { "prestige": 1, "hallOfFame": 500, "cashPer": 2500, "hallOfFameFormatWeight": { "movie": 1, "limited_series": 0.5, "tv": 1 }, "_hallOfFameFormatWeightLabel": "Format balance 2026-11-12 (Claude's call): a 12-week limited series in the Hall of Fame counts half a title (a 30-week movie or a whole TV show counts 1), so short series can't stack legacy. TEST VALUE." }
   },
   "start": {
     "_cashLabel": "Producers default (test): $160K covers the first studio-funded 30-week movie ($60K base + ~$72K payroll for 2 staff + a cheap Star). Legacy overlay: $40K.",
@@ -184,8 +184,8 @@
       "baseCost": 60000,
       "durationWeeks": 30
     },
-    "_formatExperienceLabel": "Designer 2026-11-11: experience per release by format (Star level progress + per-film practice growth, studio genre XP). A 30-week movie teaches 2x a short series. Legacy overlay: null (1 for everything).",
-    "formatExperience": { "movie": 2, "tv": 1, "limited_series": 1 },
+    "_formatExperienceLabel": "Designer 2026-11-11: experience per release by format (Star level progress + per-film practice growth, studio genre XP). A 30-week movie teaches 2x a short series. Limited series 1 -> 0.8 on 2026-11-12 (format balance, Claude's call: it also weights review Prestige, and 2.5 limited series fit in one movie's time). Legacy overlay: null (1 for everything).",
+    "formatExperience": { "movie": 2, "tv": 1, "limited_series": 0.8 },
     "phaseEmphasis": {
       "writing": {
         "plot": 1.0,
@@ -552,11 +552,11 @@
     "selfFundReach": 0.22
   },
   "prestige": {
-    "_tvMilestonesLabel": "TV achievements (designer 2026-11-11, PROD-140), TEST VALUES. Earned by quality across seasons, never by episodes or airtime (PROD-135). Kept apart from 'milestones' so overlays that replace the main list keep them. Acclaimed season: a season averaging 8.5+ (each such season). Hit show: Season 3+ with a show average of 8+ (once per show). Long-runner: Season 5+ with every season 7+ (once per show). Amounts 200/300/400 were sized so TV-heavy careers reach ~60–90% of a movie career's Prestige instead of ~40% (reports/tv/summary.md). Legacy overlay sets [].",
+    "_tvMilestonesLabel": "TV achievements (designer 2026-11-11, PROD-140), TEST VALUES. Earned by quality across seasons, never by episodes or airtime (PROD-135). Kept apart from 'milestones' so overlays that replace the main list keep them. Acclaimed season: a season averaging 8.5+ (each such season). Hit show: Season 3+ with a show average of 8+ (once per show). Long-runner: Season 5+ with every season 7+ (once per show). Amounts doubled 2026-11-12 (format balance, Claude's call): 400/600/800, so TV earns about the same Prestige per production-week as movies (reports/format-balance/summary.md); first sized 200/300/400. Legacy overlay sets [].",
     "tvMilestones": [
-      { "id": "tv_acclaimed_season", "kind": "tvSeasonAvg", "threshold": 8.5, "amount": 200, "scope": "release" },
-      { "id": "tv_hit_show", "kind": "tvShowAvg", "threshold": 8.0, "minSeason": 3, "amount": 300, "scope": "ip" },
-      { "id": "tv_long_runner", "kind": "tvShowAllAtLeast", "threshold": 7.0, "minSeason": 5, "amount": 400, "scope": "ip" }
+      { "id": "tv_acclaimed_season", "kind": "tvSeasonAvg", "threshold": 8.5, "amount": 400, "scope": "release" },
+      { "id": "tv_hit_show", "kind": "tvShowAvg", "threshold": 8.0, "minSeason": 3, "amount": 600, "scope": "ip" },
+      { "id": "tv_long_runner", "kind": "tvShowAllAtLeast", "threshold": 7.0, "minSeason": 5, "amount": 800, "scope": "ip" }
     ],
     "repeatScope": "perIP",
     "_repeatScopeNote": "WORKING ASSUMPTION (Open in v9.61): each milestone pays once per IP. Options: perRelease | perIP | career",
@@ -736,7 +736,8 @@
     "renewalThreshold": 4.0,
     "renewalInclusive": true,
     "_grossPerEpisodeViewerLabel": "Designer 2026-11-11 (PROD-209): a healthy TV season should pay about like a movie per week of production. 0.32 → 0.42 *(test)*, then 0.46 after the 2026-11-11 production-time change (TV ~$15K per production-week vs movies ~$16K, limited series ~$18K; reports/formats/summary.md). Legacy overlay keeps 0.32.",
-    "grossPerEpisodeViewer": 0.46,
+    "grossPerEpisodeViewer": 0.36,
+    "_grossPerEpisodeViewerLabel": "TV pay per episode-viewer *(test)*: 0.32 -> 0.42 (PROD-209) -> 0.46 (PROD-221 price rebalance) -> 0.36 (format balance 2026-11-12, Claude's call: with money-based renewal TV earned ~1.7x a movie per production-week; now ~1.15x, with TV achievements doubled for Prestige).",
     "episodeModel": {
       "premiereShare": 0.5,
       "baseRetention": 0.88,

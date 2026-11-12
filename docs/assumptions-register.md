@@ -142,6 +142,9 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `career.legacyScore.prestige` | 1 |
 | `career.legacyScore.hallOfFame` | 500 |
 | `career.legacyScore.cashPer` | 2500 |
+| `career.legacyScore.hallOfFameFormatWeight.movie` | 1 |
+| `career.legacyScore.hallOfFameFormatWeight.limited_series` | 0.5 |
+| `career.legacyScore.hallOfFameFormatWeight.tv` | 1 |
 | `start.cash` | 160000 |
 | `start.staff` | [{"name":"Sam","stats":{"plot":32,"writing":28,"filming":22,"editing":20},"wage":900},{"name":"Alex","stats":{"plot":20,"writing":22,"filming":30,"editing":30},"wage":900}] |
 | `start.upkeepPerWeek` | 600 |
@@ -315,7 +318,7 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `production.movie.durationWeeks` | 30 |
 | `production.formatExperience.movie` | 2 |
 | `production.formatExperience.tv` | 1 |
-| `production.formatExperience.limited_series` | 1 |
+| `production.formatExperience.limited_series` | 0.8 |
 | `production.phaseEmphasis.writing.plot` | 1 |
 | `production.phaseEmphasis.writing.writing` | 1 |
 | `production.phaseEmphasis.writing.filming` | 0.2 |
@@ -534,7 +537,7 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `distribution.heatFansWeight` | 0.5 |
 | `distribution.offerJitter` | 0.08 |
 | `distribution.selfFundReach` | 0.22 |
-| `prestige.tvMilestones` | [{"id":"tv_acclaimed_season","kind":"tvSeasonAvg","threshold":8.5,"amount":200,"scope":"release"},{"id":"tv_hit_show","kind":"tvShowAvg","threshold":8,"minSeason":3,"amount":300,"scope":"ip"},{"id":"tv_long_runner","kind":"tvShowAllAtLeast","threshold":7,"minSeason":5,"amount":400,"scope":"ip"}] |
+| `prestige.tvMilestones` | [{"id":"tv_acclaimed_season","kind":"tvSeasonAvg","threshold":8.5,"amount":400,"scope":"release"},{"id":"tv_hit_show","kind":"tvShowAvg","threshold":8,"minSeason":3,"amount":600,"scope":"ip"},{"id":"tv_long_runner","kind":"tvShowAllAtLeast","threshold":7,"minSeason":5,"amount":800,"scope":"ip"}] |
 | `prestige.repeatScope` | "perIP" |
 | `prestige.milestones` | [{"id":"meters_all_70","kind":"allMeters","threshold":70,"amount":50},{"id":"audience_7_5","kind":"audience","threshold":7.5,"amount":75},{"id":"critic_8_5","kind":"critic","threshold":8.5,"amount":85},{"id":"hall_of_fame","kind":"hallOfFame","threshold":9,"amount":200},{"id":"gross_1m","kind":"lifetimeGross","threshold":1000000,"amount":100},{"id":"viewers_500k","kind":"lifetimeViewers","threshold":500000,"amount":150}] |
 | `trends.riseChancePerWeek` | 0.012 |
@@ -612,7 +615,7 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `tv.episodeCaps` | [{"maxEpisodes":5,"prestige":0},{"maxEpisodes":10,"prestige":600},{"maxEpisodes":15,"prestige":1800},{"maxEpisodes":20,"prestige":3500}] |
 | `tv.renewalThreshold` | 4 |
 | `tv.renewalInclusive` | true |
-| `tv.grossPerEpisodeViewer` | 0.46 |
+| `tv.grossPerEpisodeViewer` | 0.36 |
 | `tv.episodeModel.premiereShare` | 0.5 |
 | `tv.episodeModel.baseRetention` | 0.88 |
 | `tv.episodeModel.retentionWeight` | 0.3 |

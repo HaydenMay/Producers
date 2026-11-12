@@ -5,7 +5,7 @@ import { emit } from "./events";
 import { formatOf } from "./formats";
 import type { StudioState } from "./types";
 
-type CareerCfg = { enabled?: boolean; mode: "years" | "productions"; years: number; productions: number; legacyScore: { prestige: number; hallOfFame: number; cashPer: number } };
+type CareerCfg = { enabled?: boolean; mode: "years" | "productions"; years: number; productions: number; legacyScore: { prestige: number; hallOfFame: number; cashPer: number; hallOfFameFormatWeight?: Record<string, number> } };
 export const careerCfg = (cfg: Config) => (cfg as unknown as { career?: CareerCfg }).career;
 
 /** The career's end is due at the next planning stop once the limit is reached (an in-flight production finishes first). */
@@ -26,7 +26,11 @@ export function careerRecap(state: StudioState, cfg: Config) {
   // Audit 2026-11-12: each release's own Hall of Fame flag (never a hard-coded 9.0). Legacy scores +hallOfFame once
   // per TITLE: a TV show counts once however many seasons make it (Claude's call); sequels count separately.
   const hof = rel.filter((r) => r.hallOfFame);
-  const hofTitles = new Set(hof.map((r) => (formatOf(r) === "tv" ? `show:${r.ipId}` : r.id))).size;
+  // Format balance 2026-11-12 (Claude's call): a title's Hall of Fame weight by format (a 12-week limited series counts
+  // half a 30-week movie, like Star XP in PROD-221); missing weight = 1.
+  const titles = new Map<string, number>();
+  for (const r of hof) titles.set(formatOf(r) === "tv" ? `show:${r.ipId}` : r.id, c.legacyScore.hallOfFameFormatWeight?.[formatOf(r)] ?? 1);
+  const hofTitles = [...titles.values()].reduce((a, w) => a + w, 0);
   const shows = Object.values(state.ips).filter((ip) => formatOf(ip) === "tv");
   const longest = shows.map((ip) => ({ name: ip.name, seasons: rel.filter((r) => r.ipId === ip.id).length })).sort((a, b) => b.seasons - a.seasons)[0];
   const stars = state.hiredStarIds.map((id) => state.stars[id]).sort((a, b) => b.credits.length - a.credits.length);

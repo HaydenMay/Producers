@@ -4,9 +4,9 @@
 
 | Studio size cap | HoF share | Mean score | Prestige (median) | End cash (median) |
 |---|---|---|---|---|
-| 4 staff | 13.3% → **13.3%** | 8.14 → 8.14 | 5290 → 5290 | $8.02M → $8.02M |
-| 6 staff | 25.3% → **14.6%** | 8.35 → 8.18 | 6460 → 5650 | $6.95M → $8.59M |
-| 8 staff | 30.3% → **15.5%** | 8.42 → 8.18 | 6850 → 5840 | $5.33M → $8.28M |
+| 4 staff | 12.3% → **12.3%** | 8.13 → 8.13 | 5550 → 5550 | $7.59M → $7.59M |
+| 6 staff | 23.7% → **14.1%** | 8.34 → 8.17 | 6580 → 5760 | $6.57M → $8.18M |
+| 8 staff | 30.0% → **15.3%** | 8.43 → 8.18 | 7270 → 5810 | $5.05M → $8.05M |
 
 ## Hall of Fame share by policy (after; 4 / 6 / 8 staff)
 
@@ -14,9 +14,9 @@
 |---|---|---|---|
 | balanced | 15.6% | 21.5% | 21.9% |
 | quality-first | 10.2% | 8.7% | 12.3% |
-| mixed | 7.7% | 11.9% | 12.6% |
-| tv-first | 6.8% | 3.1% | 4.5% |
-| limited-focus | 24.8% | 26.3% | 23.4% |
+| mixed | 6.7% | 10.4% | 13.4% |
+| tv-first | 4.6% | 8.9% | 7.5% |
+| limited-focus | 22.4% | 21.5% | 20.0% |
 | experimenter | 12.2% | 15.7% | 20.5% |
 | franchise-builder | 7.8% | 8.2% | 8.2% |
 | streaming-pivot | 9.8% | 10.5% | 14.8% |
@@ -25,10 +25,10 @@
 
 | Policy | 8 staff: before → after | after, capped 4 / 6 / 8 |
 |---|---|---|
-| mixed | 30.5K → **27.9K** | 25.1K / 25.4K / 27.9K |
+| mixed | 29.4K → **24.5K** | 23.7K / 26.5K / 24.5K |
 | quality-first | 25.2K → **23.0K** | 22.3K / 23.0K / 23.0K |
 | balanced | 26.3K → **21.4K** | 21.2K / 23.2K / 21.4K |
-| tv-first | 13.5K → **16.6K** | 15.8K / 17.4K / 16.6K |
-| limited-focus | 47.6K → **32.6K** | 30.4K / 32.1K / 32.6K |
+| tv-first | 14.4K → **15.7K** | 14.8K / 17.8K / 15.7K |
+| limited-focus | 30.0K → **23.6K** | 22.1K / 23.3K / 23.6K |
 
-Invariant violations: 0. Elapsed 95.7 s.
+Invariant violations: 0. Elapsed 87.4 s.
