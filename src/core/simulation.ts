@@ -276,7 +276,7 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
       state.upgrades.push({ week: state.week, from: state.maxStaff, to: up.to, cost: up.cost, prestigeAtUpgrade: state.prestige });
       emit(state, "upgrade", `Studio upgraded: employee capacity ${state.maxStaff} → ${up.to} (cost $${up.cost.toLocaleString()}).`);
       const tough = studioToughnessAt(state.upgrades.length, cfg);
-      if (tough > 0) emit(state, "upgrade", `We're a bigger company now, so the expectations are higher: audiences and critics will judge our releases ${(tough * 100).toFixed(0)}% tougher. We'll have to give it our all to reach the Hall of Fame.`, { studioToughness: tough });
+      if (tough > 0) emit(state, "upgrade", "We're a bigger company now, so the expectations are higher. Audiences and critics will expect more from us, and we'll have to give it our all to reach the Hall of Fame.", { studioToughness: tough });
       state.maxStaff = up.to;
       state.capacityLevel += 1;
       return;
