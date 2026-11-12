@@ -4,7 +4,7 @@
 // changes the theme pairing; normal hiatus carries no penalty; announcements are fading show-specific hype.
 // Every number used here lives in config (cfg.limitedSeries / cfg.tv) and is a TEST ASSUMPTION.
 import type { Config } from "./config";
-import { round2 } from "./events";
+import { round2, thresholdScore } from "./events";
 import { GRADE_VALUE, comboKey } from "./distribution";
 import type { Format, IpLine, PlanDecision, Project, Release, StudioState } from "./types";
 
@@ -57,7 +57,42 @@ export function seasonsOf(state: StudioState, ipId: string): Release[] {
 
 /** LOCKED: average of Audience and Critic. 4.0 renewable when renewalInclusive (named assumption). */
 export function renewable(avg: number, cfg: Config): boolean {
-  return cfg.tv.renewalInclusive ? avg >= cfg.tv.renewalThreshold : avg > cfg.tv.renewalThreshold;
+  const a = thresholdScore(avg, cfg);
+  return cfg.tv.renewalInclusive ? a >= cfg.tv.renewalThreshold : a > cfg.tv.renewalThreshold;
+}
+
+/** What a show's latest season has made, as the renewal screen shows it (2026-11-12): the studio's takings so far
+ *  minus what the season cost (direct costs + the crew wages and upkeep accrued while making it). While it is still
+ *  airing, a rough projection adds last week's takings for each episode still to air. */
+export interface ShowMoney {
+  season: number;
+  airing: boolean;
+  earnedSoFar: number;
+  cost: number;
+  netSoFar: number;
+  episodesLeft: number;
+  projectedNet: number;
+  productionWeeks: number;
+}
+export function showMoney(state: StudioState, cfg: Config, ipId: string): ShowMoney | null {
+  const rels = state.releases.filter((r) => r.ipId === ipId);
+  const r = rels.at(-1);
+  if (!r || r.route === "original") return null; // Originals are judged by subscribers, not box office
+  const earned = r.studioTake + r.surplusKept;
+  const cost = r.cashOverrun + (r.laborDuring ?? 0);
+  const left = r.active ? Math.max(0, (r.episodes ?? 0) - r.weekIndex) : 0;
+  const lastTake = r.weekly.at(-1)?.studio ?? 0;
+  const net = earned - cost;
+  return {
+    season: rels.length,
+    airing: r.active,
+    earnedSoFar: round2(earned),
+    cost: round2(cost),
+    netSoFar: round2(net),
+    episodesLeft: left,
+    projectedNet: round2(net + lastTake * left),
+    productionWeeks: r.startWeek !== undefined ? r.releaseWeek - r.startWeek : formatSpec(cfg, formatOf(r), r.episodes).durationWeeks,
+  };
 }
 
 export function renewalStatus(state: StudioState, cfg: Config, ip: IpLine): { eligible: boolean; reason: string; lastAvg: number | null } {

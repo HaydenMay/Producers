@@ -45,10 +45,12 @@ describe("Producers default economy", () => {
       delete x.audience.fanDecayExact; // audit 2026-11-12: exact fan decay (legacy keeps weekly rounding)
       delete x.staffCapacity; // audit H3: the default ships the 4/6/8 ladder; legacy stays uncapped
       delete x.expectations.studioSize; // PROD-226: studio-size expectations off in legacy
+      delete x.scoring.thresholdDecimals; // PROD-078: thresholds judge the displayed score (legacy: raw)
       delete x.economy.lateDistribution; // PROD-227: studio clout off in legacy (the only lateDistribution key it sets)
       delete x.agents.legacyHeuristicStaffCaps; // audit M3: default agents play the default game
       delete x.agents.useFiring;
       delete x.agents.economicRenewal;
+      delete x.agents.renewalUsesShowMoney; // 2026-11-12: agents renew from the renewal screen's show money
       delete x.audience.diffusion.movieBadInterestDecay;
       delete x.stars.pool.enabled;
       delete x.scoring.starScoreBonus;
@@ -255,5 +257,22 @@ describe("studio clout in distribution deals (PROD-227)", () => {
       expect(b[i].share).toBeLessThanOrEqual(a[i].share);
       expect(b[i].reasons.some((x) => x.startsWith("a bigger studio"))).toBe(true);
     }
+  });
+});
+
+// PROD-078 (Claude's call 2026-11-12): thresholds judge the score the player sees (one decimal)
+import { thresholdScore } from "../../src/core/events";
+import { isHallOfFame } from "../../src/core/scoring";
+import { renewable } from "../../src/core/formats";
+describe("thresholds judge the displayed score (PROD-078)", () => {
+  it("an 8.95 average shows 9.0 and is Hall of Fame; 8.94 is not; legacy keeps the raw average", () => {
+    const D = baselineConfig(), L = legacyConfig();
+    expect(thresholdScore(8.95, D)).toBe(9);
+    expect(isHallOfFame(8.95, D)).toBe(true);
+    expect(isHallOfFame(8.94, D)).toBe(false);
+    expect(renewable(3.95, D)).toBe(true);
+    expect(renewable(3.94, D)).toBe(false);
+    expect(isHallOfFame(8.95, L)).toBe(false);
+    expect(thresholdScore(8.95, L)).toBe(8.95);
   });
 });

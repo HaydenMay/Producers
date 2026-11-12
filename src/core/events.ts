@@ -44,3 +44,12 @@ export function newId(state: StudioState, prefix: string): string {
   state.counters.nextId += 1;
   return `${prefix}${state.counters.nextId}`;
 }
+
+/** PROD-078 (Claude's call 2026-11-12): the score a threshold judges = the score the player SEES. With
+ *  scoring.thresholdDecimals = 1 an 8.95 average shows "9.0" and counts as 9.0; null/absent = the raw 2-decimal
+ *  average (legacy). Rounded from whole hundredths so floating point can't turn 8.95 into 8.9. */
+export function thresholdScore(avg: number, cfg: { scoring: unknown }): number {
+  const d = (cfg.scoring as { thresholdDecimals?: number | null }).thresholdDecimals;
+  if (d !== 1) return avg;
+  return Math.round(Math.round(avg * 100) / 10) / 10;
+}

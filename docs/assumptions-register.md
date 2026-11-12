@@ -379,6 +379,7 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `scoring.repetitionFatigue.max` | 0.3 |
 | `scoring.saturatedCriticPenalty` | 0.1 |
 | `scoring.hofThreshold` | 9 |
+| `scoring.thresholdDecimals` | 1 |
 | `scoring.renewThreshold` | 4 |
 | `stars.pool.enabled` | true |
 | `stars.pool.initialSize` | 150 |
@@ -578,6 +579,8 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `agents.economicRenewal` | true |
 | `agents.fireDebtThreshold` | -100000 |
 | `agents.renewMinNetPerWeek` | 15000 |
+| `agents.renewalUsesShowMoney` | true |
+| `agents.renewMinAllInNetPerWeek` | 0 |
 | `expectations.studioSize.enabled` | true |
 | `expectations.studioSize.toughnessByUpgrades` | [0.025,0.04] |
 | `expectations.studioSize.applyTo` | "both" |

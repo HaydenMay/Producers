@@ -429,6 +429,8 @@ export interface Choices {
   auditionCards?: StarCard[];
   campaigns?: { id: string; cost: number; affordable: boolean }[];
   canCancel?: boolean;
+  /** 2026-11-12: money of each renewable show's latest season (renewal screen) */
+  showMoney?: Record<string, import("./formats").ShowMoney>;
   /** Gate 4 candidate */
   bids?: DistributionBid[];
   selfDistribution?: { reach: number; share: number; adSpend: number };

@@ -11,7 +11,7 @@ import { canHire, fireOptions, fireStaff, hireStaff, payroll, trainStaff } from 
 import { generateOffers, driftTrust } from "./distribution";
 import { checkGenreUnlocks, generateWorld, researchTheme, updateTrends } from "./progression";
 import { campaignOptions, canSelfFund, castStar, chooseCampaign, finalizeRelease, productionWeek, startProject } from "./production";
-import { allowedOrders, cheapestBaseCost, formatOf, limitedSeriesAvailable, partnerAdvance, planBaseCost, renewalStatus, tvAvailable } from "./formats";
+import { allowedOrders, cheapestBaseCost, formatOf, limitedSeriesAvailable, partnerAdvance, planBaseCost, renewalStatus, showMoney, tvAvailable } from "./formats";
 import { buildStreaming, canBuildStreaming, canHireEngineer, decayAnticipation, hireEngineer, streamingWeek } from "./streaming";
 import { releaseWeek, decayFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
@@ -199,6 +199,14 @@ export function getChoices(state: StudioState, cfg: Config): Choices {
   const ap = (cfg.production as { approaches?: { enabled?: boolean } }).approaches;
   if (ap?.enabled && plans.length) planning.approaches = ["crowd", "balanced", "awards"];
   if (contracts) planning.contracts = contracts;
+  const renewable = [...new Set(plans.filter((x) => x.ipRelation === "season" && x.parentIpId).map((x) => x.parentIpId!))];
+  if (renewable.length) {
+    planning.showMoney = {};
+    for (const id of renewable) {
+      const m = showMoney(state, cfg, id);
+      if (m) planning.showMoney[id] = m;
+    }
+  }
   if (isLateDistribution(cfg) && !plans.some((x) => !x.format)) planning.notes = [`Can't start a movie: base cost $${cfg.production.movie.baseCost.toLocaleString()} vs spendable $${Math.round(spendableCash(state)).toLocaleString()}${state.cash < 0 ? " (in the red)" : ""}. Take a work-for-hire contract to recover.`];
   return planning;
 }

@@ -4,17 +4,17 @@ Default config. Per 30 production-weeks (one movie's length), pooled over mixed,
 
 | Format | Releases | Money | Prestige | Hall of Fame titles | HoF share | Legacy points |
 |---|---|---|---|---|---|---|
-| movie | 906 | $606K | 369 | 0.16 | 15.8% | 0.69K |
-| limited_series | 849 | $575K | 362 | 0.22 | 17.6% | 0.70K |
-| tv | 335 | $732K | 358 | 0.05 | 9.6% | 0.67K |
+| movie | 906 | $608K | 373 | 0.17 | 17.0% | 0.70K |
+| limited_series | 851 | $575K | 374 | 0.25 | 20.0% | 0.73K |
+| tv | 339 | $779K | 383 | 0.03 | 8.0% | 0.71K |
 
 ## 20-year legacy, split (median of each part)
 
 | Strategy | Legacy | Prestige | Hall of Fame | Cash |
 |---|---|---|---|---|
-| balanced | 21.4K | 10.3K | 3.5K | 7.3K |
-| limited-focus | 23.6K | 12.9K | 4.5K | 6.1K |
-| tv-first | 15.7K | 8.1K | 0.5K | 6.8K |
-| mixed | 24.5K | 12.0K | 1.7K | 11.2K |
+| balanced | 22.1K | 11.0K | 4.0K | 7.3K |
+| limited-focus | 24.1K | 13.3K | 5.0K | 6.1K |
+| tv-first | 18.0K | 9.2K | 0.5K | 8.1K |
+| mixed | 27.2K | 12.8K | 2.7K | 11.5K |
 
-Invariant violations: 0. Elapsed 19.3 s.
+Invariant violations: 0. Elapsed 17.6 s.

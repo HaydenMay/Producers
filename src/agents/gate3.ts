@@ -61,8 +61,15 @@ function renewal(state: StudioState, cfg: Config, ch: Choices, minAvg: number, m
     if (last.avgScore < minAvg || rels.length >= maxSeasons) continue;
     if (state.project) continue;
     if (econ) {
-      const net = lastFinishedNetPerWeek(state, cfg, ipId);
-      if (net !== null && net < (cfg.agents as { renewMinNetPerWeek?: number }).renewMinNetPerWeek!) continue; // voluntarily stop: it no longer pays
+      const ag = cfg.agents as { renewMinNetPerWeek?: number; renewalUsesShowMoney?: boolean; renewMinAllInNetPerWeek?: number };
+      const sm = ag.renewalUsesShowMoney ? ch.showMoney?.[ipId] : undefined;
+      if (sm) {
+        // 2026-11-12: judge the LATEST season (even while it airs) all-in, exactly as the renewal screen shows it
+        if (sm.projectedNet / Math.max(1, sm.productionWeeks) < (ag.renewMinAllInNetPerWeek ?? 0)) continue;
+      } else {
+        const net = lastFinishedNetPerWeek(state, cfg, ipId);
+        if (net !== null && net < ag.renewMinNetPerWeek!) continue; // voluntarily stop: it no longer pays
+      }
     }
     const mine = seasons.filter((p) => p.parentIpId === ipId);
     const n = orderPick(cfg, mine);

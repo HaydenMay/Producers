@@ -11,8 +11,8 @@ Levers: **pivot** = word-of-mouth pivot 5 → 6.5; **decay** = bad-reception int
 | Setup | <4 | 4-6 | 6-8 | 8+ | End cash p50: balanced / quality-first / cheap-duds / poor-fit-chooser |
 |---|---|---|---|---|---|
 | old default: geometric legs, no levers | 0% · $202K (n 23) | 0% · $238K (n 248) | 0% · $406K (n 366) | 0% · $744K (n 387) | $9.10M / $9.08M / $6.82M / $4.26M |
-| diffusion legs, no levers | 0% · $186K (n 23) | 0% · $242K (n 248) | 0% · $536K (n 360) | 0% · $736K (n 393) | $9.77M / $9.32M / $8.71M / $4.30M |
-| **NEW DEFAULT**: diffusion + movie-only levers | 74% · −$4K (n 19) | 36% · $6K (n 255) | 0% · $298K (n 375) | 0% · $713K (n 367) | $8.28M / $8.02M / $4.69M / $400K |
+| diffusion legs, no levers | 0% · $186K (n 23) | 0% · $242K (n 248) | 0% · $536K (n 359) | 0% · $736K (n 394) | $9.77M / $9.32M / $8.71M / $4.30M |
+| **NEW DEFAULT**: diffusion + movie-only levers | 74% · −$4K (n 19) | 36% · $6K (n 255) | 0% · $298K (n 376) | 0% · $715K (n 366) | $8.28M / $8.02M / $4.69M / $400K |
 
 ### Base: quality candidate (`config/gate4q.json`, single grade)
 

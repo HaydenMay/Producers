@@ -3,7 +3,7 @@
 // side; critic saturation; rising era bar (applied in meter normalization); optional Gate 2.6 critic
 // generations / audience eras (applied after combo, before clamp). Marketing/Fame/sales never enter.
 import type { Config } from "./config";
-import { round2 } from "./events";
+import { round2, thresholdScore } from "./events";
 import { METERS, type Grade, type Meter, type Project, type StudioState } from "./types";
 
 /**
@@ -212,8 +212,8 @@ export function avgScore(audience: number, critic: number): number {
   return round2((audience + critic) / 2);
 }
 export function isHallOfFame(avg: number, cfg: Config): boolean {
-  return avg >= cfg.scoring.hofThreshold;
+  return thresholdScore(avg, cfg) >= cfg.scoring.hofThreshold;
 }
 export function isRenewable(avg: number, cfg: Config): boolean {
-  return avg >= cfg.scoring.renewThreshold;
+  return thresholdScore(avg, cfg) >= cfg.scoring.renewThreshold;
 }

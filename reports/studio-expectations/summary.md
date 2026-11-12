@@ -4,31 +4,31 @@
 
 | Studio size cap | HoF share | Mean score | Prestige (median) | End cash (median) |
 |---|---|---|---|---|
-| 4 staff | 12.3% → **12.3%** | 8.13 → 8.13 | 5550 → 5550 | $7.59M → $7.59M |
-| 6 staff | 23.7% → **14.1%** | 8.34 → 8.17 | 6580 → 5760 | $6.57M → $8.18M |
-| 8 staff | 30.0% → **15.3%** | 8.43 → 8.18 | 7270 → 5810 | $5.05M → $8.05M |
+| 4 staff | 14.1% → **14.1%** | 8.13 → 8.13 | 5636 → 5636 | $7.59M → $7.59M |
+| 6 staff | 25.5% → **15.9%** | 8.36 → 8.19 | 6870 → 5884 | $6.70M → $8.21M |
+| 8 staff | 32.6% → **16.6%** | 8.45 → 8.20 | 7652 → 5940 | $5.12M → $8.10M |
 
 ## Hall of Fame share by policy (after; 4 / 6 / 8 staff)
 
 | Policy | 4 | 6 | 8 |
 |---|---|---|---|
-| balanced | 15.6% | 21.5% | 21.9% |
-| quality-first | 10.2% | 8.7% | 12.3% |
-| mixed | 6.7% | 10.4% | 13.4% |
-| tv-first | 4.6% | 8.9% | 7.5% |
-| limited-focus | 22.4% | 21.5% | 20.0% |
-| experimenter | 12.2% | 15.7% | 20.5% |
-| franchise-builder | 7.8% | 8.2% | 8.2% |
-| streaming-pivot | 9.8% | 10.5% | 14.8% |
+| balanced | 16.8% | 23.0% | 23.8% |
+| quality-first | 12.6% | 9.9% | 12.7% |
+| mixed | 8.5% | 10.3% | 12.0% |
+| tv-first | 5.4% | 9.4% | 7.7% |
+| limited-focus | 24.4% | 24.4% | 22.9% |
+| experimenter | 15.7% | 19.7% | 23.2% |
+| franchise-builder | 8.2% | 8.6% | 8.6% |
+| streaming-pivot | 11.7% | 14.1% | 17.6% |
 
 ## 20-year legacy score (median)
 
 | Policy | 8 staff: before → after | after, capped 4 / 6 / 8 |
 |---|---|---|
-| mixed | 29.4K → **24.5K** | 23.7K / 26.5K / 24.5K |
-| quality-first | 25.2K → **23.0K** | 22.3K / 23.0K / 23.0K |
-| balanced | 26.3K → **21.4K** | 21.2K / 23.2K / 21.4K |
-| tv-first | 14.4K → **15.7K** | 14.8K / 17.8K / 15.7K |
-| limited-focus | 30.0K → **23.6K** | 22.1K / 23.3K / 23.6K |
+| mixed | 31.6K → **27.2K** | 25.1K / 26.0K / 27.2K |
+| quality-first | 27.0K → **23.1K** | 22.7K / 23.4K / 23.1K |
+| balanced | 27.1K → **22.1K** | 21.4K / 23.2K / 22.1K |
+| tv-first | 17.2K → **18.0K** | 14.8K / 18.3K / 18.0K |
+| limited-focus | 31.5K → **24.1K** | 22.9K / 24.2K / 24.1K |
 
-Invariant violations: 0. Elapsed 87.4 s.
+Invariant violations: 0. Elapsed 90.5 s.

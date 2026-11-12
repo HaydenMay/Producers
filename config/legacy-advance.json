@@ -27,6 +27,7 @@
     }
   },
   "scoring": {
+    "thresholdDecimals": null,
     "starScoreBonus": {
       "audience": 0,
       "critic": 0
@@ -103,7 +104,8 @@
     "runwayStarReserve": false,
     "legacyHeuristicStaffCaps": true,
     "useFiring": false,
-    "economicRenewal": false
+    "economicRenewal": false,
+    "renewalUsesShowMoney": false
   },
   "staffCapacity": {
     "ladder": [999],

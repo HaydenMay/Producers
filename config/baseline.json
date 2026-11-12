@@ -279,6 +279,8 @@
     },
     "saturatedCriticPenalty": 0.1,
     "hofThreshold": 9.0,
+    "thresholdDecimals": 1,
+    "_thresholdDecimalsLabel": "PROD-078 (Claude's call 2026-11-12): Hall of Fame (9.0) and renewal (4.0) judge the average AS DISPLAYED, to one decimal, so an 8.95 shown as 9.0 is in the Hall of Fame. legacy-advance.json sets null (raw 2-decimal average).",
     "renewThreshold": 4.0
   },
   "stars": {
@@ -651,7 +653,10 @@
     "useFiring": true,
     "economicRenewal": true,
     "fireDebtThreshold": -100000,
-    "renewMinNetPerWeek": 15000
+    "renewMinNetPerWeek": 15000,
+    "renewalUsesShowMoney": true,
+    "renewMinAllInNetPerWeek": 0,
+    "_renewalUsesShowMoneyLabel": "2026-11-12: money-based renewal reads the renewal screen's show money (latest season, even while airing, all-in after its direct costs and accrued crew wages, with a rough projection for episodes still to air) and renews only if it at least breaks even per production week. legacy-advance.json sets false (old rule: last FINISHED season's takings per week vs renewMinNetPerWeek)."
   },
   "expectations": {
     "studioSize": {
