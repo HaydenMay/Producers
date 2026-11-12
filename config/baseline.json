@@ -637,21 +637,19 @@
     "_note": "TEST-ONLY regression injection: none | advanceAsRevenue | fameIntoScore. Must be 'none' for real runs."
   },
   "staffCapacity": {
-    "_label": "EXPERIMENTAL (Gate 2.5). Studio-wide max employees; NOT a per-project crew cap. Baseline keeps the historical uncapped behavior for comparison.",
-    "ladder": [
-      999
-    ],
-    "upgradeCosts": [],
-    "upgradePrestige": []
+    "_label": "Studio-wide max employees (PROD-020, LOCKED ladder 4 -> 6 -> 8); NOT a per-project crew cap. Default since 2026-11-12 (audit H3): upgrade 1 = $250K + 200 Prestige, upgrade 2 = $750K + 1,000 Prestige *(test costs)*. The first upgrade also unlocks the Star catalog (PROD-216). legacy-advance.json restores the historical uncapped behaviour ([999]).",
+    "ladder": [4, 6, 8],
+    "upgradeCosts": [250000, 750000],
+    "upgradePrestige": [200, 1000]
   },
   "agents": {
     "_runwayStarReserveLabel": "Harness agents only (2026-11-11): the runway rule also reserves a typical mid-tier Star fee before starting a movie. Legacy overlay: false.",
     "runwayStarReserve": true,
-    "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number). useFiring / economicRenewal (Gate 3 follow-up, Gate 3 policies only): dismiss the weakest employee to make room for the Software Engineer or when cash < fireDebtThreshold; renew a show only while its last finished season netted >= renewMinNetPerWeek per production week (replaces the old fixed policy season limits). Both false = the original Gate 3 policies.",
-    "legacyHeuristicStaffCaps": true,
+    "_label": "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number). useFiring / economicRenewal (Gate 3 follow-up, Gate 3 policies only): dismiss the weakest employee to make room for the Software Engineer or when cash < fireDebtThreshold; renew a show only while its last finished season netted >= renewMinNetPerWeek per production week (replaces the old fixed policy season limits). Both false = the original Gate 3 policies. Default since 2026-11-12 (audit M3): the default agents play the default game (no legacy hiring cutoffs, firing on, money-based renewal; the same values gate3/gate4 always used); legacy-advance.json pins the old ones.",
+    "legacyHeuristicStaffCaps": false,
     "tvOrderPreference": "max",
-    "useFiring": false,
-    "economicRenewal": false,
+    "useFiring": true,
+    "economicRenewal": true,
     "fireDebtThreshold": -100000,
     "renewMinNetPerWeek": 15000
   },

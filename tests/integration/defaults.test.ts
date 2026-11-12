@@ -42,6 +42,10 @@ describe("Producers default economy", () => {
       delete x.audience.legsModel;
       delete x.audience.movieQualityPivot;
       delete x.audience.fanDecayExact; // audit 2026-11-12: exact fan decay (legacy keeps weekly rounding)
+      delete x.staffCapacity; // audit H3: the default ships the 4/6/8 ladder; legacy stays uncapped
+      delete x.agents.legacyHeuristicStaffCaps; // audit M3: default agents play the default game
+      delete x.agents.useFiring;
+      delete x.agents.economicRenewal;
       delete x.audience.diffusion.movieBadInterestDecay;
       delete x.stars.pool.enabled;
       delete x.scoring.starScoreBonus;

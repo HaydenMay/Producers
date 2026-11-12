@@ -98,7 +98,15 @@
     "hireWageBySkill": false
   },
   "agents": {
-    "runwayStarReserve": false
+    "runwayStarReserve": false,
+    "legacyHeuristicStaffCaps": true,
+    "useFiring": false,
+    "economicRenewal": false
+  },
+  "staffCapacity": {
+    "ladder": [999],
+    "upgradeCosts": [],
+    "upgradePrestige": []
   },
   "studioGenre": {
     "qualityBonusPerLevel": 0.03

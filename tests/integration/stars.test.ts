@@ -86,9 +86,18 @@ describe("PROD-216 catalog + original lead", () => {
   it("is locked at the start: no catalog cards until unlocked", () => {
     const s = createStudio(3, D);
     s.hiredStarIds.push(Object.keys(s.stars)[0]);
+    s.prestige = 5000; // the default ships the staff ladder (audit H3): Prestige alone never opens it
     expect(buildAuditions(s, D, project(), 1e6).some((c) => c.source === "callback")).toBe(false);
-    s.prestige = D.stars.pool.catalog.unlockPrestigeWithoutLadder;
+    s.upgrades.push({ week: 1, from: 4, to: 6, cost: 1, prestigeAtUpgrade: 200 }); // the first studio upgrade does (PROD-216)
     expect(buildAuditions(s, D, project(), 1e6).some((c) => c.source === "callback")).toBe(true);
+  });
+  it("without a capacity ladder (uncapped config) it opens at unlockPrestigeWithoutLadder Prestige", () => {
+    const U = withOverrides(D, { staffCapacity: { ladder: [999], upgradeCosts: [], upgradePrestige: [] } });
+    const s = createStudio(3, U);
+    s.hiredStarIds.push(Object.keys(s.stars)[0]);
+    expect(buildAuditions(s, U, project(), 1e6).some((c) => c.source === "callback")).toBe(false);
+    s.prestige = U.stars.pool.catalog.unlockPrestigeWithoutLadder;
+    expect(buildAuditions(s, U, project(), 1e6).some((c) => c.source === "callback")).toBe(true);
   });
   it("with a capacity ladder it opens on the first studio upgrade, not on Prestige", () => {
     const L = withOverrides(D, { staffCapacity: JSON.parse(readFileSync("config/gate3.json", "utf8")).staffCapacity });
@@ -101,6 +110,7 @@ describe("PROD-216 catalog + original lead", () => {
   it("flags the best catalog fits as 'perfect for this role'", () => {
     const s = createStudio(3, D);
     s.prestige = 1000;
+    s.upgrades.push({ week: 1, from: 4, to: 6, cost: 1, prestigeAtUpgrade: 200 }); // catalog open (PROD-216)
     const ids = Object.keys(s.stars).slice(0, 6);
     s.hiredStarIds.push(...ids);
     s.stars[ids[2]].skills.Scary = 95;

@@ -51,7 +51,8 @@ describe("genre unlocks", () => {
     expect(getChoices(s, D).options.some((o) => (o.type as string).includes("genre"))).toBe(false);
   });
   it("real careers open new genres and make films in them; legacy never unlocks", () => {
-    const r = runCareer(1, "balanced", D, { productions: 0, years: 6 }).state;
+    // experimenter = the policy whose job is trying new combos (with a full 8-person crew, balanced keeps to its proven hits)
+    const r = runCareer(1, "experimenter", D, { productions: 0, years: 6 }).state;
     expect(r.unlockedGenres.length).toBeGreaterThanOrEqual(7);
     expect(r.releases.some((x) => !D.start.unlockedGenres.includes(x.genre))).toBe(true);
     const l = runCareer(1, "balanced", legacyConfig(), { productions: 0, years: 6 }).state;

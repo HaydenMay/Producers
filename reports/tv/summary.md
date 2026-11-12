@@ -17,4 +17,4 @@ TV seasons by number: **S1** score 8.5, health 1.00, net $180.0K, 0% lose (n 30)
 
 Invariant violations: 0.
 
-Elapsed 2.9 s.
+Elapsed 2.5 s.
