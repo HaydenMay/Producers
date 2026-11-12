@@ -884,7 +884,13 @@
       "lastSeasonWeight": 0.1,
       "appealMin": 0.4,
       "appealMax": 1.8,
-      "favoredAdFactor": 1.15,
+      "studioClout": {
+      "_label": "PROD-227 (designer 2026-11-12): distributors compete harder for bigger studios. After the 1st / 2nd studio upgrade, every bid's ad budget is multiplied by adMultByUpgrades and the distributor's cut by shareMultByUpgrades, so a bigger studio earns back its bigger payroll. legacy-advance.json disables it. TEST VALUES.",
+      "enabled": true,
+      "adMultByUpgrades": [1.2, 1.4],
+      "shareMultByUpgrades": [0.75, 0.5]
+    },
+    "favoredAdFactor": 1.15,
       "formatAdFactor": { "movie": 1.0, "limited_series": 1.2, "tv": 1.0 },
       "adScale": 40000,
       "adAwarenessMax": 1.2,

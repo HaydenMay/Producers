@@ -16,7 +16,7 @@ import { buildStreaming, canBuildStreaming, canHireEngineer, decayAnticipation, 
 import { releaseWeek, decayFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { audienceEraAt, criticGenerationAt, expectationsAt, studioToughnessAt } from "./scoring";
-import { chooseDistribution, contractOffers, contractWeek, contractsEnabled, investedSoFar, isLateDistribution, startContract } from "./latedist";
+import { chooseDistribution, contractOffers, contractWeek, contractsEnabled, investedSoFar, isLateDistribution, startContract, studioClout } from "./latedist";
 import { RULESET_VERSION, type Approach, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
 
 export const FEATURES_MODELLED = ["movies", "limited series (config-gated)", "renewable TV seasons: orders, renewal, fatigue, twist, hiatus, announcements, contract variants A/B (config-gated)", "studio streaming service: engineer build, aggregate subscribers, catalog, Originals (config-gated)", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships; default: persistent pool, years active, offscreen careers/retirement, catalog, original-lead card, hidden growth weights)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "staff pitches + trend inspiration (theme research: off by default)", "genre unlocks (crew thresholds, RomCom combo, easing)", "late distribution (80% distribution meeting) + work-for-hire contracts", "planning approach (crowd-pleaser / balanced / awards bait)", "critic generations (calendar proxy)", "fixed career end + recap + legacy score"];
@@ -277,6 +277,7 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
       emit(state, "upgrade", `Studio upgraded: employee capacity ${state.maxStaff} → ${up.to} (cost $${up.cost.toLocaleString()}).`);
       const tough = studioToughnessAt(state.upgrades.length, cfg);
       if (tough > 0) emit(state, "upgrade", "We're a bigger company now, so the expectations are higher. Audiences and critics will expect more from us, and we'll have to give it our all to reach the Hall of Fame.", { studioToughness: tough });
+      if (studioClout(state, cfg).upgrades > 0) emit(state, "upgrade", "Distributors are taking notice: as a bigger studio we can expect better distribution deals.", { studioClout: true });
       state.maxStaff = up.to;
       state.capacityLevel += 1;
       return;

@@ -4,8 +4,8 @@ Shipped default + streaming on; seeds 1–8, 20-year careers, cash read at years
 
 | Strategy | Builds | Launch year | Subs at yr 20 | Originals | Gain yr 10 | Gain yr 12 | Gain yr 15 | Gain yr 20 |
 |---|---|---|---|---|---|---|---|---|
-| mixed | 8/8 | 9.0 | 89,809 | 10.9 | −$0.55M | $0.55M | $3.80M | $8.88M |
-| streaming-pivot | 8/8 | 12.9 | 91,161 | 10.6 | −$0.08M | −$0.08M | −$1.74M | $0.48M |
+| mixed | 8/8 | 9.0 | 87,765 | 10.8 | −$0.59M | −$0.33M | $2.07M | $5.37M |
+| streaming-pivot | 8/8 | 12.9 | 91,161 | 10.5 | −$0.07M | −$0.08M | −$2.42M | −$1.97M |
 | balanced | 0/8 | — | — | 0.0 | $0.00M | $0.00M | $0.00M | $0.00M |
 | tv-first | 0/8 | — | — | 0.0 | $0.00M | $0.00M | $0.00M | $0.00M |
 

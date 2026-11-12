@@ -50,6 +50,16 @@ export function previewSignals(state: StudioState, cfg: Config, p: Project): Rec
   return { preview, quality: round2(quality), trend, fans: round2(fans), fame: round2(fame), combo: round2(combo), lastSeason: round2(lastSeason), appeal };
 }
 
+/** Studio clout (PROD-227, designer 2026-11-12): distributors compete harder for bigger studios. After each studio
+ *  upgrade, bids carry a bigger ad budget and a smaller distributor cut. {ad: 1, share: 1} when off / not upgraded. */
+export function studioClout(state: StudioState, cfg: Config): { ad: number; share: number; upgrades: number } {
+  const c = (cfg.economy.lateDistribution as { studioClout?: { enabled?: boolean; adMultByUpgrades?: number[]; shareMultByUpgrades?: number[] } }).studioClout;
+  const n = state.upgrades.length;
+  if (!c?.enabled || n <= 0) return { ad: 1, share: 1, upgrades: 0 };
+  const pick = (xs: number[] | undefined) => (xs?.length ? (xs.at(Math.min(n, xs.length) - 1) ?? 1) : 1);
+  return { ad: pick(c.adMultByUpgrades), share: pick(c.shareMultByUpgrades), upgrades: n };
+}
+
 /** 2–3 fixed bids (seeded on the distributors stream). Possibly none: then only self-distribution. */
 export function generateBids(state: StudioState, cfg: Config, p: Project): { bids: DistributionBid[]; signals: Record<string, number> } {
   const l: LD = cfg.economy.lateDistribution;
@@ -60,13 +70,14 @@ export function generateBids(state: StudioState, cfg: Config, p: Project): { bid
   const shuffled = eligible.map((d) => ({ d, k: next(state.rng, "distributors") })).sort((a, b) => a.k - b.k).map((x) => x.d);
   const count = Math.min(shuffled.length, cfg.distribution.offersMin + Math.floor(next(state.rng, "distributors") * (cfg.distribution.offersMax - cfg.distribution.offersMin + 1)));
   const fmtFactor = (l.formatAdFactor as Record<string, number>)[formatOf(p)] ?? 1;
+  const clout = studioClout(state, cfg);
   const bids = shuffled.slice(0, count).map((d) => {
     const t = terms[d.id];
     const fav = d.favoredFamilies.includes(family);
     const trustFactor = cfg.distribution.trustOfferFactorBase + cfg.distribution.trustOfferFactorPerPoint * d.trust;
     const jitter = 1 + range(state.rng, "distributors", -cfg.distribution.offerJitter, cfg.distribution.offerJitter);
-    const adSpend = Math.round((t.adBase * fmtFactor * sig.appeal * (fav ? l.favoredAdFactor : 1) * trustFactor * jitter) / 1000) * 1000;
-    const share = round2(Math.max(l.shareMin, Math.min(l.shareMax, t.shareBase * (1.15 - 0.15 * sig.appeal) * (1.1 - 0.04 * d.trust))));
+    const adSpend = Math.round((t.adBase * fmtFactor * sig.appeal * (fav ? l.favoredAdFactor : 1) * trustFactor * jitter * clout.ad) / 1000) * 1000;
+    const share = round2(Math.max(l.shareMin, Math.min(l.shareMax, t.shareBase * (1.15 - 0.15 * sig.appeal) * (1.1 - 0.04 * d.trust) * clout.share)));
     const reach = round2(d.reach * (fav ? 1.1 : 1.0));
     return {
       distributorId: d.id,
@@ -75,7 +86,7 @@ export function generateBids(state: StudioState, cfg: Config, p: Project): { bid
       adAwareness: adAwareness(cfg, adSpend),
       reach,
       share,
-      reasons: [`preview of the work so far ${sig.preview}/100 → appeal ${sig.appeal}`, fav ? "favoured genre family" : "neutral genre family", `trust ${d.trust.toFixed(2)} → x${trustFactor.toFixed(2)}`],
+      reasons: [`preview of the work so far ${sig.preview}/100 → appeal ${sig.appeal}`, fav ? "favoured genre family" : "neutral genre family", `trust ${d.trust.toFixed(2)} → x${trustFactor.toFixed(2)}`, ...(clout.upgrades > 0 ? ["a bigger studio: distributors compete harder for you (bigger ad budget, smaller cut)"] : [])],
     } satisfies DistributionBid;
   });
   return { bids, signals: sig };

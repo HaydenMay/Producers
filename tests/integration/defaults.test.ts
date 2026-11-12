@@ -45,6 +45,7 @@ describe("Producers default economy", () => {
       delete x.audience.fanDecayExact; // audit 2026-11-12: exact fan decay (legacy keeps weekly rounding)
       delete x.staffCapacity; // audit H3: the default ships the 4/6/8 ladder; legacy stays uncapped
       delete x.expectations.studioSize; // PROD-226: studio-size expectations off in legacy
+      delete x.economy.lateDistribution; // PROD-227: studio clout off in legacy (the only lateDistribution key it sets)
       delete x.agents.legacyHeuristicStaffCaps; // audit M3: default agents play the default game
       delete x.agents.useFiring;
       delete x.agents.economicRenewal;
@@ -217,5 +218,42 @@ describe("studio-size expectations (PROD-226)", () => {
     const after = s.releases.filter((r) => s.upgrades.some((u) => u.week < r.releaseWeek));
     expect(after.length).toBeGreaterThan(0);
     for (const r of after) expect((r.trace.quality as { score: { expectations: { studioToughness?: number } } }).score.expectations.studioToughness).toBeGreaterThan(0);
+  });
+});
+
+// PROD-227 (designer 2026-11-12): distributors compete harder for bigger studios
+import { generateBids, studioClout } from "../../src/core/latedist";
+describe("studio clout in distribution deals (PROD-227)", () => {
+  it("is neutral before any upgrade and in the legacy overlay; grows with upgrades", () => {
+    const D = baselineConfig();
+    const s = createStudio(4, D);
+    expect(studioClout(s, D)).toEqual({ ad: 1, share: 1, upgrades: 0 });
+    s.upgrades.push({ week: 1, from: 4, to: 6, cost: 1, prestigeAtUpgrade: 200 });
+    const one = studioClout(s, D);
+    s.upgrades.push({ week: 2, from: 6, to: 8, cost: 1, prestigeAtUpgrade: 1000 });
+    const two = studioClout(s, D);
+    expect(one.ad).toBeGreaterThan(1);
+    expect(one.share).toBeLessThan(1);
+    expect(two.ad).toBeGreaterThan(one.ad);
+    expect(two.share).toBeLessThan(one.share);
+    expect(studioClout(s, legacyConfig()).upgrades).toBe(0);
+  });
+  it("same project, same dice: an upgraded studio gets bigger ad budgets and smaller cuts", () => {
+    const D = baselineConfig();
+    // a real in-progress production (the first career snapshot that has one)
+    let r = runCareer(1, "balanced", D, { productions: 0, years: 1 }).state;
+    for (let seed = 2; !r.project && seed < 20; seed++) r = runCareer(seed, "balanced", D, { productions: 0, years: 1 }).state;
+    expect(r.project).toBeTruthy();
+    const p = r.project!;
+    const small = structuredClone(r), big = structuredClone(r);
+    small.upgrades = [];
+    big.upgrades = [{ week: 1, from: 4, to: 6, cost: 1, prestigeAtUpgrade: 200 }, { week: 2, from: 6, to: 8, cost: 1, prestigeAtUpgrade: 1000 }];
+    const a = generateBids(small, D, p).bids, b = generateBids(big, D, p).bids;
+    expect(a.length).toBe(b.length);
+    for (let i = 0; i < a.length; i++) {
+      expect(b[i].adSpend).toBeGreaterThanOrEqual(a[i].adSpend);
+      expect(b[i].share).toBeLessThanOrEqual(a[i].share);
+      expect(b[i].reasons.some((x) => x.startsWith("a bigger studio"))).toBe(true);
+    }
   });
 });

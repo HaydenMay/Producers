@@ -1,4 +1,4 @@
-// PROD-226 tuning: studio-size expectations ("we're a bigger company now, the expectations are higher").
+// PROD-226 + PROD-227 tuning: studio-size expectations + distribution clout ("we're a bigger company now, the expectations are higher").
 // For each studio size cap (4 / 6 / 8 staff) run whole careers of the hiring policies and report Hall of Fame share,
 // mean score, end cash, Prestige and the 20-year legacy score. Goals (designer 2026-11-12): bigger is still better
 // (8 > 6 > 4), but greatness stays rare: HoF ~8% / ~11% / ~14% *(test targets)*.
@@ -69,7 +69,7 @@ if (grid) {
 }
 
 const t0 = Date.now();
-const off = setPath(base, "expectations.studioSize.enabled", false);
+const off = setPath(setPath(base, "expectations.studioSize.enabled", false), "economy.lateDistribution.studioClout.enabled", false);
 const rows: string[] = [], legacyRows: string[] = [], polRows: string[] = [];
 const results: Record<string, ReturnType<typeof measure>> = {};
 for (const cap of [4, 6, 8] as const) {
@@ -86,9 +86,9 @@ for (const st of LEGACY_POL) {
 }
 const t = base.expectations as unknown as { studioSize: { toughnessByUpgrades: number[] } };
 const L = [
-  "# Studio-size expectations (PROD-226)",
+  "# Studio size: expectations (PROD-226) + distribution clout (PROD-227)",
   "",
-  `"We're a bigger company now, the expectations are higher." Reviews get ${t.studioSize.toughnessByUpgrades.map((x) => `${(x * 100).toFixed(0)}%`).join(" / ")} tougher after the 1st / 2nd studio upgrade *(test)*. Careers capped at 4, 6 or 8 staff; policies: ${POL.join(", ")}. Seeds 1–${seeds}, ${years} years (legacy ${legacyYears} years). **before** = studio-size expectations off; **after** = shipped. Targets: bigger still better, HoF ~8% / ~11% / ~14%. TEST VALUES.`,
+  `"We're a bigger company now, the expectations are higher." Reviews get ${t.studioSize.toughnessByUpgrades.map((x) => `${(x * 100).toFixed(0)}%`).join(" / ")} tougher after the 1st / 2nd studio upgrade *(test)*. Careers capped at 4, 6 or 8 staff; policies: ${POL.join(", ")}. Seeds 1–${seeds}, ${years} years (legacy ${legacyYears} years). Bigger studios also get better distribution deals: ad budget x${(base.economy.lateDistribution as unknown as { studioClout: { adMultByUpgrades: number[] } }).studioClout.adMultByUpgrades.join(" / ")}, distributor cut x${(base.economy.lateDistribution as unknown as { studioClout: { shareMultByUpgrades: number[] } }).studioClout.shareMultByUpgrades.join(" / ")} *(test)*. **before** = both off (crew size alone); **after** = shipped. Goals: bigger is still better (8 >= 6 >= 4) but the Hall of Fame stays rare (~15%), and an 8-person studio earns back its bigger payroll. TEST VALUES.`,
   "",
   "| Studio size cap | HoF share | Mean score | Prestige (median) | End cash (median) |",
   "|---|---|---|---|---|",
