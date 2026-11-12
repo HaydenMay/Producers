@@ -69,6 +69,9 @@ describe("Producers default economy", () => {
       delete x.staffGrowth.raisePerLevel;
       delete x.staffGrowth.hireWageBySkill;
       delete x.agents.runwayStarReserve;
+      delete x.production.approaches;
+      delete x.economy.overdraft;
+      delete x.studioGenre.qualityBonusPerLevel;
       delete x._overlay;
       return x;
     };
@@ -138,3 +141,45 @@ describe("planning-screen cost estimate (PROD-224)", () => {
     expect(planCostEstimate(s, D, { type: "plan", genre: "Comedy", theme: "Sports", ipRelation: "new" }).risk).toBe("short");
   });
 });
+
+describe("planning approach, overdraft, staff titles (2026-11-11)", () => {
+  it("an approach is validated separately, stored on the project and the release, and tilts the reviews", async () => {
+    const { applyDecision, getChoices } = await import("../../src/core/simulation");
+    const D = baselineConfig();
+    const s = createStudio(1, D);
+    const ch = getChoices(s, D);
+    expect(ch.approaches).toEqual(["crowd", "balanced", "awards"]);
+    const plan = ch.options.find((o) => o.type === "plan")!;
+    expect(() => applyDecision(s, D, { ...(plan as object), approach: "bogus" } as never)).toThrow();
+    applyDecision(s, D, { ...(plan as object), approach: "awards" } as never);
+    expect(s.project!.approach).toBe("awards");
+    expect(getChoices(createStudio(1, legacyConfig()), legacyConfig()).approaches).toBeUndefined();
+  });
+  it("crowd-pleasers earn more money, awards bait more Prestige (same dice, same policy)", async () => {
+    const { runCareer } = await import("../../src/batch/runner");
+    const D = baselineConfig();
+    const sum = (st: string, k: "cash" | "prestige") => [1, 2, 3, 4].reduce((a, seed) => a + runCareer(seed, st, D, { productions: 0, years: 8 }).state[k], 0);
+    expect(sum("crowd-pleaser", "cash")).toBeGreaterThan(sum("awards-bait", "cash"));
+    expect(sum("awards-bait", "prestige")).toBeGreaterThan(sum("crowd-pleaser", "prestige"));
+  });
+  it("in the red, the bank charges 2% a month and nothing else happens (never game over)", async () => {
+    const { advanceWeek } = await import("../../src/core/simulation");
+    const D = baselineConfig();
+    const s = createStudio(1, D);
+    s.cash = -100_000;
+    s.week = 3;
+    advanceWeek(s, D);
+    const i = s.ledger.find((l) => l.kind === "overdraft_interest")!;
+    expect(-i.amount).toBeGreaterThanOrEqual(2000); // 2% of $100K plus that month's payroll
+    expect(-i.amount).toBeLessThan(2300);
+  });
+  it("job titles emerge from skills", async () => {
+    const { staffTitle } = await import("../../src/core/staff");
+    const mk = (p: number, w: number, f: number, e: number, xp = 0) => ({ id: "x", name: "x", stats: { plot: p, writing: w, filming: f, editing: e }, totalXp: xp, wage: 900 }) as never;
+    expect(staffTitle(mk(30, 20, 50, 20))).toBe("Junior Director");
+    expect(staffTitle(mk(65, 62, 40, 30, 2000))).toBe("Showrunner");
+    expect(staffTitle(mk(80, 80, 80, 80, 4000))).toBe("Senior Auteur");
+    expect(staffTitle(mk(20, 20, 20, 60, 1200))).toBe("Editor");
+  });
+});
+

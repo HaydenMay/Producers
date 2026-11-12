@@ -103,7 +103,14 @@ function wantsOriginal(strat: Strategy, state: StudioState, cfg: Config, plan: P
   }
 }
 
+/** PROD-220: strategies with a fixed approach attach it to every plan they make (approach is validated separately). */
 export function decideFor(strat: Strategy, state: StudioState, cfg: Config, ch: Choices, rng: () => number, ctx: AgentCtx): Decision {
+  const d = decideInner(strat, state, cfg, ch, rng, ctx);
+  const ap = (strat as Strategy & { approach?: "crowd" | "awards" }).approach;
+  return ap && d.type === "plan" && ch.approaches?.includes(ap) ? { ...d, approach: ap } : d;
+}
+
+function decideInner(strat: Strategy, state: StudioState, cfg: Config, ch: Choices, rng: () => number, ctx: AgentCtx): Decision {
   const late = isLateDistribution(cfg);
   if (!late && !contractsEnabled(cfg)) return strat.decide(state, cfg, ch, rng, ctx);
   const prof = profileOf(strat.id);
@@ -176,5 +183,14 @@ export const CONTRACT_FARMER: Strategy = {
 export const makeWarningHeeder = (base: Strategy, id: "heeds-warning" | "heeds-short"): Strategy => ({
   id,
   description: id === "heeds-warning" ? "Balanced, but takes a contract whenever the plan screen shows a cost warning (⚠️ or ⛔)." : "Balanced, but takes a contract only when the plan screen says it is short even with a cheap Star (⛔).",
+  decide: (state, cfg, ch, rng, ctx) => base.decide(state, cfg, ch, rng, ctx),
+});
+
+/** PROD-220 test agents: balanced planning/casting with a fixed approach. */
+export const makeApproachAgent = (base: Strategy, id: "crowd-pleaser" | "awards-bait"): Strategy & { approach: "crowd" | "awards"; rngId: string } => ({
+  id,
+  approach: id === "crowd-pleaser" ? "crowd" : "awards",
+  rngId: base.id, // same dice as the base policy, so a comparison isolates the approach
+  description: id === "crowd-pleaser" ? "Balanced, but every production is a Crowd-pleaser (effort to Filming + Editing)." : "Balanced, but every production is Awards bait (effort to Plot + Writing).",
   decide: (state, cfg, ch, rng, ctx) => base.decide(state, cfg, ch, rng, ctx),
 });

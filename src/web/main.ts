@@ -1,4 +1,5 @@
 // Thin UI over the same core. No game rules here: everything goes through getChoices/applyDecision/advanceWeek.
+import { staffTitle } from "../core/staff";
 import { planCostEstimate } from "../core/latedist";
 import { baselineConfig, legacyConfig, configHash, setPath, withOverrides, type Config } from "../core/config";
 import gate3Overrides from "../../config/gate3.json";
@@ -154,7 +155,7 @@ function renderCareer() {
       <button id="dlLog">Download decision log</button><button id="g3cfg">Load Gate 3 mixed config</button><button id="g4cfg">Load Gate 4 candidate economy</button>
     </div>
     <div class="card"><b>Week ${s.week}</b> (year ${(s.week / 52).toFixed(1)}) · Cash <b>${$(s.cash)}</b> · Prestige <b>${s.prestige}</b> · Staff <b>${s.staff.length} / ${s.maxStaff >= 999 ? "uncapped" : s.maxStaff}</b> · Phase <b>${ch.phase}</b> · Releases ${s.releases.length} (${s.releases.filter((r) => r.active).length} running) · Config ${cfg.name} (${configHash(cfg)})
-      <div class="muted">Staff: ${s.staff.map((x) => `${esc(x.name)} [P ${x.stats.plot.toFixed(0)} W ${x.stats.writing.toFixed(0)} F ${x.stats.filming.toFixed(0)} E ${x.stats.editing.toFixed(0)}]`).join(" · ")}<br/>Trust: ${s.distributors.map((d) => `${d.id} ${d.trust.toFixed(2)}`).join(", ")} · Not modelled: ${FEATURES_NOT_MODELLED.join(", ")}</div></div>
+      <div class="muted">Staff: ${s.staff.map((x) => `${esc(x.name)}, ${staffTitle(x)}, $${x.wage.toLocaleString()}/wk [P ${x.stats.plot.toFixed(0)} W ${x.stats.writing.toFixed(0)} F ${x.stats.filming.toFixed(0)} E ${x.stats.editing.toFixed(0)}]`).join(" · ")}<br/>Trust: ${s.distributors.map((d) => `${d.id} ${d.trust.toFixed(2)}`).join(", ")} · Not modelled: ${FEATURES_NOT_MODELLED.join(", ")}</div></div>
     ${body}
     <div class="grid2"><div class="card"><h3>Releases (newest first)</h3>${rels.map((r) => `<details><summary>${esc(r.title)} — A ${r.audience} / C ${r.critic} · gross ${$(r.grossTotal)} ${r.active ? "(running)" : ""}</summary><pre>${esc(releaseTrace(r, s))}</pre></details>`).join("") || "<p class='muted'>none yet</p>"}</div>
     <div class="card"><h3>Event log (latest 40)</h3><pre>${esc(s.events.slice(-40).map((e) => `w${e.week} [${e.type}] ${e.message}`).join("\n"))}</pre></div></div>`;

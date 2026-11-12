@@ -20,11 +20,11 @@ Seed 1 after 10 years (balanced): 300 Stars ever, 272 still working. Tiers: newc
 
 | Policy | Films | Hired | Stars seen at 2+ auditions | Original-lead cards (cast) | Catalog unlock year | Retired (of yours) | Perfect-fit flags (cast) | Invariant violations |
 |---|---|---|---|---|---|---|---|---|
-| balanced | 16.0 | 6.5 | 15.7 | 4.3 (3.0) | 2.4 (6/6 careers) | 26.7 (0.7) | 17.7 (6.0) | 0 |
+| balanced | 16.0 | 6.5 | 16.0 | 4.3 (2.7) | 2.4 (6/6 careers) | 27.0 (0.7) | 17.7 (6.3) | 0 |
 | quality-first | 15.7 | 6.7 | 16.5 | 0.0 (0.0) | 2.3 (6/6 careers) | 29.3 (1.7) | 20.5 (8.5) | 0 |
-| franchise-builder | 16.0 | 2.3 | 16.7 | 13.7 (13.7) | 4.5 (6/6 careers) | 29.3 (0.2) | 10.3 (0.0) | 0 |
-| famous-star | 16.0 | 7.8 | 15.8 | 0.0 (0.0) | 5.3 (6/6 careers) | 28.8 (4.7) | 14.2 (2.8) | 0 |
-| cheap-duds | 16.0 | 13.7 | 17.3 | 0.0 (0.0) | 5.6 (4/6 careers) | 29.0 (0.0) | 6.8 (0.2) | 0 |
+| franchise-builder | 16.0 | 2.3 | 16.8 | 13.7 (13.7) | 3.5 (6/6 careers) | 29.3 (0.2) | 12.7 (0.0) | 0 |
+| famous-star | 16.0 | 7.2 | 15.3 | 0.0 (0.0) | 4.9 (6/6 careers) | 28.8 (4.3) | 14.3 (3.7) | 0 |
+| cheap-duds | 16.0 | 13.8 | 17.2 | 0.0 (0.0) | 5.6 (4/6 careers) | 29.0 (0.0) | 6.8 (0.2) | 0 |
 
 Catalog unlock: the default config has no staff-capacity ladder, so it opens at 200 Prestige (the gate3 ladder's first-step Prestige).
 
@@ -45,7 +45,7 @@ balanced year 2.8 (6/6) · quality-first year 2.9 (6/6) · mixed year 2.8 (6/6) 
 
 ## 5. Free fallback vs paid newcomers
 
-Average paid newcomer audition card, skill in the production's family: **47.8** (n 564). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
+Average paid newcomer audition card, skill in the production's family: **48.1** (n 560). Free fallback: **45** in the family, 6 elsewhere. Fallback cards shown in these careers: 0.
 
 ## 6. Catalog snapshot: balanced seed 1 at year 10
 
@@ -60,4 +60,4 @@ Average paid newcomer audition card, skill in the production's family: **47.8** 
 | Bo Lind | active | 1 | 7 | 36 | 3 | Romantic 100 |
 | Bo Imai U. | active | 1 | 3 | 9 | 1 | Action 77 |
 
-Elapsed 2.8 s.
+Elapsed 2.7 s.

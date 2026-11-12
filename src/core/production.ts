@@ -250,7 +250,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const cult = cfg.world.cult.enabled ? cultCheck(state, cfg, p, key, grades, meters) : null;
   const scoredGrades = cult?.happened ? { audience: cult.effectiveAudience, critic: grades.critic } : grades;
   const fitNow = p.starId ? starFit(state.stars[p.starId], p.genre, cfg) : 0; // PROD-051: skill fit, never Fame
-  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow);
+  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow, p.approach ? ((cfg.production as { approaches?: { scoreShift?: Record<string, { audience: number; critic: number }> } }).approaches?.scoreShift?.[p.approach] ?? null) : null);
   if (cult) {
     const w = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow);
     cult.audienceWithout = w.audience;
@@ -289,6 +289,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
     sc.audience = Math.min(10, round2(sc.audience + star.fame / 40));
   }
   const rel: Release = {
+    ...(p.approach ? { approach: p.approach } : {}),
     id: newId(state, "rel"),
     title: p.title,
     genre: p.genre,

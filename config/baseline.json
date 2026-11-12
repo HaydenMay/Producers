@@ -155,6 +155,22 @@
     "grossPerViewer": 4.0
   },
   "production": {
+    "approaches": {
+      "_label": "PROD-220 (Claude's call, designer delegated 2026-11-11): one planning choice instead of GDS's sliders. Crowd-pleaser leans crew effort to Filming + Editing (the Audience craft weights), Awards bait to Plot + Writing (the Critic weights); total effort unchanged. Multipliers *(test)*. Legacy overlay: off.",
+      "enabled": true,
+      "effort": {
+        "crowd": { "plot": 0.75, "writing": 0.75, "filming": 1.25, "editing": 1.25 },
+        "awards": { "plot": 1.25, "writing": 1.25, "filming": 0.75, "editing": 0.75 }
+      },
+      "_scoreShiftLabel": "Added after the first check: effort alone barely moved veteran films (meters saturate) and Awards bait had no payoff. A flat tilt after the meter curve makes the choice visible all career *(test)*.",
+      "scoreShift": {
+        "crowd": { "audience": 0.3, "critic": -0.3 },
+        "awards": { "audience": -0.3, "critic": 0.3 }
+      },
+      "_payoffLabel": "Each approach must win in its own currency (otherwise Balanced dominates): Crowd-pleaser = more money, less Prestige; Awards bait = more Prestige, less money *(test)*.",
+      "grossMult": { "crowd": 1.12, "awards": 0.95 },
+      "reviewPrestigeMult": { "crowd": 0.8, "awards": 1.5 }
+    },
     "_formatTimeLabel": "Designer 2026-11-11: production time fastest → slowest is limited series (12 wks), TV season (8 + 1.2/episode: 14/20/26/32 wks for 5/10/15/20), movie (30 wks). Money per production-week is evened out via ticket / per-episode prices (reports/formats/summary.md). TEST VALUES. Legacy overlay restores 16 / 18 / 6 + 2.",
     "movie": {
       "baseCost": 60000,
@@ -222,7 +238,8 @@
       10,
       15
     ],
-    "qualityBonusPerLevel": 0.03,
+    "_qualityBonusLabel": "PROD-026 (Claude's call, designer delegated 2026-11-11): 3% → 5% per genre level *(test)*, so specialising is felt (~+0.4 rookie / ~+0.17 veteran at level 5, docs/plans/star-xp-worth.md). Legacy overlay: 3%.",
+    "qualityBonusPerLevel": 0.05,
     "_awardTiming": "WORKING ASSUMPTION: genre XP awarded on production completion"
   },
   "scoring": {
@@ -840,6 +857,7 @@
   "economy": {
     "_label": "DEFAULT = late_distribution (PROD-100, Producers economy). mode legacy_advance = REGRESSION ONLY, every earlier gate byte-identical (distributor advances at the pitch, lifeline, surplus); select it with config/legacy-advance.json / legacyConfig(). mode late_distribution: the studio funds base cost, Star and payroll itself; at 80% 2-3 distributors bid ADVERTISING spend + reach for a revenue share (ad money is spent by the distributor, never studio cash); self-distribution fallback; no lifeline. All numbers TEST ASSUMPTIONS.",
     "mode": "late_distribution",
+    "overdraft": { "_label": "PROD-125 (Claude's call, designer delegated 2026-11-11): never game over. In the red you can't start productions or buy extras, and the debt costs monthlyRate interest each month *(test)*. Legacy overlay: 0.", "monthlyRate": 0.02, "periodWeeks": 4 },
     "lateDistribution": {
       "_label": "Candidate bid formula. appeal = 1 + previewWeight x (preview - previewCenter)/previewSpan + trend + fans + Star Fame + known combo (comboBook only) + last-season delta, clamped. Preview = visible meter quality so far, projected to completion (never final scores or hidden combo grades). adSpend = adBase x format factor x appeal x favored x trust factor x jitter; share = shareBase x (1.15 - 0.15 x appeal) x (1.1 - 0.04 x trust). A distributor only bids when appeal >= its minAppeal.",
       "previewCenter": 60,

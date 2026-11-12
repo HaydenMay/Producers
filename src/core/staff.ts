@@ -16,7 +16,10 @@ export function phaseOf(progress: number): ProdPhase {
 /** One week of work: every staff member adds to every meter, weighted by phase emphasis. */
 export function staffWorkWeek(state: StudioState, project: Project, cfg: Config, genreBonus: number): void {
   const phase = phaseOf(project.progress);
-  const emph = cfg.production.phaseEmphasis[phase] as Record<Meter, number>;
+  const base = cfg.production.phaseEmphasis[phase] as Record<Meter, number>;
+  // PROD-220: the production's approach shifts effort between meters (total effort unchanged)
+  const am = project.approach ? ((cfg.production as { approaches?: { effort?: Record<string, Record<Meter, number>> } }).approaches?.effort?.[project.approach] ?? null) : null;
+  const emph = am ? (Object.fromEntries(METERS.map((m) => [m, base[m] * am[m]])) as Record<Meter, number>) : base;
   for (const s of state.staff) {
     if (s.assignment) continue; // special-role rule: an engineer building streaming is OFF the production
     const variance = 1 + range(state.rng, "work", -cfg.production.workVariance, cfg.production.workVariance);
@@ -132,4 +135,20 @@ export function trainStaff(state: StudioState, cfg: Config, staffId: string): vo
   ledger(state, { kind: "train", amount: -cfg.staffGrowth.trainCost, note: s.name });
   for (const m of METERS) s.stats[m] = Math.min(cfg.staffGrowth.statCap, s.stats[m] + cfg.staffGrowth.trainGain);
   emit(state, "train", `Trained ${s.name}: +${cfg.staffGrowth.trainGain} to all stats.`);
+}
+
+/**
+ * PROD-028 (Claude's call, designer delegated 2026-11-11): job titles EMERGE from skills (no job assignment, no
+ * micromanagement). Writer / Director / Editor by top skill; Showrunner when Plot and Writing are both 60+; Auteur
+ * when every skill is 75+. Junior below staff level 5, Senior from level 15. Display only: never changes the sim.
+ */
+export function staffTitle(s: Staff): string {
+  if (s.role === "software_engineer") return "Software Engineer";
+  const st = s.stats;
+  const lvl = staffLevel(s);
+  const rank = lvl < 5 ? "Junior " : lvl >= 15 ? "Senior " : "";
+  if (METERS.every((m) => st[m] >= 75)) return `${lvl >= 15 ? "Senior " : ""}Auteur`;
+  if (st.plot >= 60 && st.writing >= 60) return `${rank}Showrunner`;
+  const top = [...METERS].sort((a, b) => st[b] - st[a])[0];
+  return `${rank}${top === "filming" ? "Director" : top === "editing" ? "Editor" : "Writer"}`;
 }

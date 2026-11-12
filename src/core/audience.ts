@@ -61,7 +61,9 @@ export function releaseWeek(state: StudioState, cfg: Config, rel: Release): { gr
       rel.trace.newSamplersThisWeek = viewers;
     }
   }
-  const gross = round2(viewers * grossPerViewer(cfg, rel));
+  // PROD-220: crowd-pleasers sell better per viewer (merch, repeat viewing); awards bait slightly worse
+  const am = rel.approach ? ((cfg.production as { approaches?: { grossMult?: Record<string, number> } }).approaches?.grossMult?.[rel.approach] ?? 1) : 1;
+  const gross = round2(viewers * grossPerViewer(cfg, rel) * am);
   const distributor = round2(gross * rel.royalty);
   const studio = round2(gross - distributor);
   const retention = rel.weekIndex === 0 || prev === 0 ? 1 : round2(viewers / prev);

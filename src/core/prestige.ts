@@ -82,7 +82,9 @@ export function evaluatePrestige(state: StudioState, cfg: Config, rel: Release, 
     const id = awardId(m, rel, scopeOf(m, cfg));
     if (state.prestigeAwards.includes(id)) continue;
     // review milestones scale with format experience (a 30-week movie counts double); legacy weight 1
-    const amount = isReview ? Math.round(m.amount * formatExperience(cfg, formatOf(rel))) : m.amount;
+    // PROD-220: awards bait earns more Prestige from reviews (awards season), crowd-pleasers less
+    const apm = rel.approach ? ((cfg.production as { approaches?: { reviewPrestigeMult?: Record<string, number> } }).approaches?.reviewPrestigeMult?.[rel.approach] ?? 1) : 1;
+    const amount = isReview ? Math.round(m.amount * formatExperience(cfg, formatOf(rel)) * apm) : m.amount;
     state.prestigeAwards.push(id);
     state.prestige += amount;
     out.push({ id, amount });

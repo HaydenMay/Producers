@@ -382,4 +382,7 @@ STRATEGIES["poor-fit-chooser"] = POOR_FIT_CHOOSER;
 import { makeWarningHeeder } from "./economy";
 STRATEGIES["heeds-warning"] = makeWarningHeeder(STRATEGIES.balanced, "heeds-warning");
 STRATEGIES["heeds-short"] = makeWarningHeeder(STRATEGIES.balanced, "heeds-short");
+import { makeApproachAgent } from "./economy";
+STRATEGIES["crowd-pleaser"] = makeApproachAgent(STRATEGIES.balanced, "crowd-pleaser");
+STRATEGIES["awards-bait"] = makeApproachAgent(STRATEGIES.balanced, "awards-bait");
 export const DISPLAY_NAME: Record<string, string> = { "cheap-duds": "low-budget-random-combo" };

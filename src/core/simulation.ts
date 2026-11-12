@@ -16,7 +16,7 @@ import { releaseWeek, decayFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
 import { audienceEraAt, criticGenerationAt, expectationsAt } from "./scoring";
 import { chooseDistribution, contractOffers, contractWeek, contractsEnabled, investedSoFar, isLateDistribution, startContract } from "./latedist";
-import { RULESET_VERSION, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
+import { RULESET_VERSION, type Approach, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
 
 export const FEATURES_MODELLED = ["movies", "limited series (config-gated)", "renewable TV seasons: orders, renewal, fatigue, twist, hiatus, announcements, contract variants A/B (config-gated)", "studio streaming service: engineer build, aggregate subscribers, catalog, Originals (config-gated)", "distributor advances/royalties/trust", "Stars (families, budgets, fallback, callbacks, relationships; default: persistent pool, years active, offscreen careers/retirement, catalog, original-lead card, hidden growth weights)", "marketing + studio buzz", "scores + legs", "IP fans", "Prestige milestones", "studio genre levels", "trends", "staff XP/hire/train", "studio staff-capacity cap + upgrade ladder (when configured)", "theme research + staff pitches"];
 export const FEATURES_NOT_MODELLED = ["soap operas (shelved)", "named critics (Gate 2.6 proxy only)", "eras beyond a gentle quality bar", "studio upgrades other than staff capacity + TV unlock", "genre unlocks", "late-game concurrency", "TV spinoffs/reboots, Final Season announcements, other show shake-ups", "binge drops", "platform upgrades", "challenge modes"];
@@ -192,6 +192,8 @@ export function getChoices(state: StudioState, cfg: Config): Choices {
   const plans = planOptions(state, cfg);
   const contracts = contractsEnabled(cfg) ? contractOffers(state, cfg) : null;
   const planning: Choices = { ...base, phase: "planning", options: [...plans, ...reinvestOptions(state, cfg), ...fireOptions(state, cfg).map((staffId) => ({ type: "fire" as const, staffId })), ...(contracts ? contracts.filter((c) => c.available).map((c) => ({ type: "contract" as const, contractId: c.id })) : []), { type: "wait" }] };
+  const ap = (cfg.production as { approaches?: { enabled?: boolean } }).approaches;
+  if (ap?.enabled && plans.length) planning.approaches = ["crowd", "balanced", "awards"];
   if (contracts) planning.contracts = contracts;
   if (isLateDistribution(cfg) && !plans.some((x) => !x.format)) planning.notes = [`Can't start a movie: base cost $${cfg.production.movie.baseCost.toLocaleString()} vs spendable $${Math.round(spendableCash(state)).toLocaleString()}${state.cash < 0 ? " (in the red)" : ""}. Take a work-for-hire contract to recover.`];
   return planning;
@@ -203,6 +205,14 @@ function sameDecision(a: Decision, b: Decision): boolean {
 
 export function applyDecision(state: StudioState, cfg: Config, d: Decision): void {
   const choices = getChoices(state, cfg);
+  // PROD-220: a plan may carry an approach; it is validated separately from the plan itself
+  let approach: Approach | undefined;
+  if (d.type === "plan" && d.approach !== undefined) {
+    if (!choices.approaches?.includes(d.approach)) throw new Error(`Illegal approach ${d.approach}`);
+    approach = d.approach;
+    const { approach: _a, ...rest } = d;
+    d = rest as Decision;
+  }
   if (!choices.options.some((o) => sameDecision(o, d))) {
     throw new Error(`Illegal decision in phase ${choices.phase}: ${JSON.stringify(d)}`);
   }
@@ -211,7 +221,8 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
       if (isLateDistribution(cfg)) {
         // Gate 4 candidate: no pitch, no advance. The studio starts (and pays for) its own production.
         const { route, ...plan } = d;
-        startProject(state, cfg, plan, null, route === "original" ? "original" : "traditional");
+        const proj = startProject(state, cfg, plan, null, route === "original" ? "original" : "traditional");
+        if (approach && approach !== "balanced") proj.approach = approach;
         return;
       }
       state.pendingPlan = d;
@@ -294,6 +305,20 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
   }
 }
 
+/**
+ * PROD-125 (Claude's call, designer delegated 2026-11-11): going broke is never game over. While cash is negative you
+ * can't start a production or spend on extras (already true), and once a month the debt costs interest, a nudge to
+ * take a contract. Legacy: no rate → nothing happens.
+ */
+function overdraftWeek(state: StudioState, cfg: Config): void {
+  const od = (cfg.economy as { overdraft?: { monthlyRate?: number; periodWeeks?: number } }).overdraft;
+  if (!od?.monthlyRate || state.cash >= 0 || state.week % (od.periodWeeks ?? 4) !== 0) return;
+  const interest = Math.round(-state.cash * od.monthlyRate);
+  if (interest <= 0) return;
+  ledger(state, { kind: "overdraft_interest", amount: -interest, note: `${(od.monthlyRate * 100).toFixed(0)}% of $${Math.round(-state.cash).toLocaleString()} overdrawn` });
+  emit(state, "overdraft", `In the red: the bank charged $${interest.toLocaleString()} interest this month. A contract job would get you back in the black.`, { interest });
+}
+
 export function advanceWeek(state: StudioState, cfg: Config): void {
   const p = state.project;
   if (p?.pendingDecision) throw new Error(`Cannot advance: ${p.pendingDecision} decision pending`);
@@ -318,6 +343,7 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
   decayFans(state, cfg);
   if (poolEnabled(cfg) && state.week % cfg.time.weeksPerYear === 0) talentYear(state, cfg); // PROD-214
   checkGenreUnlocks(state, cfg); // PROD-091
+  overdraftWeek(state, cfg); // PROD-125
   if (state.cash < 0) state.counters.negativeCashWeeks += 1;
 }
 

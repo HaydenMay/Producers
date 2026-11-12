@@ -101,6 +101,7 @@ export interface ScoreTrace {
   /** Star score bonus (PROD-051 option B): flat, after the meter curve, from skill fit only (never Fame). */
   starFit?: number;
   starBonus?: { audience: number; critic: number };
+  approachShift?: { audience: number; critic: number };
   expectations: Expectations;
   audience: number;
   critic: number;
@@ -114,6 +115,7 @@ export function computeScores(
   cfg: Config,
   expectations: Expectations = NO_EXPECTATIONS,
   starFit = 0,
+  approachShift?: { audience: number; critic: number } | null,
 ): ScoreTrace {
   const aw = cfg.scoring.audienceWeights as Record<Meter, number>;
   const cw = cfg.scoring.criticWeights as Record<Meter, number>;
@@ -162,6 +164,11 @@ export function computeScores(
     audience += starBonus.audience;
     critic += starBonus.critic;
   }
+  // PROD-220: the approach tilts the two reviews after the meter curve (visible at every career stage)
+  if (approachShift) {
+    audience += approachShift.audience;
+    critic += approachShift.critic;
+  }
   const audienceRaw = round2(audience);
   const criticRaw = round2(critic);
   audience = applyExpectation(audience, expectations.audienceToughness, expectations.method);
@@ -180,6 +187,7 @@ export function computeScores(
     audienceRaw,
     criticRaw,
     ...(starBonus ? { starFit, starBonus } : {}),
+    ...(approachShift ? { approachShift } : {}),
     expectations,
     audience: round2(Math.max(0, Math.min(10, audience))),
     critic: round2(Math.max(0, Math.min(10, critic))),

@@ -125,6 +125,8 @@ export interface Breakthrough {
 }
 
 export interface Project {
+  /** PROD-220 approach; absent = balanced */
+  approach?: Approach;
   id: string;
   title: string;
   format: Format;
@@ -169,6 +171,8 @@ export interface Project {
 }
 
 export interface Release {
+  /** PROD-220 approach the production used; absent = balanced */
+  approach?: Approach;
   id: string;
   title: string;
   genre: string;
@@ -247,7 +251,8 @@ export interface LedgerEntry {
     | "platform_opex"
     | "fire"
     | "contract_labor"
-    | "contract_fee";
+    | "contract_fee"
+    | "overdraft_interest";
   amount: number; // + into studio cash, - out of studio cash. advance_* entries track the project reserve.
   projectId?: string;
   note?: string;
@@ -319,7 +324,11 @@ export interface PlanDecision {
   twistTheme?: string;
   /** Gate 4 candidate (late_distribution) only: start as a studio-funded Streaming Original (no distributor meeting) */
   route?: "original";
+  /** PROD-220 (when production.approaches.enabled): where the crew puts its effort. Omitted = balanced. */
+  approach?: Approach;
 }
+
+export type Approach = "crowd" | "balanced" | "awards";
 
 /** Gate 4 candidate: one distributor's fixed bid at the 80% distribution meeting. NO cash to the studio. */
 export interface DistributionBid {
@@ -401,6 +410,8 @@ export interface Choices {
   cash: number;
   spendableCash: number;
   options: Decision[];
+  /** PROD-220: approaches a plan decision may carry (plan options themselves are listed without one) */
+  approaches?: Approach[];
   offers?: Offer[];
   auditionCards?: StarCard[];
   campaigns?: { id: string; cost: number; affordable: boolean }[];
