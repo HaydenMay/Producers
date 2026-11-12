@@ -9,4 +9,4 @@ Shipped default + streaming on; seeds 1–8, 20-year careers, cash read at years
 | balanced | 0/8 | — | — | 0.0 | $0.00M | $0.00M | $0.00M | $0.00M |
 | tv-first | 0/8 | — | — | 0.0 | $0.00M | $0.00M | $0.00M | $0.00M |
 
-Invariant violations (streaming on): 0. Elapsed 9.3 s.
+Invariant violations (streaming on): 0. Elapsed 9.4 s.

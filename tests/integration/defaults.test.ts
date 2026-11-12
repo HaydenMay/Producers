@@ -72,6 +72,7 @@ describe("Producers default economy", () => {
       delete x.production.approaches;
       delete x.economy.overdraft;
       delete x.studioGenre.qualityBonusPerLevel;
+      delete x.career.enabled;
       delete x._overlay;
       return x;
     };

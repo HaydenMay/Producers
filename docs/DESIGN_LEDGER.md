@@ -68,7 +68,7 @@
 | PROD-010 | One main production at a time; released titles keep earning during their finite run. | LOCKED | Implemented | v9.6 §3 | A1.10 |
 | PROD-011 | Time advances in weeks; one TV episode airs per week. | LOCKED | Implemented | v9.6 §3 | A1.11 |
 | PROD-012 | Getting rich without Prestige is possible; an unprestigious studio can't unlock the most prestigious expansions. | LOCKED | Implemented (low-budget / contract-farmer careers) | Gate 4 | A1.12 |
-| PROD-013 | Typical career length, end credits, endgame arc. Harness 10–30-year runs are stress horizons only. | OPEN | Not implemented | audit | A1.13 |
+| PROD-013 | Typical career length, end credits, endgame arc. Harness 10–30-year runs are stress horizons only. **Decided (designer 2026-11-11): a fixed career** that ends **by years or by number of productions** (picked at game start; default 20 years, or 40 productions), then a **recap** and **"keep running the studio, or retire?"**. Built: the end triggers at the first idle week past the limit (in-flight work finishes first); the recap lists years, releases by format, best and biggest titles, longest show, favourite Star, Hall of Fame titles, genres/themes opened, Prestige, cash, streaming and a **legacy score** (Prestige + 500 per Hall of Fame title + 1 per $2,500 cash *(test)*), locked at the end; continuing never asks again. 20-year medians: mixed 22.9K, quality-first 21.9K, awards bait 21.0K, movie-only 20.7K, crowd-pleaser 17.7K, TV-first 14.6K, cheap duds 7.2K, bad pairings ~0. | LOCKED (designer 2026-11-11; lengths and legacy formula *(test)*) | Implemented (default `career`; phases `career_end` / `finished`; `continue_career` / `end_career`; harness agents always continue; legacy overlay: endless) | audit | A1.13 |
 | PROD-014 | Optional replay variants / challenges (Balatro-inspired identities, objectives, harder stakes; sandbox after winning). Standard mode stays open-ended. **Don't build yet.** | LATER | Not implemented | audit | A1.14 |
 | PROD-015 | Optional hard bankruptcy, fail states, stricter challenge modes. The default game stays recoverable. | LATER | Not implemented | audit | A1.15, A14.18 |
 | PROD-016 | Late-game multiple simultaneous productions, only if one slot proves limiting. | LATER | Not implemented | v9.6 §3 | A1.16, A14.18 |
@@ -361,8 +361,6 @@
 
 ## Next decisions to review (ranked by impact)
 
-The designer delegated non-huge calls to Claude on 2026-11-11 ("make the changes you think are best and only ask me for huge decisions"). Remaining **structural** decision before building the playable game:
+The designer delegated non-huge calls to Claude on 2026-11-11. **No structural decisions remain open before building the playable game**: career length was decided (PROD-013, fixed career by years or productions, recap, keep playing or retire).
 
-1. **Career length / endgame** (PROD-013): does a career end (e.g. 20 years with a final score, like Game Dev Story) or run forever? **Huge; designer's call.**
-
-Everything else is tuning or presentation that can continue in this harness during the build: unlock pacing, prices, streaming churn, contract details (PROD-125), feed/ticker and trend timing (PROD-089/094/222), tutorial (PROD-174), more themes (romance-friendly), crew-as-lead idea (PROD-225), late-game money sinks (PROD-212) and the money display scale (PROD-211).
+Ongoing tuning/presentation that can continue in this harness during the build: unlock pacing, prices, streaming churn, contract details (PROD-125), legacy-score weights (PROD-013), TV-first legacy score trailing (~14.6K vs ~21K), feed/ticker and trend timing (PROD-089/094/222), tutorial (PROD-174), more themes (romance-friendly), crew-as-lead idea (PROD-225), late-game money sinks (PROD-212) and the money display scale (PROD-211).

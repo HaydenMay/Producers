@@ -105,6 +105,7 @@ function wantsOriginal(strat: Strategy, state: StudioState, cfg: Config, plan: P
 
 /** PROD-220: strategies with a fixed approach attach it to every plan they make (approach is validated separately). */
 export function decideFor(strat: Strategy, state: StudioState, cfg: Config, ch: Choices, rng: () => number, ctx: AgentCtx): Decision {
+  if (ch.phase === "career_end") return { type: "continue_career" }; // harness agents keep playing so long horizons still run
   const d = decideInner(strat, state, cfg, ch, rng, ctx);
   const ap = (strat as Strategy & { approach?: "crowd" | "awards" }).approach;
   return ap && d.type === "plan" && ch.approaches?.includes(ap) ? { ...d, approach: ap } : d;

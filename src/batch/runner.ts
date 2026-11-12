@@ -44,6 +44,10 @@ export function runCareer(seed: number, strategyId: string, cfg: Config, opts: C
       continue;
     }
     const ch = getChoices(state, cfg);
+    if (ch.phase === "finished") {
+      stoppedReason = "career ended";
+      break;
+    }
     // Every phase goes to the strategy: pre-Gate-3 strategies always wait during production (unchanged behavior);
     // Gate 3 strategies may announce a season or start the streaming build in the background.
     const d: Decision = decideFor(strat, state, cfg, ch, rng, ctx);
@@ -74,6 +78,7 @@ export function runScripted(
       continue;
     }
     const ch = getChoices(state, cfg);
+    if (ch.phase === "finished") break;
     const d = ch.phase === "production" || ch.phase === "contract" ? { type: "wait" as const } : decide(state, ch);
     applyDecision(state, cfg, d);
     decisions.push(d);

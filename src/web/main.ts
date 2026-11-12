@@ -1,4 +1,5 @@
 // Thin UI over the same core. No game rules here: everything goes through getChoices/applyDecision/advanceWeek.
+import { careerRecap } from "../core/career";
 import { staffTitle } from "../core/staff";
 import { planCostEstimate } from "../core/latedist";
 import { baselineConfig, legacyConfig, configHash, setPath, withOverrides, type Config } from "../core/config";
@@ -116,7 +117,14 @@ function renderCareer() {
   const ch = getChoices(s, cfg);
   const root = el("tab-career");
   let body = "";
-  if (ch.phase === "planning") body = planForm(ch) + `<div class="card"><h3>Reinvest</h3>${reinvestButtons(ch)}<button id="wait1">Advance 1 week (idle)</button></div>`;
+  if (ch.phase === "career_end" || ch.phase === "finished") {
+    const r = careerRecap(s, cfg);
+    body = `<div class="card"><h3>${ch.phase === "finished" ? "Retired" : "Career complete"}: legacy score ${r.legacyScore.toLocaleString()}</h3>
+      <p>${r.years} years · ${r.releases} releases (${Object.entries(r.byFormat).map(([k, v]) => `${v} ${k.replace("_", " ")}`).join(", ")}) · Prestige ${r.prestige.toLocaleString()} · Cash ${$(r.cash)}</p>
+      <p>Best: ${r.best ? `${esc(r.best.title)} (${r.best.avg}, ${esc(r.best.combo)})` : "—"} · Biggest: ${r.biggest ? `${esc(r.biggest.title)} (${(r.biggest.viewers ?? 0).toLocaleString()} viewers)` : "—"}${r.longestShow ? ` · Longest show: ${esc(r.longestShow.name)} (${r.longestShow.seasons} seasons)` : ""}${r.favoriteStar ? ` · Favourite Star: ${esc(r.favoriteStar.name)} (${r.favoriteStar.films} films)` : ""}</p>
+      <p>Hall of Fame (${r.hallOfFame.length}): ${r.hallOfFame.map(esc).join(", ") || "none"} · Genres ${r.genresOpened} · Themes ${r.themesOpened}${r.streaming ? ` · Streaming: ${r.streaming.subscribers.toLocaleString()} subscribers` : ""}</p>
+      ${ch.phase === "career_end" ? `<button class="primary" id="careerGo">Keep running the studio</button> <button id="careerEnd">Retire</button>` : ""}</div>`;
+  } else   if (ch.phase === "planning") body = planForm(ch) + `<div class="card"><h3>Reinvest</h3>${reinvestButtons(ch)}<button id="wait1">Advance 1 week (idle)</button></div>`;
   if (ch.phase === "pitch")
     body = `<div class="card"><h3>Pitch meeting</h3><table><tr><th>Distributor</th><th>Advance</th><th>Royalty</th><th>Reach</th><th>Why</th><th></th></tr>${ch
       .offers!.map((o) => `<tr><td>${o.distributorId}${o.lifeline ? " (lifeline)" : ""}</td><td>${$(o.advance)}</td><td>${(o.royalty * 100).toFixed(0)}%</td><td>${o.reach}</td><td class="muted">${esc(o.reasons.join("; "))}</td><td><button data-offer="${o.distributorId}">Choose</button></td></tr>`)
@@ -198,6 +206,8 @@ function renderCareer() {
   const reinvest = ch.options.filter((o) => REINVEST.includes(o.type));
   root.querySelectorAll<HTMLButtonElement>("[data-reinvest]").forEach((b) => (b.onclick = () => act(reinvest[Number(b.dataset.reinvest)])));
   document.getElementById("wait1")?.addEventListener("click", () => act({ type: "wait" }));
+  document.getElementById("careerGo")?.addEventListener("click", () => act({ type: "continue_career" }));
+  document.getElementById("careerEnd")?.addEventListener("click", () => act({ type: "end_career" }));
   document.getElementById("toNext")?.addEventListener("click", toNextDecision);
   document.getElementById("cancel")?.addEventListener("click", () => act({ type: "cancel" }));
   document.getElementById("doPlan")?.addEventListener("click", () => {

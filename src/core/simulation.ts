@@ -1,5 +1,6 @@
 // Single source of truth for the rules: createStudio / getChoices / applyDecision / advanceWeek.
 // CLI, batch runner, agents and the web UI all go through these functions.
+import { careerEndDue, careerRecap, markCareerEnd } from "./career";
 import { initTalentPool, poolEnabled, talentYear } from "./talent";
 import type { Config } from "./config";
 import { configHash } from "./config";
@@ -189,6 +190,9 @@ export function getChoices(state: StudioState, cfg: Config): Choices {
     }
     return { ...base, phase: "pitch", offers: state.pendingOffers, options: opts };
   }
+  // PROD-013: fixed career. At the first planning stop past the limit: recap + "keep playing?"
+  if (state.careerEnd?.decided === "end") return { ...base, phase: "finished", options: [] };
+  if (state.careerEnd && state.careerEnd.decided === null) return { ...base, phase: "career_end", recap: careerRecap(state, cfg), options: [{ type: "continue_career" }, { type: "end_career" }] };
   const plans = planOptions(state, cfg);
   const contracts = contractsEnabled(cfg) ? contractOffers(state, cfg) : null;
   const planning: Choices = { ...base, phase: "planning", options: [...plans, ...reinvestOptions(state, cfg), ...fireOptions(state, cfg).map((staffId) => ({ type: "fire" as const, staffId })), ...(contracts ? contracts.filter((c) => c.available).map((c) => ({ type: "contract" as const, contractId: c.id })) : []), { type: "wait" }] };
@@ -244,6 +248,14 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
       return chooseCampaign(state, cfg, d.campaign);
     case "distribute":
       return chooseDistribution(state, cfg, d.distributorId);
+    case "continue_career":
+      state.careerEnd!.decided = "continue";
+      emit(state, "career_continue", "You keep running the studio. Your legacy score is locked in; everything from here is a bonus.", {});
+      return;
+    case "end_career":
+      state.careerEnd!.decided = "end";
+      emit(state, "career_retire", `You retired. Final legacy score ${state.careerEnd!.legacyScore.toLocaleString()}.`, {});
+      return;
     case "contract":
       return startContract(state, cfg, d.contractId);
     case "cancel": {
@@ -344,6 +356,8 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
   if (poolEnabled(cfg) && state.week % cfg.time.weeksPerYear === 0) talentYear(state, cfg); // PROD-214
   checkGenreUnlocks(state, cfg); // PROD-091
   overdraftWeek(state, cfg); // PROD-125
+  // PROD-013: the career ends at the first idle week past the limit (an in-flight production or contract finishes first)
+  if (careerEndDue(state, cfg) && !state.project && !state.pendingOffers && !state.contract) markCareerEnd(state, cfg);
   if (state.cash < 0) state.counters.negativeCashWeeks += 1;
 }
 

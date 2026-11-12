@@ -1,6 +1,14 @@
 {
   "_label": "baseline \u2014 PROVISIONAL TESTING VALUES. Simulation assumptions, NOT design locks.",
   "name": "baseline",
+  "career": {
+    "_label": "PROD-013 (designer 2026-11-11): a FIXED career that ends by years OR by number of productions (the player picks at game start; default 20 years), then a recap and 'keep playing?'. Continuing never changes the locked legacy score. Legacy score = Prestige + 500 per Hall of Fame title + 1 point per $2,500 cash *(test)*; cash weighted so money-led (TV, streaming) and Prestige-led (awards) careers land within ~25% of each other at 20 years. Legacy overlay: off (no end).",
+    "enabled": true,
+    "mode": "years",
+    "years": 20,
+    "productions": 40,
+    "legacyScore": { "prestige": 1, "hallOfFame": 500, "cashPer": 2500 }
+  },
   "start": {
     "_cashLabel": "Producers default (test): $160K covers the first studio-funded 30-week movie ($60K base + ~$72K payroll for 2 staff + a cheap Star). Legacy overlay: $40K.",
     "cash": 160000,

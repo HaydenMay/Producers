@@ -277,6 +277,8 @@ export interface StudioState {
   stars: Record<string, Star>;
   hiredStarIds: string[]; // callback catalog
   catalogUnlocked?: boolean;
+  /** PROD-013: set when the fixed career ends (recap shown); decided = the player's answer */
+  careerEnd?: { week: number; decided: "continue" | "end" | null; legacyScore: number };
   /** monthly payroll accrual (designer 2026-11-11), present only when staffGrowth.payrollPeriodWeeks > 1 */
   payrollDue?: { wages: number; upkeep: number }; // Stars rework: catalog opens with the first studio upgrade (PROD-216)
   distributors: Distributor[];
@@ -400,9 +402,11 @@ export type Decision =
   | { type: "build_streaming" }
   | { type: "distribute"; distributorId: string | null } // Gate 4 candidate: one bid or null = self-distribute
   | { type: "contract"; contractId: string } // Gate 4: work-for-hire
+  | { type: "continue_career" } // PROD-013: keep playing after the recap
+  | { type: "end_career" } // PROD-013: retire; the save is finished
   | { type: "wait" };
 
-export type Phase = "planning" | "pitch" | "production" | "casting" | "marketing" | "distribution" | "contract";
+export type Phase = "planning" | "pitch" | "production" | "casting" | "marketing" | "distribution" | "contract" | "career_end" | "finished";
 
 export interface Choices {
   phase: Phase;
@@ -410,6 +414,8 @@ export interface Choices {
   cash: number;
   spendableCash: number;
   options: Decision[];
+  /** PROD-013: end-of-career recap (phase career_end) */
+  recap?: ReturnType<typeof import("./career").careerRecap>;
   /** PROD-220: approaches a plan decision may carry (plan options themselves are listed without one) */
   approaches?: Approach[];
   offers?: Offer[];
