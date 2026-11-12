@@ -17,6 +17,8 @@ export interface Expectations {
   criticToughness: number;
   audienceEra: number;
   audienceToughness: number;
+  /** PROD-226: the studio-size share already included in both toughness values (absent when 0). */
+  studioToughness?: number;
 }
 
 export const NO_EXPECTATIONS: Expectations = { method: "scale", criticGeneration: 0, criticToughness: 0, audienceEra: 0, audienceToughness: 0 };
@@ -49,16 +51,27 @@ function criticToughnessAt(week: number, g: number, cfg: Config): number {
   return Math.min(c.maxToughness, t);
 }
 
-export function expectationsAt(week: number, cfg: Config): Expectations {
+/** Studio-size expectations (PROD-226, 2026-11-12): "we're a bigger company now, the expectations are higher".
+ *  Each studio upgrade adds toughness to BOTH audience and critic reviews; 0 when disabled or before any upgrade. */
+type StudioSizeCfg = { enabled?: boolean; toughnessByUpgrades?: number[]; applyTo?: "both" | "critics" };
+export function studioToughnessAt(upgrades: number, cfg: Config): number {
+  const s = (cfg.expectations as { studioSize?: StudioSizeCfg }).studioSize;
+  if (!s?.enabled || upgrades <= 0 || !s.toughnessByUpgrades?.length) return 0;
+  return s.toughnessByUpgrades.at(Math.min(upgrades, s.toughnessByUpgrades.length) - 1) ?? 0;
+}
+
+export function expectationsAt(week: number, cfg: Config, upgrades = 0): Expectations {
   const e = cfg.expectations;
   const g = criticGenerationAt(week, cfg);
   const ae = audienceEraAt(week, cfg);
+  const size = studioToughnessAt(upgrades, cfg);
   return {
     method: e.method as Expectations["method"],
     criticGeneration: g,
-    criticToughness: Math.round(criticToughnessAt(week, g, cfg) * 1000) / 1000,
+    criticToughness: Math.round((criticToughnessAt(week, g, cfg) + size) * 1000) / 1000,
     audienceEra: ae,
-    audienceToughness: Math.round(Math.min(e.audience.maxToughness, e.audience.toughnessPerEra * ae) * 1000) / 1000,
+    audienceToughness: Math.round((Math.min(e.audience.maxToughness, e.audience.toughnessPerEra * ae) + ((e as { studioSize?: StudioSizeCfg }).studioSize?.applyTo === "critics" ? 0 : size)) * 1000) / 1000,
+    ...(size > 0 ? { studioToughness: size } : {}),
   };
 }
 /** Apply an expectation to a pre-clamp score. scale: x(1-t) (tougher at the top in absolute points); subtract: -10t points. */

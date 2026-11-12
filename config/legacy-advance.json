@@ -77,6 +77,7 @@
     "grossPerEpisodeViewer": 0.57
   },
   "expectations": {
+    "studioSize": { "enabled": false },
     "critics": {
       "enabled": false,
       "generationYears": 6,

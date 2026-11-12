@@ -253,9 +253,9 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const fitNow = p.starId ? starFit(state.stars[p.starId], p.genre, cfg) : 0; // PROD-051: skill fit, never Fame
   // audit 2026-11-12: the cult / breakthrough "without" traces use the same approach tilt as the real score
   const approachShift = p.approach ? ((cfg.production as { approaches?: { scoreShift?: Record<string, { audience: number; critic: number }> } }).approaches?.scoreShift?.[p.approach] ?? null) : null;
-  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow, approachShift);
+  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg, state.upgrades.length), fitNow, approachShift);
   if (cult) {
-    const w = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow, approachShift);
+    const w = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg, state.upgrades.length), fitNow, approachShift);
     cult.audienceWithout = w.audience;
     cult.avgWithout = avgScore(w.audience, w.critic);
   }
@@ -263,7 +263,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   if (p.breakthroughs?.length) {
     const q = { ...p, meterPoints: { ...p.meterPoints } };
     for (const e of p.breakthroughs) q.meterPoints[e.meter] = round2(q.meterPoints[e.meter] - e.points);
-    const w = computeScores(meterQuality(q, state, cfg), scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow, approachShift);
+    const w = computeScores(meterQuality(q, state, cfg), scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg, state.upgrades.length), fitNow, approachShift);
     breakthrough = { events: p.breakthroughs, audienceWithout: w.audience, criticWithout: w.critic, avgWithout: avgScore(w.audience, w.critic) };
   }
   const avg = avgScore(sc.audience, sc.critic);

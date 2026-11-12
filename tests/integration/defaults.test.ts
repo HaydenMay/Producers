@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 import { baselineConfig, legacyConfig, withOverrides } from "../../src/core/config";
 import { runBatch } from "../../src/batch/batch";
 import { createStudio } from "../../src/core/simulation";
+import { runCareer } from "../../src/batch/runner";
 
 describe("Producers default economy", () => {
   it("baseline = late distribution + contracts + $160K; legacyConfig() restores the advance model", () => {
@@ -43,6 +44,7 @@ describe("Producers default economy", () => {
       delete x.audience.movieQualityPivot;
       delete x.audience.fanDecayExact; // audit 2026-11-12: exact fan decay (legacy keeps weekly rounding)
       delete x.staffCapacity; // audit H3: the default ships the 4/6/8 ladder; legacy stays uncapped
+      delete x.expectations.studioSize; // PROD-226: studio-size expectations off in legacy
       delete x.agents.legacyHeuristicStaffCaps; // audit M3: default agents play the default game
       delete x.agents.useFiring;
       delete x.agents.economicRenewal;
@@ -190,3 +192,30 @@ describe("planning approach, overdraft, staff titles (2026-11-11)", () => {
   });
 });
 
+
+// PROD-226 (designer 2026-11-12): "we're a bigger company now, the expectations are higher"
+import { expectationsAt, studioToughnessAt } from "../../src/core/scoring";
+describe("studio-size expectations (PROD-226)", () => {
+  it("adds toughness to both reviews only after studio upgrades; legacy overlay has none", () => {
+    const D = baselineConfig();
+    const t = (D.expectations as unknown as { studioSize: { toughnessByUpgrades: number[] } }).studioSize.toughnessByUpgrades;
+    expect(studioToughnessAt(0, D)).toBe(0);
+    expect(studioToughnessAt(1, D)).toBe(t[0]);
+    expect(studioToughnessAt(2, D)).toBe(t[1]);
+    expect(studioToughnessAt(5, D)).toBe(t[1]);
+    const e0 = expectationsAt(10, D, 0), e2 = expectationsAt(10, D, 2);
+    expect(e2.criticToughness).toBeCloseTo(e0.criticToughness + t[1], 6);
+    expect(e2.audienceToughness).toBeCloseTo(e0.audienceToughness + t[1], 6);
+    expect(e0.studioToughness).toBeUndefined();
+    expect(studioToughnessAt(2, legacyConfig())).toBe(0);
+  });
+  it("a real career announces it on upgrade and judges later releases tougher", () => {
+    const D = baselineConfig();
+    const s = runCareer(1, "balanced", D, { productions: 0, years: 6 }).state;
+    expect(s.upgrades.length).toBeGreaterThan(0);
+    expect(s.events.some((e) => e.type === "upgrade" && e.message.startsWith("We're a bigger company now"))).toBe(true);
+    const after = s.releases.filter((r) => s.upgrades.some((u) => u.week < r.releaseWeek));
+    expect(after.length).toBeGreaterThan(0);
+    for (const r of after) expect((r.trace.quality as { score: { expectations: { studioToughness?: number } } }).score.expectations.studioToughness).toBeGreaterThan(0);
+  });
+});

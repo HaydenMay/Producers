@@ -575,6 +575,9 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `agents.economicRenewal` | true |
 | `agents.fireDebtThreshold` | -100000 |
 | `agents.renewMinNetPerWeek` | 15000 |
+| `expectations.studioSize.enabled` | true |
+| `expectations.studioSize.toughnessByUpgrades` | [0.025,0.04] |
+| `expectations.studioSize.applyTo` | "both" |
 | `expectations.method` | "scale" |
 | `expectations.critics.enabled` | true |
 | `expectations.critics.generationYears` | 5 |

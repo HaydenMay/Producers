@@ -654,6 +654,12 @@
     "renewMinNetPerWeek": 15000
   },
   "expectations": {
+    "studioSize": {
+      "_label": "PROD-226 (designer 2026-11-12): \"we're a bigger company now, the expectations are higher\". Toughness added to BOTH audience and critic reviews after the 1st / 2nd studio upgrade (same scale method as critic generations: x(1 - t)). Tuned so each upgrade is still a net gain but the Hall of Fame stays rare. legacy-advance.json disables it. TEST VALUES.",
+      "enabled": true,
+      "toughnessByUpgrades": [0.025, 0.04],
+      "applyTo": "both"
+    },
     "_label": "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS.",
     "method": "scale",
     "critics": {

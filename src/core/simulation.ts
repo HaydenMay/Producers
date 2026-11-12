@@ -15,7 +15,7 @@ import { allowedOrders, cheapestBaseCost, formatOf, limitedSeriesAvailable, part
 import { buildStreaming, canBuildStreaming, canHireEngineer, decayAnticipation, hireEngineer, streamingWeek } from "./streaming";
 import { releaseWeek, decayFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
-import { audienceEraAt, criticGenerationAt, expectationsAt } from "./scoring";
+import { audienceEraAt, criticGenerationAt, expectationsAt, studioToughnessAt } from "./scoring";
 import { chooseDistribution, contractOffers, contractWeek, contractsEnabled, investedSoFar, isLateDistribution, startContract } from "./latedist";
 import { RULESET_VERSION, type Approach, type Choices, type Decision, type PlanDecision, type StudioState } from "./types";
 
@@ -275,6 +275,8 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
       ledger(state, { kind: "upgrade", amount: -up.cost, note: `studio capacity ${state.maxStaff} -> ${up.to}` });
       state.upgrades.push({ week: state.week, from: state.maxStaff, to: up.to, cost: up.cost, prestigeAtUpgrade: state.prestige });
       emit(state, "upgrade", `Studio upgraded: employee capacity ${state.maxStaff} → ${up.to} (cost $${up.cost.toLocaleString()}).`);
+      const tough = studioToughnessAt(state.upgrades.length, cfg);
+      if (tough > 0) emit(state, "upgrade", `We're a bigger company now, so the expectations are higher: audiences and critics will judge our releases ${(tough * 100).toFixed(0)}% tougher. We'll have to give it our all to reach the Hall of Fame.`, { studioToughness: tough });
       state.maxStaff = up.to;
       state.capacityLevel += 1;
       return;
