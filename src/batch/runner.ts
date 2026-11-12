@@ -35,7 +35,7 @@ export function runCareer(seed: number, strategyId: string, cfg: Config, opts: C
       stoppedReason = opts.years !== undefined ? "horizon" : "maxWeeks";
       break;
     }
-    const done = opts.years === undefined && state.counters.productionsCompleted >= opts.productions && !state.project && !state.pendingOffers;
+    const done = opts.years === undefined && state.counters.productionsCompleted >= opts.productions && !state.project && !state.pendingOffers && !state.contract; // audit 2026-11-12: never stop mid-contract
     if (done) {
       const anyActive = state.releases.some((r) => r.active);
       if (!opts.drain || !anyActive) break;

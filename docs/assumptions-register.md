@@ -5,6 +5,8 @@
 
 > **Every number in `config/baseline.json` is PROVISIONAL.** These are testing values chosen to get measurable results, not design locks. Formula shapes marked WORKING ASSUMPTION fill gaps that v9.61 leaves Open. Change them freely; rerun the same seed bank with `npm run compare`.
 
+> **How current is this?** The **Full parameter listing** at the end is generated from the live `config/baseline.json` (the Producers default) and checked by `npm run ledger:check`, so it is always current. The hand-written formula tables (A1–A24 and the gate sections) describe each formula **as it was introduced at that gate**; several have since changed in the default (e.g. late distribution instead of advances, $4 tickets, editorial single-grade combos, genre unlocks, critic generations ON). Where they disagree, the generated listing and the ledger win.
+
 Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = harness choice for an Open rule. **NOT MODELLED** = absent, not guessed.
 
 ## Formula-level assumptions (the ones most likely to change results)
@@ -23,7 +25,7 @@ Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = ha
 | A10 | Scores | Audience = Σ weights (F/E 0.35, P/W 0.15) / 10; Critic mirrored. Weak meter: if a meter is > 18 below the mean, penalty 0.05/pt (heavy side 1.0, light side 0.3). Combo multipliers A 1.15 … F 0.78. Repetition fatigue 5%/repeat (sequel 2.5%, halved with a Hall of Fame entry, max 30%). Critic saturation −10% when the theme is Saturated. | LOCKED structure; numbers provisional. | — |
 | A11 | Opening | awareness = 1 − exp(−Σ inputs) with inputs base 0.35, campaign (0 / 0.25 / 0.55 / 0.95), studio buzz, 0.6×Fame/100, trend (rising 0.15, hot 0.4, saturated 0.1), 2.5×IP fans/market. Reach cap = 400,000 × distributor reach. Opening = 30% of reach cap × awareness. | Saturating so marketing has diminishing returns. | Fame weight 0.6 decides whether famous Stars pay back. |
 | A12 | Legs | Weekly retention = 0.62 + w × (score−5)/5, critic score (w 0.18) for weeks 2–3, audience score (w 0.24) after; clamp 0.15–1.05. Viewers capped by remaining **reach cap** (word of mouth can pass the initial awareness pool). Run ends at 14 weeks or < 400 viewers. | LOCKED: critics early, audience later, finite runs. | — |
-| A13 | Gross | $2.00 gross per viewer; distributor takes royalty % of each week's gross. | Scaled so a decent film roughly repays its distributor (ROI ≈ 1). | Royalty and gross scale together decide distributor ROI and trust. |
+| A13 | Gross | $2.00 gross per viewer at the time (default now $4.00, PROD-221; $2 only in the legacy overlay); distributor takes royalty % of each week's gross. | Scaled so a decent film roughly repays its distributor (ROI ≈ 1). | Royalty and gross scale together decide distributor ROI and trust. |
 | A14 | IP fans | Run end: fans += viewers × 0.08 × (avg−5)/5 if avg ≥ 5; else fans × (1 − 0.35 × (5−avg)/5). Spinoffs start at 50% of the parent's fans. Fans decay 10%/yr. | LOCKED inheritance; numbers provisional. | — |
 | A15 | Stars | Budget = 100 + 30 × level (max level 10 → 400 < 5 × 100). Fallback Newcomer: Level 0, 40-point budget, $0. Shapes balanced 40% / two-focus 35% / specialist 25% (internal only). Tiers: newcomer L0–2 Fame 0–15; mid L2–5 Fame 25–55; big L4–8 Fame 65–95; hidden gem 4% (newcomer at L5–7). Level +1 every 2 projects; +6 points in the worked family per project (within budget). | LOCKED budget rule; numbers provisional. | Hidden-gem rate kept low on purpose (v9.5 tuning note). |
 | A16 | Star price | Fame fee = 2,000 + 250 × Fame^1.25; Prestige premium = fee × 0.6 × Fame/100 × (1 − P/(P+400)); relationship discount = fee × 6% × (rel − 1). | LOCKED: Fame-based minus discounts; level/skill never raise price. | — |
@@ -56,7 +58,7 @@ Labels: **LOCKED (v9.61)** = matches the design doc. **WORKING ASSUMPTION** = ha
 
 ## Gate 3 assumptions
 
-Gate 3 (formats, TV, streaming) has its own expanded register: **`docs/gate-3-assumptions.md`** (T1–T19, S1–S8, P1–P4, provisional flag thresholds). All Gate 3 fields default to disabled in `config/baseline.json`; `config/gate3.json` enables them.
+Gate 3 (formats, TV, streaming) has its own expanded register: **[`docs/archive/gates/gate-3-assumptions.md`](archive/gates/gate-3-assumptions.md)** (T1–T19, S1–S8, P1–P4, provisional flag thresholds; history). Limited series, TV and streaming are **ON** in `config/baseline.json` since 2026-11-11; the legacy overlay turns them off.
 
 ## Gate 4Q assumptions (logical combinations, quality range, dud tests; EXPERIMENT)
 
@@ -64,7 +66,7 @@ Evidence: `docs/gate-4-quality-findings.md`; decisions: `docs/gate-4-quality-ope
 
 | # | Area | Assumption | Value | Notes |
 |---|---|---|---|---|
-| Q-1 | Compatibility source | `world.compatibility.mode` random (legacy) or editorial matrix per exact genre × theme, separate audience/critic | random (baseline), editorial (gate4q) | matrix in config, 13 pairs flagged contestable (D1) |
+| Q-1 | Compatibility source | `world.compatibility.mode` editorial (the default since 2026-11-11): ONE shared grade per exact genre × theme for both scores (PROD-062/074); random = two independent legacy grades | editorial (baseline), random (legacy overlay only) | matrix in config, 13 pairs flagged contestable (D1) |
 | Q-2 | World variation | each side moves 1 grade step with 20% chance (direction 50/50, clamped), from a stable hash of (seed, pair); old random draws still consumed | `variation.chance` 0.2, `maxSteps` 1 | D5 |
 | Q-3 | Severity | gradeMultiplier D 0.80, F 0.55 (A/B/C unchanged) | gate4q only | D2 |
 | Q-4 | Cult appeal | eligible: audience grade D/F + never-released pair + (Filming + Editing)/2 ≥ 60; chance 0.10 + rising 0.05 / hot 0.10; lazy `reception` stream; 25% breakout (audience grade A) else lift (+2 steps); audience only, this title only; combo book keeps the baseline | `world.cult.*` (off in baseline, on in gate4q) | D4 |
@@ -77,8 +79,8 @@ Evidence: `docs/gate-4-economy-findings.md`; decisions: `docs/gate-4-economy-ope
 
 | # | Area | Assumption | Value | Notes |
 |---|---|---|---|---|
-| G4-1 | Financing | Studio pays base cost at 0%, Star at 40%, payroll throughout; only affordable plans are legal; no advance, no lifeline | `economy.mode` | candidate only |
-| G4-2 | Start cash | Raised so the first studio-funded movie is possible | $120K (`config/gate4.json`) | OPEN (D2) |
+| G4-1 | Financing | Studio pays base cost at 0%, Star at 40%, payroll throughout; only affordable plans are legal; no advance, no lifeline | `economy.mode` | the default since 2026-11-10 (legacy overlay: advances) |
+| G4-2 | Start cash | Raised so the first studio-funded movie is possible | $160K default (`start.cash`; $120K in `config/gate4.json`) *(test)* | OPEN (PROD-114) |
 | G4-3 | Bid preview | appeal = 1 + 0.6 × (preview − 60)/40 + trend + 0.6 × fans/market + 0.3 × Fame/100 + 0.12 × known combo + 0.1 × (last season − 7), clamped 0.4–1.8. Preview = mean meter quality projected to completion | `economy.lateDistribution.*` | never hidden grades or final scores |
 | G4-4 | Bid terms | ad = adBase × format factor × appeal × 1.15 if favoured × trust factor × ±8%; share = shareBase × (1.15 − 0.15 × appeal) × (1.1 − 0.04 × trust) in [0.05, 0.7]; reach = roster reach × 1.1 if favoured; bids only if appeal ≥ minAppeal | starlight $10K/15%/0.4 · wolf $30K/35%/0.7 · orbit $40K/38%/0.8 · xyz $55K/45%/0.9 · meridian $80K/50%/1.0 | 2–3 bidders, seeded on the distributors stream |
 | G4-5 | Ads → awareness | 1.2 × (1 − e^(−ad/$40K)) replaces the campaign term | `adAwarenessMax`, `adScale` | |
@@ -124,21 +126,27 @@ All Gate 2.6 numbers are **TEST ASSUMPTIONS**. With `expectations.critics.enable
 
 ## Not modelled (deliberately absent, not guessed)
 
-Gate 3 now models limited series, TV and streaming (see `docs/gate-3-assumptions.md`). Still absent: severance/morale/transfer for dismissed staff, named critics, binge release, spinoffs of TV shows, eras beyond the quality bar (Gate 2.6 adds only a calendar proxy for critic generations / audience eras; no era news, theme waves or named critics), studio upgrades other than the Gate 2.5 staff-capacity ladder, format unlock gates, genre unlocks, late-game concurrency, Star bio lines, budget tiers (shelved in the design).
+Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gate-3-assumptions.md`](archive/gates/gate-3-assumptions.md)). Still absent: severance/morale/transfer for dismissed staff, named critics, binge release, spinoffs of TV shows, eras beyond the quality bar (Gate 2.6 adds only a calendar proxy for critic generations / audience eras; no era news, theme waves or named critics), studio upgrades other than the Gate 2.5 staff-capacity ladder and the TV unlock, late-game concurrency, Star bio lines, budget tiers (shelved in the design).
 
 ## Full parameter listing (`config/baseline.json`)
 
-Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mixed-format: `config/gate3.json`; Gate 4 economy candidate: `config/gate4.json`; Gate 4Q scoring candidate: `config/gate4q.json`; experiment variants: `config/experiments/`.
+**Generated** by `npx tsx scripts/register.ts` from the live Producers default; `npm run ledger:check` fails if it drifts. Values are *(test)* harness assumptions, never design decisions (see the ledger). Labels (`_label` keys) are in the config. Regression-only values: `config/legacy-advance.json`; candidates: `config/gate3.json`, `gate4.json`, `gate4q.json`, `candidate.json`; experiment variants: `config/experiments/`.
 
 | Path | Value |
 |---|---|
-| `_label` | "baseline \u2014 PROVISIONAL TESTING VALUES. Simulation assumptions, NOT design locks." |
 | `name` | "baseline" |
-| `start.cash` | 40000 |
-| `start.staff` | [{"name": "Sam", "stats": {"plot": 32, "writing": 28, "filming": 22, "editing": 20}, "wage": 900}, {"name": "Alex", "stats": {"plot": 20, "writing": 22, "filming": 30, "editing": 30}, "wage": 900}] |
+| `career.enabled` | true |
+| `career.mode` | "years" |
+| `career.years` | 20 |
+| `career.productions` | 40 |
+| `career.legacyScore.prestige` | 1 |
+| `career.legacyScore.hallOfFame` | 500 |
+| `career.legacyScore.cashPer` | 2500 |
+| `start.cash` | 160000 |
+| `start.staff` | [{"name":"Sam","stats":{"plot":32,"writing":28,"filming":22,"editing":20},"wage":900},{"name":"Alex","stats":{"plot":20,"writing":22,"filming":30,"editing":30},"wage":900}] |
 | `start.upkeepPerWeek` | 600 |
-| `start.unlockedGenres` | ["Action", "Comedy", "Horror"] |
-| `start.unlockedThemes` | ["Zombies", "Superheroes", "Spies", "Sports"] |
+| `start.unlockedGenres` | ["Action","Comedy","Horror"] |
+| `start.unlockedThemes` | ["Zombies","Superheroes","Spies","Sports"] |
 | `world.genres.Action` | "Action" |
 | `world.genres.Comedy` | "Funny" |
 | `world.genres.Horror` | "Scary" |
@@ -147,8 +155,8 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `world.genres.Drama` | "Dramatic" |
 | `world.genres.SciFi` | "Action" |
 | `world.genres.RomCom` | "Funny" |
-| `world.families` | ["Scary", "Funny", "Romantic", "Action", "Dramatic"] |
-| `world.themes` | ["Zombies", "Superheroes", "Spies", "Sports", "Vampires", "Time Travel", "Pirates", "Robots", "Dinosaurs", "Mythology"] |
+| `world.families` | ["Scary","Funny","Romantic","Action","Dramatic"] |
+| `world.themes` | ["Zombies","Superheroes","Spies","Sports","Vampires","Time Travel","Pirates","Robots","Dinosaurs","Mythology"] |
 | `world.gradeWeights.A` | 0.12 |
 | `world.gradeWeights.B` | 0.25 |
 | `world.gradeWeights.C` | 0.33 |
@@ -156,179 +164,127 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `world.gradeWeights.F` | 0.1 |
 | `world.gradeMultiplier.A` | 1.15 |
 | `world.gradeMultiplier.B` | 1.06 |
-| `world.gradeMultiplier.C` | 1.0 |
+| `world.gradeMultiplier.C` | 1 |
 | `world.gradeMultiplier.D` | 0.9 |
 | `world.gradeMultiplier.F` | 0.78 |
-| `world.compatibility._label` | "Gate 4Q EXPERIMENT. mode random = every earlier gate (two independent weighted grades per exact genre/theme pair from the world stream). mode editorial = the designer-editable baseline below (audience/critic per EXACT genre, not family), optionally shifted by a bounded per-pair variation from a stable hash of (seed, pair) - never from a shared RNG stream. The random draws are still consumed in editorial mode so every other world/talent draw is unchanged (clean paired comparisons). All grades are EDITORIAL PROPOSALS for designer review." |
-| `world.compatibility.mode` | "random" |
-| `world.compatibility.variation._label` | "bounded world-to-world variation: each side of each pair independently shifts one grade step with this chance (direction 50/50, clamped A..F). Pairs at A or F never move more than one step, so a natural fit can't become a disaster." |
+| `world.genreFamilyWeights.Action.Action` | 0.8 |
+| `world.genreFamilyWeights.Action.Funny` | 0.2 |
+| `world.genreFamilyWeights.Comedy.Funny` | 0.8 |
+| `world.genreFamilyWeights.Comedy.Romantic` | 0.2 |
+| `world.genreFamilyWeights.Horror.Scary` | 0.8 |
+| `world.genreFamilyWeights.Horror.Dramatic` | 0.2 |
+| `world.genreFamilyWeights.Thriller.Scary` | 0.6 |
+| `world.genreFamilyWeights.Thriller.Dramatic` | 0.4 |
+| `world.genreFamilyWeights.Romance.Romantic` | 0.8 |
+| `world.genreFamilyWeights.Romance.Dramatic` | 0.2 |
+| `world.genreFamilyWeights.Drama.Dramatic` | 0.8 |
+| `world.genreFamilyWeights.Drama.Romantic` | 0.2 |
+| `world.genreFamilyWeights.SciFi.Action` | 0.6 |
+| `world.genreFamilyWeights.SciFi.Dramatic` | 0.4 |
+| `world.genreFamilyWeights.RomCom.Funny` | 0.5 |
+| `world.genreFamilyWeights.RomCom.Romantic` | 0.5 |
+| `world.compatibility.mode` | "editorial" |
 | `world.compatibility.variation.enabled` | true |
 | `world.compatibility.variation.chance` | 0.2 |
 | `world.compatibility.variation.maxSteps` | 1 |
-| `world.compatibility.contestable` | ["Comedy/Zombies", "Romance/Zombies", "RomCom/Zombies", "Romance/Vampires", "Horror/Spies", "Action/Dinosaurs", "Thriller/Time Travel", "Romance/Robots", "Drama/Zombies", "SciFi/Dinosaurs", "Horror/Pirates", "RomCom/Spies", "Comedy/Sports"] |
-| `world.compatibility.matrix.Action.Zombies.audience` | "B" |
-| `world.compatibility.matrix.Action.Zombies.critic` | "C" |
-| `world.compatibility.matrix.Action.Superheroes.audience` | "A" |
-| `world.compatibility.matrix.Action.Superheroes.critic` | "B" |
-| `world.compatibility.matrix.Action.Spies.audience` | "A" |
-| `world.compatibility.matrix.Action.Spies.critic` | "B" |
-| `world.compatibility.matrix.Action.Sports.audience` | "C" |
-| `world.compatibility.matrix.Action.Sports.critic` | "C" |
-| `world.compatibility.matrix.Action.Vampires.audience` | "B" |
-| `world.compatibility.matrix.Action.Vampires.critic` | "C" |
-| `world.compatibility.matrix.Action.Time Travel.audience` | "B" |
-| `world.compatibility.matrix.Action.Time Travel.critic` | "B" |
-| `world.compatibility.matrix.Action.Pirates.audience` | "A" |
-| `world.compatibility.matrix.Action.Pirates.critic` | "B" |
-| `world.compatibility.matrix.Action.Robots.audience` | "B" |
-| `world.compatibility.matrix.Action.Robots.critic` | "C" |
-| `world.compatibility.matrix.Action.Dinosaurs.audience` | "A" |
-| `world.compatibility.matrix.Action.Dinosaurs.critic` | "C" |
-| `world.compatibility.matrix.Action.Mythology.audience` | "B" |
-| `world.compatibility.matrix.Action.Mythology.critic` | "B" |
-| `world.compatibility.matrix.Comedy.Zombies.audience` | "B" |
-| `world.compatibility.matrix.Comedy.Zombies.critic` | "B" |
-| `world.compatibility.matrix.Comedy.Superheroes.audience` | "B" |
-| `world.compatibility.matrix.Comedy.Superheroes.critic` | "C" |
-| `world.compatibility.matrix.Comedy.Spies.audience` | "B" |
-| `world.compatibility.matrix.Comedy.Spies.critic` | "C" |
-| `world.compatibility.matrix.Comedy.Sports.audience` | "A" |
-| `world.compatibility.matrix.Comedy.Sports.critic` | "B" |
-| `world.compatibility.matrix.Comedy.Vampires.audience` | "B" |
-| `world.compatibility.matrix.Comedy.Vampires.critic` | "B" |
-| `world.compatibility.matrix.Comedy.Time Travel.audience` | "B" |
-| `world.compatibility.matrix.Comedy.Time Travel.critic` | "B" |
-| `world.compatibility.matrix.Comedy.Pirates.audience` | "C" |
-| `world.compatibility.matrix.Comedy.Pirates.critic` | "D" |
-| `world.compatibility.matrix.Comedy.Robots.audience` | "C" |
-| `world.compatibility.matrix.Comedy.Robots.critic` | "C" |
-| `world.compatibility.matrix.Comedy.Dinosaurs.audience` | "C" |
-| `world.compatibility.matrix.Comedy.Dinosaurs.critic` | "D" |
-| `world.compatibility.matrix.Comedy.Mythology.audience` | "C" |
-| `world.compatibility.matrix.Comedy.Mythology.critic` | "D" |
-| `world.compatibility.matrix.Horror.Zombies.audience` | "A" |
-| `world.compatibility.matrix.Horror.Zombies.critic` | "B" |
-| `world.compatibility.matrix.Horror.Superheroes.audience` | "D" |
-| `world.compatibility.matrix.Horror.Superheroes.critic` | "D" |
-| `world.compatibility.matrix.Horror.Spies.audience` | "D" |
-| `world.compatibility.matrix.Horror.Spies.critic` | "F" |
-| `world.compatibility.matrix.Horror.Sports.audience` | "F" |
-| `world.compatibility.matrix.Horror.Sports.critic` | "F" |
-| `world.compatibility.matrix.Horror.Vampires.audience` | "A" |
-| `world.compatibility.matrix.Horror.Vampires.critic` | "B" |
-| `world.compatibility.matrix.Horror.Time Travel.audience` | "C" |
-| `world.compatibility.matrix.Horror.Time Travel.critic` | "C" |
-| `world.compatibility.matrix.Horror.Pirates.audience` | "C" |
-| `world.compatibility.matrix.Horror.Pirates.critic` | "D" |
-| `world.compatibility.matrix.Horror.Robots.audience` | "C" |
-| `world.compatibility.matrix.Horror.Robots.critic` | "C" |
-| `world.compatibility.matrix.Horror.Dinosaurs.audience` | "B" |
-| `world.compatibility.matrix.Horror.Dinosaurs.critic` | "C" |
-| `world.compatibility.matrix.Horror.Mythology.audience` | "B" |
-| `world.compatibility.matrix.Horror.Mythology.critic` | "B" |
-| `world.compatibility.matrix.Thriller.Zombies.audience` | "B" |
-| `world.compatibility.matrix.Thriller.Zombies.critic` | "C" |
-| `world.compatibility.matrix.Thriller.Superheroes.audience` | "C" |
-| `world.compatibility.matrix.Thriller.Superheroes.critic` | "C" |
-| `world.compatibility.matrix.Thriller.Spies.audience` | "A" |
-| `world.compatibility.matrix.Thriller.Spies.critic` | "A" |
-| `world.compatibility.matrix.Thriller.Sports.audience` | "D" |
-| `world.compatibility.matrix.Thriller.Sports.critic` | "D" |
-| `world.compatibility.matrix.Thriller.Vampires.audience` | "C" |
-| `world.compatibility.matrix.Thriller.Vampires.critic` | "C" |
-| `world.compatibility.matrix.Thriller.Time Travel.audience` | "B" |
-| `world.compatibility.matrix.Thriller.Time Travel.critic` | "A" |
-| `world.compatibility.matrix.Thriller.Pirates.audience` | "C" |
-| `world.compatibility.matrix.Thriller.Pirates.critic` | "C" |
-| `world.compatibility.matrix.Thriller.Robots.audience` | "B" |
-| `world.compatibility.matrix.Thriller.Robots.critic` | "B" |
-| `world.compatibility.matrix.Thriller.Dinosaurs.audience` | "C" |
-| `world.compatibility.matrix.Thriller.Dinosaurs.critic` | "D" |
-| `world.compatibility.matrix.Thriller.Mythology.audience` | "C" |
-| `world.compatibility.matrix.Thriller.Mythology.critic` | "C" |
-| `world.compatibility.matrix.Romance.Zombies.audience` | "D" |
-| `world.compatibility.matrix.Romance.Zombies.critic` | "F" |
-| `world.compatibility.matrix.Romance.Superheroes.audience` | "C" |
-| `world.compatibility.matrix.Romance.Superheroes.critic` | "D" |
-| `world.compatibility.matrix.Romance.Spies.audience` | "C" |
-| `world.compatibility.matrix.Romance.Spies.critic` | "C" |
-| `world.compatibility.matrix.Romance.Sports.audience` | "C" |
-| `world.compatibility.matrix.Romance.Sports.critic` | "C" |
-| `world.compatibility.matrix.Romance.Vampires.audience` | "B" |
-| `world.compatibility.matrix.Romance.Vampires.critic` | "D" |
-| `world.compatibility.matrix.Romance.Time Travel.audience` | "B" |
-| `world.compatibility.matrix.Romance.Time Travel.critic` | "B" |
-| `world.compatibility.matrix.Romance.Pirates.audience` | "C" |
-| `world.compatibility.matrix.Romance.Pirates.critic` | "C" |
-| `world.compatibility.matrix.Romance.Robots.audience` | "D" |
-| `world.compatibility.matrix.Romance.Robots.critic` | "C" |
-| `world.compatibility.matrix.Romance.Dinosaurs.audience` | "F" |
-| `world.compatibility.matrix.Romance.Dinosaurs.critic` | "F" |
-| `world.compatibility.matrix.Romance.Mythology.audience` | "C" |
-| `world.compatibility.matrix.Romance.Mythology.critic` | "C" |
-| `world.compatibility.matrix.Drama.Zombies.audience` | "D" |
-| `world.compatibility.matrix.Drama.Zombies.critic` | "C" |
-| `world.compatibility.matrix.Drama.Superheroes.audience` | "D" |
-| `world.compatibility.matrix.Drama.Superheroes.critic` | "C" |
-| `world.compatibility.matrix.Drama.Spies.audience` | "B" |
-| `world.compatibility.matrix.Drama.Spies.critic` | "A" |
-| `world.compatibility.matrix.Drama.Sports.audience` | "A" |
-| `world.compatibility.matrix.Drama.Sports.critic` | "A" |
-| `world.compatibility.matrix.Drama.Vampires.audience` | "D" |
-| `world.compatibility.matrix.Drama.Vampires.critic` | "D" |
-| `world.compatibility.matrix.Drama.Time Travel.audience` | "C" |
-| `world.compatibility.matrix.Drama.Time Travel.critic` | "B" |
-| `world.compatibility.matrix.Drama.Pirates.audience` | "C" |
-| `world.compatibility.matrix.Drama.Pirates.critic` | "C" |
-| `world.compatibility.matrix.Drama.Robots.audience` | "C" |
-| `world.compatibility.matrix.Drama.Robots.critic` | "B" |
-| `world.compatibility.matrix.Drama.Dinosaurs.audience` | "F" |
-| `world.compatibility.matrix.Drama.Dinosaurs.critic` | "F" |
-| `world.compatibility.matrix.Drama.Mythology.audience` | "C" |
-| `world.compatibility.matrix.Drama.Mythology.critic` | "B" |
-| `world.compatibility.matrix.SciFi.Zombies.audience` | "C" |
-| `world.compatibility.matrix.SciFi.Zombies.critic` | "C" |
-| `world.compatibility.matrix.SciFi.Superheroes.audience` | "B" |
-| `world.compatibility.matrix.SciFi.Superheroes.critic` | "C" |
-| `world.compatibility.matrix.SciFi.Spies.audience` | "C" |
-| `world.compatibility.matrix.SciFi.Spies.critic` | "C" |
-| `world.compatibility.matrix.SciFi.Sports.audience` | "D" |
-| `world.compatibility.matrix.SciFi.Sports.critic` | "D" |
-| `world.compatibility.matrix.SciFi.Vampires.audience` | "D" |
-| `world.compatibility.matrix.SciFi.Vampires.critic` | "D" |
-| `world.compatibility.matrix.SciFi.Time Travel.audience` | "A" |
-| `world.compatibility.matrix.SciFi.Time Travel.critic` | "A" |
-| `world.compatibility.matrix.SciFi.Pirates.audience` | "C" |
-| `world.compatibility.matrix.SciFi.Pirates.critic` | "D" |
-| `world.compatibility.matrix.SciFi.Robots.audience` | "A" |
-| `world.compatibility.matrix.SciFi.Robots.critic` | "A" |
-| `world.compatibility.matrix.SciFi.Dinosaurs.audience` | "B" |
-| `world.compatibility.matrix.SciFi.Dinosaurs.critic` | "C" |
-| `world.compatibility.matrix.SciFi.Mythology.audience` | "C" |
-| `world.compatibility.matrix.SciFi.Mythology.critic` | "C" |
-| `world.compatibility.matrix.RomCom.Zombies.audience` | "D" |
-| `world.compatibility.matrix.RomCom.Zombies.critic` | "F" |
-| `world.compatibility.matrix.RomCom.Superheroes.audience` | "C" |
-| `world.compatibility.matrix.RomCom.Superheroes.critic` | "D" |
-| `world.compatibility.matrix.RomCom.Spies.audience` | "B" |
-| `world.compatibility.matrix.RomCom.Spies.critic` | "D" |
-| `world.compatibility.matrix.RomCom.Sports.audience` | "B" |
-| `world.compatibility.matrix.RomCom.Sports.critic` | "C" |
-| `world.compatibility.matrix.RomCom.Vampires.audience` | "C" |
-| `world.compatibility.matrix.RomCom.Vampires.critic` | "D" |
-| `world.compatibility.matrix.RomCom.Time Travel.audience` | "B" |
-| `world.compatibility.matrix.RomCom.Time Travel.critic` | "C" |
-| `world.compatibility.matrix.RomCom.Pirates.audience` | "D" |
-| `world.compatibility.matrix.RomCom.Pirates.critic` | "D" |
-| `world.compatibility.matrix.RomCom.Robots.audience` | "D" |
-| `world.compatibility.matrix.RomCom.Robots.critic` | "D" |
-| `world.compatibility.matrix.RomCom.Dinosaurs.audience` | "F" |
-| `world.compatibility.matrix.RomCom.Dinosaurs.critic` | "F" |
-| `world.compatibility.matrix.RomCom.Mythology.audience` | "D" |
-| `world.compatibility.matrix.RomCom.Mythology.critic` | "D" |
-| `world.cult._label` | "Gate 4Q EXPERIMENT, default OFF. Rare audience-only reception exception at release ('Unexpected cult appeal'). Eligible only when: the pair's audience grade is in eligibleAudienceGrades, the studio has never released this exact pair before (novelty), and audience-side craft (mean Filming+Editing quality) >= minAudienceCraft. chance = baseChance + trend bonus; drawn from the lazy 'reception' stream. Success replaces the AUDIENCE grade used in the normal score formula (lift = +liftSteps; breakout = breakoutGrade) for THIS title only; critics, meters, Star, money untouched (money follows the normal audience model). The combo book keeps the true baseline grade." |
+| `world.compatibility.contestable.Action|Dinosaurs` | "B (draft A/C). Huge crowd concept, but usually dumb fun; B keeps it a strong pick without being a no-brainer A." |
+| `world.compatibility.contestable.Comedy|Sports` | "A (draft A/B). Sports comedy is a proven sweet spot (underdog team + slapstick); deserves top fit." |
+| `world.compatibility.contestable.Comedy|Zombies` | "B (draft B/B). Zombie comedy works (spoof energy) but is a niche; B, not A." |
+| `world.compatibility.contestable.Horror|Spies` | "D (draft D/F). Strange mix, not nonsense; keep F for pairings that fight each other outright." |
+| `world.compatibility.contestable.Horror|Pirates` | "C (draft C/D). Cursed-ship / ghost-crew horror is a real subgenre; middling, not bad." |
+| `world.compatibility.contestable.Thriller|Time Travel` | "A (draft B/A). Loops, paradoxes and countdowns are thriller fuel; one of the best thriller fits." |
+| `world.compatibility.contestable.Romance|Zombies` | "D (draft D/F). Can work as a rare oddball love story; poor, not impossible." |
+| `world.compatibility.contestable.Romance|Robots` | "C (draft D/C). Lonely-human/AI love stories land often enough; average fit." |
+| `world.compatibility.contestable.Drama|Zombies` | "C (draft D/C). Survival drama with zombies as backdrop is a proven prestige-TV shape; average fit." |
+| `world.compatibility.contestable.SciFi|Dinosaurs` | "B (draft B/C). De-extinction / lost-world sci-fi is the genre's natural home for dinosaurs." |
+| `world.compatibility.contestable.RomCom|Zombies` | "D (draft D/F). Comedy softens the gore a little; still poor." |
+| `world.compatibility.contestable.RomCom|Spies` | "C (draft B/D). Married-spies action romcom is popular but rarely good; split the difference." |
+| `world.compatibility.contestable.Thriller|Dinosaurs` | "B (draft D). Designer 2026-11-11: dinosaurs on the loose is a natural thriller." |
+| `world.compatibility.contestable.Action|Mythology` | "A (draft B). Designer 2026-11-11 asked why Mythology was never good: gods-and-heroes epics are a top action fit." |
+| `world.compatibility.contestable.Romance|Vampires` | "A (draft B/D, first pick B). Designer 2026-11-11: Romance had no A; brooding immortal romance is its biggest crowd fit." |
+| `world.compatibility.contestable.RomCom|Time Travel` | "A (draft B/C). Designer 2026-11-11: RomCom had no A; the time-loop / do-over romcom is a proven sweet spot." |
+| `world.compatibility.matrix.Action.Zombies` | "B" |
+| `world.compatibility.matrix.Action.Superheroes` | "A" |
+| `world.compatibility.matrix.Action.Spies` | "A" |
+| `world.compatibility.matrix.Action.Sports` | "C" |
+| `world.compatibility.matrix.Action.Vampires` | "B" |
+| `world.compatibility.matrix.Action.Time Travel` | "B" |
+| `world.compatibility.matrix.Action.Pirates` | "A" |
+| `world.compatibility.matrix.Action.Robots` | "B" |
+| `world.compatibility.matrix.Action.Dinosaurs` | "B" |
+| `world.compatibility.matrix.Action.Mythology` | "A" |
+| `world.compatibility.matrix.Comedy.Zombies` | "B" |
+| `world.compatibility.matrix.Comedy.Superheroes` | "B" |
+| `world.compatibility.matrix.Comedy.Spies` | "B" |
+| `world.compatibility.matrix.Comedy.Sports` | "A" |
+| `world.compatibility.matrix.Comedy.Vampires` | "B" |
+| `world.compatibility.matrix.Comedy.Time Travel` | "B" |
+| `world.compatibility.matrix.Comedy.Pirates` | "C" |
+| `world.compatibility.matrix.Comedy.Robots` | "C" |
+| `world.compatibility.matrix.Comedy.Dinosaurs` | "C" |
+| `world.compatibility.matrix.Comedy.Mythology` | "C" |
+| `world.compatibility.matrix.Horror.Zombies` | "A" |
+| `world.compatibility.matrix.Horror.Superheroes` | "D" |
+| `world.compatibility.matrix.Horror.Spies` | "D" |
+| `world.compatibility.matrix.Horror.Sports` | "F" |
+| `world.compatibility.matrix.Horror.Vampires` | "A" |
+| `world.compatibility.matrix.Horror.Time Travel` | "C" |
+| `world.compatibility.matrix.Horror.Pirates` | "C" |
+| `world.compatibility.matrix.Horror.Robots` | "C" |
+| `world.compatibility.matrix.Horror.Dinosaurs` | "B" |
+| `world.compatibility.matrix.Horror.Mythology` | "B" |
+| `world.compatibility.matrix.Thriller.Zombies` | "C" |
+| `world.compatibility.matrix.Thriller.Superheroes` | "C" |
+| `world.compatibility.matrix.Thriller.Spies` | "A" |
+| `world.compatibility.matrix.Thriller.Sports` | "D" |
+| `world.compatibility.matrix.Thriller.Vampires` | "C" |
+| `world.compatibility.matrix.Thriller.Time Travel` | "A" |
+| `world.compatibility.matrix.Thriller.Pirates` | "C" |
+| `world.compatibility.matrix.Thriller.Robots` | "B" |
+| `world.compatibility.matrix.Thriller.Dinosaurs` | "B" |
+| `world.compatibility.matrix.Thriller.Mythology` | "C" |
+| `world.compatibility.matrix.Romance.Zombies` | "D" |
+| `world.compatibility.matrix.Romance.Superheroes` | "C" |
+| `world.compatibility.matrix.Romance.Spies` | "C" |
+| `world.compatibility.matrix.Romance.Sports` | "C" |
+| `world.compatibility.matrix.Romance.Vampires` | "A" |
+| `world.compatibility.matrix.Romance.Time Travel` | "B" |
+| `world.compatibility.matrix.Romance.Pirates` | "C" |
+| `world.compatibility.matrix.Romance.Robots` | "C" |
+| `world.compatibility.matrix.Romance.Dinosaurs` | "F" |
+| `world.compatibility.matrix.Romance.Mythology` | "C" |
+| `world.compatibility.matrix.Drama.Zombies` | "C" |
+| `world.compatibility.matrix.Drama.Superheroes` | "C" |
+| `world.compatibility.matrix.Drama.Spies` | "A" |
+| `world.compatibility.matrix.Drama.Sports` | "A" |
+| `world.compatibility.matrix.Drama.Vampires` | "D" |
+| `world.compatibility.matrix.Drama.Time Travel` | "B" |
+| `world.compatibility.matrix.Drama.Pirates` | "C" |
+| `world.compatibility.matrix.Drama.Robots` | "B" |
+| `world.compatibility.matrix.Drama.Dinosaurs` | "F" |
+| `world.compatibility.matrix.Drama.Mythology` | "B" |
+| `world.compatibility.matrix.SciFi.Zombies` | "C" |
+| `world.compatibility.matrix.SciFi.Superheroes` | "B" |
+| `world.compatibility.matrix.SciFi.Spies` | "C" |
+| `world.compatibility.matrix.SciFi.Sports` | "D" |
+| `world.compatibility.matrix.SciFi.Vampires` | "D" |
+| `world.compatibility.matrix.SciFi.Time Travel` | "A" |
+| `world.compatibility.matrix.SciFi.Pirates` | "C" |
+| `world.compatibility.matrix.SciFi.Robots` | "A" |
+| `world.compatibility.matrix.SciFi.Dinosaurs` | "B" |
+| `world.compatibility.matrix.SciFi.Mythology` | "C" |
+| `world.compatibility.matrix.RomCom.Zombies` | "D" |
+| `world.compatibility.matrix.RomCom.Superheroes` | "C" |
+| `world.compatibility.matrix.RomCom.Spies` | "C" |
+| `world.compatibility.matrix.RomCom.Sports` | "B" |
+| `world.compatibility.matrix.RomCom.Vampires` | "C" |
+| `world.compatibility.matrix.RomCom.Time Travel` | "A" |
+| `world.compatibility.matrix.RomCom.Pirates` | "D" |
+| `world.compatibility.matrix.RomCom.Robots` | "D" |
+| `world.compatibility.matrix.RomCom.Dinosaurs` | "F" |
+| `world.compatibility.matrix.RomCom.Mythology` | "D" |
 | `world.cult.enabled` | false |
-| `world.cult.eligibleAudienceGrades` | ["D", "F"] |
+| `world.cult.eligibleAudienceGrades` | ["D","F"] |
 | `world.cult.minAudienceCraft` | 60 |
 | `world.cult.baseChance` | 0.1 |
 | `world.cult.trendBonus.rising` | 0.05 |
@@ -337,21 +293,41 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `world.cult.liftSteps` | 2 |
 | `world.cult.breakoutGrade` | "A" |
 | `world.marketSize` | 400000 |
-| `world.grossPerViewer` | 2.0 |
+| `world.grossPerViewer` | 4 |
+| `production.approaches.enabled` | true |
+| `production.approaches.effort.crowd.plot` | 0.75 |
+| `production.approaches.effort.crowd.writing` | 0.75 |
+| `production.approaches.effort.crowd.filming` | 1.25 |
+| `production.approaches.effort.crowd.editing` | 1.25 |
+| `production.approaches.effort.awards.plot` | 1.25 |
+| `production.approaches.effort.awards.writing` | 1.25 |
+| `production.approaches.effort.awards.filming` | 0.75 |
+| `production.approaches.effort.awards.editing` | 0.75 |
+| `production.approaches.scoreShift.crowd.audience` | 0.3 |
+| `production.approaches.scoreShift.crowd.critic` | -0.3 |
+| `production.approaches.scoreShift.awards.audience` | -0.3 |
+| `production.approaches.scoreShift.awards.critic` | 0.3 |
+| `production.approaches.grossMult.crowd` | 1.12 |
+| `production.approaches.grossMult.awards` | 0.95 |
+| `production.approaches.reviewPrestigeMult.crowd` | 0.8 |
+| `production.approaches.reviewPrestigeMult.awards` | 1.5 |
 | `production.movie.baseCost` | 60000 |
-| `production.movie.durationWeeks` | 16 |
-| `production.phaseEmphasis.writing.plot` | 1.0 |
-| `production.phaseEmphasis.writing.writing` | 1.0 |
+| `production.movie.durationWeeks` | 30 |
+| `production.formatExperience.movie` | 2 |
+| `production.formatExperience.tv` | 1 |
+| `production.formatExperience.limited_series` | 1 |
+| `production.phaseEmphasis.writing.plot` | 1 |
+| `production.phaseEmphasis.writing.writing` | 1 |
 | `production.phaseEmphasis.writing.filming` | 0.2 |
 | `production.phaseEmphasis.writing.editing` | 0.15 |
 | `production.phaseEmphasis.filming.plot` | 0.2 |
 | `production.phaseEmphasis.filming.writing` | 0.3 |
-| `production.phaseEmphasis.filming.filming` | 1.0 |
+| `production.phaseEmphasis.filming.filming` | 1 |
 | `production.phaseEmphasis.filming.editing` | 0.3 |
 | `production.phaseEmphasis.editing.plot` | 0.1 |
 | `production.phaseEmphasis.editing.writing` | 0.15 |
 | `production.phaseEmphasis.editing.filming` | 0.2 |
-| `production.phaseEmphasis.editing.editing` | 1.0 |
+| `production.phaseEmphasis.editing.editing` | 1 |
 | `production.workRate` | 0.12 |
 | `production.workVariance` | 0.1 |
 | `production.starFilmingWeight` | 0.11 |
@@ -368,11 +344,20 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `staffGrowth.trainGain` | 3 |
 | `staffGrowth.hireCost` | 20000 |
 | `staffGrowth.hireWage` | 1100 |
-| `staffGrowth.hireStatRange` | [15, 35] |
+| `staffGrowth.hireStatRange` | [15,35] |
+| `staffGrowth.payrollPeriodWeeks` | 4 |
+| `staffGrowth.raisePerLevel` | 0.03 |
+| `staffGrowth.maxRaise` | 1 |
+| `staffGrowth.raiseEventEveryLevels` | 5 |
+| `staffGrowth.hireWageBySkill` | true |
 | `studioGenre.xpPerRelease` | 1 |
-| `studioGenre.levelThresholds` | [1, 3, 6, 10, 15] |
-| `studioGenre.qualityBonusPerLevel` | 0.03 |
-| `studioGenre._awardTiming` | "WORKING ASSUMPTION: genre XP awarded on production completion" |
+| `studioGenre.levelThresholds` | [1,3,6,10,15] |
+| `studioGenre.qualityBonusPerLevel` | 0.05 |
+| `scoring.starScoreBonus.audience` | 0.5 |
+| `scoring.starScoreBonus.critic` | 0.2 |
+| `scoring.starScoreBonus.taperFrom` | 8 |
+| `scoring.starScoreBonus.criticStoryGate.zeroAt` | 50 |
+| `scoring.starScoreBonus.criticStoryGate.fullAt` | 75 |
 | `scoring.audienceWeights.plot` | 0.15 |
 | `scoring.audienceWeights.writing` | 0.15 |
 | `scoring.audienceWeights.filming` | 0.35 |
@@ -383,15 +368,69 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `scoring.criticWeights.editing` | 0.15 |
 | `scoring.weakGap` | 18 |
 | `scoring.weakPenaltyRate` | 0.05 |
-| `scoring.weakPenaltySide.heavy` | 1.0 |
+| `scoring.weakPenaltySide.heavy` | 1 |
 | `scoring.weakPenaltySide.light` | 0.3 |
 | `scoring.repetitionFatigue.newProjectPerRepeat` | 0.05 |
 | `scoring.repetitionFatigue.sequelPerRepeat` | 0.025 |
 | `scoring.repetitionFatigue.hallOfFameSoftening` | 0.5 |
 | `scoring.repetitionFatigue.max` | 0.3 |
 | `scoring.saturatedCriticPenalty` | 0.1 |
-| `scoring.hofThreshold` | 9.0 |
-| `scoring.renewThreshold` | 4.0 |
+| `scoring.hofThreshold` | 9 |
+| `scoring.renewThreshold` | 4 |
+| `stars.pool.enabled` | true |
+| `stars.pool.initialSize` | 150 |
+| `stars.pool.tierShares.newcomer` | 0.45 |
+| `stars.pool.tierShares.mid` | 0.35 |
+| `stars.pool.tierShares.big` | 0.2 |
+| `stars.pool.yearsActive.newcomer` | [0,2] |
+| `stars.pool.yearsActive.mid` | [3,10] |
+| `stars.pool.yearsActive.big` | [8,20] |
+| `stars.pool.fameByYears` | 0.7 |
+| `stars.pool.debutAge` | [18,28] |
+| `stars.pool.tierByFame.midFrom` | 20 |
+| `stars.pool.tierByFame.bigFrom` | 60 |
+| `stars.pool.debutPerYear` | 15 |
+| `stars.pool.offscreen.youngYears` | 8 |
+| `stars.pool.offscreen.riseChance.young` | 0.4 |
+| `stars.pool.offscreen.riseChance.veteran` | 0.25 |
+| `stars.pool.offscreen.fadeChance.young` | 0.08 |
+| `stars.pool.offscreen.fadeChance.veteran` | 0.2 |
+| `stars.pool.offscreen.riseFame` | [4,12] |
+| `stars.pool.offscreen.fadeFame` | [3,10] |
+| `stars.pool.offscreen.levelUpChance.young` | 0.35 |
+| `stars.pool.offscreen.levelUpChance.veteran` | 0.1 |
+| `stars.pool.retirement.startYears` | 15 |
+| `stars.pool.retirement.chancePerYear` | 0.03 |
+| `stars.pool.retirement.max` | 0.6 |
+| `stars.pool.growth.levelUpPoints` | 18 |
+| `stars.pool.growth.offscreenLevelUpPoints` | 30 |
+| `stars.pool.growth.jitter` | [0.6,1.4] |
+| `stars.pool.growth.templates.scary_funny.chance` | 1 |
+| `stars.pool.growth.templates.scary_funny.weights.Scary` | 0.45 |
+| `stars.pool.growth.templates.scary_funny.weights.Funny` | 0.3 |
+| `stars.pool.growth.templates.action_funny.chance` | 1 |
+| `stars.pool.growth.templates.action_funny.weights.Action` | 0.5 |
+| `stars.pool.growth.templates.action_funny.weights.Funny` | 0.2 |
+| `stars.pool.growth.templates.funny_romantic.chance` | 1 |
+| `stars.pool.growth.templates.funny_romantic.weights.Funny` | 0.4 |
+| `stars.pool.growth.templates.funny_romantic.weights.Romantic` | 0.35 |
+| `stars.pool.growth.templates.dramatic_romantic.chance` | 1 |
+| `stars.pool.growth.templates.dramatic_romantic.weights.Dramatic` | 0.4 |
+| `stars.pool.growth.templates.dramatic_romantic.weights.Romantic` | 0.35 |
+| `stars.pool.growth.templates.dramatic_scary.chance` | 1 |
+| `stars.pool.growth.templates.dramatic_scary.weights.Dramatic` | 0.4 |
+| `stars.pool.growth.templates.dramatic_scary.weights.Scary` | 0.35 |
+| `stars.pool.growth.templates.action_dramatic.chance` | 1 |
+| `stars.pool.growth.templates.action_dramatic.weights.Action` | 0.4 |
+| `stars.pool.growth.templates.action_dramatic.weights.Dramatic` | 0.3 |
+| `stars.pool.growth.templates.specialist.chance` | 1.5 |
+| `stars.pool.growth.templates.specialist.weights.*` | 0.6 |
+| `stars.pool.growth.templates.even.chance` | 1 |
+| `stars.pool.catalog.unlockPrestigeWithoutLadder` | 200 |
+| `stars.pool.catalog.perfectFitMin` | 60 |
+| `stars.pool.catalog.perfectFitTop` | 2 |
+| `stars.pool.fallback.focusSkill` | 45 |
+| `stars.pool.fallback.otherSkill` | 3 |
 | `stars.budgetBase` | 100 |
 | `stars.budgetPerLevel` | 30 |
 | `stars.maxLevel` | 10 |
@@ -401,14 +440,14 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `stars.shapeWeights.balanced` | 0.4 |
 | `stars.shapeWeights.twoFocus` | 0.35 |
 | `stars.shapeWeights.specialist` | 0.25 |
-| `stars.tiers.newcomer.level` | [0, 2] |
-| `stars.tiers.newcomer.fame` | [0, 15] |
-| `stars.tiers.mid.level` | [2, 5] |
-| `stars.tiers.mid.fame` | [25, 55] |
-| `stars.tiers.big.level` | [4, 8] |
-| `stars.tiers.big.fame` | [65, 95] |
+| `stars.tiers.newcomer.level` | [0,2] |
+| `stars.tiers.newcomer.fame` | [0,15] |
+| `stars.tiers.mid.level` | [2,5] |
+| `stars.tiers.mid.fame` | [25,55] |
+| `stars.tiers.big.level` | [4,8] |
+| `stars.tiers.big.fame` | [65,95] |
 | `stars.hiddenGemChance` | 0.04 |
-| `stars.hiddenGemLevel` | [5, 7] |
+| `stars.hiddenGemLevel` | [5,7] |
 | `stars.auditionCount` | 5 |
 | `stars.genreFitBias` | 0.5 |
 | `stars.feeBase` | 2000 |
@@ -436,7 +475,7 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `marketing.studioAdsBuzz` | 0.3 |
 | `marketing.buzzDecayPerWeek` | 0.12 |
 | `audience.qualityPivot` | 5 |
-| `audience._qualityPivotLabel` | "Gate 4 SENSITIVITY knob: score where in-run buzz / word of mouth / episode retention turn from negative to positive (weekly diffusion + episodic models only). 5 = every earlier gate." |
+| `audience.movieQualityPivot` | 6.5 |
 | `audience.baseAwareness` | 0.35 |
 | `audience.fameAwareness` | 0.6 |
 | `audience.trendAwareness.none` | 0 |
@@ -458,16 +497,17 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `audience.backlashRate` | 0.35 |
 | `audience.spinoffFanShare` | 0.5 |
 | `audience.fanDecayPerYear` | 0.1 |
-| `audience.legsModel` | "geometric" |
-| `audience.diffusion._label` | "WORKING ASSUMPTION (Gate 2.5 candidate): finite awareness diffusion. Used only when legsModel = 'diffusion'." |
+| `audience.fanDecayExact` | true |
+| `audience.legsModel` | "diffusion" |
 | `audience.diffusion.openWatchShare` | 0.3 |
 | `audience.diffusion.watchRate` | 0.3 |
 | `audience.diffusion.watchRateQualityWeight` | 0.25 |
 | `audience.diffusion.criticBuzzRate` | 0.12 |
-| `audience.diffusion.womPerViewer` | 2.0 |
+| `audience.diffusion.womPerViewer` | 2 |
 | `audience.diffusion.interestDecay` | 0.12 |
 | `audience.diffusion.badInterestDecay` | 0.35 |
-| `distribution.roster` | [{"id": "wolf", "name": "Wolf Pictures", "reach": 0.6, "generosity": 1.25, "royaltyBase": 0.32, "favoredFamilies": ["Scary", "Action"], "minPrestige": 0}, {"id": "starlight", "name": "Starlight Indie", "reach": 0.35, "generosity": 0.75, "royaltyBase": 0.08, "favoredFamilies": ["Dramatic", "Romantic"], "minPrestige": 0}, {"id": "xyz", "name": "XYZ Network", "reach": 0.85, "generosity": 1.45, "royaltyBase": 0.45, "favoredFamilies": ["Funny", "Action"], "minPrestige": 150}, {"id": "orbit", "name": "Orbit Releasing", "reach": 0.75, "generosity": 1.15, "royaltyBase": 0.36, "favoredFamilies": ["Scary", "Funny"], "minPrestige": 60}, {"id": "meridian", "name": "Meridian Global", "reach": 1.0, "generosity": 1.6, "royaltyBase": 0.5, "favoredFamilies": ["Action", "Dramatic"], "minPrestige": 400}] |
+| `audience.diffusion.movieBadInterestDecay` | 3 |
+| `distribution.roster` | [{"id":"wolf","name":"Wolf Pictures","reach":0.6,"generosity":1.25,"royaltyBase":0.32,"favoredFamilies":["Scary","Action"],"minPrestige":0},{"id":"starlight","name":"Starlight Indie","reach":0.35,"generosity":0.75,"royaltyBase":0.08,"favoredFamilies":["Dramatic","Romantic"],"minPrestige":0},{"id":"xyz","name":"XYZ Network","reach":0.85,"generosity":1.45,"royaltyBase":0.45,"favoredFamilies":["Funny","Action"],"minPrestige":150},{"id":"orbit","name":"Orbit Releasing","reach":0.75,"generosity":1.15,"royaltyBase":0.36,"favoredFamilies":["Scary","Funny"],"minPrestige":60},{"id":"meridian","name":"Meridian Global","reach":1,"generosity":1.6,"royaltyBase":0.5,"favoredFamilies":["Action","Dramatic"],"minPrestige":400}] |
 | `distribution.lifeline.id` | "bargain" |
 | `distribution.lifeline.name` | "Bargain Pictures" |
 | `distribution.lifeline.reach` | 0.3 |
@@ -494,71 +534,87 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `distribution.heatFansWeight` | 0.5 |
 | `distribution.offerJitter` | 0.08 |
 | `distribution.selfFundReach` | 0.22 |
+| `prestige.tvMilestones` | [{"id":"tv_acclaimed_season","kind":"tvSeasonAvg","threshold":8.5,"amount":200,"scope":"release"},{"id":"tv_hit_show","kind":"tvShowAvg","threshold":8,"minSeason":3,"amount":300,"scope":"ip"},{"id":"tv_long_runner","kind":"tvShowAllAtLeast","threshold":7,"minSeason":5,"amount":400,"scope":"ip"}] |
 | `prestige.repeatScope` | "perIP" |
-| `prestige._repeatScopeNote` | "WORKING ASSUMPTION (Open in v9.61): each milestone pays once per IP. Options: perRelease / perIP / career" |
-| `prestige.milestones` | [{"id": "meters_all_70", "kind": "allMeters", "threshold": 70, "amount": 50}, {"id": "audience_7_5", "kind": "audience", "threshold": 7.5, "amount": 75}, {"id": "critic_8_5", "kind": "critic", "threshold": 8.5, "amount": 85}, {"id": "hall_of_fame", "kind": "hallOfFame", "threshold": 9.0, "amount": 200}, {"id": "gross_1m", "kind": "lifetimeGross", "threshold": 1000000, "amount": 100}, {"id": "viewers_500k", "kind": "lifetimeViewers", "threshold": 500000, "amount": 150}] |
+| `prestige.milestones` | [{"id":"meters_all_70","kind":"allMeters","threshold":70,"amount":50},{"id":"audience_7_5","kind":"audience","threshold":7.5,"amount":75},{"id":"critic_8_5","kind":"critic","threshold":8.5,"amount":85},{"id":"hall_of_fame","kind":"hallOfFame","threshold":9,"amount":200},{"id":"gross_1m","kind":"lifetimeGross","threshold":1000000,"amount":100},{"id":"viewers_500k","kind":"lifetimeViewers","threshold":500000,"amount":150}] |
 | `trends.riseChancePerWeek` | 0.012 |
 | `trends.risingWeeks` | 20 |
 | `trends.hotWeeks` | 40 |
 | `trends.saturatedWeeks` | 40 |
 | `trends.cooledWeeks` | 30 |
 | `research.themeCost` | 25000 |
+| `research.themePurchase` | false |
+| `themeUnlocks.trendInspiration` | true |
+| `themeUnlocks.chance` | 0.25 |
+| `genreUnlocks.enabled` | true |
+| `genreUnlocks.skill.Thriller.stat` | "plot" |
+| `genreUnlocks.skill.Thriller.min` | 50 |
+| `genreUnlocks.skill.Thriller.why` | "twisty stories" |
+| `genreUnlocks.skill.Romance.stat` | "filming" |
+| `genreUnlocks.skill.Romance.min` | 50 |
+| `genreUnlocks.skill.Romance.why` | "performances" |
+| `genreUnlocks.skill.Drama.stat` | "writing" |
+| `genreUnlocks.skill.Drama.min` | 60 |
+| `genreUnlocks.skill.Drama.why` | "serious scripts" |
+| `genreUnlocks.skill.SciFi.stat` | "editing" |
+| `genreUnlocks.skill.SciFi.min` | 60 |
+| `genreUnlocks.skill.SciFi.why` | "effects work" |
+| `genreUnlocks.combos.RomCom` | ["Comedy","Romance"] |
+| `genreUnlocks.easing.fromYear` | 4 |
+| `genreUnlocks.easing.perYear` | 5 |
+| `genreUnlocks.easing.floor` | 40 |
 | `time.weeksPerYear` | 52 |
 | `debug.injectBug` | "none" |
-| `debug._note` | "TEST-ONLY regression injection: none / advanceAsRevenue / fameIntoScore. Must be 'none' for real runs." |
-| `staffCapacity._label` | "EXPERIMENTAL (Gate 2.5). Studio-wide max employees; NOT a per-project crew cap. Baseline keeps the historical uncapped behavior for comparison." |
 | `staffCapacity.ladder` | [999] |
 | `staffCapacity.upgradeCosts` | [] |
 | `staffCapacity.upgradePrestige` | [] |
-| `agents._label` | "Agent-only heuristics (not game rules). legacyHeuristicStaffCaps reproduces pre-Gate-2.5 strategy hiring cutoffs (balanced 4, quality-first 5, others never hire). tvOrderPreference (Gate 3): Gate 3 agents order the largest allowed TV season up to this size (\"max\" or a number). useFiring / economicRenewal (Gate 3 follow-up, Gate 3 policies only): dismiss the weakest employee to make room for the Software Engineer or when cash < fireDebtThreshold; renew a show only while its last finished season netted >= renewMinNetPerWeek per production week (replaces the old fixed policy season limits). Both false = the original Gate 3 policies." |
+| `agents.runwayStarReserve` | true |
 | `agents.legacyHeuristicStaffCaps` | true |
 | `agents.tvOrderPreference` | "max" |
 | `agents.useFiring` | false |
 | `agents.economicRenewal` | false |
 | `agents.fireDebtThreshold` | -100000 |
 | `agents.renewMinNetPerWeek` | 15000 |
-| `expectations._label` | "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS." |
 | `expectations.method` | "scale" |
-| `expectations.critics.enabled` | false |
-| `expectations.critics.generationYears` | 6 |
-| `expectations.critics.toughnessPerGeneration` | 0.04 |
-| `expectations.critics.maxToughness` | 0.12 |
+| `expectations.critics.enabled` | true |
+| `expectations.critics.generationYears` | 5 |
+| `expectations.critics.toughnessPerGeneration` | 0.06 |
+| `expectations.critics.maxToughness` | 0.18 |
 | `expectations.critics.announceWeeksAhead` | 26 |
+| `expectations.critics.adaptYears` | 3 |
+| `expectations.critics.permanentShare` | 0.25 |
 | `expectations.audience.enabled` | false |
 | `expectations.audience.eraYears` | 10 |
 | `expectations.audience.toughnessPerEra` | 0.02 |
 | `expectations.audience.maxToughness` | 0.06 |
-| `formats._label` | "Gate 3. LOCKED direction: movies + limited series first, TV via a studio upgrade (money + Prestige), streaming later. All false = the Gate 2.6 movie-only kernel, byte-identical." |
-| `formats.limitedSeries` | false |
-| `formats.tv` | false |
-| `formats.streaming` | false |
-| `limitedSeries._label` | "TEST ASSUMPTIONS. Self-contained, NON-renewable series: fixed episode package, weekly airing + short tail." |
+| `formats.limitedSeries` | true |
+| `formats.tv` | true |
+| `formats.streaming` | true |
 | `limitedSeries.availableAfterProductions` | 1 |
 | `limitedSeries.episodes` | 6 |
 | `limitedSeries.baseCost` | 90000 |
-| `limitedSeries.durationWeeks` | 18 |
+| `limitedSeries.durationWeeks` | 12 |
 | `limitedSeries.pacing` | "weekly" |
-| `limitedSeries.grossPerEpisodeViewer` | 0.57 |
+| `limitedSeries.grossPerEpisodeViewer` | 0.4 |
 | `limitedSeries.tailWeeks` | 3 |
 | `limitedSeries.tailShare` | 0.4 |
 | `limitedSeries.decliningGrossPerViewer` | 2.4 |
-| `tv._label` | "TEST ASSUMPTIONS for renewable TV (one IP, separately produced seasons). LOCKED: renewal by season average (4.0 renewable, 9.0 HoF), episode caps by studio Prestige (not show history), genre locked, twist changes theme, hiatus affects anticipation only, announcement = show-specific fading hype." |
 | `tv.unlock.prestige` | 300 |
 | `tv.unlock.cost` | 150000 |
 | `tv.setupCost` | 15000 |
 | `tv.perEpisodeCost` | 15000 |
-| `tv.durationBaseWeeks` | 6 |
-| `tv.weeksPerEpisode` | 2.0 |
-| `tv.orderSizes` | [5, 10, 15, 20] |
-| `tv.episodeCaps` | [{"maxEpisodes": 5, "prestige": 0}, {"maxEpisodes": 10, "prestige": 600}, {"maxEpisodes": 15, "prestige": 1800}, {"maxEpisodes": 20, "prestige": 3500}] |
-| `tv.renewalThreshold` | 4.0 |
+| `tv.durationBaseWeeks` | 8 |
+| `tv.weeksPerEpisode` | 1.2 |
+| `tv.orderSizes` | [5,10,15,20] |
+| `tv.episodeCaps` | [{"maxEpisodes":5,"prestige":0},{"maxEpisodes":10,"prestige":600},{"maxEpisodes":15,"prestige":1800},{"maxEpisodes":20,"prestige":3500}] |
+| `tv.renewalThreshold` | 4 |
 | `tv.renewalInclusive` | true |
-| `tv.grossPerEpisodeViewer` | 0.32 |
+| `tv.grossPerEpisodeViewer` | 0.46 |
 | `tv.episodeModel.premiereShare` | 0.5 |
 | `tv.episodeModel.baseRetention` | 0.88 |
 | `tv.episodeModel.retentionWeight` | 0.3 |
 | `tv.episodeModel.retentionMin` | 0.5 |
-| `tv.episodeModel.retentionMax` | 1.0 |
+| `tv.episodeModel.retentionMax` | 1 |
 | `tv.episodeModel.criticWeeks` | 2 |
 | `tv.episodeModel.buzzRate` | 0.06 |
 | `tv.episodeModel.womPerViewer` | 0.35 |
@@ -571,7 +627,10 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `tv.fatigue.exponent` | 1.6 |
 | `tv.fatigue.max` | 0.35 |
 | `tv.fatigue.qualitySlow` | 0.4 |
-| `tv.viewerFatigue._label` | "EXPERIMENT (Gate 3 follow-up), default OFF. Returning-viewer / season-opening interest fatigue: multiplies ONLY the returning-audience opening inputs (IP fans + announcement anticipation; optionally the premiere share). Never touches Audience/Critic scores, ratings or sales directly. Separate from review fatigue (tv.fatigue), IP fans and hiatus. Offset by: previous-season quality (qualitySlow), a good twist (goodTwistReset units), and every additive opening input it does not touch (marketing, Star Fame, trends, studio buzz) plus in-run critic buzz / word of mouth. basis: seasons = seasons aired; episodes = episodes aired / episodesPerStep. All numbers TEST ASSUMPTIONS." |
+| `tv.showHealth.enabled` | true |
+| `tv.showHealth.pivot` | 7.5 |
+| `tv.showHealth.slope` | 1 |
+| `tv.showHealth.floor` | 0.3 |
 | `tv.viewerFatigue.enabled` | false |
 | `tv.viewerFatigue.basis` | "seasons" |
 | `tv.viewerFatigue.episodesPerStep` | 10 |
@@ -592,22 +651,20 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `tv.announce.cost` | 15000 |
 | `tv.announce.boost` | 0.35 |
 | `tv.announce.decayPerWeek` | 0.04 |
-| `tv.contract._label` | "OPEN designer decision. A = every season is a new pitch (fixed offers). B = continuing partner: same distributor + royalty; per-season advance = baseCost x clamp(baseCover + roiWeight x (lastRoi-1), minCover, maxCover) x trust factor." |
 | `tv.contract.variant` | "A" |
 | `tv.contract.B.baseCover` | 0.9 |
 | `tv.contract.B.roiWeight` | 0.3 |
 | `tv.contract.B.minCover` | 0.5 |
 | `tv.contract.B.maxCover` | 1.4 |
-| `streaming._label` | "TEST ASSUMPTIONS for the studio streaming service (one aggregate subscriber business; no per-title payouts)." |
-| `streaming.unlock.prestige` | 2500 |
-| `streaming.unlock.minCatalog` | 8 |
+| `streaming.unlock.prestige` | 3000 |
+| `streaming.unlock.minCatalog` | 20 |
 | `streaming.engineer.hireCost` | 25000 |
 | `streaming.engineer.wage` | 1500 |
-| `streaming.engineer.statRange` | [18, 35] |
+| `streaming.engineer.statRange` | [18,35] |
 | `streaming.buildCost` | 600000 |
 | `streaming.buildWeeks` | 30 |
 | `streaming.reachableMarket` | 120000 |
-| `streaming.feePerSubWeek` | 0.5 |
+| `streaming.feePerSubWeek` | 0.75 |
 | `streaming.opex.fixedPerWeek` | 8000 |
 | `streaming.opex.perSubPerWeek` | 0.15 |
 | `streaming.originalReach` | 0.55 |
@@ -617,7 +674,7 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `streaming.launchMax` | 15000 |
 | `streaming.churn.basePerWeek` | 0.012 |
 | `streaming.churn.retentionMax` | 0.65 |
-| `streaming.churn.catalogScale` | 6.0 |
+| `streaming.churn.catalogScale` | 6 |
 | `streaming.churn.hofEvergreen` | 2.5 |
 | `streaming.churn.freshnessHalfLifeWeeks` | 104 |
 | `streaming.churn.evergreenFloor` | 0.35 |
@@ -625,27 +682,25 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `streaming.churn.diversityMax` | 0.1 |
 | `streaming.churn.quietGraceWeeks` | 26 |
 | `streaming.churn.quietPenaltyPer26Weeks` | 0.5 |
-| `streaming.churn.quietMax` | 2.0 |
+| `streaming.churn.quietMax` | 2 |
 | `streaming.originalTvPacing` | "weekly" |
-| `staffing._label` | "Gate 3 follow-up. LOCKED: employees can be fired to free a capacity slot (4/6/8 unchanged; the Software Engineer uses a normal slot). Harness UX ASSUMPTIONS: dismissal only between productions; the engineer cannot be dismissed while building; minStaff and fireCost are OPEN (smallest rule protecting the 'production always progresses' invariant)." |
 | `staffing.firingEnabled` | true |
 | `staffing.betweenProductionsOnly` | true |
 | `staffing.minStaff` | 2 |
 | `staffing.fireCost` | 0 |
-| `events.breakthrough._label` | "EXPERIMENT (Gate 3 follow-up), default OFF. Rare seeded creative breakthrough DURING production: one draw from the dedicated 'events' RNG stream when a production first enters each listed stage; on success, bonus meter points = bonusShare x that meter's half-point (meterHalfPointPerWeek x duration x era bar), so the effect saturates on already-strong meters and flows to scores only through the normal meter -> score formula. Never edits a result. At most maxPerProduction per production. All numbers TEST ASSUMPTIONS." |
 | `events.breakthrough.enabled` | false |
 | `events.breakthrough.chancePerCheck` | 0.02 |
-| `events.breakthrough.stages` | ["writing", "filming", "editing"] |
-| `events.breakthrough.stageMeters.writing` | ["plot", "writing"] |
+| `events.breakthrough.stages` | ["writing","filming","editing"] |
+| `events.breakthrough.stageMeters.writing` | ["plot","writing"] |
 | `events.breakthrough.stageMeters.filming` | ["filming"] |
 | `events.breakthrough.stageMeters.editing` | ["editing"] |
 | `events.breakthrough.bonusShare` | 0.6 |
 | `events.breakthrough.maxPerProduction` | 1 |
-| `events.breakthrough.formats` | ["movie", "limited_series", "tv"] |
+| `events.breakthrough.formats` | ["movie","limited_series","tv"] |
 | `events.breakthrough.minSeason` | 0 |
-| `economy._label` | "Gate 4 EXPERIMENT. mode legacy_advance = every earlier gate, byte-identical (distributor advances at the pitch, lifeline, surplus). mode late_distribution = CANDIDATE: the studio funds base cost, Star and payroll itself; at 80% 2-3 distributors bid ADVERTISING spend + reach for a revenue share (ad money is spent by the distributor, never studio cash); self-distribution fallback; no lifeline. All numbers TEST ASSUMPTIONS." |
-| `economy.mode` | "legacy_advance" |
-| `economy.lateDistribution._label` | "Candidate bid formula. appeal = 1 + previewWeight x (preview - previewCenter)/previewSpan + trend + fans + Star Fame + known combo (comboBook only) + last-season delta, clamped. Preview = visible meter quality so far, projected to completion (never final scores or hidden combo grades). adSpend = adBase x format factor x appeal x favored x trust factor x jitter; share = shareBase x (1.15 - 0.15 x appeal) x (1.1 - 0.04 x trust). A distributor only bids when appeal >= its minAppeal." |
+| `economy.mode` | "late_distribution" |
+| `economy.overdraft.monthlyRate` | 0.02 |
+| `economy.overdraft.periodWeeks` | 4 |
 | `economy.lateDistribution.previewCenter` | 60 |
 | `economy.lateDistribution.previewSpan` | 40 |
 | `economy.lateDistribution.previewWeight` | 0.6 |
@@ -661,9 +716,9 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `economy.lateDistribution.appealMin` | 0.4 |
 | `economy.lateDistribution.appealMax` | 1.8 |
 | `economy.lateDistribution.favoredAdFactor` | 1.15 |
-| `economy.lateDistribution.formatAdFactor.movie` | 1.0 |
+| `economy.lateDistribution.formatAdFactor.movie` | 1 |
 | `economy.lateDistribution.formatAdFactor.limited_series` | 1.2 |
-| `economy.lateDistribution.formatAdFactor.tv` | 1.0 |
+| `economy.lateDistribution.formatAdFactor.tv` | 1 |
 | `economy.lateDistribution.adScale` | 40000 |
 | `economy.lateDistribution.adAwarenessMax` | 1.2 |
 | `economy.lateDistribution.shareMin` | 0.05 |
@@ -682,9 +737,8 @@ Regenerated for Gate 4Q. Candidate overrides: `config/candidate.json`; Gate 3 mi
 | `economy.lateDistribution.roster.xyz.minAppeal` | 0.9 |
 | `economy.lateDistribution.roster.meridian.adBase` | 80000 |
 | `economy.lateDistribution.roster.meridian.shareBase` | 0.5 |
-| `economy.lateDistribution.roster.meridian.minAppeal` | 1.0 |
+| `economy.lateDistribution.roster.meridian.minAppeal` | 1 |
 | `economy.lateDistribution.selfDistributionReach` | 0.22 |
 | `economy.lateDistribution.originalsUseStudioCampaign` | true |
-| `economy.contracts._label` | "Gate 4 EXPERIMENT: work-for-hire. Zero cost to accept; the client reimburses the studio's payroll + upkeep each contract week (ledger contract_labor) and pays a fixed visible completion fee (contract_fee). Staff gain XP/stats in the contract's meters. Zero Prestige, no IP, fans, release, HoF or catalog entry. One job at a time (uses the production slot). Fees are TEST ASSUMPTIONS." |
-| `economy.contracts.enabled` | false |
-| `economy.contracts.list` | [{"id": "commercial_edit", "name": "Commercial edit", "weeks": 6, "meters": ["editing"], "minStaff": 2, "minBestStat": 0, "fee": 9000}, {"id": "script_polish", "name": "Script polish", "weeks": 8, "meters": ["plot", "writing"], "minStaff": 2, "minBestStat": 28, "fee": 12000}, {"id": "pilot_services", "name": "Network pilot production services", "weeks": 12, "meters": ["filming", "editing"], "minStaff": 4, "minBestStat": 45, "fee": 30000}, {"id": "studio_services", "name": "Full production services", "weeks": 16, "meters": ["plot", "writing", "filming", "editing"], "minStaff": 6, "minBestStat": 60, "fee": 56000}] |
+| `economy.contracts.enabled` | true |
+| `economy.contracts.list` | [{"id":"commercial_edit","name":"Commercial edit","weeks":6,"meters":["editing"],"minStaff":2,"minBestStat":0,"fee":9000},{"id":"script_polish","name":"Script polish","weeks":8,"meters":["plot","writing"],"minStaff":2,"minBestStat":28,"fee":12000},{"id":"pilot_services","name":"Network pilot production services","weeks":12,"meters":["filming","editing"],"minStaff":4,"minBestStat":45,"fee":30000},{"id":"studio_services","name":"Full production services","weeks":16,"meters":["plot","writing","filming","editing"],"minStaff":6,"minBestStat":60,"fee":56000}] |

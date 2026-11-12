@@ -6,15 +6,15 @@ Shipped default + `config/gate3.json` (TV, limited series, streaming on), seeds 
 
 | Policy | Movie net / prod-week | Limited series | TV season | Streaming Original (incl. est. subscriber value) | Originals | Show length (seasons) | Prestige p50 (from TV milestones) | End cash p50 |
 |---|---|---|---|---|---|---|---|---|
-| balanced | $16.4K | — | — | — | — | — | 8660 (TV 0) | $5.46M |
-| tv-first | $0.5K | $12.6K | $29.5K | — | — | 11 (max 13) | 5250 (TV 2000) | $8.04M |
-| renewal-franchise | $10.8K | — | $23.1K | — | — | 12 (max 15) | 3845 (TV 1300) | $3.63M |
-| mixed | $16.0K | $13.6K | $34.7K | — | — | 5 (max 6) | 7705 (TV 900) | $6.63M |
-| limited-focus | $5.4K | $13.5K | — | — | — | — | 9425 (TV 0) | $2.79M |
-| streaming-pivot | $15.8K | — | — | — | — | — | 8040 (TV 0) | $4.77M |
+| balanced | $15.7K | — | — | — | — | — | 8720 (TV 0) | $5.34M |
+| tv-first | $0.2K | $12.3K | $28.9K | — | — | 10 (max 13) | 5285 (TV 1900) | $8.85M |
+| renewal-franchise | $10.2K | — | $25.1K | — | — | 12 (max 17) | 4095 (TV 1500) | $4.80M |
+| mixed | $15.2K | $13.8K | $32.6K | — | — | 5 (max 6) | 7935 (TV 1100) | $6.73M |
+| limited-focus | $4.1K | $13.3K | — | — | — | — | 10000 (TV 0) | $3.47M |
+| streaming-pivot | $15.9K | — | — | — | — | — | 8190 (TV 0) | $5.27M |
 
-TV seasons by number: **S1** score 8.5, health 1.00, net $332.4K, 0% lose (n 32) · **S2** score 8.7, health 1.00, net $584.6K, 0% lose (n 27) · **S3** score 8.8, health 1.00, net $670.8K, 0% lose (n 26) · **S4** score 8.7, health 1.00, net $974.3K, 0% lose (n 26) · **S5** score 8.5, health 1.00, net $1002.2K, 4% lose (n 24) · **S6+** score 6.9, health 0.96, net $829.5K, 22% lose (n 112)
+TV seasons by number: **S1** score 8.5, health 1.00, net $180.0K, 0% lose (n 30) · **S2** score 8.6, health 1.00, net $501.8K, 0% lose (n 27) · **S3** score 8.8, health 1.00, net $566.3K, 0% lose (n 27) · **S4** score 8.7, health 1.00, net $903.8K, 0% lose (n 27) · **S5** score 8.6, health 1.00, net $977.7K, 0% lose (n 25) · **S6+** score 6.9, health 0.97, net $846.2K, 20% lose (n 117)
 
 Invariant violations: 0.
 
-Elapsed 2.8 s.
+Elapsed 2.9 s.

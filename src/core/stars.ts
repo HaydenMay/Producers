@@ -79,13 +79,20 @@ export function generateFallbackStar(state: StudioState, cfg: Config, focusFamil
   return star;
 }
 
+/** The one Star fee formula (PROD-053): Fame fee + Prestige premium − relationship discount. Unrounded parts.
+ *  Shared by priceStar() and the planning cost estimate so the two can't drift apart (audit 2026-11-12). */
+export function starFee(fame: number, prestige: number, relationship: number, cfg: Config): { fameFee: number; prestigePremium: number; relationshipDiscount: number; price: number } {
+  const fameFee = cfg.stars.feeBase + cfg.stars.feePerFame * Math.pow(fame, cfg.stars.fameExponent);
+  const prestigeShrink = 1 - prestige / (prestige + cfg.stars.prestigeHalf);
+  const prestigePremium = fameFee * cfg.stars.prestigePremiumMax * (fame / 100) * prestigeShrink;
+  const relationshipDiscount = fameFee * cfg.stars.relationshipDiscountPerStar * Math.max(0, relationship - 1);
+  return { fameFee, prestigePremium, relationshipDiscount, price: Math.max(0, fameFee + prestigePremium - relationshipDiscount) };
+}
+
 export function priceStar(star: Star, state: StudioState, cfg: Config): StarCard["breakdown"] & { price: number } {
-  const fameFee = cfg.stars.feeBase + cfg.stars.feePerFame * Math.pow(star.fame, cfg.stars.fameExponent);
-  const prestigeShrink = 1 - state.prestige / (state.prestige + cfg.stars.prestigeHalf);
-  const prestigePremium = fameFee * cfg.stars.prestigePremiumMax * (star.fame / 100) * prestigeShrink;
-  const relationshipDiscount = fameFee * cfg.stars.relationshipDiscountPerStar * Math.max(0, star.relationship - 1);
-  const price = Math.max(0, round2(fameFee + prestigePremium - relationshipDiscount));
-  return { fameFee: round2(fameFee), prestigePremium: round2(prestigePremium), relationshipDiscount: round2(relationshipDiscount), price };
+  const f = starFee(star.fame, state.prestige, star.relationship, cfg);
+  const price = Math.max(0, round2(f.fameFee + f.prestigePremium - f.relationshipDiscount));
+  return { fameFee: round2(f.fameFee), prestigePremium: round2(f.prestigePremium), relationshipDiscount: round2(f.relationshipDiscount), price };
 }
 
 /**

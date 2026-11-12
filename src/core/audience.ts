@@ -237,5 +237,15 @@ export function updateIpFans(state: StudioState, cfg: Config, rel: Release): Rec
 
 export function decayFans(state: StudioState, cfg: Config): void {
   const k = 1 - cfg.audience.fanDecayPerYear / cfg.time.weeksPerYear;
-  for (const id of Object.keys(state.ips).sort()) state.ips[id].fans = Math.round(state.ips[id].fans * k);
+  for (const id of Object.keys(state.ips).sort()) {
+    const ip = state.ips[id];
+    if (!cfg.audience.fanDecayExact) {
+      ip.fans = Math.round(ip.fans * k);
+      continue;
+    }
+    // Carry the unrounded count; if anything else changed ip.fans since, restart from the displayed value.
+    const base = ip.fansExact !== undefined && Math.round(ip.fansExact) === ip.fans ? ip.fansExact : ip.fans;
+    ip.fansExact = base * k;
+    ip.fans = Math.round(ip.fansExact);
+  }
 }

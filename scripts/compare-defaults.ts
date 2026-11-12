@@ -32,7 +32,7 @@ function careers(cfg: Config, st: string): Row[] {
       releases: s.releases.length,
       formats,
       avg: med(s.releases.map((x) => x.avgScore)),
-      hof: s.releases.filter((x) => x.avgScore >= 9).length,
+      hof: s.releases.filter((x) => x.hallOfFame).length,
       sub4: s.releases.filter((x) => x.avgScore < 4).length,
       neg: s.counters.negativeCashWeeks,
       viol: checkInvariants(r, cfg).length,

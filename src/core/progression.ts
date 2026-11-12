@@ -132,7 +132,8 @@ export function checkGenreUnlocks(state: StudioState, cfg: Config): void {
     emit(state, "unlock", msg, { genre: g, ...data });
   };
   const ez = (gu as { easing?: { fromYear: number; perYear: number; floor: number } }).easing;
-  const steps = ez ? Math.max(0, Math.floor(state.week / cfg.time.weeksPerYear) - ez.fromYear) : 0;
+  // audit 2026-11-12: the first easing step lands IN year `fromYear` (4 years in), as PROD-091 says, not a year later
+  const steps = ez ? Math.max(0, Math.floor(state.week / cfg.time.weeksPerYear) - ez.fromYear + 1) : 0;
   for (const [g, r] of Object.entries(gu.skill as Record<string, { stat: string; min: number; why: string }>)) {
     if (state.unlockedGenres.includes(g)) continue;
     const min = ez ? Math.max(Math.min(r.min, ez.floor), r.min - steps * ez.perYear) : r.min;

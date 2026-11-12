@@ -23,7 +23,7 @@
 npm ci            # Node 20+
 npm run typecheck
 npm test          # ≈ 15 s, all tests
-npm run ledger:check   # design-ledger hygiene + audit crosswalk (docs/ledger-crosswalk.md)
+npm run ledger:check   # design-ledger hygiene + audit crosswalk (docs/ledger-crosswalk.md) + assumptions-register sync
 ```
 
 ## Validation loops (use these; big matrices are optional)
@@ -146,7 +146,7 @@ npx tsx scripts/g3-econ.ts    # per-format net per production week (calibration 
 
 ## Gate 2.6 additions (critic generations + great-film metrics, pending designer review)
 
-- **Expectation curves** (`expectations`, off by default, so Gate 2.5 results are byte-identical): a calendar-based **harness proxy** for critic generations (named critics retiring and being replaced by a tougher generation, announced ahead of time) and gentler audience eras. Applied once at release, after combo/weakness/fatigue/saturation and before the 0–10 clamp; published scores never change. Each release trace shows `raw → combo/weakness → generation/era adjustment → final`.
+- **Expectation curves** (`expectations`): **critic generations are ON by default** since 2026-11-11 (every 5 years, with adaptation, *(test)*, PROD-164); audience eras stay off; the legacy overlay turns critics off. It is a calendar-based **harness proxy** for critic generations (named critics retiring and being replaced by a tougher generation, announced ahead of time) and gentler audience eras. Applied once at release, after combo/weakness/fatigue/saturation and before the 0–10 clamp; published scores never change. Each release trace shows `raw → combo/weakness → generation/era adjustment → final`.
 - **Great-film metrics** in every batch, experiment, career report and the web Batch tab:
   - Hall of Fame counts and % (with denominators)
   - average ≥ 9.0 and > 9.0; Audience ≥ 9 and Critic ≥ 9; 8+
@@ -174,7 +174,7 @@ python3 -I scripts/g26_decision_table.py reports/gate2_6/followup G26_followup
 ## Gate 2.5 additions (movie system iteration, pending designer approval)
 
 - **Studio-wide employee capacity** (`staffCapacity`): the engine refuses hires above `maxStaff` (choices, `applyDecision` and `hireStaff` all enforce it). Every employed staff member still works on the one production. Upgrades are an explicit legal action, `upgrade_studio`, with cost + Prestige test triggers. The baseline keeps the historical uncapped behavior; `config/candidate.json` uses **2 / 4 → 6 → 8**.
-- **Weekly legs model** (`audience.legsModel`): `geometric` (Gate 2; now legacy overlay only) or `diffusion` (**the Producers default**: finite awareness diffusion where critic buzz and audience word of mouth can grow weekly viewers, capped by reach). Movie-only dud levers `audience.movieQualityPivot` 6.5 and `audience.diffusion.movieBadInterestDecay` 1.0 *(test)* make bad movies lose money; TV keeps the global knobs. Feedback popups now state the actual direction, and an invariant checks it.
+- **Weekly legs model** (`audience.legsModel`): `geometric` (Gate 2; now legacy overlay only) or `diffusion` (**the Producers default**: finite awareness diffusion where critic buzz and audience word of mouth can grow weekly viewers, capped by reach). Movie-only dud levers `audience.movieQualityPivot` 6.5 and `audience.diffusion.movieBadInterestDecay` 3.0 *(test)* (the "cliff dive", PROD-092) leave mediocre movies near break-even and bad ones losing money; TV keeps the global knobs. Feedback popups now state the actual direction, and an invariant checks it.
 - **Prestige scopes:** each milestone may carry `scope: release | ip | career`; global `repeatScope` = `perRelease | perIP | career | explicit`. New kinds: `ipLifetimeGross`, `ipLifetimeViewers`.
 - **New policies:** `selective-self-funder` (self-funds only when its visible estimate favors it), `repeat-farmer` (adversarial Prestige farming). Opt in with `--strategies`.
 - **Docs:** results in `docs/archive/gates/gate-2-5-findings.md`; approvals and open items in `docs/archive/gates/gate-2-5-open-decisions.md`; new assumptions G1–G13 in `docs/assumptions-register.md`.
@@ -265,4 +265,4 @@ Core API: `createStudio(seed, config)`, `getChoices(state, config)`, `applyDecis
 
 ## Known limitations
 
-Movies only; strategies are heuristics; no genre unlocks, studio upgrades or eras beyond a quality bar; titles can repeat. See `docs/archive/gates/open-decisions.md`.
+This is a balance harness, not the game: strategies are heuristics and titles can repeat. Not built yet: named critics (critic generations are a calendar proxy), the tutorial, the Hall of Fame visibility boost for related titles, Star bio lines and portraits, the review-site % display. Open design items live in [`docs/DESIGN_LEDGER.md`](docs/DESIGN_LEDGER.md) (status `OPEN` / `LATER`).

@@ -10,9 +10,9 @@ Levers: **pivot** = word-of-mouth pivot 5 → 6.5; **decay** = bad-reception int
 
 | Setup | <4 | 4-6 | 6-8 | 8+ | End cash p50: balanced / quality-first / cheap-duds / poor-fit-chooser |
 |---|---|---|---|---|---|
-| old default: geometric legs, no levers | 0% · $194K (n 23) | 0% · $240K (n 222) | 0% · $395K (n 381) | 0% · $601K (n 393) | $8.78M / $8.06M / $6.89M / $3.99M |
-| diffusion legs, no levers | 0% · $183K (n 22) | 0% · $243K (n 223) | 0% · $510K (n 370) | 0% · $607K (n 389) | $8.97M / $8.19M / $8.43M / $4.07M |
-| **NEW DEFAULT**: diffusion + movie-only levers | 67% · −$4K (n 15) | 39% · $6K (n 220) | 0% · $307K (n 389) | 0% · $595K (n 359) | $8.31M / $7.18M / $4.89M / $481K |
+| old default: geometric legs, no levers | 0% · $202K (n 23) | 0% · $238K (n 244) | 0% · $404K (n 359) | 0% · $603K (n 398) | $8.74M / $8.06M / $6.91M / $4.26M |
+| diffusion legs, no levers | 0% · $186K (n 23) | 0% · $244K (n 255) | 0% · $514K (n 359) | 0% · $608K (n 387) | $9.28M / $8.18M / $8.48M / $4.30M |
+| **NEW DEFAULT**: diffusion + movie-only levers | 74% · −$4K (n 19) | 38% · $5K (n 250) | 1% · $298K (n 371) | 0% · $599K (n 376) | $8.18M / $7.26M / $4.60M / $400K |
 
 ### Base: quality candidate (`config/gate4q.json`, single grade)
 
@@ -33,19 +33,19 @@ Seasons (`tv`) and limited series (`limited_series`) are reported apart because 
 | Levers | <4 | 4-6 | 6-8 | 8+ | End cash p50: tv-first / renewal-franchise / tv-duds |
 |---|---|---|---|---|---|
 | none | — | 82% · −$65K (n 56) | 4% · $197K (n 160) | 4% · $223K (n 195) | $1.81M / $463K / $5.80M |
-| movie-only both | — | 58% · −$13K (n 62) | 5% · $193K (n 160) | 2% · $238K (n 171) | $1.92M / $606K / $3.24M |
-| pivot | — | 96% · −$66K (n 56) | 61% · −$23K (n 118) | 3% · $220K (n 195) | $990K / $47K / $3.32M |
+| movie-only both | — | 58% · −$13K (n 62) | 5% · $193K (n 160) | 2% · $238K (n 171) | $2.08M / $606K / $3.24M |
+| pivot | — | 96% · −$66K (n 56) | 61% · −$23K (n 118) | 3% · $220K (n 197) | $990K / $47K / $3.32M |
 | decay | 100% · −$37K (n 1) | 82% · −$61K (n 51) | 5% · $203K (n 149) | 4% · $226K (n 206) | $1.85M / $562K / $5.66M |
-| both | — | 100% · −$131K (n 53) | 56% · −$11K (n 111) | 7% · $222K (n 193) | $1.20M / $89K / $3.24M |
+| both | — | 100% · −$131K (n 53) | 56% · −$11K (n 111) | 7% · $223K (n 194) | $1.20M / $89K / $3.24M |
 
 ### limited_series
 
 | Levers | <4 | 4-6 | 6-8 | 8+ | End cash p50: tv-first / renewal-franchise / tv-duds |
 |---|---|---|---|---|---|
 | none | 0% · $61K (n 1) | 0% · $78K (n 2) | 0% · $237K (n 45) | 0% · $299K (n 21) | $1.81M / $463K / $5.80M |
-| movie-only both | — | 0% · $174K (n 2) | 0% · $218K (n 50) | 0% · $309K (n 24) | $1.92M / $606K / $3.24M |
+| movie-only both | — | 0% · $174K (n 2) | 0% · $218K (n 50) | 0% · $309K (n 24) | $2.08M / $606K / $3.24M |
 | pivot | — | 0% · $21K (n 3) | 0% · $154K (n 56) | 0% · $265K (n 18) | $990K / $47K / $3.32M |
 | decay | — | 0% · $54K (n 3) | 0% · $224K (n 49) | 0% · $294K (n 21) | $1.85M / $562K / $5.66M |
 | both | — | 40% · $46K (n 5) | 0% · $139K (n 61) | 0% · $283K (n 18) | $1.20M / $89K / $3.24M |
 
-Elapsed 20.6 s.
+Elapsed 19.7 s.

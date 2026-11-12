@@ -48,8 +48,9 @@ export interface CareerG3 {
   irrationalRenewals: number;
 }
 
+// Audit H2: real production weeks (release week − start week) when the release carries its start; else the nominal length.
 const prodWeeks = (cfg: Config, r: Release) =>
-  r.format === "tv" ? Math.round(cfg.tv.durationBaseWeeks + cfg.tv.weeksPerEpisode * (r.episodes ?? 0)) : r.format === "limited_series" ? cfg.limitedSeries.durationWeeks : cfg.production.movie.durationWeeks;
+  r.startWeek !== undefined ? r.releaseWeek - r.startWeek : r.format === "tv" ? Math.round(cfg.tv.durationBaseWeeks + cfg.tv.weeksPerEpisode * (r.episodes ?? 0)) : r.format === "limited_series" ? cfg.limitedSeries.durationWeeks : cfg.production.movie.durationWeeks;
 
 export const fmtKey = (r: Pick<Release, "format" | "route" | "episodes">) => `${formatOf(r)}${r.route === "original" ? "/original" : ""}`;
 
@@ -171,7 +172,7 @@ export function careerG3(seed: number, strategy: string, s: StudioState, cfg: Co
     longRunners,
     irrationalRenewals,
     movieNet: doneMovies.reduce((a, r) => a + r.studioTake + r.surplusKept - r.cashOverrun, 0),
-    movieWeeks: doneMovies.length * cfg.production.movie.durationWeeks,
+    movieWeeks: doneMovies.reduce((a, r) => a + prodWeeks(cfg, r), 0),
   };
 }
 

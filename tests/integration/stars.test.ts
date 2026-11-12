@@ -4,7 +4,7 @@ import { readFileSync } from "node:fs";
 import { baselineConfig, legacyConfig, withOverrides } from "../../src/core/config";
 import { createStudio } from "../../src/core/simulation";
 import { runCareer } from "../../src/batch/runner";
-import { buildAuditions, budgetFor, skillTotal } from "../../src/core/stars";
+import { buildAuditions, budgetFor, skillTotal, starFit } from "../../src/core/stars";
 import { computeScores } from "../../src/core/scoring";
 import { addByWeights, levelUpGrowth, talentYear, tierOf, updateCatalogUnlock } from "../../src/core/talent";
 import type { Project, StarCard, Star } from "../../src/core/types";
@@ -146,7 +146,7 @@ describe("PROD-217 hidden per-Star growth weights", () => {
   it("whole careers keep every Star within its budget and 0..100", () => {
     const s = runCareer(2, "balanced", D, { productions: 0, years: 10 }).state;
     for (const st of Object.values(s.stars)) {
-      if (!st.fallback) expect(skillTotal(st)).toBeLessThanOrEqual(budgetFor(st.level, D));
+      expect(skillTotal(st)).toBeLessThanOrEqual(budgetFor(st.level, D)); // fallbacks included (audit M1)
       for (const v of Object.values(st.skills)) expect(v).toBeLessThanOrEqual(100);
     }
   });
@@ -159,7 +159,9 @@ describe("PROD-218 fallback", () => {
     const fb = cards.find((c) => c.fallbackInserted)!;
     expect(fb.price).toBe(0);
     expect(s.stars[fb.starId].skills.Funny).toBe(D.stars.pool.fallback.focusSkill);
-    expect(s.stars[fb.starId].skills.Romantic).toBe(11); // Comedy's 20% second family: 45 x 0.2 / 0.8
+    expect(s.stars[fb.starId].skills.Romantic).toBe(D.stars.pool.fallback.focusSkill); // both of Comedy's families (audit M1)
+    expect(skillTotal(s.stars[fb.starId])).toBeLessThanOrEqual(budgetFor(0, D));
+    expect(starFit(s.stars[fb.starId], "Comedy", D)).toBeCloseTo(D.stars.pool.fallback.focusSkill, 6);
     expect(Math.max(...Object.entries(s.stars[fb.starId].skills).filter(([f]) => f !== "Funny" && f !== "Romantic").map(([, v]) => v))).toBe(D.stars.pool.fallback.otherSkill);
   });
 });
@@ -224,5 +226,6 @@ describe("two-family Star fit (designer 2026-11-11)", () => {
     const fb = buildAuditions(s, D, project("RomCom"), 0).find((c) => c.fallbackInserted)!;
     expect(s.stars[fb.starId].skills.Funny).toBe(D.stars.pool.fallback.focusSkill);
     expect(s.stars[fb.starId].skills.Romantic).toBe(D.stars.pool.fallback.focusSkill);
+    expect(skillTotal(s.stars[fb.starId])).toBeLessThanOrEqual(budgetFor(0, D)); // was 108 > 100 before audit M1
   });
 });

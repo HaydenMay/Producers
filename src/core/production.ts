@@ -106,7 +106,8 @@ export function productionWeek(state: StudioState, cfg: Config): void {
     p.starPoints = round2(p.starPoints + cfg.production.starFilmingWeight * starFit(state.stars[p.starId], p.genre, cfg) * (1 + bonus));
   }
   p.weeksWorked += 1;
-  p.progress = Math.min(100, round2(p.progress + 100 / p.durationWeeks));
+  // Audit H1 (2026-11-12): progress from weeks worked, so rounding can't add an extra week (30-week movie = 30 weeks).
+  p.progress = Math.min(100, round2((p.weeksWorked * 100) / p.durationWeeks));
   if (p.progress >= 40 && !p.casted) {
     p.pendingDecision = "casting";
     p.auditionCards = buildAuditions(state, cfg, p, projectFunds(state, p));
@@ -250,9 +251,11 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const cult = cfg.world.cult.enabled ? cultCheck(state, cfg, p, key, grades, meters) : null;
   const scoredGrades = cult?.happened ? { audience: cult.effectiveAudience, critic: grades.critic } : grades;
   const fitNow = p.starId ? starFit(state.stars[p.starId], p.genre, cfg) : 0; // PROD-051: skill fit, never Fame
-  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow, p.approach ? ((cfg.production as { approaches?: { scoreShift?: Record<string, { audience: number; critic: number }> } }).approaches?.scoreShift?.[p.approach] ?? null) : null);
+  // audit 2026-11-12: the cult / breakthrough "without" traces use the same approach tilt as the real score
+  const approachShift = p.approach ? ((cfg.production as { approaches?: { scoreShift?: Record<string, { audience: number; critic: number }> } }).approaches?.scoreShift?.[p.approach] ?? null) : null;
+  const sc = computeScores(meters, scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow, approachShift);
   if (cult) {
-    const w = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow);
+    const w = computeScores(meters, grades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow, approachShift);
     cult.audienceWithout = w.audience;
     cult.avgWithout = avgScore(w.audience, w.critic);
   }
@@ -260,7 +263,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   if (p.breakthroughs?.length) {
     const q = { ...p, meterPoints: { ...p.meterPoints } };
     for (const e of p.breakthroughs) q.meterPoints[e.meter] = round2(q.meterPoints[e.meter] - e.points);
-    const w = computeScores(meterQuality(q, state, cfg), scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow);
+    const w = computeScores(meterQuality(q, state, cfg), scoredGrades, fatigue, saturated, cfg, expectationsAt(state.week, cfg), fitNow, approachShift);
     breakthrough = { events: p.breakthroughs, audienceWithout: w.audience, criticWithout: w.critic, avgWithout: avgScore(w.audience, w.critic) };
   }
   const avg = avgScore(sc.audience, sc.critic);
@@ -297,6 +300,8 @@ function completeProject(state: StudioState, cfg: Config): Release {
     ipId: p.ipId,
     ipRelation: p.ipRelation,
     releaseWeek: state.week,
+    startWeek: p.startWeek,
+    laborDuring: round2(p.laborAccrued ?? 0),
     distributorId: p.distributorId,
     royalty: p.royalty,
     reachCap: op.reachCap,

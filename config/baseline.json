@@ -325,7 +325,7 @@
         "perfectFitMin": 60,
         "perfectFitTop": 2
       },
-      "fallback": { "_label": "Free fallback Star: skill focused on the production's family, about an average paid newcomer (measured in reports/stars).", "focusSkill": 45, "otherSkill": 6 }
+      "fallback": { "_label": "Free fallback Star (PROD-218, audit M1 Claude's call 2026-11-12): focusSkill in EVERY family the production's genre leans on, otherSkill elsewhere, so the blended fit is ~45 (an average paid newcomer, measured in reports/stars) in every genre and the total (45 + 45 + 3 x 3 = 99) stays inside the level-0 budget of 100 *(test)*.", "focusSkill": 45, "otherSkill": 3 }
     },
     "budgetBase": 100,
     "budgetPerLevel": 30,
@@ -442,6 +442,8 @@
     "backlashRate": 0.35,
     "spinoffFanShare": 0.5,
     "fanDecayPerYear": 0.1,
+    "fanDecayExact": true,
+    "_fanDecayExactLabel": "Audit 2026-11-12: true = weekly fan decay keeps an unrounded count (ip.fansExact), so small fan bases still fade (260 fans no longer stick at 260 forever). legacy-advance.json sets false (old weekly rounding).",
     "legsModel": "diffusion",
     "diffusion": {
       "_label": "WORKING ASSUMPTION (Gate 2.5 candidate): finite awareness diffusion. Used only when legsModel = 'diffusion' (the Producers default since 2026-11-10; legacy overlay = geometric). movieBadInterestDecay = MOVIE-only override of badInterestDecay (null = global). Designer 2026-11-11 'cliff dive': 1.0 → 3.0 *(test)*, so a mediocre movie keeps a fine opening but its audience falls off a cliff (week-2 drop ~93–97% for 4–6 scores vs ~32–44% for 6+), leaving it near break-even.",

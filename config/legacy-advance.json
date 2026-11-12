@@ -13,6 +13,7 @@
     "cash": 40000
   },
   "audience": {
+    "fanDecayExact": false,
     "movieQualityPivot": null,
     "legsModel": "geometric",
     "diffusion": {

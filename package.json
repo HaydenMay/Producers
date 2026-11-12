@@ -26,7 +26,7 @@
     "stars:smoke": "tsc --noEmit && vitest run tests/integration/stars.test.ts && tsx scripts/stars.ts",
     "quality:smoke": "tsc --noEmit && vitest run tests/integration/gate4q.test.ts && tsx scripts/quality.ts",
     "quality:compare": "tsx scripts/quality.ts --seeds 16 --years 10 --out reports/gate4q/compare --quiet",
-    "ledger:check": "tsx scripts/ledger-check.ts"
+    "ledger:check": "tsx scripts/ledger-check.ts && tsx scripts/register.ts --check"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",

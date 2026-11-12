@@ -10,6 +10,7 @@ import type { Config } from "./config";
 import { emit, newId, round2 } from "./events";
 import { ensureStream, int, next, pick, range } from "./rng";
 import { FIRST, LAST } from "./staff";
+import { starFit } from "./stars";
 import type { Project, Star, StudioState } from "./types";
 
 export type Tier = "newcomer" | "mid" | "big";
@@ -182,18 +183,20 @@ export function updateCatalogUnlock(state: StudioState, cfg: Config): boolean {
 }
 
 /** PROD-216: the Rolodex: everyone the studio has worked with, with status. */
-export function catalogEntries(state: StudioState, cfg: Config, family?: string) {
+export function catalogEntries(state: StudioState, cfg: Config, genre?: string) {
   return state.hiredStarIds.map((id) => {
     const s = state.stars[id];
-    return { starId: id, name: s.name, status: s.retired ? "retired" : "active", films: s.credits.length, fame: s.fame, level: s.level, yearsActive: s.yearsActive ?? 0, fit: family ? (s.skills[family] ?? 0) : undefined, tier: tierOf(s, cfg) };
+    // audit 2026-11-12: the same two-family fit the production uses (PROD-045), not one family's skill
+    return { starId: id, name: s.name, status: s.retired ? "retired" : "active", films: s.credits.length, fame: s.fame, level: s.level, yearsActive: s.yearsActive ?? 0, fit: genre ? starFit(s, genre, cfg) : undefined, tier: tierOf(s, cfg) };
   });
 }
 
 /** Fallback skill per family: the genre's families scale with their weight (RomCom 50/50 → 45 / 45), others low. */
 function focusedSkill(f: string, family: string, fb: { focusSkill: number; otherSkill: number }, blend?: Record<string, number>): number {
   if (!blend || Object.keys(blend).length < 2) return f === family ? fb.focusSkill : fb.otherSkill;
-  const top = Math.max(...Object.values(blend));
-  return blend[f] ? Math.max(fb.otherSkill, Math.round((fb.focusSkill * blend[f]) / top)) : fb.otherSkill;
+  // Audit M1 (Claude's call 2026-11-12): focusSkill in EVERY family the genre leans on, otherSkill elsewhere, so the
+  // blended fit is focusSkill in every genre and the total stays inside the level-0 budget (45 + 45 + 3 x 3 = 99).
+  return blend[f] ? fb.focusSkill : fb.otherSkill;
 }
 
 /** PROD-218: a useful free Star, focused on this production's family. Joins the pool for good. */

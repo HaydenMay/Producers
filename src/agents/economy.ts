@@ -92,14 +92,13 @@ function costOf(state: StudioState, cfg: Config, d: Decision): number {
 function wantsOriginal(strat: Strategy, state: StudioState, cfg: Config, plan: PlanDecision, base: Choices, rng: () => number, ctx: AgentCtx): boolean {
   if (state.platform?.status !== "live") return false;
   const pitch: Choices = { ...base, phase: "pitch", offers: [], options: [{ type: "choose_offer", distributorId: null }, { type: "choose_offer", distributorId: null, original: true }] };
-  state.pendingPlan = plan;
+  // audit 2026-11-12: agents never write to the sim state; the strategy sees the plan through a shallow copy
+  const view: StudioState = { ...state, pendingPlan: plan };
   try {
-    const d = strat.decide(state, cfg, pitch, rng, ctx);
+    const d = strat.decide(view, cfg, pitch, rng, ctx);
     return d.type === "choose_offer" && !!d.original;
   } catch {
     return false; // movie-only policies have no Original logic (their pitch code expects offers)
-  } finally {
-    state.pendingPlan = null;
   }
 }
 

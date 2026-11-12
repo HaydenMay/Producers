@@ -23,11 +23,14 @@ export function careerRecap(state: StudioState, cfg: Config) {
   for (const r of rel) byFormat[formatOf(r)] = (byFormat[formatOf(r)] ?? 0) + 1;
   const best = [...rel].sort((a, b) => b.avgScore - a.avgScore)[0];
   const biggest = [...rel].sort((a, b) => (b.totalViewers ?? 0) - (a.totalViewers ?? 0))[0];
-  const hof = rel.filter((r) => r.avgScore >= 9);
+  // Audit 2026-11-12: each release's own Hall of Fame flag (never a hard-coded 9.0). Legacy scores +hallOfFame once
+  // per TITLE: a TV show counts once however many seasons make it (Claude's call); sequels count separately.
+  const hof = rel.filter((r) => r.hallOfFame);
+  const hofTitles = new Set(hof.map((r) => (formatOf(r) === "tv" ? `show:${r.ipId}` : r.id))).size;
   const shows = Object.values(state.ips).filter((ip) => formatOf(ip) === "tv");
   const longest = shows.map((ip) => ({ name: ip.name, seasons: rel.filter((r) => r.ipId === ip.id).length })).sort((a, b) => b.seasons - a.seasons)[0];
   const stars = state.hiredStarIds.map((id) => state.stars[id]).sort((a, b) => b.credits.length - a.credits.length);
-  const legacy = Math.round(state.prestige * c.legacyScore.prestige + hof.length * c.legacyScore.hallOfFame + Math.max(0, state.cash) / c.legacyScore.cashPer);
+  const legacy = Math.round(state.prestige * c.legacyScore.prestige + hofTitles * c.legacyScore.hallOfFame + Math.max(0, state.cash) / c.legacyScore.cashPer);
   return {
     years: Math.round((state.week / cfg.time.weeksPerYear) * 10) / 10,
     releases: rel.length,

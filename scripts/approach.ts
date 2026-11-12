@@ -26,7 +26,7 @@ for (const [st, name] of [["balanced", "Balanced"], ["crowd-pleaser", "Crowd-ple
       aud.push(x.audience);
       cri.push(x.critic);
       if (Math.abs(x.audience - x.critic) >= 1) split++;
-      if (x.avgScore >= 9) hof++;
+      if (x.hallOfFame) hof++;
     }
   }
   L.push(`| ${name} | ${med(aud).toFixed(2)} | ${med(cri).toFixed(2)} | ${pct(split, n)} | ${pct(hof, n)} | $${(med(cash) / 1e6).toFixed(2)}M | ${med(pr)} | ${v} |`);

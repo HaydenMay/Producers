@@ -65,6 +65,8 @@ function applyRaises(state: StudioState, cfg: Config): void {
 export function payroll(state: StudioState, cfg: Config): void {
   applyRaises(state, cfg);
   const wages = state.staff.reduce((a, s) => a + s.wage, 0);
+  // Audit H2: charge each production-week its accrued labor, independent of when payroll cash is paid.
+  if (state.project) state.project.laborAccrued = Math.round(((state.project.laborAccrued ?? 0) + wages + cfg.start.upkeepPerWeek) * 100) / 100;
   const period = payCfg(cfg).payrollPeriodWeeks ?? 1;
   if (period <= 1) {
     ledger(state, { kind: "payroll", amount: -wages, note: `${state.staff.length} staff` });
@@ -117,7 +119,10 @@ export function fireOptions(state: StudioState, cfg: Config): string[] {
   if (f.betweenProductionsOnly && (state.project || state.pendingOffers || state.contract)) return [];
   if (state.staff.length <= f.minStaff) return [];
   if (f.fireCost > 0 && Math.max(0, state.cash) < f.fireCost) return [];
-  return state.staff.filter((s) => !s.assignment).map((s) => s.id);
+  // Audit 2026-11-12: the minimum team counts REGULAR staff only (contracts need working crew), so firing can never
+  // leave 1 regular + a Software Engineer. An idle engineer can go as long as the regulars still meet the minimum.
+  const regulars = state.staff.filter((s) => !s.role).length;
+  return state.staff.filter((s) => !s.assignment && (s.role ? regulars >= f.minStaff : regulars > f.minStaff)).map((s) => s.id);
 }
 
 export function fireStaff(state: StudioState, cfg: Config, staffId: string): void {

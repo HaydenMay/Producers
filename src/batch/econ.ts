@@ -71,10 +71,13 @@ export function releaseAccounts(s: StudioState, cfg: Config): ReleaseAccount[] {
     perSub = pf.totals.acquired > 0 ? (gross - varOpex) / pf.totals.acquired : 0;
   }
   return s.releases.map((r: Release) => {
+    // Audit H2: real start week + the labor accrued each production week (monthly payroll lumps would
+    // land 7 or 8 times in a 30-week window). Old saves without these fields fall back to the nominal window.
     const dur = formatSpec(cfg, formatOf(r), r.episodes).durationWeeks;
-    const start = r.releaseWeek - dur;
+    const start = r.startWeek ?? r.releaseWeek - dur;
     let payrollDuring = 0;
-    for (let w = start + 1; w <= r.releaseWeek; w++) payrollDuring += labor.get(w) ?? 0;
+    if (r.laborDuring !== undefined) payrollDuring = r.laborDuring;
+    else for (let w = start + 1; w <= r.releaseWeek; w++) payrollDuring += labor.get(w) ?? 0;
     let min = cash[Math.max(0, start)] ?? 0;
     for (let w = start; w <= r.releaseWeek && w < cash.length; w++) min = Math.min(min, cash[Math.max(0, w)]);
     const direct = r.cashOverrun;

@@ -87,6 +87,8 @@ export interface IpLine {
   id: string;
   name: string;
   fans: number;
+  /** Audit 2026-11-12 (audience.fanDecayExact): unrounded fan count carried between weekly decays. */
+  fansExact?: number;
   titles: string[];
   establishedStarId?: string; // lead of the most recent entry
   /** Gate 3: the format this IP was created as. Missing = movie. */
@@ -137,6 +139,8 @@ export interface Project {
   parentIpId?: string;
   startWeek: number;
   durationWeeks: number;
+  /** Audit H2: wages + upkeep accrued each week this production was active (payroll cash may be paid monthly). */
+  laborAccrued?: number;
   weeksWorked: number;
   progress: number; // 0..100
   baseCost: number;
@@ -180,6 +184,9 @@ export interface Release {
   ipId: string;
   ipRelation: IpRelation;
   releaseWeek: number;
+  /** Audit H2: real production start week and the wages + upkeep accrued while it was in production. */
+  startWeek?: number;
+  laborDuring?: number;
   distributorId: string | null;
   royalty: number;
   reachCap: number;

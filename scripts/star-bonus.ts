@@ -29,7 +29,7 @@ function run(cfg: Config) {
       for (const rel of r.state.releases) {
         o.n++;
         o.avg.push(rel.avgScore);
-        if (rel.avgScore >= 9) o.hof++;
+        if (rel.hallOfFame) o.hof++;
         if (rel.avgScore < 4) o.sub4++;
         (rel.releaseWeek < 3 * 52 ? o.early : rel.releaseWeek >= 7 * 52 ? o.late : []).push(rel.avgScore);
         const sb = (rel.trace.quality as { score: { starBonus?: { audience: number; critic: number } } }).score.starBonus;

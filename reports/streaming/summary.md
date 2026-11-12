@@ -4,9 +4,9 @@ Shipped default + streaming on; seeds 1–8, 20-year careers, cash read at years
 
 | Strategy | Builds | Launch year | Subs at yr 20 | Originals | Gain yr 10 | Gain yr 12 | Gain yr 15 | Gain yr 20 |
 |---|---|---|---|---|---|---|---|---|
-| mixed | 8/8 | 9.0 | 78,886 | 10.6 | −$0.68M | $0.17M | $3.34M | $8.08M |
-| streaming-pivot | 8/8 | 13.0 | 85,937 | 10.1 | −$0.08M | −$0.12M | −$1.23M | $1.53M |
+| mixed | 8/8 | 9.8 | 76,920 | 10.1 | −$0.64M | −$0.50M | $2.07M | $7.58M |
+| streaming-pivot | 8/8 | 12.6 | 90,165 | 11.3 | −$0.07M | −$0.09M | −$1.67M | $1.68M |
 | balanced | 0/8 | — | — | 0.0 | $0.00M | $0.00M | $0.00M | $0.00M |
 | tv-first | 0/8 | — | — | 0.0 | $0.00M | $0.00M | $0.00M | $0.00M |
 
-Invariant violations (streaming on): 0. Elapsed 7.8 s.
+Invariant violations (streaming on): 0. Elapsed 8.6 s.

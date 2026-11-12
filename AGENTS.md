@@ -21,7 +21,7 @@
 5. **When code differs from the design, flag it** (implementation state `Implemented differently` / `Partial`). Don't rewrite the ledger to match the code.
 6. Update the relevant ledger row(s) **in the same commit/PR** as any approved design change: status, implementation state, evidence. Never invent a human approval.
 7. New decisions get a **fresh `PROD-###` id**. Ids are never recycled; superseded rows stay, pointing to their replacements.
-8. Keep prompts and handoffs in `docs/archive/`, separate from the ledger. Don't write new macro-handoffs; use the ledger and git history. Run `npm run ledger:check` after editing the ledger.
+8. Keep prompts and handoffs in `docs/archive/`, separate from the ledger. Don't write new macro-handoffs; use the ledger and git history. Run `npm run ledger:check` after editing the ledger. It also fails when `docs/assumptions-register.md` disagrees with `config/baseline.json`: after any baseline change, regenerate it with `npx tsx scripts/register.ts`.
 
 ## Working in the harness
 

@@ -11,6 +11,7 @@ import { next, range } from "./rng";
 import { comboKey, GRADE_VALUE } from "./distribution";
 import { meterQuality } from "./scoring";
 import { formatOf, formatSpec } from "./formats";
+import { starFee } from "./stars";
 import { METERS, type ActiveContract, type ContractOffer, type DistributionBid, type Meter, type PlanDecision, type Project, type StudioState } from "./types";
 
 export const isLateDistribution = (cfg: Config) => cfg.economy.mode === "late_distribution";
@@ -181,13 +182,11 @@ export function contractWeek(state: StudioState, cfg: Config): void {
 export function planCostEstimate(state: StudioState, cfg: Config, plan: PlanDecision) {
   const spec = formatSpec(cfg, formatOf(plan), plan.episodes);
   const weeks = spec.durationWeeks;
-  const perWeek = weeklyLabor(state, cfg);
+  // Audit 2026-11-12: the studio pays ALL staff (an engineer building streaming included) + upkeep every week of
+  // production, so the estimate uses the full payroll. weeklyLabor() (free crew only) stays for contract reimbursement.
+  const perWeek = state.staff.reduce((a, s) => a + s.wage, 0) + cfg.start.upkeepPerWeek;
   const crewPay = Math.round(perWeek * weeks);
-  const fee = (fame: number) => {
-    const base = cfg.stars.feeBase + cfg.stars.feePerFame * Math.pow(fame, cfg.stars.fameExponent);
-    const shrink = 1 - state.prestige / (state.prestige + cfg.stars.prestigeHalf);
-    return Math.round(base + base * cfg.stars.prestigePremiumMax * (fame / 100) * shrink);
-  };
+  const fee = (fame: number) => Math.round(starFee(fame, state.prestige, 1, cfg).price);
   const star = { low: fee(5), high: fee(80) };
   const totalLow = spec.baseCost + crewPay + star.low;
   const totalHigh = spec.baseCost + crewPay + star.high;

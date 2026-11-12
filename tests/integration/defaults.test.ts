@@ -41,6 +41,7 @@ describe("Producers default economy", () => {
       delete x.start.cash;
       delete x.audience.legsModel;
       delete x.audience.movieQualityPivot;
+      delete x.audience.fanDecayExact; // audit 2026-11-12: exact fan decay (legacy keeps weekly rounding)
       delete x.audience.diffusion.movieBadInterestDecay;
       delete x.stars.pool.enabled;
       delete x.scoring.starScoreBonus;

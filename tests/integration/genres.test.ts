@@ -29,10 +29,13 @@ describe("genre unlocks", () => {
   it("thresholds ease from year 4 (5/yr, floor 40) so a weak crew still opens genres itself; nothing is handed out", () => {
     const s = createStudio(1, D);
     for (const st of s.staff) st.stats.editing = 52;
-    s.week = 5 * 52; // year 5: SciFi needs 55
+    s.week = 3 * 52 + 51; // still year 3: no easing, SciFi needs 60
     checkGenreUnlocks(s, D);
     expect(s.unlockedGenres).not.toContain("SciFi");
-    s.week = 6 * 52; // year 6: 50
+    s.week = 4 * 52; // year 4: first easing step, SciFi needs 55 (audit 2026-11-12: was a year late)
+    checkGenreUnlocks(s, D);
+    expect(s.unlockedGenres).not.toContain("SciFi");
+    s.week = 5 * 52; // year 5: 50
     checkGenreUnlocks(s, D);
     expect(s.unlockedGenres).toContain("SciFi");
     expect(s.events.at(-1)!.message).toContain("eased to 50");
