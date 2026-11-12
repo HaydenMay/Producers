@@ -19,6 +19,8 @@ export interface OpeningInputs {
   fanAnticipationMult?: number;
   /** Gate 3 follow-up experiment: returning-viewer fatigue multiplier on the fans + announcement inputs (1 = none) */
   returningMult?: number;
+  /** PROD-229: audience curiosity about a freshly unlocked genre (omitted / 0 = none) */
+  freshGenre?: number;
 }
 
 export function openingTrace(inp: OpeningInputs, cfg: Config) {
@@ -31,6 +33,7 @@ export function openingTrace(inp: OpeningInputs, cfg: Config) {
     trend: (a.trendAwareness as Record<string, number>)[inp.trend] ?? 0,
     ipFans: a.fanAwareness * (inp.ipFans / cfg.world.marketSize) * (inp.fanAnticipationMult ?? 1) * (inp.returningMult ?? 1),
     ...(inp.anticipation !== undefined ? { announcement: inp.anticipation * (inp.returningMult ?? 1) } : {}),
+    ...(inp.freshGenre ? { freshGenre: inp.freshGenre } : {}),
   };
   const exponent = Object.values(parts).reduce((x, y) => x + y, 0);
   const awareness = 1 - Math.exp(-exponent);

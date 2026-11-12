@@ -3,7 +3,7 @@
 // rising standards from staff growth, Stars, headcount, fatigue and strategy. Illustration, not a target.
 import type { Config } from "../core/config";
 import { withOverrides } from "../core/config";
-import { avgScore, computeScores, expectationsAt, meterQuality } from "../core/scoring";
+import { avgScore, computeScores, expectationsAt, isHallOfFame, meterQuality } from "../core/scoring";
 import { METERS, type Grade, type Meter, type Project, type StudioState } from "../core/types";
 
 export interface FixedCase {
@@ -54,7 +54,7 @@ export function scoreFixed(c: FixedCase, cfg: Config, year: number): FixedPoint 
   const ex = expectationsAt(week, cfg);
   const sc = computeScores(meters, c.grades, 0, false, cfg, ex);
   const avg = avgScore(sc.audience, sc.critic);
-  return { year, meters, audienceRaw: sc.audienceRaw, criticRaw: sc.criticRaw, audience: sc.audience, critic: sc.critic, avg, hof: avg >= cfg.scoring.hofThreshold, criticGeneration: ex.criticGeneration, audienceEra: ex.audienceEra };
+  return { year, meters, audienceRaw: sc.audienceRaw, criticRaw: sc.criticRaw, audience: sc.audience, critic: sc.critic, avg, hof: isHallOfFame(avg, cfg), criticGeneration: ex.criticGeneration, audienceEra: ex.audienceEra };
 }
 
 export function fixedReport(base: Config, variants: { name: string; overrides: Record<string, unknown> }[]): { md: string; json: unknown } {

@@ -98,3 +98,51 @@ describe("production times and format experience (designer 2026-11-11)", () => {
     expect(Math.abs(a.amount * fe.limited_series - b.amount * fe.movie)).toBeLessThanOrEqual(fe.movie); // ratio = experience ratio, up to rounding
   });
 });
+
+// Audit 2026-11-12b M5: limited-series Star experience (0.8) carries over a level-up instead of being thrown away
+import { applyStarCareer } from "../../src/core/stars";
+describe("Star level progress carries over (M5)", () => {
+  it("three limited series at 0.8 level a Star up with 0.4 carried; five reach 4.0 = two levels", () => {
+    const D = baselineConfig();
+    const fe = (D.production as unknown as { formatExperience: Record<string, number> }).formatExperience.limited_series;
+    expect(fe).toBe(0.8);
+    expect(D.stars.projectsPerLevel).toBe(2);
+    const career = runCareer(1, "limited-focus", D, { productions: 0, years: 3 }).state;
+    const rel = structuredClone(career.releases.find((r) => r.format === "limited_series")!);
+    const s = createStudio(5, D);
+    const star = s.stars[Object.keys(s.stars)[0]];
+    star.level = 0, star.levelXp = 0;
+    const call = () => applyStarCareer(s, D, star, rel);
+    call(); call(); call();
+    expect(star.level).toBe(1);
+    expect(star.levelXp).toBeCloseTo(0.4, 6);
+    call(); call();
+    expect(star.level).toBe(2);
+    expect(star.levelXp).toBeCloseTo(0, 6);
+  });
+});
+
+// PROD-229 (designer 2026-11-12): audiences are curious about a freshly unlocked genre
+import { freshGenreAwareness } from "../../src/core/progression";
+describe("fresh-genre buzz (PROD-229)", () => {
+  it("first and second releases in an unlocked genre get curiosity awareness; starting genres and legacy get none", () => {
+    const D = baselineConfig();
+    const aw = (D.genreUnlocks as unknown as { freshBuzz: { awareness: number[] } }).freshBuzz.awareness;
+    const s = createStudio(2, D);
+    const startGenre = (D.start.unlockedGenres as string[])[0];
+    const fresh = Object.keys(D.world.genres).find((g) => !(D.start.unlockedGenres as string[]).includes(g))!;
+    expect(freshGenreAwareness(s, D, startGenre)).toBe(0);
+    expect(freshGenreAwareness(s, D, fresh)).toBe(aw[0]);
+    s.releases.push({ genre: fresh } as never);
+    expect(freshGenreAwareness(s, D, fresh)).toBe(aw[1]);
+    s.releases.push({ genre: fresh } as never);
+    expect(freshGenreAwareness(s, D, fresh)).toBe(0);
+    expect(freshGenreAwareness(createStudio(2, legacyConfig()), legacyConfig(), fresh)).toBe(0);
+  });
+  it("real careers tag fresh-genre plans and use them (mixed, 6 years)", () => {
+    const D = baselineConfig();
+    let films = 0;
+    for (let seed = 1; seed <= 4; seed++) films += runCareer(seed, "mixed", D, { productions: 0, years: 6 }).state.releases.filter((x) => !(D.start.unlockedGenres as string[]).includes(x.genre)).length;
+    expect(films).toBeGreaterThan(4);
+  });
+});

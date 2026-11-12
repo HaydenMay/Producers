@@ -1,7 +1,10 @@
 // Gate 4: auditable per-release and per-career accounting, identical formulas for legacy and candidate.
 // Pure functions over a finished state (nothing here changes the simulation).
 //   studio all-in net = studio share of gross + kept advance surplus − studio cash paid for base/Star/campaign
-//                       − payroll and upkeep during the production weeks
+//                       − payroll and upkeep accrued during the production weeks (Release.laborDuring)
+// What per-release P&L does NOT include (so the releases won't sum to the career): weeks between productions,
+// contract weeks, a cancelled production's base cost and labor (it lands on no release), and the wages of staff on
+// an assignment (the Software Engineer building streaming), which belong to the streaming build.
 //   direct-only net    = the old metric (no payroll): studioTake + surplus − cashOverrun
 //   distributor net    = distributor share of gross − its stake (candidate: its own ad spend; legacy: the advance)
 import type { Config } from "../core/config";

@@ -380,7 +380,6 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `scoring.saturatedCriticPenalty` | 0.1 |
 | `scoring.hofThreshold` | 9 |
 | `scoring.thresholdDecimals` | 1 |
-| `scoring.renewThreshold` | 4 |
 | `stars.pool.enabled` | true |
 | `stars.pool.initialSize` | 150 |
 | `stars.pool.tierShares.newcomer` | 0.45 |
@@ -567,6 +566,8 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `genreUnlocks.easing.fromYear` | 4 |
 | `genreUnlocks.easing.perYear` | 5 |
 | `genreUnlocks.easing.floor` | 40 |
+| `genreUnlocks.freshBuzz.enabled` | true |
+| `genreUnlocks.freshBuzz.awareness` | [0.3,0.15] |
 | `time.weeksPerYear` | 52 |
 | `debug.injectBug` | "none" |
 | `staffCapacity.ladder` | [4,6,8] |
@@ -582,7 +583,7 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `agents.renewalUsesShowMoney` | true |
 | `agents.renewMinAllInNetPerWeek` | 0 |
 | `expectations.studioSize.enabled` | true |
-| `expectations.studioSize.toughnessByUpgrades` | [0.025,0.04] |
+| `expectations.studioSize.toughnessByUpgrades` | [0.025,0.035] |
 | `expectations.studioSize.applyTo` | "both" |
 | `expectations.method` | "scale" |
 | `expectations.critics.enabled` | true |
@@ -725,8 +726,9 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `economy.lateDistribution.appealMin` | 0.4 |
 | `economy.lateDistribution.appealMax` | 1.8 |
 | `economy.lateDistribution.studioClout.enabled` | true |
-| `economy.lateDistribution.studioClout.adMultByUpgrades` | [1.2,1.4] |
-| `economy.lateDistribution.studioClout.shareMultByUpgrades` | [0.75,0.5] |
+| `economy.lateDistribution.studioClout.adMultByUpgrades` | [1,1] |
+| `economy.lateDistribution.studioClout.shareMultByUpgrades` | [1,1] |
+| `economy.lateDistribution.studioClout.reachMultByUpgrades` | [1.15,1.3] |
 | `economy.lateDistribution.favoredAdFactor` | 1.15 |
 | `economy.lateDistribution.formatAdFactor.movie` | 1 |
 | `economy.lateDistribution.formatAdFactor.limited_series` | 1.2 |

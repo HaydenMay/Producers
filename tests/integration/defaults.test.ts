@@ -32,6 +32,7 @@ describe("Producers default economy", () => {
   it("legacyConfig keeps the baseline name (legacy outputs stay comparable)", () => {
     expect(legacyConfig().name).toBe("baseline");
   });
+  // audit 2026-11-12b: LEAF keys only, so a new legacy override anywhere else fails this test
   it("legacy overlay touches ONLY the listed Producers switches (economy, Stars, unlocks, formats, TV, prices, combo mode)", () => {
     const d = baselineConfig() as unknown as Record<string, unknown>;
     const l = legacyConfig() as unknown as Record<string, unknown>;
@@ -43,17 +44,20 @@ describe("Producers default economy", () => {
       delete x.audience.legsModel;
       delete x.audience.movieQualityPivot;
       delete x.audience.fanDecayExact; // audit 2026-11-12: exact fan decay (legacy keeps weekly rounding)
-      delete x.staffCapacity; // audit H3: the default ships the 4/6/8 ladder; legacy stays uncapped
-      delete x.expectations.studioSize; // PROD-226: studio-size expectations off in legacy
+      delete x.staffCapacity.ladder; // audit H3: the default ships the 4/6/8 ladder; legacy stays uncapped
+      delete x.staffCapacity.upgradeCosts;
+      delete x.staffCapacity.upgradePrestige;
+      delete x.expectations.studioSize.enabled; // PROD-226: studio-size expectations off in legacy
       delete x.scoring.thresholdDecimals; // PROD-078: thresholds judge the displayed score (legacy: raw)
-      delete x.economy.lateDistribution; // PROD-227: studio clout off in legacy (the only lateDistribution key it sets)
+      delete x.economy.lateDistribution.studioClout.enabled; // PROD-227: studio clout off in legacy
       delete x.agents.legacyHeuristicStaffCaps; // audit M3: default agents play the default game
       delete x.agents.useFiring;
       delete x.agents.economicRenewal;
       delete x.agents.renewalUsesShowMoney; // 2026-11-12: agents renew from the renewal screen's show money
       delete x.audience.diffusion.movieBadInterestDecay;
       delete x.stars.pool.enabled;
-      delete x.scoring.starScoreBonus;
+      delete x.scoring.starScoreBonus.audience;
+      delete x.scoring.starScoreBonus.critic;
       delete x.genreUnlocks.enabled;
       delete x.world.genreFamilyWeights;
       delete x.research.themePurchase;
@@ -71,7 +75,7 @@ describe("Producers default economy", () => {
       delete x.tv.weeksPerEpisode;
       delete x.world.grossPerViewer;
       delete x.world.compatibility.mode;
-      delete x.expectations.critics;
+      for (const k of ["enabled", "generationYears", "toughnessPerGeneration", "maxToughness", "adaptYears"]) delete x.expectations.critics[k];
       delete x.formats.streaming;
       delete x.streaming.unlock.prestige;
       delete x.streaming.unlock.minCatalog;
@@ -80,8 +84,8 @@ describe("Producers default economy", () => {
       delete x.staffGrowth.raisePerLevel;
       delete x.staffGrowth.hireWageBySkill;
       delete x.agents.runwayStarReserve;
-      delete x.production.approaches;
-      delete x.economy.overdraft;
+      delete x.production.approaches.enabled;
+      delete x.economy.overdraft.monthlyRate;
       delete x.studioGenre.qualityBonusPerLevel;
       delete x.career.enabled;
       delete x._overlay;
@@ -223,24 +227,25 @@ describe("studio-size expectations (PROD-226)", () => {
   });
 });
 
-// PROD-227 (designer 2026-11-12): distributors compete harder for bigger studios
+// PROD-227 (designer 2026-11-12; reworked after audit 2026-11-12b): bigger studios get wider releases
 import { generateBids, studioClout } from "../../src/core/latedist";
 describe("studio clout in distribution deals (PROD-227)", () => {
   it("is neutral before any upgrade and in the legacy overlay; grows with upgrades", () => {
     const D = baselineConfig();
     const s = createStudio(4, D);
-    expect(studioClout(s, D)).toEqual({ ad: 1, share: 1, upgrades: 0 });
+    expect(studioClout(s, D)).toEqual({ ad: 1, share: 1, reach: 1, upgrades: 0 });
     s.upgrades.push({ week: 1, from: 4, to: 6, cost: 1, prestigeAtUpgrade: 200 });
     const one = studioClout(s, D);
     s.upgrades.push({ week: 2, from: 6, to: 8, cost: 1, prestigeAtUpgrade: 1000 });
     const two = studioClout(s, D);
-    expect(one.ad).toBeGreaterThan(1);
-    expect(one.share).toBeLessThan(1);
-    expect(two.ad).toBeGreaterThan(one.ad);
-    expect(two.share).toBeLessThan(one.share);
+    expect(one.reach).toBeGreaterThan(1);
+    expect(two.reach).toBeGreaterThan(one.reach);
+    // distributors keep their terms (they must not lose money on a bigger studio: PROD-106)
+    expect(two.share).toBe(1);
+    expect(two.ad).toBe(1);
     expect(studioClout(s, legacyConfig()).upgrades).toBe(0);
   });
-  it("same project, same dice: an upgraded studio gets bigger ad budgets and smaller cuts", () => {
+  it("same project, same dice: an upgraded studio gets a wider release on the same terms", () => {
     const D = baselineConfig();
     // a real in-progress production (the first career snapshot that has one)
     let r = runCareer(1, "balanced", D, { productions: 0, years: 1 }).state;
@@ -253,8 +258,9 @@ describe("studio clout in distribution deals (PROD-227)", () => {
     const a = generateBids(small, D, p).bids, b = generateBids(big, D, p).bids;
     expect(a.length).toBe(b.length);
     for (let i = 0; i < a.length; i++) {
-      expect(b[i].adSpend).toBeGreaterThanOrEqual(a[i].adSpend);
-      expect(b[i].share).toBeLessThanOrEqual(a[i].share);
+      expect(b[i].reach).toBeGreaterThan(a[i].reach);
+      expect(b[i].adSpend).toBe(a[i].adSpend);
+      expect(b[i].share).toBe(a[i].share);
       expect(b[i].reasons.some((x) => x.startsWith("a bigger studio"))).toBe(true);
     }
   });

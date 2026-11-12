@@ -61,37 +61,54 @@ export function renewable(avg: number, cfg: Config): boolean {
   return cfg.tv.renewalInclusive ? a >= cfg.tv.renewalThreshold : a > cfg.tv.renewalThreshold;
 }
 
-/** What a show's latest season has made, as the renewal screen shows it (2026-11-12): the studio's takings so far
- *  minus what the season cost (direct costs + the crew wages and upkeep accrued while making it). While it is still
- *  airing, a rough projection adds last week's takings for each episode still to air. */
+/** What a show's latest season has made, as the renewal screen shows it (2026-11-12; audit 2026-11-12b):
+ *  - finished season: its exact all-in result (takings minus direct costs and the crew wages accrued making it);
+ *  - just released, nothing aired yet: "too early to tell" (no projection) plus the previous finished season's result;
+ *  - airing: last week's takings for each episode still to air (rough; rarely gets profit vs loss wrong). */
 export interface ShowMoney {
   season: number;
   airing: boolean;
+  tooEarly: boolean;
   earnedSoFar: number;
   cost: number;
   netSoFar: number;
   episodesLeft: number;
-  projectedNet: number;
+  /** null while it's too early to tell */
+  projectedNet: number | null;
   productionWeeks: number;
+  previous: { season: number; net: number; perWeek: number } | null;
 }
 export function showMoney(state: StudioState, cfg: Config, ipId: string): ShowMoney | null {
   const rels = state.releases.filter((r) => r.ipId === ipId);
   const r = rels.at(-1);
   if (!r || r.route === "original") return null; // Originals are judged by subscribers, not box office
+  const weeksOf = (x: Release) => (x.startWeek !== undefined ? x.releaseWeek - x.startWeek : formatSpec(cfg, formatOf(x), x.episodes).durationWeeks);
+  const netOf = (x: Release) => x.studioTake + x.surplusKept - x.cashOverrun - (x.laborDuring ?? 0);
+  const prevIdx = rels.slice(0, -1).map((x) => !x.active).lastIndexOf(true);
+  const prevRel = prevIdx >= 0 ? rels[prevIdx] : null;
+  const previous = prevRel ? { season: prevIdx + 1, net: round2(netOf(prevRel)), perWeek: round2(netOf(prevRel) / Math.max(1, weeksOf(prevRel))) } : null;
   const earned = r.studioTake + r.surplusKept;
   const cost = r.cashOverrun + (r.laborDuring ?? 0);
-  const left = r.active ? Math.max(0, (r.episodes ?? 0) - r.weekIndex) : 0;
-  const lastTake = r.weekly.at(-1)?.studio ?? 0;
   const net = earned - cost;
+  const tooEarly = r.active && r.weekly.length === 0;
+  const left = r.active ? Math.max(0, (r.episodes ?? 0) - r.weekIndex) : 0;
+  let projected: number | null = round2(net);
+  if (tooEarly) projected = null;
+  // While airing: last week's takings for each episode still to air. Tested 2026-11-12b against a projection from the
+  // previous season's curve: the curve is closer on average ($31K vs $76K) but calls profit vs loss wrong 2.5x as often
+  // (6.2% vs 2.4% of readings), and the sign is what a renewal decision needs.
+  else if (r.active) projected = round2(net + (r.weekly.at(-1)?.studio ?? 0) * left);
   return {
     season: rels.length,
     airing: r.active,
+    tooEarly,
     earnedSoFar: round2(earned),
     cost: round2(cost),
     netSoFar: round2(net),
     episodesLeft: left,
-    projectedNet: round2(net + lastTake * left),
-    productionWeeks: r.startWeek !== undefined ? r.releaseWeek - r.startWeek : formatSpec(cfg, formatOf(r), r.episodes).durationWeeks,
+    projectedNet: projected,
+    productionWeeks: weeksOf(r),
+    previous,
   };
 }
 

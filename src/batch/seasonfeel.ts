@@ -2,6 +2,7 @@
 // Horizons are taken as PREFIXES of one long run (verified: agents never look at the horizon, so a 10-year
 // career is exactly the first 10 years of the 25-year one). A season counts toward horizon H if it was
 // RELEASED before week H; its money is its full run (runs end a few weeks after release).
+import { isHallOfFame } from "../core/scoring";
 import type { Config } from "../core/config";
 import type { Release, StudioState } from "../core/types";
 
@@ -114,7 +115,7 @@ export function seasonRows(seed: number, strategy: string, s: StudioState, cfg: 
         trustAfter: trust ? trust.after : null,
         renewable: r.avgScore >= cfg.tv.renewalThreshold,
         breakthrough: bt ? r.avgScore - bt.avgWithout : 0,
-        breakthroughHof: !!bt && r.hallOfFame && bt.avgWithout < cfg.scoring.hofThreshold,
+        breakthroughHof: !!bt && r.hallOfFame && !isHallOfFame(bt.avgWithout, cfg),
         twist: tv?.twist ?? null,
         starChanged: !!prev && !!r.starId && prev.starId !== r.starId,
       });

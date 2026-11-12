@@ -66,7 +66,10 @@ export function payroll(state: StudioState, cfg: Config): void {
   applyRaises(state, cfg);
   const wages = state.staff.reduce((a, s) => a + s.wage, 0);
   // Audit H2: charge each production-week its accrued labor, independent of when payroll cash is paid.
-  if (state.project) state.project.laborAccrued = Math.round(((state.project.laborAccrued ?? 0) + wages + cfg.start.upkeepPerWeek) * 100) / 100;
+  // Audit 2026-11-12b: staff on an assignment (the Software Engineer building streaming) work on the build, not on
+  // the production, so their wages are not charged to it.
+  const projectWages = state.staff.reduce((a, s) => a + (s.assignment ? 0 : s.wage), 0);
+  if (state.project) state.project.laborAccrued = Math.round(((state.project.laborAccrued ?? 0) + projectWages + cfg.start.upkeepPerWeek) * 100) / 100;
   const period = payCfg(cfg).payrollPeriodWeeks ?? 1;
   if (period <= 1) {
     ledger(state, { kind: "payroll", amount: -wages, note: `${state.staff.length} staff` });

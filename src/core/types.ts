@@ -335,6 +335,8 @@ export interface PlanDecision {
   route?: "original";
   /** PROD-220 (when production.approaches.enabled): where the crew puts its effort. Omitted = balanced. */
   approach?: Approach;
+  /** PROD-229 (display only, on offered plans): opening awareness from audience curiosity about a freshly unlocked genre. */
+  freshGenre?: number;
 }
 
 export type Approach = "crowd" | "balanced" | "awards";

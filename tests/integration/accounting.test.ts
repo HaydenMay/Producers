@@ -66,3 +66,41 @@ describe("per-release labor (H2)", () => {
     expect(charged).toBeLessThanOrEqual(totalPaid + 0.01);
   });
 });
+
+// Audit 2026-11-12b H2: the renewal screen never shows a just-released season as having lost its whole cost
+import { showMoney } from "../../src/core/formats";
+describe("renewal screen show money", () => {
+  it("nothing aired yet = too early to tell (no projection) with the previous finished season's result", () => {
+    const cfg = baselineConfig();
+    let checked = 0;
+    for (let seed = 1; seed <= 4 && checked < 3; seed++) {
+      const s = runCareer(seed, "tv-first", cfg, { productions: 0, years: 12 }).state;
+      const shows = new Set(s.releases.filter((r) => r.format === "tv" && r.route !== "original").map((r) => r.ipId));
+      for (const ip of shows) {
+        const seasons = s.releases.filter((r) => r.ipId === ip);
+        if (seasons.length < 2) continue;
+        const latest = seasons.at(-1)!;
+        // rewind the latest season to its release week: nothing aired
+        const view = structuredClone(s);
+        const v = view.releases.find((r) => r.id === latest.id)!;
+        Object.assign(v, { active: true, weekly: [], weekIndex: 0, studioTake: 0, surplusKept: 0 });
+        const m = showMoney(view, cfg, ip)!;
+        expect(m.tooEarly).toBe(true);
+        expect(m.projectedNet).toBeNull();
+        expect(m.previous).not.toBeNull();
+        expect(m.previous!.season).toBe(seasons.length - 1);
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(0);
+  });
+  it("a finished season shows its exact all-in result", () => {
+    const cfg = baselineConfig();
+    const s = runCareer(2, "tv-first", cfg, { productions: 0, years: 10 }).state;
+    const rel = s.releases.filter((r) => r.format === "tv" && r.route !== "original" && !r.active).at(-1)!;
+    if (s.releases.filter((r) => r.ipId === rel.ipId).at(-1)!.id !== rel.id) return; // a later season exists
+    const m = showMoney(s, cfg, rel.ipId)!;
+    expect(m.airing).toBe(false);
+    expect(m.projectedNet).toBeCloseTo(rel.studioTake + rel.surplusKept - rel.cashOverrun - (rel.laborDuring ?? 0), 2);
+  });
+});

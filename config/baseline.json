@@ -280,8 +280,7 @@
     "saturatedCriticPenalty": 0.1,
     "hofThreshold": 9.0,
     "thresholdDecimals": 1,
-    "_thresholdDecimalsLabel": "PROD-078 (Claude's call 2026-11-12): Hall of Fame (9.0) and renewal (4.0) judge the average AS DISPLAYED, to one decimal, so an 8.95 shown as 9.0 is in the Hall of Fame. legacy-advance.json sets null (raw 2-decimal average).",
-    "renewThreshold": 4.0
+    "_thresholdDecimalsLabel": "PROD-078 (Claude's call 2026-11-12): Hall of Fame (9.0) and renewal (4.0) judge the average AS DISPLAYED, to one decimal, so an 8.95 shown as 9.0 is in the Hall of Fame. legacy-advance.json sets null (raw 2-decimal average)."
   },
   "stars": {
     "pool": {
@@ -629,7 +628,12 @@
     },
     "combos": { "RomCom": ["Comedy", "Romance"] },
     "_easingLabel": "Designer 2026-11-11 (replaces the year-6 free unlock): from fromYear on, every skill threshold drops perYear points per full year, never below floor, so a struggling crew still opens genres itself (SciFi: Editing 60, 55 in year 5, 50 in year 6, ...).",
-    "easing": { "fromYear": 4, "perYear": 5, "floor": 40 }
+    "easing": { "fromYear": 4, "perYear": 5, "floor": 40 },
+    "freshBuzz": {
+      "_label": "PROD-229 (designer 2026-11-12): audiences are curious about a genre the studio just unlocked. Extra opening awareness for the 1st / 2nd release in a genre unlocked during the career (a hot trend is 0.4). Money and hype only, never review scores. Shown on the plan. TEST VALUES.",
+      "enabled": true,
+      "awareness": [0.3, 0.15]
+    }
   },
   "time": {
     "weeksPerYear": 52
@@ -662,7 +666,7 @@
     "studioSize": {
       "_label": "PROD-226 (designer 2026-11-12): \"we're a bigger company now, the expectations are higher\". Toughness added to BOTH audience and critic reviews after the 1st / 2nd studio upgrade (same scale method as critic generations: x(1 - t)). Tuned so each upgrade is still a net gain but the Hall of Fame stays rare. legacy-advance.json disables it. TEST VALUES.",
       "enabled": true,
-      "toughnessByUpgrades": [0.025, 0.04],
+      "toughnessByUpgrades": [0.025, 0.035],
       "applyTo": "both"
     },
     "_label": "EXPERIMENTAL (Gate 2.6). HARNESS PROXY for critic generations (named critics retiring, replaced by a tougher generation) and gentler audience-era expectations. Deterministic, calendar-based, applied after combo/weakness/fatigue/saturation and before the 0-10 clamp, at release time only (published scores never change). Disabled = previous behavior exactly. All numbers are TEST ASSUMPTIONS.",
@@ -891,10 +895,11 @@
       "appealMin": 0.4,
       "appealMax": 1.8,
       "studioClout": {
-      "_label": "PROD-227 (designer 2026-11-12): distributors compete harder for bigger studios. After the 1st / 2nd studio upgrade, every bid's ad budget is multiplied by adMultByUpgrades and the distributor's cut by shareMultByUpgrades, so a bigger studio earns back its bigger payroll. legacy-advance.json disables it. TEST VALUES.",
+      "_label": "PROD-227 (designer 2026-11-12; reworked after audit 2026-11-12b): distributors give bigger studios WIDER releases. After the 1st / 2nd studio upgrade every bid's reach is multiplied by reachMultByUpgrades, so more people see the film and BOTH the studio and the distributor earn more. The first version cut the distributor's share instead and made distributors lose money on ~15% of deals (breaking PROD-106); ad/share multipliers stay available at 1. legacy-advance.json disables it. TEST VALUES.",
       "enabled": true,
-      "adMultByUpgrades": [1.2, 1.4],
-      "shareMultByUpgrades": [0.75, 0.5]
+      "adMultByUpgrades": [1, 1],
+      "shareMultByUpgrades": [1, 1],
+      "reachMultByUpgrades": [1.15, 1.3]
     },
     "favoredAdFactor": 1.15,
       "formatAdFactor": { "movie": 1.0, "limited_series": 1.2, "tv": 1.0 },

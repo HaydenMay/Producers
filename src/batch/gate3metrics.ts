@@ -3,6 +3,7 @@
 // "gate3"); flags are evidence for the designer, never automatic balance verdicts.
 import type { Config } from "../core/config";
 import { formatOf } from "../core/formats";
+import { thresholdScore } from "../core/events";
 import type { Release, StudioState } from "../core/types";
 import { quantile } from "./metrics";
 
@@ -145,7 +146,7 @@ export function careerG3(seed: number, strategy: string, s: StudioState, cfg: Co
     maxSeasons: Math.max(0, ...seasonCounts),
     showsEndedByScore: tvIps.filter((i) => {
       const last = s.releases.filter((r) => r.ipId === i.id).at(-1);
-      return last && last.avgScore < cfg.tv.renewalThreshold;
+      return last && thresholdScore(last.avgScore, cfg) < cfg.tv.renewalThreshold; // displayed score (PROD-078)
     }).length,
     tvUnlockWeek: s.events.find((e) => e.type === "unlock" && String(e.message).startsWith("Studio upgrade: TV"))?.week ?? null,
     launchWeek: p?.launchWeek ?? null,

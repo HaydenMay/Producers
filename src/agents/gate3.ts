@@ -64,8 +64,11 @@ function renewal(state: StudioState, cfg: Config, ch: Choices, minAvg: number, m
       const ag = cfg.agents as { renewMinNetPerWeek?: number; renewalUsesShowMoney?: boolean; renewMinAllInNetPerWeek?: number };
       const sm = ag.renewalUsesShowMoney ? ch.showMoney?.[ipId] : undefined;
       if (sm) {
-        // 2026-11-12: judge the LATEST season (even while it airs) all-in, exactly as the renewal screen shows it
-        if (sm.projectedNet / Math.max(1, sm.productionWeeks) < (ag.renewMinAllInNetPerWeek ?? 0)) continue;
+        // audit 2026-11-12b: decide on FINISHED seasons only (an explicit rule; it used to happen by accident because the
+        // screen showed a just-released season as losing its whole cost). Then renew only if that season at least
+        // broke even per production week, all-in, exactly as the renewal screen shows it.
+        if (sm.airing) continue;
+        if ((sm.projectedNet ?? sm.netSoFar) / Math.max(1, sm.productionWeeks) < (ag.renewMinAllInNetPerWeek ?? 0)) continue;
       } else {
         const net = lastFinishedNetPerWeek(state, cfg, ipId);
         if (net !== null && net < ag.renewMinNetPerWeek!) continue; // voluntarily stop: it no longer pays

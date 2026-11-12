@@ -1,5 +1,6 @@
 // Gate 2.6: top-end achievement statistics ("how often do truly great movies happen") and Prestige
 // progression. Pure functions over finished careers; permanent report fields for every batch/experiment.
+import { thresholdScore } from "../core/events";
 import type { Config } from "../core/config";
 import type { Release, StudioState } from "../core/types";
 import { quantile } from "./metrics";
@@ -120,14 +121,13 @@ export interface GreatRow {
   bestCritic: FilmRef | null;
 }
 
-function rowFor(strategy: string, slice: string, sliceKind: GreatRow["sliceKind"], byCareer: FilmRef[][], hofThreshold: number): GreatRow {
+function rowFor(strategy: string, slice: string, sliceKind: GreatRow["sliceKind"], byCareer: FilmRef[][], disp: (avg: number) => number): GreatRow {
   const films = byCareer.flat();
   const nonEmpty = byCareer.filter((c) => c.length);
   const n = films.length;
   const mean = (xs: number[]) => (xs.length ? +(xs.reduce((a, b) => a + b, 0) / xs.length).toFixed(3) : NaN);
   const hofCounts = nonEmpty.map((c) => c.filter((f) => f.hallOfFame).length);
   const hofIps = nonEmpty.map((c) => new Set(c.filter((f) => f.hallOfFame).map((f) => f.ipId)).size);
-  void hofThreshold;
   return {
     strategy,
     slice,
@@ -138,7 +138,7 @@ function rowFor(strategy: string, slice: string, sliceKind: GreatRow["sliceKind"
     avgCritic: mean(films.map((f) => f.critic)),
     meanYear: mean(films.map((f) => f.year)),
     hof: pct(films.filter((f) => f.hallOfFame).length, n),
-    avg9inc: pct(films.filter((f) => f.avg >= 9).length, n),
+    avg9inc: pct(films.filter((f) => disp(f.avg) >= 9).length, n), // displayed score (PROD-078), like the Hall of Fame
     avg9strict: pct(films.filter((f) => f.avg > 9).length, n),
     aud9: pct(films.filter((f) => f.audience >= 9).length, n),
     crit9: pct(films.filter((f) => f.critic >= 9).length, n),
@@ -165,16 +165,16 @@ export function greatness(careers: { seed: number; strategy: string; films: Film
     const cs = careers.filter((c) => s === "ALL" || c.strategy === s);
     for (const w of WINDOWS) {
       if (w.lo > maxProductions) continue;
-      rows.push(rowFor(s, w.name, "window", cs.map((c) => c.films.filter((f) => f.index >= w.lo && f.index <= w.hi)), cfg.scoring.hofThreshold));
+      rows.push(rowFor(s, w.name, "window", cs.map((c) => c.films.filter((f) => f.index >= w.lo && f.index <= w.hi)), (x: number) => thresholdScore(x, cfg)));
     }
     for (const y of YEAR_BANDS) {
       const by = cs.map((c) => c.films.filter((f) => f.year >= y.lo && f.year < y.hi));
-      if (by.some((x) => x.length)) rows.push(rowFor(s, y.name, "year", by, cfg.scoring.hofThreshold));
+      if (by.some((x) => x.length)) rows.push(rowFor(s, y.name, "year", by, (x: number) => thresholdScore(x, cfg)));
     }
     const formats = [...new Set(cs.flatMap((c) => c.films.map((f) => f.format)))].sort();
-    if (formats.length > 1 || (formats[0] && formats[0] !== "movie")) for (const fk of formats) rows.push(rowFor(s, fk, "format", cs.map((c) => c.films.filter((f) => f.format === fk)), cfg.scoring.hofThreshold));
+    if (formats.length > 1 || (formats[0] && formats[0] !== "movie")) for (const fk of formats) rows.push(rowFor(s, fk, "format", cs.map((c) => c.films.filter((f) => f.format === fk)), (x: number) => thresholdScore(x, cfg)));
     const gens = [...new Set(cs.flatMap((c) => c.films.map((f) => f.criticGeneration)))].sort((a, b) => a - b);
-    if (gens.length > 1) for (const g of gens) rows.push(rowFor(s, `gen${g}`, "generation", cs.map((c) => c.films.filter((f) => f.criticGeneration === g)), cfg.scoring.hofThreshold));
+    if (gens.length > 1) for (const g of gens) rows.push(rowFor(s, `gen${g}`, "generation", cs.map((c) => c.films.filter((f) => f.criticGeneration === g)), (x: number) => thresholdScore(x, cfg)));
   }
   return rows;
 }

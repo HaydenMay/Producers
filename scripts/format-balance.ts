@@ -21,6 +21,7 @@ for (let i = 0; i < argv.length; i++)
 const POL = ["mixed", "balanced", "limited-focus", "tv-first", "quality-first", "streaming-pivot"];
 const SINGLE = ["balanced", "limited-focus", "tv-first", "mixed"];
 const med = (x: number[]) => [...x].sort((a, b) => a - b)[Math.floor((x.length - 1) / 2)];
+const q = (x: number[], f: number) => [...x].sort((a, b) => a - b)[Math.floor((x.length - 1) * f)];
 const t0 = Date.now();
 let viol = 0;
 
@@ -68,7 +69,7 @@ for (const st of SINGLE) {
     const p = s.prestige * cfg.career.legacyScore.prestige, c = Math.max(0, s.cash) / cfg.career.legacyScore.cashPer;
     parts.prestige.push(p), parts.cash.push(c), parts.hof.push(rc.legacyScore - p - c), parts.total.push(rc.legacyScore);
   }
-  legacyRows.push(`| ${st} | ${(med(parts.total) / 1000).toFixed(1)}K | ${(med(parts.prestige) / 1000).toFixed(1)}K | ${(med(parts.hof) / 1000).toFixed(1)}K | ${(med(parts.cash) / 1000).toFixed(1)}K |`);
+  legacyRows.push(`| ${st} | ${(med(parts.total) / 1000).toFixed(1)}K (${(q(parts.total, 0.25) / 1000).toFixed(1)}–${(q(parts.total, 0.75) / 1000).toFixed(1)}K) | ${(med(parts.prestige) / 1000).toFixed(1)}K | ${(med(parts.hof) / 1000).toFixed(1)}K | ${(med(parts.cash) / 1000).toFixed(1)}K |`);
 }
 
 const L = [
@@ -82,7 +83,7 @@ const L = [
   "",
   "## 20-year legacy, split (median of each part)",
   "",
-  "| Strategy | Legacy | Prestige | Hall of Fame | Cash |",
+  "| Strategy | Legacy (p25–p75) | Prestige | Hall of Fame | Cash |",
   "|---|---|---|---|---|",
   ...legacyRows,
   "",

@@ -4,7 +4,7 @@ import type { Config } from "../core/config";
 import { openingTrace, releaseWeek, updateIpFans } from "../core/audience";
 import { updateTrust } from "../core/distribution";
 import { createStudio } from "../core/simulation";
-import { avgScore } from "../core/scoring";
+import { avgScore, isHallOfFame } from "../core/scoring";
 import type { Release } from "../core/types";
 
 export interface LegsCase {
@@ -35,7 +35,7 @@ export function simulateLegs(cfg: Config, c: LegsCase) {
   const avg = avgScore(c.audience, c.critic);
   const rel: Release = {
     id: "relX", title: `Case ${c.id}`, genre: "Horror", theme: "Zombies", ipId: "ipX", ipRelation: "new", releaseWeek: 0, distributorId: "wolf", royalty: c.royalty, reachCap: op.reachCap, starId: null,
-    meters: { plot: 0, writing: 0, filming: 0, editing: 0 }, audience: c.audience, critic: c.critic, avgScore: avg, hallOfFame: avg >= cfg.scoring.hofThreshold,
+    meters: { plot: 0, writing: 0, filming: 0, editing: 0 }, audience: c.audience, critic: c.critic, avgScore: avg, hallOfFame: isHallOfFame(avg, cfg),
     openingViewers: op.opening, weekIndex: 0, lastViewers: 0, totalViewers: 0, grossTotal: 0, distributorTake: 0, studioTake: 0, active: true, advance: c.advance, surplusKept: 0, baseCost: 0, starFee: 0, campaignCost: 0, cashOverrun: 0, weekly: [], trace: { pool: op.pool, opening: op },
   };
   state.releases.push(rel);

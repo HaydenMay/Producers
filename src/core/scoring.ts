@@ -4,6 +4,7 @@
 // generations / audience eras (applied after combo, before clamp). Marketing/Fame/sales never enter.
 import type { Config } from "./config";
 import { round2, thresholdScore } from "./events";
+import { renewable } from "./formats";
 import { METERS, type Grade, type Meter, type Project, type StudioState } from "./types";
 
 /**
@@ -214,6 +215,7 @@ export function avgScore(audience: number, critic: number): number {
 export function isHallOfFame(avg: number, cfg: Config): boolean {
   return thresholdScore(avg, cfg) >= cfg.scoring.hofThreshold;
 }
+/** One renewal rule (audit 2026-11-12b): the game's TV rule, tv.renewalThreshold + renewalInclusive, on the displayed score. */
 export function isRenewable(avg: number, cfg: Config): boolean {
-  return thresholdScore(avg, cfg) >= cfg.scoring.renewThreshold;
+  return renewable(avg, cfg);
 }

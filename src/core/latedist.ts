@@ -51,13 +51,14 @@ export function previewSignals(state: StudioState, cfg: Config, p: Project): Rec
 }
 
 /** Studio clout (PROD-227, designer 2026-11-12): distributors compete harder for bigger studios. After each studio
- *  upgrade, bids carry a bigger ad budget and a smaller distributor cut. {ad: 1, share: 1} when off / not upgraded. */
-export function studioClout(state: StudioState, cfg: Config): { ad: number; share: number; upgrades: number } {
-  const c = (cfg.economy.lateDistribution as { studioClout?: { enabled?: boolean; adMultByUpgrades?: number[]; shareMultByUpgrades?: number[] } }).studioClout;
+ *  upgrade, bids carry a wider release (reach); ad budget and cut multipliers exist but default to 1 so distributors
+ *  never lose money on a bigger studio (audit 2026-11-12b). All 1 when off / not upgraded. */
+export function studioClout(state: StudioState, cfg: Config): { ad: number; share: number; reach: number; upgrades: number } {
+  const c = (cfg.economy.lateDistribution as { studioClout?: { enabled?: boolean; adMultByUpgrades?: number[]; shareMultByUpgrades?: number[]; reachMultByUpgrades?: number[] } }).studioClout;
   const n = state.upgrades.length;
-  if (!c?.enabled || n <= 0) return { ad: 1, share: 1, upgrades: 0 };
+  if (!c?.enabled || n <= 0) return { ad: 1, share: 1, reach: 1, upgrades: 0 };
   const pick = (xs: number[] | undefined) => (xs?.length ? (xs.at(Math.min(n, xs.length) - 1) ?? 1) : 1);
-  return { ad: pick(c.adMultByUpgrades), share: pick(c.shareMultByUpgrades), upgrades: n };
+  return { ad: pick(c.adMultByUpgrades), share: pick(c.shareMultByUpgrades), reach: pick(c.reachMultByUpgrades), upgrades: n };
 }
 
 /** 2–3 fixed bids (seeded on the distributors stream). Possibly none: then only self-distribution. */
@@ -78,7 +79,7 @@ export function generateBids(state: StudioState, cfg: Config, p: Project): { bid
     const jitter = 1 + range(state.rng, "distributors", -cfg.distribution.offerJitter, cfg.distribution.offerJitter);
     const adSpend = Math.round((t.adBase * fmtFactor * sig.appeal * (fav ? l.favoredAdFactor : 1) * trustFactor * jitter * clout.ad) / 1000) * 1000;
     const share = round2(Math.max(l.shareMin, Math.min(l.shareMax, t.shareBase * (1.15 - 0.15 * sig.appeal) * (1.1 - 0.04 * d.trust) * clout.share)));
-    const reach = round2(d.reach * (fav ? 1.1 : 1.0));
+    const reach = round2(d.reach * (fav ? 1.1 : 1.0) * clout.reach);
     return {
       distributorId: d.id,
       name: d.name,
@@ -86,7 +87,7 @@ export function generateBids(state: StudioState, cfg: Config, p: Project): { bid
       adAwareness: adAwareness(cfg, adSpend),
       reach,
       share,
-      reasons: [`preview of the work so far ${sig.preview}/100 → appeal ${sig.appeal}`, fav ? "favoured genre family" : "neutral genre family", `trust ${d.trust.toFixed(2)} → x${trustFactor.toFixed(2)}`, ...(clout.upgrades > 0 ? ["a bigger studio: distributors compete harder for you (bigger ad budget, smaller cut)"] : [])],
+      reasons: [`preview of the work so far ${sig.preview}/100 → appeal ${sig.appeal}`, fav ? "favoured genre family" : "neutral genre family", `trust ${d.trust.toFixed(2)} → x${trustFactor.toFixed(2)}`, ...(clout.upgrades > 0 ? ["a bigger studio: distributors give you a wider release"] : [])],
     } satisfies DistributionBid;
   });
   return { bids, signals: sig };

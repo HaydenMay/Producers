@@ -1,6 +1,7 @@
 // Format balance check (designer 2026-11-11): production times (LS 12 < TV 14–32 < movie 30 weeks) and money per
 // production-week by format, plus where each strategy lands. Shipped default (TV + limited series on).
-//   npx tsx scripts/formats.ts [--seeds 8] [--years 10] [--set path=json ...]  → reports/formats/summary.md
+//   npx tsx scripts/formats.ts [--seeds 16] [--years 10] [--set path=json ...]  → reports/formats/summary.md
+// Audit 2026-11-12b: 16 seeds and the p25–p75 spread by default; 8 seeds were too noisy to rank strategies.
 import { mkdirSync, writeFileSync } from "node:fs";
 import { baselineConfig, setPath } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
@@ -9,7 +10,7 @@ import { checkInvariants } from "../src/batch/diagnostics";
 
 const argv = process.argv;
 const num = (k: string, d: number) => (argv.indexOf(`--${k}`) > 0 ? Number(argv[argv.indexOf(`--${k}`) + 1]) : d);
-const seeds = num("seeds", 8), years = num("years", 10);
+const seeds = num("seeds", 16), years = num("years", 10);
 let cfg = baselineConfig();
 const sets: string[] = [];
 argv.forEach((a, i) => a === "--set" && sets.push(argv[i + 1]));
@@ -19,6 +20,7 @@ for (const s of sets) {
 }
 const POL = ["balanced", "quality-first", "mixed", "tv-first", "limited-focus", "renewal-franchise", "cheap-duds"];
 const med = (x: number[]) => (x.length ? [...x].sort((a, b) => a - b)[Math.floor((x.length - 1) / 2)] : NaN);
+const q = (x: number[], f: number) => (x.length ? [...x].sort((a, b) => a - b)[Math.floor((x.length - 1) * f)] : NaN);
 const K = (x: number) => (Number.isNaN(x) ? "—" : `$${(x / 1000).toFixed(1)}K`);
 const t0 = Date.now();
 const per: Record<string, number[]> = {};
@@ -37,7 +39,7 @@ for (const st of POL) {
       made[a.format] = (made[a.format] ?? 0) + 1 / seeds;
     }
   }
-  rows.push(`| ${st} | ${Object.entries(made).map(([k, v]) => `${k} ${v.toFixed(1)}`).join(", ")} | $${(med(cash) / 1e6).toFixed(2)}M | ${med(prest)} | ${med(neg)} |`);
+  rows.push(`| ${st} | ${Object.entries(made).map(([k, v]) => `${k} ${v.toFixed(1)}`).join(", ")} | $${(med(cash) / 1e6).toFixed(2)}M ($${(q(cash, 0.25) / 1e6).toFixed(2)}–${(q(cash, 0.75) / 1e6).toFixed(2)}M) | ${med(prest)} | ${med(neg)} |`);
 }
 const L = [
   "# Format balance",
@@ -46,7 +48,7 @@ const L = [
   "",
   `Net per production-week (median, all strategies): ${Object.entries(per).map(([k, v]) => `**${k}** ${K(med(v))}`).join(" · ")}`,
   "",
-  "| Strategy | Releases per career | End cash p50 | Prestige p50 | Negative-cash weeks p50 |",
+  "| Strategy | Releases per career | End cash p50 (p25–p75) | Prestige p50 | Negative-cash weeks p50 |",
   "|---|---|---|---|---|",
   ...rows,
   "",

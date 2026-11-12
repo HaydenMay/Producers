@@ -9,7 +9,7 @@ import { initRng } from "./rng";
 import { canCancel, cancelRepay, spendableCash } from "./economy";
 import { canHire, fireOptions, fireStaff, hireStaff, payroll, trainStaff } from "./staff";
 import { generateOffers, driftTrust } from "./distribution";
-import { checkGenreUnlocks, generateWorld, researchTheme, updateTrends } from "./progression";
+import { checkGenreUnlocks, freshGenreAwareness, generateWorld, researchTheme, updateTrends } from "./progression";
 import { campaignOptions, canSelfFund, castStar, chooseCampaign, finalizeRelease, productionWeek, startProject } from "./production";
 import { allowedOrders, cheapestBaseCost, formatOf, limitedSeriesAvailable, partnerAdvance, planBaseCost, renewalStatus, showMoney, tvAvailable } from "./formats";
 import { buildStreaming, canBuildStreaming, canHireEngineer, decayAnticipation, hireEngineer, streamingWeek } from "./streaming";
@@ -194,6 +194,7 @@ export function getChoices(state: StudioState, cfg: Config): Choices {
   if (state.careerEnd?.decided === "end") return { ...base, phase: "finished", options: [] };
   if (state.careerEnd && state.careerEnd.decided === null) return { ...base, phase: "career_end", recap: careerRecap(state, cfg), options: [{ type: "continue_career" }, { type: "end_career" }] };
   const plans = planOptions(state, cfg);
+  for (const pl of plans) { const fg = freshGenreAwareness(state, cfg, pl.genre); if (fg > 0) pl.freshGenre = fg; } // PROD-229: shown on the plan
   const contracts = contractsEnabled(cfg) ? contractOffers(state, cfg) : null;
   const planning: Choices = { ...base, phase: "planning", options: [...plans, ...reinvestOptions(state, cfg), ...fireOptions(state, cfg).map((staffId) => ({ type: "fire" as const, staffId })), ...(contracts ? contracts.filter((c) => c.available).map((c) => ({ type: "contract" as const, contractId: c.id })) : []), { type: "wait" }] };
   const ap = (cfg.production as { approaches?: { enabled?: boolean } }).approaches;

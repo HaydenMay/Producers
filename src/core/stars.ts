@@ -199,11 +199,13 @@ export function applyStarCareer(state: StudioState, cfg: Config, star: Star, rel
   star.fame = Math.max(0, Math.min(100, round2(star.fame + fameDelta)));
   // level (a movie counts for more experience than a short series: production.formatExperience)
   const xpW = formatExperience(cfg, formatOf(rel));
-  star.levelXp += xpW;
+  star.levelXp = Math.round((star.levelXp + xpW) * 1000) / 1000;
   let leveled = false;
   if (star.levelXp >= cfg.stars.projectsPerLevel && star.level < cfg.stars.maxLevel) {
     star.level += 1;
-    star.levelXp = 0;
+    // audit 2026-11-12b M5: keep the excess (0.8 + 0.8 + 0.8 = 2.4 → level up with 0.4 carried, not thrown away);
+    // identical to resetting to 0 whenever the weights are whole numbers (the legacy overlay).
+    star.levelXp = Math.round((star.levelXp - cfg.stars.projectsPerLevel) * 1000) / 1000;
     leveled = true;
     if (poolEnabled(cfg)) levelUpGrowth(star, cfg, cfg.stars.pool.growth.levelUpPoints); // PROD-217
   }

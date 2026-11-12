@@ -146,3 +146,14 @@ export function checkGenreUnlocks(state: StudioState, cfg: Config): void {
   }
 
 }
+
+/** PROD-229 (designer 2026-11-12): audiences are curious about a genre the studio just unlocked. The first releases in a
+ *  genre unlocked DURING the career (not a starting genre) get extra opening awareness: genreUnlocks.freshBuzz.awareness
+ *  lists it per release (first, second, ...), then it's gone. Money and hype only; never review scores. 0 when off. */
+export function freshGenreAwareness(state: StudioState, cfg: Config, genre: string): number {
+  const gu = cfg.genreUnlocks as { enabled?: boolean; freshBuzz?: { enabled?: boolean; awareness?: number[] } };
+  if (!gu?.enabled || !gu.freshBuzz?.enabled || !gu.freshBuzz.awareness?.length) return 0;
+  if ((cfg.start.unlockedGenres as string[]).includes(genre)) return 0;
+  const made = state.releases.filter((r) => r.genre === genre).length;
+  return gu.freshBuzz.awareness.at(made) ?? 0;
+}

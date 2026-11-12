@@ -27,11 +27,15 @@ export function knownValue(state: StudioState, genre: string, theme: string): nu
   return (GRADE_VALUE[k.audience] + GRADE_VALUE[k.critic]) / 2;
 }
 
+/** How much the plan-scoring agents value fresh-genre curiosity awareness (tuning knob for measurement). */
+export const FRESH_GENRE_WEIGHT = { w: 2 };
+
 export function planScore(state: StudioState, p: PlanDecision, explore: number): number {
   const kv = knownValue(state, p.genre, p.theme);
   const trend = TREND_VALUE[state.trends[p.theme]?.stage ?? "none"];
   const repeats = state.comboHistory[comboKey(p.genre, p.theme)] ?? 0;
-  return (kv ?? explore) + trend - 0.35 * repeats;
+  // PROD-229: a fresh genre's curiosity buzz is valued like a trend of the same awareness (hot = 0.4 awareness = +0.8)
+  return (kv ?? explore) + trend - 0.35 * repeats + FRESH_GENRE_WEIGHT.w * (p.freshGenre ?? 0);
 }
 
 /** Movie-only "new" plans. Pre-Gate-3 strategies stay movie studios (identical behavior in movie-only configs). */

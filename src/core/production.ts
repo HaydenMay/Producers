@@ -9,7 +9,7 @@ import { comboKey, updateTrust } from "./distribution";
 import { avgScore, computeScores, isHallOfFame, meterQuality, eraBar, expectationsAt } from "./scoring";
 import { openingTrace, updateIpFans } from "./audience";
 import { evaluatePrestige } from "./prestige";
-import { awardGenreXp, genreBonus, genreLevel, maybeStaffPitch } from "./progression";
+import { awardGenreXp, freshGenreAwareness, genreBonus, genreLevel, maybeStaffPitch } from "./progression";
 import { ensureStream, next, pick } from "./rng";
 import type { Grade } from "./types";
 import { formatOf, formatSpec, hiatusMultiplier, seasonsOf, showFatigue, showHealth, twistOutcome, viewerFatigue } from "./formats";
@@ -271,6 +271,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
   const hiatus = formatOf(p) === "tv" && p.ipRelation === "season" ? hiatusMultiplier(state, cfg, ip) : null;
   const vf = formatOf(p) === "tv" && p.ipRelation === "season" ? viewerFatigue(state, cfg, ip) : null;
   const health = formatOf(p) === "tv" && p.ipRelation === "season" ? showHealth(state, cfg, ip) : null; // PROD-139
+  const freshGenre = freshGenreAwareness(state, cfg, p.genre); // PROD-229
   const opIn = (returningMult?: number) => ({
       reach: health ? round2(p.reach * health.mult) : p.reach,
       campaignAwareness: p.distribution ? p.distribution.adAwareness : (cfg.marketing.campaigns as Record<string, { awareness: number }>)[p.campaign ?? "none"].awareness,
@@ -280,6 +281,7 @@ function completeProject(state: StudioState, cfg: Config): Release {
       ipFans: ip.fans,
       ...(formatOf(p) === "tv" ? { anticipation: round2((ip.anticipation ?? 0) * (hiatus?.mult ?? 1)), fanAnticipationMult: hiatus?.mult ?? 1 } : {}),
       ...(returningMult !== undefined ? { returningMult } : {}),
+      ...(freshGenre > 0 ? { freshGenre } : {}),
     });
   const op = openingTrace(opIn(vf ? vf.mult : undefined), cfg);
   const vfTrace = vf
