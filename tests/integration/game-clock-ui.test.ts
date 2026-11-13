@@ -14,7 +14,9 @@ describe('prototype playback controls', () => {
     const click = (selector: string) => (document.querySelector(selector) as HTMLButtonElement).click();
     const text = () => document.body.textContent ?? '';
     click('#start'); expect(text()).toContain('WEEK 0');
+    const speedControl = document.querySelector('#speed');
     vi.advanceTimersByTime(1300); expect(text()).toContain('WEEK 1');
+    expect(document.querySelector('#speed')).toBe(speedControl);
     click('#play'); vi.advanceTimersByTime(5000); expect(text()).toContain('WEEK 1');
     const speed = document.querySelector('#speed') as HTMLSelectElement;
     speed.value='4'; speed.dispatchEvent(new Event('change')); click('#play');
