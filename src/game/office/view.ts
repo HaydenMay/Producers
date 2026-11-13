@@ -3,12 +3,12 @@ import type { OfficeLayout } from './layout';
 export function makeCamera() {const camera=new THREE.OrthographicCamera(-7,7,5,-5,.1,100);camera.position.set(11,12.5,16);camera.lookAt(0,0,0);return camera}
 export function fitCamera(camera:THREE.OrthographicCamera, width:number, height:number, layout:OfficeLayout) {
  const aspect=width/Math.max(height,1);
- // Preserve V0.3 phone framing for the two-worker game; larger debug rooms scale with depth.
+ // Fit the full diorama on portrait screens; larger preview rooms scale with depth.
  const scale=Math.max(1,layout.depth/7.4);
  const portrait=aspect<.8;
- const target=portrait?new THREE.Vector3(-.8,0,.65):new THREE.Vector3(0,0,0);
+ const target=portrait?new THREE.Vector3(0,-1.1,0):new THREE.Vector3(0,0,0);
  camera.position.copy(target).add(new THREE.Vector3(11,12.5,16));camera.lookAt(target);
- const h=(portrait?16.3:aspect<1.1?10.6:9.1)*scale;
+ const h=(portrait?24.5:aspect<1.1?10.6:9.1)*scale;
  camera.left=-h*aspect/2;camera.right=h*aspect/2;camera.top=h/2;camera.bottom=-h/2;camera.updateProjectionMatrix();
 }
 export function addLighting(scene:THREE.Scene, layout:OfficeLayout) {

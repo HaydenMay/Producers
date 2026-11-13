@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { appearanceFor } from '../appearance';
 import type { OfficeKit } from './kit';
 
-export interface WorkerRig { head:THREE.Group; left:THREE.Group; right:THREE.Group; offset:number }
+export interface WorkerRig { head:THREE.Object3D; left:THREE.Object3D; right:THREE.Object3D; offset:number }
 /** Origin is floor beneath the chair. The worker faces local -Z. */
 export function seatedCharacter(kit:OfficeKit, id:string) {
   const group=new THREE.Group();const p=appearanceFor(id);const dark='#403e3e';
