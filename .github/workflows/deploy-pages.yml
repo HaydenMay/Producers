@@ -28,5 +28,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist-pages
+      # The artifact listing can lag behind a successful upload.
+      - name: Allow artifact indexing
+        run: sleep 10
       - id: deployment
         uses: actions/deploy-pages@v4
