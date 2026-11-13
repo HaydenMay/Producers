@@ -280,3 +280,7 @@ The experimental playable office is intended for https://haydenmay.github.io/Pro
 - `npm run dev` and `npm run build:web` — unchanged debug harness in `src/web` / `dist-web`.
 
 `.github/workflows/deploy-pages.yml` deploys the game build to GitHub Pages on pushes to `main` once Pages is enabled with **GitHub Actions** as its source. The project-site asset base is `/Producers/`. A private repository may require a plan that supports Pages; the deployed site can be public. The drawer adapts to small screens, with landscape recommended on phones; WebGL is required for the 3D scene.
+
+### V0.3 gameplay-feel experiment
+
+During production, the prototype clock advances one simulation week approximately every 1.3 seconds at 1× (2× and 4× are experimental presentation speeds). Pause, stepping, casting, distribution, release, and browser visibility stop or control this clock; returning to a hidden or unfocused tab requires pressing Play again. These speeds are UI experiments, not locked game design. After a release, another movie is offered only if a legal new-movie plan is available; the prototype does not yet expose work-for-hire for recovery. PROD-111's final distribution UX remains open.

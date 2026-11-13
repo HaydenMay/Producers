@@ -98,9 +98,12 @@ export function createOffice(container: HTMLElement, staff: Staff[]) {
     anim.push({head,leftArm:arm(-.4),rightArm:arm(.4),offset:(hash%37)*.31});
   }
   staff.slice(0,2).forEach((person,i) => workstation(person, i===0 ? -1.9 : 1.8, i===0 ? -.65 : .7));
-  let frame=0;
+  let frame=0; let working=false;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const resize=()=>{const w=container.clientWidth,h=container.clientHeight;const aspect=w/Math.max(h,1);const view=aspect<1.1?11:9.7;camera.left=-view*aspect/2;camera.right=view*aspect/2;camera.top=view/2;camera.bottom=-view/2;camera.updateProjectionMatrix();renderer.setSize(w,h,false)};
   const observer=new ResizeObserver(resize);observer.observe(container);resize();
-  const tick=(t:number)=>{for(const a of anim){const pause=Math.max(0,Math.sin(t*.00045+a.offset));a.head.rotation.z=Math.sin(t*.0006+a.offset)*.04;a.leftArm.rotation.x=Math.sin(t*.004+a.offset)*.065*pause;a.rightArm.rotation.x=Math.sin(t*.0048+a.offset+1.4)*.065*pause}renderer.render(scene,camera);frame=requestAnimationFrame(tick)};frame=requestAnimationFrame(tick);
-  return () => {cancelAnimationFrame(frame);observer.disconnect();renderer.dispose()};
+  const tick=(t:number)=>{frame=0;if(document.hidden)return;for(const a of anim){const active=working&&!reduced.matches;const pause=active?Math.max(0,Math.sin(t*.00045+a.offset)):0;a.head.rotation.z=active?Math.sin(t*.0006+a.offset)*.04:0;a.leftArm.rotation.x=Math.sin(t*.004+a.offset)*.065*pause;a.rightArm.rotation.x=Math.sin(t*.0048+a.offset+1.4)*.065*pause}renderer.render(scene,camera);if(!reduced.matches)frame=requestAnimationFrame(tick)};
+  const refresh=()=>{if(!document.hidden&&!frame)frame=requestAnimationFrame(tick)};
+  document.addEventListener('visibilitychange',refresh); reduced.addEventListener('change',refresh); refresh();
+  return {setWorking(value:boolean){working=value;refresh()},dispose(){cancelAnimationFrame(frame);observer.disconnect();document.removeEventListener('visibilitychange',refresh);reduced.removeEventListener('change',refresh);renderer.dispose()}};
 }
