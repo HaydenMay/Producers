@@ -269,3 +269,14 @@ Core API: `createStudio(seed, config)`, `getChoices(state, config)`, `applyDecis
 ## Known limitations
 
 This is a balance harness, not the game: strategies are heuristics and titles can repeat. Not built yet: named critics (critic generations are a calendar proxy), the tutorial, the Hall of Fame visibility boost for related titles, Star bio lines and portraits, the review-site % display. Open design items live in [`docs/DESIGN_LEDGER.md`](docs/DESIGN_LEDGER.md) (status `OPEN` / `LATER`).
+
+## Producers visual prototype V0.1
+
+The experimental playable office is intended for https://haydenmay.github.io/Producers/ when GitHub Pages is configured and deployed. It is a visual feasibility prototype, not the finished game. The two seated employees and production drawer are in `src/game`; production decisions and results use the existing `src/core` simulation. Reset starts the same seeded studio; progress is not saved between sessions.
+
+- `npm run dev:game` — run the prototype locally.
+- `npm run build:game` — build the project-site root into `dist-pages`.
+- `npm run preview:game` — preview the production build.
+- `npm run dev` and `npm run build:web` — unchanged debug harness in `src/web` / `dist-web`.
+
+`.github/workflows/deploy-pages.yml` deploys the game build to GitHub Pages on pushes to `main` once Pages is enabled with **GitHub Actions** as its source. The project-site asset base is `/Producers/`. A private repository may require a plan that supports Pages; the deployed site can be public. The drawer adapts to small screens, with landscape recommended on phones; WebGL is required for the 3D scene.
