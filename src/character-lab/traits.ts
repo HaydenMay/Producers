@@ -3,7 +3,7 @@ export const HAIR_STYLES=['short','swept','curls','long','bald'] as const;
 export const FACIAL_HAIR=['none','moustache','goatee','beard'] as const;
 export const GLASSES=['none','square'] as const;
 export const HAIR_COLORS={black:'#292623',espresso:'#51382b',chestnut:'#83513a',blonde:'#d9a74a',auburn:'#a95638',silver:'#a7a5a0'} as const;
-export const SKIN_COLORS={ivory:'#efd0ae',peach:'#dba77d',tan:'#bd805e',brown:'#a26a4c',deep:'#80503d'} as const;
+export const SKIN_COLORS={ivory:'#efd0ae',porcelain:'#e7bd99',peach:'#dba77d',sand:'#ce936d',tan:'#bd805e',caramel:'#b17450',brown:'#a26a4c',umber:'#925b40',deep:'#80503d',ebony:'#643d30'} as const;
 export const SHIRT_COLORS={red:'#b94f43',blue:'#416fa4',green:'#558254',gold:'#d8a93e',purple:'#82609a',charcoal:'#454b54',cream:'#e9dbbd'} as const;
 export const PANTS_COLORS={navy:'#344b67',brown:'#634737',grey:'#74767b',black:'#34383d',tan:'#ac885f'} as const;
 export type Traits={hairStyle:typeof HAIR_STYLES[number];hairColor:keyof typeof HAIR_COLORS;skin:keyof typeof SKIN_COLORS;facialHair:typeof FACIAL_HAIR[number];glasses:typeof GLASSES[number];shirt:keyof typeof SHIRT_COLORS;pants:keyof typeof PANTS_COLORS};
@@ -12,7 +12,7 @@ export const JUSTIN_TRAITS:Traits={hairStyle:'short',hairColor:'black',skin:'tan
 export type SavedLook={name:string;traits:Traits};
 const choices={hairStyle:HAIR_STYLES,hairColor:Object.keys(HAIR_COLORS),skin:Object.keys(SKIN_COLORS),facialHair:FACIAL_HAIR,glasses:GLASSES,shirt:Object.keys(SHIRT_COLORS),pants:Object.keys(PANTS_COLORS)};
 export function hairColorsForSkin(skin:Traits['skin']):Traits['hairColor'][] {
- return (Object.keys(HAIR_COLORS) as Traits['hairColor'][]).filter(color=>skin==='ivory'?color!=='silver':['tan','brown','deep'].includes(skin)?!['blonde','auburn'].includes(color):true);
+ return (Object.keys(HAIR_COLORS) as Traits['hairColor'][]).filter(color=>skin==='ivory'?color!=='silver':['tan','caramel','brown','umber','deep','ebony'].includes(skin)?!['blonde','auburn'].includes(color):true);
 }
 function compatible(traits:Traits):Traits {return hairColorsForSkin(traits.skin).includes(traits.hairColor)?traits:{...traits,hairColor:'espresso'}}
 export function updateTrait<K extends keyof Traits>(traits:Traits,key:K,value:Traits[K]):Traits{return compatible({...traits,[key]:value})}
