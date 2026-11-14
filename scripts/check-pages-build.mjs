@@ -3,10 +3,10 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const output='dist-pages';
-for(const [relative,title] of [['index.html','Producers — Character Lab'],['studio/index.html','Producers — Visual Prototype']]){
+for(const [relative,title] of [['index.html','Producers — Character Lab'],['studio/index.html','Producers — Visual Prototype'],['scene/index.html','Producers — Studio Scene Lab']]){
  const path=join(output,relative);assert.ok(existsSync(path),`Missing ${path}`);
  const html=readFileSync(path,'utf8');assert.ok(html.includes(title),`${relative} has the wrong entry point`);
- const base=new URL(relative==='index.html'?'https://example.test/Producers/':'https://example.test/Producers/studio/');
+ const base=new URL(relative==='index.html'?'https://example.test/Producers/':`https://example.test/Producers/${relative.replace('index.html','')}`);
  for(const match of html.matchAll(/(?:src|href)="([^"]+)"/g)){
   if(match[1].startsWith('data:'))continue;
   const url=new URL(match[1],base);assert.ok(url.pathname.startsWith('/Producers/'),`Incorrect asset base ${url}`);
