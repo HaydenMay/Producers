@@ -6,3 +6,8 @@
 @media(min-width:801px){.controls-head{padding-top:22px;padding-bottom:12px}.trait-group{margin-bottom:14px}.trait-group legend{margin-bottom:7px}}
 .top-actions{display:flex;align-items:center;gap:24px}.studio-link{color:#f3d8a5;text-decoration:none;font-size:11px;font-weight:700}.studio-link:hover{text-decoration:underline}.studio-link:focus-visible{outline:3px solid #f0ae42;outline-offset:5px}
 .quick-action{padding:0 28px 15px}.control-actions .action-row{margin-top:0}@media(max-width:800px){.quick-action{padding:0 20px 15px}}
+
+/* Portrait framing and background comparisons */
+.viewer.portrait-view #canvas-host{inset:auto;left:50%;top:46%;transform:translate(-50%,-50%);width:min(76%, 340px, 70vh);aspect-ratio:1;border-radius:20px;overflow:hidden;box-shadow:0 8px 25px #634d3424}
+.portrait-view #canvas-host[data-background="cream"]{background:#e8d3b7}.portrait-view #canvas-host[data-background="blue"]{background:#a9c2cf}.portrait-view #canvas-host[data-background="sage"]{background:#b8c8ad}.portrait-view #canvas-host[data-background="rose"]{background:#d7b2aa}.portrait-view #canvas-host[data-background="slate"]{background:#667a89}
+.portrait-backgrounds{padding:4px 4vw 8px}.portrait-backgrounds[hidden],.distance-control[hidden]{display:none}.portrait-backgrounds>span{font-size:9px;font-weight:800;letter-spacing:.14em;color:#978978}.portrait-backgrounds>div{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.portrait-backgrounds button{border:1px solid #dfd2c2;border-radius:7px;padding:7px 11px;background:#fff9ee;color:#59616b;font-size:10px;font-weight:700}.portrait-backgrounds button[aria-pressed=true]{background:#303d50;color:#fff0d6}

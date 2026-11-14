@@ -4,7 +4,7 @@ import { disposeSource, makeLabCharacter } from './character';
 import { watchContextRestoration } from './context';
 import { generateLineup, type Traits } from './traits';
 
-export type DisplayMode='single'|'lineup';
+export type DisplayMode='single'|'lineup'|'portrait';
 export type Distance='close'|'game';
 export type LabScene={setTraits:(traits:Traits)=>void;setSaved:(traits:Traits[])=>void;setMode:(mode:DisplayMode)=>void;setDistance:(distance:Distance)=>void;rotate:(amount:number)=>void;rerollLineup:()=>void;dispose:()=>void};
 
@@ -38,9 +38,10 @@ export async function createLabScene(container:HTMLElement, initial:Traits):Prom
  const frame=()=>{
   if(disposed)return;
   const width=Math.max(container.clientWidth,1),height=Math.max(container.clientHeight,1),aspect=width/height;
-  let vertical=mode==='single'?3.35:Math.max(3.65,6.3/aspect);
+  camera.position.set(5,mode==='portrait'?3.8:5.1,9);camera.lookAt(0,mode==='portrait'?1.58:1.12,0);camera.updateMatrixWorld();
+  let vertical=mode==='portrait'?1.95:mode==='single'?3.35:Math.max(3.65,6.3/aspect);
   // Approximate the prior portrait office's 24.5-unit-tall camera at 844 CSS pixels.
-  if(distance==='game')vertical=Math.max(vertical,24.5*height/844);
+  if(distance==='game' && mode!=='portrait')vertical=Math.max(vertical,24.5*height/844);
   camera.left=-vertical*aspect/2;camera.right=vertical*aspect/2;camera.top=vertical/2;camera.bottom=-vertical/2;camera.updateProjectionMatrix();
   renderer.setSize(width,height,false);renderer.render(scene,camera);
  };
@@ -48,9 +49,10 @@ export async function createLabScene(container:HTMLElement, initial:Traits):Prom
   const examples=generateLineup(traits,castSeed,saved);examples.forEach((x,i)=>people[i].update(x));
   stands.forEach((stand,i)=>{
    stand.visible=mode==='lineup'||i===0;
+   stand.children[0].visible=mode!=='portrait';stand.children[1].visible=mode!=='portrait';
    const offset=mode==='lineup'?(i-1.5)*1.35:0;
    stand.position.copy(right).multiplyScalar(offset);people[i].group.rotation.y=angle;
-  });frame();
+  });floor.visible=mode!=='portrait';frame();
  };
  const stopWatchingContext=watchContextRestoration(renderer.domElement,frame);
  const observer=new ResizeObserver(frame);observer.observe(container);updatePeople();
