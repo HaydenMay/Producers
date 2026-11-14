@@ -3,7 +3,7 @@ import type { OfficeKit } from './kit';
 import type { OfficeLayout } from './layout';
 
 /** Walls behind the camera target, Y=0 floor surface. Props face into the room (+Z). */
-export function makeRoom(kit:OfficeKit, layout:OfficeLayout) {
+export function makeRoom(kit:OfficeKit, layout:OfficeLayout, options:{roundedWindowTrees?:boolean}={}) {
  const root=new THREE.Group(), m=kit.mesh.bind(kit), w=layout.width,d=layout.depth;
  const dark='#342d30', wood='#8e5b3e', plaster='#acb1a6', trim='#7d5847', floor='#b9a18e';
  m(root,'round',dark,0,-.25,0,w+.22,.36,d+.22);
@@ -50,7 +50,8 @@ export function makeRoom(kit:OfficeKit, layout:OfficeLayout) {
  for(const [x,h] of [[-1.28,.36],[-.94,.58],[-.58,.44],[-.18,.65],[.22,.40],[.62,.55],[1.04,.36],[1.34,.48]]) m(root,'box','#688d91',x,1.22+h/2,-d/2+.24,.23,h,.015);
  for(const x of [-1.20,1.18]) {
    m(root,'box','#876950',x,1.66,-d/2+.255,.045,.52,.02);
-   for(let i=-2;i<=2;i++){const frond=m(root,'box','#55866e',x+i*.09,1.92-Math.abs(i)*.035,-d/2+.265,.26,.06,.02);frond.rotation.z=i*.20;}
+   if(options.roundedWindowTrees){for(const [dx,dy,r] of [[0,.04,.14],[-.13,0,.11],[.13,0,.11]])m(root,'sphere','#55866e',x+dx,2.02+dy,-d/2+.265,r,r*.8,.012)}
+   else for(let i=-2;i<=2;i++){const frond=m(root,'box','#55866e',x+i*.09,1.92-Math.abs(i)*.035,-d/2+.265,.26,.06,.02);frond.rotation.z=i*.20;}
  }
  for(const x of [-.77,0,.77])m(root,'box','#4d5a56',x,1.9,-d/2+.25,.075,1.46,.07);
  m(root,'box','#4d5a56',0,1.9,-d/2+.25,3.12,.07,.07);
