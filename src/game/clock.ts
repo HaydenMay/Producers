@@ -13,7 +13,9 @@ export class ProductionClock {
   private resumeAfterChoice = false;
   private releaseCount = 0;
   private cueIndex = 0;
-  constructor(readonly game: PrototypeGame, private readonly changed: (cue?: PointCue, error?: Error) => void) {}
+  constructor(readonly game: PrototypeGame, private readonly changed: (cue?: PointCue, error?: Error) => void) {
+    this.releaseCount = game.state.releases.length;
+  }
   private clear() { if (this.timer !== undefined) clearTimeout(this.timer); this.timer = undefined; }
   private schedule() {
     this.clear();
