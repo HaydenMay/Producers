@@ -29,7 +29,10 @@
     "ledger:check": "tsx scripts/ledger-check.ts && tsx scripts/register.ts --check",
     "dev:game": "vite --config vite.game.config.ts",
     "build:game": "vite build --config vite.game.config.ts",
-    "preview:game": "vite preview --config vite.game.config.ts"
+    "preview:game": "vite preview --config vite.game.config.ts",
+    "dev:characters": "vite --config vite.character-lab.config.ts",
+    "build:characters": "vite build --config vite.character-lab.config.ts",
+    "preview:characters": "vite preview --config vite.character-lab.config.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
