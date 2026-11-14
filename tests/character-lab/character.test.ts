@@ -27,6 +27,8 @@ describe('real modular character export',()=>{
   expect(a.group.getObjectByName('hair_curls')?.visible).toBe(true);
   expect(a.group.getObjectByName('hair_swept')?.visible).toBe(false);
   expect((shirtB!.material as MeshStandardMaterial).color.getHex()).toBe(otherColor);
+  a.update({...DEFAULT_TRAITS,hairStyle:'bald'});
+  for(const style of ['short','swept','curls','long'])expect(a.group.getObjectByName(`hair_${style}`)?.visible).toBe(false);
   a.dispose();b.dispose();disposeSource(source);
  });
 });

@@ -35,6 +35,8 @@ These are real Chrome WebGL screenshots on a Windows desktop with an NVIDIA RTX 
 
 The static geometry, generated assets and scripts are original to this lab; no third-party art or textures are included. The Blender source opens with one look visible for convenience; other parts remain editable and are exported too.
 
+The four non-bald styles use continuous side and back coverage that sits outside the head while the ears project in front. The intentional bald option remains separate. [Before: short hair from the side](visual-reviews/character-lab/hair/before-short-side.png) · [after: short hair](visual-reviews/character-lab/hair/after-short-side.png) · [after: long hair](visual-reviews/character-lab/hair/after-long-side.png) · [after: curls from behind](visual-reviews/character-lab/hair/after-curls-back.png). The coverage test casts rays against the exported model from both sides and behind, including an ear-visibility check.
+
 To re-export an **edited** source from the repository root:
 
 ```powershell
