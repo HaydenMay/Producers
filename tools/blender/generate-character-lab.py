@@ -44,29 +44,37 @@ for x in [-.145,.145]:
 box('nose',head,'skin',(0,-.08,.35),(.105,.095,.10),.025)
 box('smile',head,'face',(0,-.205,.342),(.15,.024,.02),.007)
 # Each group is an alternate silhouette, not a different baked character.
+def scalp_wrap(parent, long_hair=False):
+ # The head half-width is .39; keep the visible shell outside it while the
+ # ears (outer edge .485) remain in front of the hair. Connect top, temples,
+ # and the back so no scalp strip appears when the worker turns.
+ back_y=-.05 if long_hair else .08
+ back_height=.76 if long_hair else .54
+ box('hair_back_wrap',parent,'hair',(0,back_y,-.335),(.84,back_height,.10),.025)
+ for side in [-1,1]:
+  x=side*.41
+  side_y=-.05 if long_hair else .10
+  side_height=.76 if long_hair else .46
+  box('hair_side_wrap',parent,'hair',(x,side_y,-.005),(.075,side_height,.64),.022)
 short=empty('hair_short',head)
-box('short_cap',short,'hair',(0,.34,-.035),(.80,.18,.70),.055)
-box('short_back',short,'hair',(0,.14,-.28),(.78,.43,.15),.035)
-for x in [-.30,.30]:box('short_side',short,'hair',(x,.17,.16),(.18,.29,.25),.035)
+box('short_cap',short,'hair',(0,.34,-.035),(.88,.18,.76),.055)
+scalp_wrap(short)
 for x,h in [(-.25,.15),(-.08,.21),(.10,.19),(.27,.13)]:box('short_tuft',short,'hair',(x,.44+h/2,.24),(.19,h,.22),.04)
 swept=empty('hair_swept',head)
-box('swept_cap',swept,'hair',(0,.36,-.03),(.82,.22,.70),.065)
-box('swept_back',swept,'hair',(0,.13,-.28),(.78,.42,.14),.04)
+box('swept_cap',swept,'hair',(0,.36,-.03),(.88,.22,.76),.065)
+scalp_wrap(swept)
 box('swept_fringe',swept,'hair',(-.06,.33,.29),(.66,.20,.18),.055)
 box('swept_quiff',swept,'hair',(-.18,.49,.16),(.46,.19,.35),.06)
-box('swept_side',swept,'hair',(.32,.18,.15),(.17,.29,.24),.04)
 curls=empty('hair_curls',head)
-box('curl_base',curls,'hair',(0,.34,-.02),(.81,.17,.70),.055)
-box('curl_back',curls,'hair',(0,.12,-.28),(.76,.43,.14),.04)
+box('curl_base',curls,'hair',(0,.34,-.02),(.88,.17,.76),.055)
+scalp_wrap(curls)
 for x in [-.29,-.10,.10,.29]:
  for z in [-.18,.03,.24]:
   height=.17+(0.04 if (x+z)>0 else 0)
   box('curl',curls,'hair',(x,.45,z),(.23,height,.23),.06)
-for x in [-.34,.34]:box('curl_side',curls,'hair',(x,.18,.10),(.19,.29,.30),.055)
 long=empty('hair_long',head)
-box('long_cap',long,'hair',(0,.36,-.01),(.84,.21,.72),.065)
-box('long_back',long,'hair',(0,-.02,-.28),(.79,.70,.16),.055)
-for x in [-.34,.34]:box('long_side',long,'hair',(x,-.015,.10),(.18,.66,.37),.05)
+box('long_cap',long,'hair',(0,.36,-.01),(.90,.21,.76),.065)
+scalp_wrap(long,True)
 box('long_fringe',long,'hair',(-.08,.30,.28),(.61,.18,.18),.045)
 # Expressions stay simple; colored facial hair matches the selected hair material.
 moustache=empty('facial_moustache',head)
