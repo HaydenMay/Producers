@@ -8,6 +8,7 @@ import { makeLabCharacter,disposeSource } from '../character-lab/character';
 import { DEFAULT_TRAITS,JUSTIN_TRAITS,generateTraits } from '../character-lab/traits';
 import { walkPose } from '../character-lab/walk';
 import { splitCast } from './allocation';
+import { makeSurroundings } from './surroundings';
 
 export type TimeOfDay='day'|'sunset'|'night';
 export type Settings={time:TimeOfDay;desks:number;people:number;monitor:number;zoom:number;angle:number};
@@ -17,12 +18,12 @@ export async function createSceneLab(container:HTMLElement){
  let source:THREE.Object3D;
  try{source=(await new GLTFLoader().loadAsync(new URL('../character-lab/assets/worker-lab.glb',import.meta.url).href)).scene}catch(e){renderer.dispose();renderer.domElement.remove();throw e}
  const scene=new THREE.Scene(),camera=new THREE.OrthographicCamera(-5,5,5,-5,.1,100),kit=new OfficeKit();
- const room=makeRoom(kit,officeLayout(2));scene.add(room);
+ const room=makeRoom(kit,officeLayout(2));scene.add(makeSurroundings(kit),room);
  const ambient=new THREE.HemisphereLight(0xfff4e5,0x777789,1.8);scene.add(ambient);
  const sun=new THREE.DirectionalLight(0xffe0b9,2.5);sun.position.set(-4,10,7);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);sun.shadow.camera.left=-8;sun.shadow.camera.right=8;sun.shadow.camera.top=8;sun.shadow.camera.bottom=-8;sun.shadow.normalBias=.025;scene.add(sun);
  // Place the warm light sources at the actual hanging fixtures.
  const lamps=[-2.6,2.6].map(x=>{const light=new THREE.PointLight(0xffba74,0,7,2);light.position.set(x,2.48,-2.65);scene.add(light);return light});
- const bulbs=kit.material('#f4d083');
+ const bulbs=kit.material('#f4d083'),streetBulbs=kit.material('#f1d3a0'),neighborWindows=kit.material('#698c91');streetBulbs.emissive.set('#daaa67');neighborWindows.emissive.set('#e8b66e');
  const traits=[DEFAULT_TRAITS,JUSTIN_TRAITS,{...DEFAULT_TRAITS,skin:'brown' as const,hairStyle:'curls' as const,hairColor:'black' as const,shirt:'green' as const,glasses:'square' as const,facialHair:'goatee' as const},{...DEFAULT_TRAITS,skin:'sand' as const,hairStyle:'short' as const,hairColor:'auburn' as const,shirt:'purple' as const,facialHair:'none' as const},...Array.from({length:2},(_,i)=>generateTraits(`scene-cast-${i}`))];
  const people=traits.map(t=>makeLabCharacter(source,t));
  const geo=new THREE.BoxGeometry(1,1,1),round=new RoundedBoxGeometry(1,1,1,3,.12);
@@ -44,7 +45,7 @@ export async function createSceneLab(container:HTMLElement){
  let settings={...DEFAULTS},disposed=false,raf=0,last=0,clock=0;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const resize=()=>{const w=Math.max(1,container.clientWidth),h=Math.max(1,container.clientHeight),aspect=w/h,vertical=Math.max(9.2,12/aspect)/settings.zoom;camera.left=-vertical*aspect/2;camera.right=vertical*aspect/2;camera.top=vertical/2;camera.bottom=-vertical/2;camera.updateProjectionMatrix();renderer.setSize(w,h,false)};
- function setSettings(next:Settings){settings={...next};const palettes={day:{background:'#d9e7e5',sky:'#a7d2d4',horizon:'#e6b98f',window:'#6fa9b5',ambient:1.8,sun:2.5,lamp:0,glow:0,exposure:1.15},sunset:{background:'#e7c9bf',sky:'#eaaa91',horizon:'#e4a16d',window:'#d58c87',ambient:1.4,sun:1.75,lamp:5,glow:.65,exposure:1.05},night:{background:'#313c56',sky:'#394b70',horizon:'#77728d',window:'#344768',ambient:.8,sun:.45,lamp:16,glow:2.4,exposure:1.05}};const p=palettes[settings.time];scene.background=new THREE.Color(p.background);kit.material('#a7d2d4').color.set(p.sky);kit.material('#e6b98f').color.set(p.horizon);kit.material('#6fa9b5').color.set(p.window);ambient.intensity=p.ambient;sun.intensity=p.sun;lamps.forEach(light=>light.intensity=p.lamp);bulbs.emissiveIntensity=p.glow;renderer.toneMappingExposure=p.exposure;
+ function setSettings(next:Settings){settings={...next};const palettes={day:{background:'#d9e7e5',sky:'#a7d2d4',horizon:'#e6b98f',window:'#6fa9b5',ambient:1.8,sun:2.5,lamp:0,glow:0,exposure:1.15},sunset:{background:'#e7c9bf',sky:'#eaaa91',horizon:'#e4a16d',window:'#d58c87',ambient:1.4,sun:1.75,lamp:5,glow:.65,exposure:1.05},night:{background:'#313c56',sky:'#394b70',horizon:'#77728d',window:'#344768',ambient:.8,sun:.45,lamp:16,glow:2.4,exposure:1.05}};const p=palettes[settings.time];scene.background=new THREE.Color(p.background);kit.material('#a7d2d4').color.set(p.sky);kit.material('#e6b98f').color.set(p.horizon);kit.material('#6fa9b5').color.set(p.window);ambient.intensity=p.ambient;sun.intensity=p.sun;lamps.forEach(light=>light.intensity=p.lamp);bulbs.emissiveIntensity=p.glow;streetBulbs.emissiveIntensity=p.glow;neighborWindows.emissiveIntensity=p.glow*.25;renderer.toneMappingExposure=p.exposure;
   const rad=settings.angle*Math.PI/180;camera.position.set(Math.sin(rad)*15,15,Math.cos(rad)*15);camera.lookAt(0,.7,0);camera.updateMatrixWorld();stations.forEach((station,i)=>{station.root.visible=i<settings.desks;station.monitor.scale.setScalar(settings.monitor);station.person.group.visible=station.legs.visible=i<splitCast(settings.desks,settings.people).seated});const {seated}=splitCast(settings.desks,settings.people);walkers.forEach((person,i)=>person.group.visible=i>=seated&&i<settings.people);resize();renderer.render(scene,camera);
  }
  function render(t:number){raf=0;if(disposed||document.hidden)return;if(last)clock+=Math.min((t-last)/1000,.05);last=t;
