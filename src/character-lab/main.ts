@@ -1,6 +1,6 @@
 import './style.css';
 import { createLabScene, type DisplayMode, type Distance, type LabScene } from './scene';
-import { DEFAULT_TRAITS, JUSTIN_TRAITS, FACIAL_HAIR, GLASSES, HAIR_COLORS, HAIR_STYLES, PANTS_COLORS, SHIRT_COLORS, SKIN_COLORS, generateTraits, parseSavedLooks, parseTraits, saveLook, serializeTraits, updateTrait, type SavedLook, type Traits } from './traits';
+import { DEFAULT_TRAITS, JUSTIN_TRAITS, FACIAL_HAIR, GLASSES, HAIR_COLORS, HAIR_STYLES, PANTS_COLORS, SHIRT_COLORS, SKIN_COLORS, generateTraits, hairColorsForSkin, parseSavedLooks, parseTraits, saveLook, serializeTraits, updateTrait, type SavedLook, type Traits } from './traits';
 
 const root=document.querySelector<HTMLDivElement>('#app')!;
 const studioLink=location.pathname.startsWith('/Producers/')?'<a class="studio-link" href="./studio/">Studio prototype <span aria-hidden="true">↗</span></a>':'';
@@ -34,7 +34,7 @@ function swatches<K extends keyof Traits>(title:string,key:K,colors:Record<strin
  return `<fieldset class="trait-group"><legend>${title}<span>${pretty(traits[key])}</span></legend><div class="swatches">${Object.entries(colors).map(([value,color])=>`<button type="button" class="swatch" data-key="${key}" data-value="${value}" aria-label="${title}: ${pretty(value)}" title="${pretty(value)}" aria-pressed="${traits[key]===value}" style="--swatch:${color}"><span></span></button>`).join('')}</div></fieldset>`;
 }
 function renderControls(){
- body.innerHTML=segmented('Hair style','hairStyle',HAIR_STYLES)+swatches('Hair color','hairColor',HAIR_COLORS)+swatches('Skin tone','skin',SKIN_COLORS)+segmented('Facial hair','facialHair',FACIAL_HAIR)+segmented('Glasses','glasses',GLASSES)+swatches('Shirt color','shirt',SHIRT_COLORS)+swatches('Pants color','pants',PANTS_COLORS);
+ body.innerHTML=segmented('Hair style','hairStyle',HAIR_STYLES)+swatches('Hair color','hairColor',Object.fromEntries(hairColorsForSkin(traits.skin).map(color=>[color,HAIR_COLORS[color]])))+swatches('Skin tone','skin',SKIN_COLORS)+segmented('Facial hair','facialHair',FACIAL_HAIR)+segmented('Glasses','glasses',GLASSES)+swatches('Shirt color','shirt',SHIRT_COLORS)+swatches('Pants color','pants',PANTS_COLORS);
  root.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
  root.querySelectorAll<HTMLButtonElement>('[data-distance]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.distance===distance)));
  $<HTMLButtonElement>('#shuffle-lineup').hidden=mode!=='lineup';

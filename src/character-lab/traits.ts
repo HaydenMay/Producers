@@ -11,20 +11,25 @@ export const DEFAULT_TRAITS:Traits={hairStyle:'swept',hairColor:'black',skin:'pe
 export const JUSTIN_TRAITS:Traits={hairStyle:'short',hairColor:'black',skin:'tan',facialHair:'none',glasses:'none',shirt:'blue',pants:'grey'};
 export type SavedLook={name:string;traits:Traits};
 const choices={hairStyle:HAIR_STYLES,hairColor:Object.keys(HAIR_COLORS),skin:Object.keys(SKIN_COLORS),facialHair:FACIAL_HAIR,glasses:GLASSES,shirt:Object.keys(SHIRT_COLORS),pants:Object.keys(PANTS_COLORS)};
-export function updateTrait<K extends keyof Traits>(traits:Traits,key:K,value:Traits[K]):Traits{return {...traits,[key]:value}}
+export function hairColorsForSkin(skin:Traits['skin']):Traits['hairColor'][] {
+ return (Object.keys(HAIR_COLORS) as Traits['hairColor'][]).filter(color=>skin==='ivory'?color!=='silver':['tan','brown','deep'].includes(skin)?!['blonde','auburn'].includes(color):true);
+}
+function compatible(traits:Traits):Traits {return hairColorsForSkin(traits.skin).includes(traits.hairColor)?traits:{...traits,hairColor:'espresso'}}
+export function updateTrait<K extends keyof Traits>(traits:Traits,key:K,value:Traits[K]):Traits{return compatible({...traits,[key]:value})}
 export function serializeTraits(traits:Traits):string{return JSON.stringify(traits)}
 export function parseTraits(raw:string|null):Traits|null{
  if(!raw)return null;
  try{const data=JSON.parse(raw) as Record<string,unknown>;
   if(!data || typeof data!=='object' || Object.entries(choices).some(([key,values])=>typeof data[key]!=='string'||!values.includes(data[key] as never)))return null;
-  return Object.fromEntries(Object.keys(choices).map(key=>[key,data[key]])) as Traits;
+  return compatible(Object.fromEntries(Object.keys(choices).map(key=>[key,data[key]])) as Traits);
  }catch{return null}
 }
 /** Seeded independently across all slots; this is appearance only, never game randomness. */
 export function generateTraits(seed:string):Traits{
  let state=2166136261;for(const c of seed)state=Math.imul(state^c.charCodeAt(0),16777619)>>>0;
  const next=()=>{state=(state+0x6D2B79F5)>>>0;let v=state;v=Math.imul(v^(v>>>15),v|1);v^=v+Math.imul(v^(v>>>7),v|61);return ((v^(v>>>14))>>>0)/4294967296};
- return Object.fromEntries(Object.entries(choices).map(([key,values])=>[key,values[Math.floor(next()*values.length)]])) as Traits;
+ const generated=Object.fromEntries(Object.entries(choices).map(([key,values])=>[key,values[Math.floor(next()*values.length)]])) as Traits;
+ const allowed=hairColorsForSkin(generated.skin);if(!allowed.includes(generated.hairColor))generated.hairColor=allowed[Math.floor(next()*allowed.length)];return generated;
 }
 /** Build a reproducible cast whose prominent traits differ from one another. */
 export function generateLineup(selected:Traits,seed:string,saved:Traits[]=[]):Traits[]{
