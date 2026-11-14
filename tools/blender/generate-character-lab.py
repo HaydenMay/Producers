@@ -9,7 +9,7 @@ def material(name,color):
  m=bpy.data.materials.new(name);m.diffuse_color=(*color,1);m.use_nodes=True
  p=m.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(*color,1);p.inputs['Roughness'].default_value=.8
  return m
-M={n:material(n,c) for n,c in [('skin',(.68,.40,.27)),('shirt',(.55,.10,.09)),('pants',(.13,.20,.29)),('hair',(.08,.055,.04)),('face',(.03,.024,.022)),('shoe',(.10,.09,.09)),('glasses',(.025,.025,.025))]}
+M={n:material(n,c) for n,c in [('skin',(.68,.40,.27)),('shirt',(.55,.10,.09)),('pants',(.13,.20,.29)),('hair',(.08,.055,.04)),('face',(.03,.024,.022)),('eye_glint',(.88,.79,.65)),('shoe',(.10,.09,.09)),('glasses',(.025,.025,.025))]}
 def xyz(p):return (p[0],-p[2],p[1])
 def empty(name,parent=None,pos=(0,0,0)):
  o=bpy.data.objects.new(name,None);bpy.context.collection.objects.link(o);o.parent=parent;o.location=xyz(pos);return o
@@ -40,6 +40,7 @@ for x in [-.42,.42]:box('ear',head,'skin',(x,-.035,0),(.13,.22,.16),.04)
 # Eyes and eyebrows are deliberately large enough to survive the distant view.
 for x in [-.145,.145]:
  box('eye',head,'face',(x,.045,.342),(.075,.135,.018),.012)
+ box('eye_glint',head,'eye_glint',(x-.014,.075,.355),(.020,.020,.008),.003)
  box('eyebrow',head,'hair',(x,.18,.35),(.16,.045,.025),.01)
 box('nose',head,'skin',(0,-.08,.35),(.105,.095,.10),.025)
 box('smile',head,'face',(0,-.205,.342),(.15,.024,.02),.007)
