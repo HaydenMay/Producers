@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { disposeSource, makeLabCharacter } from './character';
+import { watchContextRestoration } from './context';
 import { generateLineup, type Traits } from './traits';
 
 export type DisplayMode='single'|'lineup';
@@ -25,7 +26,13 @@ export async function createLabScene(container:HTMLElement, initial:Traits):Prom
  const platformMaterial=new THREE.MeshStandardMaterial({color:'#f3e4c9',roughness:.9}),rimMaterial=new THREE.MeshStandardMaterial({color:'#c99b5e',roughness:.7,metalness:.18});
  const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.ShadowMaterial({opacity:.10}));floor.rotation.x=-Math.PI/2;floor.position.y=-.175;floor.receiveShadow=true;scene.add(floor);
  const right=new THREE.Vector3(1,0,0).applyQuaternion(camera.quaternion).setY(0).normalize();
- const people=Array.from({length:4},()=>makeLabCharacter(source,initial));
+ const people:ReturnType<typeof makeLabCharacter>[]=[];
+ try{for(let i=0;i<4;i++)people.push(makeLabCharacter(source,initial))}
+ catch(error){
+  people.forEach(person=>person.dispose());disposeSource(source);
+  platformGeometry.dispose();rimGeometry.dispose();platformMaterial.dispose();rimMaterial.dispose();
+  floor.geometry.dispose();(floor.material as THREE.Material).dispose();renderer.dispose();renderer.domElement.remove();throw error;
+ }
  const stands=people.map(person=>{const g=new THREE.Group(),top=new THREE.Mesh(platformGeometry,platformMaterial),rim=new THREE.Mesh(rimGeometry,rimMaterial);top.position.y=-.08;rim.position.y=-.17;top.receiveShadow=true;g.add(top,rim,person.group);scene.add(g);return g});
  let traits=initial,saved:Traits[]=[],mode:DisplayMode='single',distance:Distance='close',angle=0,castSeed='lineup-0',disposed=false;
  const frame=()=>{
@@ -45,10 +52,11 @@ export async function createLabScene(container:HTMLElement, initial:Traits):Prom
    stand.position.copy(right).multiplyScalar(offset);people[i].group.rotation.y=angle;
   });frame();
  };
+ const stopWatchingContext=watchContextRestoration(renderer.domElement,frame);
  const observer=new ResizeObserver(frame);observer.observe(container);updatePeople();
  return {
   setTraits(value){traits=value;updatePeople()},setSaved(value){saved=value;updatePeople()},setMode(value){mode=value;updatePeople()},setDistance(value){distance=value;frame()},
   rotate(amount){angle+=amount;updatePeople()},rerollLineup(){castSeed=`cast-${crypto.getRandomValues(new Uint32Array(1))[0]}`;updatePeople()},
-  dispose(){if(disposed)return;disposed=true;observer.disconnect();people.forEach(p=>p.dispose());disposeSource(source);platformGeometry.dispose();rimGeometry.dispose();platformMaterial.dispose();rimMaterial.dispose();floor.geometry.dispose();(floor.material as THREE.Material).dispose();renderer.dispose();renderer.domElement.remove()}
+  dispose(){if(disposed)return;disposed=true;observer.disconnect();stopWatchingContext();people.forEach(p=>p.dispose());disposeSource(source);platformGeometry.dispose();rimGeometry.dispose();platformMaterial.dispose();rimMaterial.dispose();floor.geometry.dispose();(floor.material as THREE.Material).dispose();renderer.dispose();renderer.domElement.remove()}
  };
 }
