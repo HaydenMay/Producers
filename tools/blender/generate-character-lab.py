@@ -76,17 +76,38 @@ long=empty('hair_long',head)
 box('long_cap',long,'hair',(0,.36,-.01),(.90,.21,.76),.065)
 scalp_wrap(long,True)
 box('long_fringe',long,'hair',(-.08,.30,.28),(.61,.18,.18),.045)
-# Expressions stay simple; colored facial hair matches the selected hair material.
+# Build each facial-hair silhouette as one extruded union, with shared edges
+# and the same depth. The full beard includes the standalone moustache.
+def facial_mesh(name,parent,rects):
+ xs=sorted({v for x0,x1,y0,y1 in rects for v in (x0,x1)})
+ ys=sorted({v for x0,x1,y0,y1 in rects for v in (y0,y1)})
+ cells={(i,j) for i in range(len(xs)-1) for j in range(len(ys)-1)
+        if any(x0<(xs[i]+xs[i+1])/2<x1 and y0<(ys[j]+ys[j+1])/2<y1 for x0,x1,y0,y1 in rects)}
+ vertices=[];faces=[];indices={}
+ def v(i,j,front):
+  key=(i,j,front)
+  if key not in indices:
+   indices[key]=len(vertices);vertices.append(xyz((xs[i],ys[j],.38 if front else .315)))
+  return indices[key]
+ for i,j in sorted(cells):
+  faces.append([v(i,j,True),v(i+1,j,True),v(i+1,j+1,True),v(i,j+1,True)])
+  faces.append([v(i,j+1,False),v(i+1,j+1,False),v(i+1,j,False),v(i,j,False)])
+  if (i,j-1) not in cells:faces.append([v(i,j,True),v(i,j,False),v(i+1,j,False),v(i+1,j,True)])
+  if (i,j+1) not in cells:faces.append([v(i+1,j+1,True),v(i+1,j+1,False),v(i,j+1,False),v(i,j+1,True)])
+  if (i-1,j) not in cells:faces.append([v(i,j+1,True),v(i,j+1,False),v(i,j,False),v(i,j,True)])
+  if (i+1,j) not in cells:faces.append([v(i+1,j,True),v(i+1,j,False),v(i+1,j+1,False),v(i+1,j+1,True)])
+ mesh=bpy.data.meshes.new(name);mesh.from_pydata(vertices,[],faces);mesh.update()
+ obj=bpy.data.objects.new(name,mesh);bpy.context.collection.objects.link(obj);obj.parent=parent;obj.data.materials.append(M['hair'])
+ bpy.ops.object.select_all(action='DESELECT');obj.select_set(True);bpy.context.view_layer.objects.active=obj
+ mod=obj.modifiers.new('Soft edges','BEVEL');mod.width=.005;mod.segments=2;mod.limit_method='ANGLE';bpy.ops.object.modifier_apply(modifier=mod.name)
+ return obj
+mustache=[(-.14,.14,-.1775,-.1225)]
 moustache=empty('facial_moustache',head)
-for x in [-.07,.07]:box('moustache',moustache,'hair',(x,-.15,.356),(.14,.055,.03),.015)
+facial_mesh('moustache',moustache,mustache)
 goatee=empty('facial_goatee',head)
-for x in [-.07,.07]:box('moustache',goatee,'hair',(x,-.15,.356),(.14,.055,.03),.015)
-box('goatee',goatee,'hair',(0,-.28,.344),(.25,.14,.055),.025)
+facial_mesh('goatee',goatee,mustache+[(-.18,.18,-.35,-.25),(-.18,-.10,-.26,-.15),(.10,.18,-.26,-.15)])
 beard=empty('facial_beard',head)
-box('beard_chin',beard,'hair',(0,-.29,.32),(.54,.19,.09),.04)
-for x in [-.28,.28]:box('beard_cheek',beard,'hair',(x,-.19,.29),(.13,.27,.10),.03)
-for x in [-.15,.15]:box('moustache',beard,'hair',(x,-.15,.36),(.23,.065,.03),.015)
-box('beard_mouth',beard,'skin',(0,-.22,.372),(.15,.027,.018),.006)
+facial_mesh('beard',beard,mustache+[(-.25,.25,-.1775,-.1225),(-.32,-.22,-.34,-.075),(.22,.32,-.34,-.075),(-.32,.32,-.38,-.235),(-.25,-.08,-.24,-.17),(.08,.25,-.24,-.17)])
 glasses=empty('glasses_square',head)
 for x in [-.145,.145]:
  for y in [-.035,.12]:box('frame',glasses,'glasses',(x,y,.37),(.225,.028,.035),.006)
