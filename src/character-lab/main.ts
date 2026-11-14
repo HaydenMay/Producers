@@ -8,9 +8,9 @@ root.innerHTML=`<div class="lab-shell">
  <header class="topbar"><div class="brand"><span class="brand-mark" aria-hidden="true">P</span><span><strong>PRODUCERS</strong><small>CHARACTER LAB</small></span></div><div class="top-actions"><span class="top-note"><span class="live-dot"></span> EARLY VISUAL EXPERIMENT</span>${studioLink}</div></header>
  <main class="workspace">
   <section class="stage" aria-label="3D character preview">
-   <div class="stage-heading"><div><p class="eyebrow">THE CASTING ROOM <span> / </span> 01</p><h1>Meet your crew.</h1><p class="subtitle">A little personality goes a long way.</p></div><div class="preview-controls"><div class="mode-tabs" role="group" aria-label="Preview mode"><button type="button" data-mode="single">Single</button><button type="button" data-mode="lineup">Lineup <span>4</span></button></div><button type="button" id="shuffle-lineup" hidden>Shuffle generated ↻</button></div></div>
+   <div class="stage-heading"><div><p class="eyebrow">THE CASTING ROOM <span> / </span> 01</p><h1>Meet your crew.</h1><p class="subtitle">A little personality goes a long way.</p></div><div class="preview-controls"><div class="mode-tabs" role="group" aria-label="Preview mode"><button type="button" data-mode="single">Single</button><button type="button" data-mode="portrait">Portrait</button><button type="button" data-mode="lineup">Lineup <span>4</span></button></div><button type="button" id="shuffle-lineup" hidden>Shuffle generated ↻</button></div></div>
    <div class="viewer" id="viewer"><div id="canvas-host" aria-label="Three-dimensional character preview"></div><div class="loading" id="loading" role="status">Preparing your character<span class="loading-dots">...</span></div><div class="viewer-note" id="viewer-note">DRAG THE CHARACTER WITH THE TURN BUTTONS <span>·</span> NO ANIMATION YET</div></div>
-   <div class="stage-footer"><div class="distance-control"><span>VIEW</span><div class="toggle" role="group" aria-label="Character viewing distance"><button type="button" data-distance="close">Close up</button><button type="button" data-distance="game">Game distance</button></div></div><div class="turn-control" role="group" aria-label="Turn character"><span>TURN</span><button type="button" data-turn="-1" aria-label="Turn character left">↶</button><button type="button" data-turn="1" aria-label="Turn character right">↷</button></div></div>
+   <div class="portrait-backgrounds" id="portrait-backgrounds" hidden><span>PORTRAIT BACKGROUND</span><div role="group" aria-label="Portrait background"><button type="button" data-background="cream" aria-pressed="true">Cream</button><button type="button" data-background="blue" aria-pressed="false">Blue</button><button type="button" data-background="sage" aria-pressed="false">Sage</button><button type="button" data-background="rose" aria-pressed="false">Rose</button><button type="button" data-background="slate" aria-pressed="false">Slate</button></div></div><div class="stage-footer"><div class="distance-control"><span>VIEW</span><div class="toggle" role="group" aria-label="Character viewing distance"><button type="button" data-distance="close">Close up</button><button type="button" data-distance="game">Game distance</button></div></div><div class="turn-control" role="group" aria-label="Turn character"><span>TURN</span><button type="button" data-turn="-1" aria-label="Turn character left">↶</button><button type="button" data-turn="1" aria-label="Turn character right">↷</button></div></div>
   </section>
   <aside class="controls" aria-label="Character traits"><div class="controls-head"><div><p class="eyebrow">YOUR CHARACTER</p><h2>Make them yours.</h2><p>Mix a look, or let us surprise you.</p></div><span class="sparkle" aria-hidden="true">✦</span></div><div class="quick-action"><button class="surprise" id="surprise" type="button"><span aria-hidden="true">✦</span> Surprise me</button></div>
    <div class="control-scroll" id="controls-body"></div>
@@ -38,8 +38,11 @@ function renderControls(){
  root.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===mode)));
  root.querySelectorAll<HTMLButtonElement>('[data-distance]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.distance===distance)));
  $<HTMLButtonElement>('#shuffle-lineup').hidden=mode!=='lineup';
+ $<HTMLElement>('#portrait-backgrounds').hidden=mode!=='portrait';
+ $<HTMLElement>('#viewer').classList.toggle('portrait-view',mode==='portrait');
+ $<HTMLElement>('.distance-control').hidden=mode==='portrait';
  const note=$<HTMLElement>('#viewer-note');
- note.innerHTML=distance==='game'?'APPROXIMATE PHONE GAME SIZE <span>·</span> COMPARE AT A GLANCE':mode==='lineup'?'FOUR UNIQUE LOOKS <span>·</span> FIRST CHARACTER IS YOURS':'USE THE TURN BUTTONS TO VIEW THE CHARACTER';
+ note.innerHTML=mode==='portrait'?'PORTRAIT PREVIEW <span>·</span> TRY A BACKGROUND':distance==='game'?'APPROXIMATE PHONE GAME SIZE <span>·</span> COMPARE AT A GLANCE':mode==='lineup'?'FOUR UNIQUE LOOKS <span>·</span> FIRST CHARACTER IS YOURS':'USE THE TURN BUTTONS TO VIEW THE CHARACTER';
 }
 function save(){try{localStorage.setItem('producers.character-lab.look.v1',serializeTraits(traits));$<HTMLElement>('#save-note').textContent='Your current look is saved on this device.'}catch{$<HTMLElement>('#save-note').textContent='This browser could not save the look.'}}
 function select(next:Traits){
@@ -51,6 +54,8 @@ body.addEventListener('click',event=>{
  const key=button.dataset.key as keyof Traits,value=button.dataset.value as Traits[keyof Traits];select(updateTrait(traits,key,value));
  body.querySelector<HTMLButtonElement>(`[data-key="${key}"][data-value="${value}"]`)?.focus();
 });
+root.querySelectorAll<HTMLButtonElement>('button[data-background]').forEach(button=>button.onclick=()=>{viewer.dataset.background=button.dataset.background;root.querySelectorAll<HTMLButtonElement>('button[data-background]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)))});
+viewer.dataset.background='cream';
 root.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>button.onclick=()=>{mode=button.dataset.mode as DisplayMode;scene?.setMode(mode);renderControls()});
 root.querySelectorAll<HTMLButtonElement>('[data-distance]').forEach(button=>button.onclick=()=>{distance=button.dataset.distance as Distance;scene?.setDistance(distance);renderControls()});
 root.querySelectorAll<HTMLButtonElement>('[data-turn]').forEach(button=>button.onclick=()=>scene?.rotate(Number(button.dataset.turn)*Math.PI/6));
