@@ -21,7 +21,7 @@ Change any one trait on the right, or choose **Surprise me**. The example button
 
 ## Walk experiment
 
-The **Walk** view previews an in-place procedural walk on the selected customizable character. Play or pause it, turn the model, and switch between close-up and approximate game distance. The existing model rotates rigid arms and legs at the shoulders and hips; it has no elbow or knee joints. This is a visual experiment, not a final walk cycle or a moving character in the studio. Sitting and typing are not yet implemented.
+The **Walk** view previews an in-place procedural walk on the selected customizable character. Play or pause it, turn the model, and switch between close-up and approximate game distance. The existing model rotates rigid arms and legs at the shoulders and hips; it has no elbow or knee joints. This is a visual experiment, not a final walk cycle or a moving character in the studio. The **Desk** view adds a simple chair, desk, computer, and a seated typing loop. The pose uses the existing rigid limbs; it does not yet include articulated elbows or knees, or transitions between walking and sitting.
 
 ## Visual review
 
