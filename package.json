@@ -32,7 +32,8 @@
     "preview:game": "vite preview --config vite.game.config.ts",
     "dev:characters": "vite --config vite.character-lab.config.ts",
     "build:characters": "vite build --config vite.character-lab.config.ts",
-    "preview:characters": "vite preview --config vite.character-lab.config.ts"
+    "preview:characters": "vite preview --config vite.character-lab.config.ts",
+    "build:pages": "npm run build:characters -- --outDir ../../dist-pages && npm run build:game -- --base /Producers/studio/ --outDir ../../dist-pages/studio && node scripts/check-pages-build.mjs"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",

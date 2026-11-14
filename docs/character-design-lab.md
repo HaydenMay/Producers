@@ -4,6 +4,8 @@ This is an isolated **visual experiment**, not a decision to use Three.js for th
 
 ## Try the lab
 
+The GitHub Pages build opens the lab at `https://haydenmay.github.io/Producers/`. The earlier studio prototype remains at `https://haydenmay.github.io/Producers/studio/`. `npm run build:pages` builds and checks both entries for deployment.
+
 From the repository root, with Node installed:
 
 ```powershell
