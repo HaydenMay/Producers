@@ -3,10 +3,11 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { disposeSource, makeLabCharacter } from './character';
 import { watchContextRestoration } from './context';
 import { generateLineup, type Traits } from './traits';
+import { walkPose } from './walk';
 
-export type DisplayMode='single'|'lineup'|'portrait';
+export type DisplayMode='single'|'lineup'|'portrait'|'walk';
 export type Distance='close'|'game';
-export type LabScene={setTraits:(traits:Traits)=>void;setSaved:(traits:Traits[])=>void;setMode:(mode:DisplayMode)=>void;setDistance:(distance:Distance)=>void;rotate:(amount:number)=>void;rerollLineup:()=>void;dispose:()=>void};
+export type LabScene={setTraits:(traits:Traits)=>void;setSaved:(traits:Traits[])=>void;setMode:(mode:DisplayMode)=>void;setDistance:(distance:Distance)=>void;setWalking:(playing:boolean)=>void;rotate:(amount:number)=>void;rerollLineup:()=>void;dispose:()=>void};
 
 /** One renderer, shared geometry, and independently owned character colors. */
 export async function createLabScene(container:HTMLElement, initial:Traits):Promise<LabScene>{
@@ -34,12 +35,12 @@ export async function createLabScene(container:HTMLElement, initial:Traits):Prom
   floor.geometry.dispose();(floor.material as THREE.Material).dispose();renderer.dispose();renderer.domElement.remove();throw error;
  }
  const stands=people.map(person=>{const g=new THREE.Group(),top=new THREE.Mesh(platformGeometry,platformMaterial),rim=new THREE.Mesh(rimGeometry,rimMaterial);top.position.y=-.08;rim.position.y=-.17;top.receiveShadow=true;g.add(top,rim,person.group);scene.add(g);return g});
- let traits=initial,saved:Traits[]=[],mode:DisplayMode='single',distance:Distance='close',angle=0,castSeed='lineup-0',disposed=false;
+ let traits=initial,saved:Traits[]=[],mode:DisplayMode='single',distance:Distance='close',angle=0,castSeed='lineup-0',disposed=false,walking=false,animationId=0,phase=0,lastTime=0;
  const frame=()=>{
   if(disposed)return;
   const width=Math.max(container.clientWidth,1),height=Math.max(container.clientHeight,1),aspect=width/height;
   camera.position.set(5,mode==='portrait'?3.8:5.1,9);camera.lookAt(0,mode==='portrait'?1.58:1.12,0);camera.updateMatrixWorld();
-  let vertical=mode==='portrait'?1.95:mode==='single'?3.35:Math.max(3.65,6.3/aspect);
+  let vertical=mode==='portrait'?1.95:mode==='lineup'?Math.max(3.65,6.3/aspect):3.35;
   // Approximate the prior portrait office's 24.5-unit-tall camera at 844 CSS pixels.
   if(distance==='game' && mode!=='portrait')vertical=Math.max(vertical,24.5*height/844);
   camera.left=-vertical*aspect/2;camera.right=vertical*aspect/2;camera.top=vertical/2;camera.bottom=-vertical/2;camera.updateProjectionMatrix();
@@ -54,11 +55,15 @@ export async function createLabScene(container:HTMLElement, initial:Traits):Prom
    stand.position.copy(right).multiplyScalar(offset);people[i].group.rotation.y=angle;
   });floor.visible=mode!=='portrait';frame();
  };
+ const resetPose=()=>{for(const name of ['leg_l_pivot','leg_r_pivot','arm_l_pivot','arm_r_pivot'])people[0].group.getObjectByName(name)!.rotation.x=0;people[0].group.position.y=0};
+ const animate=(time:number)=>{if(disposed||!walking||mode!=='walk')return;if(lastTime)phase+=(Math.min((time-lastTime)/1000,.05))*5;lastTime=time;const pose=walkPose(phase);for(const [name,value] of [['leg_l_pivot',pose.leftLeg],['leg_r_pivot',pose.rightLeg],['arm_l_pivot',pose.leftArm],['arm_r_pivot',pose.rightArm]] as const)people[0].group.getObjectByName(name)!.rotation.x=value;people[0].group.position.y=pose.bob;frame();animationId=requestAnimationFrame(animate)};
+ const start=()=>{if(walking&&mode==='walk'&&!animationId){lastTime=0;animationId=requestAnimationFrame(animate)}};
+ const stop=()=>{cancelAnimationFrame(animationId);animationId=0;lastTime=0};
  const stopWatchingContext=watchContextRestoration(renderer.domElement,frame);
  const observer=new ResizeObserver(frame);observer.observe(container);updatePeople();
  return {
-  setTraits(value){traits=value;updatePeople()},setSaved(value){saved=value;updatePeople()},setMode(value){mode=value;updatePeople()},setDistance(value){distance=value;frame()},
+  setTraits(value){traits=value;updatePeople()},setSaved(value){saved=value;updatePeople()},setMode(value){stop();mode=value;if(mode!=='walk'){resetPose();phase=0}updatePeople();start()},setDistance(value){distance=value;frame()},setWalking(value){walking=value;if(walking)start();else{stop();frame()}},
   rotate(amount){angle+=amount;updatePeople()},rerollLineup(){castSeed=`cast-${crypto.getRandomValues(new Uint32Array(1))[0]}`;updatePeople()},
-  dispose(){if(disposed)return;disposed=true;observer.disconnect();stopWatchingContext();people.forEach(p=>p.dispose());disposeSource(source);platformGeometry.dispose();rimGeometry.dispose();platformMaterial.dispose();rimMaterial.dispose();floor.geometry.dispose();(floor.material as THREE.Material).dispose();renderer.dispose();renderer.domElement.remove()}
+  dispose(){if(disposed)return;disposed=true;stop();observer.disconnect();stopWatchingContext();people.forEach(p=>p.dispose());disposeSource(source);platformGeometry.dispose();rimGeometry.dispose();platformMaterial.dispose();rimMaterial.dispose();floor.geometry.dispose();(floor.material as THREE.Material).dispose();renderer.dispose();renderer.domElement.remove()}
  };
 }

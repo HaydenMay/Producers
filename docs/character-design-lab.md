@@ -19,6 +19,10 @@ Change any one trait on the right, or choose **Surprise me**. The example button
 
 **Lineup** shows the current person first, followed by saved looks (up to three), then varied generated people to fill four places. **Shuffle generated** varies the generated people; saved people stay fixed. **Game distance** uses an approximate equivalent of the existing portrait office camera at a 390 × 844 CSS-pixel viewport, not a promise of a final game's camera or a substitute for checking an actual phone. Use the turn buttons to inspect the side of the model. All people are standing and still; walking, sitting and typing are not implemented.
 
+## Walk experiment
+
+The **Walk** view previews an in-place procedural walk on the selected customizable character. Play or pause it, turn the model, and switch between close-up and approximate game distance. The existing model rotates rigid arms and legs at the shoulders and hips; it has no elbow or knee joints. This is a visual experiment, not a final walk cycle or a moving character in the studio. Sitting and typing are not yet implemented.
+
 ## Visual review
 
 - [Single character, desktop](visual-reviews/character-lab/final-single-desktop.png)
