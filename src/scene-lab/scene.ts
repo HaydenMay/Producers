@@ -29,7 +29,7 @@ export async function createSceneLab(container:HTMLElement){
  const stations=people.map((person,i)=>{
   const root=new THREE.Group(),monitor=new THREE.Group();root.position.set(i%2?1.65:-1.65,0,(Math.floor(i/2)-1)*2.05);
   prop(root,wood,0,.71,.75,1.55,.10,.78);for(const x of [-.65,.65])for(const z of [.47,1.03])prop(root,wood,x,.32,z,.10,.64,.10);
-  prop(root,keys,0,.78,.54,.92,.025,.24);monitor.position.set(.48,.76,.96);prop(monitor,dark,0,.29,0,.55,.40,.065);prop(monitor,dark,0,.08,0,.07,.20,.07);prop(monitor,dark,0,0,0,.32,.025,.22);root.add(monitor);
+  prop(root,keys,0,.78,.54,.92,.025,.24);monitor.position.set(0,.76,.96);prop(monitor,dark,0,.29,0,.55,.40,.065);prop(monitor,dark,0,.08,0,.07,.20,.07);prop(monitor,dark,0,0,0,.32,.025,.22);root.add(monitor);
   prop(root,chair,0,.43,-.08,.70,.12,.58,true);prop(root,chair,0,.77,-.34,.70,.65,.10,true);prop(root,chair,0,.18,-.08,.12,.38,.12);prop(root,chair,0,.04,-.08,.58,.08,.50);
   const leg=person.group.getObjectByName('leg_l_pivot')!;let pants:THREE.Material|undefined,shoe:THREE.Material|undefined;leg.traverse(o=>{if(o instanceof THREE.Mesh&&!Array.isArray(o.material)){if(o.material.name==='pants')pants=o.material;if(o.material.name==='shoe')shoe=o.material}});if(!pants||!shoe)throw new Error('Leg materials missing');
   const legs=new THREE.Group();root.add(legs);
