@@ -1,7 +1,7 @@
-/** Portrait scenes favor legible people; landscape keeps the existing framing. */
-export function portraitFraming(aspect:number){
+/** Keep the studio prominent, with an extra readability boost on portrait phones. */
+export function sceneFraming(aspect:number){
  const transition=Math.max(0,Math.min(1,(1-aspect)/.35));
- return 1+transition*.4;
+ return 1.1+transition*.58;
 }
 export type Pan={x:number;y:number};
 /** Pan is measured in camera-plane world units and kept close to the office. */
