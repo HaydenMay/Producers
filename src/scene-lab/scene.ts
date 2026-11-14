@@ -5,7 +5,7 @@ import { OfficeKit } from '../game/office/kit';
 import { makeRoom } from '../game/office/room';
 import { officeLayout } from '../game/office/layout';
 import { makeLabCharacter,disposeSource } from '../character-lab/character';
-import { DEFAULT_TRAITS,JUSTIN_TRAITS,generateTraits } from '../character-lab/traits';
+import { DEFAULT_TRAITS,JUSTIN_TRAITS,generateTraits,type Traits } from '../character-lab/traits';
 import { walkPose } from '../character-lab/walk';
 import { splitCast } from './allocation';
 import { movePan,sceneFraming,type Pan } from './framing';
@@ -13,7 +13,7 @@ import { movePan,sceneFraming,type Pan } from './framing';
 export type TimeOfDay='day'|'sunset'|'night';
 export type Settings={time:TimeOfDay;desks:number;people:number;monitor:number;zoom:number;angle:number};
 export const DEFAULTS:Settings={time:'day',desks:4,people:4,monitor:1.4,zoom:.8,angle:15};
-export async function createSceneLab(container:HTMLElement){
+export async function createSceneLab(container:HTMLElement, initialCast?:Traits[]){
  const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;container.append(renderer.domElement);
  let source:THREE.Object3D;
  try{source=(await new GLTFLoader().loadAsync(new URL('../character-lab/assets/worker-lab.glb',import.meta.url).href)).scene}catch(e){renderer.dispose();renderer.domElement.remove();throw e}
@@ -24,7 +24,8 @@ export async function createSceneLab(container:HTMLElement){
  // Place the warm light sources at the actual hanging fixtures.
  const lamps=[-2.6,2.6].map(x=>{const light=new THREE.PointLight(0xffba74,0,7,2);light.position.set(x,2.48,-2.65);scene.add(light);return light});
  const bulbs=kit.material('#f4d083');
- const traits=[DEFAULT_TRAITS,JUSTIN_TRAITS,{...DEFAULT_TRAITS,skin:'brown' as const,hairStyle:'curls' as const,hairColor:'black' as const,shirt:'green' as const,glasses:'square' as const,facialHair:'goatee' as const},{...DEFAULT_TRAITS,skin:'sand' as const,hairStyle:'short' as const,hairColor:'auburn' as const,shirt:'purple' as const,facialHair:'none' as const},...Array.from({length:2},(_,i)=>generateTraits(`scene-cast-${i}`))];
+ const traits:Traits[]=[DEFAULT_TRAITS,JUSTIN_TRAITS,{...DEFAULT_TRAITS,skin:'brown' as const,hairStyle:'curls' as const,hairColor:'black' as const,shirt:'green' as const,glasses:'square' as const,facialHair:'goatee' as const},{...DEFAULT_TRAITS,skin:'sand' as const,hairStyle:'short' as const,hairColor:'auburn' as const,shirt:'purple' as const,facialHair:'none' as const},...Array.from({length:2},(_,i)=>generateTraits(`scene-cast-${i}`))];
+ if(initialCast)initialCast.slice(0,traits.length).forEach((trait,i)=>{traits[i]=trait});
  const people=traits.map(t=>makeLabCharacter(source,t));
  const geo=new THREE.BoxGeometry(1,1,1),round=new RoundedBoxGeometry(1,1,1,3,.12);
  const wood=new THREE.MeshStandardMaterial({color:'#a76b42',roughness:.85}),dark=new THREE.MeshStandardMaterial({color:'#343a42',roughness:.8}),keys=new THREE.MeshStandardMaterial({color:'#d8d4c8',roughness:.85}),chair=new THREE.MeshStandardMaterial({color:'#56616c',roughness:.85});

@@ -3,7 +3,7 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 
 const output='dist-pages';
-for(const [relative,title] of [['index.html','Producers — Character Lab'],['studio/index.html','Producers — Visual Prototype'],['scene/index.html','Producers — Studio Scene Lab']]){
+for(const [relative,title] of [['index.html','Producers — Character Lab'],['studio/index.html','Producers — Visual Prototype'],['scene/index.html','Producers — Studio Scene Lab'],['game/index.html','Producers — Game Preview']]){
  const path=join(output,relative);assert.ok(existsSync(path),`Missing ${path}`);
  const html=readFileSync(path,'utf8');assert.ok(html.includes(title),`${relative} has the wrong entry point`);
  const base=new URL(relative==='index.html'?'https://example.test/Producers/':`https://example.test/Producers/${relative.replace('index.html','')}`);
@@ -15,4 +15,4 @@ for(const [relative,title] of [['index.html','Producers — Character Lab'],['st
  }
 }
 assert.ok(readdirSync(join(output,'assets')).some(file=>/^worker-lab-.*\.glb$/.test(file)),'Missing character model');
-console.log('Pages output: character lab at /Producers/, studio at /Producers/studio/, entry assets present.');
+console.log('Pages output: character lab, studio, scene lab, and game preview entry assets present.');
