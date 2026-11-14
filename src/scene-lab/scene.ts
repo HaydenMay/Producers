@@ -11,7 +11,7 @@ import { splitCast } from './allocation';
 
 export type TimeOfDay='day'|'sunset'|'night';
 export type Settings={time:TimeOfDay;desks:number;people:number;monitor:number;zoom:number;angle:number};
-export const DEFAULTS:Settings={time:'day',desks:4,people:4,monitor:1,zoom:1,angle:35};
+export const DEFAULTS:Settings={time:'day',desks:4,people:4,monitor:1.4,zoom:1,angle:35};
 export async function createSceneLab(container:HTMLElement){
  const renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;container.append(renderer.domElement);
  let source:THREE.Object3D;
