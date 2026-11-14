@@ -37,6 +37,8 @@ The static geometry, generated assets and scripts are original to this lab; no t
 
 The four non-bald styles use continuous side and back coverage that sits outside the head while the ears project in front. The intentional bald option remains separate. [Before: short hair from the side](visual-reviews/character-lab/hair/before-short-side.png) · [after: short hair](visual-reviews/character-lab/hair/after-short-side.png) · [after: long hair](visual-reviews/character-lab/hair/after-long-side.png) · [after: curls from behind](visual-reviews/character-lab/hair/after-curls-back.png). The coverage test casts rays against the exported model from both sides and behind, including an ear-visibility check.
 
+The facial-hair styles are each a continuous, evenly extruded mesh. The beard includes the moustache, connected to cheeks and jaw around a small mouth opening. [Before](visual-reviews/character-lab/beard/before-beard.png) · [beard](visual-reviews/character-lab/beard/after-beard.png) · [side view](visual-reviews/character-lab/beard/after-beard-side.png) · [moustache](visual-reviews/character-lab/beard/after-moustache.png). The model test checks matching depth, moustache placement, and connected beard geometry.
+
 To re-export an **edited** source from the repository root:
 
 ```powershell
