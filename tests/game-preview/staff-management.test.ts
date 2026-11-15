@@ -7,7 +7,7 @@ const scene=vi.hoisted(()=>({setSettings:vi.fn(),setCast:vi.fn(),setMotionRunnin
 vi.mock('../../src/scene-lab/scene',()=>({DEFAULTS:{},createSceneLab:vi.fn(async()=>scene)}));
 vi.mock('../../src/game-preview/portraits',()=>({createPortraitService:vi.fn(async()=>({image:()=> 'data:image/png;base64,AA==',dispose:vi.fn()}))}));
 
-it('hires and trains real employees, updates the scene, and preserves them in the save',async()=>{
+it('hires employees, requires work experience before training, and preserves them in the save',async()=>{
  vi.useFakeTimers();localStorage.clear();document.body.innerHTML='<div id="app"></div>';await import('../../src/game-preview/main');await Promise.resolve();
  const el=<T extends HTMLElement>(q:string)=>document.querySelector<T>(q)!;
  enterNewStudio();
@@ -15,10 +15,10 @@ it('hires and trains real employees, updates the scene, and preserves them in th
  expect(el('[data-action=hire]').textContent).toContain('$20,000');el<HTMLButtonElement>('[data-action=hire]').click();
  expect(el('#sheet-kicker').textContent).toContain('YOUR CREW');expect(el('#sheet-body').textContent).toContain('Weekly pay');
  expect(el('#cash').textContent).toBe('$140,000');const before=Number(el('[data-skill=plot]').textContent);
- expect(el('[data-action=train-selected]').textContent).toContain('$15,000');el<HTMLButtonElement>('[data-action=train-selected]').click();
- expect(Number(el('[data-skill=plot]').textContent)).toBeGreaterThan(before);expect(el('#cash').textContent).toBe('$125,000');
+ expect(el('[data-action=train-selected]').textContent).toContain('$15,000');expect(el<HTMLButtonElement>('[data-action=train-selected]').disabled).toBe(true);
+ expect(el('#sheet-body').textContent).toContain('more work XP');expect(el('#cash').textContent).toBe('$140,000');
  expect(scene.setSettings).toHaveBeenLastCalledWith(expect.objectContaining({desks:4,people:3}));
- const saved=readSave(localStorage.getItem(SAVE_KEY)!);expect(saved.ok&&saved.state.staff.length).toBe(3);expect(saved.ok&&saved.state.staff[2].stats.plot).toBeGreaterThan(before);
+ const saved=readSave(localStorage.getItem(SAVE_KEY)!);expect(saved.ok&&saved.state.staff.length).toBe(3);expect(saved.ok&&saved.state.staff[2].stats.plot).toBe(before);
  if(saved.ok)expect(scene.setCast).toHaveBeenLastCalledWith(saved.state.staff.map(person=>generateTraits(`staff-${person.id}`)));
  el<HTMLButtonElement>('#back').click();el<HTMLButtonElement>('[data-action=hire]').click();el<HTMLButtonElement>('#back').click();
  expect(el<HTMLButtonElement>('[data-action=hire]').disabled).toBe(true);expect(el('#sheet-body').textContent).toContain('capacity');

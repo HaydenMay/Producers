@@ -1,4 +1,4 @@
-import { baselineConfig, configHash } from '../core/config';
+import { baselineConfig, progressionConfig, configHash, type Config } from '../core/config';
 import { hashString } from '../core/rng';
 import { replay } from '../core/simulation';
 import { RULESET_VERSION, type Approach, type Decision, type StudioState } from '../core/types';
@@ -17,13 +17,14 @@ export function encodeSave(state: StudioState, actions: Decision[], ui: SavedUI)
   return raw;
 }
 
-export function readSave(raw: string): { ok: true; state: StudioState; actions: Decision[]; ui: SavedUI } | { ok: false } {
+export function readSave(raw: string): { ok: true; state: StudioState; actions: Decision[]; ui: SavedUI; config: Config } | { ok: false } {
   try {
     if (raw.length > 2_000_000) return { ok: false };
     const data: unknown = JSON.parse(raw);
     if (!data || typeof data !== 'object') return { ok: false };
     const s = data as ReturnType<typeof makeSave>;
-    const cfg = baselineConfig();
+    const cfg = [baselineConfig(), progressionConfig()].find(c => configHash(c) === s.configHash);
+    if (!cfg) return { ok: false };
     if (s.version !== 1 || s.ruleset !== RULESET_VERSION || s.configHash !== configHash(cfg) ||
         s.seed !== 42 || !Array.isArray(s.actions) || s.actions.length > 5000 ||
         !s.ui || typeof s.ui.genre !== 'string' || typeof s.ui.theme !== 'string' ||
@@ -34,7 +35,7 @@ export function readSave(raw: string): { ok: true; state: StudioState; actions: 
         (s.ui.guideHintDismissed !== undefined && typeof s.ui.guideHintDismissed !== 'boolean')) return { ok: false };
     const state = replay(s.seed, cfg, s.actions);
     if (digest(state) !== s.stateHash) return { ok: false };
-    return { ok: true, state, actions: s.actions, ui: s.ui };
+    return { ok: true, state, actions: s.actions, ui: s.ui, config: cfg };
   } catch {
     return { ok: false };
   }

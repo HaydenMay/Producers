@@ -1,4 +1,5 @@
 import baseline from "../../config/baseline.json";
+import staffProgression from "../../config/staff-progression.json";
 import legacyAdvance from "../../config/legacy-advance.json";
 import { hashString } from "./rng";
 
@@ -11,6 +12,10 @@ export function cloneConfig(c: Config): Config {
 /** The Producers default: studio-funded production, 80% distributor bids, work-for-hire contracts (PROD-100/118). */
 export function baselineConfig(): Config {
   return cloneConfig(baseline as Config);
+}
+
+export function progressionConfig(): Config {
+  return withOverrides(baselineConfig(), staffProgression as Record<string, unknown>);
 }
 
 /**
