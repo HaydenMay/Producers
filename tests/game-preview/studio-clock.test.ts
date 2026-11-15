@@ -4,6 +4,10 @@ import { StudioClock } from '../../src/game-preview/studio-clock';
 
 describe('automatic studio clock',()=>{
  beforeEach(()=>vi.useFakeTimers());afterEach(()=>vi.useRealTimers());
+ it('advances one week every four seconds by default',()=>{
+  const game=new PrototypeGame(),clock=new StudioClock(game,()=>{});clock.start();
+  vi.advanceTimersByTime(3999);expect(game.state.week).toBe(0);vi.advanceTimersByTime(1);expect(game.state.week).toBe(1);clock.dispose();
+ });
  it('advances in the idle studio and preserves the remaining time while a popup is open',()=>{
   const game=new PrototypeGame(),clock=new StudioClock(game,()=>{},1000);clock.start();
   vi.advanceTimersByTime(600);clock.setPopupOpen(true);vi.advanceTimersByTime(9000);expect(game.state.week).toBe(0);
