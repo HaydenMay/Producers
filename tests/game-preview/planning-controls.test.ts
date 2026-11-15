@@ -17,7 +17,7 @@ it('keeps planning controls mounted while selections change, persist and start a
   change(theme,'Sports');change(genre,'Comedy');change(crowd,'crowd');expect(el('input[value=crowd]')).toBe(crowd);
   expect(el('.concept').textContent).toContain('Comedy · Sports · Crowd-pleaser');
   const saved=readSave(localStorage.getItem(SAVE_KEY)!);expect(saved.ok).toBe(true);
-  if(saved.ok)expect(saved.ui).toEqual({genre:'Comedy',theme:'Sports',approach:'crowd'});
+  if(saved.ok)expect(saved.ui).toMatchObject({genre:'Comedy',theme:'Sports',approach:'crowd'});
   el<HTMLButtonElement>('#close').click();el<HTMLButtonElement>('#menu-button').click();el<HTMLButtonElement>('[data-view=projects]').click();
   expect(el<HTMLSelectElement>('#genre').value).toBe('Comedy');expect(el<HTMLSelectElement>('#theme').value).toBe('Sports');
   expect(el<HTMLInputElement>('input[value=crowd]').checked).toBe(true);

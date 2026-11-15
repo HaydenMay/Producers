@@ -50,7 +50,7 @@ describe("F1 movies unaffected; old configs and replays still load", () => {
     const cand = withOverrides(legacyConfig(), read("config/candidate.json"));
     const b = runBatch(1, 6, ["balanced", "quality-first", "cheap-duds"], cand, { productions: 20, drain: true });
     const mine = metricsCsv(b.metrics).trim().split("\n");
-    const stored = readFileSync("reports/gate2_6/00_pre_change/batch-gate25_candidate-s100-p20.careers.csv", "utf8").trim().split("\n");
+    const stored = readFileSync("reports/gate2_6/00_pre_change/batch-gate25_candidate-s100-p20.careers.csv", "utf8").trim().split(/\r?\n/);
     for (const row of mine.slice(1)) expect(stored).toContain(row);
   });
   it("a pre-Gate-3 decision log replays to the same result", () => {

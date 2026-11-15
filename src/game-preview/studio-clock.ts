@@ -12,8 +12,8 @@ export class StudioClock {
   private popup = false;
   private visible = true;
   private disposed = false;
-  constructor(readonly game: PrototypeGame, private readonly changed: (_cue?: undefined, error?: Error) => void, readonly intervalMs = STUDIO_WEEK_MS) {
-    this.remaining = intervalMs;
+  constructor(readonly game: PrototypeGame, private readonly changed: (_cue?: undefined, error?: Error) => void, readonly intervalMs = STUDIO_WEEK_MS, initialProgress = 0) {
+    this.remaining = intervalMs * (1 - Math.max(0, Math.min(.999999, initialProgress)));
   }
   get playing() { return this.timer !== undefined; }
   get progress() {
@@ -47,7 +47,7 @@ export class StudioClock {
     try { this.game.decide(decision); this.changed(); this.sync(); } catch (error) { this.fail(error); }
   }
   startMovie(plan?: PlanDecision) {
-    try { if (plan) this.game.decide(plan); else this.game.startMovie(); this.changed(); this.sync(); } catch (error) { this.fail(error); }
+    try { if (plan) this.game.decide(plan); else this.game.startMovie(); if(this.timer!==undefined){clearTimeout(this.timer);this.timer=undefined}this.remaining=this.intervalMs;this.changed();this.sync(); } catch (error) { this.fail(error); }
   }
   reset() { if(this.timer!==undefined){clearTimeout(this.timer);this.timer=undefined}this.game.reset();this.remaining=this.intervalMs;this.enabled=this.started;this.changed();this.sync(); }
   dispose() { this.disposed = true; this.sync(); }

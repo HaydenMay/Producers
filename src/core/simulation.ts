@@ -8,6 +8,7 @@ import { emit, ledger } from "./events";
 import { initRng } from "./rng";
 import { canCancel, cancelRepay, spendableCash } from "./economy";
 import { canHire, fireOptions, fireStaff, hireStaff, payroll, trainStaff } from "./staff";
+import type { StaffWorkObserver } from "./staff";
 import { generateOffers, driftTrust } from "./distribution";
 import { checkGenreUnlocks, freshGenreAwareness, generateWorld, researchTheme, updateTrends } from "./progression";
 import { campaignOptions, canSelfFund, castStar, chooseCampaign, finalizeRelease, productionWeek, startProject } from "./production";
@@ -343,7 +344,7 @@ function overdraftWeek(state: StudioState, cfg: Config): void {
   emit(state, "overdraft", `In the red: the bank charged $${interest.toLocaleString()} interest this month. A contract job would get you back in the black.`, { interest });
 }
 
-export function advanceWeek(state: StudioState, cfg: Config): void {
+export function advanceWeek(state: StudioState, cfg: Config, observe?: StaffWorkObserver): void {
   const p = state.project;
   if (p?.pendingDecision) throw new Error(`Cannot advance: ${p.pendingDecision} decision pending`);
   if (state.pendingOffers) throw new Error("Cannot advance: choose an offer first");
@@ -359,7 +360,7 @@ export function advanceWeek(state: StudioState, cfg: Config): void {
     if (!rel.active) finalizeRelease(state, cfg, rel);
   }
   if (cfg.formats.streaming) streamingWeek(state, cfg);
-  productionWeek(state, cfg);
+  productionWeek(state, cfg, observe);
   updateTrends(state, cfg);
   state.studioBuzz = Math.max(0, state.studioBuzz * (1 - cfg.marketing.buzzDecayPerWeek));
   if (cfg.formats.tv) decayAnticipation(state, cfg);

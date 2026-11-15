@@ -6,6 +6,7 @@ import { range, int, pick } from "./rng";
 import { METERS, type Meter, type Project, type Staff, type StudioState } from "./types";
 
 export type ProdPhase = "writing" | "filming" | "editing";
+export type StaffWorkObserver = (staffId: string, points: Record<Meter, number>) => void;
 
 export function phaseOf(progress: number): ProdPhase {
   if (progress < 40) return "writing";
@@ -14,7 +15,7 @@ export function phaseOf(progress: number): ProdPhase {
 }
 
 /** One week of work: every staff member adds to every meter, weighted by phase emphasis. */
-export function staffWorkWeek(state: StudioState, project: Project, cfg: Config, genreBonus: number): void {
+export function staffWorkWeek(state: StudioState, project: Project, cfg: Config, genreBonus: number, observe?: StaffWorkObserver): void {
   const phase = phaseOf(project.progress);
   const base = cfg.production.phaseEmphasis[phase] as Record<Meter, number>;
   // PROD-220: the production's approach shifts effort between meters (total effort unchanged)
@@ -22,6 +23,7 @@ export function staffWorkWeek(state: StudioState, project: Project, cfg: Config,
   const emph = am ? (Object.fromEntries(METERS.map((m) => [m, base[m] * am[m]])) as Record<Meter, number>) : base;
   for (const s of state.staff) {
     if (s.assignment) continue; // special-role rule: an engineer building streaming is OFF the production
+    const before = observe ? { ...project.meterPoints } : undefined;
     const variance = 1 + range(state.rng, "work", -cfg.production.workVariance, cfg.production.workVariance);
     for (const m of METERS) {
       const pts = s.stats[m] * emph[m] * cfg.production.workRate * variance * (1 + genreBonus);
@@ -31,6 +33,7 @@ export function staffWorkWeek(state: StudioState, project: Project, cfg: Config,
       s.stats[m] = Math.min(cfg.staffGrowth.statCap, Math.round((s.stats[m] + gain) * 1000) / 1000);
     }
     s.totalXp += cfg.staffGrowth.xpPerWeek;
+    if (before && observe) observe(s.id, Object.fromEntries(METERS.map(m => [m, round2(project.meterPoints[m] - before[m])])) as Record<Meter, number>);
   }
 }
 

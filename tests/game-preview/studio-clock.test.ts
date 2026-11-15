@@ -8,6 +8,15 @@ describe('automatic studio clock',()=>{
   const game=new PrototypeGame(),clock=new StudioClock(game,()=>{});clock.start();
   vi.advanceTimersByTime(3999);expect(game.state.week).toBe(0);vi.advanceTimersByTime(1);expect(game.state.week).toBe(1);clock.dispose();
  });
+ it('resumes a saved partial week without catching up while closed',()=>{
+  const game=new PrototypeGame(),clock=new StudioClock(game,()=>{},4000,.5);clock.start();
+  vi.advanceTimersByTime(1999);expect(game.state.week).toBe(0);vi.advanceTimersByTime(1);expect(game.state.week).toBe(1);clock.dispose();
+ });
+ it('gives a newly started movie a full first production week after idle time',()=>{
+  const game=new PrototypeGame(),clock=new StudioClock(game,()=>{},4000);clock.start();vi.advanceTimersByTime(3500);
+  clock.setPopupOpen(true);clock.startMovie();expect(clock.progress).toBe(0);clock.setPopupOpen(false);
+  vi.advanceTimersByTime(3999);expect(game.state.week).toBe(0);vi.advanceTimersByTime(1);expect(game.state.week).toBe(1);clock.dispose();
+ });
  it('advances in the idle studio and preserves the remaining time while a popup is open',()=>{
   const game=new PrototypeGame(),clock=new StudioClock(game,()=>{},1000);clock.start();
   vi.advanceTimersByTime(600);clock.setPopupOpen(true);vi.advanceTimersByTime(9000);expect(game.state.week).toBe(0);
