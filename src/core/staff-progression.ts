@@ -32,7 +32,7 @@ export function advanceProgression(state:StudioState,person:Staff,cfg:Config): v
  for(const m of METERS){
   const focus:Meter=p.specialty==='Film Expert'?'filming':p.specialty==='Editor'?'editing':p.specialty==='Writer'?'writing':p.focus;
   const primary=p.stage==='general'?p.focus:focus;
-  const base=m===primary?(p.stage==='general'?7:16):p.stage==='specialist'&&p.specialty==='Producer'?8:3;
+  const base=m===primary?(p.stage==='general'?7:32):p.stage==='specialist'&&p.specialty==='Producer'?8:3;
   const extra=Math.floor(stableUnit(state.seed,`growth:${person.id}:${p.stage}:${p.level}:${m}`)*4);
   person.stats[m]=Math.min(cfg.staffGrowth.statCap,person.stats[m]+base+extra);
  }

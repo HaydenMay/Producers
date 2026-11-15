@@ -48,6 +48,18 @@ describe('employee progression', () => {
   const saved=readSave(encodeSave(state,actions,{genre:'Action',theme:'Spies',approach:'balanced'}));
   expect(saved.ok).toBe(true);if(saved.ok)expect(saved.state).toEqual(state);
  });
+ it('allows exceptional specialists to reach, but never exceed, the 255 ceiling', () => {
+  let reached=false;
+  for(let seed=1;seed<=60;seed++){
+   const cfg=progressionConfig(),state=createStudio(seed,cfg);state.cash=1000000;state.capacityLevel=2;state.maxStaff=8;
+   applyDecision(state,cfg,{type:'hire'});const person=state.staff.at(-1)!;
+   for(let i=0;i<5;i++){for(let w=0;w<20;w++)recordProgressWork(state,person,cfg);applyDecision(state,cfg,{type:'train',staffId:person.id});}
+   for(let w=0;w<31;w++)recordProgressWork(state,person,cfg);applyDecision(state,cfg,{type:'specialize',staffId:person.id});
+   for(let i=0;i<5;i++){for(let w=0;w<20;w++)recordProgressWork(state,person,cfg);applyDecision(state,cfg,{type:'train',staffId:person.id});}
+   const values=Object.values(person.stats);expect(Math.max(...values)).toBeLessThanOrEqual(255);if(values.includes(255)){reached=true;break;}
+  }
+  expect(reached).toBe(true);
+ });
  it('reads old and new replay saves', () => {
   for(const cfg of [baselineConfig(),progressionConfig()]) {
    const state=createStudio(42,cfg), raw=encodeSave(state,[],{genre:'Action',theme:'Spies',approach:'balanced'});
