@@ -1,6 +1,7 @@
 import type { Decision, PlanDecision } from '../core/types';
 import { PrototypeGame } from '../game/game';
 
+export const STUDIO_WEEK_MS=4000;
 /** Preview-only clock. The simulation still owns every weekly transition. */
 export class StudioClock {
   private timer: ReturnType<typeof setTimeout> | undefined;
@@ -11,7 +12,7 @@ export class StudioClock {
   private popup = false;
   private visible = true;
   private disposed = false;
-  constructor(readonly game: PrototypeGame, private readonly changed: (_cue?: undefined, error?: Error) => void, readonly intervalMs = 8000) {
+  constructor(readonly game: PrototypeGame, private readonly changed: (_cue?: undefined, error?: Error) => void, readonly intervalMs = STUDIO_WEEK_MS) {
     this.remaining = intervalMs;
   }
   get playing() { return this.timer !== undefined; }
