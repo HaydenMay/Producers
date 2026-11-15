@@ -1,12 +1,14 @@
 // @vitest-environment jsdom
 import { expect, it, vi } from 'vitest';
 import { STUDIO_WEEK_MS } from '../../src/game-preview/studio-clock';
+import { enterNewStudio } from './enter-studio';
 vi.mock('../../src/scene-lab/scene',()=>({DEFAULTS:{},createSceneLab:vi.fn(async()=>({setSettings:vi.fn(),dispose:vi.fn()}))}));
 vi.mock('../../src/game-preview/portraits',()=>({createPortraitService:vi.fn(async()=>({image:()=> 'data:image/png;base64,AA==',dispose:vi.fn()}))}));
 
 it('opens employee and Star details and casts the selected offered Star',async()=>{
  vi.useFakeTimers();localStorage.clear();document.body.innerHTML='<div id="app"></div>';await import('../../src/game-preview/main');await Promise.resolve();
  const el=<T extends HTMLElement>(q:string)=>document.querySelector<T>(q)!;
+ enterNewStudio();
  el<HTMLButtonElement>('#menu-button').click();el<HTMLButtonElement>('[data-view=people]').click();el<HTMLButtonElement>('[data-person-kind=staff]').click();
  expect(el('#sheet-title').textContent).toBe('Sam');expect(el('#sheet-body').textContent).toContain('Plot');expect(el('#sheet-body').textContent).toContain('Editing');
  el<HTMLButtonElement>('#back').click();expect(el('#sheet-title').textContent).toBe('People');el<HTMLButtonElement>('#back').click();el<HTMLButtonElement>('[data-view=projects]').click();el<HTMLButtonElement>('[data-action=start]').click();

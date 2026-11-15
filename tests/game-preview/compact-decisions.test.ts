@@ -1,12 +1,14 @@
 // @vitest-environment jsdom
 import { expect, it, vi } from 'vitest';
 import { STUDIO_WEEK_MS } from '../../src/game-preview/studio-clock';
+import { enterNewStudio } from './enter-studio';
 vi.mock('../../src/scene-lab/scene',()=>({DEFAULTS:{},createSceneLab:vi.fn(async()=>({setSettings:vi.fn(),dispose:vi.fn()}))}));
 vi.mock('../../src/game-preview/portraits',()=>({createPortraitService:vi.fn(async()=>({image:()=> 'data:image/png;base64,AA==',dispose:vi.fn()}))}));
 
 it('keeps casting and distribution details available on demand', async()=>{
   vi.useFakeTimers();localStorage.clear();document.body.innerHTML='<div id="app"></div>';await import('../../src/game-preview/main');await Promise.resolve();
   const el=<T extends HTMLElement>(q:string)=>document.querySelector<T>(q)!;
+  enterNewStudio();
   el<HTMLButtonElement>('#menu-button').click();el<HTMLButtonElement>('[data-view=projects]').click();el<HTMLButtonElement>('[data-action=start]').click();
   vi.advanceTimersByTime(STUDIO_WEEK_MS*12);expect(el('#sheet-title').textContent).toBe('Choose your star');
   expect(el('[data-person-kind=star]').textContent).toMatch(/genre fit.*fame/i);

@@ -12,12 +12,14 @@ export class StudioClock {
   private popup = false;
   private visible = true;
   private disposed = false;
+  private rate = 1;
   constructor(readonly game: PrototypeGame, private readonly changed: (_cue?: undefined, error?: Error) => void, readonly intervalMs = STUDIO_WEEK_MS, initialProgress = 0) {
     this.remaining = intervalMs * (1 - Math.max(0, Math.min(.999999, initialProgress)));
   }
   get playing() { return this.timer !== undefined; }
+  get speed() { return this.rate; }
   get progress() {
-    const remaining = this.timer === undefined ? this.remaining : Math.max(0, this.deadline - performance.now());
+    const remaining = this.timer === undefined ? this.remaining : Math.max(0, this.deadline - performance.now()) * this.rate;
     return Math.max(0, Math.min(1, 1 - remaining / this.intervalMs));
   }
   get waitingForDecision() { return ['pitch','casting','marketing','distribution','career_end'].includes(this.game.choices.phase); }
@@ -25,11 +27,11 @@ export class StudioClock {
     const canRun = this.enabled && !this.disposed && this.visible && !this.popup && this.game.choices.options.some(d => d.type === 'wait');
     if (!canRun && this.timer !== undefined) {
       clearTimeout(this.timer); this.timer = undefined;
-      this.remaining = Math.max(0, this.deadline - performance.now());
+      this.remaining = Math.max(0, this.deadline - performance.now()) * this.rate;
     }
     if (canRun && this.timer === undefined) {
-      this.deadline = performance.now() + this.remaining;
-      this.timer = setTimeout(() => this.tick(), this.remaining);
+      this.deadline = performance.now() + this.remaining / this.rate;
+      this.timer = setTimeout(() => this.tick(), this.remaining / this.rate);
     }
   }
   private fail(error: unknown) {
@@ -41,6 +43,12 @@ export class StudioClock {
     try { this.game.advance(); this.changed(); this.sync(); } catch (error) { this.fail(error); }
   }
   start() { if (!this.disposed) { this.started = true; this.enabled = true; this.sync(); } }
+  setSpeed(rate:number) {
+    if (![1,2,4].includes(rate)) throw new Error('Unsupported studio speed');
+    if (rate===this.rate) return;
+    if (this.timer!==undefined) { clearTimeout(this.timer);this.timer=undefined;this.remaining=Math.max(0,this.deadline-performance.now())*this.rate; }
+    this.rate=rate;this.sync();
+  }
   setPopupOpen(open: boolean) { this.popup = open; this.sync(); }
   setVisible(visible: boolean) { this.visible = visible; this.sync(); }
   decide(decision: Decision) {
