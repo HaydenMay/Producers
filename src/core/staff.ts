@@ -1,5 +1,6 @@
 // Staff: four universal stats (Plot/Writing/Filming/Editing), XP earned while working.
 // LOCKED: no individual genre experience; payroll is a studio expense (never from advances).
+import { initProgression, progressionRules, recordProgressWork, advanceProgression } from "./staff-progression";
 import type { Config } from "./config";
 import { ledger, emit, newId, round2 } from "./events";
 import { range, int, pick } from "./rng";
@@ -32,13 +33,14 @@ export function staffWorkWeek(state: StudioState, project: Project, cfg: Config,
       const gain = cfg.staffGrowth.statGainPerWeek * emph[m] * (1 - s.stats[m] / cfg.staffGrowth.statCap);
       s.stats[m] = Math.min(cfg.staffGrowth.statCap, Math.round((s.stats[m] + gain) * 1000) / 1000);
     }
-    s.totalXp += cfg.staffGrowth.xpPerWeek;
+    if (progressionRules(cfg)) recordProgressWork(state, s, cfg);
+    else s.totalXp += cfg.staffGrowth.xpPerWeek;
     if (before && observe) observe(s.id, Object.fromEntries(METERS.map(m => [m, round2(project.meterPoints[m] - before[m])])) as Record<Meter, number>);
   }
 }
 
 export function staffLevel(s: Staff): number {
-  return Math.floor(s.totalXp / 200);
+  return s.progression ? s.progression.level + (s.progression.stage === "specialist" ? 5 : 0) : Math.floor(s.totalXp / 200);
 }
 
 type PayCfg = { payrollPeriodWeeks?: number; raisePerLevel?: number; maxRaise?: number; raiseEventEveryLevels?: number };
@@ -102,7 +104,9 @@ export function canHire(state: StudioState): boolean {
 
 export function hireStaff(state: StudioState, cfg: Config): Staff {
   if (!canHire(state)) throw new Error(`Studio is at capacity (${state.staff.length}/${state.maxStaff}); hiring is not allowed`);
-  const [lo, hi] = cfg.staffGrowth.hireStatRange;
+  const [baseLo, baseHi] = cfg.staffGrowth.hireStatRange;
+  const lo = baseLo + (progressionRules(cfg) ? state.capacityLevel * 10 : 0);
+  const hi = baseHi + (progressionRules(cfg) ? state.capacityLevel * 15 : 0);
   const stats = {} as Record<Meter, number>;
   for (const m of METERS) stats[m] = int(state.rng, "staff", lo, hi);
   let id = newId(state, "staff");
@@ -113,6 +117,7 @@ export function hireStaff(state: StudioState, cfg: Config): Staff {
   const wage = bySkill ? Math.round((cfg.staffGrowth.hireWage * avg) / 25 / 10) * 10 : cfg.staffGrowth.hireWage;
   const s: Staff = { id, name: randomName(state), stats, totalXp: 0, wage, ...(bySkill ? { baseWage: wage } : {}) };
   ledger(state, { kind: "hire", amount: -cfg.staffGrowth.hireCost, note: s.name });
+  initProgression(state, s, cfg);
   state.staff.push(s);
   emit(state, "hire", `Hired ${s.name} (${METERS.map((m) => `${m} ${stats[m]}`).join(", ")})${bySkill ? `, asking $${wage.toLocaleString()}/week` : ""}.`);
   return s;
@@ -144,6 +149,7 @@ export function trainStaff(state: StudioState, cfg: Config, staffId: string): vo
   const s = state.staff.find((x) => x.id === staffId);
   if (!s) throw new Error(`No staff ${staffId}`);
   ledger(state, { kind: "train", amount: -cfg.staffGrowth.trainCost, note: s.name });
+  if (progressionRules(cfg) && s.progression) { advanceProgression(state, s, cfg); return; }
   for (const m of METERS) s.stats[m] = Math.min(cfg.staffGrowth.statCap, s.stats[m] + cfg.staffGrowth.trainGain);
   emit(state, "train", `Trained ${s.name}: +${cfg.staffGrowth.trainGain} to all stats.`);
 }
@@ -155,6 +161,7 @@ export function trainStaff(state: StudioState, cfg: Config, staffId: string): vo
  */
 export function staffTitle(s: Staff): string {
   if (s.role === "software_engineer") return "Software Engineer";
+  if (s.progression) return s.progression.stage === "general" ? "Studio Crew" : s.progression.specialty;
   const st = s.stats;
   const lvl = staffLevel(s);
   const rank = lvl < 5 ? "Junior " : lvl >= 15 ? "Senior " : "";

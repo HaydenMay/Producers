@@ -1,0 +1,44 @@
+{
+  "start": {
+    "staff": [
+      {
+        "name": "Sam",
+        "stats": {
+          "plot": 19,
+          "writing": 17,
+          "filming": 13,
+          "editing": 12
+        },
+        "wage": 900
+      },
+      {
+        "name": "Alex",
+        "stats": {
+          "plot": 12,
+          "writing": 13,
+          "filming": 18,
+          "editing": 18
+        },
+        "wage": 900
+      }
+    ]
+  },
+  "production": {
+    "workRate": 0.08
+  },
+  "staffGrowth": {
+    "statCap": 255,
+    "statGainPerWeek": 0,
+    "hireStatRange": [
+      5,
+      15
+    ],
+    "progression": {
+      "enabled": true,
+      "xpPerLevel": 200,
+      "maxLevel": 5,
+      "requestMinWeeks": 20,
+      "requestJitterWeeks": 10
+    }
+  }
+}

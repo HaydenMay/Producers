@@ -18,11 +18,14 @@ export interface RngState {
   [stream: string]: number;
 }
 
+export type Specialty = "Writer" | "Producer" | "Film Expert" | "Editor";
+
 export interface Staff {
   id: string;
   name: string;
-  stats: Record<Meter, number>; // 0..100, fractional
+  stats: Record<Meter, number>; // candidate staff skills: 0..255
   totalXp: number;
+  progression?: { level: number; stage: "general" | "specialist"; specialty: Specialty; spentXp: number; workWeeksAtCap: number; request: boolean; requestAfterWeeks: number; focus: Meter };
   wage: number; // $/week
   /** wage before level raises (set when raises are on) */
   baseWage?: number;
@@ -401,6 +404,8 @@ export type Decision =
   | { type: "cancel" }
   | { type: "hire" }
   | { type: "train"; staffId: string }
+  | { type: "specialize"; staffId: string }
+  | { type: "defer_specialty"; staffId: string }
   | { type: "studio_ads" }
   | { type: "upgrade_studio" }
   | { type: "research_theme"; theme: string }

@@ -1,11 +1,12 @@
-import { baselineConfig } from "../core/config";
+import { baselineConfig, type Config } from "../core/config";
 import { applyDecision, createStudio, getChoices } from "../core/simulation";
 import type { Decision, PlanDecision } from "../core/types";
 
 /** The core owns every rule; this object only exposes prototype actions. */
 export class PrototypeGame {
-  private readonly config = baselineConfig();
-  state = createStudio(42, this.config);
+  config: Config;
+  state;
+  constructor(config: Config = baselineConfig()) { this.config=config; this.state=createStudio(42,config); }
   actions: Decision[] = [];
   get choices() { return getChoices(this.state, this.config); }
   reset() { this.state = createStudio(42, this.config); this.actions = []; }

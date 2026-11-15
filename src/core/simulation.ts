@@ -1,5 +1,6 @@
 // Single source of truth for the rules: createStudio / getChoices / applyDecision / advanceWeek.
 // CLI, batch runner, agents and the web UI all go through these functions.
+import { initProgression, canAdvance, respondToSpecialty } from "./staff-progression";
 import { careerEndDue, careerRecap, markCareerEnd } from "./career";
 import { initTalentPool, poolEnabled, talentYear } from "./talent";
 import type { Config } from "./config";
@@ -59,6 +60,7 @@ export function createStudio(seed: number, cfg: Config): StudioState {
     counters: { nextId: 0, negativeCashWeeks: 0, productionsStarted: 0, productionsCompleted: 0, cancellations: 0 },
     world: { comboGrades: {} },
   };
+  for (const person of state.staff) initProgression(state, person, cfg);
   ledger(state, { kind: "start_cash", amount: cfg.start.cash });
   generateWorld(state, cfg);
   if (poolEnabled(cfg)) initTalentPool(state, cfg); // PROD-213: after the world, on its own stream
@@ -129,11 +131,12 @@ function announceOptions(state: StudioState, cfg: Config): Decision[] {
 function reinvestOptions(state: StudioState, cfg: Config): Decision[] {
   const out: Decision[] = [];
   const cash = spendableCash(state);
+  for (const s of state.staff) if (s.progression?.request) out.push({type:"specialize",staffId:s.id},{type:"defer_specialty",staffId:s.id});
   if (state.cash < 0) return out; // LOCKED: in the red you can't hire, train, advertise or self-fund
   if (cash >= cfg.staffGrowth.hireCost && canHire(state)) out.push({ type: "hire" });
   const up = nextUpgrade(state, cfg);
   if (up && cash >= up.cost && state.prestige >= up.prestige) out.push({ type: "upgrade_studio" });
-  if (cash >= cfg.staffGrowth.trainCost) for (const s of state.staff) out.push({ type: "train", staffId: s.id });
+  if (cash >= cfg.staffGrowth.trainCost) for (const s of state.staff) if (canAdvance(s,cfg)) out.push({ type: "train", staffId: s.id });
   if (cash >= cfg.marketing.studioAdsCost) out.push({ type: "studio_ads" });
   if ((cfg.research as { themePurchase?: boolean }).themePurchase !== false && cash >= cfg.research.themeCost) for (const t of cfg.world.themes) if (!state.unlockedThemes.includes(t)) out.push({ type: "research_theme", theme: t });
   // Gate 3 studio expansions (config-gated). TV = a studio upgrade at money + Prestige (LOCKED direction).
@@ -292,6 +295,10 @@ export function applyDecision(state: StudioState, cfg: Config, d: Decision): voi
       state.capacityLevel += 1;
       return;
     }
+    case "specialize":
+      return respondToSpecialty(state, d.staffId, true);
+    case "defer_specialty":
+      return respondToSpecialty(state, d.staffId, false);
     case "train":
       return trainStaff(state, cfg, d.staffId);
     case "studio_ads":

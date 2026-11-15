@@ -5,6 +5,7 @@
 //  2. economy.contracts (work-for-hire): zero-cost jobs, client reimburses payroll + upkeep weekly and pays a
 //     fixed visible fee at completion. Zero Prestige, no IP / fans / release / Hall of Fame / catalog.
 // "legacy_advance" (default) never calls anything here, so every earlier result stays byte-identical.
+import { progressionRules, recordProgressWork } from "./staff-progression";
 import type { Config } from "./config";
 import { emit, ledger, round2 } from "./events";
 import { next, range } from "./rng";
@@ -175,7 +176,8 @@ export function contractWeek(state: StudioState, cfg: Config): void {
       const gain = cfg.staffGrowth.statGainPerWeek * (1 - s.stats[m] / cfg.staffGrowth.statCap);
       s.stats[m] = Math.min(cfg.staffGrowth.statCap, Math.round((s.stats[m] + gain) * 1000) / 1000);
     }
-    s.totalXp += cfg.staffGrowth.xpPerWeek;
+    if (progressionRules(cfg)) recordProgressWork(state, s, cfg);
+    else s.totalXp += cfg.staffGrowth.xpPerWeek;
   }
   c.weeksWorked += 1;
   if (c.weeksWorked >= c.weeks) {
