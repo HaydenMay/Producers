@@ -9,7 +9,10 @@ it('opens Projects and updates the visible project points as time advances',asyn
  expect(el('#project-card').textContent).toContain('No active project');el<HTMLButtonElement>('#project-card').click();
  expect(el('#sheet-title').textContent).toBe('Projects');el<HTMLButtonElement>('[data-action=start]').click();
  expect(el('#project-card').textContent).toContain('IN PRODUCTION');expect(el('#project-card').textContent).toContain('0%');
- vi.advanceTimersByTime(4000);expect(el('#project-card').textContent).toContain('3%');expect(el('#project-card').textContent).toContain('Plot');
+ vi.advanceTimersByTime(2200);expect(el('#project-card').textContent).toMatch(/Plot [1-9]/);expect(el('#project-card').textContent).toContain('0%');
+ const pointsBeforePause=el('#project-points').textContent;el<HTMLButtonElement>('#project-card').click();
+ expect(el('[data-meter="plot"]').textContent).not.toBe('0');vi.advanceTimersByTime(4500);expect(el('#project-points').textContent).toBe(pointsBeforePause);
+ el<HTMLButtonElement>('#close').click();vi.advanceTimersByTime(1800);expect(el('#project-card').textContent).toContain('3%');expect(el('#project-card').textContent).toContain('Plot');
  expect(el('#project-card').getAttribute('aria-label')).toContain('Writing');expect(el('#project-card').getAttribute('aria-label')).toContain('points');
  el<HTMLButtonElement>('#project-card').click();expect(el('#sheet-title').textContent).toBe('Projects');
  el<HTMLButtonElement>('#close').click();vi.advanceTimersByTime(4000*11);expect(el('#sheet-title').textContent).toBe('Choose your star');

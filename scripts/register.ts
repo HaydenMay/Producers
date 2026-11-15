@@ -30,7 +30,7 @@ const section = [
   "",
 ].join("\n");
 
-const doc = readFileSync(REG, "utf8");
+const doc = readFileSync(REG, "utf8").replace(/\r\n/g, "\n");
 const at = doc.indexOf(HEADING);
 if (at < 0) throw new Error(`${REG}: heading not found: ${HEADING}`);
 const next = doc.slice(at + HEADING.length).search(/\n## /);

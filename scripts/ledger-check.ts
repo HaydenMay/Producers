@@ -12,7 +12,7 @@ const IMPLS = ["Implemented differently", "Implemented", "Partial", "Not impleme
 // audit entries: "- **[STATUS]**" bullets in sections 1–14, numbered items in section 15
 const audit: { id: string; text: string }[] = [];
 let sec = 0, n = 0;
-for (const line of readFileSync(AUDIT, "utf8").split("\n")) {
+for (const line of readFileSync(AUDIT, "utf8").split(/\r?\n/)) {
   const m = line.match(/^## (\d+)\. /);
   if (m) {
     sec = Number(m[1]);
@@ -25,7 +25,7 @@ for (const line of readFileSync(AUDIT, "utf8").split("\n")) {
 
 const problems: string[] = [];
 const rows: { id: string; status: string; impl: string; refs: string[]; title: string }[] = [];
-for (const line of readFileSync(LEDGER, "utf8").split("\n")) {
+for (const line of readFileSync(LEDGER, "utf8").split(/\r?\n/)) {
   const m = line.match(/^\| (PROD-\d{3}) \| (.*) \|$/);
   if (!m) continue;
   const cells = m[2].split(" | ");

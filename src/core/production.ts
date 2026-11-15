@@ -4,6 +4,7 @@ import type { Config } from "./config";
 import { emit, newId, round2 } from "./events";
 import { payProjectExpense, projectFunds, receiveAdvance, transferSurplus, spendableCash } from "./economy";
 import { staffWorkWeek, phaseOf } from "./staff";
+import type { StaffWorkObserver } from "./staff";
 import { applyRecastPenalty, applyStarCareer, buildAuditions, starFit } from "./stars";
 import { comboKey, updateTrust } from "./distribution";
 import { avgScore, computeScores, isHallOfFame, meterQuality, eraBar, expectationsAt } from "./scoring";
@@ -96,11 +97,11 @@ export function startProject(state: StudioState, cfg: Config, plan: PlanDecision
 }
 
 /** One production week. Pauses at 40%/80% until the decision is made. */
-export function productionWeek(state: StudioState, cfg: Config): void {
+export function productionWeek(state: StudioState, cfg: Config, observe?: StaffWorkObserver): void {
   const p = state.project;
   if (!p || p.pendingDecision) return;
   const bonus = genreBonus(state, cfg, p.genre);
-  staffWorkWeek(state, p, cfg, bonus);
+  staffWorkWeek(state, p, cfg, bonus, observe);
   if (cfg.events.breakthrough.enabled) breakthroughCheck(state, cfg, p);
   if (phaseOf(p.progress) === "filming" && p.starId) {
     p.starPoints = round2(p.starPoints + cfg.production.starFilmingWeight * starFit(state.stars[p.starId], p.genre, cfg) * (1 + bonus));
