@@ -8,6 +8,16 @@ describe('automatic studio clock',()=>{
   const game=new PrototypeGame(),clock=new StudioClock(game,()=>{});clock.start();
   vi.advanceTimersByTime(3999);expect(game.state.week).toBe(0);vi.advanceTimersByTime(1);expect(game.state.week).toBe(1);clock.dispose();
  });
+ it.each([[2,2000],[4,1000]])('runs a full week at %i× in %i milliseconds',(speed,duration)=>{
+  const game=new PrototypeGame(),clock=new StudioClock(game,()=>{});clock.setSpeed(speed);clock.start();
+  vi.advanceTimersByTime(duration-1);expect(game.state.week).toBe(0);vi.advanceTimersByTime(1);expect(game.state.week).toBe(1);clock.dispose();
+ });
+ it('preserves partial progress when speed changes while running or paused',()=>{
+  const game=new PrototypeGame(),clock=new StudioClock(game,()=>{});clock.start();vi.advanceTimersByTime(1000);expect(clock.progress).toBeCloseTo(.25);
+  clock.setSpeed(2);expect(clock.progress).toBeCloseTo(.25);vi.advanceTimersByTime(500);expect(clock.progress).toBeCloseTo(.5);
+  clock.setPopupOpen(true);clock.setSpeed(4);vi.advanceTimersByTime(10000);expect(clock.progress).toBeCloseTo(.5);expect(game.state.week).toBe(0);
+  clock.setPopupOpen(false);vi.advanceTimersByTime(499);expect(game.state.week).toBe(0);vi.advanceTimersByTime(1);expect(game.state.week).toBe(1);clock.dispose();
+ });
  it('resumes a saved partial week without catching up while closed',()=>{
   const game=new PrototypeGame(),clock=new StudioClock(game,()=>{},4000,.5);clock.start();
   vi.advanceTimersByTime(1999);expect(game.state.week).toBe(0);vi.advanceTimersByTime(1);expect(game.state.week).toBe(1);clock.dispose();

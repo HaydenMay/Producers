@@ -33,12 +33,14 @@ describe('preview saves', () => {
     expect(readSave(JSON.stringify({ ...save, stateHash: 'changed' })).ok).toBe(false);
     expect(readSave(JSON.stringify({ ...save, ui: {...save.ui, weekProgress: 1} })).ok).toBe(false);
     expect(readSave(JSON.stringify({ ...save, ui: {...save.ui, weekProgress: -.1} })).ok).toBe(false);
+    expect(readSave(JSON.stringify({ ...save, ui: {...save.ui, speed: 3} })).ok).toBe(false);
+    expect(readSave(JSON.stringify({ ...save, ui: {...save.ui, guide: 'yes'} })).ok).toBe(false);
     expect(() => encodeSave(state, Array.from({length:5001}, () => ({type:'wait'})), {genre:'',theme:'',approach:'balanced'})).toThrow('Save size limit');
   });
   it('restores the partial week and accepts earlier saves without it',()=>{
     const state=createStudio(42,baselineConfig()),ui={genre:'',theme:'',approach:'balanced' as const};
-    const loaded=readSave(encodeSave(state,[],{...ui,weekProgress:.5}));
-    expect(loaded.ok&&loaded.ui.weekProgress).toBe(.5);
+    const loaded=readSave(encodeSave(state,[],{...ui,weekProgress:.5,speed:4,guide:true,guideHintDismissed:true}));
+    expect(loaded.ok&&loaded.ui).toMatchObject({weekProgress:.5,speed:4,guide:true,guideHintDismissed:true});
     expect(readSave(encodeSave(state,[],ui)).ok).toBe(true);
   });
   it('restores a three-film career and a contract at every meaningful checkpoint', () => {

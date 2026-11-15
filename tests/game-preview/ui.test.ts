@@ -2,6 +2,7 @@
 import {afterEach,describe,expect,it,vi} from 'vitest';
 import {readSave,SAVE_KEY} from '../../src/game-preview/save';
 import {STUDIO_WEEK_MS} from '../../src/game-preview/studio-clock';
+import {enterNewStudio} from './enter-studio';
 const motion=vi.hoisted(()=>vi.fn());
 vi.mock('../../src/scene-lab/scene',()=>({DEFAULTS:{},createSceneLab:vi.fn(async()=>({setSettings:vi.fn(),setMotionRunning:motion,dispose:vi.fn()}))}));
 vi.mock('../../src/game-preview/portraits',()=>({createPortraitService:vi.fn(async()=>({image:()=> 'data:image/png;base64,AA==',dispose:vi.fn()}))}));
@@ -9,6 +10,7 @@ afterEach(()=>{window.dispatchEvent(new PageTransitionEvent('pagehide',{persiste
 describe('portrait game preview',()=>{it('pauses for sheets, resumes between decisions and runs a movie and contract',async()=>{
  vi.useFakeTimers();localStorage.clear();document.body.innerHTML='<div id="app"></div>';await import('../../src/game-preview/main');await Promise.resolve();
  const el=<T extends HTMLElement>(q:string)=>document.querySelector<T>(q)!;
+ enterNewStudio();
  expect(document.querySelector('#project-card')).toBeTruthy();expect(document.querySelectorAll('.dock button')).toHaveLength(2);expect(el('#cash').textContent).toBe('$160,000');
  el<HTMLButtonElement>('#menu-button').click();vi.advanceTimersByTime(24000);expect(el('#date').textContent).toContain('Week 1');
  expect(el('#clock-indicator').getAttribute('aria-label')).toBe('Time paused');

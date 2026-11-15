@@ -2,6 +2,7 @@
 import { expect,it,vi } from 'vitest';
 import { readSave,SAVE_KEY } from '../../src/game-preview/save';
 import { generateTraits } from '../../src/character-lab/traits';
+import { enterNewStudio } from './enter-studio';
 const scene=vi.hoisted(()=>({setSettings:vi.fn(),setCast:vi.fn(),setMotionRunning:vi.fn(),dispose:vi.fn()}));
 vi.mock('../../src/scene-lab/scene',()=>({DEFAULTS:{},createSceneLab:vi.fn(async()=>scene)}));
 vi.mock('../../src/game-preview/portraits',()=>({createPortraitService:vi.fn(async()=>({image:()=> 'data:image/png;base64,AA==',dispose:vi.fn()}))}));
@@ -9,6 +10,7 @@ vi.mock('../../src/game-preview/portraits',()=>({createPortraitService:vi.fn(asy
 it('hires and trains real employees, updates the scene, and preserves them in the save',async()=>{
  vi.useFakeTimers();localStorage.clear();document.body.innerHTML='<div id="app"></div>';await import('../../src/game-preview/main');await Promise.resolve();
  const el=<T extends HTMLElement>(q:string)=>document.querySelector<T>(q)!;
+ enterNewStudio();
  el<HTMLButtonElement>('#menu-button').click();el<HTMLButtonElement>('[data-view=people]').click();
  expect(el('[data-action=hire]').textContent).toContain('$20,000');el<HTMLButtonElement>('[data-action=hire]').click();
  expect(el('#sheet-kicker').textContent).toContain('YOUR CREW');expect(el('#sheet-body').textContent).toContain('Weekly pay');

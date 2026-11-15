@@ -1,11 +1,13 @@
 // @vitest-environment jsdom
 import { expect,it,vi } from 'vitest';
+import { enterNewStudio } from './enter-studio';
 vi.mock('../../src/scene-lab/scene',()=>({DEFAULTS:{},createSceneLab:vi.fn(async()=>({setSettings:vi.fn(),dispose:vi.fn()}))}));
 vi.mock('../../src/game-preview/portraits',()=>({createPortraitService:vi.fn(async()=>({image:()=> 'data:image/png;base64,AA==',dispose:vi.fn()}))}));
 
 it('opens Projects and updates the visible project points as time advances',async()=>{
  vi.useFakeTimers();localStorage.clear();document.body.innerHTML='<div id="app"></div>';await import('../../src/game-preview/main');await Promise.resolve();
  const el=<T extends HTMLElement>(q:string)=>document.querySelector<T>(q)!;
+ enterNewStudio();
  expect(el('#project-card').textContent).toContain('No active project');el<HTMLButtonElement>('#project-card').click();
  expect(el('#sheet-title').textContent).toBe('Projects');el<HTMLButtonElement>('[data-action=start]').click();
  expect(el('#project-card').textContent).toContain('IN PRODUCTION');expect(el('#project-card').textContent).toContain('0%');
