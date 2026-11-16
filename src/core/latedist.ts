@@ -62,6 +62,15 @@ export function studioClout(state: StudioState, cfg: Config): { ad: number; shar
   return { ad: pick(c.adMultByUpgrades), share: pick(c.shareMultByUpgrades), reach: pick(c.reachMultByUpgrades), upgrades: n };
 }
 
+/** PROD-159: a Hall of Fame title raises the visibility of later titles in the same IP: distributors offer a wider
+ *  release, reach x(1 + perTitle per Hall of Fame title already in the IP, at most +max). 1 when off. */
+export function hallOfFameReach(state: StudioState, cfg: Config, ipId: string): number {
+  const h = (cfg.economy.lateDistribution as { hallOfFameReach?: { enabled?: boolean; perTitle?: number; max?: number } }).hallOfFameReach;
+  if (!h?.enabled || !h.perTitle) return 1;
+  const n = state.releases.filter((r) => r.ipId === ipId && r.hallOfFame).length;
+  return 1 + Math.min(h.max ?? Infinity, n * h.perTitle);
+}
+
 /** 2–3 fixed bids (seeded on the distributors stream). Possibly none: then only self-distribution. */
 export function generateBids(state: StudioState, cfg: Config, p: Project): { bids: DistributionBid[]; signals: Record<string, number> } {
   const l: LD = cfg.economy.lateDistribution;
@@ -73,6 +82,7 @@ export function generateBids(state: StudioState, cfg: Config, p: Project): { bid
   const count = Math.min(shuffled.length, cfg.distribution.offersMin + Math.floor(next(state.rng, "distributors") * (cfg.distribution.offersMax - cfg.distribution.offersMin + 1)));
   const fmtFactor = (l.formatAdFactor as Record<string, number>)[formatOf(p)] ?? 1;
   const clout = studioClout(state, cfg);
+  const hofReach = hallOfFameReach(state, cfg, p.ipId); // PROD-159
   const bids = shuffled.slice(0, count).map((d) => {
     const t = terms[d.id];
     const fav = d.favoredFamilies.includes(family);
@@ -80,7 +90,7 @@ export function generateBids(state: StudioState, cfg: Config, p: Project): { bid
     const jitter = 1 + range(state.rng, "distributors", -cfg.distribution.offerJitter, cfg.distribution.offerJitter);
     const adSpend = Math.round((t.adBase * fmtFactor * sig.appeal * (fav ? l.favoredAdFactor : 1) * trustFactor * jitter * clout.ad) / 1000) * 1000;
     const share = round2(Math.max(l.shareMin, Math.min(l.shareMax, t.shareBase * (1.15 - 0.15 * sig.appeal) * (1.1 - 0.04 * d.trust) * clout.share)));
-    const reach = round2(d.reach * (fav ? 1.1 : 1.0) * clout.reach);
+    const reach = round2(d.reach * (fav ? 1.1 : 1.0) * clout.reach * hofReach);
     return {
       distributorId: d.id,
       name: d.name,
@@ -88,7 +98,7 @@ export function generateBids(state: StudioState, cfg: Config, p: Project): { bid
       adAwareness: adAwareness(cfg, adSpend),
       reach,
       share,
-      reasons: [`preview of the work so far ${sig.preview}/100 → appeal ${sig.appeal}`, fav ? "favoured genre family" : "neutral genre family", `trust ${d.trust.toFixed(2)} → x${trustFactor.toFixed(2)}`, ...(clout.upgrades > 0 ? ["a bigger studio: distributors give you a wider release"] : [])],
+      reasons: [`preview of the work so far ${sig.preview}/100 → appeal ${sig.appeal}`, fav ? "favoured genre family" : "neutral genre family", `trust ${d.trust.toFixed(2)} → x${trustFactor.toFixed(2)}`, ...(clout.upgrades > 0 ? ["a bigger studio: distributors give you a wider release"] : []), ...(hofReach > 1 ? ["a Hall of Fame title in this IP: distributors give it a wider release"] : [])],
     } satisfies DistributionBid;
   });
   return { bids, signals: sig };

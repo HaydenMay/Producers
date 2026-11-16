@@ -17,21 +17,20 @@ export function encodeSave(state: StudioState, actions: Decision[], ui: SavedUI)
   return raw;
 }
 
-/** Why a save can't be continued: "outdated" = made by an older version of the rules or numbers (saves replay their
- *  actions through the current rules, so they can't carry over); "damaged" = not a readable save. */
+/** Why a save can't be continued: "outdated" = the current rules would give it a different history (saves replay their
+ *  actions through the current rules); "damaged" = not a readable save. A save from an older ruleset or config that
+ *  replays to exactly the saved state carries over (2026-11-15): changes that don't touch its history don't cost the
+ *  player their studio. */
 export type SaveProblem = "outdated" | "damaged";
 export function readSave(raw: string): { ok: true; state: StudioState; actions: Decision[]; ui: SavedUI; config: Config } | { ok: false; problem: SaveProblem } {
   try {
-    const damaged = { ok: false as const, problem: 'damaged' as const }, outdated = { ok: false as const, problem: 'outdated' as const };
+    const damaged = { ok: false as const, problem: 'damaged' as const }; const outdated = { ok: false as const, problem: 'outdated' as const };
     if (raw.length > 2_000_000) return damaged;
     const data: unknown = JSON.parse(raw);
     if (!data || typeof data !== 'object') return damaged;
     const s = data as ReturnType<typeof makeSave>;
     if (s.version !== 1 || typeof s.ruleset !== 'string' || typeof s.configHash !== 'string') return damaged;
-    const cfg = [baselineConfig(), progressionConfig()].find(c => configHash(c) === s.configHash);
-    if (s.ruleset !== RULESET_VERSION || !cfg) return outdated;
-    if (s.configHash !== configHash(cfg) ||
-        !Number.isSafeInteger(s.seed) || s.seed < 1 || !Array.isArray(s.actions) || s.actions.length > 5000 ||
+    if (!Number.isSafeInteger(s.seed) || s.seed < 1 || !Array.isArray(s.actions) || s.actions.length > 5000 ||
         !s.ui || typeof s.ui.genre !== 'string' || typeof s.ui.theme !== 'string' ||
         !['balanced','crowd','awards'].includes(s.ui.approach) ||
         (s.ui.weekProgress !== undefined && (typeof s.ui.weekProgress !== 'number' || !Number.isFinite(s.ui.weekProgress) || s.ui.weekProgress < 0 || s.ui.weekProgress >= 1)) ||
@@ -41,10 +40,17 @@ export function readSave(raw: string): { ok: true; state: StudioState; actions: 
         (s.ui.newsReadUpTo !== undefined && (!Number.isSafeInteger(s.ui.newsReadUpTo) || s.ui.newsReadUpTo < 0)) ||
         (s.ui.studioName !== undefined && (typeof s.ui.studioName !== 'string' || s.ui.studioName.length > 64)) ||
         (s.ui.tips !== undefined && (!Array.isArray(s.ui.tips) || s.ui.tips.length > 2000 || s.ui.tips.some(t => typeof t !== 'string' || t.length > 200)))) return damaged;
-    let state: StudioState;
-    try { state = replay(s.seed, cfg, s.actions); } catch { return outdated; } // an action the current rules no longer allow
-    if (digest(state) !== s.stateHash) return outdated; // the rules moved on since it was saved
-    return { ok: true, state, actions: s.actions, ui: s.ui, config: cfg };
+    const configs = [progressionConfig(), baselineConfig()];
+    const same = configs.filter(c => configHash(c) === s.configHash);
+    // exact match first; otherwise (older ruleset or config) try every current config and keep the save only if its
+    // replay is identical to what was saved (the stored config hash is the one field allowed to differ)
+    const tries = s.ruleset === RULESET_VERSION && same.length ? same : [...same, ...configs.filter(c => !same.includes(c))];
+    for (const cfg of tries) {
+      let state: StudioState;
+      try { state = replay(s.seed, cfg, s.actions); } catch { continue; } // an action the current rules no longer allow
+      if (digest({ ...state, configHash: s.configHash }) === s.stateHash) return { ok: true, state, actions: s.actions, ui: s.ui, config: cfg };
+    }
+    return outdated; // the rules moved on since it was saved
   } catch {
     return { ok: false, problem: 'damaged' };
   }

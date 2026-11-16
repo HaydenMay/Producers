@@ -894,6 +894,12 @@
       "lastSeasonWeight": 0.1,
       "appealMin": 0.4,
       "appealMax": 1.8,
+      "hallOfFameReach": {
+        "_label": "PROD-159 (LOCKED; built 2026-11-15, Claude's call on the shape): a Hall of Fame title raises the visibility of later titles in the SAME IP (sequels, next seasons, reboots): distributors offer them a wider release, reach x(1 + perTitle per Hall of Fame title already in the IP, at most +max), the same lever as bigger-studio clout (PROD-227). An awareness bonus was tried first and did nothing: those sequels already reach 93-97% awareness through their fans. Money and audience only, never review scores. legacy-advance.json disables it. TEST VALUES.",
+        "enabled": true,
+        "perTitle": 0.1,
+        "max": 0.2
+      },
       "studioClout": {
       "_label": "PROD-227 (designer 2026-11-12; reworked after audit 2026-11-12b): distributors give bigger studios WIDER releases. After the 1st / 2nd studio upgrade every bid's reach is multiplied by reachMultByUpgrades, so more people see the film and BOTH the studio and the distributor earn more. The first version cut the distributor's share instead and made distributors lose money on ~15% of deals (breaking PROD-106); ad/share multipliers stay available at 1. legacy-advance.json disables it. TEST VALUES.",
       "enabled": true,

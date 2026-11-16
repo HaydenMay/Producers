@@ -1,7 +1,7 @@
 // Plain, serializable simulation types. No classes, no functions in state.
 // Ruleset: Entertainment Studio Tycoon design v9.61 (movie kernel only).
 
-export const RULESET_VERSION = "producers-2026-11-15"; // bump whenever rules change: game saves replay through the rules, so older saves are reported as "older version" (was "v9.61-gate3-0.1" through 2026-11-15)
+export const RULESET_VERSION = "producers-2026-11-15b"; // bump whenever rules change: game saves replay through the rules, so older saves are reported as "older version" (was "v9.61-gate3-0.1" through 2026-11-15)
 
 export type Meter = "plot" | "writing" | "filming" | "editing";
 export const METERS: Meter[] = ["plot", "writing", "filming", "editing"];
