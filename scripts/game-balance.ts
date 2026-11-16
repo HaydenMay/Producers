@@ -35,6 +35,7 @@ const rows: string[] = [], money: string[] = [];
 for (const st of POL) {
   const bands = [[0, 2], [2, 5], [5, 10], [10, years]] as const;
   const band: number[][] = bands.map(() => []);
+  const bandHof = bands.map(() => ({ rel: 0, hof: 0 }));
   const first: number[] = [], firstHof: number[] = [], cash: number[] = [], leg: number[] = [], red2: number[] = [], spec: number[] = [], top: number[] = [];
   let rel = 0, hof = 0;
   for (let seed = 1; seed <= seeds; seed++) {
@@ -46,7 +47,7 @@ for (const st of POL) {
       rel++;
       if (x.hallOfFame) hof++;
       const y = x.releaseWeek / W;
-      bands.forEach(([a, b], i) => { if (y >= a && y < b) band[i].push(x.avgScore); });
+      bands.forEach(([a, b], i) => { if (y >= a && y < b) band[i].push(x.avgScore), bandHof[i].rel++, (bandHof[i].hof += x.hallOfFame ? 1 : 0); });
     }
     const h = s.releases.find((x) => x.hallOfFame);
     if (h) firstHof.push(h.releaseWeek / W);
@@ -57,7 +58,7 @@ for (const st of POL) {
     top.push(Math.max(...s.staff.flatMap((p) => Object.values(p.stats))));
   }
   const mean = (x: number[]) => (x.length ? x.reduce((a, b) => a + b, 0) / x.length : NaN);
-  rows.push(`| ${st} | ${f1(med(first))} (${((first.filter((x) => x < 6).length / Math.max(1, first.length)) * 100).toFixed(0)}% below 6) | ${band.map((b) => f1(mean(b))).join(" → ")} | ${((hof / Math.max(1, rel)) * 100).toFixed(1)}% | ${firstHof.length ? `yr ${f1(med(firstHof))} (${firstHof.length}/${seeds})` : `never (0/${seeds})`} |`);
+  rows.push(`| ${st} | ${f1(med(first))} (${((first.filter((x) => x < 6).length / Math.max(1, first.length)) * 100).toFixed(0)}% below 6) | ${band.map((b) => f1(mean(b))).join(" → ")} | ${((hof / Math.max(1, rel)) * 100).toFixed(1)}% (${bandHof.map((b) => ((b.hof / Math.max(1, b.rel)) * 100).toFixed(0)).join(" → ")}%) | ${firstHof.length ? `yr ${f1(med(firstHof))} (${firstHof.length}/${seeds})` : `never (0/${seeds})`} |`);
   money.push(`| ${st} | ${M(med(cash))} (${M(q(cash, 0.25))}–${M(q(cash, 0.75))}) | ${(med(leg) / 1000).toFixed(1)}K (${(q(leg, 0.25) / 1000).toFixed(1)}–${(q(leg, 0.75) / 1000).toFixed(1)}K) | ${med(red2)} | ${f1(med(spec))} | ${med(top).toFixed(0)} |`);
 }
 
@@ -79,7 +80,7 @@ const L = [
   "",
   `\`progressionConfig()\`${sets.length ? ` with ${sets.join(", ")}` : ""}; seeds 1–${seeds}, ${years}-year careers; agents accept specialties and train with a cash cushion. Goals: first films usually below 6; nobody stuck early; first Hall of Fame ~year 4–6; a mix of formats is a strong route. TEST VALUES.`,
   "",
-  `| Strategy | First film (median) | Mean score, years 0–1 → 2–4 → 5–9 → 10–${years - 1} | Hall of Fame share | First Hall of Fame (median year, careers) |`,
+  `| Strategy | First film (median) | Mean score, years 0–1 → 2–4 → 5–9 → 10–${years - 1} | Hall of Fame share (by the same years) | First Hall of Fame (median year, careers) |`,
   "|---|---|---|---|---|",
   ...rows,
   "",

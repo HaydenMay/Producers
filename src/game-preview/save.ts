@@ -4,7 +4,7 @@ import { replay } from '../core/simulation';
 import { RULESET_VERSION, type Approach, type Decision, type StudioState } from '../core/types';
 
 export const SAVE_KEY = 'producers.game-preview.save.v1';
-export type SavedUI = { genre: string; theme: string; approach: Approach; weekProgress?: number; speed?: number; guide?: boolean; guideHintDismissed?: boolean };
+export type SavedUI = { genre: string; theme: string; approach: Approach; weekProgress?: number; speed?: number; guide?: boolean; guideHintDismissed?: boolean; studioName?: string; tips?: string[] };
 const digest = (state: StudioState) => String(hashString(JSON.stringify(state)));
 
 export function makeSave(state: StudioState, actions: Decision[], ui: SavedUI) {
@@ -37,7 +37,9 @@ export function readSave(raw: string): { ok: true; state: StudioState; actions: 
         (s.ui.weekProgress !== undefined && (typeof s.ui.weekProgress !== 'number' || !Number.isFinite(s.ui.weekProgress) || s.ui.weekProgress < 0 || s.ui.weekProgress >= 1)) ||
         (s.ui.speed !== undefined && ![1,2,4].includes(s.ui.speed)) ||
         (s.ui.guide !== undefined && typeof s.ui.guide !== 'boolean') ||
-        (s.ui.guideHintDismissed !== undefined && typeof s.ui.guideHintDismissed !== 'boolean')) return damaged;
+        (s.ui.guideHintDismissed !== undefined && typeof s.ui.guideHintDismissed !== 'boolean') ||
+        (s.ui.studioName !== undefined && (typeof s.ui.studioName !== 'string' || s.ui.studioName.length > 64)) ||
+        (s.ui.tips !== undefined && (!Array.isArray(s.ui.tips) || s.ui.tips.length > 2000 || s.ui.tips.some(t => typeof t !== 'string' || t.length > 200)))) return damaged;
     let state: StudioState;
     try { state = replay(s.seed, cfg, s.actions); } catch { return outdated; } // an action the current rules no longer allow
     if (digest(state) !== s.stateHash) return outdated; // the rules moved on since it was saved

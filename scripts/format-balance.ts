@@ -3,7 +3,7 @@
 // legacy splits into Prestige, Hall of Fame and cash. Goal (designer): a mix of formats is the best route.
 //   npx tsx scripts/format-balance.ts [--seeds 16] [--set path=value ...]  → reports/format-balance/summary.md
 import { mkdirSync, writeFileSync } from "node:fs";
-import { baselineConfig, setPath, type Config } from "../src/core/config";
+import { baselineConfig, progressionConfig, setPath, type Config } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
 import { releaseAccounts } from "../src/batch/econ";
 import { careerRecap } from "../src/core/career";
@@ -12,7 +12,8 @@ import { checkInvariants } from "../src/batch/diagnostics";
 
 const argv = process.argv;
 const seeds = argv.indexOf("--seeds") > 0 ? Number(argv[argv.indexOf("--seeds") + 1]) : 16;
-let cfg: Config = baselineConfig();
+const PROG = argv.includes("--progression");
+let cfg: Config = PROG ? progressionConfig() : baselineConfig();
 for (let i = 0; i < argv.length; i++)
   if (argv[i] === "--set") {
     const [k, v] = argv[i + 1].split("=");
@@ -75,7 +76,7 @@ for (const st of SINGLE) {
 const L = [
   "# Format balance",
   "",
-  `Default config${argv.includes("--set") ? " with overrides " + argv.filter((_, i) => argv[i - 1] === "--set").join(", ") : ""}. Per 30 production-weeks (one movie's length), pooled over ${POL.join(", ")}; seeds 1–${seeds}, 10 years. Legacy points = Prestige + ${cfg.career.legacyScore.hallOfFame} per Hall of Fame title (a TV show counts once) + cash / ${cfg.career.legacyScore.cashPer}. TEST VALUES.`,
+  `${PROG ? "Game config (progressionConfig)" : "Default config"}${argv.includes("--set") ? " with overrides " + argv.filter((_, i) => argv[i - 1] === "--set").join(", ") : ""}. Per 30 production-weeks (one movie's length), pooled over ${POL.join(", ")}; seeds 1–${seeds}, 10 years. Legacy points = Prestige + ${cfg.career.legacyScore.hallOfFame} per Hall of Fame title (a TV show counts once) + cash / ${cfg.career.legacyScore.cashPer}. TEST VALUES.`,
   "",
   "| Format | Releases | Money | Prestige | Hall of Fame titles | HoF share | Legacy points |",
   "|---|---|---|---|---|---|---|",
@@ -90,5 +91,5 @@ const L = [
   `Invariant violations: ${viol}. Elapsed ${((Date.now() - t0) / 1000).toFixed(1)} s.`,
 ];
 mkdirSync("reports/format-balance", { recursive: true });
-if (!argv.includes("--set")) writeFileSync("reports/format-balance/summary.md", L.join("\n") + "\n");
+if (!argv.includes("--set")) writeFileSync(`reports/format-balance/${PROG ? "summary-game" : "summary"}.md`, L.join("\n") + "\n");
 console.log(L.join("\n"));
