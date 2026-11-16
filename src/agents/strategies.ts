@@ -30,6 +30,9 @@ export function knownValue(state: StudioState, genre: string, theme: string): nu
 /** How much the plan-scoring agents value fresh-genre curiosity awareness (tuning knob for measurement). */
 export const FRESH_GENRE_WEIGHT = { w: 2 };
 
+/** Cash an agent keeps on top of the fee before training on the progression config. */
+export const PROGRESSION_TRAIN_RESERVE = 60000;
+
 export function planScore(state: StudioState, p: PlanDecision, explore: number): number {
   const kv = knownValue(state, p.genre, p.theme);
   const trend = TREND_VALUE[state.trends[p.theme]?.stage ?? "none"];
@@ -100,6 +103,17 @@ export function reinvest(state: StudioState, cfg: Config, choices: Choices, ctx:
   if (!legacy && rules.upgradeBuffer !== undefined && has("upgrade_studio") && state.staff.length >= state.maxStaff) {
     const up = choices.options.find((o) => o.type === "upgrade_studio");
     if (up && state.cash > upgradeCost(state, cfg) + rules.upgradeBuffer) return up;
+  }
+  // 2026-11-15: on the game's staff-progression config, agents use it like a player: accept every specialty request and,
+  // with a cash cushion, train whoever is closest to their next level (training buys experience). Off on the default.
+  if ((cfg.staffGrowth as { progression?: { enabled?: boolean } }).progression?.enabled) {
+    const sp = choices.options.find((o) => o.type === "specialize");
+    if (sp) return sp;
+    const offered = choices.options.filter((o): o is Extract<Decision, { type: "train" }> => o.type === "train");
+    if (offered.length && state.cash > cfg.staffGrowth.trainCost + PROGRESSION_TRAIN_RESERVE) {
+      const unspent = (id: string) => { const p = state.staff.find((x) => x.id === id)!; return p.totalXp - (p.progression?.spentXp ?? 0); };
+      return [...offered].sort((a, b) => unspent(b.staffId) - unspent(a.staffId))[0];
+    }
   }
   if (rules.trainAbove !== undefined && has("train") && state.cash > rules.trainAbove) {
     const weakest = [...state.staff].sort((a, b) => Object.values(a.stats).reduce((x, y) => x + y, 0) - Object.values(b.stats).reduce((x, y) => x + y, 0))[0];

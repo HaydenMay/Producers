@@ -35,7 +35,9 @@
     ],
     "progression": {
       "enabled": true,
-      "xpPerLevel": 200,
+      "autoLevel": true,
+      "trainXp": 100,
+      "xpPerLevel": 160,
       "maxLevel": 5,
       "requestMinWeeks": 20,
       "requestJitterWeeks": 10

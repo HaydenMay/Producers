@@ -1,6 +1,6 @@
 // Staff: four universal stats (Plot/Writing/Filming/Editing), XP earned while working.
 // LOCKED: no individual genre experience; payroll is a studio expense (never from advances).
-import { initProgression, progressionRules, recordProgressWork, advanceProgression } from "./staff-progression";
+import { initProgression, progressionRules, recordProgressWork, advanceProgression, trainForXp } from "./staff-progression";
 import type { Config } from "./config";
 import { ledger, emit, newId, round2 } from "./events";
 import { range, int, pick } from "./rng";
@@ -149,7 +149,8 @@ export function trainStaff(state: StudioState, cfg: Config, staffId: string): vo
   const s = state.staff.find((x) => x.id === staffId);
   if (!s) throw new Error(`No staff ${staffId}`);
   ledger(state, { kind: "train", amount: -cfg.staffGrowth.trainCost, note: s.name });
-  if (progressionRules(cfg) && s.progression) { advanceProgression(state, s, cfg); return; }
+  const pr = progressionRules(cfg);
+  if (pr && s.progression) { if (pr.autoLevel) trainForXp(state, s, cfg); else advanceProgression(state, s, cfg); return; }
   for (const m of METERS) s.stats[m] = Math.min(cfg.staffGrowth.statCap, s.stats[m] + cfg.staffGrowth.trainGain);
   emit(state, "train", `Trained ${s.name}: +${cfg.staffGrowth.trainGain} to all stats.`);
 }

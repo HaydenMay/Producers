@@ -33,8 +33,9 @@
    - `npm test` (≈ 15 s) before committing.
 
    **Don't run 200-seed / 25-year matrices** unless the designer asks or a specific regression needs it.
-10. Keep determinism, replay and the legacy regression baselines intact. New mechanics go behind config flags with the legacy default unchanged, and must be proved byte-identical when off. Quality and revenue tuning are separate experiments. Judge films by actual scores, not strategy names.
-11. **Don't claim tests passed unless you ran them. Don't claim a push/publish happened unless you verified it.** Never commit secrets, tokens, `node_modules/` or build output.
+10. **Measure the config the game plays.** The game preview plays `progressionConfig()` (default + `config/staff-progression.json`), not `baselineConfig()`. Any balance claim about the game needs `npx tsx scripts/game-balance.ts` (or `--progression true` on the CLI), not only the default reports. When rules change, bump `RULESET_VERSION` in `src/core/types.ts`: game saves replay through the rules and will report themselves as made in an older version.
+11. Keep determinism, replay and the legacy regression baselines intact. New mechanics go behind config flags with the legacy default unchanged, and must be proved byte-identical when off. Quality and revenue tuning are separate experiments. Judge films by actual scores, not strategy names.
+12. **Don't claim tests passed unless you ran them. Don't claim a push/publish happened unless you verified it.** Never commit secrets, tokens, `node_modules/` or build output.
 
 ## End every handoff with
 
