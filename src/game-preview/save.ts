@@ -43,12 +43,13 @@ export function readSave(raw: string): { ok: true; state: StudioState; actions: 
     const configs = [progressionConfig(), baselineConfig()];
     const same = configs.filter(c => configHash(c) === s.configHash);
     // exact match first; otherwise (older ruleset or config) try every current config and keep the save only if its
-    // replay is identical to what was saved (the stored config hash is the one field allowed to differ)
+    // replay is identical to what was saved (only the stored config hash and ruleset stamps may differ)
     const tries = s.ruleset === RULESET_VERSION && same.length ? same : [...same, ...configs.filter(c => !same.includes(c))];
     for (const cfg of tries) {
       let state: StudioState;
       try { state = replay(s.seed, cfg, s.actions); } catch { continue; } // an action the current rules no longer allow
-      if (digest({ ...state, configHash: s.configHash }) === s.stateHash) return { ok: true, state, actions: s.actions, ui: s.ui, config: cfg };
+      const stamped = { ...state, configHash: s.configHash, ...('rulesetVersion' in state ? { rulesetVersion: s.ruleset } : {}) };
+      if (digest(stamped as StudioState) === s.stateHash) return { ok: true, state, actions: s.actions, ui: s.ui, config: cfg };
     }
     return outdated; // the rules moved on since it was saved
   } catch {

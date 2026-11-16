@@ -4,6 +4,7 @@ import { progressionConfig, setPath } from '../../src/core/config';
 import { createStudio } from '../../src/core/simulation';
 import { PrototypeGame } from '../../src/game/game';
 import { encodeSave, readSave } from '../../src/game-preview/save';
+import { hashString } from '../../src/core/rng';
 
 const ui = { genre: 'Action', theme: 'Spies', approach: 'balanced' as const };
 
@@ -22,9 +23,11 @@ describe('game saves', () => {
   it('an older save carries over when the current rules replay it identically; otherwise it is outdated, not damaged', () => {
     const state = createStudio(7, progressionConfig());
     const raw = JSON.parse(encodeSave(state, [], ui));
-    const older = readSave(JSON.stringify({ ...raw, ruleset: 'v9.61-gate3-0.1' }));
+    // a real older save: its state carries the old ruleset and config stamps, and its hash covers them
+    const oldState = { ...state, configHash: 'an-older-config', rulesetVersion: 'v9.61-gate3-0.1' };
+    const older = readSave(JSON.stringify({ ...raw, ruleset: 'v9.61-gate3-0.1', configHash: 'an-older-config', stateHash: String(hashString(JSON.stringify(oldState))) }));
     expect(older.ok).toBe(true);
-    if (older.ok) expect(older.state).toEqual(state);
+    if (older.ok) expect(older.state).toEqual(state); // continues under today's rules and stamps
     expect(readSave(JSON.stringify({ ...raw, configHash: 'an-older-config' }))).toEqual({ ok: false, problem: 'outdated' }); // hash no longer matches its state
     expect(readSave(JSON.stringify({ ...raw, stateHash: '12345' }))).toEqual({ ok: false, problem: 'outdated' });
     // a save made under numbers that change its history (here: different start cash) can't carry over
