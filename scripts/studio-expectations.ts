@@ -5,7 +5,7 @@
 //   npx tsx scripts/studio-expectations.ts                     → shipped values, 16 seeds → reports/studio-expectations/summary.md
 //   npx tsx scripts/studio-expectations.ts --grid [--seeds 8]  → sweep toughnessByUpgrades (console only)
 import { mkdirSync, writeFileSync } from "node:fs";
-import { baselineConfig, setPath, type Config } from "../src/core/config";
+import { baselineConfig, progressionConfig, setPath, type Config } from "../src/core/config";
 import { runCareer } from "../src/batch/runner";
 import { checkInvariants } from "../src/batch/diagnostics";
 import { careerRecap } from "../src/core/career";
@@ -54,7 +54,8 @@ function measure(cfg: Config, withLegacy: boolean) {
 }
 
 const pct = (x: number) => `${(x * 100).toFixed(1)}%`;
-const base = baselineConfig();
+const PROG = argv.includes("--progression");
+const base = PROG ? progressionConfig() : baselineConfig();
 
 if (grid) {
   // --pairs "0.025,0.04;0.03,0.045" sweeps just those pairs; otherwise the coarse grid
@@ -109,5 +110,5 @@ const L = [
   `Invariant violations: ${viol}. Elapsed ${((Date.now() - t0) / 1000).toFixed(1)} s.`,
 ];
 mkdirSync("reports/studio-expectations", { recursive: true });
-writeFileSync("reports/studio-expectations/summary.md", L.join("\n") + "\n");
+writeFileSync(`reports/studio-expectations/${PROG ? "summary-game" : "summary"}.md`, L.join("\n") + "\n");
 console.log(L.join("\n"));
