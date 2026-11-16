@@ -13,11 +13,11 @@
 
 | Strategy | 20-yr cash (p25–p75) | 20-yr legacy (p25–p75) | Red weeks, first 2 yrs | Specialists | Top skill |
 |---|---|---|---|---|---|
-| balanced | $19.9M ($18.9M–$20.2M) | 23.1K (20.2–26.1K) | 1 | 8.0 | 251 |
+| balanced | $20.4M ($19.5M–$21.8M) | 23.1K (20.2–26.6K) | 1 | 8.0 | 251 |
 | quality-first | $19.1M ($18.3M–$20.1M) | 22.2K (21.5–23.6K) | 5 | 8.0 | 253 |
-| mixed | $30.8M ($29.3M–$31.9M) | 24.3K (22.4–27.0K) | 0 | 7.0 | 252 |
-| tv-first | $20.9M ($20.3M–$21.7M) | 17.2K (15.5–19.3K) | 0 | 8.0 | 253 |
+| mixed | $30.8M ($29.9M–$33.4M) | 24.3K (22.4–27.4K) | 0 | 7.0 | 252 |
+| tv-first | $22.9M ($21.1M–$24.3M) | 18.2K (15.5–20.1K) | 0 | 8.0 | 253 |
 | limited-focus | $19.5M ($19.3M–$20.0M) | 24.5K (22.6–25.3K) | 0 | 8.0 | 254 |
 | cheap-duds | $0.7M ($0.6M–$0.8M) | 0.3K (0.2–0.3K) | 26 | 0.0 | 61 |
 
-Invariant violations: 0. Elapsed 9.9 s.
+Invariant violations: 0. Elapsed 9.3 s.

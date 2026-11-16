@@ -725,6 +725,9 @@ Gate 3 now models limited series, TV and streaming (see [`docs/archive/gates/gat
 | `economy.lateDistribution.lastSeasonWeight` | 0.1 |
 | `economy.lateDistribution.appealMin` | 0.4 |
 | `economy.lateDistribution.appealMax` | 1.8 |
+| `economy.lateDistribution.hallOfFameReach.enabled` | true |
+| `economy.lateDistribution.hallOfFameReach.perTitle` | 0.1 |
+| `economy.lateDistribution.hallOfFameReach.max` | 0.2 |
 | `economy.lateDistribution.studioClout.enabled` | true |
 | `economy.lateDistribution.studioClout.adMultByUpgrades` | [1,1] |
 | `economy.lateDistribution.studioClout.shareMultByUpgrades` | [1,1] |

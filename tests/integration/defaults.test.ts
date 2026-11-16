@@ -50,6 +50,7 @@ describe("Producers default economy", () => {
       delete x.expectations.studioSize.enabled; // PROD-226: studio-size expectations off in legacy
       delete x.scoring.thresholdDecimals; // PROD-078: thresholds judge the displayed score (legacy: raw)
       delete x.economy.lateDistribution.studioClout.enabled; // PROD-227: studio clout off in legacy
+      delete x.economy.lateDistribution.hallOfFameReach.enabled; // PROD-159: Hall of Fame reach off in legacy
       delete x.agents.legacyHeuristicStaffCaps; // audit M3: default agents play the default game
       delete x.agents.useFiring;
       delete x.agents.economicRenewal;

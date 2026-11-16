@@ -1,9 +1,10 @@
 // 2026-11-15 review fixes: every new studio gets its own world, and a save that can't be continued says WHY.
 import { describe, expect, it } from 'vitest';
-import { progressionConfig } from '../../src/core/config';
+import { progressionConfig, setPath } from '../../src/core/config';
 import { createStudio } from '../../src/core/simulation';
 import { PrototypeGame } from '../../src/game/game';
 import { encodeSave, readSave } from '../../src/game-preview/save';
+import { hashString } from '../../src/core/rng';
 
 const ui = { genre: 'Action', theme: 'Spies', approach: 'balanced' as const };
 
@@ -19,12 +20,19 @@ describe('game saves', () => {
     if (saved.ok) expect(saved.state).toEqual(state);
   });
 
-  it('a save from older rules is reported as outdated, not damaged', () => {
+  it('an older save carries over when the current rules replay it identically; otherwise it is outdated, not damaged', () => {
     const state = createStudio(7, progressionConfig());
     const raw = JSON.parse(encodeSave(state, [], ui));
-    expect(readSave(JSON.stringify({ ...raw, ruleset: 'v9.61-gate3-0.1' }))).toEqual({ ok: false, problem: 'outdated' });
-    expect(readSave(JSON.stringify({ ...raw, configHash: 'an-older-config' }))).toEqual({ ok: false, problem: 'outdated' });
+    // a real older save: its state carries the old ruleset and config stamps, and its hash covers them
+    const oldState = { ...state, configHash: 'an-older-config', rulesetVersion: 'v9.61-gate3-0.1' };
+    const older = readSave(JSON.stringify({ ...raw, ruleset: 'v9.61-gate3-0.1', configHash: 'an-older-config', stateHash: String(hashString(JSON.stringify(oldState))) }));
+    expect(older.ok).toBe(true);
+    if (older.ok) expect(older.state).toEqual(state); // continues under today's rules and stamps
+    expect(readSave(JSON.stringify({ ...raw, configHash: 'an-older-config' }))).toEqual({ ok: false, problem: 'outdated' }); // hash no longer matches its state
     expect(readSave(JSON.stringify({ ...raw, stateHash: '12345' }))).toEqual({ ok: false, problem: 'outdated' });
+    // a save made under numbers that change its history (here: different start cash) can't carry over
+    const changed = createStudio(7, setPath(progressionConfig(), 'start.cash', 99_999));
+    expect(readSave(encodeSave(changed, [], ui))).toEqual({ ok: false, problem: 'outdated' });
   });
 
   it('unreadable saves are reported as damaged', () => {
