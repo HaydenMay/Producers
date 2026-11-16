@@ -3,7 +3,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { disposeSource, makeLabCharacter } from '../character-lab/character';
 import { generateTraits } from '../character-lab/traits';
 
-export type PersonKind = 'staff' | 'star';
+export type PersonKind = 'staff' | 'star' | 'assistant';
 export const portraitTraits = (kind: PersonKind, id: string) => generateTraits(`${kind}-${id}`);
 export type PortraitService = { image:(kind:PersonKind,id:string)=>string; dispose:()=>void };
 
