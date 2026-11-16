@@ -272,7 +272,7 @@ This is a balance harness, not the game: strategies are heuristics and titles ca
 
 ## Producers visual prototype V0.1
 
-The experimental playable office is intended for https://haydenmay.github.io/Producers/ when GitHub Pages is configured and deployed. It is a visual feasibility prototype, not the finished game. The two seated employees and production drawer are in `src/game`; production decisions and results use the existing `src/core` simulation. Reset starts the same seeded studio; progress is not saved between sessions.
+The experimental playable office is intended for https://haydenmay.github.io/Producers/ when GitHub Pages is configured and deployed. It is a visual feasibility prototype, not the finished game. The two seated employees and production drawer are in `src/game`; production decisions and results use the existing `src/core` simulation. Reset starts the same seeded studio; progress is not saved between sessions. (The game preview at `/game` gives every new studio its own random world, saves locally, and tells you when a save was made in an older version. It plays `progressionConfig()`; measure it with `npx tsx scripts/game-balance.ts` → `reports/game-balance/summary.md`, or `--progression true` on the CLI.)
 
 - `npm run dev:game` — run the prototype locally.
 - `npm run build:game` — build the project-site root into `dist-pages`.

@@ -12,14 +12,24 @@ describe('employee progression', () => {
   expect(current.staff[0].stats.plot).toBeLessThan(old.staff[0].stats.plot);
   expect(current.staff[0].progression?.level).toBe(0);
  });
- it('requires work for five trainings and waits after the cap before asking', () => {
+ // 2026-11-15 review fix: levels are earned by working; training is a paid speed-up that buys experience
+ it('earns crew levels by working, lets training speed it up, and waits after the cap before asking', () => {
   const cfg=progressionConfig(), state=createStudio(42,cfg), person=state.staff[0];
-  for(let level=1;level<=5;level++) {
-   expect(getChoices(state,cfg).options.some(d=>d.type==='train'&&d.staffId===person.id)).toBe(false);
-   for(let i=0;i<20;i++) recordProgressWork(state,person,cfg);
-   applyDecision(state,cfg,{type:'train',staffId:person.id});
-   expect(person.progression?.level).toBe(level);
-  }
+  const r=(cfg.staffGrowth as unknown as {progression:{xpPerLevel:number;trainXp:number;maxLevel:number}}).progression;
+  const weeksPerLevel=r.xpPerLevel/cfg.staffGrowth.xpPerWeek;
+  for(let i=0;i<weeksPerLevel-1;i++) recordProgressWork(state,person,cfg);
+  expect(person.progression?.level).toBe(0);
+  recordProgressWork(state,person,cfg);
+  expect(person.progression?.level).toBe(1); // no fee, no training
+  state.cash=1_000_000;
+  expect(getChoices(state,cfg).options.some(d=>d.type==='train'&&d.staffId===person.id)).toBe(true);
+  const xp=person.totalXp, cash=state.cash;
+  applyDecision(state,cfg,{type:'train',staffId:person.id});
+  expect(person.totalXp).toBe(xp+r.trainXp);
+  expect(state.cash).toBe(cash-cfg.staffGrowth.trainCost);
+  for(let i=0;i<200&&person.progression!.level<r.maxLevel;i++) recordProgressWork(state,person,cfg);
+  expect(person.progression?.level).toBe(r.maxLevel);
+  expect(getChoices(state,cfg).options.some(d=>d.type==='train'&&d.staffId===person.id)).toBe(false); // nothing left this stage
   expect(person.progression?.request).toBe(false);
   for(let i=0;i<19;i++) recordProgressWork(state,person,cfg);
   expect(person.progression?.request).toBe(false);
@@ -31,7 +41,9 @@ describe('employee progression', () => {
   applyDecision(state,cfg,{type:'specialize',staffId:person.id});
   expect(person.progression?.stage).toBe('specialist');
   expect(person.progression?.level).toBe(0);
-  expect(getChoices(state,cfg).options.some(d=>d.type==='train'&&d.staffId===person.id)).toBe(false);
+  expect(getChoices(state,cfg).options.some(d=>d.type==='train'&&d.staffId===person.id)).toBe(true); // specialist levels to earn
+  for(let i=0;i<weeksPerLevel;i++) recordProgressWork(state,person,cfg);
+  expect(person.progression?.level).toBe(1);
  });
  it('replays a real career with contracts, growth, a deferred request and specialization', () => {
   const cfg=progressionConfig(), state=createStudio(42,cfg), actions:Decision[]=[];
@@ -53,9 +65,10 @@ describe('employee progression', () => {
   for(let seed=1;seed<=60;seed++){
    const cfg=progressionConfig(),state=createStudio(seed,cfg);state.cash=1000000;state.capacityLevel=2;state.maxStaff=8;
    applyDecision(state,cfg,{type:'hire'});const person=state.staff.at(-1)!;
-   for(let i=0;i<5;i++){for(let w=0;w<20;w++)recordProgressWork(state,person,cfg);applyDecision(state,cfg,{type:'train',staffId:person.id});}
-   for(let w=0;w<31;w++)recordProgressWork(state,person,cfg);applyDecision(state,cfg,{type:'specialize',staffId:person.id});
-   for(let i=0;i<5;i++){for(let w=0;w<20;w++)recordProgressWork(state,person,cfg);applyDecision(state,cfg,{type:'train',staffId:person.id});}
+   for(let w=0;w<400&&!person.progression?.request;w++)recordProgressWork(state,person,cfg);
+   applyDecision(state,cfg,{type:'specialize',staffId:person.id});
+   for(let w=0;w<200;w++)recordProgressWork(state,person,cfg);
+   expect(person.progression?.level).toBe(5);
    const values=Object.values(person.stats);expect(Math.max(...values)).toBeLessThanOrEqual(255);if(values.includes(255)){reached=true;break;}
   }
   expect(reached).toBe(true);

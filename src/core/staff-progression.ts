@@ -3,7 +3,10 @@ import { emit } from './events';
 import { stableUnit } from './rng';
 import { METERS, type Meter, type Staff, type StudioState } from './types';
 
-type Rules = { enabled: boolean; xpPerLevel: number; maxLevel: number; requestMinWeeks: number; requestJitterWeeks: number };
+// 2026-11-15 (review fix): with autoLevel, levels are EARNED BY WORKING (no fee); training is a paid speed-up that buys
+// trainXp work-experience. Without it (the 2026-11-15 candidate), training was the only way to level, and studios whose
+// films earned nothing could never grow (movie studios stuck at ~4/10 for 20 years).
+type Rules = { enabled: boolean; xpPerLevel: number; maxLevel: number; requestMinWeeks: number; requestJitterWeeks: number; autoLevel?: boolean; trainXp?: number };
 export function progressionRules(cfg: Config): Rules | undefined {
  const rules = (cfg.staffGrowth as unknown as { progression?: Rules }).progression;
  return rules?.enabled ? rules : undefined;
@@ -15,16 +18,35 @@ export function initProgression(state: StudioState, person: Staff, cfg: Config):
  const specialty=person.stats[sorted[0]]-person.stats[sorted[3]]<=4?'Producer':focus==='filming'?'Film Expert':focus==='editing'?'Editor':'Writer';
  person.progression={level:0,stage:'general',specialty,spentXp:0,workWeeksAtCap:0,request:false,requestAfterWeeks:rules.requestMinWeeks+Math.floor(stableUnit(state.seed,`request:${person.id}`)*(rules.requestJitterWeeks+1)),focus};
 }
+/** autoLevel: take every level the person's unspent work XP pays for (up to the stage's max). */
+export function levelUpFromXp(state: StudioState, person: Staff, cfg: Config): void {
+ const p=person.progression, r=progressionRules(cfg);
+ if(!p||!r?.autoLevel) return;
+ while(p.level<r.maxLevel&&person.totalXp-p.spentXp>=r.xpPerLevel) advanceProgression(state,person,cfg);
+}
 export function recordProgressWork(state: StudioState, person: Staff, cfg: Config): void {
  initProgression(state,person,cfg); person.totalXp+=cfg.staffGrowth.xpPerWeek;
+ levelUpFromXp(state,person,cfg);
  const p=person.progression, rules=progressionRules(cfg);
  if (!p || !rules || p.stage!=='general' || p.level<rules.maxLevel || p.request) return;
  p.workWeeksAtCap++;
  if(p.workWeeksAtCap>=p.requestAfterWeeks){p.request=true;emit(state,'specialty_request',`${person.name} would like to become a ${p.specialty}.`,{staffId:person.id});}
 }
+/** Is training offered? autoLevel: whenever there's a level left in the current stage (it buys XP toward it).
+ *  Otherwise (old candidate): only when a full level of unspent XP is waiting. */
 export function canAdvance(person: Staff,cfg: Config): boolean {
  const p=person.progression, r=progressionRules(cfg);
- return !r || (!!p && p.level<r.maxLevel && person.totalXp-p.spentXp>=r.xpPerLevel);
+ if(!r) return true;
+ if(!p) return false;
+ if(r.autoLevel) return p.level<r.maxLevel;
+ return p.level<r.maxLevel && person.totalXp-p.spentXp>=r.xpPerLevel;
+}
+/** autoLevel training: buy trainXp of experience, then take any levels it completes. */
+export function trainForXp(state: StudioState, person: Staff, cfg: Config): void {
+ const r=progressionRules(cfg)!, xp=r.trainXp??r.xpPerLevel/2, before=person.progression!.level;
+ person.totalXp+=xp;
+ levelUpFromXp(state,person,cfg);
+ if(person.progression!.level===before) emit(state,'train',`${person.name} trained: +${xp} experience toward the next level.`,{staffId:person.id});
 }
 export function advanceProgression(state:StudioState,person:Staff,cfg:Config): void {
  const p=person.progression!,r=progressionRules(cfg)!;

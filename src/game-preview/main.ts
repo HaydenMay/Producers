@@ -31,7 +31,7 @@ let saveBlocked=false,saveIssue='',lastSaveRaw:string|null=null,validSave=false,
 let restoredUI:SavedUI|undefined;
 try {
  const raw=localStorage.getItem(SAVE_KEY);lastSaveRaw=raw;
- if(raw!==null){const saved=readSave(raw);if(saved.ok){validSave=true;cfg=saved.config;game.config=cfg;game.state=saved.state;game.actions=saved.actions;restoredUI=saved.ui}else{saveBlocked=true;saveIssue='The saved preview is damaged or from an incompatible version. It has been kept untouched. Use New studio to replace it.'}}
+ if(raw!==null){const saved=readSave(raw);if(saved.ok){validSave=true;cfg=saved.config;game.config=cfg;game.state=saved.state;game.actions=saved.actions;restoredUI=saved.ui}else{saveBlocked=true;saveIssue=saved.problem==='outdated'?'This studio was saved in an older version of Producers, and the rules have changed since, so it can\'t be continued. It has been kept untouched. Use New studio to start fresh.':'The saved studio is damaged. It has been kept untouched. Use New studio to replace it.'}}
 } catch {saveBlocked=true;saveIssue='Browser storage is unavailable. Progress cannot be saved on this device.'}
 let scene:Awaited<ReturnType<typeof createSceneLab>>|undefined,sceneKey='',closed=false,windowFocused=document.hasFocus();
 type View='menu'|'projects'|'genres'|'themes'|'people'|'studio'|'decision'|'results'|'releases'|'person';let view:View|null=null;
