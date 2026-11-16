@@ -16,6 +16,12 @@ export function training(person:Staff,choices:Choices,cfg:Config):Availability{
  if(rules && p){
   if(p.level>=rules.maxLevel)return {enabled:false,reason:p.stage==='general'?'At the crew cap. Keep working; they may ask about a specialty later.':'This employee has completed their specialty training.'};
   const needed=Math.max(0,rules.xpPerLevel-(person.totalXp-p.spentXp));
+  if(rules.autoLevel){
+   // 2026-11-15: levels come from work; training buys experience to get there sooner
+   if(choices.spendableCash<cfg.staffGrowth.trainCost)return {enabled:false,reason:`Not enough available cash to train. ${needed} more work XP reaches level ${p.level+1} on its own.`};
+   const xp=rules.trainXp??rules.xpPerLevel/2;
+   return {enabled:choices.options.some(d=>d.type==='train'&&d.staffId===person.id),reason:`Adds ${xp} experience toward level ${p.level+1}/${rules.maxLevel} (${needed} more needed; work earns it too).`};
+  }
   if(needed)return {enabled:false,reason:`Earn ${needed} more work XP before the next level.`};
   if(choices.spendableCash<cfg.staffGrowth.trainCost)return {enabled:false,reason:'Not enough available cash to train.'};
   return {enabled:choices.options.some(d=>d.type==='train'&&d.staffId===person.id),reason:`Advance to level ${p.level+1}/5 with personal skill growth.`};
