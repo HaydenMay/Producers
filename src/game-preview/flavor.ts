@@ -108,6 +108,7 @@ export function assistantPremiereLine(r: Pick<Release, 'audience' | 'critic' | '
 
 // ── Later-unlock tips (PROD-170) ───────────────────────────────────────────
 export type Tip = { key: string; text: string };
+export const IDLE_WEEKS = 4;
 /** Keys for everything already unlocked, so a fresh studio (or an older save) doesn't get tips for its starting set. */
 export function knownTipKeys(state: StudioState, cfg: Config): string[] {
   return [...state.unlockedGenres.map(g => `genre:${g}`), ...state.unlockedThemes.map(t => `theme:${t}`), `critics:${criticGenerationAt(state.week, cfg)}`];
@@ -122,6 +123,16 @@ export function newTips(state: StudioState, seen: ReadonlySet<string>, seed: num
     tips.push({ key: `theme:${t}`, text: `${why(state, t) ?? `New theme: ${t}.`} It's in the theme picker now.` });
   if (expansion?.enabled && !seen.has(`expand:${expansion.to}`))
     tips.push({ key: `expand:${expansion.to}`, text: `We can afford to expand the studio to ${expansion.to} seats. Have a look in Studio when you're ready.` });
+  // reminders (PROD-166): in the red, or the crew sitting idle
+  if (state.cash < 0) {
+    const key = `red:${Math.floor(state.week / 13)}`;
+    if (!seen.has(key)) tips.push({ key, text: "We're in the red, boss. We can't start a new movie until we're back in the black; a work-for-hire job in Projects is the quickest fix." });
+  }
+  if (!state.project && !state.contract && state.cash >= 0) {
+    const since = Math.max(-1, ...state.events.filter(e => e.type === 'project_start' || e.type === 'release' || e.type === 'contract').map(e => e.week));
+    if (since >= 0 && state.week - since >= IDLE_WEEKS && !seen.has(`idle:${since}`))
+      tips.push({ key: `idle:${since}`, text: `The crew has been waiting ${state.week - since} weeks for their next job. Payroll keeps running, so let's plan a movie or take a work-for-hire job.` });
+  }
   const g = criticGenerationAt(state.week, cfg);
   if (g > 0 && !seen.has(`critics:${g}`)) {
     const before = criticPanelFor(seed, g - 1, cfg), now = criticPanelFor(seed, g, cfg);

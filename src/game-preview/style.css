@@ -38,3 +38,9 @@
 .bio{font-size:12px;line-height:1.45;color:#5e5649;margin:12px 0 4px}
 .guide-tip .avatar{float:left;width:34px;height:34px;margin:0 10px 4px 0;font-size:16px}.guide-tip::after{content:"";display:block;clear:both}
 .unlock-tip{top:calc(145px + env(safe-area-inset-top))}
+
+/* PROD-089 news: The Daily Reel (paper) → Buzzline (feed) */
+.paper{background:#fbf6ec;border:1px solid #e6dac8;border-radius:10px;padding:14px 14px 4px}.masthead{margin:0;text-align:center;font:700 26px Georgia,serif;letter-spacing:.02em;color:#2f3a48;border-bottom:3px double #b9a98f;padding-bottom:6px}.dateline{margin:4px 0 10px;text-align:center;font-size:10px;letter-spacing:.14em;color:#8e8174}
+.story{border-top:1px solid #e6dac8;padding:10px 0}.story small{font-size:9px;letter-spacing:.12em;color:#9b8069;font-weight:800}.story h3{margin:4px 0;font:700 16px/1.25 Georgia,serif;color:#2f3a48}.story p{margin:0;font-size:12px;color:#6c6256;line-height:1.4}.story.fresh h3::before,.post.fresh .post-head strong::after{content:"NEW";display:inline-block;margin-right:6px;padding:1px 5px;border-radius:4px;background:#dcb064;color:#293544;font:800 8px system-ui;letter-spacing:.08em;vertical-align:middle}.post.fresh .post-head strong::after{margin:0 0 0 6px}
+.feed{display:grid;gap:8px}.post{background:#f6efe5;border:1px solid #eadfce;border-radius:12px;padding:10px 12px;font-size:13px;color:#303a49}.post p{margin:4px 0}.post-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.post-head strong{font-size:12px;color:#4d6a8a}.post-head small{font-size:10px;color:#978778}.post-detail{font-size:12px;color:#756e62}
+.critic-panel .money-row{align-items:center;gap:10px}.critic-panel .money-row>span{flex:1;min-width:0}.critic-panel .avatar{width:34px;height:34px;font-size:15px}

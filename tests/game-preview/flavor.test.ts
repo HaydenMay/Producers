@@ -85,3 +85,20 @@ describe('later-unlock tips (PROD-170)', () => {
     expect(newTips(s, seen, 11, cfg, { to: 6, enabled: true })).toEqual([]);
   });
 });
+
+describe('assistant reminders (PROD-166)', () => {
+  it('reminds once per quarter in the red, and once per idle stretch', () => {
+    const s = createStudio(12, cfg), seen = new Set(knownTipKeys(s, cfg));
+    s.cash = -5000; s.week = 20;
+    const red = newTips(s, seen, 12, cfg);
+    expect(red.map(t => t.key)).toEqual(['red:1']);
+    expect(red[0].text).toContain('work-for-hire');
+    seen.add('red:1');
+    s.week = 25; expect(newTips(s, seen, 12, cfg)).toEqual([]);
+    s.cash = 50000; s.events.push({ week: 30, type: 'release', message: 'x released' });
+    s.week = 33; expect(newTips(s, seen, 12, cfg)).toEqual([]);
+    s.week = 34; const idle = newTips(s, seen, 12, cfg);
+    expect(idle.map(t => t.key)).toEqual(['idle:30']);
+    expect(idle[0].text).toContain('4 weeks');
+  });
+});
