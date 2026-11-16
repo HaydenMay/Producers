@@ -4,7 +4,7 @@ import { replay } from '../core/simulation';
 import { RULESET_VERSION, type Approach, type Decision, type StudioState } from '../core/types';
 
 export const SAVE_KEY = 'producers.game-preview.save.v1';
-export type SavedUI = { genre: string; theme: string; approach: Approach; weekProgress?: number; speed?: number; guide?: boolean; guideHintDismissed?: boolean; studioName?: string; tips?: string[] };
+export type SavedUI = { genre: string; theme: string; approach: Approach; weekProgress?: number; speed?: number; guide?: boolean; guideHintDismissed?: boolean; studioName?: string; tips?: string[]; newsReadUpTo?: number };
 const digest = (state: StudioState) => String(hashString(JSON.stringify(state)));
 
 export function makeSave(state: StudioState, actions: Decision[], ui: SavedUI) {
@@ -38,6 +38,7 @@ export function readSave(raw: string): { ok: true; state: StudioState; actions: 
         (s.ui.speed !== undefined && ![1,2,4].includes(s.ui.speed)) ||
         (s.ui.guide !== undefined && typeof s.ui.guide !== 'boolean') ||
         (s.ui.guideHintDismissed !== undefined && typeof s.ui.guideHintDismissed !== 'boolean') ||
+        (s.ui.newsReadUpTo !== undefined && (!Number.isSafeInteger(s.ui.newsReadUpTo) || s.ui.newsReadUpTo < 0)) ||
         (s.ui.studioName !== undefined && (typeof s.ui.studioName !== 'string' || s.ui.studioName.length > 64)) ||
         (s.ui.tips !== undefined && (!Array.isArray(s.ui.tips) || s.ui.tips.length > 2000 || s.ui.tips.some(t => typeof t !== 'string' || t.length > 200)))) return damaged;
     let state: StudioState;
